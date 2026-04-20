@@ -430,8 +430,10 @@ export default function Home() {
                     fontFamily:FRANK,
                     fontSize:"clamp(72px,13vw,220px)",
                     fontWeight:400, lineHeight:0.88,
-                    color:"#F4541A",          // ghost — invisible on yellow
+                    color:"transparent",
+                    WebkitTextStroke:"2px #0D0D0D",
                     letterSpacing:"-0.02em",
+                    opacity:0.18,
                   }}
                 />
                 <SplitText
