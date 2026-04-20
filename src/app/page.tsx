@@ -433,7 +433,7 @@ export default function Home() {
                     color:"transparent",
                     WebkitTextStroke:"2px #0D0D0D",
                     letterSpacing:"-0.02em",
-                    opacity:0.18,
+                    opacity:0.45,
                   }}
                 />
                 <SplitText
