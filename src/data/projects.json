@@ -8,8 +8,15 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-06",
     "updatedAt": "2026-04-15",
+    "url": "https://kanoa-ai-platform.vercel.app",
     "client": "KANOA",
-    "tags": ["AI", "HR", "Next.js", "採用"]
+    "tags": [
+      "AI",
+      "HR",
+      "Next.js",
+      "採用"
+    ],
+    "featured": true
   },
   {
     "id": "kanoa-jobs",
@@ -19,9 +26,14 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-15",
-    "updatedAt": "2026-04-17",
+    "updatedAt": "2026-04-21",
+    "url": "https://kanoa-jobs.vercel.app",
     "client": "KANOA",
-    "tags": ["求人", "ATS", "Next.js"]
+    "tags": [
+      "求人",
+      "ATS",
+      "Next.js"
+    ]
   },
   {
     "id": "kanoa-deploy",
@@ -32,8 +44,12 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-10",
     "updatedAt": "2026-04-10",
+    "url": "https://kanoa-deploy.vercel.app",
     "client": "KANOA",
-    "tags": ["DevOps", "CI/CD"]
+    "tags": [
+      "DevOps",
+      "CI/CD"
+    ]
   },
   {
     "id": "kanoa-vercel",
@@ -44,8 +60,12 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-08",
     "updatedAt": "2026-04-08",
+    "url": "https://kanoa-vercel.vercel.app",
     "client": "KANOA",
-    "tags": ["Vercel", "DevOps"]
+    "tags": [
+      "Vercel",
+      "DevOps"
+    ]
   },
   {
     "id": "lia-recruit",
@@ -56,8 +76,13 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-06",
     "updatedAt": "2026-04-18",
+    "url": "https://lia-recruit.vercel.app",
     "client": "LIA",
-    "tags": ["採用", "Next.js", "フォーム"]
+    "tags": [
+      "採用",
+      "Next.js",
+      "フォーム"
+    ]
   },
   {
     "id": "braive-ai",
@@ -68,7 +93,12 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-11",
     "updatedAt": "2026-04-15",
-    "tags": ["AI", "EdTech", "Next.js"]
+    "url": "https://braive-ai.vercel.app",
+    "tags": [
+      "AI",
+      "EdTech",
+      "Next.js"
+    ]
   },
   {
     "id": "ai-quest",
@@ -79,8 +109,15 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-17",
     "updatedAt": "2026-04-20",
+    "url": "https://ai-quest.vercel.app",
     "client": "Lakkan",
-    "tags": ["ゲーミフィケーション", "オンボーディング", "AI", "Next.js"]
+    "tags": [
+      "ゲーミフィケーション",
+      "オンボーディング",
+      "AI",
+      "Next.js"
+    ],
+    "featured": true
   },
   {
     "id": "onboarding-tool",
@@ -91,7 +128,12 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-10",
     "updatedAt": "2026-04-10",
-    "tags": ["オンボーディング", "React", "Vite"]
+    "url": "",
+    "tags": [
+      "オンボーディング",
+      "React",
+      "Vite"
+    ]
   },
   {
     "id": "uemoto-onboarding",
@@ -102,7 +144,11 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-12",
     "updatedAt": "2026-04-12",
-    "tags": ["オンボーディング", "社内"]
+    "url": "https://uemoto-onboarding.vercel.app",
+    "tags": [
+      "オンボーディング",
+      "社内"
+    ]
   },
   {
     "id": "competitor-research",
@@ -113,7 +159,12 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-18",
     "updatedAt": "2026-04-20",
-    "tags": ["AI Agent", "競合分析", "スクレイピング"]
+    "url": "https://competitor-research.vercel.app",
+    "tags": [
+      "AI Agent",
+      "競合分析",
+      "スクレイピング"
+    ]
   },
   {
     "id": "shoot-agent",
@@ -124,7 +175,12 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-13",
     "updatedAt": "2026-04-13",
-    "tags": ["AI Agent", "コンテンツ", "撮影"]
+    "url": "https://shoot-agent-v45.vercel.app",
+    "tags": [
+      "AI Agent",
+      "コンテンツ",
+      "撮影"
+    ]
   },
   {
     "id": "trefinder",
@@ -135,7 +191,12 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-16",
     "updatedAt": "2026-04-16",
-    "tags": ["検索", "Notion", "社内ツール"]
+    "url": "https://trefinder.vercel.app",
+    "tags": [
+      "検索",
+      "Notion",
+      "社内ツール"
+    ]
   },
   {
     "id": "trepro-dashboard",
@@ -146,7 +207,12 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-16",
     "updatedAt": "2026-04-16",
-    "tags": ["ダッシュボード", "KPI", "React"]
+    "url": "https://trepro-dashboard.vercel.app",
+    "tags": [
+      "ダッシュボード",
+      "KPI",
+      "React"
+    ]
   },
   {
     "id": "trepro-skillmap",
@@ -157,7 +223,12 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-14",
     "updatedAt": "2026-04-14",
-    "tags": ["スキル管理", "HR", "社内ツール"]
+    "url": "",
+    "tags": [
+      "スキル管理",
+      "HR",
+      "社内ツール"
+    ]
   },
   {
     "id": "trepro-ssp-dashboard",
@@ -168,18 +239,29 @@
     "builtWith": "claude_code",
     "createdAt": "2026-03-05",
     "updatedAt": "2026-03-05",
-    "tags": ["SSP", "広告", "ダッシュボード"]
+    "url": "",
+    "tags": [
+      "SSP",
+      "広告",
+      "ダッシュボード"
+    ]
   },
   {
     "id": "trepro-sites",
     "name": "Trepro Sites",
-    "description": "クライアント向けウェブサイトのモノレポ。各サイトは独立したVite + Reactプロジェクトとして管理。",
+    "description": "クライアント向けウェブサイトのモノレポ。各サイトは独立したVite + Reactプロジェクトとして管理。moilich / komaki / natsuyama を含む。",
     "category": "website",
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-05",
     "updatedAt": "2026-04-05",
-    "tags": ["Webサイト", "Vite", "React", "モノレポ"]
+    "url": "https://moilich.vercel.app",
+    "tags": [
+      "Webサイト",
+      "Vite",
+      "React",
+      "モノレポ"
+    ]
   },
   {
     "id": "rakun-site",
@@ -190,8 +272,13 @@
     "builtWith": "claude_code",
     "createdAt": "2026-03-23",
     "updatedAt": "2026-03-23",
+    "url": "",
     "client": "Rakun",
-    "tags": ["Webサイト", "LP", "コーポレート"]
+    "tags": [
+      "Webサイト",
+      "LP",
+      "コーポレート"
+    ]
   },
   {
     "id": "lakkan-site",
@@ -202,8 +289,13 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-08",
     "updatedAt": "2026-04-08",
+    "url": "https://lakkan.vercel.app",
     "client": "Lakkan",
-    "tags": ["Webサイト", "コーポレート", "多ページ"]
+    "tags": [
+      "Webサイト",
+      "コーポレート",
+      "多ページ"
+    ]
   },
   {
     "id": "cf-dashboard",
@@ -214,7 +306,12 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-09",
     "updatedAt": "2026-04-09",
-    "tags": ["Cloudflare", "監視", "ダッシュボード"]
+    "url": "https://cf-dashboard.vercel.app",
+    "tags": [
+      "Cloudflare",
+      "監視",
+      "ダッシュボード"
+    ]
   },
   {
     "id": "okada-cf-dashboard",
@@ -225,8 +322,13 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-09",
     "updatedAt": "2026-04-09",
+    "url": "https://okada-cf-dashboard.vercel.app",
     "client": "岡田氏",
-    "tags": ["Cloudflare", "ダッシュボード", "カスタム"]
+    "tags": [
+      "Cloudflare",
+      "ダッシュボード",
+      "カスタム"
+    ]
   },
   {
     "id": "takibi",
@@ -237,7 +339,12 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-11",
     "updatedAt": "2026-04-11",
-    "tags": ["コミュニティ", "イベント", "Next.js"]
+    "url": "https://takibi.vercel.app",
+    "tags": [
+      "コミュニティ",
+      "イベント",
+      "Next.js"
+    ]
   },
   {
     "id": "hitofuta",
@@ -248,7 +355,12 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-11",
     "updatedAt": "2026-04-11",
-    "tags": ["β版管理", "フィードバック", "Next.js"]
+    "url": "https://hitofuta.vercel.app",
+    "tags": [
+      "β版管理",
+      "フィードバック",
+      "Next.js"
+    ]
   },
   {
     "id": "ishikawa-pl",
@@ -259,8 +371,13 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-10",
     "updatedAt": "2026-04-10",
+    "url": "https://ishikawa-pl.vercel.app",
     "client": "石川氏",
-    "tags": ["財務", "P&L", "シミュレーション"]
+    "tags": [
+      "財務",
+      "P&L",
+      "シミュレーション"
+    ]
   },
   {
     "id": "vigil-playbook",
@@ -271,7 +388,12 @@
     "builtWith": "claude_code",
     "createdAt": "2026-04-13",
     "updatedAt": "2026-04-13",
-    "tags": ["セキュリティ", "プレイブック", "ドキュメント"]
+    "url": "https://vigil-playbook.vercel.app",
+    "tags": [
+      "セキュリティ",
+      "プレイブック",
+      "ドキュメント"
+    ]
   },
   {
     "id": "dashboard",
@@ -282,7 +404,11 @@
     "builtWith": "manual",
     "createdAt": "2026-03-15",
     "updatedAt": "2026-03-20",
-    "tags": ["ダッシュボード", "オペレーション"]
+    "url": "",
+    "tags": [
+      "ダッシュボード",
+      "オペレーション"
+    ]
   },
   {
     "id": "trepro-journey",
@@ -290,12 +416,18 @@
     "description": "TikTok採用戦略設計ツール。業界×ペルソナ84名のジャーニーマップ・カンバンビュー・AI分析を統合した社内専用ツール。",
     "category": "internal",
     "status": "live",
-    "url": "https://trepro-journey.vercel.app",
     "builtWith": "claude_code",
     "createdAt": "2026-04-20",
-    "updatedAt": "2026-04-20",
+    "updatedAt": "2026-04-21",
+    "url": "https://trepro-journey.vercel.app",
     "client": "Trepro",
-    "tags": ["TikTok採用", "ジャーニーマップ", "React", "Vite"]
+    "tags": [
+      "TikTok採用",
+      "ジャーニーマップ",
+      "React",
+      "Vite"
+    ],
+    "featured": true
   },
   {
     "id": "yamanaka-dashboard",
@@ -305,7 +437,12 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-20",
-    "updatedAt": "2026-04-20",
-    "tags": ["ポートフォリオ", "ダッシュボード", "Next.js"]
+    "updatedAt": "2026-04-21",
+    "url": "https://yamanaka-dashboard.vercel.app",
+    "tags": [
+      "ポートフォリオ",
+      "ダッシュボード",
+      "Next.js"
+    ]
   }
 ]
