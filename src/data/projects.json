@@ -1,70 +1,74 @@
 [
   {
-    "id": "kanoa-ai-platform",
-    "name": "KANOA AI Platform",
-    "description": "採用・HR領域向けAIプラットフォーム。求人マッチング・候補者分析・レポーティング機能を統合。",
-    "category": "external",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-06",
-    "updatedAt": "2026-04-15",
-    "url": "https://kanoa-ai-platform.vercel.app",
-    "client": "KANOA",
-    "tags": [
-      "AI",
-      "HR",
-      "Next.js",
-      "採用"
-    ],
-    "featured": true
-  },
-  {
     "id": "kanoa-jobs",
     "name": "KANOA Jobs",
-    "description": "KANOA向け求人掲載・応募管理ツール。求人票の自動生成とATS連携を実装。",
+    "description": "Indeed型求人ポータル。130件の全国求人、AIマッチング、ワンタップ応募、年収シミュレーター、選考追跡、企業口コミ、給与DB、SEO構造化データ対応。346ページ。",
     "category": "external",
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-15",
-    "updatedAt": "2026-04-21",
+    "updatedAt": "2026-04-23",
     "url": "https://kanoa-jobs.vercel.app",
     "client": "KANOA",
     "tags": [
-      "求人",
-      "ATS",
+      "求人ポータル",
+      "AI",
+      "SEO",
+      "Indeed",
+      "Next.js",
+      "Supabase"
+    ],
+    "featured": true
+  },
+  {
+    "id": "kanoa-ai-platform",
+    "name": "engine. by KANOA",
+    "description": "エージェント向け求人シェアリングプラットフォーム。AIマッチング、CRM、KPIダッシュボード、候補者管理を統合。circusAGENT/Zキャリア参考設計。",
+    "category": "external",
+    "status": "live",
+    "builtWith": "claude_code",
+    "createdAt": "2026-04-06",
+    "updatedAt": "2026-04-17",
+    "url": "https://kanoa-ai-platform.vercel.app/engine/dashboard",
+    "client": "KANOA",
+    "tags": [
+      "エージェントPF",
+      "AI",
+      "CRM",
       "Next.js"
     ]
   },
   {
     "id": "kanoa-deploy",
-    "name": "KANOA Deploy",
-    "description": "KANOAプラットフォームのデプロイ管理・CI/CD設定ツール。",
-    "category": "internal",
-    "status": "dev",
+    "name": "engine. Demo",
+    "description": "engine.のHTMLデモモック（v6）。ネイビー×ゴールドのブランドUI。Agent/Kanoa 2ロール、14タブ、チャート、チャット、モーダル完備。2,463行。",
+    "category": "external",
+    "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-10",
     "updatedAt": "2026-04-10",
     "url": "https://kanoa-deploy.vercel.app",
     "client": "KANOA",
     "tags": [
-      "DevOps",
-      "CI/CD"
+      "デモ",
+      "HTML",
+      "UI/UX"
     ]
   },
   {
-    "id": "kanoa-vercel",
-    "name": "KANOA Vercel Config",
-    "description": "KANOAプロジェクト群のVercelデプロイ設定・環境変数管理テンプレート。",
-    "category": "internal",
+    "id": "kanoa-report",
+    "name": "KANOA Development Report",
+    "description": "飯生代表向け開発レポート。プロダクト概要、Indeed比較、コスト試算、ロードマップ、Next Actionを掲載。KANOAゴールドデザイン。",
+    "category": "external",
     "status": "live",
     "builtWith": "claude_code",
-    "createdAt": "2026-04-08",
-    "updatedAt": "2026-04-08",
-    "url": "https://kanoa-vercel.vercel.app",
+    "createdAt": "2026-04-17",
+    "updatedAt": "2026-04-20",
+    "url": "https://kanoa-jobs.vercel.app/report.html",
     "client": "KANOA",
     "tags": [
-      "Vercel",
-      "DevOps"
+      "提案資料",
+      "レポート"
     ]
   },
   {
