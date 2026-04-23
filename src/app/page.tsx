@@ -762,6 +762,7 @@ export default function Home() {
                   {[["Works","#works"],["Portals","#portals"]].map(([l,h]) => (
                     <a key={l} href={h} style={{ fontFamily:SANS, fontSize:13, fontWeight:500, color:"#0D0D0D", textDecoration:"none", opacity:0.75 }}>{l}</a>
                   ))}
+                  <a href="/lab" style={{ fontFamily:SANS, fontSize:13, fontWeight:500, color:"#0D0D0D", textDecoration:"none", opacity:0.75 }}>Lab</a>
                   <a href="/evolution" style={{ fontFamily:SANS, fontSize:13, fontWeight:500, color:"#0D0D0D", textDecoration:"none", opacity:0.75 }}>Evolution</a>
                   <a href="https://tre-pro.co.jp" target="_blank" rel="noopener noreferrer"
                     style={{ fontFamily:SANS, fontSize:13, fontWeight:500, color:"#0D0D0D", textDecoration:"none", display:"flex", alignItems:"center", gap:3, opacity:0.75 }}>
