@@ -1,0 +1,481 @@
+/*
+ * Vigil AI — Corporate Site Design Tokens
+ * 抽出日: 2026-05-22
+ * 参照サイト: SmartHR Design / NOT A HOTEL / Resend / Mistral / Redesigner Freelance / Stripe (jp)
+ *            （Stripe はスクショ5枚から目視抽出）
+ *
+ * コンセプト: 「眠らない夜の森」
+ *   - 骨格 = Mistral クリーム + Anthropic 余白
+ *   - タイポ = Resend domaine セリフ + 日本語ヒラギノ/Noto系
+ *   - サイドバー構造 = SmartHR Design System
+ *   - 撮影/写真演出 = NOT A HOTEL（白黒は採用しない、色を残す）
+ */
+
+:root {
+  /* ───── カラー（ライト基調・夜の森アクセント） ───── */
+
+  /* ベース */
+  --vigil-bg: #fffaeb;              /* Mistral クリーム */
+  --vigil-bg-soft: #fbf6e2;         /* セクション切替 */
+  --vigil-panel: #ffffff;           /* カード */
+  --vigil-ink: #1f1f1f;             /* Mistral 本文色 */
+  --vigil-ink-soft: #4a4a4a;        /* サブ本文 */
+  --vigil-sub: #6b6b6b;             /* キャプション */
+  --vigil-rule: #e8e2d3;            /* 細い罫線 */
+  --vigil-soft: #f3ede0;            /* 弱い背景 */
+
+  /* アクセント = 眠らない夜の森 */
+  --vigil-forest: #1f3a2e;          /* 深緑（メイン） */
+  --vigil-forest-soft: #e8f0eb;     /* 緑のソフト背景 */
+  --vigil-moss: #5a7d63;            /* 中間の苔色 */
+  --vigil-night: #1a2a4a;           /* 紺（夜空） */
+  --vigil-dawn: #c89b2a;            /* 黄金（夜明け・差し色） */
+  --vigil-alert: #d90d0d;           /* 赤（Redesigner 系・重要だけ） */
+
+  /* リンク */
+  --vigil-link: #0071c1;            /* SmartHR 系の青 */
+  --vigil-link-hover: #1f3a2e;
+
+  /* ───── タイポグラフィ ───── */
+
+  /* 見出し（セリフ・知性） */
+  --vigil-serif: "Instrument Serif", "Domaine Display", "Noto Serif JP",
+                 ui-serif, Georgia, serif;
+
+  /* 本文（サンセリフ・読みやすさ） */
+  --vigil-sans: "Inter", "ABC Favorit", -apple-system, BlinkMacSystemFont,
+                "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+                "Noto Sans JP", "Yu Gothic", YuGothic, Meiryo, sans-serif;
+
+  /* コード・数値 */
+  --vigil-mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* サイズスケール（Resend / Mistral 級の巨大さを採用） */
+  --vigil-fs-hero: clamp(56px, 8vw, 96px);    /* h1 ヒーロー */
+  --vigil-fs-h1:   clamp(40px, 5vw, 64px);    /* h1 通常 */
+  --vigil-fs-h2:   clamp(28px, 3.5vw, 48px);  /* SmartHR 28 / Mistral 48 ハイブリッド */
+  --vigil-fs-h3:   clamp(20px, 2.2vw, 28px);
+  --vigil-fs-body: 16px;
+  --vigil-fs-caption: 13px;
+
+  /* 字間 */
+  --vigil-ls-hero: -0.02em;                   /* Mistral -2.05px / 82px ≈ -0.025em */
+  --vigil-ls-body: 0;
+  --vigil-ls-uppercase: 0.16em;               /* タブ・カテゴリ */
+
+  /* 行間 */
+  --vigil-lh-hero: 1.04;                      /* Resend 96/96 / Mistral 82/82 */
+  --vigil-lh-h2:   1.3;                       /* SmartHR 28 → 36.4 ≈ 1.3 */
+  --vigil-lh-body: 1.75;                      /* SmartHR 16 → 28 */
+
+  /* フォントウェイト */
+  --vigil-fw-thin: 300;
+  --vigil-fw-regular: 400;
+  --vigil-fw-medium: 500;
+  --vigil-fw-bold: 700;
+
+  /* ───── 余白（NOT A HOTEL 級の広さ） ───── */
+
+  --vigil-space-hero: 160px;
+  --vigil-space-section: 120px;
+  --vigil-space-block: 64px;
+  --vigil-space-card: 24px;
+  --vigil-space-gap: 16px;
+
+  --vigil-content-max: 1200px;
+  --vigil-content-narrow: 720px;
+
+  /* ───── 形状 ───── */
+
+  --vigil-radius-sm: 6px;
+  --vigil-radius-md: 10px;             /* PLANNA design-system 既定 */
+  --vigil-radius-lg: 16px;
+  --vigil-radius-pill: 999px;
+
+  --vigil-border: 1px solid var(--vigil-rule);
+
+  /* シャドウ（弱め・上品） */
+  --vigil-shadow-sm: 0 1px 2px rgba(31, 31, 31, 0.04);
+  --vigil-shadow-md: 0 4px 16px rgba(31, 58, 46, 0.06);
+  --vigil-shadow-lg: 0 16px 48px rgba(31, 58, 46, 0.08);
+
+  /* ───── グラデーション（夜の森オーロラ・Stripe 由来の流体表現） ───── */
+
+  --vigil-aurora:
+    radial-gradient(60% 80% at 80% 30%, rgba(31, 58, 46, 0.18) 0%, transparent 60%),
+    radial-gradient(50% 70% at 95% 60%, rgba(26, 42, 74, 0.20) 0%, transparent 60%),
+    radial-gradient(40% 60% at 70% 80%, rgba(200, 155, 42, 0.14) 0%, transparent 60%),
+    radial-gradient(70% 90% at 100% 50%, rgba(90, 125, 99, 0.16) 0%, transparent 65%);
+
+  --vigil-aurora-soft:
+    linear-gradient(135deg,
+      rgba(31, 58, 46, 0.06) 0%,
+      rgba(26, 42, 74, 0.04) 35%,
+      rgba(200, 155, 42, 0.05) 70%,
+      rgba(255, 250, 235, 0) 100%);
+
+  /* セクション切替用ソフト背景（Stripe ラベンダー → Vigil 緑ソフト） */
+  --vigil-section-soft: var(--vigil-forest-soft);
+
+  /* ダークセクション（Stripe ダーク紺セクションの Vigil 翻訳・夜の森モード） */
+  --vigil-night-bg: #14241c;             /* 深緑寄りの夜 */
+  --vigil-night-bg-alt: #0e1a2e;         /* 深紺寄りの夜 */
+  --vigil-night-ink: #e8e2d3;            /* 夜の上の文字（クリーム寄り） */
+  --vigil-night-ink-soft: #a8b8a8;       /* 夜の上のサブ文字 */
+  --vigil-night-rule: rgba(232, 226, 211, 0.12);
+
+  /* 数値・強調テキスト用グラデーション（Stripe 紫グラデ → Vigil 緑→金） */
+  --vigil-gradient-text: linear-gradient(135deg, var(--vigil-forest) 0%, var(--vigil-moss) 50%, var(--vigil-dawn) 100%);
+  --vigil-gradient-text-night: linear-gradient(135deg, var(--vigil-moss) 0%, var(--vigil-dawn) 100%);
+
+  /* ───── アニメーション ───── */
+
+  --vigil-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --vigil-dur-fast: 150ms;
+  --vigil-dur-base: 280ms;
+  --vigil-dur-slow: 560ms;
+}
+
+/* ───── 基本要素 ───── */
+
+html, body {
+  background: var(--vigil-bg);
+  color: var(--vigil-ink);
+  font-family: var(--vigil-sans);
+  font-size: var(--vigil-fs-body);
+  line-height: var(--vigil-lh-body);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "palt";       /* 日本語の字間最適化 */
+}
+
+h1, h2, h3 {
+  font-family: var(--vigil-serif);
+  font-weight: var(--vigil-fw-regular);
+  color: var(--vigil-ink);
+  margin: 0 0 24px;
+}
+
+h1 {
+  font-size: var(--vigil-fs-h1);
+  line-height: var(--vigil-lh-hero);
+  letter-spacing: var(--vigil-ls-hero);
+}
+
+h1.hero {
+  font-size: var(--vigil-fs-hero);
+}
+
+h2 {
+  font-size: var(--vigil-fs-h2);
+  line-height: var(--vigil-lh-h2);
+  letter-spacing: var(--vigil-ls-hero);
+}
+
+h3 {
+  font-size: var(--vigil-fs-h3);
+  line-height: 1.4;
+}
+
+a {
+  color: var(--vigil-link);
+  text-decoration: none;
+  transition: color var(--vigil-dur-fast) var(--vigil-ease);
+}
+
+a:hover {
+  color: var(--vigil-link-hover);
+}
+
+/* ───── コンポーネント雛形 ───── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-family: var(--vigil-sans);
+  font-size: var(--vigil-fs-body);
+  font-weight: var(--vigil-fw-medium);
+  color: var(--vigil-bg);
+  background: var(--vigil-forest);
+  border: none;
+  border-radius: var(--vigil-radius-pill);
+  cursor: pointer;
+  transition: background var(--vigil-dur-base) var(--vigil-ease),
+              transform var(--vigil-dur-base) var(--vigil-ease);
+}
+
+.btn:hover {
+  background: var(--vigil-night);
+  transform: translateY(-1px);
+}
+
+.btn.secondary {
+  color: var(--vigil-ink);
+  background: transparent;
+  border: 1px solid var(--vigil-ink);
+}
+
+.card {
+  background: var(--vigil-panel);
+  border: var(--vigil-border);
+  border-radius: var(--vigil-radius-md);
+  padding: var(--vigil-space-card);
+  transition: box-shadow var(--vigil-dur-base) var(--vigil-ease),
+              transform var(--vigil-dur-base) var(--vigil-ease);
+}
+
+.card:hover {
+  box-shadow: var(--vigil-shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ───── サイドバー（SmartHR Design 系） ───── */
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 280px;
+  padding: 32px 24px;
+  background: var(--vigil-bg);
+  border-right: var(--vigil-border);
+  overflow-y: auto;
+}
+
+.sidebar a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--vigil-ink-soft);
+  font-size: 14px;
+  border-radius: var(--vigil-radius-sm);
+  transition: background var(--vigil-dur-fast) var(--vigil-ease),
+              color var(--vigil-dur-fast) var(--vigil-ease);
+}
+
+.sidebar a:hover {
+  background: var(--vigil-soft);
+  color: var(--vigil-ink);
+}
+
+.sidebar a.active {
+  background: var(--vigil-forest-soft);
+  color: var(--vigil-forest);
+  font-weight: var(--vigil-fw-medium);
+}
+
+/* ───── レイアウト ───── */
+
+.wrap {
+  max-width: var(--vigil-content-max);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.wrap.narrow {
+  max-width: var(--vigil-content-narrow);
+}
+
+section {
+  padding-top: var(--vigil-space-section);
+  padding-bottom: var(--vigil-space-section);
+}
+
+section.hero {
+  padding-top: var(--vigil-space-hero);
+  padding-bottom: var(--vigil-space-hero);
+}
+
+/* ───── ヒーロー流体（Stripe 由来・夜の森オーロラ） ───── */
+
+.hero-aurora {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-aurora::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 80%;
+  height: 120%;
+  background: var(--vigil-aurora);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-aurora > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ───── 二重トーン文体（Stripe 由来）── 1文の後半を別色で強調 ───── */
+
+.copy-shift {
+  color: var(--vigil-moss);
+}
+
+/* 数値の細身大型見せ（Stripe 由来） */
+
+.stat-number {
+  font-family: var(--vigil-serif);
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: var(--vigil-fw-thin);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--vigil-forest);
+}
+
+.stat-label {
+  font-size: var(--vigil-fs-caption);
+  color: var(--vigil-sub);
+  margin-top: 8px;
+}
+
+/* ───── ダークセクション（夜の森モード・Stripe ダーク差し込み由来） ───── */
+
+.section-night {
+  background: var(--vigil-night-bg);
+  color: var(--vigil-night-ink);
+  padding-top: var(--vigil-space-section);
+  padding-bottom: var(--vigil-space-section);
+}
+
+.section-night h1,
+.section-night h2,
+.section-night h3 {
+  color: var(--vigil-night-ink);
+}
+
+.section-night .copy-shift {
+  color: var(--vigil-night-ink-soft);
+}
+
+.section-night .card {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--vigil-night-rule);
+}
+
+.section-night a {
+  color: var(--vigil-dawn);
+}
+
+/* ───── グラデーションテキスト（数値・大型強調） ───── */
+
+.gradient-text {
+  background: var(--vigil-gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.section-night .gradient-text {
+  background: var(--vigil-gradient-text-night);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ───── 横スクロールカルーセル（Stripe 事例/最新情報 由来） ───── */
+
+.carousel {
+  position: relative;
+  margin: 32px 0;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-item {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
+  background: var(--vigil-panel);
+  border: var(--vigil-border);
+  border-radius: var(--vigil-radius-md);
+  overflow: hidden;
+}
+
+.carousel-nav {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.carousel-nav button {
+  width: 36px;
+  height: 36px;
+  border: var(--vigil-border);
+  background: var(--vigil-panel);
+  border-radius: var(--vigil-radius-sm);
+  cursor: pointer;
+  color: var(--vigil-forest);
+  transition: background var(--vigil-dur-fast) var(--vigil-ease);
+}
+
+.carousel-nav button:hover {
+  background: var(--vigil-forest-soft);
+}
+
+/* ───── 横長 CTA カード（Stripe Startups/Atlas 由来） ───── */
+
+.cta-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 40px;
+  background: var(--vigil-panel);
+  border: var(--vigil-border);
+  border-radius: var(--vigil-radius-md);
+  overflow: hidden;
+}
+
+.cta-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background: var(--vigil-aurora-soft);
+  pointer-events: none;
+}
+
+/* ───── 二重トーン見出し（連続2行・Stripe 由来） ───── */
+
+.section-header {
+  margin-bottom: 48px;
+}
+
+.section-header h2 {
+  display: block;
+  margin: 0;
+}
+
+.section-header h2 + h2 {
+  color: var(--vigil-moss);
+  margin-top: 4px;
+}
+
+/* ───── アクセシビリティ ───── */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
