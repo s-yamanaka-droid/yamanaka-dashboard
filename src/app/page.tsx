@@ -89,17 +89,12 @@ export default function Home() {
 
       <Manifesto />
 
-      <Works
-        projects={projects}
-        sort={sort}
-        setSort={setSort}
-        onSelectProject={setSelectedProject}
-      />
+      {/* Works は /works ページに隔離（縦長解消・2026-05-23）*/}
 
       <News />
 
       <Story />
-      <Service />
+      {/* Service は /services ページに隔離（縦長解消・2026-05-23）*/}
       <NeuralSection />
       <Vigil />
       {/* About は /about ページに隔離（個人色をトップから外し縦長解消・2026-05-23）*/}
