@@ -1,13 +1,20 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { Metadata } from "next";
 import { ArrowUpRight, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 
+export const metadata: Metadata = {
+  title: "Vigil / Now — Lakkan Inc.",
+  description:
+    "Vigil AI のライブ稼働状況。Phase 4 ハーネス・直近24時間の進化・蓄積メトリクス・稼働サービス。",
+  openGraph: {
+    title: "Vigil / Now — 育つ第二の脳",
+    description: "Phase 4 ハーネス稼働・直近進化記録・メトリクスライブ表示。",
+  },
+};
+
 const FRANK = "var(--font-frank), 'Frank Ruhl Libre', Georgia, serif";
 const SANS  = "var(--font-display), 'Space Grotesk', system-ui, sans-serif";
-const EASE = [0.22, 1, 0.36, 1] as const;
 
 const BG = "#FAFAF7";
 const INK = "#0D0D0D";
@@ -56,7 +63,7 @@ export default function VigilPage() {
 
       {/* HERO badges */}
       <section style={{ padding: "32px 56px 96px", borderBottom: `1px solid ${W(0.08)}`, position:"relative", overflow:"hidden" }}>
-        <motion.div initial={{ opacity:0, y:24 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, ease:EASE }}>
+        <div >
           <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginTop:0 }}>
             {[
               { t:"● LIVE", green:true },
@@ -77,7 +84,7 @@ export default function VigilPage() {
               }}>{p.t}</span>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* PHASE */}
@@ -96,9 +103,7 @@ export default function VigilPage() {
             { num:"PHASE 04 — NOW",name:"Harness 稼働",    desc:"8 つの AI 役員が自律稼働。判断・実行・記録まで完結。",    status:"● LIVE BUILDING", state:"now" },
             { num:"PHASE 05",      name:"完全モビリティ",   desc:"スマホ一台で組織を動かす。タクシー・ゴルフ場が執務室。", status:"○ IN DESIGN",   state:"next" },
           ].map((p, i) => (
-            <motion.div key={p.num} initial={{ opacity:0, y:16 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
-              transition={{ delay: i*0.07, duration:0.5, ease:EASE }}
-              style={{
+            <div key={p.num} style={{
                 background: p.state==="now" ? INK : p.state==="done" ? "#FFFFFF" : "rgba(13,13,13,0.02)",
                 color: p.state==="now" ? "#FFFFFF" : INK,
                 border: `1px solid ${W(0.1)}`, padding:"28px 24px"
@@ -107,7 +112,7 @@ export default function VigilPage() {
               <div style={{ fontFamily:FRANK, fontSize:22, fontWeight:700, marginBottom:10, letterSpacing:"-0.01em" }}>{p.name}</div>
               <div style={{ fontFamily:SANS, fontSize:12, color: p.state==="now" ? "rgba(255,255,255,0.7)" : W(0.6), lineHeight:1.7 }}>{p.desc}</div>
               <div style={{ fontFamily:SANS, fontSize:9, letterSpacing:"0.15em", color: p.state==="now" ? GREEN : (p.state==="done" ? GREEN : W(0.5)), marginTop:14 }}>{p.status}</div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
@@ -168,9 +173,7 @@ export default function VigilPage() {
               body:"コーポレート（Lakkan）= 玄関・思想・サービス紹介。Vigil = 中身・実装証跡・進化記録。両者を同一サイト上の /vigil 系ルートで接続。",
             },
           ].map((s, i) => (
-            <motion.div key={i} initial={{ opacity:0, y:16 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true, amount:0.2 }}
-              transition={{ delay: i*0.06, duration:0.5, ease:EASE }}
-              style={{ position:"relative", padding:"24px 0 24px 32px", borderBottom:`1px solid ${W(0.06)}` }}>
+            <div key={i} style={{ position:"relative", padding:"24px 0 24px 32px", borderBottom:`1px solid ${W(0.06)}` }}>
               <span style={{
                 position:"absolute", left:-7, top:32, width:12, height:12,
                 background: s.fresh ? GREEN : ORANGE, borderRadius:"50%", border:`2px solid ${BG}`,
@@ -186,7 +189,7 @@ export default function VigilPage() {
                   {s.bullets.map(b => <li key={b}>{b}</li>)}
                 </ul>
               )}
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
