@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-05-14T10:00:49",
+  "count": 6,
+  "products": [
+    {
+      "id": "vigil",
+      "company": "Lakkan",
+      "flag": "PUBLIC",
+      "url": "https://vigil-vert-gamma.vercel.app",
+      "desc": "Vigil 統合ハブ（5タブ）"
+    },
+    {
+      "id": "yamanaka-dashboard",
+      "company": "Lakkan",
+      "flag": "PUBLIC",
+      "url": "https://yamanaka-dashboard.vercel.app",
+      "desc": "このサイト本体"
+    },
+    {
+      "id": "lia-recruit",
+      "company": "Lakkan",
+      "flag": "PUBLIC",
+      "url": "",
+      "desc": "LiA 採用LP"
+    },
+    {
+      "id": "lunatech-ai-lab",
+      "company": "LunaTech",
+      "flag": "PUBLIC",
+      "url": "https://lunatech-ai-lab.vercel.app",
+      "desc": "LunaTech AI ラボ"
+    },
+    {
+      "id": "kanoa-jobs",
+      "company": "KANOA",
+      "flag": "PUBLIC",
+      "url": "https://kanoa-jobs.vercel.app",
+      "desc": "KANOA JOB（Indeed型MVP、コード:kanoa2026）"
+    },
+    {
+      "id": "competitor-research",
+      "company": "Solve",
+      "flag": "PUBLIC",
+      "url": "https://competitor-research-gamma.vercel.app",
+      "desc": "競合インテリジェンスツール"
+    }
+  ],
+  "pre_launch_count": 15
+}

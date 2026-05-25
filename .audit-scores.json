@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "product": "Yamanaka Dashboard / 株式会社Lakkan",
+    "url": "https://yamanaka-dashboard.vercel.app",
+    "auditDate": "2026-04-25",
+    "auditor": "site-audit v1.0 / Claude Opus 4.7",
+    "context": "個人ポートフォリオ → 株式会社Lakkanブランドサイトへリデザイン"
+  },
+  "scores": {
+    "A_security": 42,
+    "B_functionality": 78,
+    "C_legal": 55,
+    "D_monetization": null,
+    "E_seo": 48,
+    "F_uxui": 92,
+    "G_performance": 50,
+    "H_codequality": 58,
+    "total": 66
+  },
+  "grade": "C",
+  "previous": {
+    "auditDate": "2026-04-23",
+    "total": 59,
+    "grade": "D",
+    "scores": {
+      "A_security": 42,
+      "B_functionality": 72,
+      "C_legal": 30,
+      "D_monetization": 70,
+      "E_seo": 45,
+      "F_uxui": 82,
+      "G_performance": 55,
+      "H_codequality": 58
+    }
+  },
+  "diff": {
+    "A_security": 0,
+    "B_functionality": 6,
+    "C_legal": 25,
+    "D_monetization": null,
+    "E_seo": 3,
+    "F_uxui": 10,
+    "G_performance": -5,
+    "H_codequality": 0,
+    "total": 7
+  },
+  "pages": {
+    "/": {
+      "status": 200,
+      "html_kb": 310,
+      "title": "楽観と、計画と。| 株式会社Lakkan",
+      "issues": ["photo.jpg preload but file missing in public/", "1214-line monolithic 'use client'", "no OGP/Twitter/JSON-LD/canonical"]
+    },
+    "/lab": { "status": 200, "html_kb": 15, "issues": ["SB_KEY hardcoded", "no per-page metadata"] },
+    "/blog": { "status": 200, "html_kb": 15, "issues": ["WP_URL unset → empty", "no per-page metadata"] },
+    "/evolution": { "status": 200, "html_kb": 18, "issues": ["SB_KEY hardcoded", "no per-page metadata"] },
+    "/skills": { "status": 200, "html_kb": 35, "issues": ["SB_KEY hardcoded", "no per-page metadata"] },
+    "/robots.txt": { "status": 404 },
+    "/sitemap.xml": { "status": 404 }
+  },
+  "findings": {
+    "critical": [
+      "Supabase publishable key still hardcoded in 3 files (lab/evolution/skills) — unchanged from previous audit",
+      "All security headers (CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy) still missing",
+      "sitemap.xml and robots.txt still 404",
+      "OGP / Twitter Card / canonical / JSON-LD still missing on every page",
+      "npm audit regressed: 0 → 2 moderate (postcss via next)",
+      "/photo.jpg preloaded but not present in public/ (broken About section image)"
+    ],
+    "improvements_since_last": [
+      "Complete rebrand to 株式会社Lakkan with editorial-quality UI",
+      "Footer with company name, address (東京都渋谷区神宮前6-23-4), email, copyright '© 2026 Lakkan Inc.'",
+      "Header navigation added (Story/Works/Service/Vigil/About + Contact CTA)",
+      "JOIN section added with mailto CTA and 4 hiring conditions",
+      "About / Timeline / Service sections added",
+      "meta description rewritten to brand-aligned copy"
+    ],
+    "regressions": [
+      "Home page bloated to 1,214 lines / 310KB HTML (large 'use client' monolith)",
+      ".next build size 292→293MB",
+      "npm audit 0→2 moderate vulns"
+    ]
+  },
+  "topActions": [
+    { "priority": 1, "category": "A_security", "action": "Move SB_KEY to NEXT_PUBLIC_SUPABASE_ANON_KEY env var (3 files)", "impact": "high", "effort": "30m" },
+    { "priority": 2, "category": "A_security", "action": "Add CSP/X-Frame-Options/Referrer-Policy/Permissions-Policy/X-Content-Type-Options headers in next.config.ts", "impact": "high", "effort": "1h" },
+    { "priority": 3, "category": "A_security", "action": "Run npm audit fix to clear 2 moderate (postcss/next)", "impact": "med", "effort": "15m" },
+    { "priority": 4, "category": "B_functionality", "action": "Place public/photo.jpg or remove the preload link", "impact": "med", "effort": "10m" },
+    { "priority": 5, "category": "E_seo", "action": "Implement app/sitemap.ts and app/robots.ts (Next.js 16 conventions)", "impact": "high", "effort": "30m" },
+    { "priority": 6, "category": "E_seo", "action": "Add OGP/Twitter Card to layout.tsx + per-page generateMetadata for lab/blog/evolution/skills", "impact": "high", "effort": "1h" },
+    { "priority": 7, "category": "E_seo", "action": "Embed Organization JSON-LD (name, address, email, url, logo) on Home", "impact": "med", "effort": "30m" },
+    { "priority": 8, "category": "C_legal", "action": "Add /privacy page covering APPI for hiring applicants (JOIN section collects emails)", "impact": "high", "effort": "1h" },
+    { "priority": 9, "category": "G_performance", "action": "Split Home (1214 lines) into Hero/Works/About/Join/Portals; lift static parts to Server Components", "impact": "med", "effort": "3h" },
+    { "priority": 10, "category": "H_codequality", "action": "Create lib/supabase.ts and lib/fonts.ts to centralize SB_*/FRANK/SANS; extract SplitText/CountUp/TypewriterCycle to components/", "impact": "med", "effort": "2h" }
+  ],
+  "estimatedScoreAfterTop3PlusSEO": 76,
+  "estimatedGradeAfterTop3PlusSEO": "B"
+}

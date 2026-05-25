@@ -7,8 +7,8 @@ import { ArrowUpRight } from "lucide-react";
 import projectsData from "@/data/projects.json";
 import { Project } from "@/types";
 
-const SB_URL = "https://uuznttfwayafrvzqtjwo.supabase.co";
-const SB_KEY = "sb_publishable_1iJsNvSPfMTQKVC1HtMMng__lkvOq8c";
+import { SB_URL, SB_KEY } from "@/lib/supabase";
+import { PageHero } from "@/components/PageHero";
 
 const FRANK = "var(--font-frank), 'Frank Ruhl Libre', Georgia, serif";
 const SANS  = "var(--font-display), 'Space Grotesk', system-ui, sans-serif";
@@ -122,6 +122,16 @@ export default function SkillsPage() {
             </Link>
           </div>
         </nav>
+      </div>
+
+      {/* ── Unified PageHero ── */}
+      <div style={{ paddingTop: 52 }}>
+        <PageHero
+          section="Skills"
+          version="v.3.0"
+          title="AI-Native Engineer"
+          lede="ローカルLLMからプロダクト構築まで、企画から本番リリースまで単独完結する。Lakkanの中身を支える技術スタックと能力地図"
+        />
       </div>
 
       {/* ── Hero ── */}

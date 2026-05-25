@@ -122,3 +122,216 @@
 /* Cursor hide on interactive elements */
 body { cursor: none; }
 a, button, input, select { cursor: none; }
+
+/* =========================================================
+   MOBILE / TABLET RESPONSIVE OVERRIDES
+   セクションは inline style の塊なので CSS で打ち消す。
+   既存デスクトップ表示は壊さない（max-width で限定）。
+   ========================================================= */
+
+/* iPad and below ---------------------------------------- */
+@media (max-width: 1024px) {
+  /* Tighten generic section paddings (Manifesto / Story / Service / Vigil / About / Join / Portals) */
+  #manifesto, #story, #service, #vigil, #about, #join, #portals {
+    padding: clamp(80px, 12vw, 120px) clamp(20px, 6vw, 56px) !important;
+  }
+  #news {
+    padding: clamp(72px, 11vw, 96px) clamp(20px, 6vw, 56px) !important;
+  }
+  #contact {
+    padding: clamp(72px, 11vw, 96px) clamp(20px, 6vw, 56px) 36px !important;
+  }
+}
+
+/* Tablet portrait & phone ------------------------------- */
+@media (max-width: 768px) {
+  /* Mouse cursor restored on touch */
+  body, a, button, input, select { cursor: auto; }
+
+  /* Hide floating Hero bubbles entirely (they overlap on small screens) */
+  #hero-bubbles-wrap { display: none !important; }
+
+  /* Hide hero nav links (keep brand + Cmd button) */
+  .hero-nav-link { display: none !important; }
+
+  /* Story / Join / Vigil headline+lede 2col -> stack */
+  #story > div > div[style*="grid-template-columns"],
+  #vigil > div > div[style*="grid-template-columns"]:first-of-type ~ div,
+  #join > div > div[style*="grid-template-columns"] {
+    /* fallback only - more specific rules below */
+  }
+
+  /* About: portrait + name 2col -> stack */
+  #about [data-mobile-stack="hero"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    margin-bottom: 56px !important;
+  }
+  #about [data-mobile-stack="essay"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  #about [data-mobile-stack="timeline-row"] {
+    grid-template-columns: 64px 1fr !important;
+    gap: 16px !important;
+  }
+  #about [data-mobile-stack="timeline-row"] > span:first-child {
+    font-size: 16px !important;
+  }
+
+  /* Story 2col body */
+  #story [data-mobile-stack="story-body"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* Vigil headline+lede + skill grid */
+  #vigil [data-mobile-stack="vigil-head"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    margin-bottom: 40px !important;
+  }
+  #vigil [data-mobile-stack="vigil-stat"] > div {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.12) !important;
+    padding: 18px 16px !important;
+  }
+  #vigil [data-mobile-stack="vigil-stat"] > div:last-child {
+    border-bottom: none !important;
+  }
+
+  /* Service headline+lede 2col */
+  #service [data-mobile-stack="svc-head"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 24px !important;
+  }
+
+  /* Join headline+lede + 2col Expectations/Offers */
+  #join [data-mobile-stack="join-head"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    margin-bottom: 48px !important;
+  }
+  #join [data-mobile-stack="join-cols"] {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+    margin-bottom: 56px !important;
+  }
+  #join [data-mobile-stack="role-row"] {
+    grid-template-columns: 48px 1fr auto !important;
+    gap: 12px !important;
+    padding: 20px 0 !important;
+  }
+  #join [data-mobile-stack="role-row"] > p {
+    grid-column: 2 / 4 !important;
+    font-size: 12px !important;
+  }
+  #join [data-mobile-stack="role-row"] h3 {
+    font-size: 20px !important;
+  }
+
+  /* Manifesto 3-col pillars + signature */
+  #manifesto [data-mobile-stack="pillars"] {
+    grid-template-columns: 1fr !important;
+  }
+  #manifesto [data-mobile-stack="pillars"] > div {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(13,13,13,0.12) !important;
+    padding: 28px 0 !important;
+  }
+  #manifesto [data-mobile-stack="pillars"] > div:last-child {
+    border-bottom: none !important;
+  }
+
+  /* About credos 3col */
+  #about [data-mobile-stack="credos"] {
+    grid-template-columns: 1fr !important;
+  }
+  #about [data-mobile-stack="credos"] > div {
+    border-right: none !important;
+    padding: 24px 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* News header */
+  #news [data-mobile-stack="news-head"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  #news [data-mobile-stack="news-head"] > div:last-child {
+    text-align: left !important;
+  }
+  /* News card grid - kill borderRight on every card on mobile (single column) */
+  #news a.news-card {
+    border-right: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  #news h2 { font-size: clamp(36px, 10vw, 64px) !important; }
+
+  /* Footer 4col -> 2col */
+  #contact [data-mobile-stack="foot-grid"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* Portals - group header right meta */
+  #portals [data-mobile-stack="grp-head"] {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  #portals [data-mobile-stack="grp-head"] > span:last-child {
+    margin-left: 0 !important;
+  }
+
+  /* Hero panel padding shrink */
+  #hero-panel-1, #hero-panel-2, #hero-panel-3 {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  #hero-panel-1 { padding-top: 20px !important; padding-bottom: 20px !important; }
+
+  /* Hero panel 3 stat row */
+  #hero-panel-3 [data-mobile-stack="hero-stats"] {
+    gap: 24px !important;
+  }
+
+  /* Marquee font */
+  .marquee-track span,
+  .marquee-track-slow span,
+  .marquee-track-rev span,
+  .marquee-track-fast span {
+    font-size: 11px !important;
+    padding-right: 28px !important;
+  }
+
+  /* Works toolbar wrapping */
+  #works [data-mobile-stack="works-toolbar-right"] {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+    margin-top: 8px !important;
+  }
+  #works [data-mobile-stack="works-toolbar-right"] input {
+    width: 100% !important;
+  }
+}
+
+/* iPhone SE / narrow phones ----------------------------- */
+@media (max-width: 414px) {
+  #manifesto, #story, #service, #vigil, #about, #join, #portals,
+  #news, #contact {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+  #hero-panel-1, #hero-panel-2, #hero-panel-3 {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+  #vigil [data-mobile-stack="vigil-stat"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}

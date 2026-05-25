@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { About } from "@/components/sections/About";
 import { PageHero } from "@/components/PageHero";
-import { Footer } from "@/components/sections/Footer";
 
 export const metadata: Metadata = {
   title: "About — 山中秀斗 / Lakkan Inc.",
@@ -23,7 +22,6 @@ export default function AboutPage() {
         lede="代表 山中秀斗 / 6社マルチハット経営 / 東京・渋谷"
       />
       <About />
-      <Footer />
     </main>
   );
 }

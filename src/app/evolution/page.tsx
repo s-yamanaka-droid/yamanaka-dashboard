@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-const SB_URL = "https://uuznttfwayafrvzqtjwo.supabase.co";
-const SB_KEY = "sb_publishable_1iJsNvSPfMTQKVC1HtMMng__lkvOq8c";
+import { SB_URL, SB_KEY } from "@/lib/supabase";
+import { PageHero } from "@/components/PageHero";
 
 const FRANK = "var(--font-frank), 'Frank Ruhl Libre', Georgia, serif";
 const SANS  = "var(--font-display), 'Space Grotesk', system-ui, sans-serif";
@@ -82,6 +82,7 @@ export default function EvolutionPage() {
   const [stats, setStats]       = useState<BrainStat[]>([]);
   const [started, setStarted]   = useState(false);
   const [updated, setUpdated]   = useState("");
+  const [pulse, setPulse]       = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
   const fetchStats = async () => {
@@ -91,12 +92,16 @@ export default function EvolutionPage() {
     );
     const data: BrainStat[] = await res.json();
     setStats(data);
-    if (data.length) setUpdated(new Date(data[data.length-1].recorded_at).toLocaleString("ja-JP", { month:"numeric", day:"numeric", hour:"2-digit", minute:"2-digit" }));
+    if (data.length) {
+      setUpdated(new Date(data[data.length-1].recorded_at).toLocaleString("ja-JP", { month:"numeric", day:"numeric", hour:"2-digit", minute:"2-digit" }));
+      setPulse(true);
+      setTimeout(() => setPulse(false), 1500);
+    }
   };
 
   useEffect(() => {
     fetchStats();
-    const iv = setInterval(fetchStats, 60_000);
+    const iv = setInterval(fetchStats, 30_000); // 30秒ごと
     return () => clearInterval(iv);
   }, []);
 
@@ -132,18 +137,28 @@ export default function EvolutionPage() {
           <Link href="/" style={{ fontFamily: SANS, fontSize: 13, fontWeight: 700, color: "#0D0D0D",
             textDecoration: "none", letterSpacing: "0.05em" }}>YAMANAKA SHUTO</Link>
           <div style={{ display: "flex", gap: 28, alignItems: "center" }}>
-            {[["Works", "/#works"], ["Portals", "/#portals"]].map(([l, h]) => (
+            {([["Works","/#works"],["Portals","/#portals"],["Skills","/skills"],["Lab","/lab"]] as [string,string][]).map(([l, h]) => (
               <Link key={l} href={h} style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500,
                 color: "#0D0D0D", textDecoration: "none", opacity: 0.55 }}>{l}</Link>
             ))}
-            <span style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500, color: "#0D0D0D", opacity: 1 }}>Evolution</span>
-            <Link href="https://tre-pro.co.jp" target="_blank" rel="noopener noreferrer"
+            <span style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500, color: "#0D0D0D" }}>Evolution</span>
+            <Link href="/"
               style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500, color: "#0D0D0D",
                 textDecoration: "none", display: "flex", alignItems: "center", gap: 3, opacity: 0.55 }}>
-              Trepro <ArrowUpRight size={11} />
+              Lakkan
             </Link>
           </div>
         </nav>
+      </div>
+
+      {/* ── Unified PageHero ── */}
+      <div style={{ paddingTop: 52 }}>
+        <PageHero
+          section="Evolution"
+          version="v.2.0"
+          title="Brain in Motion"
+          lede="Shoot Agent v2 が毎晩学習し、毎日進化する。知識ファイル・パターン・処理量の推移を、社長視点で生中継"
+        />
       </div>
 
       {/* ── Hero ── */}
@@ -157,8 +172,28 @@ export default function EvolutionPage() {
         </div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <div style={{ fontFamily: SANS, fontSize: 11, letterSpacing: "0.2em", color: "#0D0D0D",
-            opacity: 0.5, marginBottom: 20 }}>SHOOT AGENT v2 — SYSTEM EVOLUTION</div>
+          <div style={{ display:"flex", alignItems:"center", gap:16, marginBottom: 20 }}>
+            <div style={{ display:"flex", alignItems:"center", gap:6 }}>
+              <motion.div
+                animate={{ opacity: [1, 0.3, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                style={{ width:6, height:6, borderRadius:"50%", background:"#0D0D0D" }}
+              />
+              <span style={{ fontFamily: SANS, fontSize: 11, letterSpacing: "0.2em", color: "#0D0D0D", opacity: 0.6 }}>
+                SHOOT AGENT v2 — SYSTEM EVOLUTION
+              </span>
+            </div>
+            {updated && (
+              <motion.span
+                animate={{ opacity: pulse ? 1 : 0.35, scale: pulse ? 1.04 : 1 }}
+                transition={{ duration: 0.3 }}
+                style={{ fontFamily: SANS, fontSize: 10, color: "#0D0D0D",
+                  background: "rgba(13,13,13,0.1)", padding: "3px 10px", borderRadius: 100,
+                  letterSpacing: "0.08em" }}>
+                synced {updated}
+              </motion.span>
+            )}
+          </div>
 
           <div style={{ fontFamily: FRANK, fontSize: "clamp(56px,9vw,130px)", fontWeight: 400,
             lineHeight: 0.88, letterSpacing: "-0.02em", color: "#0D0D0D", marginBottom: 32 }}>
@@ -189,12 +224,6 @@ export default function EvolutionPage() {
           </div>
         </motion.div>
 
-        {updated && (
-          <div style={{ position: "absolute", bottom: 20, right: 56, fontFamily: SANS,
-            fontSize: 11, color: "#0D0D0D", opacity: 0.35 }}>
-            updated {updated}
-          </div>
-        )}
       </div>
 
       {/* ── Body ── */}

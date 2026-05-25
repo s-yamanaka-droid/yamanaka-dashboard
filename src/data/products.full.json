@@ -1,0 +1,391 @@
+{
+  "generated_at": "2026-05-14T10:00:49",
+  "count": 55,
+  "products": [
+    {
+      "id": "vigil",
+      "company": "Lakkan",
+      "flag": "PUBLIC",
+      "url": "https://vigil-vert-gamma.vercel.app",
+      "desc": "Vigil 統合ハブ（5タブ）"
+    },
+    {
+      "id": "vigil-news",
+      "company": "Lakkan",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "Now on AIr 裏方パイプライン"
+    },
+    {
+      "id": "resume-form",
+      "company": "Lakkan",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "レジュメ管理"
+    },
+    {
+      "id": "trefinder",
+      "company": "Lakkan",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "キャリパー判定検証ツール"
+    },
+    {
+      "id": "ai-quest",
+      "company": "Lakkan",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "AIクエスト"
+    },
+    {
+      "id": "jobseeker-card",
+      "company": "Lakkan",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "求職者カード生成"
+    },
+    {
+      "id": "hitofuta",
+      "company": "Lakkan",
+      "flag": "ARCHIVED",
+      "url": "",
+      "desc": "雛形のまま退役（2026-05-14）"
+    },
+    {
+      "id": "brother-hearing",
+      "company": "Lakkan",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "弟（広告代理店）向けヒアリング"
+    },
+    {
+      "id": "yamanaka-dashboard",
+      "company": "Lakkan",
+      "flag": "PUBLIC",
+      "url": "https://yamanaka-dashboard.vercel.app",
+      "desc": "このサイト本体"
+    },
+    {
+      "id": "yamanaka-gantt",
+      "company": "Lakkan",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "個人ガントチャート"
+    },
+    {
+      "id": "yamanaka-cashflow",
+      "company": "Lakkan",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "個人キャッシュフロー"
+    },
+    {
+      "id": "sumihara-profile",
+      "company": "Lakkan",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "個人プロファイル"
+    },
+    {
+      "id": "confy-recruit",
+      "company": "Lakkan",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "Confy 採用LP"
+    },
+    {
+      "id": "lia-recruit",
+      "company": "Lakkan",
+      "flag": "PUBLIC",
+      "url": "",
+      "desc": "LiA 採用LP"
+    },
+    {
+      "id": "fukushima-recruit",
+      "company": "Lakkan",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "福島採用LP"
+    },
+    {
+      "id": "planna",
+      "company": "LunaTech",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "プランナー（経営計画SaaS、6/16ローンチ）"
+    },
+    {
+      "id": "lunatech-ai-lab",
+      "company": "LunaTech",
+      "flag": "PUBLIC",
+      "url": "https://lunatech-ai-lab.vercel.app",
+      "desc": "LunaTech AI ラボ"
+    },
+    {
+      "id": "solaris",
+      "company": "LunaTech",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "ソラリス（チャットツール、6/16ローンチ）"
+    },
+    {
+      "id": "kaguya-mikoto",
+      "company": "LunaTech",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "かぐや（2C）/みこと（2B）AIツール"
+    },
+    {
+      "id": "lunatech-corp",
+      "company": "LunaTech",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "LunaTech コーポレートサイト（6/16公開）"
+    },
+    {
+      "id": "kanoa-ai-platform",
+      "company": "SKYLINK",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "Engine（SKYLINK 中核）"
+    },
+    {
+      "id": "kanoa-jobs",
+      "company": "KANOA",
+      "flag": "PUBLIC",
+      "url": "https://kanoa-jobs.vercel.app",
+      "desc": "KANOA JOB（Indeed型MVP、コード:kanoa2026）"
+    },
+    {
+      "id": "kanoa-lp-generator",
+      "company": "KANOA",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "KANOA LP生成器"
+    },
+    {
+      "id": "trepro-journey",
+      "company": "トレプロ",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "トレプロ ジャーニー"
+    },
+    {
+      "id": "trepro-journey-demo",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "Journey デモ"
+    },
+    {
+      "id": "trepro-dashboard",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "トレプロ社内ダッシュボード"
+    },
+    {
+      "id": "trepro-ai-lab",
+      "company": "トレプロ",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "トレプロ AI ラボ"
+    },
+    {
+      "id": "trepro-scorecard",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "トレプロ スコアカード"
+    },
+    {
+      "id": "trepro-sites",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "トレプロ サイト群"
+    },
+    {
+      "id": "gakken-journey-next",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "学研HD案件 v1"
+    },
+    {
+      "id": "gakken-journey-next2",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "学研HD案件 v2"
+    },
+    {
+      "id": "gakken-kickoff-agenda",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "学研HDキックオフ"
+    },
+    {
+      "id": "gakken-kickoff-next",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "学研HDキックオフ v2"
+    },
+    {
+      "id": "gakken-recruit-journey",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "学研HD採用ジャーニー"
+    },
+    {
+      "id": "nakachu-hearing",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "中忠ヒアリング"
+    },
+    {
+      "id": "oono-hearing",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "大野ヒアリング"
+    },
+    {
+      "id": "otake-onboarding",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "大竹オンボーディング"
+    },
+    {
+      "id": "uemoto-onboarding",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "上本オンボーディング"
+    },
+    {
+      "id": "phyz-kickoff",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "Phyz キックオフ"
+    },
+    {
+      "id": "senri-funky",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "仙里 Funky"
+    },
+    {
+      "id": "senri-hearing",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "仙里ヒアリング"
+    },
+    {
+      "id": "senri-tanimitsu",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "仙里×谷光"
+    },
+    {
+      "id": "kit-funky",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "KIT Funky"
+    },
+    {
+      "id": "kit-senri",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "KIT×仙里"
+    },
+    {
+      "id": "kit-tanimitsu",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "KIT×谷光"
+    },
+    {
+      "id": "harness-dashboard",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "Harness ダッシュボード"
+    },
+    {
+      "id": "management-ledger",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "経営台帳"
+    },
+    {
+      "id": "adhacker-site",
+      "company": "トレプロ",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "AdHacker サイト"
+    },
+    {
+      "id": "gads-optimizer",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "Google広告オプティマイザー"
+    },
+    {
+      "id": "ishikawa-pl",
+      "company": "トレプロ",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "石川PL"
+    },
+    {
+      "id": "competitor-research",
+      "company": "Solve",
+      "flag": "PUBLIC",
+      "url": "https://competitor-research-gamma.vercel.app",
+      "desc": "競合インテリジェンスツール"
+    },
+    {
+      "id": "solve-homepage",
+      "company": "Solve",
+      "flag": "PRE-LAUNCH",
+      "url": "",
+      "desc": "Solve コーポレートサイト"
+    },
+    {
+      "id": "takibi",
+      "company": "Solve",
+      "flag": "ARCHIVED",
+      "url": "",
+      "desc": "雛形のまま退役（2026-05-14）"
+    },
+    {
+      "id": "pc-health",
+      "company": "_shared",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "PC ヘルスチェック"
+    },
+    {
+      "id": "shoot-agent",
+      "company": "_shared",
+      "flag": "INTERNAL",
+      "url": "",
+      "desc": "シュートエージェント"
+    }
+  ]
+}

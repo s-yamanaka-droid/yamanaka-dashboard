@@ -7,7 +7,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-15",
-    "updatedAt": "2026-04-23",
+    "updatedAt": "2026-05-25",
     "url": "https://kanoa-jobs.vercel.app",
     "client": "KANOA",
     "tags": [
@@ -73,20 +73,23 @@
   },
   {
     "id": "lia-recruit",
-    "name": "LIA Recruit",
-    "description": "LIA向け採用サイト。候補者エントリー・書類選考フロー・面接日程調整をワンストップで提供。",
+    "name": "LiA 採用LP",
+    "description": "飲食店業界特化の求人広告代理店・株式会社LiA向け採用ランディングページ。カスタムカーソル・Lenisスムーズスクロール・テキストスクランブル・KPIカウントアップ・カード3D tilt・マグネティックボタンなどプレミアム演出を全実装。Next.js静的エクスポート。",
     "category": "external",
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-06",
     "updatedAt": "2026-04-18",
     "url": "https://lia-recruit.vercel.app",
-    "client": "LIA",
+    "client": "株式会社LiA",
     "tags": [
-      "採用",
+      "採用LP",
       "Next.js",
-      "フォーム"
-    ]
+      "アニメーション",
+      "Lenis",
+      "カスタムカーソル"
+    ],
+    "featured": true
   },
   {
     "id": "braive-ai",
@@ -112,7 +115,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-17",
-    "updatedAt": "2026-04-20",
+    "updatedAt": "2026-05-23",
     "url": "https://ai-quest.vercel.app",
     "client": "Lakkan",
     "tags": [
@@ -194,7 +197,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-16",
-    "updatedAt": "2026-04-16",
+    "updatedAt": "2026-05-21",
     "url": "https://trefinder.vercel.app",
     "tags": [
       "検索",
@@ -385,14 +388,14 @@
   },
   {
     "id": "vigil-playbook",
-    "name": "Vigil Playbook",
-    "description": "セキュリティインシデント対応プレイブック。手順・エスカレーション・テンプレートをWeb上で管理。",
+    "name": "Vigil AI Playbook",
+    "description": "Vigil AI のスキルツリー。育つ第二の脳の知識・パターン・プレイブックを Supabase で蓄積し、どこからでも参照できる。",
     "category": "internal",
     "status": "dev",
     "builtWith": "claude_code",
     "createdAt": "2026-04-13",
     "updatedAt": "2026-04-13",
-    "url": "https://vigil-playbook.vercel.app",
+    "url": "https://vigil-vert-gamma.vercel.app",
     "tags": [
       "セキュリティ",
       "プレイブック",
@@ -422,7 +425,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-20",
-    "updatedAt": "2026-04-21",
+    "updatedAt": "2026-05-25",
     "url": "https://trepro-journey.vercel.app",
     "client": "Trepro",
     "tags": [
@@ -436,12 +439,12 @@
   {
     "id": "yamanaka-dashboard",
     "name": "Yamanaka Dashboard",
-    "description": "山中のプロダクトポートフォリオ一覧。Claude Codeで構築した全ツールを俯瞰・管理するハブ。",
+    "description": "山中のプロダクトポートフォリオ一覧。Claude Codeで構築した全ツールを俯瞰・管理するハブ。今日の更新バブル・自動ポートフォリオ連携機能を追加。",
     "category": "internal",
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-20",
-    "updatedAt": "2026-04-23",
+    "updatedAt": "2026-05-25",
     "url": "https://yamanaka-dashboard.vercel.app",
     "tags": [
       "ポートフォリオ",

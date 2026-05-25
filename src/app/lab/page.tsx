@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-const SB_URL = "https://uuznttfwayafrvzqtjwo.supabase.co";
-const SB_KEY = "sb_publishable_1iJsNvSPfMTQKVC1HtMMng__lkvOq8c";
+import { SB_URL, SB_KEY } from "@/lib/supabase";
+import { PageHero } from "@/components/PageHero";
 const GH_USER = "s-yamanaka-droid";
 
 const FRANK = "var(--font-frank), 'Frank Ruhl Libre', Georgia, serif";
@@ -157,18 +157,28 @@ export default function LabPage() {
           <Link href="/" style={{ fontFamily: SANS, fontSize: 13, fontWeight: 700,
             color: "#0D0D0D", textDecoration: "none", letterSpacing: "0.05em" }}>YAMANAKA SHUTO</Link>
           <div style={{ display: "flex", gap: 28, alignItems: "center" }}>
-            {[["Works","/#works"],["Evolution","/evolution"]].map(([l,h]) => (
+            {([["Works","/#works"],["Portals","/#portals"],["Skills","/skills"],["Evolution","/evolution"]] as [string,string][]).map(([l,h]) => (
               <Link key={l} href={h} style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500,
                 color: "#0D0D0D", textDecoration: "none", opacity: 0.55 }}>{l}</Link>
             ))}
             <span style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500, color: "#0D0D0D" }}>Lab</span>
-            <Link href="https://github.com/s-yamanaka-droid" target="_blank" rel="noopener noreferrer"
+            <Link href="/"
               style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500, color: "#0D0D0D",
                 textDecoration: "none", display: "flex", alignItems: "center", gap: 3, opacity: 0.55 }}>
-              GitHub <ArrowUpRight size={11} />
+              Lakkan
             </Link>
           </div>
         </nav>
+      </div>
+
+      {/* ── Unified PageHero ── */}
+      <div style={{ paddingTop: 52 }}>
+        <PageHero
+          section="Lab"
+          version="v.1.0"
+          title="Activity Stream"
+          lede="GitHub・Claude Code・社内システムの稼働ログを一本のストリームに束ねる。30秒ごとに更新される、生中継の作業記録"
+        />
       </div>
 
       {/* ── Hero ── */}

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <style>
+      .bg { fill: #F7F4EE; }
+      .ink { fill: #0D0D0D; }
+      .accent { fill: #B8362E; }
+      .muted { fill: rgba(13,13,13,0.55); }
+      .rule { stroke: rgba(13,13,13,0.18); stroke-width: 1; }
+      .eyebrow { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 18px; letter-spacing: 4px; text-transform: uppercase; }
+      .title { font-family: 'Instrument Serif', 'Times New Roman', Georgia, serif; font-style: italic; font-size: 360px; font-weight: 400; letter-spacing: -10px; }
+      .subtitle { font-family: 'Frank Ruhl Libre', 'Times New Roman', Georgia, serif; font-style: italic; font-size: 38px; font-weight: 300; letter-spacing: 2px; }
+      .mark { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; }
+    </style>
+  </defs>
+
+  <!-- background -->
+  <rect class="bg" width="1200" height="630"/>
+
+  <!-- top eyebrow -->
+  <line class="rule" x1="80" y1="80" x2="120" y2="80"/>
+  <text class="eyebrow accent" x="135" y="85">Lakkan Inc. · 2026</text>
+
+  <!-- main title: Lakkan. -->
+  <text class="title ink" x="600" y="380" text-anchor="middle">
+    <tspan>Lakkan</tspan><tspan class="accent">.</tspan>
+  </text>
+
+  <!-- subtitle -->
+  <text class="subtitle muted" x="600" y="460" text-anchor="middle">楽観と、計画と。</text>
+
+  <!-- bottom rule + mark -->
+  <line class="rule" x1="80" y1="560" x2="1120" y2="560"/>
+  <text class="mark muted" x="80" y="595">AI Corporate Site</text>
+  <text class="mark accent" x="1120" y="595" text-anchor="end">Lakkan Inc. / 2026</text>
+</svg>
