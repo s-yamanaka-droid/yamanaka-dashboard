@@ -308,6 +308,19 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
           </span>
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
             <a
+              href="/contact"
+              style={{
+                fontFamily: SANS,
+                fontSize: 10,
+                letterSpacing: "0.14em",
+                color: "rgba(255,255,255,0.5)",
+                textDecoration: "none",
+                textTransform: "uppercase",
+              }}
+            >
+              Contact
+            </a>
+            <a
               href="/privacy"
               style={{
                 fontFamily: SANS,

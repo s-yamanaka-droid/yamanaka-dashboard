@@ -76,7 +76,7 @@ export function Hero({
                   </span>
                 </span>
                 <div style={{ display:"flex", gap:24, alignItems:"center" }}>
-                  {[["Services","/services"],["Vigil AI","#vigil"],["Works","/works"],["About","/about"]].map(([l,h]) => (
+                  {[["Services","/services"],["Vigil AI","#vigil"],["Works","/works"],["About","/about"],["Contact","/contact"]].map(([l,h]) => (
                     <a key={l} href={h} className="hero-nav-link"
                       style={{ fontFamily:SANS, fontSize:13, fontWeight:500, color:ink, textDecoration:"none", opacity:0.75 }}>
                       {l}
