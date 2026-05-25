@@ -3,6 +3,7 @@ import { Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif } from "n
 import "./globals.css";
 import "./vigil-tokens.css";
 import GlobalShell from "@/components/GlobalShell";
+import { CookieConsent } from "@/components/CookieConsent";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -29,7 +30,7 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yamanaka-dashboard.vercel.app"),
+  metadataBase: new URL("https://lakkan-inc.vercel.app"),
   title: {
     default: "株式会社Lakkan | AIコーポレートサイト — 楽観と、計画と。",
     template: "%s | 株式会社Lakkan",
@@ -42,17 +43,17 @@ export const metadata: Metadata = {
     "採用DX", "AI採用", "業務自動化", "Lakkan", "楽観",
     "山中秀斗", "Shuto Yamanaka", "トレプロ", "Trepro", "COO",
   ],
-  authors: [{ name: "Shuto Yamanaka", url: "https://yamanaka-dashboard.vercel.app" }],
+  authors: [{ name: "Shuto Yamanaka", url: "https://lakkan-inc.vercel.app" }],
   creator: "Shuto Yamanaka",
   publisher: "株式会社Lakkan",
   applicationName: "Lakkan Inc.",
   category: "Technology",
   classification: "AI / Artificial Intelligence Company",
-  alternates: { canonical: "https://yamanaka-dashboard.vercel.app" },
+  alternates: { canonical: "https://lakkan-inc.vercel.app" },
   openGraph: {
     type: "website",
     locale: "ja_JP",
-    url: "https://yamanaka-dashboard.vercel.app",
+    url: "https://lakkan-inc.vercel.app",
     siteName: "株式会社Lakkan — AI Company",
     title: "株式会社Lakkan | AIコーポレートサイト",
     description:
@@ -107,17 +108,17 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "Organization",
-                  "@id": "https://yamanaka-dashboard.vercel.app/#org",
+                  "@id": "https://lakkan-inc.vercel.app/#org",
                   name: "株式会社Lakkan",
                   alternateName: ["Lakkan Inc.", "Lakkan", "ラッカン"],
-                  url: "https://yamanaka-dashboard.vercel.app",
-                  logo: "https://yamanaka-dashboard.vercel.app/photo.jpg",
+                  url: "https://lakkan-inc.vercel.app",
+                  logo: "https://lakkan-inc.vercel.app/photo.jpg",
                   description:
                     "AIエージェント・生成AI・自律システムを核に、企業の業務を構造化・自動化するAIファースト企業。",
                   foundingDate: "2026-03",
                   founder: {
                     "@type": "Person",
-                    "@id": "https://yamanaka-dashboard.vercel.app/#person",
+                    "@id": "https://lakkan-inc.vercel.app/#person",
                   },
                   address: {
                     "@type": "PostalAddress",
@@ -141,17 +142,17 @@ export default function RootLayout({
                 },
                 {
                   "@type": "Person",
-                  "@id": "https://yamanaka-dashboard.vercel.app/#person",
+                  "@id": "https://lakkan-inc.vercel.app/#person",
                   name: "山中 秀斗",
                   alternateName: ["Shuto Yamanaka", "Yamanaka Shuto"],
                   jobTitle: "COO / Founder",
                   worksFor: {
-                    "@id": "https://yamanaka-dashboard.vercel.app/#org",
+                    "@id": "https://lakkan-inc.vercel.app/#org",
                   },
                   birthDate: "1997",
                   nationality: "JP",
-                  image: "https://yamanaka-dashboard.vercel.app/photo.jpg",
-                  url: "https://yamanaka-dashboard.vercel.app",
+                  image: "https://lakkan-inc.vercel.app/photo.jpg",
+                  url: "https://lakkan-inc.vercel.app",
                   email: "s-yamanaka@tre-pro.co.jp",
                   knowsAbout: [
                     "AI",
@@ -164,12 +165,12 @@ export default function RootLayout({
                 },
                 {
                   "@type": "WebSite",
-                  "@id": "https://yamanaka-dashboard.vercel.app/#website",
-                  url: "https://yamanaka-dashboard.vercel.app",
+                  "@id": "https://lakkan-inc.vercel.app/#website",
+                  url: "https://lakkan-inc.vercel.app",
                   name: "株式会社Lakkan — AI Corporate Site",
                   inLanguage: "ja-JP",
                   publisher: {
-                    "@id": "https://yamanaka-dashboard.vercel.app/#org",
+                    "@id": "https://lakkan-inc.vercel.app/#org",
                   },
                   about: {
                     "@type": "Thing",
@@ -182,6 +183,7 @@ export default function RootLayout({
         />
         <GlobalShell />
         {children}
+        <CookieConsent />
       </body>
     </html>
   );
