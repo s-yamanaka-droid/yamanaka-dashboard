@@ -1,17 +1,19 @@
 "use client";
 
 import { useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { Command } from "lucide-react";
-import HeroCanvas from "@/components/HeroCanvas";
-import HeroLetters from "@/components/HeroLetters";
+// three.js を含む重量コンポーネントは dynamic import + ssr:false で初期バンドルから除外
+const HeroCanvas  = dynamic(() => import("@/components/HeroCanvas"),                     { ssr: false, loading: () => null });
+const HeroLetters = dynamic(() => import("@/components/HeroLetters"),                    { ssr: false, loading: () => null });
+const CodeRain    = dynamic(() => import("@/components/primitives/CodeRain").then(m => ({ default: m.CodeRain })), { ssr: false, loading: () => null });
 import { CountUp } from "@/components/primitives/CountUp";
 import { LiveBadge } from "@/components/primitives/LiveBadge";
 import { LiveFeed } from "@/components/primitives/LiveFeed";
 import { CodeMantra } from "@/components/primitives/CodeMantra";
 import { Sparkline } from "@/components/primitives/Sparkline";
 import { MagneticHeading } from "@/components/primitives/MagneticHeading";
-import { CodeRain } from "@/components/primitives/CodeRain";
 import { ACCENT, FRANK, INSTRUMENT, SANS, SortKey } from "@/lib/design-tokens";
 
 export function Hero({

@@ -1,5 +1,55 @@
 [
   {
+    "id": "reskilllab-trepro",
+    "name": "リスキルラボ by TREPRO",
+    "description": "AIリスキリング研修の商談で「触って体感する」動的デモ（Trepro版）。同一コードベースから VITE_BRAND で出し分け。Lv1-3×業種5種×生成物12種、LIVE Gemini+OpenAI 実API社名反映、助成金75%込み投資シミュ、営業チートシート（ASK/SILENCE/OBJECTION/CLOSING）統合。Trepro赤×墨配色。商談URL ?company=◯◯ で相手社名を全画面・LIVE出力に自動反映。",
+    "category": "external",
+    "status": "live",
+    "builtWith": "claude_code",
+    "createdAt": "2026-05-26",
+    "updatedAt": "2026-05-26",
+    "url": "https://trepro-resk-demo.vercel.app",
+    "tags": [
+      "AIリスキリング",
+      "商談デモ",
+      "営業ツール",
+      "React",
+      "Vite",
+      "Gemini",
+      "OpenAI",
+      "Tailwind",
+      "助成金",
+      "TREPRO"
+    ],
+    "client": "TREPRO",
+    "featured": true
+  },
+  {
+    "id": "reskilllab-lunatech",
+    "name": "リスキルラボ by LunaTech",
+    "description": "AIリスキリング研修の商談で「触って体感する」動的デモ。Lv1（プロンプト体感）/Lv2（ハーネス可視化）/Lv3（マルチエージェント）の3段階×業種5種で実演。生成物プレビュー12種類（PDF/スライド/Notion等）。LIVE Gemini+OpenAI 自動フォールバックで実APIから社名入り出力を生成。助成金75%込み投資回収シミュ・営業チートシート・段階導入ロードマップ統合。URLに?company=◯◯で商談相手社名を自動反映。Solaris太陽オレンジ×Stripeネイビー配色。",
+    "category": "external",
+    "status": "live",
+    "builtWith": "claude_code",
+    "createdAt": "2026-05-26",
+    "updatedAt": "2026-05-26",
+    "url": "https://lunatech-ai-lab.vercel.app",
+    "tags": [
+      "AIリスキリング",
+      "商談デモ",
+      "営業ツール",
+      "React",
+      "Vite",
+      "Gemini",
+      "OpenAI",
+      "Tailwind",
+      "助成金",
+      "LunaTech"
+    ],
+    "client": "LunaTech",
+    "featured": true
+  },
+  {
     "id": "kanoa-jobs",
     "name": "KANOA Jobs",
     "description": "Indeed型求人ポータル。130件の全国求人、AIマッチング、ワンタップ応募、年収シミュレーター、選考追跡、企業口コミ、給与DB、SEO構造化データ対応。346ページ。",
@@ -7,7 +57,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-15",
-    "updatedAt": "2026-05-25",
+    "updatedAt": "2026-05-27",
     "url": "https://kanoa-jobs.vercel.app",
     "client": "KANOA",
     "tags": [
@@ -425,7 +475,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-20",
-    "updatedAt": "2026-05-26",
+    "updatedAt": "2026-05-27",
     "url": "https://trepro-journey.vercel.app",
     "client": "Trepro",
     "tags": [
@@ -444,7 +494,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-20",
-    "updatedAt": "2026-05-25",
+    "updatedAt": "2026-05-26",
     "url": "https://yamanaka-dashboard.vercel.app",
     "tags": [
       "ポートフォリオ",

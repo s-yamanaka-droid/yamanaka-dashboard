@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import NeuralNet from "@/components/NeuralNet";
+import dynamic from "next/dynamic";
+// three.js を遅延ロード（初期バンドルから除外・SSR時は描画しない）
+const NeuralNet = dynamic(() => import("@/components/NeuralNet"), { ssr: false, loading: () => null });
 
 const TICKER = [
   "claude-code · indexing",
