@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main style={{ background: "#F7F4EE", minHeight: "100vh" }}>
+    <main id="main" style={{ background: "#F7F4EE", minHeight: "100vh" }}>
       <PageHero
         section="Contact"
         version="v.1"

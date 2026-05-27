@@ -24,7 +24,7 @@ const W = (a: number) => `rgba(13,13,13,${a})`;
 
 export default function VigilPage() {
   return (
-    <main style={{ background: BG, color: INK, minHeight: "100vh" }}>
+    <main id="main" style={{ background: BG, color: INK, minHeight: "100vh" }}>
       {/* TOP BAR */}
       <div style={{
         position: "sticky", top: 0, zIndex: 100, background: "rgba(250,250,247,0.88)",

@@ -200,6 +200,7 @@ export default function RootLayout({
             }),
           }}
         />
+        <a href="#main" className="skip-link">メインコンテンツへスキップ</a>
         <GlobalShell />
         {children}
         <CookieConsent />

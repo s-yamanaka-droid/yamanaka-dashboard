@@ -119,9 +119,40 @@
   animation: marquee 36s linear infinite;
 }
 
-/* Cursor hide on interactive elements */
-body { cursor: none; }
-a, button, input, select { cursor: none; }
+/* A11y: WCAG 2.4.7 Focus Visible — 全インタラクティブ要素に必須 */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #1C3BCC;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* WCAG 2.3.3 Reduced Motion 対応 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Skip link styling — sr-only base, visible on focus */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  z-index: 9999;
+  background: #0D0D0D;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 13px;
+  text-decoration: none;
+}
+.skip-link:focus, .skip-link:focus-visible {
+  left: 8px;
+}
 
 /* =========================================================
    MOBILE / TABLET RESPONSIVE OVERRIDES

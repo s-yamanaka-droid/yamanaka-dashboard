@@ -15,7 +15,7 @@ export function WorksClient() {
   const [sort, setSort] = useState<SortKey>("updatedAt");
 
   return (
-    <main>
+    <main id="main">
       <PageHero
         section="Works"
         version="v.1"

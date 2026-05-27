@@ -56,7 +56,7 @@ export default function ChangelogPage() {
   });
 
   return (
-    <main style={{
+    <main id="main" style={{
       minHeight: "100vh",
       background: "#F5F5F0",
       color: ink,
