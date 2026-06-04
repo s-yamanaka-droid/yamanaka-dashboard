@@ -22,12 +22,13 @@ type Item = {
 
 const IMG = "https://images.unsplash.com/";
 
-// カテゴリ別アクセント（Nordic Pop palette と整合）
+// アクセントは1色（terra）に統一。カテゴリ別の色分けは廃止。
+const INK = "var(--foreground)";
 const CAT_COLOR: Record<Exclude<Cat, "all">, { c: string; soft: string; label: string }> = {
-  "3d":    { c: "#1C3BCC", soft: "#EEF1FF", label: "3D / WebGL" },
-  layout:  { c: "#3A8C5C", soft: "#EDF5F1", label: "Layout" },
-  cv:      { c: "#E8694A", soft: "#FFF0EB", label: "Conversion" },
-  core:    { c: "#F4541A", soft: "#FFF9CC", label: "Core" },
+  "3d":    { c: INK, soft: "var(--secondary)", label: "3D / WebGL" },
+  layout:  { c: INK, soft: "var(--secondary)", label: "Layout" },
+  cv:      { c: INK, soft: "var(--secondary)", label: "Conversion" },
+  core:    { c: INK, soft: "var(--secondary)", label: "Core" },
 };
 
 const ITEMS: Item[] = [
@@ -100,8 +101,8 @@ export default function AtelierPage() {
               style={{
                 y: blobY, position: "absolute", inset: "-10% -15% auto auto",
                 width: "min(60vw, 720px)", aspectRatio: "1/1", borderRadius: "50%",
-                background: "radial-gradient(circle at 40% 40%, color-mix(in oklab, var(--terra) 35%, transparent), transparent 60%)",
-                filter: "blur(40px)", opacity: .85, pointerEvents: "none",
+                background: "radial-gradient(circle at 40% 40%, rgba(13,13,13,0.10), transparent 60%)",
+                filter: "blur(48px)", opacity: .9, pointerEvents: "none",
               }}
             />
             <motion.div
@@ -109,8 +110,8 @@ export default function AtelierPage() {
               style={{
                 y: blob2Y, position: "absolute", inset: "20% auto auto -10%",
                 width: "min(52vw, 600px)", aspectRatio: "1/1", borderRadius: "50%",
-                background: "radial-gradient(circle at 60% 60%, color-mix(in oklab, var(--blue) 28%, transparent), transparent 60%)",
-                filter: "blur(50px)", opacity: .7, pointerEvents: "none",
+                background: "radial-gradient(circle at 60% 60%, rgba(13,13,13,0.08), transparent 60%)",
+                filter: "blur(60px)", opacity: .85, pointerEvents: "none",
               }}
             />
           </>
@@ -128,14 +129,10 @@ export default function AtelierPage() {
             <span>Atelier</span>
           </motion.div>
 
-          {/* タイトル：行ごとに reveal */}
-          <h1 style={{ marginTop: 16, fontFamily: "var(--font-frank)", fontWeight: 500, fontSize: "clamp(48px,9vw,120px)", lineHeight: 0.98, letterSpacing: ".005em" }}>
+          {/* タイトル：行ごとに reveal。1フォント1色で組版だけで強弱 */}
+          <h1 style={{ marginTop: 16, fontFamily: "var(--font-frank)", fontWeight: 500, fontSize: "clamp(48px,9vw,120px)", lineHeight: 0.96, letterSpacing: ".005em", color: "var(--foreground)" }}>
             <RevealLine delay={0.05}><span>WebGL &amp;</span></RevealLine>
-            <RevealLine delay={0.15}>
-              <span>Layout </span>
-              <em style={{ fontFamily: "var(--font-instrument)", fontStyle: "italic", color: "var(--terra)" }}>Patterns</em>
-              <span style={{ color: "var(--text-3)" }}>.</span>
-            </RevealLine>
+            <RevealLine delay={0.15}><span>Layout Patterns</span></RevealLine>
           </h1>
 
           <motion.p
@@ -145,10 +142,8 @@ export default function AtelierPage() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
             style={{ maxWidth: "58ch", marginTop: 28, fontSize: "clamp(15px,1.2vw,17px)", lineHeight: 1.9, color: "var(--text-2)" }}
           >
-            <em style={{ fontFamily: "var(--font-instrument)", fontStyle: "italic", color: "var(--foreground)" }}>Atelier</em> は、Lakkan のサイト制作メソッド。<br />
-            WebGL 3D・高品質LP/HPレイアウト・コンバージョン素地を、
-            <em style={{ fontFamily: "var(--font-instrument)", fontStyle: "italic", color: "var(--foreground)" }}>ライトテーマで強く動かす</em>方針で揃えています。
-            配色とコピーを差し替えれば、数分で“その会社版”になります。
+            Atelier は、Lakkan のサイト制作工房。<br />
+            検証済みの素地から、その会社版を最短で組み上げます。
           </motion.p>
 
           <motion.div style={{ opacity: heroFade }}>
@@ -156,9 +151,9 @@ export default function AtelierPage() {
             <div style={{ marginTop: 48, display: "flex", flexWrap: "wrap", gap: "32px 56px" }}>
               {[
                 { n: ITEMS.length, l: "Patterns", c: "var(--foreground)" },
-                { n: counts["3d"], l: "3D / WebGL", c: CAT_COLOR["3d"].c },
-                { n: counts.layout, l: "Layout", c: CAT_COLOR.layout.c },
-                { n: counts.cv, l: "Conversion", c: CAT_COLOR.cv.c },
+                { n: counts["3d"], l: "3D / WebGL", c: "var(--foreground)" },
+                { n: counts.layout, l: "Layout", c: "var(--foreground)" },
+                { n: counts.cv, l: "Conversion", c: "var(--foreground)" },
               ].map((s, i) => (
                 <motion.div
                   key={s.l}
@@ -272,7 +267,7 @@ export default function AtelierPage() {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 }}
                 style={{ padding: "32px 28px", background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 18 }}
               >
-                <div style={{ fontFamily: "var(--font-instrument)", fontStyle: "italic", fontSize: 18, color: "var(--terra)" }}>{s.n}</div>
+                <div style={{ fontFamily: "var(--font-frank)", fontSize: 14, letterSpacing: ".18em", color: "var(--text-3)" }}>{s.n}</div>
                 <div style={{ marginTop: 14, fontFamily: "var(--font-frank)", fontSize: 28, fontWeight: 500, letterSpacing: "-0.01em" }}>{s.t}</div>
                 <p style={{ marginTop: 12, fontSize: 14, lineHeight: 1.9, color: "var(--text-2)" }}>{s.d}</p>
               </motion.div>
@@ -312,10 +307,10 @@ export default function AtelierPage() {
       {/* ========== CTA ========== */}
       <section style={{ padding: "clamp(80px,10vw,140px) clamp(20px,5vw,56px)", borderTop: "1px solid var(--border)" }}>
         <div style={{ maxWidth: 980, margin: "0 auto", textAlign: "center" }}>
-          <p style={{ fontSize: 12, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--terra)" }}>Begin</p>
+          <p style={{ fontSize: 12, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--text-3)" }}>Begin</p>
           <h2 style={{ marginTop: 18, fontFamily: "var(--font-frank)", fontWeight: 500, fontSize: "clamp(36px,6vw,72px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>
             あなたのブランドに、<br />
-            <em style={{ fontFamily: "var(--font-instrument)", fontStyle: "italic", color: "var(--terra)" }}>“すぐ出せる”</em>を一つ。
+            “すぐ出せる”を一つ。
           </h2>
           <p style={{ marginTop: 18, fontSize: 15, lineHeight: 1.9, color: "var(--text-2)", maxWidth: "52ch", marginLeft: "auto", marginRight: "auto" }}>
             素地を選び、配色とコピーを差し替え、そのまま納品。Lakkan の Atelier が、最初の一手を最短にします。
@@ -336,7 +331,7 @@ export default function AtelierPage() {
       {/* ========== FOOT ========== */}
       <footer style={{ padding: "36px clamp(20px,5vw,56px)", borderTop: "1px solid var(--border)" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 12, fontSize: 12, color: "var(--text-3)" }}>
-          <span style={{ fontFamily: "var(--font-instrument)", fontStyle: "italic", fontSize: 16, color: "var(--text-2)" }}>Lakkan · Atelier</span>
+          <span style={{ fontFamily: "var(--font-frank)", fontSize: 15, letterSpacing: ".06em", color: "var(--text-2)" }}>Lakkan · Atelier</span>
           <span>© 2026 楽観 / Lakkan ｜ WebGL &amp; Layout Patterns</span>
         </div>
       </footer>
@@ -377,7 +372,7 @@ function SectionHead({ eyebrow, title }: { eyebrow: string; title: string }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 0.5 }}
-        style={{ fontSize: 12, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--terra)" }}
+        style={{ fontSize: 12, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--text-3)" }}
       >
         {eyebrow}
       </motion.p>
@@ -416,12 +411,12 @@ function PatternCard({ it, delay }: { it: Item; delay: number }) {
         }}
       >
         <div style={{ position: "relative", aspectRatio: "16/10", overflow: "hidden", background: "var(--secondary)", borderBottom: "1px solid var(--border)" }}>
-          {/* カラーバー：左上から伸びる */}
+          {/* 上端ライン：ホバーで全幅に */}
           <span
             aria-hidden
             style={{
-              position: "absolute", top: 0, left: 0, height: 3, width: 56, zIndex: 2,
-              background: it.hue, transformOrigin: "0 0",
+              position: "absolute", top: 0, left: 0, height: 2, width: 48, zIndex: 2,
+              background: "var(--foreground)", transformOrigin: "0 0",
               transition: "width .5s cubic-bezier(.22,1,.36,1)",
             }}
             className="cat-bar"
@@ -450,12 +445,12 @@ function PatternCard({ it, delay }: { it: Item; delay: number }) {
             }}
             className="poster"
           />
-          {/* 色のオーバーレイ（ホバーで濃く） */}
+          {/* 下方フェード：ホバーで濃く（単色） */}
           <div
             aria-hidden
             style={{
               position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
-              background: `linear-gradient(180deg, transparent 40%, color-mix(in oklab, ${it.hue} 20%, transparent))`,
+              background: "linear-gradient(180deg, transparent 50%, rgba(13,13,13,0.18))",
               opacity: 0, transition: "opacity .5s ease",
             }}
             className="cat-glow"
@@ -464,7 +459,7 @@ function PatternCard({ it, delay }: { it: Item; delay: number }) {
         <div style={{ padding: "20px 22px 22px" }}>
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 14 }}>
             <div style={{ fontSize: 15.5, fontWeight: 600, letterSpacing: "-0.005em" }}>{it.id}</div>
-            <div style={{ fontFamily: "var(--font-instrument)", fontStyle: "italic", fontSize: 13, color: it.hue }}>{it.brand}</div>
+            <div style={{ fontSize: 12, letterSpacing: ".06em", color: "var(--text-3)" }}>{it.brand}</div>
           </div>
           <p style={{ marginTop: 8, fontSize: 13, lineHeight: 1.75, color: "var(--text-2)" }}>{it.desc}</p>
           <div style={{ marginTop: 18, display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 500 }}>
@@ -514,11 +509,7 @@ function Marquee() {
           <div key={loop} style={{ display: "flex", gap: 56, flexShrink: 0 }}>
             {words.map((w, i) => (
               <span key={`${loop}-${i}`} style={{ display: "inline-flex", alignItems: "center", gap: 56 }}>
-                {i % 3 === 0 ? (
-                  <em style={{ fontFamily: "var(--font-instrument)", fontStyle: "italic", color: "var(--terra)" }}>{w}</em>
-                ) : (
-                  <span style={{ color: i % 2 ? "var(--text-3)" : "var(--foreground)" }}>{w}</span>
-                )}
+                <span style={{ color: i % 2 ? "var(--text-3)" : "var(--foreground)" }}>{w}</span>
                 <Dot />
               </span>
             ))}
@@ -540,8 +531,8 @@ function Marquee() {
 
 function Dot() {
   return (
-    <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden>
-      <circle cx="5" cy="5" r="3" fill="var(--terra)" />
+    <svg width="6" height="6" viewBox="0 0 10 10" aria-hidden>
+      <circle cx="5" cy="5" r="3" fill="var(--text-3)" />
     </svg>
   );
 }
