@@ -87,7 +87,7 @@ export default function AtelierPage() {
   const heroFade = useTransform(scrollYProgress, [0, 0.8], [1, 0.2]);
 
   return (
-    <main style={{ background: "var(--background)", color: "var(--foreground)", overflowX: "hidden" }}>
+    <main style={{ background: "var(--background)", color: "var(--foreground)", overflowX: "hidden", fontFamily: 'var(--font-display), var(--font-sans-jp), "Noto Sans JP", system-ui, sans-serif', fontFeatureSettings: '"palt" 1' }}>
       {/* ========== HERO ========== */}
       <motion.section
         ref={heroRef}
@@ -130,7 +130,7 @@ export default function AtelierPage() {
           </motion.div>
 
           {/* タイトル：行ごとに reveal。1フォント1色で組版だけで強弱 */}
-          <h1 style={{ marginTop: 16, fontFamily: "var(--font-frank)", fontWeight: 500, fontSize: "clamp(48px,9vw,120px)", lineHeight: 0.96, letterSpacing: ".005em", color: "var(--foreground)" }}>
+          <h1 style={{ marginTop: 16, fontFamily: 'var(--font-frank), var(--font-mincho), "Shippori Mincho", "Noto Serif JP", serif', fontWeight: 500, fontSize: "clamp(48px,9vw,120px)", lineHeight: 0.96, letterSpacing: ".005em", color: "var(--foreground)" }}>
             <RevealLine delay={0.05}><span>WebGL &amp;</span></RevealLine>
             <RevealLine delay={0.15}><span>Layout Patterns</span></RevealLine>
           </h1>
@@ -162,7 +162,7 @@ export default function AtelierPage() {
                   viewport={{ once: true, amount: 0.6 }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.45 + i * 0.07 }}
                 >
-                  <div style={{ fontFamily: "var(--font-frank)", fontSize: "clamp(40px,5vw,64px)", fontWeight: 500, lineHeight: 1, color: s.c }}>{s.n}</div>
+                  <div style={{ fontFamily: 'var(--font-frank), var(--font-mincho), "Shippori Mincho", "Noto Serif JP", serif', fontSize: "clamp(40px,5vw,64px)", fontWeight: 500, lineHeight: 1, color: s.c }}>{s.n}</div>
                   <div style={{ marginTop: 8, fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--text-3)" }}>{s.l}</div>
                 </motion.div>
               ))}
@@ -267,8 +267,8 @@ export default function AtelierPage() {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 }}
                 style={{ padding: "32px 28px", background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 18 }}
               >
-                <div style={{ fontFamily: "var(--font-frank)", fontSize: 14, letterSpacing: ".18em", color: "var(--text-3)" }}>{s.n}</div>
-                <div style={{ marginTop: 14, fontFamily: "var(--font-frank)", fontSize: 28, fontWeight: 500, letterSpacing: "-0.01em" }}>{s.t}</div>
+                <div style={{ fontFamily: 'var(--font-frank), var(--font-mincho), "Shippori Mincho", "Noto Serif JP", serif', fontSize: 14, letterSpacing: ".18em", color: "var(--text-3)" }}>{s.n}</div>
+                <div style={{ marginTop: 14, fontFamily: 'var(--font-frank), var(--font-mincho), "Shippori Mincho", "Noto Serif JP", serif', fontSize: 28, fontWeight: 500, letterSpacing: "-0.01em" }}>{s.t}</div>
                 <p style={{ marginTop: 12, fontSize: 14, lineHeight: 1.9, color: "var(--text-2)" }}>{s.d}</p>
               </motion.div>
             ))}
@@ -308,7 +308,7 @@ export default function AtelierPage() {
       <section style={{ padding: "clamp(80px,10vw,140px) clamp(20px,5vw,56px)", borderTop: "1px solid var(--border)" }}>
         <div style={{ maxWidth: 980, margin: "0 auto", textAlign: "center" }}>
           <p style={{ fontSize: 12, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--text-3)" }}>Begin</p>
-          <h2 style={{ marginTop: 18, fontFamily: "var(--font-frank)", fontWeight: 500, fontSize: "clamp(36px,6vw,72px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>
+          <h2 style={{ marginTop: 18, fontFamily: 'var(--font-frank), var(--font-mincho), "Shippori Mincho", "Noto Serif JP", serif', fontWeight: 500, fontSize: "clamp(36px,6vw,72px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>
             あなたのブランドに、<br />
             “すぐ出せる”を一つ。
           </h2>
@@ -331,7 +331,7 @@ export default function AtelierPage() {
       {/* ========== FOOT ========== */}
       <footer style={{ padding: "36px clamp(20px,5vw,56px)", borderTop: "1px solid var(--border)" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 12, fontSize: 12, color: "var(--text-3)" }}>
-          <span style={{ fontFamily: "var(--font-frank)", fontSize: 15, letterSpacing: ".06em", color: "var(--text-2)" }}>Lakkan · Atelier</span>
+          <span style={{ fontFamily: 'var(--font-frank), var(--font-mincho), "Shippori Mincho", "Noto Serif JP", serif', fontSize: 15, letterSpacing: ".06em", color: "var(--text-2)" }}>Lakkan · Atelier</span>
           <span>© 2026 楽観 / Lakkan ｜ WebGL &amp; Layout Patterns</span>
         </div>
       </footer>
@@ -381,7 +381,7 @@ function SectionHead({ eyebrow, title }: { eyebrow: string; title: string }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        style={{ marginTop: 12, fontFamily: "var(--font-frank)", fontWeight: 500, fontSize: "clamp(30px,4.5vw,52px)", lineHeight: 1.1, letterSpacing: "-0.01em" }}
+        style={{ marginTop: 12, fontFamily: 'var(--font-frank), var(--font-mincho), "Shippori Mincho", "Noto Serif JP", serif', fontWeight: 500, fontSize: "clamp(30px,4.5vw,52px)", lineHeight: 1.1, letterSpacing: "-0.01em" }}
       >
         {title}
       </motion.h2>
@@ -500,7 +500,7 @@ function Marquee() {
       <div
         style={{
           display: "flex", gap: 56, whiteSpace: "nowrap",
-          fontFamily: "var(--font-frank)", fontSize: "clamp(28px,4vw,52px)", fontWeight: 500,
+          fontFamily: 'var(--font-frank), var(--font-mincho), "Shippori Mincho", "Noto Serif JP", serif', fontSize: "clamp(28px,4vw,52px)", fontWeight: 500,
           letterSpacing: "-0.01em",
           animation: "atelier-marquee 32s linear infinite",
         }}

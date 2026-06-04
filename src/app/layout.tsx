@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif } from "next/font/google";
+import { Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif, Shippori_Mincho, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import "./vigil-tokens.css";
 import GlobalShell from "@/components/GlobalShell";
@@ -27,6 +27,22 @@ const instrument = Instrument_Serif({
   subsets: ["latin"],
   weight: ["400"],
   style: ["normal", "italic"],
+});
+
+// 日本語 serif（見出し用・Frank Ruhl Libre とペアで使う）
+const shippori = Shippori_Mincho({
+  variable: "--font-mincho",
+  weight: ["500", "600", "700"],
+  display: "swap",
+  preload: false,
+});
+
+// 日本語 sans（本文用）
+const notoSansJP = Noto_Sans_JP({
+  variable: "--font-sans-jp",
+  weight: ["400", "500", "700"],
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -97,7 +113,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${geistMono.variable} ${spaceGrotesk.variable} ${frankRuhl.variable} ${instrument.variable} antialiased`}
+      className={`${geistMono.variable} ${spaceGrotesk.variable} ${frankRuhl.variable} ${instrument.variable} ${shippori.variable} ${notoSansJP.variable} antialiased`}
     >
       <body className="bg-[#F7F4EE] text-[#0D0D0D]">
         <script
