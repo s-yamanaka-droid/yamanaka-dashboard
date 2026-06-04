@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liora Atelier｜肌に溶けるように、色が生まれる。スキンケアとカラーのアトリエ</title>
+<meta name="description" content="Liora Atelier（リオラ アトリエ）は、スキンケアとメイクアップを一続きに設計する少数精鋭のビューティースタジオ。パーソナルカラー診断から施術、アフターケアまで、肌に溶けるカラー体験を東京・代官山でご提供します。">
+<link rel="canonical" href="https://liora-atelier.example.com/">
+<meta name="theme-color" content="#F6F1EA">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Liora Atelier｜肌に、ひとさじの光を。">
+<meta property="og:description" content="スキンケアとカラーのアトリエ。パーソナルカラー診断から施術、アフターケアまで一続きに設計する少数精鋭のビューティースタジオ。">
+<meta property="og:image" content="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1200&q=80">
+<meta property="og:url" content="https://liora-atelier.example.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Liora Atelier｜肌に、ひとさじの光を。">
+<meta name="twitter:description" content="スキンケアとカラーのアトリエ。少数精鋭のビューティースタジオ。">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1200&q=80">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23F6F1EA'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%23E8A6B8' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3.5' fill='%239CC6D6'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "name": "Liora Atelier",
+  "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1200&q=80",
+  "description": "スキンケアとメイクアップを一続きに設計する少数精鋭のビューティースタジオ。パーソナルカラー診断から施術、アフターケアまで。",
+  "url": "https://liora-atelier.example.com/",
+  "telephone": "+81-3-6450-2871",
+  "priceRange": "¥¥",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "猿楽町12-8 リオラ代官山 2F",
+    "addressLocality": "渋谷区",
+    "addressRegion": "東京都",
+    "postalCode": "150-0033",
+    "addressCountry": "JP"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "11:00",
+      "closes": "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Sunday"],
+      "opens": "11:00",
+      "closes": "18:00"
+    }
+  ],
+  "makesOffer": [
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "パーソナルカラー診断"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "スキンケアカウンセリング"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "メイクアップ施術"}}
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --bg:#F6F1EA;
+    --ink:#2A2622;
+    --accent:#E8A6B8;
+    --accent2:#9CC6D6;
+    --cream:#FBF8F2;
+    --line:rgba(42,38,34,.12);
+    --ink-soft:rgba(42,38,34,.66);
+    --serif:'Cormorant Garamond', serif;
+    --sans:'Zen Kaku Gothic New', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:400;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  ::selection{background:var(--accent);color:#fff}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+  /* ===== Reveal (progressive enhancement) ===== */
+  .reveal{will-change:transform,opacity}
+  .js .reveal{opacity:0}
+
+  /* ===== Header ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;
+    transition:background .4s ease, box-shadow .4s ease, padding .4s ease;
+  }
+  header.scrolled{
+    background:rgba(246,241,234,.86);
+    backdrop-filter:blur(14px);
+    box-shadow:0 1px 0 var(--line);
+    padding:13px 28px;
+  }
+  .brand{
+    font-family:var(--serif);
+    font-size:1.5rem;font-weight:600;letter-spacing:.04em;
+    display:flex;align-items:center;gap:10px;
+  }
+  .brand svg{width:26px;height:26px;flex:none}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:.84rem;letter-spacing:.06em;color:var(--ink-soft);transition:color .25s}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.84rem;letter-spacing:.05em;font-weight:500;
+    padding:11px 22px;border-radius:100px;
+    background:var(--ink);color:var(--cream);
+    transition:transform .3s ease, background .3s ease;
+  }
+  .btn:hover{transform:translateY(-2px);background:#3d3832}
+  .btn--ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn--ghost:hover{background:rgba(42,38,34,.05)}
+  .nav-cta{display:inline-flex}
+  @media(max-width:820px){.nav-links{display:none}}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;align-items:center;
+    overflow:hidden;
+  }
+  #fluid-canvas{
+    position:absolute;inset:0;width:100%;height:100%;
+    display:block;z-index:0;
+  }
+  .hero-fallback{
+    position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(120% 90% at 18% 22%, rgba(232,166,184,.55) 0%, rgba(232,166,184,0) 55%),
+      radial-gradient(110% 100% at 82% 30%, rgba(156,198,214,.5) 0%, rgba(156,198,214,0) 58%),
+      radial-gradient(120% 120% at 60% 95%, rgba(244,225,200,.7) 0%, rgba(246,241,234,0) 60%),
+      var(--bg);
+  }
+  .hero-veil{
+    position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg, rgba(246,241,234,.05) 0%, rgba(246,241,234,.18) 60%, rgba(246,241,234,.55) 100%);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative;z-index:2;width:100%}
+  .hero-eyebrow{
+    font-family:var(--serif);font-style:italic;
+    font-size:1.15rem;letter-spacing:.08em;color:var(--ink);
+    margin-bottom:22px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .hero-eyebrow::before{content:"";width:46px;height:1px;background:var(--ink);opacity:.5}
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(3rem,9vw,6.4rem);
+    line-height:1.04;
+    letter-spacing:.01em;
+    margin-bottom:26px;
+  }
+  .clip{display:block;overflow:hidden}
+  .hero p.lead{
+    font-size:clamp(1rem,1.6vw,1.18rem);
+    color:var(--ink);
+    max-width:34ch;
+    margin-bottom:38px;
+    font-weight:400;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .scroll-hint{
+    position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+    z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;
+    font-size:.7rem;letter-spacing:.22em;color:var(--ink-soft);text-transform:uppercase;
+  }
+  .scroll-hint span{display:block;width:1px;height:42px;background:linear-gradient(var(--ink),transparent);animation:sd 2.2s ease-in-out infinite}
+  @keyframes sd{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ===== Sections ===== */
+  section{position:relative}
+  .section-pad{padding:120px 0}
+  .kicker{
+    font-family:var(--serif);font-style:italic;
+    font-size:1.05rem;color:var(--accent);
+    letter-spacing:.05em;margin-bottom:18px;
+  }
+  .kicker.k2{color:#5fa0b6}
+  h2.title{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(2.1rem,4.5vw,3.4rem);
+    line-height:1.15;margin-bottom:24px;
+  }
+  .lede{font-size:1.05rem;color:var(--ink-soft);max-width:60ch}
+
+  /* Philosophy */
+  .philosophy{background:var(--cream)}
+  .phil-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
+  .phil-figure{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/5}
+  .phil-figure img{width:100%;height:100%;object-fit:cover}
+  .phil-figure::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,166,184,.12),rgba(156,198,214,.12))}
+  .phil-points{margin-top:36px;display:flex;flex-direction:column;gap:24px}
+  .phil-point{display:flex;gap:18px;align-items:flex-start}
+  .phil-point svg{width:24px;height:24px;flex:none;margin-top:3px;color:var(--accent)}
+  .phil-point h4{font-size:1rem;font-weight:500;margin-bottom:4px}
+  .phil-point p{font-size:.92rem;color:var(--ink-soft);line-height:1.7}
+  @media(max-width:860px){.phil-grid{grid-template-columns:1fr;gap:44px}}
+
+  /* Products */
+  .products-head{text-align:center;max-width:640px;margin:0 auto 64px}
+  .products-head .lede{margin:0 auto}
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .prod-card{
+    background:var(--cream);border-radius:6px;overflow:hidden;
+    border:1px solid var(--line);
+    transition:transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s;
+  }
+  .prod-card:hover{transform:translateY(-8px);box-shadow:0 26px 50px -28px rgba(42,38,34,.32)}
+  .prod-media{aspect-ratio:1/1;overflow:hidden;position:relative}
+  .prod-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+  .prod-card:hover .prod-media img{transform:scale(1.07)}
+  .prod-num{
+    position:absolute;top:14px;left:16px;
+    font-family:var(--serif);font-size:.9rem;font-style:italic;
+    color:#fff;mix-blend-mode:difference;letter-spacing:.05em;
+  }
+  .prod-body{padding:26px 24px 30px}
+  .prod-body h3{font-family:var(--serif);font-size:1.5rem;font-weight:600;margin-bottom:8px}
+  .prod-cat{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .prod-body p{font-size:.9rem;color:var(--ink-soft);line-height:1.7}
+  .prod-ingredient{
+    margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
+    font-size:.82rem;color:var(--ink);display:flex;gap:8px;align-items:center;
+  }
+  .prod-ingredient strong{font-weight:500}
+  @media(max-width:860px){.prod-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
+
+  /* Flow */
+  .flow{background:var(--cream)}
+  .flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:60px}
+  .flow-step{position:relative;padding-top:30px}
+  .flow-step::before{
+    content:"";position:absolute;top:8px;left:0;right:0;height:1px;background:var(--line);
+  }
+  .flow-dot{
+    position:absolute;top:2px;left:0;width:13px;height:13px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--accent);
+  }
+  .flow-num{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--accent2);margin-bottom:10px;display:block}
+  .flow-step h4{font-family:var(--serif);font-size:1.35rem;font-weight:600;margin-bottom:10px}
+  .flow-step p{font-size:.88rem;color:var(--ink-soft);line-height:1.7}
+  @media(max-width:860px){.flow-grid{grid-template-columns:1fr;gap:34px}.flow-step{padding-top:0;padding-left:26px}.flow-step::before{top:0;bottom:0;left:6px;right:auto;width:1px;height:auto}.flow-dot{top:4px}}
+
+  /* Voices */
+  .voices-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px}
+  .voice-card{
+    background:var(--cream);border:1px solid var(--line);border-radius:6px;
+    padding:34px 30px;display:flex;flex-direction:column;
+  }
+  .voice-card .quote-mark{font-family:var(--serif);font-size:3rem;line-height:.6;color:var(--accent);margin-bottom:14px}
+  .voice-card p{font-size:.95rem;color:var(--ink);line-height:1.85;flex:1}
+  .voice-who{margin-top:24px;display:flex;align-items:center;gap:13px}
+  .voice-who .ava{width:42px;height:42px;border-radius:50%;object-fit:cover;flex:none}
+  .voice-who .who-meta strong{display:block;font-size:.88rem;font-weight:500}
+  .voice-who .who-meta span{font-size:.76rem;color:var(--ink-soft)}
+  @media(max-width:860px){.voices-grid{grid-template-columns:1fr;max-width:440px;margin:56px auto 0}}
+
+  /* Access */
+  .access{background:var(--cream)}
+  .access-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .access-info dl{display:grid;grid-template-columns:auto 1fr;gap:14px 28px;margin:30px 0 36px}
+  .access-info dt{font-size:.78rem;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;padding-top:3px}
+  .access-info dd{font-size:.96rem;line-height:1.7}
+  .access-info dd a:hover{color:var(--accent)}
+  .access-actions{display:flex;gap:14px;flex-wrap:wrap}
+  .access-map{border-radius:6px;overflow:hidden;aspect-ratio:4/3;position:relative;border:1px solid var(--line)}
+  .access-map img{width:100%;height:100%;object-fit:cover}
+  .access-map a.map-pin{
+    position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:flex-start;
+    padding:18px;background:linear-gradient(0deg,rgba(42,38,34,.28),transparent 55%);
+    color:#fff;font-size:.82rem;letter-spacing:.04em;
+  }
+  .access-map a.map-pin svg{width:18px;height:18px;margin-right:7px}
+  @media(max-width:860px){.access-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* Footer (light theme — ivory, dark text) */
+  footer{background:var(--cream);color:var(--ink);padding:80px 0 38px;border-top:1px solid var(--line)}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:54px}
+  .foot-brand .brand{color:var(--ink);margin-bottom:16px}
+  .foot-brand p{font-size:.88rem;color:var(--ink-soft);max-width:34ch;line-height:1.8}
+  .foot-col h5{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+  .foot-col a,.foot-col p{display:block;font-size:.9rem;color:var(--ink-soft);margin-bottom:12px;transition:color .25s}
+  .foot-col a:hover{color:var(--ink)}
+  .foot-social{display:flex;gap:14px;margin-top:6px}
+  .foot-social a{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-soft);transition:.25s}
+  .foot-social a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+  .foot-social svg{width:17px;height:17px}
+  .foot-bottom{
+    border-top:1px solid var(--line);padding-top:26px;
+    display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;
+    font-size:.78rem;color:var(--ink-soft);
+  }
+  .demo-note{font-size:.74rem;color:rgba(42,38,34,.46);letter-spacing:.02em}
+  @media(max-width:860px){.foot-top{grid-template-columns:1fr;gap:34px}}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+    .js .reveal{opacity:1!important}
+  }
+</style>
+</head>
+<body>
+<script>document.documentElement.className='js';</script>
+
+<header id="site-header">
+  <a href="#top" class="brand" aria-label="Liora Atelier ホーム">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="#2A2622" stroke-width="1.4"/><circle cx="16" cy="16" r="4.4" fill="#E8A6B8"/><circle cx="16" cy="16" r="4.4" fill="none" stroke="#9CC6D6" stroke-width="1"/></svg>
+    Liora Atelier
+  </a>
+  <nav class="nav-links" aria-label="メインナビゲーション">
+    <a href="#philosophy">理念</a>
+    <a href="#products">プロダクト</a>
+    <a href="#flow">体験フロー</a>
+    <a href="#voices">声</a>
+    <a href="#access">アクセス</a>
+  </nav>
+  <a href="#access" class="btn nav-cta">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 2v4M16 2v4M3 9h18M5 5h14a1 1 0 011 1v13a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg>
+    ご予約
+  </a>
+</header>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <canvas id="fluid-canvas" aria-hidden="true"></canvas>
+    <div class="hero-fallback" aria-hidden="true"></div>
+    <div class="hero-veil" aria-hidden="true"></div>
+    <div class="hero-inner wrap">
+      <p class="hero-eyebrow reveal">Skincare &amp; Color Atelier — 代官山</p>
+      <h1>
+        <span class="clip"><span class="reveal-line">肌に、ひとさじの光を。</span></span>
+      </h1>
+      <p class="lead reveal">肌に溶けるように、色が生まれる。スキンケアとカラーを一続きに設計する、少数精鋭のアトリエ。</p>
+      <div class="hero-actions reveal">
+        <a href="#access" class="btn">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 2v4M16 2v4M3 9h18M5 5h14a1 1 0 011 1v13a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg>
+          来店予約する
+        </a>
+        <a href="#philosophy" class="btn btn--ghost">アトリエを知る</a>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">Scroll<span></span></div>
+  </section>
+
+  <!-- ===== PHILOSOPHY ===== -->
+  <section class="philosophy section-pad" id="philosophy">
+    <div class="wrap phil-grid">
+      <div class="phil-figure reveal">
+        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80" alt="やわらかな自然光のなかでスキンケアを施す施術者の手元">
+      </div>
+      <div>
+        <p class="kicker reveal">Our Philosophy</p>
+        <h2 class="title reveal">肌を整えることと、<br>色を纏うこと。境界を消す。</h2>
+        <p class="lede reveal">わたしたちは、スキンケアとメイクアップを別々のものとは考えません。素肌のコンディションが整って初めて、色は本来の透明感で立ち上がる。Liora Atelier は、その一続きの体験だけを丁寧に設計するための、小さなアトリエです。</p>
+        <div class="phil-points">
+          <div class="phil-point reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l2.4 6.3L21 11l-5.4 2L12 21l-3.6-8L3 11l6.6-1.7z"/></svg>
+            <div><h4>少数精鋭、一日4組まで</h4><p>担当が最初から最後まで伴走できるよう、ご予約は一日4組に限定しています。流れ作業にしない、それがわたしたちの矜持です。</p></div>
+          </div>
+          <div class="phil-point reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <div><h4>その日だけで終わらせない</h4><p>施術後のホームケア提案までが一つのメニュー。サロンの内と外で、肌のリズムを途切れさせません。</p></div>
+          </div>
+          <div class="phil-point reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 12c4-6 14-6 18 0-4 6-14 6-18 0z"/><circle cx="12" cy="12" r="2.5"/></svg>
+            <div><h4>あなたの肌だけを見る</h4><p>トレンドの前に、まずあなたの肌色・骨格・生活を読む。パーソナルカラーは流行ではなく、あなたの設計図です。</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCTS ===== -->
+  <section class="section-pad" id="products">
+    <div class="wrap">
+      <div class="products-head">
+        <p class="kicker reveal">The Collection</p>
+        <h2 class="title reveal">肌から色へ、3つの軌跡。</h2>
+        <p class="lede reveal">アトリエでの施術と同じ思想で配合した、3つのシグネチャー。整えるセラム、纏うティント、灯すバーム。</p>
+      </div>
+      <div class="prod-grid">
+        <article class="prod-card reveal">
+          <div class="prod-media"><span class="prod-num">01</span><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80" alt="ガラスのスポイトボトルに入った透明なセラムの質感クローズアップ"></div>
+          <div class="prod-body">
+            <p class="prod-cat">Serum</p>
+            <h3>Veil Serum</h3>
+            <p>角層のすみずみまで満たし、色をのせる前の素肌を均一に整える先行美容液。みずみずしくも、ベタつきを残さない設計です。</p>
+            <p class="prod-ingredient"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#E8A6B8" stroke-width="1.6" aria-hidden="true"><path d="M12 3v18M4 8l8 4 8-4"/></svg><strong>主役成分</strong>ナイアシンアミド＋発酵ヒアルロン酸</p>
+          </div>
+        </article>
+        <article class="prod-card reveal">
+          <div class="prod-media"><span class="prod-num">02</span><img src="https://images.unsplash.com/photo-1610705267928-1b9f2fa7f1c5?auto=format&fit=crop&w=700&q=80" alt="ローズ系ティントリップの艶やかな塗布跡のクローズアップ"></div>
+          <div class="prod-body">
+            <p class="prod-cat">Tint</p>
+            <h3>Dew Tint</h3>
+            <p>頬にも唇にも溶けこむ、しずく質感のマルチティント。肌の体温で発色が変わり、あなただけの一色に着地します。</p>
+            <p class="prod-ingredient"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#E8A6B8" stroke-width="1.6" aria-hidden="true"><path d="M12 3v18M4 8l8 4 8-4"/></svg><strong>主役成分</strong>植物由来カラーピグメント＋スクワラン</p>
+          </div>
+        </article>
+        <article class="prod-card reveal">
+          <div class="prod-media"><span class="prod-num">03</span><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80" alt="クリーム状のグロウバームを指で掬い上げる艶のある質感"></div>
+          <div class="prod-body">
+            <p class="prod-cat">Balm</p>
+            <h3>Glow Balm</h3>
+            <p>仕上げにひとさじ。頬骨や鼻先にのせると、内側からにじむような濡れたツヤが宿ります。光を肌の一部にするバーム。</p>
+            <p class="prod-ingredient"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#E8A6B8" stroke-width="1.6" aria-hidden="true"><path d="M12 3v18M4 8l8 4 8-4"/></svg><strong>主役成分</strong>シアバター＋微細パール（鉱物由来）</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FLOW ===== -->
+  <section class="flow section-pad" id="flow">
+    <div class="wrap">
+      <p class="kicker k2 reveal">Atelier Experience</p>
+      <h2 class="title reveal">ご来店から、その先まで。<br>4つのステップ。</h2>
+      <p class="lede reveal">初めての方も、約120分かけてゆっくりと。あなたの肌と暮らしに合わせた、一続きの体験をご用意しています。</p>
+      <div class="flow-grid">
+        <div class="flow-step reveal"><span class="flow-dot"></span><span class="flow-num">Step 01</span><h4>カウンセリング</h4><p>肌の悩み・生活リズム・なりたい印象を、20分かけて丁寧にお伺いします。まずは言葉にするところから。</p></div>
+        <div class="flow-step reveal"><span class="flow-dot"></span><span class="flow-num">Step 02</span><h4>パーソナルカラー診断</h4><p>自然光に近い環境で、あなたに調和する色を見極めます。似合う色は、流行ではなくあなたの設計図です。</p></div>
+        <div class="flow-step reveal"><span class="flow-dot"></span><span class="flow-num">Step 03</span><h4>施術</h4><p>スキンケアからメイクアップまで一続きに。整えた素肌に、診断した色を重ねていく中核の時間です。</p></div>
+        <div class="flow-step reveal"><span class="flow-dot"></span><span class="flow-num">Step 04</span><h4>アフターケア</h4><p>ご自宅で再現できるよう、手順とアイテムを記したカルテをお渡し。次回までの肌を、一緒に伴走します。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VOICES ===== -->
+  <section class="section-pad" id="voices">
+    <div class="wrap">
+      <p class="kicker reveal">Voices</p>
+      <h2 class="title reveal">来店された方の、声。</h2>
+      <div class="voices-grid">
+        <article class="voice-card reveal">
+          <div class="quote-mark" aria-hidden="true">“</div>
+          <p>カウンセリングがとにかく丁寧で、自分でも気づいていなかった肌の癖を言い当てられて驚きました。診断してもらった色のチークが本当に肌に馴染んで、もう手放せません。</p>
+          <div class="voice-who">
+            <img class="ava" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="来店者 葉山さんのポートレート">
+            <div class="who-meta"><strong>葉山 美咲 さん</strong><span>30代・会社員 / 初回来店</span></div>
+          </div>
+        </article>
+        <article class="voice-card reveal">
+          <div class="quote-mark" aria-hidden="true">“</div>
+          <p>施術が終わってからのアフターケアの説明が一番ありがたかったです。家でちゃんと再現できるカルテをもらえたので、翌朝の自分のメイクが変わりました。流れ作業じゃない感じが好きです。</p>
+          <div class="voice-who">
+            <img class="ava" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&q=80" alt="来店者 三輪さんのポートレート">
+            <div class="who-meta"><strong>三輪 詩織 さん</strong><span>40代・経営者 / 3回目</span></div>
+          </div>
+        </article>
+        <article class="voice-card reveal">
+          <div class="quote-mark" aria-hidden="true">“</div>
+          <p>一日4組だけというのが本当でした。隣を気にせず、ずっと自分の肌の話だけをしていられる時間。Glow Balm のツヤが上品で、職場でも褒められるようになりました。</p>
+          <div class="voice-who">
+            <img class="ava" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=120&q=80" alt="来店者 桐生さんのポートレート">
+            <div class="who-meta"><strong>桐生 あかね さん</strong><span>20代・デザイナー / 2回目</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ACCESS ===== -->
+  <section class="access section-pad" id="access">
+    <div class="wrap access-grid">
+      <div class="access-info">
+        <p class="kicker reveal">Access &amp; Reservation</p>
+        <h2 class="title reveal">代官山の小さなアトリエで、<br>お待ちしています。</h2>
+        <dl class="reveal">
+          <dt>Address</dt>
+          <dd>〒150-0033<br>東京都渋谷区猿楽町12-8 リオラ代官山 2F<br>（東急東横線 代官山駅 北口より徒歩4分）</dd>
+          <dt>Hours</dt>
+          <dd>火〜土 11:00–20:00 ／ 日 11:00–18:00<br>定休：月曜・第3火曜（完全予約制）</dd>
+          <dt>Tel</dt>
+          <dd><a href="tel:+81364502871">03-6450-2871</a></dd>
+          <dt>Mail</dt>
+          <dd><a href="mailto:hello@liora-atelier.example.com">hello@liora-atelier.example.com</a></dd>
+        </dl>
+        <div class="access-actions reveal">
+          <a href="https://liora-atelier.example.com/reserve" class="btn">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 2v4M16 2v4M3 9h18M5 5h14a1 1 0 011 1v13a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg>
+            予約フォームへ
+          </a>
+          <a href="tel:+81364502871" class="btn btn--ghost">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.4-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg>
+            電話でのご予約
+          </a>
+        </div>
+      </div>
+      <a href="https://maps.google.com/?q=東京都渋谷区猿楽町12-8" class="access-map reveal" target="_blank" rel="noopener" aria-label="Google マップで代官山の所在地を開く">
+        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=80" alt="代官山エリアの落ち着いた街並み">
+        <span class="map-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Google マップで開く</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="brand">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="#2A2622" stroke-width="1.4"/><circle cx="16" cy="16" r="4.4" fill="#E8A6B8"/></svg>
+          Liora Atelier
+        </div>
+        <p>肌に溶けるように、色が生まれる。スキンケアとカラーを一続きに設計する、代官山の少数精鋭ビューティースタジオです。</p>
+        <div class="foot-social">
+          <a href="https://instagram.com/liora.atelier" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://line.me/R/ti/p/@liora-atelier" target="_blank" rel="noopener" aria-label="LINE 公式アカウント"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 11c0-4.2-4-7.5-9-7.5S3 6.8 3 11c0 3.8 3.2 7 7.5 7.6.9.2.8.5.6 1.4l-.2 1c-.1.6.4.6.9.4 1.8-1 6.2-3.9 7.7-6.8A6.7 6.7 0 0021 11z"/></svg></a>
+          <a href="mailto:hello@liora-atelier.example.com" aria-label="メール"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Menu</h5>
+        <a href="#philosophy">理念</a>
+        <a href="#products">プロダクト</a>
+        <a href="#flow">体験フロー</a>
+        <a href="#voices">声</a>
+        <a href="#access">アクセス・予約</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <p>運営：株式会社リオラ</p>
+        <p>東京都渋谷区猿楽町12-8</p>
+        <a href="tel:+81364502871">03-6450-2871</a>
+        <a href="mailto:hello@liora-atelier.example.com">hello@liora-atelier.example.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Liora Atelier (株式会社リオラ). All rights reserved.</span>
+      <span class="demo-note">このページはデモです（楽観 site-builder による制作サンプル）</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Libraries ===== -->
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+<script type="module">
+import * as THREE from 'three';
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ============ Fluid Iridescent Shader Hero ============ */
+(function initFluid(){
+  const canvas = document.getElementById('fluid-canvas');
+  if(!canvas) return;
+
+  let renderer;
+  try{
+    renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
+  }catch(e){
+    canvas.style.display='none'; // fall back to CSS gradient
+    return;
+  }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+  const uniforms = {
+    u_time:       { value: 0 },
+    u_res:        { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+    u_bg:         { value: new THREE.Color('#F6F1EA') },
+    u_accent:     { value: new THREE.Color('#E8A6B8') },
+    u_accent2:    { value: new THREE.Color('#9CC6D6') },
+    u_warm:       { value: new THREE.Color('#F4E1C8') }
+  };
+
+  const vert = `
+    varying vec2 vUv;
+    void main(){
+      vUv = uv;
+      gl_Position = vec4(position, 1.0);
+    }
+  `;
+
+  const frag = `
+    precision highp float;
+    varying vec2 vUv;
+    uniform float u_time;
+    uniform vec2  u_res;
+    uniform vec3  u_bg;
+    uniform vec3  u_accent;
+    uniform vec3  u_accent2;
+    uniform vec3  u_warm;
+
+    // ---- simplex-ish noise (Ashima) ----
+    vec3 mod289(vec3 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+    vec2 mod289(vec2 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+    vec3 permute(vec3 x){ return mod289(((x*34.0)+1.0)*x); }
+    float snoise(vec2 v){
+      const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+                         -0.577350269189626, 0.024390243902439);
+      vec2 i  = floor(v + dot(v, C.yy));
+      vec2 x0 = v - i + dot(i, C.xx);
+      vec2 i1 = (x0.x > x0.y) ? vec2(1.0,0.0) : vec2(0.0,1.0);
+      vec4 x12 = x0.xyxy + C.xxzz;
+      x12.xy -= i1;
+      i = mod289(i);
+      vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0))
+                              + i.x + vec3(0.0, i1.x, 1.0));
+      vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+      m = m*m; m = m*m;
+      vec3 x  = 2.0 * fract(p * C.www) - 1.0;
+      vec3 h  = abs(x) - 0.5;
+      vec3 ox = floor(x + 0.5);
+      vec3 a0 = x - ox;
+      m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+      vec3 g;
+      g.x  = a0.x  * x0.x  + h.x  * x0.y;
+      g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+      return 130.0 * dot(m, g);
+    }
+
+    float fbm(vec2 p){
+      float v = 0.0;
+      float amp = 0.5;
+      for(int i=0;i<5;i++){
+        v += amp * snoise(p);
+        p *= 1.9;
+        amp *= 0.55;
+      }
+      return v;
+    }
+
+    void main(){
+      vec2 uv = vUv;
+      float aspect = u_res.x / u_res.y;
+      vec2 p = uv;
+      p.x *= aspect;
+
+      float t = u_time * 0.06;
+
+      // flowing domain-warped field
+      vec2 q = vec2(
+        fbm(p * 1.6 + vec2(0.0, t)),
+        fbm(p * 1.6 + vec2(5.2, -t * 1.3))
+      );
+      vec2 r = vec2(
+        fbm(p * 1.6 + 3.0 * q + vec2(1.7, 9.2) + 0.15 * t),
+        fbm(p * 1.6 + 3.0 * q + vec2(8.3, 2.8) - 0.12 * t)
+      );
+
+      float flow = fbm(p * 1.4 + 2.4 * r + vec2(0.0, t * 0.6));
+      flow = flow * 0.5 + 0.5;
+
+      // iridescent interference bands
+      float bands = 0.5 + 0.5 * sin( (r.x + r.y) * 6.2831 + flow * 5.0 + u_time * 0.25 );
+
+      // base soft gradient over ivory
+      vec3 col = u_bg;
+      col = mix(col, u_warm,   smoothstep(0.15, 0.95, flow) * 0.85);
+      col = mix(col, u_accent, smoothstep(0.30, 1.0,  q.y * 0.5 + 0.5) * 0.55);
+      col = mix(col, u_accent2,smoothstep(0.30, 1.0,  r.x * 0.5 + 0.5) * 0.45);
+
+      // thin iridescent sheen
+      vec3 sheen = mix(u_accent, u_accent2, bands);
+      col = mix(col, sheen, pow(bands, 2.2) * 0.30);
+
+      // keep it light: lift toward ivory at edges
+      float vig = smoothstep(1.25, 0.25, distance(uv, vec2(0.5)));
+      col = mix(u_bg, col, 0.35 + 0.65 * vig);
+
+      // subtle grain to avoid banding
+      float g = fract(sin(dot(uv*u_res, vec2(12.9898,78.233))) * 43758.5453);
+      col += (g - 0.5) * 0.012;
+
+      gl_FragColor = vec4(col, 1.0);
+    }
+  `;
+
+  const material = new THREE.ShaderMaterial({
+    uniforms, vertexShader: vert, fragmentShader: frag
+  });
+  const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+  scene.add(quad);
+
+  function resize(){
+    const w = window.innerWidth, h = window.innerHeight;
+    renderer.setSize(w, h);
+    uniforms.u_res.value.set(w, h);
+    // In reduced-motion mode there is no rAF loop, so re-render the static frame
+    // to avoid a blank/stretched canvas after a resize.
+    if(reduceMotion){
+      uniforms.u_time.value = 8.0;
+      renderer.render(scene, camera);
+    }
+  }
+  window.addEventListener('resize', resize);
+
+  const clock = new THREE.Clock();
+  let frozen = false;
+
+  function render(){
+    if(reduceMotion){
+      uniforms.u_time.value = 8.0; // static composed frame
+      renderer.render(scene, camera);
+      return; // single frame only
+    }
+    uniforms.u_time.value = clock.getElapsedTime();
+    if(!frozen) renderer.render(scene, camera);
+    requestAnimationFrame(render);
+  }
+  render();
+
+  // pause shader when hero is off-screen (perf)
+  if('IntersectionObserver' in window && !reduceMotion){
+    const io = new IntersectionObserver((entries)=>{
+      frozen = !entries[0].isIntersecting;
+    }, { threshold: 0 });
+    io.observe(document.getElementById('hero'));
+  }
+})();
+
+/* ============ Smooth Scroll + Reveal ============ */
+(function initMotion(){
+  // Header state
+  const header = document.getElementById('site-header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive:true });
+
+  if(reduceMotion || typeof gsap === 'undefined'){
+    document.querySelectorAll('.reveal, .reveal-line').forEach(el => { el.style.opacity = 1; });
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Lenis smooth scroll
+  let lenis;
+  if(typeof Lenis !== 'undefined'){
+    lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  // Hero headline reveal — fromTo (explicit start/end to avoid stuck values)
+  gsap.fromTo('.reveal-line',
+    { yPercent: 120, opacity: 0 },
+    { yPercent: 0, opacity: 1, duration: 1.1, ease: 'power3.out', delay: 0.25, stagger: 0.08 }
+  );
+
+  // Hero supporting elements
+  gsap.fromTo('.hero .reveal',
+    { yPercent: 60, opacity: 0 },
+    { yPercent: 0, opacity: 1, duration: 1.0, ease: 'power3.out', delay: 0.5, stagger: 0.12 }
+  );
+
+  // Section reveals on scroll
+  gsap.utils.toArray('section:not(.hero) .reveal').forEach((el) => {
+    gsap.fromTo(el,
+      { yPercent: 40, opacity: 0 },
+      {
+        yPercent: 0, opacity: 1, duration: 0.95, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 86%', once: true }
+      }
+    );
+  });
+})();
+</script>
+</body>
+</html>

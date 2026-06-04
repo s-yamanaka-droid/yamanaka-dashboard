@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Flowdesk（フローデスク）｜散らばる業務を、ひとつの流れに。チーム運用を自動でまとめるワークOS</title>
+<meta name="description" content="Flowdesk（フローデスク）は、議事録・タスク・承認フローを1つに統合するB2Bワークマネジメントプラットフォーム。チームの業務を止めずに自動でまとめ、流れに変えるワークOS。14日間無料・カード不要。" />
+<link rel="canonical" href="https://flowdesk.jp/" />
+<meta name="theme-color" content="#F8F6F1" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Flowdesk（フローデスク）｜チームの業務を、止めない。流れにする。" />
+<meta property="og:description" content="議事録・タスク・承認フローを1つに統合するワークOS。散らばる業務を、ひとつの流れに。14日間無料・カード不要。" />
+<meta property="og:image" content="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" />
+<meta property="og:url" content="https://flowdesk.jp/" />
+<meta property="og:site_name" content="Flowdesk" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Flowdesk（フローデスク）｜チームの業務を、止めない。流れにする。" />
+<meta name="twitter:description" content="議事録・タスク・承認フローを1つに統合するワークOS。14日間無料・カード不要。" />
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235B5BF0'/%3E%3Cpath d='M9 21c4-1 5-10 9-10 2.2 0 3.5 1.6 4 3' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round'/%3E%3Ccircle cx='22' cy='12' r='2.4' fill='%2316B8A6'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Flowdesk",
+  "alternateName": "フローデスク",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web, iOS, Android",
+  "description": "議事録・タスク・承認フローを1つに統合するB2Bワークマネジメントプラットフォーム。チームの業務を自動でまとめるワークOS。",
+  "url": "https://flowdesk.jp/",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "スターター",
+      "price": "0",
+      "priceCurrency": "JPY"
+    },
+    {
+      "@type": "Offer",
+      "name": "グロース",
+      "price": "1480",
+      "priceCurrency": "JPY",
+      "description": "1ユーザー / 月"
+    },
+    {
+      "@type": "Offer",
+      "name": "ビジネス",
+      "price": "3200",
+      "priceCurrency": "JPY",
+      "description": "1ユーザー / 月"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.7",
+    "ratingCount": "1280"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Flowdesk株式会社",
+    "url": "https://flowdesk.jp/"
+  }
+}
+</script>
+
+<style>
+  :root{
+    --bg:#F8F6F1;
+    --bg2:#FFFFFF;
+    --ink:#1C2230;
+    --ink-soft:#5A6172;
+    --accent:#5B5BF0;
+    --accent2:#16B8A6;
+    --line:#E7E3DA;
+    --card:#FFFFFF;
+    --shadow:0 18px 50px -24px rgba(28,34,48,.28);
+    --shadow-sm:0 6px 24px -16px rgba(28,34,48,.4);
+    --radius:18px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.font-display{font-family:"Space Grotesk","Noto Sans JP",sans-serif;letter-spacing:-.01em;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  section{position:relative;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.78rem;font-weight:700;letter-spacing:.12em;
+    color:var(--accent);text-transform:uppercase;
+    padding:6px 14px;border-radius:999px;
+    background:rgba(91,91,240,.08);border:1px solid rgba(91,91,240,.16);
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-weight:700;font-size:.96rem;border-radius:12px;
+    padding:13px 22px;cursor:pointer;border:1px solid transparent;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 26px -12px rgba(91,91,240,.65);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(91,91,240,.7);}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+  .btn-light{background:#fff;color:var(--accent);}
+  .btn-light:hover{transform:translateY(-2px);}
+
+  /* progressive enhancement: 初期非表示は .js 配下のみ */
+  .js .reveal{opacity:0;}
+
+  /* ====== NAV ====== */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(248,246,241,.82);
+    backdrop-filter:saturate(140%) blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .25s ease, background .25s ease;
+  }
+  header.nav.scrolled{border-bottom:1px solid var(--line);background:rgba(248,246,241,.94);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.18rem;font-family:"Space Grotesk",sans-serif;}
+  .brand .logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--accent),#7d7df5);display:grid;place-items:center;box-shadow:0 6px 16px -8px rgba(91,91,240,.7);}
+  .nav-links{display:flex;align-items:center;gap:28px;}
+  .nav-links a.lk{font-size:.92rem;color:var(--ink-soft);font-weight:500;transition:color .18s ease;}
+  .nav-links a.lk:hover{color:var(--ink);}
+  .nav-cta{display:flex;align-items:center;gap:12px;}
+  .nav-cta .login{font-size:.92rem;font-weight:600;color:var(--ink-soft);}
+  .nav-cta .login:hover{color:var(--ink);}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:42px;height:42px;cursor:pointer;align-items:center;justify-content:center;}
+
+  /* ====== HERO ====== */
+  .hero{padding:150px 0 80px;position:relative;overflow:hidden;}
+  #hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block;}
+  .hero .wrap{position:relative;z-index:2;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center;}
+  .hero h1{font-size:clamp(2.3rem,5vw,3.9rem);line-height:1.12;margin:18px 0 0;font-weight:700;}
+  .hero h1 .accent{color:var(--accent);}
+  .hero .sub{font-size:1.12rem;color:var(--ink-soft);margin:22px 0 0;max-width:34em;}
+  .signup{
+    display:flex;gap:10px;margin-top:30px;max-width:480px;flex-wrap:wrap;
+  }
+  .signup input{
+    flex:1;min-width:210px;font-size:1rem;padding:14px 16px;border-radius:12px;
+    border:1px solid var(--line);background:#fff;color:var(--ink);font-family:inherit;
+  }
+  .signup input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(91,91,240,.12);}
+  .signup-note{font-size:.84rem;color:var(--ink-soft);margin-top:12px;display:flex;align-items:center;gap:7px;}
+  .logos{display:flex;align-items:center;gap:26px;margin-top:40px;flex-wrap:wrap;opacity:.85;}
+  .logos span.lbl{font-size:.78rem;color:var(--ink-soft);font-weight:600;letter-spacing:.04em;}
+  .logos .logo-chip{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:1rem;color:var(--ink-soft);opacity:.7;}
+
+  /* hero mockup */
+  .mock{
+    background:#fff;border-radius:20px;border:1px solid var(--line);
+    box-shadow:var(--shadow);overflow:hidden;position:relative;
+  }
+  .mock-top{display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--line);background:#FBFAF7;}
+  .mock-top i{width:11px;height:11px;border-radius:50%;background:#E2DED4;display:block;}
+  .mock-top i:nth-child(1){background:#F2B8B5;}
+  .mock-top i:nth-child(2){background:#F6D6A0;}
+  .mock-top i:nth-child(3){background:#B7E3C9;}
+  .mock-top .mt-title{margin-left:8px;font-size:.8rem;color:var(--ink-soft);font-weight:600;}
+  .mock-body{padding:18px;display:grid;gap:13px;}
+  .mock-row{display:flex;align-items:center;gap:12px;padding:12px 13px;border:1px solid var(--line);border-radius:12px;background:#fff;}
+  .mock-check{width:22px;height:22px;border-radius:7px;flex:none;display:grid;place-items:center;}
+  .mc-done{background:rgba(22,184,166,.14);}
+  .mc-prog{background:rgba(91,91,240,.12);}
+  .mc-wait{background:#F1EEE6;}
+  .mock-row .txt{flex:1;min-width:0;}
+  .mock-row .txt b{font-size:.9rem;display:block;font-weight:600;}
+  .mock-row .txt small{font-size:.74rem;color:var(--ink-soft);}
+  .badge{font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;}
+  .badge.done{background:rgba(22,184,166,.14);color:#0d8576;}
+  .badge.prog{background:rgba(91,91,240,.12);color:var(--accent);}
+  .badge.wait{background:#F1EEE6;color:var(--ink-soft);}
+  .mock-mini{display:flex;gap:10px;}
+  .mini-card{flex:1;border:1px solid var(--line);border-radius:12px;padding:13px;background:#FBFAF7;}
+  .mini-card .k{font-size:.7rem;color:var(--ink-soft);font-weight:600;}
+  .mini-card .v{font-size:1.4rem;font-weight:700;font-family:"Space Grotesk",sans-serif;margin-top:2px;}
+  .mini-card .v.a2{color:var(--accent2);}
+  .mini-card .v.a1{color:var(--accent);}
+
+  /* ====== TRUST BAR ====== */
+  .trust{padding:34px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);}
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;}
+  .trust-grid .num{font-size:2rem;font-weight:700;font-family:"Space Grotesk",sans-serif;}
+  .trust-grid .num.a1{color:var(--accent);}
+  .trust-grid .num.a2{color:var(--accent2);}
+  .trust-grid .lbl{font-size:.84rem;color:var(--ink-soft);margin-top:2px;}
+
+  /* ====== SECTION HEAD ====== */
+  .sec{padding:92px 0;}
+  .sec-head{max-width:640px;margin:0 auto 54px;text-align:center;}
+  .sec-head h2{font-size:clamp(1.7rem,3.6vw,2.5rem);margin:16px 0 0;line-height:1.25;}
+  .sec-head p{color:var(--ink-soft);margin:14px 0 0;font-size:1.04rem;}
+
+  /* ====== FEATURES ====== */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .feat{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px 24px;transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  }
+  .feat:hover{transform:translateY(-5px);box-shadow:var(--shadow-sm);border-color:rgba(91,91,240,.3);}
+  .feat .ic{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;margin-bottom:16px;background:rgba(91,91,240,.09);}
+  .feat:nth-child(even) .ic{background:rgba(22,184,166,.1);}
+  .feat h3{font-size:1.16rem;margin:0 0 8px;}
+  .feat p{color:var(--ink-soft);font-size:.95rem;margin:0;}
+
+  /* ====== WORKFLOW ====== */
+  .flow{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .flow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:step;}
+  .flow-card{position:relative;padding:34px 26px 30px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg);}
+  .flow-card .step{
+    font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:.82rem;
+    color:#fff;background:var(--accent);width:34px;height:34px;border-radius:10px;
+    display:grid;place-items:center;margin-bottom:18px;
+  }
+  .flow-card:nth-child(2) .step{background:var(--accent2);}
+  .flow-card:nth-child(3) .step{background:var(--ink);}
+  .flow-card h3{font-size:1.22rem;margin:0 0 8px;}
+  .flow-card p{color:var(--ink-soft);font-size:.95rem;margin:0;}
+
+  /* ====== CASES ====== */
+  .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .case{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;transition:transform .22s ease, box-shadow .22s ease;
+  }
+  .case:hover{transform:translateY(-5px);box-shadow:var(--shadow-sm);}
+  .case .ph{height:158px;overflow:hidden;}
+  .case .ph img{width:100%;height:100%;object-fit:cover;}
+  .case .body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:12px;flex:1;}
+  .case .co{font-weight:700;font-size:1.02rem;}
+  .case .kpi{display:flex;gap:16px;}
+  .case .kpi .k{flex:1;}
+  .case .kpi .k .v{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:1.5rem;color:var(--accent);}
+  .case .kpi .k:nth-child(2) .v{color:var(--accent2);}
+  .case .kpi .k small{font-size:.72rem;color:var(--ink-soft);display:block;}
+  .case blockquote{margin:0;font-size:.9rem;color:var(--ink-soft);border-left:3px solid var(--line);padding-left:12px;line-height:1.7;}
+  .case .who{font-size:.78rem;color:var(--ink-soft);margin-top:auto;}
+
+  /* ====== PRICING ====== */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch;}
+  .plan{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:32px 26px;display:flex;flex-direction:column;position:relative;
+  }
+  .plan.featured{border:1.5px solid var(--accent);box-shadow:0 24px 56px -28px rgba(91,91,240,.5);transform:translateY(-8px);}
+  .plan .pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.72rem;font-weight:700;padding:5px 14px;border-radius:999px;white-space:nowrap;}
+  .plan .pname{font-weight:700;font-size:1.16rem;font-family:"Space Grotesk",sans-serif;}
+  .plan .pdesc{font-size:.86rem;color:var(--ink-soft);margin:4px 0 18px;min-height:2.6em;}
+  .plan .pprice{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:2.4rem;line-height:1;}
+  .plan .pprice small{font-size:.9rem;color:var(--ink-soft);font-weight:500;font-family:"Noto Sans JP",sans-serif;}
+  .plan ul{list-style:none;padding:0;margin:22px 0 26px;display:grid;gap:11px;flex:1;}
+  .plan ul li{display:flex;align-items:flex-start;gap:9px;font-size:.9rem;color:var(--ink);}
+  .plan ul li svg{flex:none;margin-top:3px;}
+  .plan .btn{width:100%;}
+
+  /* ====== FAQ ====== */
+  .faq-wrap{max-width:780px;margin:0 auto;}
+  details.faq{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    margin-bottom:12px;overflow:hidden;transition:border-color .2s ease;
+  }
+  details.faq[open]{border-color:rgba(91,91,240,.35);}
+  details.faq summary{
+    list-style:none;cursor:pointer;padding:20px 22px;font-weight:600;font-size:1rem;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+  }
+  details.faq summary::-webkit-details-marker{display:none;}
+  details.faq summary .pm{flex:none;width:22px;height:22px;position:relative;transition:transform .25s ease;}
+  details.faq summary .pm::before,details.faq summary .pm::after{content:"";position:absolute;background:var(--accent);border-radius:2px;}
+  details.faq summary .pm::before{top:10px;left:3px;right:3px;height:2px;}
+  details.faq summary .pm::after{left:10px;top:3px;bottom:3px;width:2px;transition:opacity .25s ease;}
+  details.faq[open] summary .pm::after{opacity:0;}
+  details.faq .ans{padding:0 22px 20px;color:var(--ink-soft);font-size:.94rem;line-height:1.8;}
+
+  /* ====== CLOSING CTA ====== */
+  .cta-final{padding:96px 0;}
+  .cta-box{
+    background:linear-gradient(135deg,#5B5BF0 0%,#6E6EF4 55%,#16B8A6 160%);
+    border-radius:28px;padding:64px 40px;text-align:center;color:#fff;position:relative;overflow:hidden;
+    box-shadow:0 30px 70px -30px rgba(91,91,240,.6);
+  }
+  .cta-box::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.18),transparent 55%);pointer-events:none;}
+  .cta-box h2{font-size:clamp(1.8rem,4vw,2.7rem);margin:0;color:#fff;position:relative;}
+  .cta-box p{margin:16px auto 0;max-width:36em;color:rgba(255,255,255,.9);font-size:1.06rem;position:relative;}
+  .cta-box .signup{justify-content:center;margin:30px auto 0;max-width:520px;position:relative;}
+  .cta-box .signup input{border:none;}
+  .cta-box .signup-note{color:rgba(255,255,255,.92);justify-content:center;}
+
+  /* ====== FOOTER ====== */
+  footer{background:var(--bg2);border-top:1px solid var(--line);padding:60px 0 34px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;}
+  .foot-brand .brand{margin-bottom:14px;}
+  .foot-brand p{color:var(--ink-soft);font-size:.88rem;max-width:24em;margin:0;}
+  .foot-col h4{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 14px;font-weight:700;}
+  .foot-col a{display:block;font-size:.9rem;color:var(--ink);margin-bottom:10px;transition:color .15s ease;}
+  .foot-col a:hover{color:var(--accent);}
+  .foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:46px;padding-top:24px;border-top:1px solid var(--line);flex-wrap:wrap;}
+  .foot-bottom small{color:var(--ink-soft);font-size:.82rem;}
+  .demo-note{font-size:.78rem;color:var(--ink-soft);background:rgba(91,91,240,.06);border:1px solid rgba(91,91,240,.14);padding:7px 13px;border-radius:999px;}
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width:920px){
+    .hero-grid{grid-template-columns:1fr;gap:42px;}
+    .hero{padding:128px 0 60px;}
+    .trust-grid{grid-template-columns:repeat(2,1fr);gap:26px 20px;}
+    .feat-grid,.flow-grid,.case-grid,.price-grid{grid-template-columns:1fr;}
+    .plan.featured{transform:none;}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:30px 20px;}
+    .nav-links{display:none;}
+    .menu-btn{display:flex;}
+    .nav-cta .login{display:none;}
+  }
+  @media (max-width:520px){
+    .trust-grid{grid-template-columns:1fr 1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    .cta-box{padding:48px 22px;}
+    .sec{padding:70px 0;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .js .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+</head>
+<body>
+<script>document.documentElement.className='js';</script>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Flowdesk ホーム">
+      <span class="logo" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 16c4-1 4.5-9 8.5-9 2 0 3 1.4 3.5 3" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="18" cy="8" r="2" fill="#16B8A6"/></svg>
+      </span>
+      Flowdesk
+    </a>
+    <nav class="nav-links" aria-label="グローバルナビゲーション">
+      <a class="lk" href="#features">機能</a>
+      <a class="lk" href="#workflow">仕組み</a>
+      <a class="lk" href="#cases">導入事例</a>
+      <a class="lk" href="#pricing">料金</a>
+      <a class="lk" href="#faq">よくある質問</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="login" href="https://app.flowdesk.jp/login">ログイン</a>
+      <a class="btn btn-primary" href="#start">無料で始める</a>
+      <button class="menu-btn" id="menuBtn" aria-label="メニューを開く">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1C2230" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow reveal">Work OS for Teams</span>
+        <h1 class="reveal">チームの業務を、<br /><span class="accent">止めない。</span>流れにする。</h1>
+        <p class="sub reveal">散らばる議事録・タスク・承認を、Flowdesk がひとつの流れに自動でまとめます。情報を探す時間をなくし、チームの仕事を前に進めるワークOS。</p>
+        <form class="signup reveal" id="start" action="https://app.flowdesk.jp/signup" method="get" novalidate>
+          <input type="email" name="email" placeholder="仕事用メールアドレス" aria-label="仕事用メールアドレス" required />
+          <button class="btn btn-primary" type="submit">無料で始める</button>
+        </form>
+        <p class="signup-note reveal">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16B8A6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          14日間無料・クレジットカード不要・5分でセットアップ
+        </p>
+        <div class="logos reveal">
+          <span class="lbl">導入企業</span>
+          <span class="logo-chip">SAKURA技研</span>
+          <span class="logo-chip">Meguro Works</span>
+          <span class="logo-chip">湊コンサル</span>
+          <span class="logo-chip">YUME Inc.</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="mock" role="img" aria-label="Flowdesk のダッシュボード画面イメージ。タスクの進行状況と承認状況が一覧表示されている">
+          <div class="mock-top">
+            <i></i><i></i><i></i>
+            <span class="mt-title">Flowdesk — チーム運用ボード</span>
+          </div>
+          <div class="mock-body">
+            <div class="mock-row">
+              <span class="mock-check mc-done" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0d8576" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </span>
+              <span class="txt"><b>定例MTG 議事録の自動生成</b><small>本日 10:30 / 担当：田島</small></span>
+              <span class="badge done">完了</span>
+            </div>
+            <div class="mock-row">
+              <span class="mock-check mc-prog" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5B5BF0" stroke-width="3" stroke-linecap="round"><path d="M12 3v4M12 17v4M5 12H3M21 12h-2"/></svg>
+              </span>
+              <span class="txt"><b>請求書の承認フロー</b><small>次の承認者：経理 / 残り1ステップ</small></span>
+              <span class="badge prog">進行中</span>
+            </div>
+            <div class="mock-row">
+              <span class="mock-check mc-wait" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5A6172" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+              </span>
+              <span class="txt"><b>新規案件のタスク振り分け</b><small>5件を自動アサイン待ち</small></span>
+              <span class="badge wait">予定</span>
+            </div>
+            <div class="mock-mini">
+              <div class="mini-card"><span class="k">今週の完了率</span><span class="v a2">92%</span></div>
+              <div class="mini-card"><span class="k">削減した工数</span><span class="v a1">14h</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST BAR ===== -->
+<section class="trust">
+  <div class="wrap">
+    <div class="trust-grid">
+      <div class="reveal"><div class="num a1">2,400<span style="font-size:1.1rem">社</span></div><div class="lbl">導入チーム数</div></div>
+      <div class="reveal"><div class="num a2">99.98%</div><div class="lbl">サービス稼働率</div></div>
+      <div class="reveal"><div class="num a1">週6.2<span style="font-size:1.1rem">h</span></div><div class="lbl">1人あたり削減工数</div></div>
+      <div class="reveal"><div class="num a2">120<span style="font-size:1.1rem">+</span></div><div class="lbl">外部ツール連携</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="sec" id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow reveal">Features</span>
+      <h2 class="reveal">業務の「散らばり」を、機能でまとめる</h2>
+      <p class="reveal">議事録からタスク、承認、可視化、連携までを1つのプラットフォームに。ツールを行き来する手間がなくなります。</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal">
+        <span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5B5BF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+        <h3>自動議事録</h3>
+        <p>会議の音声やメモから要点・決定事項・ToDoを自動で構造化。終了と同時に議事録が完成し、関係者へ共有されます。</p>
+      </div>
+      <div class="feat reveal">
+        <span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16B8A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+        <h3>タスク自動振り分け</h3>
+        <p>議事録から生まれたToDoを、担当・期限・優先度つきで自動アサイン。「誰がいつまでに」が抜け漏れなく可視化されます。</p>
+      </div>
+      <div class="feat reveal">
+        <span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5B5BF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></span>
+        <h3>承認フロー</h3>
+        <p>稟議・経費・契約の承認を、ノーコードで設計。次の承認者へ自動通知され、誰の手元で止まっているかが一目で分かります。</p>
+      </div>
+      <div class="feat reveal">
+        <span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16B8A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7"/><rect x="12" y="7" width="3" height="11"/><rect x="17" y="13" width="3" height="5"/></svg></span>
+        <h3>ダッシュボード</h3>
+        <p>チームの進捗・滞留・工数をリアルタイムに集計。週次レポートも自動生成され、状況確認のための会議が不要になります。</p>
+      </div>
+      <div class="feat reveal">
+        <span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5B5BF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
+        <h3>連携</h3>
+        <p>Slack・Notion・Googleカレンダーをはじめ120以上のツールと双方向に同期。今の業務環境を変えずに導入できます。</p>
+      </div>
+      <div class="feat reveal">
+        <span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16B8A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <h3>権限・監査ログ</h3>
+        <p>役割ごとの細かなアクセス制御と、すべての操作を記録する監査ログ。SSO・IP制限にも対応し、内部統制を支えます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORKFLOW ===== -->
+<section class="sec flow" id="workflow">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow reveal">How it works</span>
+      <h2 class="reveal">つなぐ → 流れる → 見える</h2>
+      <p class="reveal">3ステップで、バラバラだったチームの業務がひとつの流れになります。</p>
+    </div>
+    <div class="flow-grid">
+      <div class="flow-card reveal">
+        <span class="step" aria-hidden="true">01</span>
+        <h3>つなぐ</h3>
+        <p>普段使っているSlackやカレンダー、議事録ツールをFlowdeskに接続。情報の入口を1つにまとめます。設定は5分、コード不要です。</p>
+      </div>
+      <div class="flow-card reveal">
+        <span class="step" aria-hidden="true">02</span>
+        <h3>流れる</h3>
+        <p>会議が終われば議事録ができ、ToDoが担当へ自動で割り振られ、承認が次の人へ流れる。手作業の転記や催促がなくなります。</p>
+      </div>
+      <div class="flow-card reveal">
+        <span class="step" aria-hidden="true">03</span>
+        <h3>見える</h3>
+        <p>進捗・滞留・成果がダッシュボードに集約。「どこで止まっているか」が即座に分かり、チームの判断が速くなります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CASES ===== -->
+<section class="sec" id="cases">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow reveal">Case Studies</span>
+      <h2 class="reveal">導入チームの、変化の数字</h2>
+      <p class="reveal">業種・規模を問わず、業務の流れを取り戻したチームの実例です。</p>
+    </div>
+    <div class="case-grid">
+      <div class="case reveal">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" alt="オフィスで打ち合わせをするビジネスチーム" loading="lazy" /></div>
+        <div class="body">
+          <span class="co">SAKURA技研株式会社</span>
+          <div class="kpi">
+            <div class="k"><span class="v">-62%</span><small>会議準備の時間</small></div>
+            <div class="k"><span class="v">3.5h</span><small>週あたり削減</small></div>
+          </div>
+          <blockquote>「議事録づくりとタスク化が自動になり、設計に集中できる時間が戻りました。会議のための会議が消えました。」</blockquote>
+          <span class="who">開発本部 マネージャー 田島 涼介 様</span>
+        </div>
+      </div>
+      <div class="case reveal">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80" alt="ノートパソコンを見ながら話す二人のビジネスパーソン" loading="lazy" /></div>
+        <div class="body">
+          <span class="co">Meguro Works 合同会社</span>
+          <div class="kpi">
+            <div class="k"><span class="v">2.4日→4h</span><small>承認リードタイム</small></div>
+            <div class="k"><span class="v">100%</span><small>承認の追跡可能化</small></div>
+          </div>
+          <blockquote>「稟議がどこで止まっているか分からない問題が解消。承認のリードタイムが2日半から半日以内になりました。」</blockquote>
+          <span class="who">管理部 部長 小柳 美咲 様</span>
+        </div>
+      </div>
+      <div class="case reveal">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" alt="付箋とノートを使ってプロジェクトを整理するチーム" loading="lazy" /></div>
+        <div class="body">
+          <span class="co">湊コンサルティング</span>
+          <div class="kpi">
+            <div class="k"><span class="v">+28%</span><small>案件あたり対応量</small></div>
+            <div class="k"><span class="v">0件</span><small>タスクの抜け漏れ</small></div>
+          </div>
+          <blockquote>「複数案件のタスクが一元化され、抜け漏れがゼロに。クライアントへの初動が速くなったと評価されています。」</blockquote>
+          <span class="who">代表社員 湊 健太郎 様</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="sec flow" id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow reveal">Pricing</span>
+      <h2 class="reveal">チームの規模に合わせて、無理なく</h2>
+      <p class="reveal">まずは無料から。すべての有料プランは14日間無料でお試しいただけます。</p>
+    </div>
+    <div class="price-grid">
+      <div class="plan reveal">
+        <span class="pname">スターター</span>
+        <p class="pdesc">小さなチームで、まず流れを体感する</p>
+        <div class="pprice">¥0<small> / ずっと無料</small></div>
+        <ul>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#16B8A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>5ユーザーまで</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#16B8A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>自動議事録・タスク管理</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#16B8A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>基本の連携（3種まで）</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#16B8A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>コミュニティサポート</li>
+        </ul>
+        <a class="btn btn-ghost" href="#start">無料で始める</a>
+      </div>
+
+      <div class="plan featured reveal">
+        <span class="pop">いちばん人気</span>
+        <span class="pname">グロース</span>
+        <p class="pdesc">成長するチームの運用を、自動で回す</p>
+        <div class="pprice">¥1,480<small> / 1人・月</small></div>
+        <ul>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#5B5BF0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>ユーザー数無制限</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#5B5BF0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>承認フロー・自動振り分け</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#5B5BF0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>120以上の連携・API</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#5B5BF0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>ダッシュボード・週次レポート</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#5B5BF0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>メール・チャットサポート</li>
+        </ul>
+        <a class="btn btn-primary" href="#start">14日間無料で試す</a>
+      </div>
+
+      <div class="plan reveal">
+        <span class="pname">ビジネス</span>
+        <p class="pdesc">統制とセキュリティを重視する組織へ</p>
+        <div class="pprice">¥3,200<small> / 1人・月</small></div>
+        <ul>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#16B8A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>グロースの全機能</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#16B8A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>SSO・IP制限・監査ログ</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#16B8A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>詳細な権限管理</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#16B8A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>専任カスタマーサクセス</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#16B8A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>99.9% SLA保証</li>
+        </ul>
+        <a class="btn btn-ghost" href="mailto:sales@flowdesk.jp?subject=ビジネスプランの相談">営業に相談する</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow reveal">FAQ</span>
+      <h2 class="reveal">よくあるご質問</h2>
+    </div>
+    <div class="faq-wrap">
+      <details class="faq reveal">
+        <summary>無料プランではどこまで使えますか？<span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans">スターター（無料）では、5ユーザーまで自動議事録・タスク管理・基本連携（3種まで）を期間無制限でご利用いただけます。承認フローや無制限連携が必要になったタイミングで、グロースへアップグレードできます。</div>
+      </details>
+      <details class="faq reveal">
+        <summary>解約はいつでもできますか？費用は発生しますか？<span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans">いつでも管理画面から解約でき、最低利用期間や解約金はありません。月額プランは日割り計算には対応していませんが、当月末まではそのままご利用いただけます。データは解約後30日間エクスポート可能です。</div>
+      </details>
+      <details class="faq reveal">
+        <summary>セキュリティ対策はどうなっていますか？<span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans">通信・保存データはいずれもAES-256で暗号化し、国内リージョンで保管しています。ビジネスプランではSSO・IP制限・監査ログ・詳細な権限管理に対応。第三者機関によるセキュリティ監査を年次で実施しています。</div>
+      </details>
+      <details class="faq reveal">
+        <summary>既存ツールからのデータ移行はできますか？<span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans">CSV／Excelによる一括インポートに対応しており、主要なタスク管理ツールからの移行テンプレートをご用意しています。ビジネスプランでは、専任カスタマーサクセスが移行作業を伴走します。</div>
+      </details>
+      <details class="faq reveal">
+        <summary>どんなツールと連携できますか？<span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans">Slack・Notion・Googleカレンダー・Microsoft Teams・Gmailをはじめ、120以上のツールと双方向に同期できます。公開APIとWebhookも提供しているため、自社システムとの独自連携も構築いただけます。</div>
+      </details>
+      <details class="faq reveal">
+        <summary>サポート体制を教えてください。<span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans">グロース以上では、平日10:00〜19:00のメール・チャットサポートをご利用いただけます。ビジネスプランでは専任のカスタマーサクセスが導入から定着まで伴走し、定例のレビューミーティングも実施します。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLOSING CTA ===== -->
+<section class="cta-final">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <h2>散らばる業務を、ひとつの流れに。</h2>
+      <p>セットアップは5分。チームの仕事が止まらなくなる感覚を、まずは無料で体験してください。</p>
+      <form class="signup" action="https://app.flowdesk.jp/signup" method="get" novalidate>
+        <input type="email" name="email" placeholder="仕事用メールアドレス" aria-label="仕事用メールアドレス" required />
+        <button class="btn btn-light" type="submit">無料で始める</button>
+      </form>
+      <p class="signup-note">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        14日間無料・クレジットカード不要
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top" aria-label="Flowdesk ホーム">
+          <span class="logo" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 16c4-1 4.5-9 8.5-9 2 0 3 1.4 3.5 3" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="18" cy="8" r="2" fill="#16B8A6"/></svg>
+          </span>
+          Flowdesk
+        </a>
+        <p>散らばる業務を、ひとつの流れに。チーム運用を自動でまとめるワークOS。</p>
+      </div>
+      <div class="foot-col">
+        <h4>製品</h4>
+        <a href="#features">機能一覧</a>
+        <a href="#workflow">仕組み</a>
+        <a href="#pricing">料金プラン</a>
+        <a href="#cases">導入事例</a>
+      </div>
+      <div class="foot-col">
+        <h4>会社</h4>
+        <a href="mailto:hello@flowdesk.jp">お問い合わせ</a>
+        <a href="#cases">導入企業</a>
+        <a href="https://app.flowdesk.jp/login">ログイン</a>
+        <a href="tel:0357710000">03-5771-0000</a>
+      </div>
+      <div class="foot-col">
+        <h4>法的情報</h4>
+        <a href="#faq">よくある質問</a>
+        <a href="mailto:privacy@flowdesk.jp?subject=プライバシーポリシーについて">プライバシーポリシー</a>
+        <a href="mailto:legal@flowdesk.jp?subject=利用規約について">利用規約</a>
+        <a href="mailto:legal@flowdesk.jp?subject=特定商取引法について">特定商取引法に基づく表記</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <small>© 2026 Flowdesk株式会社. All rights reserved.</small>
+      <span class="demo-note">このページはデモです（楽観 site-builder による架空ブランドの作例）</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== 安全フォールバック：CDN/モジュール失敗でも本文を必ず可視化 ===== -->
+<script>
+(function(){
+  // GSAPで演出する要素はJSが完全に動くまで一時的に非表示。
+  // ただし三層の保険で「消えたまま」を絶対に防ぐ：
+  // 1) reduced-motion なら即可視化
+  // 2) window.load 後 1.2秒で GSAP/演出が始まらなければ強制可視化
+  // 3) 後続モジュールが失敗しても、この通常scriptは独立して走る
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function showAll(){
+    var els = document.querySelectorAll('.reveal');
+    for (var i=0;i<els.length;i++){ els[i].style.opacity=1; els[i].style.transform='none'; }
+  }
+  window.__flowdeskRevealHandled = false;
+  if (reduce){ showAll(); window.__flowdeskRevealHandled = true; }
+  // セーフティネット：演出が立ち上がらなくても本文が消えない
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      if (!window.__flowdeskRevealHandled) showAll();
+    }, 1200);
+  });
+})();
+</script>
+
+<!-- ===== three.js (importmap) ===== -->
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}
+</script>
+
+<!-- GSAP / ScrollTrigger / Lenis -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+<!-- ===== GSAP / Lenis 演出（モジュールとは分離。three.js import の失敗に巻き込まれない） ===== -->
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function fallbackShow(){
+    if (window.__flowdeskRevealHandled) return;
+    var els = document.querySelectorAll('.reveal');
+    for (var i=0;i<els.length;i++){ els[i].style.opacity=1; els[i].style.transform='none'; }
+    window.__flowdeskRevealHandled = true;
+  }
+
+  /* NAV scrolled 状態 */
+  var nav = document.getElementById('nav');
+  function onScrollNav(){ if(nav) nav.classList.toggle('scrolled', window.scrollY > 12); }
+  onScrollNav();
+  window.addEventListener('scroll', onScrollNav, {passive:true});
+
+  /* モバイルメニュー（簡易：機能セクションへスムーススクロール） */
+  var menuBtn = document.getElementById('menuBtn');
+  if (menuBtn){
+    menuBtn.addEventListener('click', function(){
+      var t = document.getElementById('features');
+      if (t) t.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+    });
+  }
+
+  if (reduce || !window.gsap || !window.Lenis || !window.ScrollTrigger){
+    fallbackShow();
+    return;
+  }
+
+  try{
+    gsap.registerPlugin(ScrollTrigger);
+    var lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(t){ lenis.raf(t * 1000); });
+    gsap.ticker.lagSmoothing(0);
+
+    /* テキスト reveal は必ず fromTo で始点終点を明示（値の残留を回避） */
+    gsap.utils.toArray('.reveal').forEach(function(el){
+      gsap.fromTo(el,
+        { yPercent: 18, opacity: 0 },
+        {
+          yPercent: 0, opacity: 1, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+        }
+      );
+    });
+    window.__flowdeskRevealHandled = true;
+  } catch (e){
+    /* 何かが失敗しても本文は必ず可視化 */
+    fallbackShow();
+  }
+})();
+</script>
+
+<!-- ===== HERO 3D（three.js r160）。失敗しても本文・演出に影響しない ===== -->
+<script type="module">
+import * as THREE from 'three';
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+(function heroWebGL(){
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  if (reduceMotion) return; // モーション抑制時は描画しない（背景はアイボリーのまま）
+
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  } catch (e) { return; } // WebGL不可でも本文は無傷
+
+  const heroEl = canvas.parentElement;
+  let W = heroEl.clientWidth, H = heroEl.clientHeight;
+  if (!W || !H) return;
+
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(W, H, false);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 100);
+  camera.position.z = 16;
+
+  const group = new THREE.Group();
+  scene.add(group);
+
+  /* ---- 接続パーティクル・ネットワーク（発光ノード） ---- */
+  const COUNT = 130;
+  const positions = new Float32Array(COUNT * 3);
+  const colorsArr = new Float32Array(COUNT * 3);
+  const seeds = new Float32Array(COUNT * 3);
+  const cA = new THREE.Color(0x5B5BF0);
+  const cB = new THREE.Color(0x16B8A6);
+
+  const spreadX = 22, spreadY = 13, spreadZ = 8;
+  for (let i = 0; i < COUNT; i++) {
+    const x = (Math.random() - 0.5) * spreadX;
+    const y = (Math.random() - 0.5) * spreadY;
+    const z = (Math.random() - 0.5) * spreadZ;
+    positions[i*3] = x; positions[i*3+1] = y; positions[i*3+2] = z;
+    seeds[i*3] = Math.random()*Math.PI*2;
+    seeds[i*3+1] = 0.4 + Math.random()*0.8;
+    seeds[i*3+2] = Math.random()*Math.PI*2;
+    const c = Math.random() < 0.5 ? cA : cB;
+    colorsArr[i*3] = c.r; colorsArr[i*3+1] = c.g; colorsArr[i*3+2] = c.b;
+  }
+
+  const pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  pGeo.setAttribute('color', new THREE.BufferAttribute(colorsArr, 3));
+
+  /* ソフトな発光円スプライト（CanvasTexture） */
+  function makeDot(){
+    const s = 64;
+    const cv = document.createElement('canvas'); cv.width = cv.height = s;
+    const ctx = cv.getContext('2d');
+    const g = ctx.createRadialGradient(s/2, s/2, 0, s/2, s/2, s/2);
+    g.addColorStop(0, 'rgba(255,255,255,1)');
+    g.addColorStop(0.35, 'rgba(255,255,255,0.85)');
+    g.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = g; ctx.fillRect(0,0,s,s);
+    const tex = new THREE.CanvasTexture(cv);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    return tex;
+  }
+
+  const pMat = new THREE.PointsMaterial({
+    size: 0.7,
+    map: makeDot(),
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.9,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    sizeAttenuation: true
+  });
+  const points = new THREE.Points(pGeo, pMat);
+  group.add(points);
+
+  /* ---- 近接ノードを結ぶライン（接続ネットワーク） ---- */
+  const linePos = [];
+  const lineCol = [];
+  const maxDist = 4.6;
+  for (let i = 0; i < COUNT; i++) {
+    for (let j = i+1; j < COUNT; j++) {
+      const dx = positions[i*3]-positions[j*3];
+      const dy = positions[i*3+1]-positions[j*3+1];
+      const dz = positions[i*3+2]-positions[j*3+2];
+      const d = Math.sqrt(dx*dx+dy*dy+dz*dz);
+      if (d < maxDist) {
+        linePos.push(positions[i*3],positions[i*3+1],positions[i*3+2]);
+        linePos.push(positions[j*3],positions[j*3+1],positions[j*3+2]);
+        lineCol.push(cA.r, cA.g, cA.b, cB.r*0.9, cB.g*0.9, cB.b*0.9);
+      }
+    }
+  }
+  const lGeo = new THREE.BufferGeometry();
+  lGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+  lGeo.setAttribute('color', new THREE.Float32BufferAttribute(lineCol, 3));
+  const lMat = new THREE.LineBasicMaterial({
+    vertexColors: true, transparent: true, opacity: 0.16,
+    blending: THREE.AdditiveBlending, depthWrite: false
+  });
+  const lines = new THREE.LineSegments(lGeo, lMat);
+  group.add(lines);
+
+  /* ---- 浮遊する半透明プロダクトUIパネル（ガラス板） ---- */
+  function makePanel(w, h, color, op){
+    const geo = new THREE.PlaneGeometry(w, h);
+    const mat = new THREE.MeshBasicMaterial({
+      color, transparent: true, opacity: op, depthWrite: false,
+      side: THREE.DoubleSide, blending: THREE.NormalBlending
+    });
+    return new THREE.Mesh(geo, mat);
+  }
+  const panels = [];
+  const panelDefs = [
+    { w:5.4, h:3.4, x:-5.6, y:1.8,  z:-1.5, c:0xffffff, o:0.30, rot:-0.18 },
+    { w:4.2, h:2.6, x: 6.0, y:-1.4, z:-2.2, c:0xEDEBFF, o:0.34, rot:0.16 },
+    { w:3.2, h:2.0, x: 3.4, y:2.6,  z:-3.0, c:0xE2F7F3, o:0.30, rot:0.10 }
+  ];
+  panelDefs.forEach(function(d){
+    const wrap = new THREE.Group();
+    const panel = makePanel(d.w, d.h, d.c, d.o);
+    const edge = new THREE.LineSegments(
+      new THREE.EdgesGeometry(new THREE.PlaneGeometry(d.w, d.h)),
+      new THREE.LineBasicMaterial({ color: 0x5B5BF0, transparent: true, opacity: 0.28 })
+    );
+    wrap.add(panel); wrap.add(edge);
+    wrap.position.set(d.x, d.y, d.z);
+    wrap.rotation.set(0, 0, d.rot);
+    wrap.userData = { baseY: d.y, phase: Math.random()*Math.PI*2, amp: 0.4 + Math.random()*0.4 };
+    panels.push(wrap);
+    group.add(wrap);
+  });
+
+  /* ---- マウス追従パララックス ---- */
+  const target = { x: 0, y: 0 };
+  const cur = { x: 0, y: 0 };
+  window.addEventListener('pointermove', function(e){
+    target.x = (e.clientX / window.innerWidth - 0.5);
+    target.y = (e.clientY / window.innerHeight - 0.5);
+  }, {passive:true});
+
+  const clock = new THREE.Clock();
+  let running = false;
+  let rafId = null;
+
+  function resize(){
+    W = heroEl.clientWidth; H = heroEl.clientHeight;
+    if (!W || !H) return;
+    renderer.setSize(W, H, false);
+    camera.aspect = W / H; camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize);
+
+  function frame(){
+    if (!running) { rafId = null; return; }
+    rafId = requestAnimationFrame(frame);
+    const t = clock.getElapsedTime();
+
+    cur.x += (target.x - cur.x) * 0.04;
+    cur.y += (target.y - cur.y) * 0.04;
+
+    group.rotation.y = cur.x * 0.5 + t * 0.04;
+    group.rotation.x = cur.y * 0.32;
+
+    points.rotation.z = t * 0.02;
+
+    panels.forEach(function(p, i){
+      const u = p.userData;
+      p.position.y = u.baseY + Math.sin(t * u.amp + u.phase) * 0.5;
+      p.rotation.z += Math.sin(t * 0.2 + i) * 0.0006;
+    });
+
+    renderer.render(scene, camera);
+  }
+
+  function start(){
+    if (running) return;     // 二重起動防止（RAFループが多重化しない）
+    running = true;
+    if (rafId === null) rafId = requestAnimationFrame(frame);
+  }
+  function stop(){ running = false; }
+
+  /* ヒーローが画面外なら描画を止める（省電力・RAF多重防止） */
+  const io = new IntersectionObserver(function(entries){
+    if (entries[0].isIntersecting) start(); else stop();
+  }, { threshold: 0.01 });
+  io.observe(heroEl);
+
+  start();
+})();
+</script>
+</body>
+</html>

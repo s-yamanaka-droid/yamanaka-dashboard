@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STUDIO HARUKAZE｜ブランドを、動かす言葉と設計をつくる｜東京・蔵前のクリエイティブ制作スタジオ</title>
+<meta name="description" content="STUDIO HARUKAZE（春風スタジオ）は、ブランディング・Web・映像・アートディレクションを横断する東京・蔵前の制作スタジオです。120社超の実績で、言葉と設計からブランドを動かします。">
+<meta name="theme-color" content="#F4F1EA">
+<link rel="canonical" href="https://studio-harukaze.jp/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="STUDIO HARUKAZE｜ブランドを、動かす言葉と設計をつくる">
+<meta property="og:description" content="ブランディング・Web・映像・ADを横断する東京・蔵前の制作スタジオ。120社超の実績で、言葉と設計からブランドを動かします。">
+<meta property="og:image" content="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80">
+<meta property="og:url" content="https://studio-harukaze.jp/">
+<meta property="og:site_name" content="STUDIO HARUKAZE">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="STUDIO HARUKAZE｜ブランドを、動かす言葉と設計をつくる">
+<meta name="twitter:description" content="ブランディング・Web・映像・ADを横断する東京・蔵前の制作スタジオ。">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F4F1EA'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23D9532C' stroke-width='2.5'/%3E%3Cpath d='M16 7 L16 25' stroke='%231A1916' stroke-width='2.5'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "STUDIO HARUKAZE",
+  "alternateName": "春風スタジオ",
+  "url": "https://studio-harukaze.jp/",
+  "logo": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=400&q=80",
+  "description": "ブランディング・Web・映像・アートディレクションを横断する東京・蔵前のクリエイティブ制作スタジオ。",
+  "slogan": "ブランドを、動かす言葉と設計をつくる。",
+  "foundingDate": "2017",
+  "email": "hello@studio-harukaze.jp",
+  "telephone": "+81-3-6240-1129",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "蔵前2-14-7 KURAMAE BLDG 4F",
+    "addressLocality": "台東区",
+    "addressRegion": "東京都",
+    "postalCode": "111-0051",
+    "addressCountry": "JP"
+  },
+  "sameAs": [
+    "https://www.instagram.com/studio_harukaze",
+    "https://note.com/studio_harukaze"
+  ],
+  "knowsAbout": ["ブランディング", "Webデザイン", "映像制作", "アートディレクション"]
+}
+</script>
+
+<script>document.documentElement.className = 'js';</script>
+
+<style>
+  :root{
+    --bg:#F4F1EA;
+    --ink:#1A1916;
+    --accent:#D9532C;
+    --accent2:#3A4A3F;
+    --paper:#FBF9F4;
+    --line:rgba(26,25,22,.16);
+    --mincho:"Shippori Mincho",serif;
+    --gothic:"Zen Kaku Gothic New",sans-serif;
+    --pad:clamp(20px,5vw,72px);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  html{-webkit-text-size-adjust:100%}
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--gothic);
+    font-weight:400;
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  ::selection{background:var(--accent);color:var(--paper)}
+
+  .wrap{max-width:1320px;margin:0 auto;padding-inline:var(--pad)}
+
+  /* ===== progressive enhancement: 初期非表示は .js 配下のみ ===== */
+  .js .reveal-fade{opacity:0;transform:translateY(28px)}
+  .js .line-mask>span{display:block;overflow:hidden}
+  .js .line-mask .line-inner{display:block;will-change:transform}
+
+  /* ===== Header ===== */
+  .site-header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px var(--pad);
+    transition:padding .4s ease, background .4s ease, box-shadow .4s ease;
+  }
+  .site-header.shrink{
+    padding:12px var(--pad);
+    background:rgba(244,241,234,.86);
+    backdrop-filter:saturate(140%) blur(12px);
+    -webkit-backdrop-filter:saturate(140%) blur(12px);
+    box-shadow:0 1px 0 var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--mincho);font-weight:700;font-size:19px;letter-spacing:.04em;line-height:1}
+  .brand .mark{width:26px;height:26px;flex:none}
+  .brand .mark circle{fill:none;stroke:var(--accent);stroke-width:2.4}
+  .brand .mark line{stroke:var(--ink);stroke-width:2.4}
+  .brand small{display:block;font-family:var(--gothic);font-weight:500;font-size:10px;letter-spacing:.22em;color:var(--accent2);margin-top:3px}
+
+  .nav-right{display:flex;align-items:center;gap:clamp(14px,2.4vw,34px)}
+  .nav-links{display:flex;gap:clamp(14px,2vw,28px)}
+  .nav-links a{font-size:13px;letter-spacing:.08em;font-weight:500;position:relative;padding-block:4px}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform .35s ease}
+  .nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+
+  .cta-top{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);color:var(--paper);
+    font-size:13px;font-weight:700;letter-spacing:.04em;
+    padding:11px 20px;border-radius:999px;
+    transition:background .3s ease,transform .3s ease;
+  }
+  .cta-top:hover{background:var(--accent);transform:translateY(-2px)}
+  .cta-top svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+
+  /* ===== Hero ===== */
+  .hero{padding:clamp(130px,20vh,210px) 0 clamp(40px,6vw,72px)}
+  .hero-tagline{display:flex;align-items:center;gap:14px;margin-bottom:clamp(24px,4vw,40px)}
+  .hero-tagline .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none}
+  .hero-tagline span{font-size:12px;letter-spacing:.24em;font-weight:500;color:var(--accent2);text-transform:uppercase}
+
+  .hero h1{
+    font-family:var(--mincho);
+    font-weight:700;
+    font-size:clamp(2.6rem,8.2vw,6.4rem);
+    line-height:1.18;
+    letter-spacing:.01em;
+    margin-bottom:clamp(28px,5vw,48px);
+  }
+  .hero h1 em{font-style:normal;color:var(--accent)}
+
+  .hero-meta{display:grid;grid-template-columns:1fr;gap:28px;align-items:end}
+  @media(min-width:820px){.hero-meta{grid-template-columns:1.3fr 1fr}}
+  .hero-lead{font-size:clamp(15px,1.5vw,17px);max-width:36ch;color:#3a382f;line-height:1.95}
+  .hero-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-start}
+  @media(min-width:820px){.hero-tags{justify-content:flex-end}}
+  .hero-tags span{font-size:12px;letter-spacing:.06em;font-weight:500;border:1px solid var(--line);border-radius:999px;padding:7px 15px;color:var(--accent2)}
+
+  .hero-visual{
+    position:relative;margin-top:clamp(40px,6vw,72px);
+    height:clamp(280px,46vw,560px);border-radius:6px;overflow:hidden;
+    background:#e6e0d4;
+  }
+  .hero-visual img{transform:scale(1.04)}
+  .hero-visual .badge{
+    position:absolute;left:24px;bottom:22px;z-index:2;
+    background:rgba(244,241,234,.92);color:var(--ink);
+    font-size:12px;letter-spacing:.04em;font-weight:700;
+    padding:9px 16px;border-radius:999px;backdrop-filter:blur(4px);
+  }
+
+  /* ===== Marquee ===== */
+  .marquee{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:22px 0;overflow:hidden;white-space:nowrap;
+    margin-top:clamp(48px,7vw,96px);
+  }
+  .marquee-track{display:inline-flex;align-items:center;gap:40px;will-change:transform;animation:scroll-x 28s linear infinite}
+  @media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+  .marquee-track span{font-family:var(--mincho);font-weight:600;font-size:clamp(1.5rem,3.2vw,2.4rem);letter-spacing:.02em;color:var(--ink)}
+  .marquee-track .star{color:var(--accent);font-family:var(--gothic);font-size:1.1rem}
+  @keyframes scroll-x{to{transform:translateX(-50%)}}
+
+  /* ===== Section common ===== */
+  section{position:relative}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:clamp(36px,5vw,60px)}
+  .sec-num{font-family:var(--mincho);font-weight:700;font-size:clamp(1.1rem,2vw,1.4rem);color:var(--accent)}
+  .sec-title{font-family:var(--mincho);font-weight:600;font-size:clamp(1.6rem,3.4vw,2.5rem);letter-spacing:.02em}
+  .sec-sub{margin-left:auto;font-size:12px;letter-spacing:.12em;color:var(--accent2);font-weight:500;align-self:flex-end}
+  @media(max-width:640px){.sec-sub{display:none}}
+
+  /* ===== Work ===== */
+  .work{padding:clamp(72px,10vw,130px) 0}
+  .work-grid{display:grid;grid-template-columns:1fr;gap:clamp(22px,3vw,36px)}
+  @media(min-width:780px){.work-grid{grid-template-columns:1fr 1fr}}
+
+  .work-card{
+    position:relative;display:block;border-radius:6px;overflow:hidden;
+    background:#e6e0d4;aspect-ratio:4/3;
+  }
+  .work-card.tall{aspect-ratio:4/5}
+  @media(min-width:780px){
+    .work-card.tall{grid-row:span 2;aspect-ratio:auto;height:100%}
+    .work-card.span2{grid-column:span 2;aspect-ratio:16/8}
+  }
+  .work-card .ph{position:absolute;inset:0;overflow:hidden}
+  .work-card .ph img{transition:transform .9s cubic-bezier(.16,1,.3,1)}
+  .work-card .shade{
+    position:absolute;inset:0;z-index:1;
+    background:linear-gradient(to top,rgba(26,25,22,.72) 0%,rgba(26,25,22,.18) 42%,rgba(26,25,22,.04) 100%);
+    opacity:.55;transition:opacity .5s ease;
+  }
+  .work-card .meta{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(20px,2.6vw,30px);color:var(--paper)}
+  .work-card .cat{font-size:11px;letter-spacing:.16em;font-weight:500;text-transform:uppercase;opacity:.92;margin-bottom:9px;display:block}
+  .work-card .ttl{font-family:var(--mincho);font-weight:600;font-size:clamp(1.15rem,2vw,1.6rem);line-height:1.35;letter-spacing:.01em}
+  .work-card .desc{
+    font-size:13px;line-height:1.7;color:rgba(251,249,244,.86);max-width:40ch;
+    margin-top:10px;
+    opacity:0;transform:translateY(14px);
+    transition:opacity .5s ease .05s,transform .55s cubic-bezier(.16,1,.3,1) .05s;
+  }
+  .work-card .arrow{
+    position:absolute;top:clamp(18px,2.4vw,26px);right:clamp(18px,2.4vw,26px);z-index:3;
+    width:46px;height:46px;border-radius:50%;
+    background:var(--accent);color:var(--paper);
+    display:grid;place-items:center;
+    opacity:0;transform:scale(.6) rotate(-30deg);
+    transition:opacity .45s ease,transform .55s cubic-bezier(.16,1,.3,1);
+  }
+  .work-card .arrow svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none}
+
+  @media(hover:hover){
+    .work-card:hover .ph img{transform:scale(1.08)}
+    .work-card:hover .shade{opacity:.92}
+    .work-card:hover .desc{opacity:1;transform:translateY(0)}
+    .work-card:hover .arrow{opacity:1;transform:scale(1) rotate(0)}
+  }
+  /* touch: 説明と矢印を常時表示 */
+  @media(hover:none){
+    .work-card .desc{opacity:1;transform:none}
+    .work-card .arrow{opacity:1;transform:none}
+    .work-card .shade{opacity:.8}
+  }
+
+  /* ===== About ===== */
+  .about{padding:clamp(72px,10vw,130px) 0;border-top:1px solid var(--line)}
+  .about-grid{display:grid;grid-template-columns:1fr;gap:clamp(40px,6vw,72px);align-items:start}
+  @media(min-width:880px){.about-grid{grid-template-columns:1.45fr 1fr}}
+  .about-lead{font-family:var(--mincho);font-weight:600;font-size:clamp(1.4rem,2.8vw,2.1rem);line-height:1.7;letter-spacing:.01em;margin-bottom:30px}
+  .about-lead em{font-style:normal;color:var(--accent)}
+  .about-body p{font-size:15px;line-height:2;color:#3a382f;max-width:46ch}
+  .about-body p+p{margin-top:18px}
+  .stats{display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,48px);margin-top:clamp(34px,5vw,52px)}
+  .stat .n{font-family:var(--mincho);font-weight:700;font-size:clamp(2.2rem,5vw,3.2rem);line-height:1;color:var(--ink)}
+  .stat .n sup{font-size:.5em;color:var(--accent);vertical-align:super;margin-left:2px}
+  .stat .l{font-size:12px;letter-spacing:.08em;color:var(--accent2);margin-top:10px;font-weight:500}
+  .about-figure{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:3/4;background:#e6e0d4}
+  .about-figure img{transition:transform 1s cubic-bezier(.16,1,.3,1)}
+  .about-figure:hover img{transform:scale(1.05)}
+
+  /* ===== Services ===== */
+  .services{padding:clamp(72px,10vw,130px) 0;border-top:1px solid var(--line)}
+  .svc-list{border-top:1px solid var(--line)}
+  .svc-item{
+    display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(14px,3vw,40px);
+    padding:clamp(26px,3.4vw,40px) 0 clamp(26px,3.4vw,40px) 0;
+    border-bottom:1px solid var(--line);
+    position:relative;transition:padding-left .45s cubic-bezier(.16,1,.3,1);
+  }
+  .svc-item::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:0;
+    background:linear-gradient(90deg,rgba(217,83,44,.1),transparent);
+    transition:width .5s cubic-bezier(.16,1,.3,1);z-index:-1;pointer-events:none;
+  }
+  .svc-num{font-family:var(--mincho);font-weight:700;font-size:14px;color:var(--accent);width:42px}
+  .svc-name{font-family:var(--mincho);font-weight:600;font-size:clamp(1.3rem,2.6vw,1.9rem);letter-spacing:.02em}
+  .svc-name .en{display:block;font-family:var(--gothic);font-weight:500;font-size:11px;letter-spacing:.16em;color:var(--accent2);text-transform:uppercase;margin-top:7px}
+  .svc-desc{font-size:13px;line-height:1.7;color:#56534a;max-width:34ch;text-align:right;justify-self:end}
+  @media(max-width:720px){
+    .svc-item{grid-template-columns:auto 1fr;gap:14px}
+    .svc-desc{grid-column:1/-1;text-align:left;justify-self:start;max-width:none;margin-top:4px}
+  }
+  @media(hover:hover){
+    .svc-item:hover{padding-left:clamp(16px,2.4vw,32px)}
+    .svc-item:hover::before{width:100%}
+    .svc-item:hover .svc-name{color:var(--accent)}
+  }
+
+  /* ===== Contact ===== */
+  .contact{padding:clamp(80px,12vw,150px) 0 clamp(64px,9vw,120px);border-top:1px solid var(--line);text-align:center}
+  .contact .eyebrow{font-size:12px;letter-spacing:.24em;font-weight:500;color:var(--accent2);text-transform:uppercase;margin-bottom:clamp(24px,4vw,38px)}
+  .contact h2{font-family:var(--mincho);font-weight:700;font-size:clamp(2.2rem,6.5vw,5rem);line-height:1.28;letter-spacing:.01em;margin-bottom:clamp(34px,5vw,52px)}
+  .contact h2 em{font-style:normal;color:var(--accent)}
+  .contact-actions{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+  .btn{
+    display:inline-flex;align-items:center;gap:11px;
+    font-size:14px;font-weight:700;letter-spacing:.03em;
+    padding:16px 30px;border-radius:999px;transition:transform .3s ease,background .3s ease,color .3s ease;
+  }
+  .btn svg{width:17px;height:17px;stroke:currentColor;stroke-width:2;fill:none;flex:none}
+  .btn.primary{background:var(--ink);color:var(--paper)}
+  .btn.primary:hover{background:var(--accent);transform:translateY(-3px)}
+  .btn.ghost{border:1px solid var(--ink);color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper);transform:translateY(-3px)}
+
+  /* ===== Footer ===== */
+  .site-footer{background:var(--ink);color:#cfc9bd;padding:clamp(56px,8vw,90px) 0 38px}
+  .foot-top{display:grid;grid-template-columns:1fr;gap:clamp(36px,5vw,56px)}
+  @media(min-width:760px){.foot-top{grid-template-columns:1.6fr 1fr 1fr}}
+  .foot-brand .brand{color:var(--paper)}
+  .foot-brand .brand .mark line{stroke:var(--paper)}
+  .foot-brand p{font-size:13px;line-height:1.9;color:#a39e92;max-width:34ch;margin-top:20px}
+  .foot-col h4{font-size:11px;letter-spacing:.18em;color:#7c776b;text-transform:uppercase;margin-bottom:18px;font-weight:500}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .foot-col a{font-size:14px;color:#cfc9bd;transition:color .3s ease}
+  .foot-col a:hover{color:var(--accent)}
+  .foot-col address{font-style:normal;font-size:13px;line-height:1.9;color:#a39e92}
+  .foot-bottom{
+    margin-top:clamp(48px,6vw,72px);padding-top:26px;border-top:1px solid rgba(255,255,255,.1);
+    display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
+    font-size:12px;color:#7c776b;letter-spacing:.03em;
+  }
+  .demo-note{font-size:11px;letter-spacing:.04em;color:#6b675c}
+</style>
+</head>
+<body>
+
+<header class="site-header" id="header">
+  <a href="#top" class="brand" aria-label="STUDIO HARUKAZE トップへ">
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="9"/><line x1="16" y1="6" x2="16" y2="26"/></svg>
+    <span>STUDIO HARUKAZE<small>春風スタジオ ・ KURAMAE TOKYO</small></span>
+  </a>
+  <nav class="nav-right" aria-label="メインナビゲーション">
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+    </div>
+    <a href="#contact" class="cta-top">
+      お問い合わせ
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="hero-tagline reveal-fade">
+        <span class="dot"></span>
+        <span>Branding ・ Web ・ Film ・ Art Direction</span>
+      </div>
+
+      <h1 class="line-mask" aria-label="ブランドを、動かす言葉と設計をつくる。">
+        <span><span class="line-inner">ブランドを、</span></span>
+        <span><span class="line-inner">動かす<em>言葉</em>と<em>設計</em>を</span></span>
+        <span><span class="line-inner">つくる。</span></span>
+      </h1>
+
+      <div class="hero-meta">
+        <p class="hero-lead reveal-fade">
+          STUDIO HARUKAZE は、東京・蔵前を拠点に、ブランディング・Web・映像・アートディレクションを横断する制作スタジオです。「らしさ」を言語化し、設計に落とし、世の中に動かすところまで。表層の装飾ではなく、事業の根を捉えたものづくりをします。
+        </p>
+        <div class="hero-tags reveal-fade">
+          <span>戦略から実装まで</span>
+          <span>少数精鋭・伴走型</span>
+          <span>東京 / 蔵前</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal-fade">
+        <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=1600&q=80" alt="STUDIO HARUKAZE の制作スタジオで、デザインのレイアウトを机上で検討している様子">
+        <span class="badge">STUDIO ・ KURAMAE 2-14-7 4F</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Marquee ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Branding</span><span class="star">✲</span>
+      <span>Web Design</span><span class="star">✲</span>
+      <span>Film &amp; Motion</span><span class="star">✲</span>
+      <span>Art Direction</span><span class="star">✲</span>
+      <span>Copywriting</span><span class="star">✲</span>
+      <span>Branding</span><span class="star">✲</span>
+      <span>Web Design</span><span class="star">✲</span>
+      <span>Film &amp; Motion</span><span class="star">✲</span>
+      <span>Art Direction</span><span class="star">✲</span>
+      <span>Copywriting</span><span class="star">✲</span>
+    </div>
+  </div>
+
+  <!-- ===== Work ===== -->
+  <section class="work" id="work">
+    <div class="wrap">
+      <div class="sec-head reveal-fade">
+        <span class="sec-num">01</span>
+        <h2 class="sec-title">Selected Work</h2>
+        <span class="sec-sub">2021 — 2026</span>
+      </div>
+
+      <div class="work-grid">
+
+        <a href="#contact" class="work-card tall reveal-fade" aria-label="MINAMO 醸造所 ブランディング案件を見る">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=1000&q=80" alt="MINAMO 醸造所のクラフトボトルとラベルデザインのブランディングビジュアル"></div>
+          <div class="shade"></div>
+          <div class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+          <div class="meta">
+            <span class="cat">Branding ・ Package</span>
+            <h3 class="ttl">MINAMO 醸造所<br>ブランドリニューアル</h3>
+            <p class="desc">創業120年の酒蔵の世代交代に伴い、ロゴ・ボトル・物語までを一貫設計。発売3か月でEC売上を1.8倍に。</p>
+          </div>
+        </a>
+
+        <a href="#contact" class="work-card reveal-fade" aria-label="KOTO 不動産 コーポレートサイト案件を見る">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80" alt="KOTO 不動産のコーポレートサイトを表示したノートパソコンとオフィスの様子"></div>
+          <div class="shade"></div>
+          <div class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+          <div class="meta">
+            <span class="cat">Web ・ Design &amp; Build</span>
+            <h3 class="ttl">KOTO 不動産<br>コーポレートサイト</h3>
+            <p class="desc">「街と暮らす」をテーマにブランドサイトを再構築。問い合わせ数が前年比2.4倍に。</p>
+          </div>
+        </a>
+
+        <a href="#contact" class="work-card reveal-fade" aria-label="ao COFFEE ブランドムービー案件を見る">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1000&q=80" alt="ao COFFEE のブランドムービー撮影で、ハンドドリップする手元を捉えたシーン"></div>
+          <div class="shade"></div>
+          <div class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+          <div class="meta">
+            <span class="cat">Film ・ Motion</span>
+            <h3 class="ttl">ao COFFEE<br>ブランドムービー</h3>
+            <p class="desc">一杯の所作に宿る誠実さを2分の映像に。出店クラウドファンディングで目標の312%を達成。</p>
+          </div>
+        </a>
+
+        <a href="#contact" class="work-card span2 reveal-fade" aria-label="花むくろ百貨店 リブランディング案件を見る">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=80" alt="花むくろ百貨店のリブランディングで刷新された店舗ディスプレイと空間デザイン"></div>
+          <div class="shade"></div>
+          <div class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+          <div class="meta">
+            <span class="cat">Branding ・ Art Direction ・ Space</span>
+            <h3 class="ttl">花むくろ百貨店 リブランディング</h3>
+            <p class="desc">老舗百貨店のVI刷新から店舗サイン、販促ツール、空間ディレクションまでを横断設計。来店者数の若年層比率が18%向上。</p>
+          </div>
+        </a>
+
+        <a href="#contact" class="work-card reveal-fade" aria-label="tsumugi 工芸 ECサイト案件を見る">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1000&q=80" alt="tsumugi 工芸の手仕事による器を撮影した、ECサイト用のプロダクトカット"></div>
+          <div class="shade"></div>
+          <div class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+          <div class="meta">
+            <span class="cat">Web ・ EC ・ Photo</span>
+            <h3 class="ttl">tsumugi 工芸<br>オンラインストア</h3>
+            <p class="desc">作り手の物語を軸にしたEC設計と撮影。客単価が1.5倍、リピート率が大幅に改善。</p>
+          </div>
+        </a>
+
+        <a href="#contact" class="work-card reveal-fade" aria-label="HARE 学園 採用ブランディング案件を見る">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80" alt="HARE 学園の採用ブランディングで撮影された、学び合う人々の明るいシーン"></div>
+          <div class="shade"></div>
+          <div class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+          <div class="meta">
+            <span class="cat">Branding ・ Recruit</span>
+            <h3 class="ttl">HARE 学園<br>採用ブランディング</h3>
+            <p class="desc">教育理念を言語化し、採用サイトと映像へ展開。エントリー数が前年比2.1倍に。</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="sec-head reveal-fade">
+        <span class="sec-num">02</span>
+        <h2 class="sec-title">About</h2>
+        <span class="sec-sub">Since 2017 ・ Tokyo</span>
+      </div>
+
+      <div class="about-grid">
+        <div>
+          <p class="about-lead reveal-fade">
+            わたしたちは、<em>言葉</em>と<em>設計</em>のあいだに立つ制作スタジオです。
+          </p>
+          <div class="about-body reveal-fade">
+            <p>STUDIO HARUKAZE は、2017年に東京・蔵前で生まれた少数精鋭のクリエイティブスタジオです。ブランディングを起点に、Web・映像・アートディレクションを横断し、戦略から実装までを一気通貫で手がけます。</p>
+            <p>大切にしているのは、つくる前に「なぜ」を問い直すこと。事業の核を言語化し、誰のどんな心を動かすのかを設計してから、はじめて形にします。表層の流行を追うのではなく、その会社にしかない温度を、長く効く資産として残すこと。それがわたしたちの仕事です。</p>
+          </div>
+
+          <div class="stats reveal-fade">
+            <div class="stat">
+              <div class="n">120<sup>+</sup></div>
+              <div class="l">手がけた<br>プロジェクト</div>
+            </div>
+            <div class="stat">
+              <div class="n">9<sup>年</sup></div>
+              <div class="l">スタジオの<br>歩み</div>
+            </div>
+            <div class="stat">
+              <div class="n">3</div>
+              <div class="l">横断する<br>専門領域</div>
+            </div>
+          </div>
+        </div>
+
+        <figure class="about-figure reveal-fade">
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=80" alt="STUDIO HARUKAZE のスタジオで、自然光のもとデザインワークに向き合うクリエイターの様子">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Services ===== -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="sec-head reveal-fade">
+        <span class="sec-num">03</span>
+        <h2 class="sec-title">Services</h2>
+        <span class="sec-sub">What we do</span>
+      </div>
+
+      <div class="svc-list">
+        <div class="svc-item reveal-fade">
+          <span class="svc-num">01</span>
+          <h3 class="svc-name">ブランディング<span class="en">Branding ・ Strategy</span></h3>
+          <p class="svc-desc">市場分析からコンセプト・ネーミング・VI設計まで。ブランドの根を一緒に掘り当てます。</p>
+        </div>
+        <div class="svc-item reveal-fade">
+          <span class="svc-num">02</span>
+          <h3 class="svc-name">Web デザイン<span class="en">Web ・ Design &amp; Build</span></h3>
+          <p class="svc-desc">設計・デザイン・実装まで内製。届く言葉と動く設計でコンバージョンを伸ばします。</p>
+        </div>
+        <div class="svc-item reveal-fade">
+          <span class="svc-num">03</span>
+          <h3 class="svc-name">映像制作<span class="en">Film ・ Motion</span></h3>
+          <p class="svc-desc">ブランドムービー・採用映像・SNS動画。物語の温度を映像の所作に込めます。</p>
+        </div>
+        <div class="svc-item reveal-fade">
+          <span class="svc-num">04</span>
+          <h3 class="svc-name">アートディレクション<span class="en">Art Direction</span></h3>
+          <p class="svc-desc">グラフィック・パッケージ・空間サイン。あらゆる接点で「らしさ」を統べます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow reveal-fade">Let's make something</p>
+      <h2 class="reveal-fade">その<em>ブランド</em>を、<br>一緒に動かしませんか。</h2>
+      <div class="contact-actions reveal-fade">
+        <a href="mailto:hello@studio-harukaze.jp?subject=STUDIO%20HARUKAZE%20お問い合わせ" class="btn primary">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+          hello@studio-harukaze.jp
+        </a>
+        <a href="tel:+81362401129" class="btn ghost">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>
+          03-6240-1129
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="brand">
+          <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="9"/><line x1="16" y1="6" x2="16" y2="26"/></svg>
+          <span>STUDIO HARUKAZE<small>春風スタジオ</small></span>
+        </span>
+        <p>ブランドを、動かす言葉と設計をつくる。東京・蔵前のクリエイティブ制作スタジオです。ご相談はメール・お電話どちらでも承ります。</p>
+      </div>
+
+      <nav class="foot-col" aria-label="フッターナビゲーション">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="foot-col">
+        <h4>Studio</h4>
+        <address>
+          〒111-0051<br>
+          東京都台東区蔵前2-14-7<br>
+          KURAMAE BLDG 4F<br><br>
+          <a href="mailto:hello@studio-harukaze.jp">hello@studio-harukaze.jp</a><br>
+          <a href="tel:+81362401129">03-6240-1129</a>
+        </address>
+        <h4 style="margin-top:24px">Social</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/studio_harukaze" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://note.com/studio_harukaze" target="_blank" rel="noopener">note</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© 2026 STUDIO HARUKAZE Inc. All rights reserved.</span>
+      <span class="demo-note">このサイトはデモンストレーション用に制作されたものです（楽観 site-builder）。実在の企業・サービスではありません。</span>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+  /* ---------- content safety net ----------
+     .js .reveal-fade / .line-inner は初期 opacity:0。
+     万一 GSAP モジュールの読込・初期化に失敗しても本文が消えないよう、
+     初期化フラグが立たなければ強制的に表示する。 */
+  let initialized = false;
+  const forceShowContent = () => {
+    if (initialized) return;
+    document.querySelectorAll('.reveal-fade').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+    document.querySelectorAll('.line-inner').forEach(el => {
+      el.style.transform = 'none';
+      el.style.opacity = '1';
+    });
+  };
+  // 1.6秒経っても初期化されていなければ救済
+  const safetyTimer = setTimeout(forceShowContent, 1600);
+  window.addEventListener('error', forceShowContent);
+
+  try {
+    const { default: gsap } = await import('https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm');
+    const { ScrollTrigger } = await import('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js/+esm');
+    const { default: Lenis } = await import('https://cdn.jsdelivr.net/npm/lenis@1.1.13/+esm');
+
+    initialized = true;
+    clearTimeout(safetyTimer);
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- Header shrink ---------- */
+    const header = document.getElementById('header');
+    const onScrollHeader = () => {
+      if (window.scrollY > 40) header.classList.add('shrink');
+      else header.classList.remove('shrink');
+    };
+    onScrollHeader();
+    window.addEventListener('scroll', onScrollHeader, { passive: true });
+
+    if (reduce) {
+      // モーション抑制：何も初期非表示にしない・即表示
+      document.querySelectorAll('.reveal-fade').forEach(el => {
+        el.style.opacity = '1'; el.style.transform = 'none';
+      });
+      document.querySelectorAll('.line-inner').forEach(el => {
+        el.style.transform = 'none';
+      });
+      // 通常のアンカースクロール（ネイティブ）に任せる
+    } else {
+      /* ---------- Lenis スムーススクロール ---------- */
+      const lenis = new Lenis({
+        duration: 1.1,
+        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(t => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      // アンカークリックを Lenis 経由に
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const id = a.getAttribute('href');
+          if (id.length > 1) {
+            const target = document.querySelector(id);
+            if (target) {
+              e.preventDefault();
+              lenis.scrollTo(target, { offset: -10, duration: 1.2 });
+            }
+          }
+        });
+      });
+
+      /* ---------- Hero ライン reveal（fromTo で始点終点を明示） ---------- */
+      gsap.fromTo('.line-mask .line-inner',
+        { yPercent: 120, opacity: 0 },
+        {
+          yPercent: 0, opacity: 1,
+          duration: 1.1, ease: 'power4.out',
+          stagger: 0.12, delay: 0.15,
+        }
+      );
+
+      /* ---------- reveal-fade スクロール連動 ---------- */
+      gsap.utils.toArray('.reveal-fade').forEach(el => {
+        gsap.fromTo(el,
+          { y: 28, opacity: 0 },
+          {
+            y: 0, opacity: 1,
+            duration: 0.95, ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      });
+    }
+  } catch (err) {
+    // モジュール読込失敗時：本文を必ず表示
+    forceShowContent();
+    // ヘッダーの shrink だけは素のJSで担保
+    const header = document.getElementById('header');
+    if (header) {
+      const onScrollHeader = () => {
+        if (window.scrollY > 40) header.classList.add('shrink');
+        else header.classList.remove('shrink');
+      };
+      onScrollHeader();
+      window.addEventListener('scroll', onScrollHeader, { passive: true });
+    }
+  }
+</script>
+
+</body>
+</html>

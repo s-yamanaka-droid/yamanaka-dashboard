@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TERRA NOSU 北杜建築設計事務所｜八ヶ岳南麓の建築設計と高原リゾート用地</title>
+<meta name="description" content="長野・八ヶ岳南麓を拠点とする建築設計事務所兼リゾート不動産。土地を読み、地形に還す。別荘・店舗併用住宅の設計から高原用地の仲介まで、一級建築士が一貫対応します。">
+<link rel="canonical" href="https://terra-nosu.example.jp/">
+<meta name="theme-color" content="#5E7A52">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="TERRA NOSU 北杜建築設計事務所｜八ヶ岳南麓の建築設計と高原リゾート用地">
+<meta property="og:description" content="土地を読み、地形に還す。八ヶ岳南麓の建築設計と高原リゾート用地。別荘・店舗併用住宅の設計と高原用地の仲介。">
+<meta property="og:image" content="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1200&q=80">
+<meta property="og:url" content="https://terra-nosu.example.jp/">
+<meta property="og:site_name" content="TERRA NOSU 北杜建築設計事務所">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TERRA NOSU 北杜建築設計事務所｜八ヶ岳南麓の建築設計と高原リゾート用地">
+<meta name="twitter:description" content="土地を読み、地形に還す。八ヶ岳南麓の建築設計と高原リゾート用地。">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1200&q=80">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23F4F1EA'/%3E%3Cpath d='M8 44 L24 24 L34 36 L44 22 L56 44' fill='none' stroke='%235E7A52' stroke-width='3.5' stroke-linejoin='round' stroke-linecap='round'/%3E%3Cpath d='M8 52 L24 34 L34 44 L44 32 L56 52' fill='none' stroke='%23C2703D' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round' opacity='0.7'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho:wght@500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "TERRA NOSU 北杜建築設計事務所",
+  "alternateName": "テラ・ノス建築設計",
+  "url": "https://terra-nosu.example.jp/",
+  "logo": "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=512&q=80",
+  "description": "長野・八ヶ岳南麓を拠点とする建築設計事務所兼リゾート不動産。別荘・店舗併用住宅の設計と高原リゾート用地の仲介。",
+  "telephone": "+81-551-20-7740",
+  "email": "design@terra-nosu.example.jp",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "大泉町西井出8240-1 高原テラス2F",
+    "addressLocality": "北杜市",
+    "addressRegion": "山梨県",
+    "postalCode": "409-1501",
+    "addressCountry": "JP"
+  },
+  "areaServed": ["山梨県北杜市", "長野県諏訪郡", "長野県茅野市", "八ヶ岳南麓エリア"],
+  "openingHours": "Mo-Sa 09:00-18:00",
+  "founder": {
+    "@type": "Person",
+    "name": "野洲 玲司",
+    "jobTitle": "代表 / 一級建築士"
+  }
+}
+</script>
+
+<style>
+  :root{
+    --bg:#F4F1EA;
+    --ink:#23241F;
+    --accent:#5E7A52;
+    --accent2:#C2703D;
+    --paper:#FBFAF5;
+    --line:rgba(35,36,31,.14);
+    --muted:#5d5f53;
+    --sans:'Zen Kaku Gothic New',system-ui,sans-serif;
+    --serif:'Shippori Mincho',serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{width:min(1180px,92vw);margin-inline:auto}
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;display:inline-block;
+  }
+  .mincho{font-family:var(--serif);font-weight:600}
+  .mono{font-family:ui-monospace,'SFMono-Regular',Menlo,monospace;letter-spacing:.02em}
+
+  /* progressive enhancement: hide reveal targets only when JS active */
+  .js .reveal-line>span,.js .reveal{opacity:0}
+
+  /* ===== Header ===== */
+  header.site{
+    position:fixed;top:0;left:0;width:100%;z-index:50;
+    transition:background .4s ease,box-shadow .4s ease,border-color .4s ease;
+    background:transparent;border-bottom:1px solid transparent;
+  }
+  header.site.solid{
+    background:rgba(244,241,234,.88);
+    backdrop-filter:saturate(150%) blur(12px);
+    -webkit-backdrop-filter:saturate(150%) blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:.6rem;font-family:var(--serif);font-weight:600;font-size:1.08rem;letter-spacing:.04em}
+  .brand svg{width:30px;height:30px;flex:none}
+  .brand small{display:block;font-family:var(--sans);font-weight:500;font-size:.6rem;letter-spacing:.22em;color:var(--muted)}
+  .navlinks{display:flex;align-items:center;gap:2rem}
+  .navlinks a{font-size:.86rem;color:var(--ink);opacity:.82;transition:opacity .2s}
+  .navlinks a:hover{opacity:1}
+  .cta-tel{
+    display:inline-flex;align-items:center;gap:.5rem;
+    background:var(--accent);color:#fff;font-weight:700;font-size:.84rem;
+    padding:.62rem 1.15rem;border-radius:999px;transition:background .25s,transform .25s;
+    box-shadow:0 6px 18px rgba(94,122,82,.28);
+  }
+  .cta-tel:hover{background:#4d6743;transform:translateY(-1px)}
+  .cta-tel svg{width:16px;height:16px}
+  .menutoggle{display:none;background:none;border:0;cursor:pointer;padding:.3rem}
+  .menutoggle svg{width:26px;height:26px;stroke:var(--ink)}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+  #terrain-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0}
+  .hero-fade{position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(180deg,rgba(244,241,234,.55) 0%,rgba(244,241,234,0) 26%,rgba(244,241,234,.05) 60%,rgba(244,241,234,.92) 100%);
+  }
+  .hero-inner{position:relative;z-index:2;width:min(1180px,92vw);margin-inline:auto;padding:0 0 8vh}
+  .hero h1{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(2.5rem,7.2vw,5.6rem);line-height:1.12;letter-spacing:.01em;
+    margin:.4rem 0 1.4rem;
+  }
+  .reveal-line{display:block;overflow:hidden}
+  .reveal-line>span{display:block}
+  .hero p.lead{font-size:clamp(1rem,1.6vw,1.18rem);max-width:34ch;color:#2d2e26;margin-bottom:2rem}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:1rem}
+  .btn{
+    display:inline-flex;align-items:center;gap:.55rem;font-weight:700;font-size:.92rem;
+    padding:.85rem 1.6rem;border-radius:999px;transition:transform .25s,background .25s,box-shadow .25s;
+  }
+  .btn-solid{background:var(--ink);color:var(--bg);box-shadow:0 10px 28px rgba(35,36,31,.22)}
+  .btn-solid:hover{transform:translateY(-2px)}
+  .btn-ghost{background:rgba(251,250,245,.7);border:1px solid var(--line);color:var(--ink);backdrop-filter:blur(6px)}
+  .btn-ghost:hover{background:#fff;transform:translateY(-2px)}
+  .btn svg{width:17px;height:17px}
+  .hero-meta{position:absolute;z-index:2;top:96px;right:max(4vw,1rem);text-align:right;font-size:.72rem;letter-spacing:.14em;color:var(--muted);line-height:2}
+  .hero-meta .mono{color:var(--accent2);font-weight:600}
+
+  /* ===== Section base ===== */
+  section.block{padding:clamp(5rem,11vw,9rem) 0;position:relative}
+  .sec-head{margin-bottom:clamp(2.5rem,5vw,4rem);max-width:62ch}
+  .sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1.3;margin:.7rem 0 1rem}
+  .sec-head p{color:var(--muted);font-size:1rem}
+
+  /* ===== Philosophy ===== */
+  .philo{background:var(--paper);border-block:1px solid var(--line)}
+  .principle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.4rem,3vw,2.6rem)}
+  .principle{padding:2rem 1.6rem;border:1px solid var(--line);border-radius:14px;background:var(--bg);transition:transform .4s,box-shadow .4s}
+  .principle:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(35,36,31,.08)}
+  .principle .ic{width:58px;height:58px;margin-bottom:1.2rem}
+  .principle .ic svg{width:100%;height:100%}
+  .principle h3{font-family:var(--serif);font-weight:600;font-size:1.32rem;margin-bottom:.2rem}
+  .principle .cap{font-size:.68rem;letter-spacing:.18em;color:var(--accent2);font-weight:700;margin-bottom:.7rem;display:block}
+  .principle p{font-size:.92rem;color:var(--muted)}
+
+  /* ===== Flow ===== */
+  .flow-track{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+  .step{position:relative;padding:1.8rem 1.4rem;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .step::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .step .no{font-family:var(--serif);font-size:2.6rem;line-height:1;color:var(--accent);opacity:.32;font-weight:600}
+  .step h4{font-size:1.08rem;font-weight:700;margin:.5rem 0 .6rem}
+  .step p{font-size:.86rem;color:var(--muted)}
+  .step .tag{font-size:.66rem;letter-spacing:.16em;color:var(--accent2);font-weight:700;display:block;margin-bottom:.3rem}
+
+  /* ===== Works gallery ===== */
+  .works-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.1rem}
+  .work{position:relative;border-radius:14px;overflow:hidden;background:#000;min-height:240px}
+  .work img{width:100%;height:100%;object-fit:cover;transition:transform .9s ease;filter:saturate(1.02)}
+  .work:hover img{transform:scale(1.06)}
+  .work .ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.4rem;
+    background:linear-gradient(180deg,rgba(35,36,31,0) 38%,rgba(35,36,31,.78) 100%);color:#fff}
+  .work .ov small{font-size:.66rem;letter-spacing:.18em;opacity:.85;color:#e9d8c9}
+  .work .ov h4{font-family:var(--serif);font-weight:600;font-size:1.2rem;margin-top:.2rem}
+  .w-a{grid-column:span 7;min-height:380px}
+  .w-b{grid-column:span 5;min-height:380px}
+  .w-c{grid-column:span 4}
+  .w-d{grid-column:span 4}
+  .w-e{grid-column:span 4}
+
+  /* ===== Land listings ===== */
+  .land{background:var(--paper);border-block:1px solid var(--line)}
+  .land-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .lot{border:1px solid var(--line);border-radius:14px;background:var(--bg);overflow:hidden;display:flex;flex-direction:column;transition:transform .4s,box-shadow .4s}
+  .lot:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(35,36,31,.1)}
+  .lot .ph{height:180px;overflow:hidden}
+  .lot .ph img{width:100%;height:100%;object-fit:cover}
+  .lot .body{padding:1.4rem 1.4rem 1.6rem}
+  .lot .area{font-size:.7rem;letter-spacing:.16em;color:var(--accent);font-weight:700}
+  .lot h4{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin:.3rem 0 .9rem}
+  .lot dl{display:grid;grid-template-columns:auto 1fr;gap:.35rem 1rem;font-size:.84rem;margin-bottom:1.1rem}
+  .lot dt{color:var(--muted)}
+  .lot dd{text-align:right;font-weight:500}
+  .lot dd.mono{color:var(--accent2);font-weight:700}
+  .lot .more{font-size:.82rem;font-weight:700;color:var(--accent);display:inline-flex;align-items:center;gap:.4rem}
+  .lot .more svg{width:14px;height:14px}
+
+  /* ===== Profile ===== */
+  .profile{display:grid;grid-template-columns:0.85fr 1.15fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+  .profile .photo{border-radius:16px;overflow:hidden;aspect-ratio:4/5}
+  .profile .photo img{width:100%;height:100%;object-fit:cover}
+  .profile h3{font-family:var(--serif);font-weight:600;font-size:1.7rem;margin-bottom:.2rem}
+  .profile .role{color:var(--accent2);font-weight:700;font-size:.84rem;letter-spacing:.12em;margin-bottom:1.4rem;display:block}
+  .profile blockquote{font-family:var(--serif);font-size:1.2rem;line-height:1.9;border-left:3px solid var(--accent);padding-left:1.3rem;margin:1.4rem 0;color:#34352d}
+  .info-table{width:100%;border-top:1px solid var(--line);font-size:.88rem;margin-top:1.6rem}
+  .info-table tr{border-bottom:1px solid var(--line)}
+  .info-table th{text-align:left;padding:.85rem .5rem;color:var(--muted);font-weight:500;white-space:nowrap;width:34%;vertical-align:top}
+  .info-table td{padding:.85rem .5rem;vertical-align:top}
+
+  /* ===== Contact ===== */
+  .contact{background:var(--ink);color:#ece9df;border-radius:24px;padding:clamp(2.5rem,6vw,5rem);position:relative;overflow:hidden}
+  .contact::after{content:"";position:absolute;right:-12%;top:-30%;width:60%;height:160%;
+    background:radial-gradient(circle,rgba(94,122,82,.45),transparent 62%);pointer-events:none}
+  .contact-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+  .contact h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.3;color:#fff;margin-bottom:1rem}
+  .contact p.sub{color:#bdc0b1;max-width:40ch;margin-bottom:2rem}
+  .contact-actions{display:flex;flex-direction:column;gap:1rem;max-width:380px}
+  .c-line{display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+    border-radius:14px;padding:1.1rem 1.3rem;transition:background .25s,border-color .25s,transform .25s}
+  .c-line:hover{background:rgba(255,255,255,.1);border-color:var(--accent);transform:translateX(4px)}
+  .c-line .cic{width:42px;height:42px;flex:none;border-radius:10px;display:grid;place-items:center;background:var(--accent)}
+  .c-line .cic svg{width:20px;height:20px;stroke:#fff}
+  .c-line small{display:block;font-size:.68rem;letter-spacing:.16em;color:#9ea291}
+  .c-line strong{font-size:1.12rem;font-weight:700;color:#fff;letter-spacing:.02em}
+  .hours-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1.8rem}
+  .hours-card h4{font-size:.74rem;letter-spacing:.2em;color:var(--accent2);font-weight:700;margin-bottom:1.2rem}
+  .hours-card .row{display:flex;justify-content:space-between;font-size:.9rem;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .hours-card .row:last-child{border-bottom:0}
+  .hours-card .row span:first-child{color:#bdc0b1}
+  .map-link{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.4rem;font-size:.86rem;font-weight:700;color:var(--accent2)}
+  .map-link svg{width:16px;height:16px}
+
+  /* ===== Footer ===== */
+  footer.site{padding:4rem 0 2.5rem;border-top:1px solid var(--line)}
+  .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;align-items:flex-start}
+  .foot-brand{display:flex;align-items:center;gap:.6rem;font-family:var(--serif);font-weight:600;font-size:1.05rem}
+  .foot-brand svg{width:28px;height:28px}
+  .foot-col h5{font-size:.7rem;letter-spacing:.18em;color:var(--muted);margin-bottom:.9rem;font-weight:700}
+  .foot-col a{display:block;font-size:.86rem;color:var(--ink);opacity:.8;margin-bottom:.5rem;transition:opacity .2s}
+  .foot-col a:hover{opacity:1;color:var(--accent)}
+  .social{display:flex;gap:.7rem;margin-top:.4rem}
+  .social a{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:background .25s,border-color .25s}
+  .social a:hover{background:var(--accent);border-color:var(--accent)}
+  .social svg{width:17px;height:17px;stroke:var(--ink);transition:stroke .25s}
+  .social a:hover svg{stroke:#fff}
+  .foot-bottom{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.8rem;font-size:.76rem;color:var(--muted)}
+  .demo-note{font-size:.72rem;color:var(--muted);opacity:.85}
+  .demo-note b{color:var(--accent);font-weight:600}
+
+  /* ===== Responsive ===== */
+  @media(max-width:880px){
+    .navlinks{display:none}
+    .navlinks.open{
+      display:flex;flex-direction:column;align-items:flex-start;gap:1.1rem;
+      position:absolute;top:72px;left:0;width:100%;padding:1.4rem 4vw 1.8rem;
+      background:rgba(244,241,234,.97);
+      backdrop-filter:saturate(150%) blur(12px);
+      -webkit-backdrop-filter:saturate(150%) blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .menutoggle{display:block}
+    .principle-grid,.land-grid{grid-template-columns:1fr}
+    .flow-track{grid-template-columns:1fr 1fr}
+    .works-grid{display:flex;flex-direction:column}
+    .w-a,.w-b,.w-c,.w-d,.w-e{min-height:260px}
+    .profile,.contact-inner{grid-template-columns:1fr}
+    .hero-meta{display:none}
+  }
+  @media(max-width:520px){
+    .flow-track{grid-template-columns:1fr}
+    .cta-tel span.lbl{display:none}
+    .cta-tel{padding:.62rem .8rem}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important}
+    .js .reveal-line>span,.js .reveal{opacity:1!important}
+  }
+</style>
+</head>
+<body>
+<script>document.documentElement.className='js';</script>
+
+<!-- ===== Header ===== -->
+<header class="site" id="hdr">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="TERRA NOSU 北杜建築設計事務所 トップへ">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="12" fill="#5E7A52"/>
+        <path d="M8 44 L24 24 L34 36 L44 22 L56 44" fill="none" stroke="#F4F1EA" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M8 52 L24 34 L34 44 L44 32 L56 52" fill="none" stroke="#C2703D" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>
+      </svg>
+      <span>TERRA NOSU<small>北杜建築設計事務所</small></span>
+    </a>
+    <nav class="navlinks" id="navlinks" aria-label="メインナビゲーション">
+      <a href="#philosophy">考え方</a>
+      <a href="#flow">設計フロー</a>
+      <a href="#works">実績</a>
+      <a href="#land">取扱用地</a>
+      <a href="#profile">事務所概要</a>
+    </nav>
+    <a class="cta-tel" href="tel:+815512007740" aria-label="電話で設計相談">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="lbl">設計相談</span>
+    </a>
+    <button class="menutoggle" id="menutoggle" type="button" aria-label="メニューを開閉" aria-controls="navlinks" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<main id="top">
+<section class="hero" id="hero">
+  <canvas id="terrain-canvas" aria-hidden="true"></canvas>
+  <div class="hero-fade"></div>
+  <div class="hero-meta">
+    <div>八ヶ岳南麓 — 標高 <span class="mono">1,050–1,420m</span></div>
+    <div>北緯 <span class="mono">35.93</span> / 東経 <span class="mono">138.34</span></div>
+    <div>ARCHITECTURE &amp; LAND</div>
+  </div>
+  <div class="hero-inner">
+    <span class="eyebrow reveal">TERRA NOSU — Architecture &amp; Resort Land</span>
+    <h1>
+      <span class="reveal-line"><span>土地には、</span></span>
+      <span class="reveal-line"><span>すでに答えがある。</span></span>
+    </h1>
+    <p class="lead reveal">八ヶ岳南麓の地形・採光・風を読み解き、その場所にしかない一棟を描く。別荘・店舗併用住宅の設計から、高原リゾート用地の仲介まで。</p>
+    <div class="hero-ctas reveal">
+      <a class="btn btn-solid" href="#contact">
+        設計相談を予約する
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="#land">
+        取扱用地を見る
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Philosophy ===== -->
+<section class="block philo" id="philosophy">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">事務所の考え方</span>
+      <h2>土地を読む、三つの原則。</h2>
+      <p>整地して建てるのではなく、地形に還す。私たちは敷地に何度も足を運び、等高線・陽の道・風の抜けを読み解いてから、最初の線を引きます。</p>
+    </div>
+    <div class="principle-grid">
+      <article class="principle reveal">
+        <div class="ic" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#5E7A52" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 46c8-4 14-4 22 0s18 4 30-2"/><path d="M8 36c8-3 13-3 20 1s17 3 28-3"/><path d="M12 26c6-2 11-2 16 1s14 2 24-3"/><path d="M18 17c5-1 9-1 13 1s11 2 19-2"/>
+          </svg>
+        </div>
+        <span class="cap mono">01 — TOPOGRAPHY</span>
+        <h3>地形を読む</h3>
+        <p>等高線をなぞるように高さを決め、切土・盛土を最小に。地形に逆らわない配置が、長く愛される佇まいと造成コストの両方を支えます。</p>
+      </article>
+      <article class="principle reveal">
+        <div class="ic" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#C2703D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="32" cy="30" r="9"/><line x1="32" y1="8" x2="32" y2="15"/><line x1="32" y1="45" x2="32" y2="52"/><line x1="10" y1="30" x2="17" y2="30"/><line x1="47" y1="30" x2="54" y2="30"/><line x1="16" y1="14" x2="21" y2="19"/><line x1="43" y1="41" x2="48" y2="46"/><line x1="48" y1="14" x2="43" y2="19"/>
+          </svg>
+        </div>
+        <span class="cap mono">02 — DAYLIGHT</span>
+        <h3>採光を読む</h3>
+        <p>季節ごとの太陽高度を計算し、冬の陽だまりと夏の日除けを両立。八ヶ岳おろしの強い陽射しを、開口部の設計で味方に変えます。</p>
+      </article>
+      <article class="principle reveal">
+        <div class="ic" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#5E7A52" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 24h28a6 6 0 1 0-6-6"/><path d="M8 34h40a7 7 0 1 1-7 7"/><path d="M8 44h22a5 5 0 1 1-5 5"/>
+          </svg>
+        </div>
+        <span class="cap mono">03 — WIND</span>
+        <h3>風を読む</h3>
+        <p>谷を抜ける卓越風と、冬の北西風。通風と防風のバランスを棟配置で設計し、エアコンに頼りすぎない高原の住まいを実現します。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Flow ===== -->
+<section class="block" id="flow">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">設計フロー</span>
+      <h2>敷地に立つことから、設計は始まる。</h2>
+      <p>図面の前に、まず土地。四つのステップで、その場所の論理を住まいへ翻訳します。各段階で必ず現地を共有し、判断の根拠を見える形でお渡しします。</p>
+    </div>
+    <div class="flow-track">
+      <article class="step reveal">
+        <div class="no mono">01</div>
+        <span class="tag mono">SURVEY</span>
+        <h4>敷地調査</h4>
+        <p>現地測量・日影・植生・接道を実測。法規制（自然公園法・別荘地協定）も同時に確認します。</p>
+      </article>
+      <article class="step reveal">
+        <div class="no mono">02</div>
+        <span class="tag mono">READING</span>
+        <h4>地形読解</h4>
+        <p>等高線モデルを起こし、最も負担の少ない建ち方を3案で比較。眺望軸と造成量を可視化します。</p>
+      </article>
+      <article class="step reveal">
+        <div class="no mono">03</div>
+        <span class="tag mono">DESIGN</span>
+        <h4>基本設計</h4>
+        <p>平面・断面・模型で空間を固め、概算工事費とともにご提示。素材と性能の優先順位を一緒に決めます。</p>
+      </article>
+      <article class="step reveal">
+        <div class="no mono">04</div>
+        <span class="tag mono">SUPERVISION</span>
+        <h4>実施・監理</h4>
+        <p>実施図と確認申請の後、現場へ通い品質を監理。引き渡し後の高原メンテナンスまで伴走します。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Works ===== -->
+<section class="block" id="works" style="background:var(--paper);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">実績ギャラリー</span>
+      <h2>八ヶ岳に還した、四つの建築。</h2>
+      <p>別荘から店舗併用住宅まで。地形に沿わせ、八ヶ岳の光と緑を取り込んだ近作をご紹介します。</p>
+    </div>
+    <div class="works-grid">
+      <a class="work w-a reveal" href="#contact">
+        <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1100&q=80" alt="八ヶ岳南麓の傾斜地に建つ大きなガラス開口の別荘。森に向かって張り出したテラスから高原の眺望が広がる外観">
+        <div class="ov"><small class="mono">VILLA / 大泉 2025</small><h4>稜線を望む傾斜地の別荘</h4></div>
+      </a>
+      <a class="work w-b reveal" href="#contact">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80" alt="片流れ屋根と木製サッシが特徴の高原住宅。芝生の前庭と低い軒先が落ち着いた佇まいを見せる外観">
+        <div class="ov"><small class="mono">RESIDENCE / 小淵沢 2024</small><h4>陽だまりを抱く平屋の住まい</h4></div>
+      </a>
+      <a class="work w-c reveal" href="#contact">
+        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=700&q=80" alt="天井の高い吹き抜けと大きな窓から自然光が差し込む別荘の内観。木の梁とニュートラルな家具が温かみを与えている">
+        <div class="ov"><small class="mono">INTERIOR / 高根 2024</small><h4>光を編む吹き抜けの居間</h4></div>
+      </a>
+      <a class="work w-d reveal" href="#contact">
+        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=700&q=80" alt="木とコンクリートを組み合わせたモダンな店舗併用住宅。1階がカフェ、2階が住居の外観で大きな庇が日差しを和らげる">
+        <div class="ov"><small class="mono">SHOP+HOUSE / 富士見 2023</small><h4>カフェと暮らす店舗併用住宅</h4></div>
+      </a>
+      <a class="work w-e reveal" href="#contact">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=700&q=80" alt="夕暮れに窓から温かい光がこぼれる木造別荘。周囲の樹木に溶け込むように建つ落ち着いた外観">
+        <div class="ov"><small class="mono">VILLA / 清里 2023</small><h4>森に灯る週末の小さな家</h4></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Land ===== -->
+<section class="block land" id="land">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">取扱用地</span>
+      <h2>高原リゾート用地のご紹介。</h2>
+      <p>設計事務所だからこそ「建てられる土地か」を見極めてご紹介します。接道・標高・造成のしやすさまで、判断材料を率直にお伝えします。</p>
+    </div>
+    <div class="land-grid">
+      <article class="lot reveal">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=700&q=80" alt="八ヶ岳南麓の緩やかな傾斜に広がるカラマツ林の用地。木漏れ日が差し込み別荘地に適した穏やかな環境"></div>
+        <div class="body">
+          <span class="area mono">大泉エリア / NO.A-07</span>
+          <h4>カラマツ林の南傾斜地</h4>
+          <dl>
+            <dt>面積</dt><dd>512㎡（約155坪）</dd>
+            <dt>標高</dt><dd>1,180m</dd>
+            <dt>接道</dt><dd>南側 私道6m</dd>
+            <dt>価格帯</dt><dd class="mono">1,480万円〜</dd>
+          </dl>
+          <a class="more" href="#contact">この用地を相談する
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="lot reveal">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=700&q=80" alt="高原の開けた草地から遠くの山並みを望む用地。眺望が良く店舗併用住宅にも適した日当たりの良い土地"></div>
+        <div class="body">
+          <span class="area mono">小淵沢エリア / NO.B-02</span>
+          <h4>稜線を望む眺望の角地</h4>
+          <dl>
+            <dt>面積</dt><dd>684㎡（約207坪）</dd>
+            <dt>標高</dt><dd>1,050m</dd>
+            <dt>接道</dt><dd>2方向 公道</dd>
+            <dt>価格帯</dt><dd class="mono">2,360万円〜</dd>
+          </dl>
+          <a class="more" href="#contact">この用地を相談する
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="lot reveal">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=700&q=80" alt="苔と樹々に囲まれた静かな森の用地。木立に守られたプライベート感のある別荘向きの落ち着いた環境"></div>
+        <div class="body">
+          <span class="area mono">清里エリア / NO.C-11</span>
+          <h4>苔むす静寂の森区画</h4>
+          <dl>
+            <dt>面積</dt><dd>438㎡（約132坪）</dd>
+            <dt>標高</dt><dd>1,420m</dd>
+            <dt>接道</dt><dd>東側 管理道5m</dd>
+            <dt>価格帯</dt><dd class="mono">980万円〜</dd>
+          </dl>
+          <a class="more" href="#contact">この用地を相談する
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Profile ===== -->
+<section class="block" id="profile">
+  <div class="wrap">
+    <div class="profile">
+      <div class="photo reveal">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80" alt="TERRA NOSU 代表で一級建築士の野洲玲司の人物写真。落ち着いた表情でこちらを見ている">
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">代表 / 事務所概要</span>
+        <h3 class="mincho">野洲 玲司<span style="font-size:.6em;font-weight:400;margin-left:.6rem;color:var(--muted)">Reiji Yasu</span></h3>
+        <span class="role mono">一級建築士 / 宅地建物取引士</span>
+        <blockquote>「いい土地ですね」より先に、「この土地はこう建つと美しい」が言える設計者でありたい。</blockquote>
+        <p style="color:var(--muted);font-size:.94rem">山岳建築の設計事務所で12年研鑽を積んだのち、2018年に八ヶ岳南麓へ移住し独立。設計と不動産仲介の両免許を持ち、土地探しから引き渡しまでを一人の窓口で伴走します。年間の受託は6棟までと定め、一棟ごとに深く向き合います。</p>
+        <table class="info-table">
+          <tr><th>事務所名</th><td>TERRA NOSU 北杜建築設計事務所</td></tr>
+          <tr><th>所在地</th><td>〒409-1501 山梨県北杜市大泉町西井出8240-1 高原テラス2F</td></tr>
+          <tr><th>登録番号</th><td class="mono">一級建築士事務所 山梨県知事登録 第K-2018号 / 宅建業 山梨県知事(2)第3140号</td></tr>
+          <tr><th>対応エリア</th><td>北杜市・諏訪郡富士見町・茅野市ほか八ヶ岳南麓全域</td></tr>
+          <tr><th>業務</th><td>住宅・別荘・店舗併用住宅の設計監理／高原リゾート用地の仲介</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section class="block" id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="contact">
+      <div class="contact-inner">
+        <div class="reveal">
+          <span class="eyebrow" style="color:#a9c79a">お問い合わせ</span>
+          <h2>まずは、土地のことから。</h2>
+          <p class="sub">設計相談・用地のご相談はいつでも無料です。お持ちの土地でも、これから探す方でも。八ヶ岳でどう暮らしたいか、お聞かせください。</p>
+          <div class="contact-actions">
+            <a class="c-line" href="tel:+815512007740">
+              <span class="cic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+              <span><small class="mono">TEL / 9:00–18:00</small><strong>0551-20-7740</strong></span>
+            </a>
+            <a class="c-line" href="mailto:design@terra-nosu.example.jp?subject=設計相談のお問い合わせ">
+              <span class="cic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+              <span><small class="mono">MAIL</small><strong>design@terra-nosu.example.jp</strong></span>
+            </a>
+          </div>
+        </div>
+        <div class="hours-card reveal">
+          <h4 class="mono">OFFICE HOURS</h4>
+          <div class="row"><span>月 — 金</span><span>9:00 – 18:00</span></div>
+          <div class="row"><span>土曜（要予約）</span><span>10:00 – 17:00</span></div>
+          <div class="row"><span>日・祝</span><span>定休</span></div>
+          <div class="row"><span>来所</span><span>事前予約制</span></div>
+          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=山梨県北杜市大泉町西井出8240-1" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Googleマップで事務所を見る
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#5E7A52"/><path d="M8 44 L24 24 L34 36 L44 22 L56 44" fill="none" stroke="#F4F1EA" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/><path d="M8 52 L24 34 L34 44 L44 32 L56 52" fill="none" stroke="#C2703D" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/></svg>
+          TERRA NOSU
+        </div>
+        <p style="font-size:.84rem;color:var(--muted);margin-top:1rem;max-width:30ch">土地を読み、地形に還す。八ヶ岳南麓の建築設計と高原リゾート用地。</p>
+        <div class="social">
+          <a href="https://instagram.com/terra_nosu" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></a>
+          <a href="https://note.com/terra_nosu" target="_blank" rel="noopener noreferrer" aria-label="note"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h11l5 5v9a0 0 0 0 1 0 0H4z"/><path d="M8 11h7M8 15h7"/></svg></a>
+          <a href="https://www.youtube.com/@terra_nosu" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8a3 3 0 0 0-2.1-2.1C18 5.4 12 5.4 12 5.4s-6 0-7.9.5A3 3 0 0 0 2 8a31 31 0 0 0 0 8 3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5A3 3 0 0 0 22 16a31 31 0 0 0 0-8z"/><polygon points="10 9 15 12 10 15" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5 class="mono">SITE MAP</h5>
+        <a href="#philosophy">事務所の考え方</a>
+        <a href="#flow">設計フロー</a>
+        <a href="#works">実績ギャラリー</a>
+        <a href="#land">取扱用地</a>
+        <a href="#profile">事務所概要</a>
+      </div>
+      <div class="foot-col">
+        <h5 class="mono">CONTACT</h5>
+        <a href="tel:+815512007740">TEL 0551-20-7740</a>
+        <a href="mailto:design@terra-nosu.example.jp">design@terra-nosu.example.jp</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=山梨県北杜市大泉町西井出8240-1" target="_blank" rel="noopener noreferrer">山梨県北杜市大泉町西井出8240-1</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 TERRA NOSU 北杜建築設計事務所</span>
+      <span class="demo-note">これは <b>デモサイト（楽観 site-builder）</b> です。掲載の会社名・用地・連絡先は架空のサンプルです。</span>
+    </div>
+  </div>
+</footer>
+
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+<script type="module">
+import * as THREE from 'three';
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ============ Header solidify ============ */
+const hdr = document.getElementById('hdr');
+const onScrollHdr = () => { hdr.classList.toggle('solid', window.scrollY > 40); };
+onScrollHdr();
+window.addEventListener('scroll', onScrollHdr, {passive:true});
+
+/* ============ Mobile menu (class toggle; closes on tap & resets on resize) ============ */
+const menuToggle = document.getElementById('menutoggle');
+const navLinks = document.getElementById('navlinks');
+if (menuToggle && navLinks) {
+  const closeMenu = () => { navLinks.classList.remove('open'); menuToggle.setAttribute('aria-expanded','false'); };
+  menuToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach((a)=> a.addEventListener('click', closeMenu));
+  window.addEventListener('resize', () => { if (window.innerWidth > 880) closeMenu(); }, {passive:true});
+}
+
+/* ============ Lenis + GSAP ScrollTrigger ============ */
+let lenis = null;
+if (window.gsap && window.ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger);
+}
+if (!reduceMotion && window.Lenis) {
+  lenis = new Lenis({ lerp:0.1, wheelMultiplier:1 });
+  if (window.ScrollTrigger) lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t)=>{ lenis.raf(t*1000); });
+  gsap.ticker.lagSmoothing(0);
+}
+
+/* ============ Reveals ============ */
+if (window.gsap && !reduceMotion) {
+  // Hero headline lines (fromTo to avoid stuck-value trap)
+  gsap.fromTo('.hero .reveal-line>span',
+    { yPercent:120, opacity:0 },
+    { yPercent:0, opacity:1, duration:1.1, ease:'power3.out', stagger:0.12, delay:0.25 }
+  );
+  // Hero supporting reveals
+  gsap.fromTo('.hero .reveal',
+    { y:24, opacity:0 },
+    { y:0, opacity:1, duration:1, ease:'power2.out', stagger:0.1, delay:0.55 }
+  );
+} else if (window.gsap) {
+  // reduced-motion: show hero text immediately, no animation
+  gsap.set('.hero .reveal-line>span, .hero .reveal', { opacity:1, y:0, yPercent:0 });
+}
+
+if (window.gsap) {
+  // Section reveals via ScrollTrigger
+  if (window.ScrollTrigger && !reduceMotion) {
+    document.querySelectorAll('section.block .reveal').forEach((el)=>{
+      gsap.fromTo(el,
+        { y:34, opacity:0 },
+        { y:0, opacity:1, duration:0.9, ease:'power2.out',
+          scrollTrigger:{ trigger:el, start:'top 86%' } }
+      );
+    });
+  } else {
+    gsap.set('section.block .reveal', { opacity:1, y:0 });
+  }
+}
+
+/* ============ WebGL Terrain Hero ============ */
+const canvas = document.getElementById('terrain-canvas');
+let renderer, scene, camera, mesh, wireframe, uniforms, animId;
+let amplitude = { value: 1.0 };
+let camHeight = { value: 0 };
+
+function initTerrain(){
+  const BG = new THREE.Color('#F4F1EA');
+  scene = new THREE.Scene();
+  scene.background = BG;
+  scene.fog = new THREE.Fog(BG, 4.5, 13);
+
+  camera = new THREE.PerspectiveCamera(48, window.innerWidth/window.innerHeight, 0.1, 100);
+  camera.position.set(0, 1.6, 5.4);
+  camera.lookAt(0, 0.1, -2);
+
+  renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  uniforms = {
+    uTime: { value: 0 },
+    uAmp:  { value: 1.0 },
+    uColorLow:  { value: new THREE.Color('#5E7A52') }, // accent sage
+    uColorHigh: { value: new THREE.Color('#C2703D') }, // accent2 terracotta
+    uBg: { value: BG.clone() }
+  };
+
+  const vertexShader = `
+    uniform float uTime;
+    uniform float uAmp;
+    varying float vElev;
+    varying vec3  vWorld;
+
+    // smooth multi-sine terrain with gentle domain warp
+    float terrain(vec2 p){
+      float w = 0.0;
+      // domain warp
+      float wx = sin(p.y * 0.55 + uTime * 0.18) * 0.6;
+      float wy = cos(p.x * 0.45 + uTime * 0.14) * 0.6;
+      vec2 q = p + vec2(wx, wy);
+      w += sin(q.x * 0.85 + uTime * 0.30) * 0.55;
+      w += sin(q.y * 1.10 - uTime * 0.22) * 0.42;
+      w += sin((q.x + q.y) * 0.65 + uTime * 0.16) * 0.30;
+      w += sin(length(q) * 1.30 - uTime * 0.40) * 0.22;
+      return w;
+    }
+
+    void main(){
+      vec3 pos = position;
+      float e = terrain(pos.xy) * uAmp;
+      pos.z += e;
+      vElev = e;
+      vec4 wp = modelMatrix * vec4(pos, 1.0);
+      vWorld = wp.xyz;
+      gl_Position = projectionMatrix * viewMatrix * wp;
+    }
+  `;
+
+  const fragmentShader = `
+    precision highp float;
+    uniform vec3 uColorLow;
+    uniform vec3 uColorHigh;
+    uniform vec3 uBg;
+    varying float vElev;
+    varying vec3  vWorld;
+
+    void main(){
+      float t = smoothstep(-0.9, 1.3, vElev);
+      vec3 col = mix(uColorLow, uColorHigh, t);
+      // soft ivory shade on faces
+      col = mix(col, vec3(0.96, 0.94, 0.88), 0.30);
+      gl_FragColor = vec4(col, 1.0);
+    }
+  `;
+
+  const geo = new THREE.PlaneGeometry(16, 16, 128, 128);
+
+  // Layer 1: subtle shaded faces. Alpha is baked into the fragment shader
+  // (ShaderMaterial ignores the `opacity` material property), so we patch
+  // the frag's final color to a translucent ivory-tinted face.
+  const faceFrag = fragmentShader.replace('gl_FragColor = vec4(col, 1.0);', 'gl_FragColor = vec4(col, 0.42);');
+  const faceMat = new THREE.ShaderMaterial({
+    uniforms,
+    vertexShader,
+    fragmentShader: faceFrag,
+    transparent: true,
+    side: THREE.DoubleSide
+  });
+
+  mesh = new THREE.Mesh(geo, faceMat);
+  mesh.rotation.x = -Math.PI / 2.18;
+  mesh.position.y = -0.7;
+  scene.add(mesh);
+
+  // Layer 2: pale sage wireframe lines
+  const wireMat = new THREE.ShaderMaterial({
+    uniforms,
+    vertexShader,
+    fragmentShader: `
+      precision highp float;
+      uniform vec3 uColorLow;
+      uniform vec3 uColorHigh;
+      varying float vElev;
+      void main(){
+        float t = smoothstep(-0.9, 1.3, vElev);
+        vec3 col = mix(uColorLow, uColorHigh, t);
+        col = mix(col, vec3(0.55,0.62,0.50), 0.25);
+        gl_FragColor = vec4(col, 0.85);
+      }
+    `,
+    wireframe: true,
+    transparent: true
+  });
+  wireframe = new THREE.Mesh(geo, wireMat);
+  wireframe.rotation.x = mesh.rotation.x;
+  wireframe.position.y = mesh.position.y + 0.002;
+  scene.add(wireframe);
+
+  window.addEventListener('resize', onResize, {passive:true});
+}
+
+function onResize(){
+  if (!renderer) return;
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+}
+
+const clock = new THREE.Clock();
+function render(){
+  if (!reduceMotion) uniforms.uTime.value = clock.getElapsedTime();
+  uniforms.uAmp.value = amplitude.value;
+  camera.position.y = 1.6 + camHeight.value;
+  camera.lookAt(0, 0.1 + camHeight.value * 0.4, -2);
+  renderer.render(scene, camera);
+}
+
+function loop(){
+  animId = requestAnimationFrame(loop);
+  render();
+}
+
+try {
+  initTerrain();
+  if (reduceMotion) {
+    // static frozen frame
+    uniforms.uTime.value = 1.2;
+    render();
+  } else {
+    loop();
+    // Scroll-driven camera altitude + wave amplitude
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.to(camHeight, {
+        value: 2.6,
+        ease: 'none',
+        scrollTrigger:{ trigger:'#hero', start:'top top', end:'bottom top', scrub:1 }
+      });
+      gsap.to(amplitude, {
+        value: 1.9,
+        ease: 'none',
+        scrollTrigger:{ trigger:'#hero', start:'top top', end:'bottom top', scrub:1 }
+      });
+    }
+  }
+} catch(err){
+  // WebGL unavailable: fail gracefully, hero text/fade remain visible
+  if (canvas) canvas.style.display = 'none';
+  console.warn('Terrain WebGL init failed:', err);
+}
+</script>
+</body>
+</html>

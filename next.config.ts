@@ -39,6 +39,13 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      // /atelier/<id>/ や /atelier/<id> を public/atelier/<id>/index.html に解決（trailingSlashの罠回避）
+      { source: "/atelier/:slug/", destination: "/atelier/:slug/index.html" },
+      { source: "/atelier/:slug",  destination: "/atelier/:slug/index.html" },
+    ];
+  },
   async redirects() {
     return [
       {
