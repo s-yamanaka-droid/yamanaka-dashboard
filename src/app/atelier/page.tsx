@@ -145,7 +145,7 @@ export default function AtelierPage() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
             style={{ maxWidth: "58ch", marginTop: 28, fontSize: "clamp(15px,1.2vw,17px)", lineHeight: 1.9, color: "var(--text-2)" }}
           >
-            Lakkan が積み上げているサイトの素地ライブラリ。<br />
+            <em style={{ fontFamily: "var(--font-instrument)", fontStyle: "italic", color: "var(--foreground)" }}>Atelier</em> は、Lakkan のサイト制作メソッド。<br />
             WebGL 3D・高品質LP/HPレイアウト・コンバージョン素地を、
             <em style={{ fontFamily: "var(--font-instrument)", fontStyle: "italic", color: "var(--foreground)" }}>ライトテーマで強く動かす</em>方針で揃えています。
             配色とコピーを差し替えれば、数分で“その会社版”になります。
@@ -186,9 +186,9 @@ export default function AtelierPage() {
                 ライブラリを見る
                 <ArrowRight />
               </a>
-              <Link href="/contact"
+              <Link href="/contact?topic=atelier-site"
                     style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 26px", borderRadius: 999, background: "transparent", color: "var(--foreground)", fontSize: 14, fontWeight: 500, textDecoration: "none", border: "1px solid var(--border)" }}>
-                自社サイトに使う
+                Atelier で作る
               </Link>
             </motion.div>
           </motion.div>
@@ -321,9 +321,9 @@ export default function AtelierPage() {
             素地を選び、配色とコピーを差し替え、そのまま納品。Lakkan の Atelier が、最初の一手を最短にします。
           </p>
           <div style={{ marginTop: 32, display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
-            <Link href="/contact"
+            <Link href="/contact?topic=atelier-site"
                   style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "16px 32px", borderRadius: 999, background: "var(--foreground)", color: "var(--background)", fontSize: 15, fontWeight: 500, textDecoration: "none" }}>
-              相談する <ArrowRight />
+              Atelier に依頼する <ArrowRight />
             </Link>
             <a href="#grid"
                style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "16px 32px", borderRadius: 999, color: "var(--foreground)", fontSize: 15, fontWeight: 500, textDecoration: "none", border: "1px solid var(--border)" }}>

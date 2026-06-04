@@ -1,5 +1,30 @@
 [
   {
+    "id": "atelier-patterns",
+    "name": "Atelier — WebGL & Layout Patterns",
+    "description": "Lakkan が積み上げている、サイト制作の素地ライブラリ。WebGL 3D 3種・LP/HP レイアウト 3種・コンバージョン素地・ローカルビジネス向けコア 2種＝計 9 パターン。すべてライトテーマ・1ファイル完結・SEO/構造化データ完備。配色とコピーを差し替えれば数分で「その会社版」になる、Lakkan の実装メソッド。",
+    "category": "website",
+    "status": "live",
+    "builtWith": "claude_code",
+    "createdAt": "2026-06-04",
+    "updatedAt": "2026-06-04",
+    "url": "https://lakkan-inc.vercel.app/atelier",
+    "tags": [
+      "Atelier",
+      "WebGL",
+      "three.js",
+      "GSAP",
+      "Lakkan",
+      "サイト制作",
+      "パターンライブラリ",
+      "素地",
+      "ローカルビジネス",
+      "Next.js"
+    ],
+    "client": "Lakkan",
+    "featured": true
+  },
+  {
     "id": "reskilllab-trepro",
     "name": "リスキルラボ by TREPRO",
     "description": "AIリスキリング研修の商談で「触って体感する」動的デモ（Trepro版）。同一コードベースから VITE_BRAND で出し分け。Lv1-3×業種5種×生成物12種、LIVE Gemini+OpenAI 実API社名反映、助成金75%込み投資シミュ、営業チートシート（ASK/SILENCE/OBJECTION/CLOSING）統合。Trepro赤×墨配色。商談URL ?company=◯◯ で相手社名を全画面・LIVE出力に自動反映。",
@@ -57,7 +82,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-15",
-    "updatedAt": "2026-05-27",
+    "updatedAt": "2026-05-31",
     "url": "https://kanoa-jobs.vercel.app",
     "client": "KANOA",
     "tags": [
@@ -129,7 +154,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-06",
-    "updatedAt": "2026-04-18",
+    "updatedAt": "2026-05-29",
     "url": "https://lia-recruit.vercel.app",
     "client": "株式会社LiA",
     "tags": [
@@ -165,7 +190,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-17",
-    "updatedAt": "2026-05-23",
+    "updatedAt": "2026-05-30",
     "url": "https://ai-quest.vercel.app",
     "client": "Lakkan",
     "tags": [
@@ -247,7 +272,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-16",
-    "updatedAt": "2026-05-21",
+    "updatedAt": "2026-05-28",
     "url": "https://trefinder.vercel.app",
     "tags": [
       "検索",
@@ -475,7 +500,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-20",
-    "updatedAt": "2026-05-27",
+    "updatedAt": "2026-06-04",
     "url": "https://trepro-journey.vercel.app",
     "client": "Trepro",
     "tags": [
@@ -494,7 +519,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-20",
-    "updatedAt": "2026-05-27",
+    "updatedAt": "2026-06-04",
     "url": "https://yamanaka-dashboard.vercel.app",
     "tags": [
       "ポートフォリオ",
