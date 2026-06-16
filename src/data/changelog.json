@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-05-15",
+  "generated_at": "2026-06-17",
   "entries": [
+    {
+      "date": "2026-06-17",
+      "tag": "PRODUCT",
+      "title": "Vigil ハーネス — Codex/Cursor対応＆オンボーディング改善",
+      "body": "LunaTech版ハーネスを定着改善（起動後の最初の一押しをLunaTech特化、合言葉を「キッティング始めて」に統一）。Claude Code以外（Codex/Cursor）でも同じ文脈で動く AGENTS.md/.cursor ミラーを追加。配布物の一括再ビルドと更新フロー（再ビルド→再手渡し→冪等再実行）を整備。",
+      "links": []
+    },
     {
       "date": "2026-06-16",
       "tag": "COMING",
