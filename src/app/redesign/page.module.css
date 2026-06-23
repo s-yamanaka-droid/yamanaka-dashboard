@@ -61,6 +61,11 @@
 .work .ti{font-family:var(--mincho);font-size:clamp(20px,2.2vw,30px);font-weight:600}
 .work .ta{font-size:13px;color:var(--ink-soft);letter-spacing:.06em}
 
+.hrow{display:grid;grid-template-columns:128px 1fr 1.05fr;gap:34px;align-items:baseline;padding:26px 8px;border-bottom:1px solid var(--line);opacity:0}
+.hrow .hy{font-family:var(--mono);font-size:13px;color:var(--orange-2);letter-spacing:.08em}
+.hrow .ht{font-family:var(--mincho);font-size:clamp(17px,1.6vw,23px);font-weight:600}
+.hrow .hn{font-size:13.5px;color:var(--ink-soft)}
+
 .svc{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--line)}
 .svc .c{padding:46px 34px 46px 0;border-right:1px solid var(--line)}
 .svc .c:last-child{border-right:0;padding-left:34px}
@@ -95,9 +100,11 @@
   .foot{left:24px;right:24px}
   .svc,.proof .grid{grid-template-columns:1fr}
   .svc .c{border-right:0;border-bottom:1px solid var(--line);padding:34px 0}
+  .hrow{grid-template-columns:84px 1fr;gap:8px 16px}
+  .hrow .hn{grid-column:2}
 }
 @media (prefers-reduced-motion: reduce){
   .hero h1{animation:none}
   .reveal{transition:none;opacity:1;transform:none}
-  .wrow{opacity:1}
+  .wrow,.hrow{opacity:1}
 }

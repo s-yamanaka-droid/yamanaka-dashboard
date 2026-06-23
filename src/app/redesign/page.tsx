@@ -4,6 +4,18 @@ import { useEffect, useRef } from "react";
 import s from "./page.module.css";
 import { initLiquid } from "./liquid";
 
+// 沿革は About.tsx の TIMELINE が正本（改変・追加禁止）。ここはその写し。
+const TIMELINE = [
+  { year: "2023", text: "合同会社Sinple 設立 → 売却", note: "最初の起業と、最初の出口。" },
+  { year: "2024", text: "株式会社Solve 設立", note: "二度目の創業。課題解決に特化した事業を動かす。" },
+  { year: "2025.09", text: "トレプロ株式会社 執行役員 就任（東証グロース上場）", note: "上場グループの経営に参画。組織とスピードを同時に動かす。" },
+  { year: "2026.02", text: "トレプロ株式会社 COO 就任", note: "経営の座へ。スピードと構造を両立する立場に。" },
+  { year: "2026.03", text: "株式会社Lakkan 始動", note: "楽観と、計画と。自分の言葉で走りはじめる。" },
+  { year: "2026.04", text: "SKYLINK CTO 就任 / KANOA AI 外部相談役 就任", note: "技術選定と、外からの第三者視点。同時に。" },
+  { year: "2026.05", text: "株式会社Lakkan 法人登記完了（5/11）", note: "ペンを取った瞬間、楽観が法人になった。" },
+  { year: "2026.06", text: "LunaTech 法人ローンチ予定（6/16） — COO 就任", note: "AIプロダクト 5本立て。プランナー / ベース / AIラボ / ソラリス / かぐや・みこと。" },
+];
+
 export default function Redesign() {
   const gl1 = useRef<HTMLCanvasElement>(null);
   const gl2 = useRef<HTMLCanvasElement>(null);
@@ -34,7 +46,7 @@ export default function Redesign() {
       document.querySelectorAll<HTMLElement>("." + s.hero + " ." + s.reveal).forEach((e) => e.classList.add(s.inview));
     }, reduce ? 0 : 780);
 
-    // Lenis + GSAP（reduced-motion 時はスキップ＝ネイティブスクロール）
+    // Lenis スムーススクロール（慣性は浅め=lerp高め=指に追従／フワフワを排除）＋ GSAP 演出
     /* eslint-disable @typescript-eslint/no-explicit-any */
     let lenis: any = null;
     let cleanupGsap: (() => void) | null = null;
@@ -48,20 +60,21 @@ export default function Redesign() {
         const gsap = gsapMod.default;
         const ScrollTrigger = stMod.ScrollTrigger;
         gsap.registerPlugin(ScrollTrigger);
-        lenis = new Lenis({ lerp: 0.09 });
+        lenis = new Lenis({ lerp: 0.14, wheelMultiplier: 1, smoothWheel: true, syncTouch: false });
         const raf = (t: number) => { lenis.raf(t); };
         gsap.ticker.add(raf); gsap.ticker.lagSmoothing(0);
-        lenis!.on("scroll", ScrollTrigger.update);
+        lenis.on("scroll", ScrollTrigger.update);
         const ctx = gsap.context(() => {
           gsap.to("." + s.heroIn, { yPercent: -16, opacity: 0, ease: "none", scrollTrigger: { trigger: "." + s.hero, start: "top top", end: "bottom top", scrub: true } });
           gsap.to("." + s.gl, { yPercent: 10, ease: "none", scrollTrigger: { trigger: "." + s.hero, start: "top top", end: "bottom top", scrub: true } });
+          gsap.fromTo("." + s.hrow, { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.08, scrollTrigger: { trigger: "#history", start: "top 80%" } });
           gsap.fromTo("." + s.wrow, { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 1, ease: "power3.out", stagger: 0.13, scrollTrigger: { trigger: "#work", start: "top 72%" } });
           gsap.to("." + s.manifesto + " p", { yPercent: -8, ease: "none", scrollTrigger: { trigger: "." + s.manifesto, start: "top bottom", end: "bottom top", scrub: true } });
         });
         cleanupGsap = () => { ctx.revert(); gsap.ticker.remove(raf); };
       })();
     } else {
-      document.querySelectorAll<HTMLElement>("." + s.wrow).forEach((e) => (e.style.opacity = "1"));
+      document.querySelectorAll<HTMLElement>("." + s.wrow + ", ." + s.hrow).forEach((e) => (e.style.opacity = "1"));
     }
 
     return () => {
@@ -108,6 +121,19 @@ export default function Redesign() {
         <div className={s.wrap}>
           <p className={s.reveal}>ツールではなく、<span className={s.o}>設計</span>を。<br />私たちは、自社で毎日それを<br />証明している。</p>
           <div className={`${s.small} ${s.reveal} ${s.d1}`}>1人 × AI で、6社を回す。その仕組みを、あなたの会社へ。</div>
+        </div>
+      </section>
+
+      <section className={s.blk} id="history" style={{ paddingTop: 0 }}>
+        <div className={s.wrap}>
+          <div className={`${s.head} ${s.reveal}`}><h2>歩み</h2><span className={s.lbl}>History — 楽観と、計画と</span></div>
+          {TIMELINE.map((t) => (
+            <div className={s.hrow} key={t.year}>
+              <span className={s.hy}>{t.year}</span>
+              <span className={s.ht}>{t.text}</span>
+              <span className={s.hn}>{t.note}</span>
+            </div>
+          ))}
         </div>
       </section>
 
