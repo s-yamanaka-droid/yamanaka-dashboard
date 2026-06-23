@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif, Shippori_Mincho, Noto_Sans_JP } from "next/font/google";
+import { Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif, Shippori_Mincho, Noto_Sans_JP, Anton } from "next/font/google";
 import "./globals.css";
 import "./vigil-tokens.css";
 import GlobalShell from "@/components/GlobalShell";
@@ -37,12 +37,20 @@ const shippori = Shippori_Mincho({
   preload: false,
 });
 
-// 日本語 sans（本文用）
+// 日本語 sans（本文用＋見出しの極太フォールバック用に900追加）
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-sans-jp",
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "700", "900"],
   display: "swap",
   preload: false,
+});
+
+// ポスター体ディスプレイ（EPIC PRO 自己ホスト前の暫定フォールバック・ラテン専用）
+const anton = Anton({
+  variable: "--font-anton",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -113,7 +121,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${geistMono.variable} ${spaceGrotesk.variable} ${frankRuhl.variable} ${instrument.variable} ${shippori.variable} ${notoSansJP.variable} antialiased`}
+      className={`${geistMono.variable} ${spaceGrotesk.variable} ${frankRuhl.variable} ${instrument.variable} ${shippori.variable} ${notoSansJP.variable} ${anton.variable} antialiased`}
     >
       <body className="bg-[#F7F4EE] text-[#0D0D0D]">
         <script

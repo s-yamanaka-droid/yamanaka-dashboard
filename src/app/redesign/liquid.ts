@@ -34,7 +34,7 @@ void main(){
  vec3 L=normalize(vec3(0.5,0.6,0.95));
  float diff=clamp(dot(nrm,L),0.0,1.0);
  float spec=pow(clamp(dot(reflect(-L,nrm),vec3(0.,0.,1.)),0.0,1.0),20.0);
- vec3 deep=vec3(0.33,0.09,0.03),mid=vec3(0.77,0.27,0.10),brt=vec3(0.88,0.39,0.15),gold=vec3(0.96,0.72,0.44);
+ vec3 deep=vec3(0.34,0.06,0.03),mid=vec3(0.80,0.19,0.09),brt=vec3(0.90,0.30,0.13),gold=vec3(0.97,0.66,0.40);
  vec3 col=mix(deep,mid,smoothstep(0.18,0.64,f));
  col=mix(col,brt,smoothstep(0.66,0.94,f));
  col*=0.76+0.30*diff;

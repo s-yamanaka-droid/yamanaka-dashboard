@@ -46,24 +46,17 @@ export default function Redesign() {
       document.querySelectorAll<HTMLElement>("." + s.hero + " ." + s.reveal).forEach((e) => e.classList.add(s.inview));
     }, reduce ? 0 : 780);
 
-    // Lenis スムーススクロール（慣性は浅め=lerp高め=指に追従／フワフワを排除）＋ GSAP 演出
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    let lenis: any = null;
+    // ネイティブスクロール（慣性スクロールは使わない＝操作はユーザーが直接）。GSAP演出のみ。
     let cleanupGsap: (() => void) | null = null;
     if (!reduce) {
       (async () => {
-        const [{ default: Lenis }, gsapMod, stMod] = await Promise.all([
-          import("lenis"),
+        const [gsapMod, stMod] = await Promise.all([
           import("gsap"),
           import("gsap/ScrollTrigger"),
         ]);
         const gsap = gsapMod.default;
         const ScrollTrigger = stMod.ScrollTrigger;
         gsap.registerPlugin(ScrollTrigger);
-        lenis = new Lenis({ lerp: 0.14, wheelMultiplier: 1, smoothWheel: true, syncTouch: false });
-        const raf = (t: number) => { lenis.raf(t); };
-        gsap.ticker.add(raf); gsap.ticker.lagSmoothing(0);
-        lenis.on("scroll", ScrollTrigger.update);
         const ctx = gsap.context(() => {
           gsap.to("." + s.heroIn, { yPercent: -16, opacity: 0, ease: "none", scrollTrigger: { trigger: "." + s.hero, start: "top top", end: "bottom top", scrub: true } });
           gsap.to("." + s.gl, { yPercent: 10, ease: "none", scrollTrigger: { trigger: "." + s.hero, start: "top top", end: "bottom top", scrub: true } });
@@ -71,7 +64,7 @@ export default function Redesign() {
           gsap.fromTo("." + s.wrow, { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 1, ease: "power3.out", stagger: 0.13, scrollTrigger: { trigger: "#work", start: "top 72%" } });
           gsap.to("." + s.manifesto + " p", { yPercent: -8, ease: "none", scrollTrigger: { trigger: "." + s.manifesto, start: "top bottom", end: "bottom top", scrub: true } });
         });
-        cleanupGsap = () => { ctx.revert(); gsap.ticker.remove(raf); };
+        cleanupGsap = () => { ctx.revert(); };
       })();
     } else {
       document.querySelectorAll<HTMLElement>("." + s.wrow + ", ." + s.hrow).forEach((e) => (e.style.opacity = "1"));
