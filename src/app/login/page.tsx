@@ -5,10 +5,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 const BOOT_LINES = [
   "[init] vigil.kernel booted · v2.5.0",
-  "[net]  tailscale link · 100.99.131.109 → 100.86.81.47 · 12ms",
-  "[brain] vault indexed · 451 docs · 7 cortical regions",
+  "[net]  secure tunnel online",
+  "[brain] knowledge index online",
   "[ai]   claude-code · gemma-3-12b · gemini-flash online",
-  "[reg]  55 products · 6 companies · 32 skills synced",
+  "[reg]  portfolio · products · systems synced",
   "[auth] awaiting principal — yamanaka.shuto@*",
 ];
 
@@ -140,7 +140,7 @@ function LoginForm() {
             fontSize: 10, letterSpacing: "0.22em", color: "#8A857A",
             textTransform: "uppercase", marginBottom: 18,
           }}>
-            // boot sequence — local agent
+            {"// boot sequence — local agent"}
           </div>
           <div style={{ flex: 1 }}>
             {BOOT_LINES.slice(0, bootIdx).map((line, i) => {

@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
+import { LockKeyhole } from "lucide-react";
 import productsData from "@/data/products.full.json";
 
 type Product = {
@@ -130,7 +131,8 @@ export default function ProductsPage() {
               textDecoration: "none", padding: "8px 16px",
               borderBottom: `2px solid ${accent}`,
               textTransform: "uppercase",
-            }}>🔒 Products</Link>
+              display: "inline-flex", alignItems: "center", gap: 5,
+            }}><LockKeyhole size={12} aria-hidden="true" /> Products</Link>
             <Link href="https://vigil-vert-gamma.vercel.app" target="_blank" style={{
               fontFamily: "'DM Mono', monospace", fontSize: 11,
               letterSpacing: "0.15em", color: "#8A857A",
@@ -172,7 +174,7 @@ export default function ProductsPage() {
           textTransform: "uppercase", marginBottom: 22,
         }}>
           <span style={{ width: 32, height: 1, background: accent }} />
-          <span>// products.cortex · agent-indexed</span>
+          <span>{"// products.cortex · agent-indexed"}</span>
         </div>
         <h1 style={{
           fontFamily: "'Playfair Display', serif",
@@ -244,7 +246,7 @@ export default function ProductsPage() {
           letterSpacing: "0.2em", color: "#8A857A",
           marginBottom: 12,
         }}>
-          // context-switch · company
+          {"// context-switch · company"}
         </div>
         <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginBottom: 20 }}>
           {COMPANIES.map(co => (
@@ -266,7 +268,7 @@ export default function ProductsPage() {
           letterSpacing: "0.2em", color: "#8A857A",
           marginBottom: 12,
         }}>
-          // status · embedding
+          {"// status · embedding"}
         </div>
         <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 12, alignItems: "center" }}>
           <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
@@ -327,7 +329,7 @@ export default function ProductsPage() {
           letterSpacing: "0.2em", color: "#8A857A",
           marginBottom: 18,
         }}>
-          // agent.index → {filtered.length} results
+          {"// agent.index → "}{filtered.length} results
         </div>
         <div style={{
           display: "grid",
@@ -409,7 +411,7 @@ export default function ProductsPage() {
                       {p.url.replace(/^https?:\/\//, "").slice(0, 30)} ↗
                     </span>
                   ) : (
-                    <span style={{ color: "#A0A0A0" }}>// no public url</span>
+                    <span style={{ color: "#A0A0A0" }}>{"// no public url"}</span>
                   )}
                 </div>
               </Tag>
@@ -423,7 +425,7 @@ export default function ProductsPage() {
             color: "#8A857A", letterSpacing: "0.1em",
             background: "#fff", border: "1px solid rgba(13,13,13,0.08)",
           }}>
-            // 0 results — try adjusting filters
+            {"// 0 results — try adjusting filters"}
           </div>
         )}
       </section>

@@ -84,7 +84,7 @@ const LAKKAN: ShowcaseItem[] = [
   { id: "brother-hearing",    name: "弟 ヒアリング",            url: "https://brother-hearing.vercel.app",    tagline: "弟向けAIハーネス要件定義",            desc: "広告代理店勤務の弟向け、AI自動化要件定義のヒアリングツール。",            category: "hearing_card" },
   { id: "sumihara-profile",   name: "住原プロフィール",         url: "https://sumihara-profile.vercel.app",   tagline: "求職者カード 実装サンプル",            desc: "求職者の経歴・志向性を可視化したプロファイルカード。",                    category: "profile_card", featured: true },
   { id: "resume-form",        name: "Resume Form",             url: "https://resume-form.vercel.app",        tagline: "履歴書・職務経歴書ジェネレータ",      desc: "ヒアリング内容から自動で履歴書・職務経歴書を生成。",                      category: "profile_card" },
-  { id: "yamanaka-dashboard", name: "Lakkan Dashboard",        url: "https://yamanaka-dashboard.vercel.app", tagline: "コーポレート兼ポートフォリオ",        desc: "Lakkan法人サイト + 全プロダクト一覧（このサイト）。",                     category: "corp_site", featured: true },
+  { id: "yamanaka-dashboard", name: "Lakkan Dashboard",        url: "https://lakkan-inc.vercel.app", tagline: "コーポレート兼ポートフォリオ",        desc: "Lakkan法人サイト + 全プロダクト一覧（このサイト）。",                     category: "corp_site", featured: true },
   { id: "yamanaka-gantt",     name: "Gantt",                   url: "https://yamanaka-gantt.vercel.app",     tagline: "プロジェクトガント",                    desc: "全プロダクトのガントチャート。",                                           category: "plan_pl" },
 ];
 

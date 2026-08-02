@@ -14,7 +14,7 @@ function relTime(iso: string): string {
   return `${d}d ago`;
 }
 
-export function LiveBadge({ skills = 27 }: { skills?: number }) {
+export function LiveBadge({ products }: { products: number }) {
   const [last, setLast] = useState<string>("4m ago");
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export function LiveBadge({ skills = 27 }: { skills?: number }) {
       </span>
       <span>LIVE</span>
       <span style={{ opacity: 0.4 }}>—</span>
-      <span style={{ letterSpacing: "0.08em" }}>{skills} skills</span>
+      <span style={{ letterSpacing: "0.08em" }}>{products} products</span>
       <span style={{ opacity: 0.4 }}>·</span>
       <span style={{ letterSpacing: "0.08em", textTransform: "none" }}>{last}</span>
       <style>{`@keyframes lakkan-pulse { 0%,100% { transform:scale(1); opacity:1 } 50% { transform:scale(1.6); opacity:0.2 } }`}</style>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
+import Link from "next/link";
 import { COMPANIES, TOTAL_ITEMS, ACTIVE_ITEMS, FEATURED_ITEMS, CATEGORY_META, type Company, type ShowcaseItem, type ShowcaseCategory } from "@/data/showcase";
 
 const ACCENT = "#06B6D4";
@@ -220,10 +221,10 @@ export default function ShowcasePage() {
               </div>
             </div>
             <div className="flex gap-6 text-[12px] font-mono">
-              <a href="/" className="hover:underline transition-colors" style={{ color: INK }}>Lakkan ↗</a>
+              <Link href="/" className="hover:underline transition-colors" style={{ color: INK }}>Lakkan ↗</Link>
               <a href="https://vigil-vert-gamma.vercel.app" target="_blank" rel="noopener" className="hover:underline" style={{ color: INK }}>Vigil ↗</a>
               <a href="https://vigil-playbook.vercel.app" target="_blank" rel="noopener" className="hover:underline" style={{ color: INK }}>Playbook ↗</a>
-              <a href="https://s-yamanaka-droid.github.io/nowonair/" target="_blank" rel="noopener" className="hover:underline" style={{ color: INK }}>Now on AIr ↗</a>
+              <a href="https://nowonair.vercel.app/" target="_blank" rel="noopener" className="hover:underline" style={{ color: INK }}>Now on AIr ↗</a>
             </div>
           </div>
           <div className="pt-6 border-t flex items-center justify-between flex-wrap gap-3 text-[10.5px] font-mono" style={{ borderColor: BORDER, color: SUBTLE }}>

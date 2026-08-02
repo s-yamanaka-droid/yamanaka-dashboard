@@ -3,7 +3,7 @@
 > ⚠️ **AIエージェントへ**: このサイトのコンテンツを編集する前に、必ずこのファイルを読むこと。
 > ここに書かれていない事実を出力に含めてはいけない。曖昧な場合は山中本人に確認するか、削除する。
 
-最終更新: 2026-05-03
+最終更新: 2026-08-03
 
 ---
 
@@ -19,8 +19,8 @@
 | 所在地 | 東京都渋谷区神宮前6-23-4 |
 | 業種 | Artificial Intelligence（AI企業として分類） |
 | 連絡先 | s-yamanaka@tre-pro.co.jp |
-| コーポレートサイト | https://yamanaka-dashboard.vercel.app |
-| カスタムドメイン | https://solve-inc.space (DNS反映待ち) |
+| コーポレートサイト | https://lakkan-inc.vercel.app |
+| カスタムドメイン | 未設定（Vercel URL運用中） |
 | 主要事業 | AIエージェント開発 / 生成AI・LLM活用 / バイブコーディング / 採用DX / 業務自動化 |
 | 親会社 | なし（独立法人）。**「Treproからスピンアウト」と書いてはいけない** |
 | 関連 | 山中が同時にトレプロCOOを務めるが、Lakkanはトレプロの子会社ではない |
@@ -167,7 +167,7 @@
 ### Group II: Products
 | Label | URL | Status |
 |---|---|---|
-| Now On Air | https://s-yamanaka-droid.github.io/nowonair/ | live (Updated daily) |
+| Now On Air | https://nowonair.vercel.app/ | live (Updated daily) |
 | AI News | /ai-news | live |
 | KANOA Jobs | https://kanoa-jobs.vercel.app | beta (Code: kanoa2026) |
 | AI Quest | https://ai-quest-delta.vercel.app/admin.html | internal (AI研修ツール) |

@@ -230,9 +230,9 @@ export default function VigilPage() {
         </p>
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:2 }}>
           {[
-            { name:"PJ Manager · Threads", status:"LIVE", rows:[["projects","30 (Slack thread roots)"],["intent","Gemma 12B · 5-class"],["sessions","thread_ts ↔ uuid 永続化"],["abort","🛑 reaction → SIGTERM"]] },
-            { name:"Air · Server", status:"UP",    rows:[["tailscale","100.86.81.47"],["role","24/7 home server"],["processes","orchestrator · slack-watcher · nightly-review · pulse-briefing"]] },
-            { name:"Pro · Client", status:"UP",    rows:[["tailscale","100.99.131.109"],["role","外出用 / 設計・開発"],["tools","Claude Code · Obsidian · IDE"]] },
+            { name:"PJ Manager · Threads", status:"LIVE", rows:[["projects","30 (Slack thread roots)"],["intent","Gemma 12B · 5-class"],["sessions","thread_ts ↔ uuid 永続化"],["abort","stop signal → SIGTERM"]] },
+            { name:"Air · Server", status:"UP",    rows:[["network","private mesh"],["role","24/7 home server"],["processes","orchestrator · slack-watcher · nightly-review · pulse-briefing"]] },
+            { name:"Pro · Client", status:"UP",    rows:[["network","private mesh"],["role","外出用 / 設計・開発"],["tools","Claude Code · Obsidian · IDE"]] },
             { name:"Jarvis Router V2", status:"LIVE", rows:[["model","Haiku / Sonnet auto"],["lock","/tmp/jarvis_code.lock"],["approval","OK <ID> flow"],["git","auto-commit"]] },
             { name:"Pulse Briefing", status:"4×/DAY", rows:[["07:00","朝 — 最優先 3 件"],["12:00","昼 — 午前進捗 / 午後推奨"],["18:00","夕 — 達成状況 / 残件"],["22:00","夜 — 振り返り / 引き継ぎ"]] },
             { name:"Nightly Review", status:"23:30 JST", rows:[["学習","feedback → patterns 抽出"],["蓄積","brain/patterns 更新"],["配信","Slack に学習レポート"]] },

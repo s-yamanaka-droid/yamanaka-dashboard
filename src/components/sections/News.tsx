@@ -132,7 +132,7 @@ export function News() {
               )}
             </div>
             <a
-              href="https://s-yamanaka-droid.github.io/nowonair/"
+              href="https://nowonair.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               style={{

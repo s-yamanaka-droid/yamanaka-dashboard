@@ -1,6 +1,7 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-require-imports */
 /**
- * Now On Air (https://s-yamanaka-droid.github.io/nowonair/) のトップHTMLを取得し、
+ * Now On AIr (https://nowonair.vercel.app/) のトップHTMLを取得し、
  * data-* 属性からカードをパースして public/now-on-air.json に保存する。
  *
  * 実行: node scripts/sync-now-on-air.js
@@ -10,7 +11,7 @@ const fs = require("fs");
 const path = require("path");
 const https = require("https");
 
-const NOWONAIR = "https://s-yamanaka-droid.github.io/nowonair/";
+const NOWONAIR = "https://nowonair.vercel.app/";
 const OUT_DIR = path.resolve(__dirname, "../public/now-on-air");
 const OUT_FILE = path.join(OUT_DIR, "index.json");
 
@@ -55,7 +56,7 @@ function jsonAttr(card, name) {
 }
 
 function parseArticles(html) {
-  const re = /<div\s+class="(?:ig-featured|ig-card)"[^>]*?data-title="[^>]*?>/g;
+  const re = /<div\s+class="[^"]*(?:ig-featured|ig-card)[^"]*"[^>]*?data-title="[^>]*?>/g;
   const matches = html.match(re) || [];
   const articles = [];
   for (const card of matches) {

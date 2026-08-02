@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { LockKeyhole } from "lucide-react";
 import changelog from "@/data/changelog.json";
 
 type Entry = {
@@ -115,7 +116,8 @@ export default function ChangelogPage() {
               letterSpacing: "0.15em", color: "#8A857A",
               textDecoration: "none", padding: "8px 16px",
               textTransform: "uppercase",
-            }}>🔒 Products</Link>
+              display: "inline-flex", alignItems: "center", gap: 5,
+            }}><LockKeyhole size={12} aria-hidden="true" /> Products</Link>
             <Link href="https://vigil-vert-gamma.vercel.app" target="_blank" style={{
               fontFamily: "'DM Mono', monospace", fontSize: 11,
               letterSpacing: "0.15em", color: "#8A857A",
@@ -157,7 +159,7 @@ export default function ChangelogPage() {
           textTransform: "uppercase", marginBottom: 22,
         }}>
           <span style={{ width: 32, height: 1, background: accent }} />
-          <span>// changelog · {entries.length} entries</span>
+          <span>{"// changelog · "}{entries.length} entries</span>
         </div>
         <h1 style={{
           fontFamily: "'Playfair Display', serif",

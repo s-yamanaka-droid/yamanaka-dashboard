@@ -82,7 +82,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-15",
-    "updatedAt": "2026-05-31",
+    "updatedAt": "2026-08-02",
     "url": "https://kanoa-jobs.vercel.app",
     "client": "KANOA",
     "tags": [
@@ -103,7 +103,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-06",
-    "updatedAt": "2026-04-15",
+    "updatedAt": "2026-07-15",
     "url": "https://kanoa-ai-platform.vercel.app/engine/dashboard",
     "client": "KANOA",
     "tags": [
@@ -240,7 +240,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-18",
-    "updatedAt": "2026-04-20",
+    "updatedAt": "2026-06-08",
     "url": "https://competitor-research.vercel.app",
     "tags": [
       "AI Agent",
@@ -500,7 +500,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-20",
-    "updatedAt": "2026-06-04",
+    "updatedAt": "2026-07-04",
     "url": "https://trepro-journey.vercel.app",
     "client": "Trepro",
     "tags": [
@@ -519,8 +519,8 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-04-20",
-    "updatedAt": "2026-06-04",
-    "url": "https://yamanaka-dashboard.vercel.app",
+    "updatedAt": "2026-06-17",
+    "url": "https://lakkan-inc.vercel.app",
     "tags": [
       "ポートフォリオ",
       "ダッシュボード",

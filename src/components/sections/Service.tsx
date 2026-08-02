@@ -411,7 +411,7 @@ export function Service() {
             All prices are exclusive of tax · Custom scopes welcome
           </span>
           <a
-            href="#join"
+            href="/contact"
             style={{
               display: "inline-flex",
               alignItems: "center",

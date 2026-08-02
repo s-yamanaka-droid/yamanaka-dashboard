@@ -33,7 +33,7 @@
       "date": "2026-05-14",
       "tag": "PRODUCT",
       "title": "山中専用 Products ハブ完成 — 55プロダクトを横断管理",
-      "body": "yamanaka-dashboard.vercel.app/products に55件のプロダクトをカード表示。会社別×ステータス×検索のフィルタ。パスワード保護で外部からは見えない。データソースは _apps_mapping.md を正本に。",
+      "body": "lakkan-inc.vercel.app/products にプロダクトをカード表示。会社別×ステータス×検索のフィルタ。パスワード保護で外部からは見えない。データソースは _apps_mapping.md を正本に。",
       "links": [
         {
           "label": "Products",

@@ -101,7 +101,7 @@ export function Story() {
           >
             ※ 個人の経歴は{" "}
             <a
-              href="#about"
+              href="/about"
               style={{ color: ACCENT.vermillion, textDecoration: "none", borderBottom: `1px solid ${ACCENT.vermillion}` }}
             >
               About

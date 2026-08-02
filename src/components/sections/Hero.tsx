@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import { Command } from "lucide-react";
+import { Command, LockKeyhole } from "lucide-react";
 // three.js を含む重量コンポーネントは dynamic import + ssr:false で初期バンドルから除外
 const HeroCanvas  = dynamic(() => import("@/components/HeroCanvas"),                     { ssr: false, loading: () => null });
 const HeroLetters = dynamic(() => import("@/components/HeroLetters"),                    { ssr: false, loading: () => null });
@@ -59,7 +59,7 @@ export function Hero({
           <HeroLetters />
 
           {/* F2 — Live badge (top right, fixed within hero) */}
-          <LiveBadge skills={32} />
+          <LiveBadge products={totalProjects} />
 
           <motion.div style={{ display:"flex", width:"300vw", height:"100%", translateX:heroX, position:"relative", zIndex:2 }}>
 
@@ -78,7 +78,7 @@ export function Hero({
                   </span>
                 </span>
                 <div style={{ display:"flex", gap:24, alignItems:"center" }}>
-                  {[["Services","/services"],["Vigil AI","#vigil"],["Works","/works"],["About","/about"],["Contact","/contact"]].map(([l,h]) => (
+                  {[["Services","/services"],["Vigil AI","#vigil"],["Works","/works"],["About","/about"]].map(([l,h]) => (
                     <a key={l} href={h} className="hero-nav-link"
                       style={{ fontFamily:SANS, fontSize:13, fontWeight:500, color:ink, textDecoration:"none", opacity:0.75 }}>
                       {l}
@@ -89,7 +89,7 @@ export function Hero({
                       background: ink, border:`1px solid ${ink}`,
                       borderRadius:4, padding:"6px 14px",
                       letterSpacing:"0.1em", textTransform:"uppercase" }}>
-                    🔒 Products
+                    <LockKeyhole size={12} aria-hidden="true" /> Products
                   </a>
                   <a href="#join" className="hero-nav-link"
                     style={{ fontFamily:SANS, fontSize:13, fontWeight:700, color:ink, textDecoration:"none",
@@ -217,7 +217,7 @@ export function Hero({
                 paddingBottom: 4,
               }}>
                 <span style={{ fontFamily:FRANK, fontSize:12, color:ink, opacity:0.55, letterSpacing:"0.04em" }}>
-                  Yamanaka Shuto · 6 companies · 55 products · Built with Claude Code + Gemma + Gemini
+                  Yamanaka Shuto · 6 companies · {totalProjects} products · Built with Claude Code + Gemma + Gemini
                 </span>
                 <motion.div
                   initial={{ opacity:0 }} animate={{ opacity:0.55 }} transition={{ delay:1, duration:0.8 }}
@@ -287,7 +287,7 @@ export function Hero({
               <div style={{ height:1, background:ink, opacity:0.18, margin:"48px 0 24px" }}/>
               <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                 <span style={{ fontFamily:FRANK, fontSize:13, color:ink, opacity:0.38 }}>(LAKKAN@operates_6)</span>
-                <motion.a href="#works" whileHover={{ x:4 }}
+                <motion.a href="/works" whileHover={{ x:4 }}
                   style={{ display:"flex", alignItems:"center", gap:8, fontFamily:INSTRUMENT, fontStyle:"italic", fontSize:24, fontWeight:400, color:ink, textDecoration:"none", opacity:0.8 }}>
                   ↓ works
                 </motion.a>
