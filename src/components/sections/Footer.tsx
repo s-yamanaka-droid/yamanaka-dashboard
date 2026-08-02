@@ -347,7 +347,7 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
                 textTransform: "uppercase",
               }}
             >
-              Parent: Trepro
+              Related: Trepro
             </a>
             <button
               onClick={onOpenCmd}
