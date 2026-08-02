@@ -20,7 +20,7 @@
 | 業種 | Artificial Intelligence（AI企業として分類） |
 | 連絡先 | s-yamanaka@tre-pro.co.jp |
 | コーポレートサイト | https://lakkan-inc.vercel.app |
-| カスタムドメイン | 未設定（Vercel URL運用中） |
+| カスタムドメイン | https://solve-inc.space（Vercel aliasとして稼働中） |
 | 主要事業 | AIエージェント開発 / 生成AI・LLM活用 / バイブコーディング / 採用DX / 業務自動化 |
 | 親会社 | なし（独立法人）。**「Treproからスピンアウト」と書いてはいけない** |
 | 関連 | 山中が同時にトレプロCOOを務めるが、Lakkanはトレプロの子会社ではない |
