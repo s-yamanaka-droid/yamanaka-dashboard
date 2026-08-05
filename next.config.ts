@@ -19,7 +19,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
       "img-src 'self' data: blob: https:",
-      "connect-src 'self' https://*.supabase.co https://api.github.com https://vitals.vercel-insights.com",
+      "connect-src 'self'",
       "frame-ancestors 'self'",
       "frame-src 'none'",
       "object-src 'none'",
