@@ -91,6 +91,7 @@ export function MagneticHeading({
           return (
             <em
               key={`s-${i}`}
+              className="heading-phrase"
               style={{
                 fontStyle: seg.italic ? "italic" : "normal",
                 color: seg.color,
@@ -100,7 +101,7 @@ export function MagneticHeading({
             </em>
           );
         }
-        return <span key={`s-${i}`}>{chars}</span>;
+        return <span key={`s-${i}`} className="heading-phrase">{chars}</span>;
       })}
     </span>
   );

@@ -82,6 +82,23 @@
   font-family: var(--font-display), system-ui, sans-serif;
 }
 
+/* Editorial Japanese typography */
+.editorial-heading {
+  text-wrap: balance;
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+.heading-phrase {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+}
+.editorial-lede {
+  text-wrap: pretty;
+  line-break: strict;
+}
+
 /* Card hover */
 .card-hover:hover {
   transform: translateY(-3px);
@@ -185,6 +202,28 @@
   /* Hide hero nav links (keep brand + Cmd button) */
   .hero-nav-link { display: none !important; }
 
+  /* Large editorial headings: preserve phrases, avoid orphaned punctuation */
+  .editorial-heading--display {
+    font-size: clamp(44px, 8vw, 64px) !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.02em !important;
+  }
+  .hero-primary-heading {
+    font-size: clamp(56px, 15vw, 72px) !important;
+    line-height: 0.96 !important;
+  }
+  .page-hero {
+    padding: 88px 20px 52px !important;
+  }
+  .page-hero-title {
+    margin-bottom: 22px !important;
+  }
+  .page-hero-lede {
+    font-size: 17px !important;
+    line-height: 1.7 !important;
+    max-width: 34em !important;
+  }
+
   /* Story / Join / Luna headline+lede 2col -> stack */
   #story > div > div[style*="grid-template-columns"],
   #luna > div > div[style*="grid-template-columns"]:first-of-type ~ div,
@@ -224,11 +263,14 @@
   }
   #luna [data-mobile-stack="luna-stat"] > div {
     border-right: none !important;
-    border-bottom: 1px solid rgba(255,255,255,0.12) !important;
+    border-bottom: 1px solid rgba(13,13,13,0.12) !important;
     padding: 18px 16px !important;
   }
   #luna [data-mobile-stack="luna-stat"] > div:last-child {
     border-bottom: none !important;
+  }
+  #luna [data-mobile-stack="luna-stat"] {
+    grid-template-columns: 1fr !important;
   }
 
   /* Service headline+lede 2col */
@@ -308,6 +350,12 @@
   }
 
   /* Portals - group header right meta */
+  #portals [data-mobile-stack="portals-head"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    align-items: start !important;
+    margin-bottom: 40px !important;
+  }
   #portals [data-mobile-stack="grp-head"] {
     flex-wrap: wrap !important;
     gap: 8px !important;
@@ -322,6 +370,13 @@
     padding-right: 24px !important;
   }
   #hero-panel-1 { padding-top: 20px !important; padding-bottom: 20px !important; }
+  #hero-panel-1 [data-mobile-stack="hero-main"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  #hero-panel-1 [data-mobile-stack="hero-main"] > div:last-child {
+    display: none !important;
+  }
 
   /* Hero panel 3 stat row */
   #hero-panel-3 [data-mobile-stack="hero-stats"] {
@@ -362,7 +417,10 @@
     padding-left: 18px !important;
     padding-right: 18px !important;
   }
-  #luna [data-mobile-stack="luna-stat"] {
-    grid-template-columns: 1fr 1fr !important;
+  .editorial-heading--display {
+    font-size: clamp(38px, 11vw, 44px) !important;
+  }
+  .hero-primary-heading {
+    font-size: clamp(52px, 15vw, 62px) !important;
   }
 }

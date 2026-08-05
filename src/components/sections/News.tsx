@@ -96,6 +96,7 @@ export function News() {
               Now On Air · Live
             </div>
             <h2
+              className="editorial-heading"
               style={{
                 fontFamily: INSTRUMENT,
                 fontSize: "clamp(44px,7vw,104px)",

@@ -25,8 +25,13 @@ type Props = {
  * - Lede  : Frank Ruhl Libre italic
  */
 export function PageHero({ section, version, title, lede, background = "#F7F4EE" }: Props) {
+  const hasTerminalPunctuation = /[。.!！?？]$/.test(title.trim());
+  const pauseIndex = title.indexOf("、");
+  const titleLead = pauseIndex >= 0 ? title.slice(0, pauseIndex + 1) : title;
+  const titleTail = pauseIndex >= 0 ? title.slice(pauseIndex + 1) : "";
   return (
     <section
+      className="page-hero"
       style={{
         background,
         color: "#0D0D0D",
@@ -70,6 +75,7 @@ export function PageHero({ section, version, title, lede, background = "#F7F4EE"
 
         {/* Headline */}
         <motion.h1
+          className="editorial-heading editorial-heading--display page-hero-title"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: EASE }}
@@ -83,12 +89,19 @@ export function PageHero({ section, version, title, lede, background = "#F7F4EE"
             color: "#0D0D0D",
           }}
         >
-          {title}
-          <span style={{ color: ACCENT.vermillion }}>.</span>
+          <span className="heading-phrase">{titleLead}</span>
+          {titleTail && (
+            <>
+              <br />
+              <span className="heading-phrase">{titleTail}</span>
+            </>
+          )}
+          {!hasTerminalPunctuation && <span style={{ color: ACCENT.vermillion }}>.</span>}
         </motion.h1>
 
         {/* Lede */}
         <motion.p
+          className="editorial-lede page-hero-lede"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6, ease: EASE }}

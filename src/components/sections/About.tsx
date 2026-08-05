@@ -78,6 +78,7 @@ export function About() {
             transition={{ delay: 0.15, duration: 0.7, ease: EASE }}
           >
             <h2
+              className="editorial-heading"
               style={{
                 fontFamily: INSTRUMENT,
                 fontSize: "clamp(48px, 7vw, 104px)",

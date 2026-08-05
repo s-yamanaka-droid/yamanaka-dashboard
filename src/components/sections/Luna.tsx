@@ -54,6 +54,7 @@ export function Luna() {
         }}
       >
         <motion.h2
+          className="editorial-heading editorial-heading--display"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -70,7 +71,7 @@ export function Luna() {
         >
           <Em accent="forest">Luna.</Em>
           <br />
-          育つAIの右腕。
+          <span className="heading-phrase">育つAIの右腕。</span>
         </motion.h2>
 
         <motion.div

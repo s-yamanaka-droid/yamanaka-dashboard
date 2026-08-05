@@ -357,6 +357,7 @@ export function Works({
         {/* Title row */}
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 32, flexWrap: "wrap", marginBottom: 24 }}>
           <motion.h2
+            className="editorial-heading editorial-heading--display"
             initial={{ y: 24, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true, amount: 0.4 }}

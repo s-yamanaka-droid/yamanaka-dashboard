@@ -113,6 +113,7 @@ export function Hero({
                 {/* LEFT — F6 magnetic heading */}
                 <div>
                   <motion.h1
+                    className="editorial-heading hero-primary-heading"
                     initial={{ opacity:0, y: 28 }}
                     animate={{ opacity:1, y: 0 }}
                     transition={{ delay: 0.15, duration: 0.85, ease: [0.22,1,0.36,1] }}

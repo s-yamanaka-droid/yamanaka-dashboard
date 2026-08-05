@@ -104,13 +104,14 @@ export function Portals() {
     <SectionShell id="portals" tone="creamLight" eyebrow="Public Portals" accent="blue">
       <div data-mobile-stack="portals-head" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "6vw", alignItems: "end", marginBottom: 56 }}>
         <motion.h2
+          className="editorial-heading editorial-heading--display"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65, ease: EASE }}
           style={{ fontFamily: INSTRUMENT, fontSize: "clamp(56px, 9vw, 136px)", fontWeight: 400, lineHeight: 0.92, letterSpacing: "-0.03em", margin: 0 }}
         >
-          公開している、<br /><Em accent="blue">仕事の入口。</Em>
+          <span className="heading-phrase">公開している、</span><br /><Em accent="blue"><span className="heading-phrase">仕事の入口。</span></Em>
         </motion.h2>
         <p style={{ fontFamily: SANS, fontSize: 14, color: "#5A554D", lineHeight: 1.85, margin: 0, maxWidth: 420 }}>
           実際に公開・運用しているプロダクトだけを掲載しています。開発中、社内専用、顧客限定の情報はここには出しません。

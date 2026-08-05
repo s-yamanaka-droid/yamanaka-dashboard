@@ -65,6 +65,7 @@ export function Join() {
           }}
         >
           <motion.h2
+            className="editorial-heading editorial-heading--display"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -79,9 +80,9 @@ export function Join() {
               margin: 0,
             }}
           >
-            一緒に、
+            <span className="heading-phrase">一緒に、</span>
             <br />
-            <Em accent="vermillion">走ろう。</Em>
+            <Em accent="vermillion"><span className="heading-phrase">走ろう。</span></Em>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
