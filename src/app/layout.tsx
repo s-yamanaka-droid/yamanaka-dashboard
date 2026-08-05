@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif, Shippori_Mincho, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
-import "./vigil-tokens.css";
 import GlobalShell from "@/components/GlobalShell";
 import { CookieConsent } from "@/components/CookieConsent";
 
@@ -199,7 +198,7 @@ export default function RootLayout({
                   itemListElement: [
                     { "@type": "ListItem", position: 1, name: "Home",     item: "https://lakkan-inc.vercel.app/" },
                     { "@type": "ListItem", position: 2, name: "Services", item: "https://lakkan-inc.vercel.app/services" },
-                    { "@type": "ListItem", position: 3, name: "Vigil AI", item: "https://lakkan-inc.vercel.app/vigil" },
+                    { "@type": "ListItem", position: 3, name: "Luna AI", item: "https://lunatech-migration-guide.vercel.app" },
                     { "@type": "ListItem", position: 4, name: "Works",    item: "https://lakkan-inc.vercel.app/works" },
                     { "@type": "ListItem", position: 5, name: "About",    item: "https://lakkan-inc.vercel.app/about" },
                     { "@type": "ListItem", position: 6, name: "Contact",  item: "https://lakkan-inc.vercel.app/contact" },

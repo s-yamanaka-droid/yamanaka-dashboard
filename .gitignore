@@ -40,3 +40,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .env.local
+
+# local/internal material — this repository is public
+FACTS.md
+audit-report-*.md
+.audit-scores.json
+src/data/products.full.json
+src/data/vault_stats.json

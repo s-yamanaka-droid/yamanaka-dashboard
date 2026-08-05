@@ -1,155 +1,107 @@
 [
   {
-    "id": "atelier-patterns",
-    "name": "Atelier — WebGL & Layout Patterns",
-    "description": "Lakkan が積み上げている、サイト制作の素地ライブラリ。WebGL 3D 3種・LP/HP レイアウト 3種・コンバージョン素地・ローカルビジネス向けコア 2種＝計 9 パターン。すべてライトテーマ・1ファイル完結・SEO/構造化データ完備。配色とコピーを差し替えれば数分で「その会社版」になる、Lakkan の実装メソッド。",
+    "id": "luna-ai",
+    "name": "Luna AI",
+    "description": "判断・言葉・失敗をローカルに蓄積し、使うほど利用者専用に育つAIの右腕。記憶・スキル・安全な外部連携・更新機構を、導入後すぐ使える状態で届けるLunaTechのAIキッティングサービス。",
+    "category": "ai_agent",
+    "status": "live",
+    "builtWith": "claude_code",
+    "createdAt": "2026-07-25",
+    "updatedAt": "2026-08-03",
+    "url": "https://lunatech-migration-guide.vercel.app",
+    "client": "LunaTech",
+    "tags": [
+      "Luna AI",
+      "AIハーネス",
+      "長期記憶",
+      "ローカルファースト"
+    ],
+    "featured": true,
+    "workType": "own"
+  },
+  {
+    "id": "central-medical",
+    "name": "Central Medical",
+    "description": "医療機関としての信頼感と相談しやすさを両立したコーポレートサイト。情報設計、実写ビジュアル、レスポンシブ対応、公開前のセキュリティ・表示検証まで一貫して実装。",
     "category": "website",
     "status": "live",
     "builtWith": "claude_code",
-    "createdAt": "2026-06-04",
-    "updatedAt": "2026-06-04",
-    "url": "https://lakkan-inc.vercel.app/atelier",
+    "createdAt": "2026-08-02",
+    "updatedAt": "2026-08-04",
+    "url": "https://lakkan-central-medical.vercel.app",
+    "client": "中央メディカル",
     "tags": [
-      "Atelier",
-      "WebGL",
-      "three.js",
-      "GSAP",
-      "Lakkan",
-      "サイト制作",
-      "パターンライブラリ",
-      "素地",
-      "ローカルビジネス",
-      "Next.js"
+      "コーポレートサイト",
+      "医療",
+      "Next.js",
+      "レスポンシブ"
     ],
-    "client": "Lakkan",
-    "featured": true
+    "featured": true,
+    "workType": "client"
   },
   {
-    "id": "reskilllab-trepro",
-    "name": "リスキルラボ by TREPRO",
-    "description": "AIリスキリング研修の商談で「触って体感する」動的デモ（Trepro版）。同一コードベースから VITE_BRAND で出し分け。Lv1-3×業種5種×生成物12種、LIVE Gemini+OpenAI 実API社名反映、助成金75%込み投資シミュ、営業チートシート（ASK/SILENCE/OBJECTION/CLOSING）統合。Trepro赤×墨配色。商談URL ?company=◯◯ で相手社名を全画面・LIVE出力に自動反映。",
-    "category": "external",
+    "id": "now-on-air",
+    "name": "Now On AIr",
+    "description": "AI業界の主要ニュースを、事業判断に使える論点へ編集して届けるモーニングディスパッチ。情報収集から要約、公開までを継続運用している。",
+    "category": "ai_agent",
     "status": "live",
     "builtWith": "claude_code",
-    "createdAt": "2026-05-26",
-    "updatedAt": "2026-05-26",
-    "url": "https://trepro-resk-demo.vercel.app",
+    "createdAt": "2026-05-12",
+    "updatedAt": "2026-08-05",
+    "url": "https://nowonair.vercel.app",
+    "client": "Lakkan",
     "tags": [
-      "AIリスキリング",
-      "商談デモ",
-      "営業ツール",
-      "React",
-      "Vite",
-      "Gemini",
-      "OpenAI",
-      "Tailwind",
-      "助成金",
-      "TREPRO"
+      "AIニュース",
+      "リサーチ",
+      "自動更新",
+      "編集"
     ],
-    "client": "TREPRO",
-    "featured": true
+    "featured": true,
+    "workType": "own"
   },
   {
     "id": "reskilllab-lunatech",
-    "name": "リスキルラボ by LunaTech",
-    "description": "AIリスキリング研修の商談で「触って体感する」動的デモ。Lv1（プロンプト体感）/Lv2（ハーネス可視化）/Lv3（マルチエージェント）の3段階×業種5種で実演。生成物プレビュー12種類（PDF/スライド/Notion等）。LIVE Gemini+OpenAI 自動フォールバックで実APIから社名入り出力を生成。助成金75%込み投資回収シミュ・営業チートシート・段階導入ロードマップ統合。URLに?company=◯◯で商談相手社名を自動反映。Solaris太陽オレンジ×Stripeネイビー配色。",
+    "name": "LunaTech AI Lab",
+    "description": "生成AIを説明ではなく操作で理解する体験型ラボ。業務別のプロンプト体験、生成物プレビュー、段階的なAI導入シナリオをブラウザで試せる。",
     "category": "external",
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-05-26",
-    "updatedAt": "2026-05-26",
+    "updatedAt": "2026-05-27",
     "url": "https://lunatech-ai-lab.vercel.app",
+    "client": "LunaTech",
     "tags": [
       "AIリスキリング",
-      "商談デモ",
-      "営業ツール",
+      "体験デモ",
       "React",
-      "Vite",
-      "Gemini",
-      "OpenAI",
-      "Tailwind",
-      "助成金",
-      "LunaTech"
+      "生成AI"
     ],
-    "client": "LunaTech",
-    "featured": true
+    "featured": true,
+    "workType": "own"
   },
   {
-    "id": "kanoa-jobs",
-    "name": "KANOA Jobs",
-    "description": "Indeed型求人ポータル。130件の全国求人、AIマッチング、ワンタップ応募、年収シミュレーター、選考追跡、企業口コミ、給与DB、SEO構造化データ対応。346ページ。",
-    "category": "external",
+    "id": "competitor-intelligence",
+    "name": "Competitor Intelligence",
+    "description": "競合企業の公開情報を収集・整理し、変化点と意思決定材料へ変換するリサーチツール。調査結果を再利用できる構造で蓄積する。",
+    "category": "ai_agent",
     "status": "live",
     "builtWith": "claude_code",
-    "createdAt": "2026-04-15",
-    "updatedAt": "2026-08-02",
-    "url": "https://kanoa-jobs.vercel.app",
-    "client": "KANOA",
+    "createdAt": "2026-04-18",
+    "updatedAt": "2026-06-08",
+    "url": "https://competitor-research-gamma.vercel.app",
+    "client": "Solve",
     "tags": [
-      "求人ポータル",
-      "AI",
-      "SEO",
-      "Indeed",
-      "Next.js",
-      "Supabase"
+      "競合分析",
+      "AIリサーチ",
+      "レポート",
+      "意思決定"
     ],
-    "featured": true
-  },
-  {
-    "id": "kanoa-ai-platform",
-    "name": "engine. by KANOA",
-    "description": "エージェント向け求人シェアリングプラットフォーム。AIマッチング、CRM、KPIダッシュボード、候補者管理を統合。circusAGENT/Zキャリア参考設計。",
-    "category": "external",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-06",
-    "updatedAt": "2026-07-15",
-    "url": "https://kanoa-ai-platform.vercel.app/engine/dashboard",
-    "client": "KANOA",
-    "tags": [
-      "エージェントPF",
-      "AI",
-      "CRM",
-      "Next.js"
-    ]
-  },
-  {
-    "id": "kanoa-deploy",
-    "name": "engine. Demo",
-    "description": "engine.のHTMLデモモック（v6）。ネイビー×ゴールドのブランドUI。Agent/Kanoa 2ロール、14タブ、チャート、チャット、モーダル完備。2,463行。",
-    "category": "external",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-10",
-    "updatedAt": "2026-04-10",
-    "url": "https://kanoa-deploy.vercel.app",
-    "client": "KANOA",
-    "tags": [
-      "デモ",
-      "HTML",
-      "UI/UX"
-    ]
-  },
-  {
-    "id": "kanoa-report",
-    "name": "KANOA Development Report",
-    "description": "飯生代表向け開発レポート。プロダクト概要、Indeed比較、コスト試算、ロードマップ、Next Actionを掲載。KANOAゴールドデザイン。",
-    "category": "external",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-17",
-    "updatedAt": "2026-04-20",
-    "url": "https://kanoa-jobs.vercel.app/report.html",
-    "client": "KANOA",
-    "tags": [
-      "提案資料",
-      "レポート"
-    ]
+    "workType": "own"
   },
   {
     "id": "lia-recruit",
     "name": "LiA 採用LP",
-    "description": "飲食店業界特化の求人広告代理店・株式会社LiA向け採用ランディングページ。カスタムカーソル・Lenisスムーズスクロール・テキストスクランブル・KPIカウントアップ・カード3D tilt・マグネティックボタンなどプレミアム演出を全実装。Next.js静的エクスポート。",
+    "description": "飲食業界に特化した求人広告代理店向けの採用ランディングページ。ブランド表現と応募導線を一体で設計し、滑らかなモーションと高速な表示を両立。",
     "category": "external",
     "status": "live",
     "builtWith": "claude_code",
@@ -160,371 +112,72 @@
     "tags": [
       "採用LP",
       "Next.js",
-      "アニメーション",
-      "Lenis",
-      "カスタムカーソル"
+      "モーション",
+      "コンバージョン設計"
     ],
-    "featured": true
+    "featured": true,
+    "workType": "client"
   },
   {
-    "id": "braive-ai",
-    "name": "Braive AI",
-    "description": "教育×AI領域のWebアプリ。パーソナライズド学習コンテンツ生成と進捗トラッキング。",
-    "category": "external",
+    "id": "atelier-patterns",
+    "name": "Lakkan Atelier",
+    "description": "WebGL、レイアウト、コンバージョン導線を実際に触って比較できるWeb制作パターン集。案件ごとに最適な表現を選ぶための公開実験場。",
+    "category": "website",
     "status": "live",
     "builtWith": "claude_code",
-    "createdAt": "2026-04-11",
-    "updatedAt": "2026-04-15",
-    "url": "https://braive-ai.vercel.app",
-    "tags": [
-      "AI",
-      "EdTech",
-      "Next.js"
-    ]
-  },
-  {
-    "id": "ai-quest",
-    "name": "AI Quest",
-    "description": "Trepro × Lakkan コラボ。オンボーディングをRPG形式でゲーミファイしたAI体験ツール。",
-    "category": "onboarding",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-17",
-    "updatedAt": "2026-05-30",
-    "url": "https://ai-quest.vercel.app",
+    "createdAt": "2026-06-04",
+    "updatedAt": "2026-06-04",
+    "url": "https://lakkan-inc.vercel.app/atelier",
     "client": "Lakkan",
     "tags": [
-      "ゲーミフィケーション",
-      "オンボーディング",
-      "AI",
-      "Next.js"
+      "Atelier",
+      "WebGL",
+      "UI/UX",
+      "デザインシステム"
     ],
-    "featured": true
+    "featured": true,
+    "workType": "own"
   },
   {
-    "id": "onboarding-tool",
-    "name": "Onboarding Tool",
-    "description": "汎用オンボーディングフロービルダー。ステップ設計・コンテンツ管理・進捗確認をノーコードで設定可能。",
-    "category": "onboarding",
-    "status": "dev",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-10",
-    "updatedAt": "2026-04-10",
-    "url": "",
-    "tags": [
-      "オンボーディング",
-      "React",
-      "Vite"
-    ]
-  },
-  {
-    "id": "uemoto-onboarding",
-    "name": "Uemoto Onboarding",
-    "description": "上本向けカスタムオンボーディングシステム。業務フロー・ツール紹介・確認テストを一元管理。",
-    "category": "onboarding",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-12",
-    "updatedAt": "2026-04-12",
-    "url": "https://uemoto-onboarding.vercel.app",
-    "tags": [
-      "オンボーディング",
-      "社内"
-    ]
-  },
-  {
-    "id": "competitor-research",
-    "name": "Competitor Research",
-    "description": "競合他社の情報を自動収集・分析するAIエージェント。Web検索→要約→レポート生成をパイプライン化。",
-    "category": "ai_agent",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-18",
-    "updatedAt": "2026-06-08",
-    "url": "https://competitor-research.vercel.app",
-    "tags": [
-      "AI Agent",
-      "競合分析",
-      "スクレイピング"
-    ]
-  },
-  {
-    "id": "shoot-agent",
-    "name": "Shoot Agent",
-    "description": "コンテンツ制作支援AIエージェント。撮影プランニング・台本生成・スケジューリングを自動化。",
-    "category": "ai_agent",
-    "status": "dev",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-13",
-    "updatedAt": "2026-04-22",
-    "url": "https://shoot-agent-v45.vercel.app",
-    "tags": [
-      "AI Agent",
-      "コンテンツ",
-      "撮影"
-    ]
-  },
-  {
-    "id": "trefinder",
-    "name": "TreFinder",
-    "description": "Trepro向け社内ナレッジ検索ツール。Notionやドキュメント群をセマンティック検索で横断。",
-    "category": "internal",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-16",
-    "updatedAt": "2026-05-28",
-    "url": "https://trefinder.vercel.app",
-    "tags": [
-      "検索",
-      "Notion",
-      "社内ツール"
-    ]
-  },
-  {
-    "id": "trepro-dashboard",
-    "name": "Trepro Dashboard",
-    "description": "Trepro全体のKPI・プロジェクト進捗・売上を一画面で俯瞰できる社内ダッシュボード。",
-    "category": "analytics",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-16",
-    "updatedAt": "2026-04-16",
-    "url": "https://trepro-dashboard.vercel.app",
-    "tags": [
-      "ダッシュボード",
-      "KPI",
-      "React"
-    ]
-  },
-  {
-    "id": "trepro-skillmap",
-    "name": "Trepro SkillMap",
-    "description": "社内メンバーのスキル・経験を可視化するスキルマップツール。採用・アサイン判断に活用。",
-    "category": "internal",
-    "status": "dev",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-14",
-    "updatedAt": "2026-04-14",
-    "url": "",
-    "tags": [
-      "スキル管理",
-      "HR",
-      "社内ツール"
-    ]
-  },
-  {
-    "id": "trepro-ssp-dashboard",
-    "name": "Trepro SSP Dashboard",
-    "description": "SSP（Supply-Side Platform）の配信実績・収益データを集計・可視化するアナリティクスダッシュボード。",
-    "category": "analytics",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-03-05",
-    "updatedAt": "2026-03-05",
-    "url": "",
-    "tags": [
-      "SSP",
-      "広告",
-      "ダッシュボード"
-    ]
-  },
-  {
-    "id": "trepro-sites",
-    "name": "Trepro Sites",
-    "description": "クライアント向けウェブサイトのモノレポ。各サイトは独立したVite + Reactプロジェクトとして管理。moilich / komaki / natsuyama を含む。",
+    "id": "aura-ai-concept",
+    "name": "AURA Fragrance",
+    "description": "架空のフレグランスブランドを、AIだけで企画・コピー・デザイン・実装したコンセプトサイト。WebGL 3Dとスクロール演出を、明るい背景の上で成立させた実験。",
     "category": "website",
     "status": "live",
     "builtWith": "claude_code",
-    "createdAt": "2026-04-05",
-    "updatedAt": "2026-04-05",
-    "url": "https://moilich.vercel.app",
+    "createdAt": "2026-06-03",
+    "updatedAt": "2026-06-04",
+    "url": "https://aura-beta-snowy.vercel.app",
+    "client": "AI Concept",
     "tags": [
-      "Webサイト",
-      "Vite",
-      "React",
-      "モノレポ"
-    ]
-  },
-  {
-    "id": "rakun-site",
-    "name": "Rakun Site",
-    "description": "Rakun向けコーポレートサイト。ブランドアイデンティティを反映したランディングページ。",
-    "category": "website",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-03-23",
-    "updatedAt": "2026-03-23",
-    "url": "",
-    "client": "Rakun",
-    "tags": [
-      "Webサイト",
-      "LP",
-      "コーポレート"
-    ]
-  },
-  {
-    "id": "lakkan-site",
-    "name": "Lakkan Site",
-    "description": "Lakkan向けコーポレートサイト。サービス紹介・採用・お問い合わせを含む多ページ構成。",
-    "category": "website",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-08",
-    "updatedAt": "2026-04-08",
-    "url": "https://lakkan.vercel.app",
-    "client": "Lakkan",
-    "tags": [
-      "Webサイト",
-      "コーポレート",
-      "多ページ"
-    ]
-  },
-  {
-    "id": "cf-dashboard",
-    "name": "CF Dashboard",
-    "description": "Cloudflare Workersのパフォーマンス・エラー率・リクエスト数をリアルタイムで監視するダッシュボード。",
-    "category": "analytics",
-    "status": "dev",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-09",
-    "updatedAt": "2026-04-09",
-    "url": "https://cf-dashboard.vercel.app",
-    "tags": [
-      "Cloudflare",
-      "監視",
-      "ダッシュボード"
-    ]
-  },
-  {
-    "id": "okada-cf-dashboard",
-    "name": "Okada CF Dashboard",
-    "description": "岡田氏向けカスタマイズCloudflareダッシュボード。特定ドメインの帯域・セキュリティイベントを可視化。",
-    "category": "analytics",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-09",
-    "updatedAt": "2026-04-09",
-    "url": "https://okada-cf-dashboard.vercel.app",
-    "client": "岡田氏",
-    "tags": [
-      "Cloudflare",
-      "ダッシュボード",
-      "カスタム"
-    ]
-  },
-  {
-    "id": "takibi",
-    "name": "Takibi",
-    "description": "焚き火×コミュニティをテーマにしたイベント管理・参加者マッチングアプリ。",
-    "category": "external",
-    "status": "dev",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-11",
-    "updatedAt": "2026-04-11",
-    "url": "https://takibi.vercel.app",
-    "tags": [
-      "コミュニティ",
-      "イベント",
-      "Next.js"
-    ]
-  },
-  {
-    "id": "hitofuta",
-    "name": "Hitofuta",
-    "description": "一蓋（ひとふた）：プロダクトのクローズドβ管理ツール。招待コード発行・フィードバック収集を一元化。",
-    "category": "internal",
-    "status": "dev",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-11",
-    "updatedAt": "2026-04-11",
-    "url": "https://hitofuta.vercel.app",
-    "tags": [
-      "β版管理",
-      "フィードバック",
-      "Next.js"
-    ]
-  },
-  {
-    "id": "ishikawa-pl",
-    "name": "Ishikawa PL",
-    "description": "石川氏向けP&Lシミュレーター。売上・原価・固定費を入力し収益予測グラフをリアルタイム生成。",
-    "category": "analytics",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-10",
-    "updatedAt": "2026-04-10",
-    "url": "https://ishikawa-pl.vercel.app",
-    "client": "石川氏",
-    "tags": [
-      "財務",
-      "P&L",
-      "シミュレーション"
-    ]
-  },
-  {
-    "id": "vigil-playbook",
-    "name": "Vigil AI Playbook",
-    "description": "Vigil AI のスキルツリー。育つ第二の脳の知識・パターン・プレイブックを Supabase で蓄積し、どこからでも参照できる。",
-    "category": "internal",
-    "status": "dev",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-13",
-    "updatedAt": "2026-04-13",
-    "url": "https://vigil-vert-gamma.vercel.app",
-    "tags": [
-      "セキュリティ",
-      "プレイブック",
-      "ドキュメント"
-    ]
-  },
-  {
-    "id": "dashboard",
-    "name": "Operations Center",
-    "description": "社内オペレーション統合ダッシュボード。各種ツールのステータス・タスク・通知を一画面で管理。",
-    "category": "internal",
-    "status": "archived",
-    "builtWith": "manual",
-    "createdAt": "2026-03-15",
-    "updatedAt": "2026-03-20",
-    "url": "",
-    "tags": [
-      "ダッシュボード",
-      "オペレーション"
-    ]
-  },
-  {
-    "id": "trepro-journey",
-    "name": "Trepro Journey AI",
-    "description": "TikTok採用戦略設計ツール。業界×ペルソナ84名のジャーニーマップ・カンバンビュー・AI分析を統合した社内専用ツール。",
-    "category": "internal",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-20",
-    "updatedAt": "2026-07-04",
-    "url": "https://trepro-journey.vercel.app",
-    "client": "Trepro",
-    "tags": [
-      "TikTok採用",
-      "ジャーニーマップ",
-      "React",
-      "Vite"
+      "AI CONCEPT",
+      "WebGL",
+      "three.js",
+      "GSAP",
+      "Fragrance"
     ],
-    "featured": true
+    "featured": true,
+    "workType": "ai-concept"
   },
   {
-    "id": "yamanaka-dashboard",
-    "name": "Yamanaka Dashboard",
-    "description": "山中のプロダクトポートフォリオ一覧。Claude Codeで構築した全ツールを俯瞰・管理するハブ。今日の更新バブル・自動ポートフォリオ連携機能を追加。",
-    "category": "internal",
+    "id": "salon-solna-ai-concept",
+    "name": "hair salon SOLNA",
+    "description": "架空のヘアサロンを題材に、AIだけで情報設計・コピー・デザイン・実装したローカルビジネス向けコンセプトサイト。予約導線とモバイル体験を重視。",
+    "category": "website",
     "status": "live",
     "builtWith": "claude_code",
-    "createdAt": "2026-04-20",
-    "updatedAt": "2026-06-17",
-    "url": "https://lakkan-inc.vercel.app",
+    "createdAt": "2026-06-03",
+    "updatedAt": "2026-06-04",
+    "url": "https://salon-solna.vercel.app",
+    "client": "AI Concept",
     "tags": [
-      "ポートフォリオ",
-      "ダッシュボード",
-      "Next.js"
-    ]
+      "AI CONCEPT",
+      "美容室",
+      "予約導線",
+      "Local Business",
+      "Responsive"
+    ],
+    "featured": true,
+    "workType": "ai-concept"
   }
 ]

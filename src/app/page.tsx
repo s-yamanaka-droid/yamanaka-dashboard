@@ -5,20 +5,15 @@ import { ProjectModal } from "@/components/ProjectModal";
 import { CommandSearch } from "@/components/CommandSearch";
 import projectsData from "@/data/projects.json";
 import { Category, Project } from "@/types";
-import { CAT_COLOR, MarqueeItem, SortKey, isNew } from "@/lib/design-tokens";
+import { CAT_COLOR, MarqueeItem, isNew } from "@/lib/design-tokens";
 
 import { Hero } from "@/components/sections/Hero";
 import { Manifesto } from "@/components/sections/Manifesto";
-import { Works } from "@/components/sections/Works";
 import { News } from "@/components/sections/News";
 import { Story } from "@/components/sections/Story";
-import { Service } from "@/components/sections/Service";
-import { Vigil } from "@/components/sections/Vigil";
-import { About } from "@/components/sections/About";
+import { Luna } from "@/components/sections/Luna";
 import { Join } from "@/components/sections/Join";
 import { Portals } from "@/components/sections/Portals";
-import { ProductsBanner } from "@/components/sections/ProductsBanner";
-import { NeuralSection } from "@/components/sections/NeuralSection";
 import { Footer } from "@/components/sections/Footer";
 import { Marquee2 } from "@/components/primitives/Marquee2";
 
@@ -27,7 +22,6 @@ const projects = projectsData as Project[];
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [cmdOpen, setCmdOpen] = useState(false);
-  const [sort, setSort] = useState<SortKey>("updatedAt");
 
   /* Cmd+K */
   useEffect(() => {
@@ -61,7 +55,7 @@ export default function Home() {
   /* Marquee row 2: tags × counts */
   const marqueeRow2: MarqueeItem[] = useMemo(() => [
     ...tagCounts.map(([t,n]) => ({ text:`${t.toUpperCase()} ×${n}` })),
-    { text:`${projects.length} PRODUCTS` },
+    { text:`${projects.length} PUBLIC WORKS` },
     { text:`${live} LIVE` },
     { text:`${cc} CLAUDE CODE BUILT` },
     { text:`${newCount} UPDATED THIS WEEK` },
@@ -69,7 +63,7 @@ export default function Home() {
 
   const MARQUEE_TOP: MarqueeItem[] = [
     { text:"株式会社Lakkan" },{ text:"LUCK × 楽観 = LAKKAN" },{ text:"BUILT WITH AI" },
-    { text:"東京・渋谷" },{ text:"2026" },{ text:"楽観と、計画と。" },{ text:`${projects.length} PRODUCTS` },
+    { text:"東京・渋谷" },{ text:"2026" },{ text:"楽観と、計画と。" },{ text:`${projects.length} PUBLIC WORKS` },
   ];
 
   return (
@@ -81,7 +75,6 @@ export default function Home() {
         newCount={newCount}
         todayCount={todayCount}
         onOpenCmd={() => setCmdOpen(true)}
-        onSetSort={setSort}
       />
 
       <Marquee2 items={MARQUEE_TOP} bg="#0D0D0D" speed="normal" />
@@ -95,8 +88,7 @@ export default function Home() {
 
       <Story />
       {/* Service は /services ページに隔離（縦長解消・2026-05-23）*/}
-      <NeuralSection />
-      <Vigil />
+      <Luna />
       {/* About は /about ページに隔離（個人色をトップから外し縦長解消・2026-05-23）*/}
       <Join />
 
@@ -104,7 +96,6 @@ export default function Home() {
       <Marquee2 items={marqueeRow1} bg="#F4541A" speed="normal" reverse />
 
       <Portals />
-      <ProductsBanner />
       <Footer onOpenCmd={() => setCmdOpen(true)} />
 
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />

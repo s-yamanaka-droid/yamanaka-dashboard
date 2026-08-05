@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { Category, Project } from "@/types";
+import { Category, Project, WorkType, resolveWorkType } from "@/types";
 import {
   INSTRUMENT, FRANK, SANS, EASE, ACCENT,
   CAT_COLOR, CAT_LABEL, STATUS, ALL_CATS, isNew, SortKey,
@@ -15,6 +15,34 @@ const INK = "#0D0D0D";
 const INK_MID = "#5A554D";
 const INK_LOW = "#B0ADA6";
 const PAPER = "#F5F3EE";
+
+const WORK_TYPE_META: Record<WorkType | "all", { label: string; short: string; desc: string; color: string }> = {
+  all: { label: "All Work", short: "All", desc: "すべての制作物", color: INK },
+  client: { label: "Client Work", short: "Client", desc: "実案件・クライアントワーク", color: ACCENT.forest },
+  own: { label: "Owned Products", short: "Owned", desc: "Lakkan・関係会社のプロダクト", color: ACCENT.blue },
+  "ai-concept": { label: "AI Concept Lab", short: "AI Concept", desc: "架空ブランドのAIデザイン実験", color: ACCENT.vermillion },
+};
+
+function WorkTypeBadge({ project }: { project: Project }) {
+  const meta = WORK_TYPE_META[resolveWorkType(project)];
+  return (
+    <span style={{
+      fontFamily: SANS,
+      fontSize: 9,
+      fontWeight: 700,
+      letterSpacing: "0.14em",
+      color: meta.color,
+      border: `1px solid ${meta.color}55`,
+      background: `${meta.color}0D`,
+      padding: "3px 8px",
+      borderRadius: 100,
+      textTransform: "uppercase",
+      whiteSpace: "nowrap",
+    }}>
+      {meta.short}
+    </span>
+  );
+}
 
 /* -------------------------------------------------- */
 /* Featured big card                                   */
@@ -36,7 +64,7 @@ function FeaturedRow({ project, index, onSelect }: { project: Project; index: nu
       transition={{ delay: Math.min(index * 0.06, 0.3), duration: 0.55, ease: EASE }}
       style={{
         display: "grid",
-        gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 1fr)",
+        gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))",
         gap: 32,
         alignItems: "stretch",
         textAlign: "left",
@@ -93,6 +121,7 @@ function FeaturedRow({ project, index, onSelect }: { project: Project; index: nu
       {/* Content block */}
       <div style={{ padding: "32px 32px 28px", display: "flex", flexDirection: "column", gap: 14 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+          <WorkTypeBadge project={project} />
           <span style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: SANS, fontSize: 11, color: st.color, letterSpacing: "0.06em" }}>
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: st.dot }} />
             {st.label}
@@ -112,10 +141,12 @@ function FeaturedRow({ project, index, onSelect }: { project: Project; index: nu
         <h3
           style={{
             fontFamily: INSTRUMENT,
-            fontSize: "clamp(32px, 4vw, 52px)",
+            fontSize: "clamp(28px, 2.3vw, 38px)",
             fontWeight: 400,
             lineHeight: 1.02,
             letterSpacing: "-0.025em",
+            wordBreak: "keep-all",
+            overflowWrap: "anywhere",
             color: hov ? cc : INK,
             margin: 0,
             transition: "color .2s ease",
@@ -215,6 +246,7 @@ function MiniRow({ project, index, onSelect }: { project: Project; index: number
         {isNew(project.updatedAt) && (
           <span style={{ fontFamily: SANS, fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", color: ACCENT.orange }}>NEW</span>
         )}
+        <WorkTypeBadge project={project} />
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 14, flexShrink: 0 }}>
@@ -246,16 +278,28 @@ export function Works({
   onSelectProject: (p: Project) => void;
 }) {
   const [activeCategory, setActiveCategory] = useState<Category>("all");
+  const [activeWorkType, setActiveWorkType] = useState<WorkType | "all">("all");
 
-  const counts = useMemo(() => {
-    const m: Record<Category, number> = { all: projects.length, website: 0, external: 0, internal: 0, analytics: 0, onboarding: 0, ai_agent: 0 };
-    projects.forEach(p => { m[p.category] = (m[p.category] || 0) + 1; });
-    return m;
+  const workTypeCounts = useMemo(() => {
+    const result: Record<WorkType | "all", number> = { all: projects.length, client: 0, own: 0, "ai-concept": 0 };
+    projects.forEach((project) => { result[resolveWorkType(project)] += 1; });
+    return result;
   }, [projects]);
 
+  const workTypeFiltered = useMemo(
+    () => activeWorkType === "all" ? projects : projects.filter((project) => resolveWorkType(project) === activeWorkType),
+    [projects, activeWorkType]
+  );
+
+  const counts = useMemo(() => {
+    const m: Record<Category, number> = { all: workTypeFiltered.length, website: 0, external: 0, internal: 0, analytics: 0, onboarding: 0, ai_agent: 0 };
+    workTypeFiltered.forEach(p => { m[p.category] = (m[p.category] || 0) + 1; });
+    return m;
+  }, [workTypeFiltered]);
+
   const sortedAll = useMemo(
-    () => [...projects].sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()),
-    [projects]
+    () => [...workTypeFiltered].sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()),
+    [workTypeFiltered]
   );
 
   const filtered = useMemo(
@@ -282,7 +326,7 @@ export function Works({
         borderBottom: `1px solid ${BORDER_SOFT}`,
       }}
     >
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "120px 56px" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "clamp(80px, 10vw, 120px) clamp(20px, 5vw, 56px)" }}>
         {/* Eyebrow */}
         <div
           style={{
@@ -349,6 +393,51 @@ export function Works({
 
         {/* Top hairline */}
         <div style={{ height: 1, background: BORDER, marginBottom: 36 }} />
+
+        {/* Work type — 実案件とAIコンセプトを混在させない */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+            gap: 10,
+            marginBottom: 24,
+          }}
+        >
+          {(["all", "client", "own", "ai-concept"] as const).map((type) => {
+            const meta = WORK_TYPE_META[type];
+            const isActive = activeWorkType === type;
+            return (
+              <button
+                key={type}
+                onClick={() => {
+                  setActiveWorkType(type);
+                  setActiveCategory("all");
+                }}
+                aria-pressed={isActive}
+                style={{
+                  textAlign: "left",
+                  padding: "18px 18px 16px",
+                  background: isActive ? "#FFFFFF" : "transparent",
+                  borderStyle: "solid",
+                  borderWidth: "3px 1px 1px",
+                  borderColor: `${meta.color} ${isActive ? meta.color : BORDER} ${isActive ? meta.color : BORDER}`,
+                  borderRadius: 4,
+                  cursor: "pointer",
+                  boxShadow: isActive ? "0 8px 24px rgba(13,13,13,0.06)" : "none",
+                  transition: "background .15s ease, border-color .15s ease, box-shadow .15s ease",
+                }}
+              >
+                <span style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
+                  <span style={{ fontFamily: INSTRUMENT, fontSize: 22, color: INK }}>{meta.label}</span>
+                  <span style={{ fontFamily: INSTRUMENT, fontStyle: "italic", fontSize: 20, color: meta.color }}>{workTypeCounts[type]}</span>
+                </span>
+                <span style={{ display: "block", marginTop: 8, fontFamily: SANS, fontSize: 10, lineHeight: 1.5, color: INK_LOW, letterSpacing: "0.04em" }}>
+                  {meta.desc}
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
         {/* Category chips */}
         <div
@@ -420,7 +509,7 @@ export function Works({
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(540px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 540px), 1fr))",
                 gap: 24,
                 marginBottom: 96,
               }}
@@ -489,7 +578,7 @@ export function Works({
           }}
         >
           <span style={{ fontFamily: SANS, fontSize: 10, letterSpacing: "0.18em", color: INK_LOW, textTransform: "uppercase" }}>
-            Index · {filtered.length} of {projects.length} total
+            Index · {filtered.length} of {workTypeFiltered.length} in {WORK_TYPE_META[activeWorkType].label}
           </span>
           <span style={{ fontFamily: INSTRUMENT, fontStyle: "italic", fontSize: 14, color: INK_LOW }}>
             Press <kbd style={{ fontFamily: SANS, fontSize: 10, padding: "2px 6px", border: `1px solid ${BORDER}`, borderRadius: 4, background: "#fff", color: INK_MID, letterSpacing: 0 }}>⌘K</kbd> to search

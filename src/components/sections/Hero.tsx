@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import { Command, LockKeyhole } from "lucide-react";
+import { Command } from "lucide-react";
 // three.js を含む重量コンポーネントは dynamic import + ssr:false で初期バンドルから除外
 const HeroCanvas  = dynamic(() => import("@/components/HeroCanvas"),                     { ssr: false, loading: () => null });
 const HeroLetters = dynamic(() => import("@/components/HeroLetters"),                    { ssr: false, loading: () => null });
@@ -14,7 +14,7 @@ import { LiveFeed } from "@/components/primitives/LiveFeed";
 import { CodeMantra } from "@/components/primitives/CodeMantra";
 import { Sparkline } from "@/components/primitives/Sparkline";
 import { MagneticHeading } from "@/components/primitives/MagneticHeading";
-import { ACCENT, FRANK, INSTRUMENT, SANS, SortKey } from "@/lib/design-tokens";
+import { ACCENT, FRANK, INSTRUMENT, SANS } from "@/lib/design-tokens";
 
 export function Hero({
   totalProjects, live, cc, newCount,
@@ -22,7 +22,6 @@ export function Hero({
 }: {
   totalProjects: number; live: number; cc: number; newCount: number; todayCount: number;
   onOpenCmd: () => void;
-  onSetSort: (s: SortKey) => void;
 }) {
   const [statsStarted, setStatsStarted] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -78,19 +77,12 @@ export function Hero({
                   </span>
                 </span>
                 <div style={{ display:"flex", gap:24, alignItems:"center" }}>
-                  {[["Services","/services"],["Vigil AI","#vigil"],["Works","/works"],["About","/about"]].map(([l,h]) => (
+                  {[["Services","/services"],["Luna AI","#luna"],["Works","/works"],["About","/about"]].map(([l,h]) => (
                     <a key={l} href={h} className="hero-nav-link"
                       style={{ fontFamily:SANS, fontSize:13, fontWeight:500, color:ink, textDecoration:"none", opacity:0.75 }}>
                       {l}
                     </a>
                   ))}
-                  <a href="/products" className="hero-nav-link"
-                    style={{ fontFamily:SANS, fontSize:12, fontWeight:700, color:"#fff", textDecoration:"none",
-                      background: ink, border:`1px solid ${ink}`,
-                      borderRadius:4, padding:"6px 14px",
-                      letterSpacing:"0.1em", textTransform:"uppercase" }}>
-                    <LockKeyhole size={12} aria-hidden="true" /> Products
-                  </a>
                   <a href="#join" className="hero-nav-link"
                     style={{ fontFamily:SANS, fontSize:13, fontWeight:700, color:ink, textDecoration:"none",
                       background:"rgba(13,13,13,0.1)", border:"1px solid rgba(13,13,13,0.18)",
@@ -217,7 +209,7 @@ export function Hero({
                 paddingBottom: 4,
               }}>
                 <span style={{ fontFamily:FRANK, fontSize:12, color:ink, opacity:0.55, letterSpacing:"0.04em" }}>
-                  Yamanaka Shuto · 6 companies · {totalProjects} products · Built with Claude Code + Gemma + Gemini
+                  Yamanaka Shuto · 6 companies · {totalProjects} public works · Built with AI
                 </span>
                 <motion.div
                   initial={{ opacity:0 }} animate={{ opacity:0.55 }} transition={{ delay:1, duration:0.8 }}

@@ -1,98 +1,66 @@
 {
-  "generated_at": "2026-06-17",
+  "generated_at": "2026-08-05",
   "entries": [
     {
-      "date": "2026-06-17",
-      "tag": "PRODUCT",
-      "title": "Vigil ハーネス — Codex/Cursor対応＆オンボーディング改善",
-      "body": "LunaTech版ハーネスを定着改善（起動後の最初の一押しをLunaTech特化、合言葉を「キッティング始めて」に統一）。Claude Code以外（Codex/Cursor）でも同じ文脈で動く AGENTS.md/.cursor ミラーを追加。配布物の一括再ビルドと更新フロー（再ビルド→再手渡し→冪等再実行）を整備。",
-      "links": []
-    },
-    {
-      "date": "2026-06-16",
-      "tag": "COMING",
-      "title": "LunaTech 法人ローンチ予定",
-      "body": "プランナー / LunaTechベース / AI ラボ / ソラリス / かぐや・みこと の 5本立てを公開予定。",
-      "links": []
-    },
-    {
-      "date": "2026-05-15",
+      "date": "2026-08-05",
       "tag": "BRAND",
-      "title": "Hero リブランディング — 6社マルチハットを冒頭で明示",
-      "body": "Hero のナビロゴを Lakkan. に統一、サブに operates × 6。見出し下に Lakkan / LunaTech / SKYLINK / KANOA / トレプロ / Solve の役職pillを追加。3D LAKKAN 文字にvermillionグロウとPlayfair Display 900を適用。",
-      "links": []
+      "title": "VigilからLunaへ — 現行ブランドと公開作品を統一",
+      "body": "対外製品名をLuna AIへ統一し、Lakkanの公開ポートフォリオを再編集。公開済みの作品と検証可能な価値だけを掲載し、内部運用・開発中プロダクト・利用者データへの導線を公開面から除去しました。",
+      "links": [
+        { "label": "Luna AI", "url": "https://lunatech-migration-guide.vercel.app" },
+        { "label": "Works", "url": "/works" }
+      ]
     },
     {
-      "date": "2026-05-14",
+      "date": "2026-08-04",
+      "tag": "PRODUCT",
+      "title": "中央メディカル コーポレートサイトを公開",
+      "body": "医療機関としての信頼感と相談しやすさを両立する情報設計とビジュアルを実装。レスポンシブ表示、画像配信、セキュリティヘッダーを本番環境で確認しました。",
+      "links": [
+        { "label": "Website", "url": "https://lakkan-central-medical.vercel.app" }
+      ]
+    },
+    {
+      "date": "2026-08-03",
+      "tag": "PRODUCT",
+      "title": "Luna AI — 成長の根拠表示と更新品質を強化",
+      "body": "Lunaが何を覚え、どこまで再現可能になったかを、自己申告ではなく実測証拠で示す構造へ更新。利用者の記憶と自作資産を守ったまま、安全に更新できる配布基盤を整えました。",
+      "links": [
+        { "label": "Luna AI", "url": "https://lunatech-migration-guide.vercel.app" }
+      ]
+    },
+    {
+      "date": "2026-06-04",
       "tag": "UI",
-      "title": "コーポレートに 3D Neural Network 背景を実装",
-      "body": "Three.js でリアルタイムにノード接続+パルス信号伝播を可視化。NeuralSection・ProductsBanner の2箇所に展開。マウスフォロー追従。",
-      "links": []
-    },
-    {
-      "date": "2026-05-14",
-      "tag": "PRODUCT",
-      "title": "山中専用 Products ハブ完成 — 55プロダクトを横断管理",
-      "body": "lakkan-inc.vercel.app/products にプロダクトをカード表示。会社別×ステータス×検索のフィルタ。パスワード保護で外部からは見えない。データソースは _apps_mapping.md を正本に。",
+      "title": "Lakkan Atelierを公開",
+      "body": "WebGL、レイアウト、コンバージョン導線を比較できる公開実験場を追加。案件ごとのブランドと目的に合わせて、表現を選び直せる制作基盤です。",
       "links": [
-        {
-          "label": "Products",
-          "url": "/products"
-        }
+        { "label": "Atelier", "url": "/atelier" }
       ]
     },
     {
-      "date": "2026-05-13",
+      "date": "2026-05-29",
       "tag": "PRODUCT",
-      "title": "Vigil 統合ハブ完成 — 5タブ→6タブ",
-      "body": "NOW / OBSIDIAN / AI / HISTORY / SKILLS / PRODUCTS の6タブ構成に統合。旧 vigil-playbook を吸収、brief を退役、Slack/Notionのデイリーダイジェスト配信に集約。",
+      "title": "LiA 採用LPを公開",
+      "body": "飲食業界に特化した求人広告代理店の採用LPを制作。ブランド表現、応募導線、モーションを一体で設計しました。",
       "links": [
-        {
-          "label": "Vigil",
-          "url": "https://vigil-vert-gamma.vercel.app"
-        }
+        { "label": "Website", "url": "https://lia-recruit.vercel.app" }
       ]
     },
     {
-      "date": "2026-05-13",
-      "tag": "BRAND",
-      "title": "6社マルチハット経営の公式表明",
-      "body": "Lakkan代表 / トレプロCOO / LunaTech COO / SKYLINK CTO / KANOA AI相談役 / Solve代表。会社コンテキスト確認ルールを Claude Code 全体ルールに格上げ。",
-      "links": []
-    },
-    {
-      "date": "2026-05-12",
-      "tag": "OPS",
-      "title": "デイリーダイジェスト自動配信 — 毎朝8時",
-      "body": "Slack履歴+外部ニュース5フィード（Hacker News / publickey / ITmedia / AINOW / HR NOTE）を Gemma で要約してNotion+Slackへ自動配信。家MacのlaunchdでLive稼働。",
-      "links": []
+      "date": "2026-05-26",
+      "tag": "PRODUCT",
+      "title": "LunaTech AI Labを公開",
+      "body": "生成AIを説明ではなく操作で理解する体験型ラボを公開。業務別のAI活用と段階的な導入イメージをブラウザで試せます。",
+      "links": [
+        { "label": "AI Lab", "url": "https://lunatech-ai-lab.vercel.app" }
+      ]
     },
     {
       "date": "2026-05-11",
       "tag": "COMPANY",
       "title": "株式会社Lakkan 法人登記完了",
-      "body": "5月11日に法人登記完了。AIで再設計された楽観の実験体。Lakkan代表として走り始める。",
-      "links": []
-    },
-    {
-      "date": "2026-05-11",
-      "tag": "OPS",
-      "title": "@Jarvis スラッシュコマンド11個を実装",
-      "body": "/who（役割マトリクス）/co（会社コンテキスト切替）/report /audit /debate /memo /task /search /pj-list /patterns /knowledge /today。Slack 一行で AI 環境を全操作。",
-      "links": []
-    },
-    {
-      "date": "2026-05-10",
-      "tag": "ARCH",
-      "title": "vault に「脳の7部位」構造を導入",
-      "body": "_brain/ 配下に意識 / 感覚 / 海馬 / エピソード / 意味 / 手続き / 感情 の7部位を symlink で構築。人間の記憶システムをそのままナレッジ管理に投影。",
-      "links": []
-    },
-    {
-      "date": "2026-05-07",
-      "tag": "REPORT",
-      "title": "AI活用 進化レポート公開 — 5週間で 109h 時短",
-      "body": "商談議事録100件 × 30分、学習パターン39件 × 1h、apps commits 254本 × 5分 の合計で約110時間（13.7営業日相当）の時短効果。毎月1日 9:30 にSlack自動配信。",
+      "body": "AIを前提に、業務と事業を再設計する会社として株式会社Lakkanを設立しました。",
       "links": []
     }
   ]

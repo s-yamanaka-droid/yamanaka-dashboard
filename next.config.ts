@@ -49,9 +49,49 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/vigil/brief/01",
-        destination: "https://mobile-ai-harness.vercel.app",
-        permanent: false,
+        source: "/vigil/:path*",
+        destination: "https://lunatech-migration-guide.vercel.app",
+        permanent: true,
+      },
+      {
+        source: "/vigil",
+        destination: "https://lunatech-migration-guide.vercel.app",
+        permanent: true,
+      },
+      {
+        source: "/products/:path*",
+        destination: "/works",
+        permanent: true,
+      },
+      {
+        source: "/products",
+        destination: "/works",
+        permanent: true,
+      },
+      {
+        source: "/login",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/lab",
+        destination: "/works",
+        permanent: true,
+      },
+      {
+        source: "/evolution",
+        destination: "/works",
+        permanent: true,
+      },
+      {
+        source: "/skills",
+        destination: "/works",
+        permanent: true,
+      },
+      {
+        source: "/showcase",
+        destination: "/works",
+        permanent: true,
       },
       {
         source: "/blog",

@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/sync-updates.js && node scripts/sync-now-on-air.js",
+    "check:public": "node scripts/check-public-data.js",
+    "prebuild": "npm run check:public && node scripts/sync-now-on-air.js",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

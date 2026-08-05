@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
-import { Project, Category } from "@/types";
+import { Project, Category, resolveWorkType } from "@/types";
 
 const FRANK = "var(--font-frank), 'Frank Ruhl Libre', Georgia, serif";
 const SANS  = "var(--font-display), 'Space Grotesk', system-ui, sans-serif";
@@ -23,6 +23,16 @@ const STATUS = {
 };
 const BUILT_LABEL: Record<string, string> = {
   claude_code: "Claude Code", manual: "Manual", v0: "v0", bolt: "Bolt",
+};
+const WORK_TYPE_LABEL = {
+  client: "CLIENT WORK",
+  own: "OWNED PRODUCT",
+  "ai-concept": "AI CONCEPT",
+};
+const WORK_TYPE_COLOR = {
+  client: "#3A8C5C",
+  own: "#1C3BCC",
+  "ai-concept": "#B8362E",
 };
 
 export function ProjectModal({
@@ -83,6 +93,19 @@ export function ProjectModal({
                 <div style={{ flex: 1, minWidth: 0 }}>
                   {/* Badges */}
                   <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12, flexWrap: "wrap" }}>
+                    {(() => {
+                      const type = resolveWorkType(project);
+                      const color = WORK_TYPE_COLOR[type];
+                      return (
+                        <span style={{
+                          fontFamily: SANS, fontSize: 10, fontWeight: 700, letterSpacing: "0.12em",
+                          color, border: `1px solid ${color}55`, background: `${color}0D`,
+                          padding: "3px 10px", borderRadius: 100,
+                        }}>
+                          {WORK_TYPE_LABEL[type]}
+                        </span>
+                      );
+                    })()}
                     <span style={{
                       fontFamily: SANS, fontSize: 10, fontWeight: 700, letterSpacing: "0.12em",
                       color: CAT_COLOR[project.category],

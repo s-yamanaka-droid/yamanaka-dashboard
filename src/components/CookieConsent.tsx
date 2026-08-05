@@ -10,10 +10,11 @@ export function CookieConsent() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const consent = localStorage.getItem(COOKIE_KEY);
-    if (!consent) {
-      setShow(true);
-    }
+    const timer = window.setTimeout(() => {
+      const consent = localStorage.getItem(COOKIE_KEY);
+      if (!consent) setShow(true);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   const accept = () => {

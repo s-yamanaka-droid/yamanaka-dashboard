@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const FRANK = "var(--font-frank), 'Frank Ruhl Libre', Georgia, serif";
 const SANS = "var(--font-display), 'Space Grotesk', system-ui, sans-serif";
@@ -11,7 +11,7 @@ const RULE = "rgba(13,13,13,0.14)";
 
 const TOPICS = [
   { id: "ai-consult", label: "AI 活用相談" },
-  { id: "vigil", label: "Vigil AI 導入" },
+  { id: "luna", label: "Luna AI 導入" },
   { id: "atelier-site", label: "Atelier でサイト制作（素地から）" },
   { id: "corp-site", label: "コーポレートサイト制作" },
   { id: "recruit", label: "採用 DX / LP 制作" },
@@ -23,15 +23,12 @@ export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
-  const [topic, setTopic] = useState("ai-consult");
-  const [message, setMessage] = useState("");
-
-  // /contact?topic=atelier-site などのクエリで初期トピックを切替
-  useEffect(() => {
-    if (typeof window === "undefined") return;
+  const [topic, setTopic] = useState(() => {
+    if (typeof window === "undefined") return "ai-consult";
     const q = new URLSearchParams(window.location.search).get("topic");
-    if (q && TOPICS.some((t) => t.id === q)) setTopic(q);
-  }, []);
+    return q && TOPICS.some((item) => item.id === q) ? q : "ai-consult";
+  });
+  const [message, setMessage] = useState("");
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();

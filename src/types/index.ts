@@ -11,6 +11,8 @@ export type Status = "live" | "dev" | "archived";
 
 export type BuiltWith = "claude_code" | "manual" | "v0" | "bolt";
 
+export type WorkType = "client" | "own" | "ai-concept";
+
 export interface Project {
   id: string;
   name: string;
@@ -24,4 +26,14 @@ export interface Project {
   client?: string;
   tags: string[];
   featured?: boolean;
+  /** client=実案件 / own=自社・関係会社 / ai-concept=架空ブランドのAI制作実験 */
+  workType?: WorkType;
+}
+
+const OWN_ORGANIZATIONS = new Set(["Lakkan", "LunaTech", "TREPRO", "Trepro", "KANOA", "SKYLINK", "Solve"]);
+
+export function resolveWorkType(project: Project): WorkType {
+  if (project.workType) return project.workType;
+  if (project.client && !OWN_ORGANIZATIONS.has(project.client)) return "client";
+  return "own";
 }

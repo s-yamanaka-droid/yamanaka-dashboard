@@ -12,7 +12,7 @@ const NAV_PRIMARY: [string, string][] = [
   ["Service", "#service"],
 ];
 const NAV_SECONDARY: [string, string][] = [
-  ["Vigil", "#vigil"],
+  ["Luna AI", "#luna"],
   ["Atelier", "/atelier"],
   ["About", "#about"],
   ["Join", "#join"],

@@ -18,9 +18,9 @@ export function WorksClient() {
     <main id="main">
       <PageHero
         section="Works"
-        version="v.1"
+        version="v.2"
         title="つくったもの、すべて。"
-        lede="AIエージェント、採用LP、コーポレートサイト、社内ダッシュボード — 動くプロダクトだけを並べる。"
+        lede="実案件、自社プロダクト、AIだけで作ったデザイン実験を分けて掲載。完成物を開き、どこまでAIで作れるかをそのまま確認できます。"
       />
       <Works
         projects={projects}

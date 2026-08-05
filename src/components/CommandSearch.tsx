@@ -52,10 +52,6 @@ export function CommandSearch({
   }, [query, projects]);
 
   useEffect(() => {
-    setCursor(0);
-  }, [query]);
-
-  useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
@@ -110,9 +106,12 @@ export function CommandSearch({
             <input
               ref={inputRef}
               type="text"
-              placeholder="Search products, tags, clients..."
+              placeholder="Search public works, tags, clients..."
               value={query}
-              onChange={e => setQuery(e.target.value)}
+              onChange={e => {
+                setQuery(e.target.value);
+                setCursor(0);
+              }}
               style={{
                 flex: 1, fontFamily: FRANK, fontSize: 17, fontWeight: 300,
                 border: "none", background: "none", outline: "none",
@@ -131,7 +130,7 @@ export function CommandSearch({
           <div style={{ maxHeight: "52vh", overflowY: "auto" }}>
             {results.length === 0 ? (
               <div style={{ padding: "32px 20px", textAlign: "center", fontFamily: FRANK, fontSize: 18, fontWeight: 300, color: "#C0BDB5" }}>
-                No results for "{query}"
+                No results for “{query}”
               </div>
             ) : (
               <>

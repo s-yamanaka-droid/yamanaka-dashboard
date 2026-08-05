@@ -162,8 +162,8 @@
 
 /* iPad and below ---------------------------------------- */
 @media (max-width: 1024px) {
-  /* Tighten generic section paddings (Manifesto / Story / Service / Vigil / About / Join / Portals) */
-  #manifesto, #story, #service, #vigil, #about, #join, #portals {
+  /* Tighten generic section paddings (Manifesto / Story / Service / Luna / About / Join / Portals) */
+  #manifesto, #story, #service, #luna, #about, #join, #portals {
     padding: clamp(80px, 12vw, 120px) clamp(20px, 6vw, 56px) !important;
   }
   #news {
@@ -185,9 +185,9 @@
   /* Hide hero nav links (keep brand + Cmd button) */
   .hero-nav-link { display: none !important; }
 
-  /* Story / Join / Vigil headline+lede 2col -> stack */
+  /* Story / Join / Luna headline+lede 2col -> stack */
   #story > div > div[style*="grid-template-columns"],
-  #vigil > div > div[style*="grid-template-columns"]:first-of-type ~ div,
+  #luna > div > div[style*="grid-template-columns"]:first-of-type ~ div,
   #join > div > div[style*="grid-template-columns"] {
     /* fallback only - more specific rules below */
   }
@@ -216,18 +216,18 @@
     gap: 24px !important;
   }
 
-  /* Vigil headline+lede + skill grid */
-  #vigil [data-mobile-stack="vigil-head"] {
+  /* Luna headline+lede + principle grid */
+  #luna [data-mobile-stack="luna-head"] {
     grid-template-columns: 1fr !important;
     gap: 24px !important;
     margin-bottom: 40px !important;
   }
-  #vigil [data-mobile-stack="vigil-stat"] > div {
+  #luna [data-mobile-stack="luna-stat"] > div {
     border-right: none !important;
     border-bottom: 1px solid rgba(255,255,255,0.12) !important;
     padding: 18px 16px !important;
   }
-  #vigil [data-mobile-stack="vigil-stat"] > div:last-child {
+  #luna [data-mobile-stack="luna-stat"] > div:last-child {
     border-bottom: none !important;
   }
 
@@ -353,7 +353,7 @@
 
 /* iPhone SE / narrow phones ----------------------------- */
 @media (max-width: 414px) {
-  #manifesto, #story, #service, #vigil, #about, #join, #portals,
+  #manifesto, #story, #service, #luna, #about, #join, #portals,
   #news, #contact {
     padding-left: 18px !important;
     padding-right: 18px !important;
@@ -362,7 +362,7 @@
     padding-left: 18px !important;
     padding-right: 18px !important;
   }
-  #vigil [data-mobile-stack="vigil-stat"] {
+  #luna [data-mobile-stack="luna-stat"] {
     grid-template-columns: 1fr 1fr !important;
   }
 }

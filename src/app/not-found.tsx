@@ -18,7 +18,7 @@ const LINKS = [
   { href: "/about", label: "About", desc: "山中秀斗 / Lakkan の思想" },
   { href: "/services", label: "Services", desc: "提供サービス一覧" },
   { href: "/works", label: "Works", desc: "プロダクトポートフォリオ" },
-  { href: "/vigil", label: "Vigil AI", desc: "育つ第二の脳" },
+  { href: "https://lunatech-migration-guide.vercel.app", label: "Luna AI", desc: "あなた専用に育つAIの右腕" },
   { href: "/contact", label: "Contact", desc: "お問い合わせ" },
 ];
 

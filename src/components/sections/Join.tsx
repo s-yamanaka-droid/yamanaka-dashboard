@@ -38,8 +38,8 @@ const EXPECT = [
 
 const OFFERS = [
   { k: "Tools", v: "Claude Max / ChatGPT / Gemini Pro / Cursor 全部支給" },
-  { k: "Stack", v: "Vercel / Supabase / Notion / Slack の本番権限" },
-  { k: "Learn", v: "毎晩 23:30 に Vigil が学習 → あなたも一緒に賢くなる" },
+  { k: "Stack", v: "仕事に必要なAI・開発ツールを提供" },
+  { k: "Learn", v: "Lunaが判断と修正を蓄積し、仕事の再現性を高める" },
   { k: "Place", v: "東京・渋谷 / フルリモート可" },
 ];
 

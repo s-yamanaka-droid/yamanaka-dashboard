@@ -9,7 +9,7 @@ export const ACCENT = {
   blue: "#1C3BCC",
   orange: "#F4541A",
   vermillion: "#B8362E", // editorial 朱赤
-  forest: "#1F3A2E",     // Vigil AI 深緑（眠らない夜の森）
+  forest: "#1F3A2E",     // Luna AI のローカルファーストを示す深緑
 };
 
 export const CAT_LABEL: Record<Exclude<Category, "all">, string> = {

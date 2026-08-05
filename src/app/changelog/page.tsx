@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { LockKeyhole } from "lucide-react";
 import changelog from "@/data/changelog.json";
 
 type Entry = {
@@ -111,19 +110,12 @@ export default function ChangelogPage() {
               borderBottom: `2px solid ${accent}`,
               textTransform: "uppercase",
             }}>Changelog</Link>
-            <Link href="/products" style={{
+            <Link href="https://lunatech-migration-guide.vercel.app" target="_blank" rel="noopener noreferrer" style={{
               fontFamily: "'DM Mono', monospace", fontSize: 11,
               letterSpacing: "0.15em", color: "#8A857A",
               textDecoration: "none", padding: "8px 16px",
               textTransform: "uppercase",
-              display: "inline-flex", alignItems: "center", gap: 5,
-            }}><LockKeyhole size={12} aria-hidden="true" /> Products</Link>
-            <Link href="https://vigil-vert-gamma.vercel.app" target="_blank" style={{
-              fontFamily: "'DM Mono', monospace", fontSize: 11,
-              letterSpacing: "0.15em", color: "#8A857A",
-              textDecoration: "none", padding: "8px 16px",
-              textTransform: "uppercase",
-            }}>Vigil ↗</Link>
+            }}>Luna AI ↗</Link>
           </div>
         </div>
         <div style={{
@@ -174,8 +166,8 @@ export default function ChangelogPage() {
           maxWidth: 640, marginBottom: 16,
           fontFamily: "'Noto Sans JP', sans-serif",
         }}>
-          Lakkan / Vigil / コーポレートサイトの直近のアップデート。
-          ブランド · UI · プロダクト · 運用基盤 · 経営トピックを時系列で。
+          Lakkanと公開プロダクトの直近のアップデート。
+          ブランド · UI · プロダクト · 会社トピックを時系列で。
         </p>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 22 }}>
           {allTags.map(t => (

@@ -1,45 +1,6 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { SANS } from "@/lib/design-tokens";
 
-function relTime(iso: string): string {
-  const ms = Date.now() - new Date(iso).getTime();
-  const m = Math.floor(ms / 60000);
-  if (m < 1) return "just now";
-  if (m < 60) return `${m}m ago`;
-  const h = Math.floor(m / 60);
-  if (h < 24) return `${h}h ago`;
-  const d = Math.floor(h / 24);
-  return `${d}d ago`;
-}
-
 export function LiveBadge({ products }: { products: number }) {
-  const [last, setLast] = useState<string>("4m ago");
-
-  useEffect(() => {
-    let cancel = false;
-    const fetchLatest = async () => {
-      try {
-        const r = await fetch(
-          "https://api.github.com/users/s-yamanaka-droid/events/public?per_page=10",
-          { cache: "no-store" }
-        );
-        if (!r.ok) return;
-        const arr = await r.json();
-        const push = Array.isArray(arr)
-          ? arr.find((e: { type?: string; created_at?: string }) => e.type === "PushEvent" && e.created_at) ?? arr[0]
-          : null;
-        if (!cancel && push?.created_at) setLast(relTime(push.created_at));
-      } catch {
-        /* keep fallback */
-      }
-    };
-    fetchLatest();
-    const id = setInterval(fetchLatest, 30000);
-    return () => { cancel = true; clearInterval(id); };
-  }, []);
-
   return (
     <div
       style={{
@@ -83,11 +44,9 @@ export function LiveBadge({ products }: { products: number }) {
           }}
         />
       </span>
-      <span>LIVE</span>
+      <span>PUBLIC</span>
       <span style={{ opacity: 0.4 }}>—</span>
-      <span style={{ letterSpacing: "0.08em" }}>{products} products</span>
-      <span style={{ opacity: 0.4 }}>·</span>
-      <span style={{ letterSpacing: "0.08em", textTransform: "none" }}>{last}</span>
+      <span style={{ letterSpacing: "0.08em" }}>{products} works</span>
       <style>{`@keyframes lakkan-pulse { 0%,100% { transform:scale(1); opacity:1 } 50% { transform:scale(1.6); opacity:0.2 } }`}</style>
     </div>
   );
