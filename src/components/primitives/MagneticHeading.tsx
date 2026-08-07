@@ -67,7 +67,7 @@ export function MagneticHeading({
   let keyCounter = 0;
 
   return (
-    <span ref={ref} style={style}>
+    <span ref={ref} style={{ whiteSpace: "nowrap", ...style }}>
       {segments.map((seg, i) => {
         if (seg.kind === "br") return <br key={`br-${i}`} />;
         const chars = Array.from(seg.text).map((c) => {

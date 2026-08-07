@@ -99,6 +99,28 @@
   line-break: strict;
 }
 
+/* Compact-looking controls still keep a dependable pointer/touch target. */
+.hero-nav-link,
+.hero-command-button,
+.hero-feed-link,
+.hero-feed-all,
+.cookie-consent-button {
+  min-height: 44px;
+}
+.hero-nav-link,
+.hero-command-button,
+.hero-feed-all {
+  display: inline-flex !important;
+  align-items: center;
+}
+.hero-command-button {
+  min-width: 44px;
+  justify-content: center;
+}
+.hero-feed-all {
+  padding-top: 0 !important;
+}
+
 /* Card hover */
 .card-hover:hover {
   transform: translateY(-3px);
@@ -201,6 +223,11 @@
 
   /* Hide hero nav links (keep brand + Cmd button) */
   .hero-nav-link { display: none !important; }
+
+  .hero-live-badge {
+    top: 76px !important;
+    right: 24px !important;
+  }
 
   /* Large editorial headings: preserve phrases, avoid orphaned punctuation */
   .editorial-heading--display {
@@ -370,6 +397,9 @@
     padding-right: 24px !important;
   }
   #hero-panel-1 { padding-top: 20px !important; padding-bottom: 20px !important; }
+  #hero-panel-1 nav {
+    min-height: 44px;
+  }
   #hero-panel-1 [data-mobile-stack="hero-main"] {
     grid-template-columns: 1fr !important;
     gap: 24px !important;
@@ -422,5 +452,16 @@
   }
   .hero-primary-heading {
     font-size: clamp(52px, 15vw, 62px) !important;
+  }
+  .hero-brand-meta {
+    display: none;
+  }
+  .hero-live-badge {
+    right: 18px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+  .hero-live-badge-count {
+    letter-spacing: 0.04em !important;
   }
 }
