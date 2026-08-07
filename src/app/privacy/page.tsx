@@ -12,7 +12,7 @@ const SANS = "var(--font-display), 'Space Grotesk', system-ui, sans-serif";
 
 export default function PrivacyPage() {
   return (
-    <main id="main" style={{ background: "#F7F4EE", minHeight: "100vh" }}>
+    <main id="main" style={{ background: "#EEF0EC", minHeight: "100vh" }}>
       <PageHero
         section="Privacy Policy"
         version="v.1"
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
           margin: "0 auto",
           padding: "80px 32px 160px",
           fontFamily: SANS,
-          color: "#0D0D0D",
+          color: "#132126",
           fontSize: 16,
           lineHeight: 1.85,
         }}
@@ -115,10 +115,10 @@ export default function PrivacyPage() {
         </p>
         <ul style={{ paddingLeft: 24, marginBottom: 64 }}>
           <li>株式会社Lakkan 個人情報問合せ窓口</li>
-          <li>Email：<a href="mailto:s-yamanaka@tre-pro.co.jp" style={{ color: "#1F3A2E", textDecoration: "underline" }}>s-yamanaka@tre-pro.co.jp</a></li>
+          <li>Email：<a href="mailto:s-yamanaka@tre-pro.co.jp" style={{ color: "#315A4E", textDecoration: "underline" }}>s-yamanaka@tre-pro.co.jp</a></li>
         </ul>
 
-        <p style={{ fontSize: 13, color: "#5A554D", borderTop: "1px solid rgba(13,13,13,0.12)", paddingTop: 24 }}>
+        <p style={{ fontSize: 13, color: "#45545A", borderTop: "1px solid rgba(19,33,38,0.12)", paddingTop: 24 }}>
           制定：2026年5月23日<br />
           株式会社Lakkan 代表取締役 山中 秀斗
         </p>

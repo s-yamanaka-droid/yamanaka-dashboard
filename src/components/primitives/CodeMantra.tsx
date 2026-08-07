@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { SANS } from "@/lib/design-tokens";
+import { ACCENT, SANS } from "@/lib/design-tokens";
 
 const SOURCE = `const lakkan = {
   optimism: true,
@@ -13,13 +13,13 @@ const SOURCE = `const lakkan = {
 
 // Tokens for syntax highlighting (very lightweight, line-based)
 const COLOR = {
-  keyword: "#7C3AED",
-  string:  "#1C3BCC",
-  bool:    "#3A8C5C",
-  number:  "#B8362E",
-  comment: "rgba(13,13,13,0.45)",
-  punct:   "rgba(13,13,13,0.7)",
-  ident:   "#0D0D0D",
+  keyword: "#5B5871",
+  string:  ACCENT.blue,
+  bool:    ACCENT.forest,
+  number:  ACCENT.vermillion,
+  comment: "rgba(19,33,38,0.45)",
+  punct:   "rgba(19,33,38,0.7)",
+  ident:   "#132126",
 };
 
 function colorFor(token: string): string {
@@ -98,9 +98,9 @@ export function CodeMantra() {
     <div
       style={{
         background: "rgba(255,255,255,0.7)",
-        border: "1px solid rgba(13,13,13,0.18)",
+        border: "1px solid rgba(19,33,38,0.18)",
         borderRadius: 8,
-        boxShadow: "0 24px 60px -30px rgba(13,13,13,0.35)",
+        boxShadow: "0 24px 60px -30px rgba(19,33,38,0.35)",
         backdropFilter: "blur(6px)",
         maxWidth: "min(720px, 90vw)",
         margin: "0 auto",
@@ -111,15 +111,15 @@ export function CodeMantra() {
       <div style={{
         display: "flex", alignItems: "center", gap: 10,
         padding: "10px 14px",
-        borderBottom: "1px solid rgba(13,13,13,0.1)",
-        background: "rgba(13,13,13,0.04)",
+        borderBottom: "1px solid rgba(19,33,38,0.1)",
+        background: "rgba(19,33,38,0.04)",
       }}>
-        <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#F4541A" }} />
-        <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#B07D00" }} />
-        <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#3A8C5C" }} />
+        <span style={{ width: 10, height: 10, borderRadius: "50%", background: ACCENT.vermillion }} />
+        <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#806126" }} />
+        <span style={{ width: 10, height: 10, borderRadius: "50%", background: ACCENT.forest }} />
         <span style={{
           marginLeft: 12, fontFamily: SANS, fontSize: 11, fontWeight: 600,
-          letterSpacing: "0.18em", color: "#0D0D0D", opacity: 0.6, textTransform: "uppercase",
+          letterSpacing: "0.18em", color: "#132126", opacity: 0.6, textTransform: "uppercase",
         }}>
           mantra.ts
         </span>
@@ -133,7 +133,7 @@ export function CodeMantra() {
           fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
           fontSize: "clamp(13px, 1.2vw, 16px)",
           lineHeight: 1.7,
-          color: "#0D0D0D",
+          color: "#132126",
           textAlign: "left",
           whiteSpace: "pre",
           overflowX: "auto",
@@ -148,7 +148,7 @@ export function CodeMantra() {
               key={i}
               style={{
                 opacity: isLast ? (isDeployed ? 1 : 0) : 1,
-                color: isLast ? "#3A8C5C" : "#0D0D0D",
+                color: isLast ? ACCENT.forest : "#132126",
                 transition: "opacity 0.6s ease",
                 fontWeight: isLast ? 600 : 400,
               }}
@@ -160,7 +160,7 @@ export function CodeMantra() {
               {!isLast && i === activeLineIdx && (
                 <span style={{
                   display: "inline-block", width: 8, height: "1em",
-                  background: "#0D0D0D", verticalAlign: "-2px", marginLeft: 1,
+                  background: "#132126", verticalAlign: "-2px", marginLeft: 1,
                   animation: "lakkan-cursor 1s steps(2) infinite",
                 }} />
               )}

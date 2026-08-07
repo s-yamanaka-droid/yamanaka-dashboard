@@ -9,12 +9,12 @@ import {
   CAT_COLOR, CAT_LABEL, STATUS, ALL_CATS, isNew, SortKey,
 } from "@/lib/design-tokens";
 
-const BORDER = "rgba(13,13,13,0.12)";
-const BORDER_SOFT = "rgba(13,13,13,0.08)";
-const INK = "#0D0D0D";
-const INK_MID = "#5A554D";
-const INK_LOW = "#B0ADA6";
-const PAPER = "#F5F3EE";
+const BORDER = "rgba(19,33,38,0.12)";
+const BORDER_SOFT = "rgba(19,33,38,0.08)";
+const INK = "#132126";
+const INK_MID = "#45545A";
+const INK_LOW = "#6E7A7C";
+const PAPER = "#E4E8E4";
 
 const WORK_TYPE_META: Record<WorkType | "all", { label: string; short: string; desc: string; color: string }> = {
   all: { label: "All Work", short: "All", desc: "すべての制作物", color: INK },
@@ -74,7 +74,7 @@ function FeaturedRow({ project, index, onSelect }: { project: Project; index: nu
         padding: 0,
         overflow: "hidden",
         cursor: "pointer",
-        boxShadow: hov ? "0 18px 40px rgba(13,13,13,0.10)" : "0 2px 8px rgba(13,13,13,0.04)",
+        boxShadow: hov ? "0 18px 40px rgba(19,33,38,0.10)" : "0 2px 8px rgba(19,33,38,0.04)",
         transform: hov ? "translateY(-3px)" : "translateY(0)",
         transition: "transform .25s ease, box-shadow .25s ease, border-color .2s ease",
         borderColor: hov ? cc + "55" : BORDER,
@@ -216,7 +216,7 @@ function MiniRow({ project, index, onSelect }: { project: Project; index: number
         gap: 20,
         width: "100%",
         textAlign: "left",
-        background: hov ? "rgba(13,13,13,0.025)" : "transparent",
+        background: hov ? "rgba(19,33,38,0.025)" : "transparent",
         border: "none",
         borderTop: `1px solid ${BORDER_SOFT}`,
         padding: "18px 4px",
@@ -424,7 +424,7 @@ export function Works({
                   borderColor: `${meta.color} ${isActive ? meta.color : BORDER} ${isActive ? meta.color : BORDER}`,
                   borderRadius: 4,
                   cursor: "pointer",
-                  boxShadow: isActive ? "0 8px 24px rgba(13,13,13,0.06)" : "none",
+                  boxShadow: isActive ? "0 8px 24px rgba(19,33,38,0.06)" : "none",
                   transition: "background .15s ease, border-color .15s ease, box-shadow .15s ease",
                 }}
               >

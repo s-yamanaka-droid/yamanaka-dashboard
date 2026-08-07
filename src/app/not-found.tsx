@@ -4,9 +4,9 @@ import Link from "next/link";
 const FRANK = "var(--font-frank), 'Frank Ruhl Libre', Georgia, serif";
 const INSTRUMENT = "var(--font-instrument), 'Instrument Serif', 'Frank Ruhl Libre', Georgia, serif";
 const SANS = "var(--font-display), 'Space Grotesk', system-ui, sans-serif";
-const INK = "#0D0D0D";
-const FOREST = "#1F3A2E";
-const VERMILLION = "#B8362E";
+const INK = "#132126";
+const FOREST = "#315A4E";
+const VERMILLION = "#B4382B";
 
 export const metadata: Metadata = {
   title: "404 — Page Not Found",
@@ -26,7 +26,7 @@ export default function NotFound() {
   return (
     <main id="main"
       style={{
-        background: "#F7F4EE",
+        background: "#EEF0EC",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
@@ -84,8 +84,8 @@ export default function NotFound() {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
             gap: 1,
-            background: "rgba(13,13,13,0.14)",
-            border: "1px solid rgba(13,13,13,0.14)",
+            background: "rgba(19,33,38,0.14)",
+            border: "1px solid rgba(19,33,38,0.14)",
             borderRadius: 10,
             overflow: "hidden",
           }}
@@ -132,7 +132,7 @@ export default function NotFound() {
           ))}
         </div>
 
-        <p style={{ marginTop: 48, fontFamily: SANS, fontSize: 12, color: "rgba(13,13,13,0.5)" }}>
+        <p style={{ marginTop: 48, fontFamily: SANS, fontSize: 12, color: "rgba(19,33,38,0.5)" }}>
           ※ 心当たりがある場合は、URL を再確認の上、
           <Link href="/contact" style={{ color: FOREST, textDecoration: "underline" }}>
             お問い合わせ

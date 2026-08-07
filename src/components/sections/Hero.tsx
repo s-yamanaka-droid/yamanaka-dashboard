@@ -29,10 +29,10 @@ export function Hero({
   const heroX = useTransform(heroP, [0,1], ["0%","-66.67%"]);
   useMotionValueEvent(heroP, "change", v => { if (v > 0.6 && !statsStarted) setStatsStarted(true); });
 
-  const ink = "#0D0D0D";
+  const ink = "#132126";
 
-  // F7: Generative gradient — orange ↔ vermillion ↔ purple-orange, 60s cycle
-  const bg = `radial-gradient(120% 90% at 30% 20%, #F4541A 0%, #E14A1F 35%, #B8362E 65%, #C2452A 100%)`;
+  // Tracing paper + blueprint wash. Proof-mark red stays a precise accent.
+  const bg = `radial-gradient(circle at 78% 24%, rgba(44,82,104,0.2), transparent 30%), radial-gradient(120% 90% at 28% 18%, #E7EAE7 0%, #D4DCD8 40%, #B9C7C2 72%, #9FAEAA 100%)`;
 
   return (
     <>
@@ -44,8 +44,8 @@ export function Hero({
             height:"100vh",
             overflow:"hidden",
             background: bg,
-            // F7: subtle hue rotation cycle
-            animation: "lakkan-hero-bg 60s linear infinite",
+            backgroundSize: "130% 130%, 115% 115%",
+            animation: "lakkan-hero-drift 24s ease-in-out infinite alternate",
           }}
         >
           {/* F8 — code rain at the back */}
@@ -85,13 +85,13 @@ export function Hero({
                   ))}
                   <a href="#join" className="hero-nav-link"
                     style={{ fontFamily:SANS, fontSize:13, fontWeight:700, color:ink, textDecoration:"none",
-                      background:"rgba(13,13,13,0.1)", border:"1px solid rgba(13,13,13,0.18)",
+                      background:"rgba(19,33,38,0.1)", border:"1px solid rgba(19,33,38,0.18)",
                       borderRadius:6, padding:"5px 14px", opacity:0.85 }}>
                     Contact
                   </a>
                   <button onClick={onOpenCmd} className="hero-command-button" aria-label="Open command menu"
                     style={{ display:"flex", alignItems:"center", gap:5, fontFamily:SANS, fontSize:11, fontWeight:500, color:ink,
-                      background:"rgba(13,13,13,0.12)", border:"1px solid rgba(13,13,13,0.18)", borderRadius:6,
+                      background:"rgba(19,33,38,0.12)", border:"1px solid rgba(19,33,38,0.18)", borderRadius:6,
                       padding:"5px 10px", cursor:"pointer", opacity:0.8 }}>
                     <Command size={11}/><span>K</span>
                   </button>
@@ -181,8 +181,8 @@ export function Hero({
                       <span key={c.co} style={{
                         fontFamily: SANS, fontSize: 10, letterSpacing: "0.12em",
                         padding: "5px 11px",
-                        background: "rgba(13,13,13,0.06)",
-                        border: "1px solid rgba(13,13,13,0.14)",
+                        background: "rgba(19,33,38,0.06)",
+                        border: "1px solid rgba(19,33,38,0.14)",
                         borderRadius: 99,
                         color: ink, textTransform: "uppercase",
                       }}>
@@ -291,12 +291,9 @@ export function Hero({
       </div>
 
       <style>{`
-        @keyframes lakkan-hero-bg {
-          0%   { filter: hue-rotate(0deg) saturate(1); }
-          25%  { filter: hue-rotate(-12deg) saturate(1.05); }
-          50%  { filter: hue-rotate(8deg) saturate(0.95); }
-          75%  { filter: hue-rotate(-6deg) saturate(1.05); }
-          100% { filter: hue-rotate(0deg) saturate(1); }
+        @keyframes lakkan-hero-drift {
+          from { background-position: 0% 0%, 0% 0%; }
+          to   { background-position: 10% 6%, 6% 10%; }
         }
       `}</style>
     </>

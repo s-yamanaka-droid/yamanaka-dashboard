@@ -41,8 +41,8 @@ export function CookieConsent() {
         maxWidth: 560,
         margin: "0 auto",
         zIndex: 9999,
-        background: "#0D0D0D",
-        color: "#F7F4EE",
+        background: "#132126",
+        color: "#F8F9F6",
         padding: "20px 24px",
         borderRadius: 10,
         boxShadow: "0 20px 50px rgba(0,0,0,0.35)",
@@ -59,7 +59,7 @@ export function CookieConsent() {
         <a
           href="/privacy"
           style={{
-            color: "#F7F4EE",
+            color: "#F8F9F6",
             textDecoration: "underline",
             textUnderlineOffset: 2,
           }}
@@ -92,9 +92,9 @@ export function CookieConsent() {
             fontFamily: SANS,
             fontSize: 12,
             fontWeight: 600,
-            color: "#0D0D0D",
-            background: "#F7F4EE",
-            border: "1px solid #F7F4EE",
+            color: "#132126",
+            background: "#F8F9F6",
+            border: "1px solid #F8F9F6",
             borderRadius: 6,
             padding: "8px 18px",
             cursor: "pointer",

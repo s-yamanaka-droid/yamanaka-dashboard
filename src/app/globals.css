@@ -19,45 +19,45 @@
 
 :root {
   /* Base */
-  --background: #F7F4EE;
-  --foreground: #0D0D0D;
-  --surface: #FFFFFF;
-  --border: #E8E3D8;
-  --border-hover: #C8C3B8;
-  --text-1: #0D0D0D;
-  --text-2: #6B6860;
-  --text-3: #B0ADA6;
+  --background: #EEF0EC;
+  --foreground: #132126;
+  --surface: #F8F9F6;
+  --border: #C7CFCA;
+  --border-hover: #A8B4AE;
+  --text-1: #132126;
+  --text-2: #45545A;
+  --text-3: #6E7A7C;
 
-  /* Nordic Pop palette */
-  --yellow: #F4541A;
-  --yellow-light: #FFF9CC;
-  --blue: #1C3BCC;
-  --blue-light: #EEF1FF;
-  --terra: #E8694A;
-  --terra-light: #FFF0EB;
-  --sage: #3A8C5C;
-  --sage-light: #EDF5F1;
-  --pink: #D4317A;
-  --pink-light: #FEF0F6;
-  --purple: #7C3AED;
-  --purple-light: #F3EEFF;
+  /* Blueprint palette: tracing paper, proof ink, ledger green */
+  --yellow: #B4382B;
+  --yellow-light: #F2E1DD;
+  --blue: #2C5268;
+  --blue-light: #DFE9ED;
+  --terra: #A14C3B;
+  --terra-light: #F1E3DE;
+  --sage: #315A4E;
+  --sage-light: #DDE8E2;
+  --pink: #7C445E;
+  --pink-light: #EDE1E7;
+  --purple: #5B5871;
+  --purple-light: #E5E4EA;
 
   /* shadcn compat */
-  --card: #FFFFFF;
-  --card-foreground: #0D0D0D;
-  --popover: #FFFFFF;
-  --popover-foreground: #0D0D0D;
-  --primary: #1C3BCC;
+  --card: #F8F9F6;
+  --card-foreground: #132126;
+  --popover: #F8F9F6;
+  --popover-foreground: #132126;
+  --primary: #2C5268;
   --primary-foreground: #FFFFFF;
-  --secondary: #F0EDE6;
-  --secondary-foreground: #0D0D0D;
-  --muted: #F0EDE6;
-  --muted-foreground: #6B6860;
-  --accent: #F4541A;
-  --accent-foreground: #0D0D0D;
-  --destructive: #E8694A;
-  --input: #E8E3D8;
-  --ring: #1C3BCC;
+  --secondary: #DFE4E0;
+  --secondary-foreground: #132126;
+  --muted: #DFE4E0;
+  --muted-foreground: #45545A;
+  --accent: #B4382B;
+  --accent-foreground: #F8F9F6;
+  --destructive: #A14C3B;
+  --input: #C7CFCA;
+  --ring: #2C5268;
   --radius: 0.75rem;
 }
 
@@ -160,7 +160,7 @@
 
 /* A11y: WCAG 2.4.7 Focus Visible — 全インタラクティブ要素に必須 */
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
-  outline: 2px solid #1C3BCC;
+  outline: 2px solid var(--blue);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -181,7 +181,7 @@
   left: -9999px;
   top: 8px;
   z-index: 9999;
-  background: #0D0D0D;
+  background: #132126;
   color: #fff;
   padding: 8px 12px;
   border-radius: 4px;
@@ -290,7 +290,7 @@
   }
   #luna [data-mobile-stack="luna-stat"] > div {
     border-right: none !important;
-    border-bottom: 1px solid rgba(13,13,13,0.12) !important;
+    border-bottom: 1px solid rgba(19,33,38,0.12) !important;
     padding: 18px 16px !important;
   }
   #luna [data-mobile-stack="luna-stat"] > div:last-child {
@@ -337,7 +337,7 @@
   }
   #manifesto [data-mobile-stack="pillars"] > div {
     border-right: none !important;
-    border-bottom: 1px solid rgba(13,13,13,0.12) !important;
+    border-bottom: 1px solid rgba(19,33,38,0.12) !important;
     padding: 28px 0 !important;
   }
   #manifesto [data-mobile-stack="pillars"] > div:last-child {

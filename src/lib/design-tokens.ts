@@ -6,10 +6,10 @@ export const SANS  = "var(--font-display), 'Space Grotesk', system-ui, sans-seri
 
 /** Lakkan accent palette */
 export const ACCENT = {
-  blue: "#1C3BCC",
-  orange: "#F4541A",
-  vermillion: "#B8362E", // editorial 朱赤
-  forest: "#1F3A2E",     // Luna AI のローカルファーストを示す深緑
+  blue: "#2C5268",        // blueprint ink
+  orange: "#A14C3B",      // oxidized copper
+  vermillion: "#B4382B",  // editorial proof mark
+  forest: "#315A4E",      // ledger green
 };
 
 export const CAT_LABEL: Record<Exclude<Category, "all">, string> = {
@@ -17,13 +17,13 @@ export const CAT_LABEL: Record<Exclude<Category, "all">, string> = {
   analytics: "Analytics", onboarding: "Onboarding", ai_agent: "AI Agent",
 };
 export const CAT_COLOR: Record<Exclude<Category, "all">, string> = {
-  website: "#1C3BCC", external: "#3A8C5C", internal: "#7C3AED",
-  analytics: "#E8694A", onboarding: "#B07D00", ai_agent: "#D4317A",
+  website: "#2C5268", external: "#315A4E", internal: "#5B5871",
+  analytics: "#A14C3B", onboarding: "#806126", ai_agent: "#7C445E",
 };
 export const STATUS = {
-  live:     { label: "Live",     color: "#3A8C5C", dot: "#3A8C5C" },
-  dev:      { label: "In Dev",   color: "#B07D00", dot: "#F4541A" },
-  archived: { label: "Archived", color: "#B0ADA6", dot: "#D0CCC4" },
+  live:     { label: "Live",     color: "#315A4E", dot: "#315A4E" },
+  dev:      { label: "In Dev",   color: "#806126", dot: "#A14C3B" },
+  archived: { label: "Archived", color: "#6E7A7C", dot: "#A8B4AE" },
 };
 export const ALL_CATS: Category[] = ["all", "website", "external", "internal", "analytics", "onboarding", "ai_agent"];
 export const EASE = [0.22, 1, 0.36, 1] as const;

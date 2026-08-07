@@ -15,10 +15,10 @@ export default function HeroCanvas() {
     const H = el.clientHeight;
 
     /* ── Renderer ── */
-    const renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: false });
+    const renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true });
     renderer.setSize(W, H);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
-    renderer.setClearColor(0xF4541A, 1);
+    renderer.setClearColor(0x000000, 0);
     el.appendChild(renderer.domElement);
 
     /* ── Scene / Camera ── */
@@ -33,14 +33,14 @@ export default function HeroCanvas() {
     const pGeo = new THREE.BufferGeometry();
     pGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
     const pMat = new THREE.PointsMaterial({
-      color: 0x0D0D0D, size: isMobile ? 0.055 : 0.04,
+      color: 0x132126, size: isMobile ? 0.055 : 0.04,
       transparent: true, opacity: 0.45,
     });
     scene.add(new THREE.Points(pGeo, pMat));
 
     /* ── Wireframe shapes ── */
     const wireMat = (opacity: number) =>
-      new THREE.MeshBasicMaterial({ color: 0x0D0D0D, wireframe: true, transparent: true, opacity });
+      new THREE.MeshBasicMaterial({ color: 0x132126, wireframe: true, transparent: true, opacity });
 
     const shapes: THREE.Mesh[] = [];
 

@@ -4,10 +4,10 @@ import { useState } from "react";
 
 const FRANK = "var(--font-frank), 'Frank Ruhl Libre', Georgia, serif";
 const SANS = "var(--font-display), 'Space Grotesk', system-ui, sans-serif";
-const FOREST = "#1F3A2E";
-const INK = "#0D0D0D";
-const MUTED = "#5A554D";
-const RULE = "rgba(13,13,13,0.14)";
+const FOREST = "#315A4E";
+const INK = "#132126";
+const MUTED = "#45545A";
+const RULE = "rgba(19,33,38,0.14)";
 
 const TOPICS = [
   { id: "ai-consult", label: "AI 活用相談" },

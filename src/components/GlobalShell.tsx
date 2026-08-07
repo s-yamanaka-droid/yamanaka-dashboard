@@ -26,7 +26,7 @@ function CursorFollower() {
       r.current.y += (m.current.y - r.current.y) * 0.09;
       if (ring.current) {
         ring.current.style.transform = `translate(${r.current.x - 22}px,${r.current.y - 22}px)`;
-        ring.current.style.borderColor = col.current || "rgba(13,13,13,0.32)";
+        ring.current.style.borderColor = col.current || "rgba(19,33,38,0.32)";
       }
       raf = requestAnimationFrame(tick);
     };
@@ -40,8 +40,8 @@ function CursorFollower() {
 
   return (
     <>
-      <div ref={dot} style={{ position:"fixed",top:0,left:0,width:8,height:8,background:"#0D0D0D",borderRadius:"50%",pointerEvents:"none",zIndex:9999,willChange:"transform" }}/>
-      <div ref={ring} style={{ position:"fixed",top:0,left:0,width:44,height:44,border:"1.5px solid rgba(13,13,13,0.32)",borderRadius:"50%",pointerEvents:"none",zIndex:9998,willChange:"transform",transition:"border-color 0.3s" }}/>
+      <div ref={dot} style={{ position:"fixed",top:0,left:0,width:8,height:8,background:"#132126",borderRadius:"50%",pointerEvents:"none",zIndex:9999,willChange:"transform" }}/>
+      <div ref={ring} style={{ position:"fixed",top:0,left:0,width:44,height:44,border:"1.5px solid rgba(19,33,38,0.32)",borderRadius:"50%",pointerEvents:"none",zIndex:9998,willChange:"transform",transition:"border-color 0.3s" }}/>
     </>
   );
 }
@@ -50,7 +50,7 @@ function CursorFollower() {
 function ScrollProgressBar() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 400, damping: 40 });
-  return <motion.div style={{ position:"fixed",top:0,left:0,right:0,height:2,background:"#0D0D0D",transformOrigin:"0%",scaleX,zIndex:9997 }}/>;
+  return <motion.div style={{ position:"fixed",top:0,left:0,right:0,height:2,background:"#132126",transformOrigin:"0%",scaleX,zIndex:9997 }}/>;
 }
 
 export default function GlobalShell() {

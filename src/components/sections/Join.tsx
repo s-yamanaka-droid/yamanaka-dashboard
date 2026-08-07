@@ -75,7 +75,7 @@ export function Join() {
               fontSize: "clamp(56px, 9vw, 144px)",
               fontWeight: 400,
               lineHeight: 0.92,
-              color: "#0D0D0D",
+              color: "#132126",
               letterSpacing: "-0.03em",
               margin: 0,
             }}
@@ -92,7 +92,7 @@ export function Join() {
             style={{
               fontFamily: SANS,
               fontSize: 14,
-              color: "#5A554D",
+              color: "#45545A",
               lineHeight: 1.85,
               margin: 0,
               maxWidth: 380,
@@ -108,7 +108,7 @@ export function Join() {
         {/* Roles */}
         <div
           style={{
-            borderTop: "1px solid rgba(13,13,13,0.12)",
+            borderTop: "1px solid rgba(19,33,38,0.12)",
             marginBottom: 80,
           }}
         >
@@ -128,7 +128,7 @@ export function Join() {
                 alignItems: "center",
                 gap: 24,
                 padding: "28px 0",
-                borderBottom: "1px solid rgba(13,13,13,0.12)",
+                borderBottom: "1px solid rgba(19,33,38,0.12)",
                 textDecoration: "none",
                 color: "inherit",
               }}
@@ -149,7 +149,7 @@ export function Join() {
                     fontFamily: FRANK,
                     fontSize: "clamp(22px, 2.8vw, 36px)",
                     fontWeight: 400,
-                    color: "#0D0D0D",
+                    color: "#132126",
                     lineHeight: 1.1,
                     margin: "0 0 6px",
                     letterSpacing: "-0.01em",
@@ -171,7 +171,7 @@ export function Join() {
                 style={{
                   fontFamily: SANS,
                   fontSize: 13,
-                  color: "#5A554D",
+                  color: "#45545A",
                   lineHeight: 1.65,
                   margin: 0,
                 }}
@@ -191,8 +191,8 @@ export function Join() {
                     fontFamily: SANS,
                     fontSize: 10,
                     letterSpacing: "0.14em",
-                    color: "#0D0D0D",
-                    border: "1px solid rgba(13,13,13,0.18)",
+                    color: "#132126",
+                    border: "1px solid rgba(19,33,38,0.18)",
                     borderRadius: 100,
                     padding: "4px 10px",
                     textTransform: "uppercase",
@@ -241,7 +241,7 @@ export function Join() {
                 fontFamily: INSTRUMENT,
                 fontSize: "clamp(28px,3.8vw,52px)",
                 fontWeight: 400,
-                color: "#0D0D0D",
+                color: "#132126",
                 lineHeight: 1.1,
                 margin: "0 0 28px",
                 letterSpacing: "-0.02em",
@@ -266,7 +266,7 @@ export function Join() {
                     gridTemplateColumns: "32px 1fr",
                     gap: 12,
                     padding: "18px 0",
-                    borderBottom: "1px solid rgba(13,13,13,0.08)",
+                    borderBottom: "1px solid rgba(19,33,38,0.08)",
                   }}
                 >
                   <span
@@ -284,7 +284,7 @@ export function Join() {
                     style={{
                       fontFamily: FRANK,
                       fontSize: 17,
-                      color: "#0D0D0D",
+                      color: "#132126",
                       lineHeight: 1.55,
                       letterSpacing: "-0.005em",
                     }}
@@ -320,7 +320,7 @@ export function Join() {
                 fontFamily: INSTRUMENT,
                 fontSize: "clamp(28px,3.8vw,52px)",
                 fontWeight: 400,
-                color: "#0D0D0D",
+                color: "#132126",
                 lineHeight: 1.1,
                 margin: "0 0 28px",
                 letterSpacing: "-0.02em",
@@ -346,7 +346,7 @@ export function Join() {
                     gridTemplateColumns: "92px 1fr",
                     gap: 16,
                     padding: "18px 0",
-                    borderBottom: "1px solid rgba(13,13,13,0.08)",
+                    borderBottom: "1px solid rgba(19,33,38,0.08)",
                   }}
                 >
                   <dt
@@ -365,7 +365,7 @@ export function Join() {
                     style={{
                       fontFamily: SANS,
                       fontSize: 13.5,
-                      color: "#0D0D0D",
+                      color: "#132126",
                       lineHeight: 1.65,
                       margin: 0,
                     }}
@@ -385,7 +385,7 @@ export function Join() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, ease: EASE }}
           style={{
-            borderTop: "1px solid rgba(13,13,13,0.12)",
+            borderTop: "1px solid rgba(19,33,38,0.12)",
             paddingTop: 32,
             marginBottom: 64,
           }}
@@ -395,7 +395,7 @@ export function Join() {
               fontFamily: SANS,
               fontSize: 9,
               letterSpacing: "0.22em",
-              color: "#B0ADA6",
+              color: "#6E7A7C",
               textTransform: "uppercase",
               marginBottom: 24,
             }}
@@ -407,7 +407,7 @@ export function Join() {
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
               gap: 0,
-              border: "1px solid rgba(13,13,13,0.12)",
+              border: "1px solid rgba(19,33,38,0.12)",
               borderRadius: 16,
               overflow: "hidden",
               background: "#FFFFFF",
@@ -420,7 +420,7 @@ export function Join() {
                   padding: "26px 24px",
                   borderRight:
                     i < arr.length - 1
-                      ? "1px solid rgba(13,13,13,0.1)"
+                      ? "1px solid rgba(19,33,38,0.1)"
                       : "none",
                 }}
               >
@@ -439,7 +439,7 @@ export function Join() {
                   style={{
                     fontFamily: FRANK,
                     fontSize: 16,
-                    color: "#0D0D0D",
+                    color: "#132126",
                     lineHeight: 1.4,
                     letterSpacing: "-0.005em",
                   }}
@@ -464,7 +464,7 @@ export function Join() {
             flexWrap: "wrap",
             gap: 24,
             paddingTop: 32,
-            borderTop: "1px solid rgba(13,13,13,0.12)",
+            borderTop: "1px solid rgba(19,33,38,0.12)",
           }}
         >
           <p
@@ -473,7 +473,7 @@ export function Join() {
               fontStyle: "italic",
               fontSize: "clamp(22px,3vw,40px)",
               fontWeight: 400,
-              color: "#0D0D0D",
+              color: "#132126",
               lineHeight: 1.3,
               margin: 0,
               maxWidth: "20ch",
@@ -492,7 +492,7 @@ export function Join() {
               fontFamily: FRANK,
               fontSize: "clamp(18px,2vw,26px)",
               fontWeight: 400,
-              color: "#0D0D0D",
+              color: "#132126",
               textDecoration: "none",
               borderBottom: `1px solid ${ACCENT.vermillion}`,
               paddingBottom: 6,

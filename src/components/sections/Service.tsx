@@ -56,7 +56,7 @@ const SERVICES: Service[] = [
     audience: "リブランディング中の企業 / 上場準備企業",
     process: ["1. ブランド診断", "2. デザイン選定 & 実装", "3. Vercel本番デプロイ"],
     range: "¥1,500,000 〜",
-    accent: "#3A8C5C",
+    accent: ACCENT.forest,
   },
   {
     num: "05",
@@ -66,7 +66,7 @@ const SERVICES: Service[] = [
     audience: "人事 / 経営企画 / 全社員にAIを浸透させたい企業",
     process: ["1. 現状診断", "2. 実務ハンズオン", "3. Skill運用伴走"],
     range: "¥800,000 / 月（3ヶ月〜）",
-    accent: "#7C3AED",
+    accent: "#5B5871",
   },
   {
     num: "06",
@@ -76,7 +76,7 @@ const SERVICES: Service[] = [
     audience: "ブランド創業者 / クリエイティブディレクター",
     process: ["1. 世界観言語化", "2. AI生成 → 物質化", "3. 限定生産 / 販売"],
     range: "応相談（コラボ前提）",
-    accent: "#D4317A",
+    accent: "#7C445E",
   },
 ];
 
@@ -94,13 +94,13 @@ function ServiceCard({ s, i }: { s: Service; i: number }) {
         background: "#FFFFFF",
         borderRadius: 16,
         padding: "36px 32px 32px",
-        border: "1px solid #E8E3D8",
+        border: "1px solid #C7CFCA",
         position: "relative",
         overflow: "hidden",
         transform: hov ? "translateY(-3px)" : "translateY(0)",
         boxShadow: hov
-          ? "0 16px 40px rgba(13,13,13,0.08)"
-          : "0 2px 6px rgba(13,13,13,0.04)",
+          ? "0 16px 40px rgba(19,33,38,0.08)"
+          : "0 2px 6px rgba(19,33,38,0.04)",
         transition: "transform 0.25s ease, box-shadow 0.25s ease",
         display: "flex",
         flexDirection: "column",
@@ -145,7 +145,7 @@ function ServiceCard({ s, i }: { s: Service; i: number }) {
               fontFamily: SANS,
               fontSize: 9,
               letterSpacing: "0.18em",
-              color: "#B0ADA6",
+              color: "#6E7A7C",
               textTransform: "uppercase",
             }}
           >
@@ -157,7 +157,7 @@ function ServiceCard({ s, i }: { s: Service; i: number }) {
             fontFamily: FRANK,
             fontSize: 30,
             fontWeight: 400,
-            color: "#0D0D0D",
+            color: "#132126",
             lineHeight: 1.1,
             margin: "0 0 6px",
             letterSpacing: "-0.015em",
@@ -184,7 +184,7 @@ function ServiceCard({ s, i }: { s: Service; i: number }) {
         style={{
           fontFamily: SANS,
           fontSize: 13,
-          color: "#5A554D",
+          color: "#45545A",
           lineHeight: 1.7,
           margin: 0,
         }}
@@ -200,7 +200,7 @@ function ServiceCard({ s, i }: { s: Service; i: number }) {
               fontFamily: SANS,
               fontSize: 9,
               letterSpacing: "0.18em",
-              color: "#B0ADA6",
+              color: "#6E7A7C",
               textTransform: "uppercase",
               marginBottom: 4,
             }}
@@ -211,7 +211,7 @@ function ServiceCard({ s, i }: { s: Service; i: number }) {
             style={{
               fontFamily: SANS,
               fontSize: 12.5,
-              color: "#0D0D0D",
+              color: "#132126",
               margin: 0,
               lineHeight: 1.5,
             }}
@@ -225,7 +225,7 @@ function ServiceCard({ s, i }: { s: Service; i: number }) {
               fontFamily: SANS,
               fontSize: 9,
               letterSpacing: "0.18em",
-              color: "#B0ADA6",
+              color: "#6E7A7C",
               textTransform: "uppercase",
               marginBottom: 6,
             }}
@@ -240,7 +240,7 @@ function ServiceCard({ s, i }: { s: Service; i: number }) {
                   style={{
                     fontFamily: SANS,
                     fontSize: 12,
-                    color: "#5A554D",
+                    color: "#45545A",
                     lineHeight: 1.5,
                     paddingLeft: 12,
                     position: "relative",
@@ -265,7 +265,7 @@ function ServiceCard({ s, i }: { s: Service; i: number }) {
         <div
           style={{
             paddingTop: 14,
-            borderTop: "1px solid rgba(13,13,13,0.08)",
+            borderTop: "1px solid rgba(19,33,38,0.08)",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -277,7 +277,7 @@ function ServiceCard({ s, i }: { s: Service; i: number }) {
                 fontFamily: SANS,
                 fontSize: 9,
                 letterSpacing: "0.18em",
-                color: "#B0ADA6",
+                color: "#6E7A7C",
                 textTransform: "uppercase",
                 marginBottom: 4,
               }}
@@ -289,7 +289,7 @@ function ServiceCard({ s, i }: { s: Service; i: number }) {
                 fontFamily: INSTRUMENT,
                 fontStyle: "italic",
                 fontSize: 18,
-                color: "#0D0D0D",
+                color: "#132126",
                 margin: 0,
                 letterSpacing: "-0.005em",
               }}
@@ -338,7 +338,7 @@ export function Service() {
               fontSize: "clamp(48px, 8vw, 128px)",
               fontWeight: 400,
               lineHeight: 0.95,
-              color: "#0D0D0D",
+              color: "#132126",
               letterSpacing: "-0.025em",
               margin: 0,
               maxWidth: "16ch",
@@ -356,7 +356,7 @@ export function Service() {
             style={{
               fontFamily: SANS,
               fontSize: 14,
-              color: "#5A554D",
+              color: "#45545A",
               lineHeight: 1.75,
               margin: 0,
               maxWidth: 360,
@@ -368,7 +368,7 @@ export function Service() {
           </motion.p>
         </div>
 
-        <div style={{ height: 1, background: "rgba(13,13,13,0.12)", marginBottom: 40 }} />
+        <div style={{ height: 1, background: "rgba(19,33,38,0.12)", marginBottom: 40 }} />
 
         {/* Cards */}
         <div
@@ -392,7 +392,7 @@ export function Service() {
           style={{
             marginTop: 56,
             paddingTop: 28,
-            borderTop: "1px solid rgba(13,13,13,0.08)",
+            borderTop: "1px solid rgba(19,33,38,0.08)",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -404,7 +404,7 @@ export function Service() {
             style={{
               fontFamily: SANS,
               fontSize: 11,
-              color: "#6B6860",
+              color: "#45545A",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
             }}
@@ -420,7 +420,7 @@ export function Service() {
               fontFamily: INSTRUMENT,
               fontStyle: "italic",
               fontSize: 18,
-              color: "#0D0D0D",
+              color: "#132126",
               textDecoration: "none",
               borderBottom: `1px solid ${ACCENT.vermillion}`,
               paddingBottom: 4,

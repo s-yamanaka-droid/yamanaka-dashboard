@@ -50,10 +50,10 @@ export default function HeroLetters() {
       const ctx = cv.getContext("2d");
       if (!ctx) return;
       ctx.clearRect(0, 0, 320, 320);
-      // 微かなグロウ（vermillion）
-      ctx.shadowColor = "rgba(255, 79, 0, 0.35)";
+      // 校正朱の微かなグロウ
+      ctx.shadowColor = "rgba(180, 56, 43, 0.28)";
       ctx.shadowBlur = 22;
-      ctx.fillStyle = "#0D0D0D";
+      ctx.fillStyle = "#132126";
       ctx.font = "900 240px 'Playfair Display', 'Instrument Serif', 'Frank Ruhl Libre', Georgia, serif";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";

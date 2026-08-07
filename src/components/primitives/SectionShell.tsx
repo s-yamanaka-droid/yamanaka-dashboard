@@ -21,8 +21,8 @@ type AccentRole = "vermillion" | "blue" | "orange" | "forest";
 type Tone = "cream" | "creamLight"; // 互いの色違い
 
 const TONE_BG: Record<Tone, string> = {
-  cream: "#F7F4EE",
-  creamLight: "#F5F3EE",
+  cream: "#EEF0EC",
+  creamLight: "#E4E8E4",
 };
 
 export function SectionShell({
@@ -52,7 +52,7 @@ export function SectionShell({
       style={{
         background: TONE_BG[tone],
         padding: "var(--section-padding, 120px 56px)",
-        borderTop: topBorder ? "1px solid rgba(13,13,13,0.08)" : undefined,
+        borderTop: topBorder ? "1px solid rgba(19,33,38,0.08)" : undefined,
         position: "relative",
         overflow: "hidden",
       }}
@@ -126,7 +126,7 @@ export function BigHeadline({
         fontSize: sizeMap[size],
         fontWeight: 400,
         lineHeight: 0.96,
-        color: "#0D0D0D",
+        color: "#132126",
         letterSpacing: "-0.025em",
         margin: "0 0 48px",
         maxWidth,
@@ -162,7 +162,7 @@ export function Lede({ children, maxWidth = 640 }: { children: ReactNode; maxWid
         fontFamily: FRANK,
         fontSize: 17,
         fontWeight: 300,
-        color: "#5A554D",
+        color: "#45545A",
         lineHeight: 1.7,
         maxWidth,
         margin: "0 0 56px",
@@ -182,7 +182,7 @@ export function EditorialDivider({ marginY = 48 }: { marginY?: number }) {
     <div
       style={{
         height: 1,
-        background: "rgba(13,13,13,0.12)",
+        background: "rgba(19,33,38,0.12)",
         margin: `${marginY}px 0`,
       }}
     />

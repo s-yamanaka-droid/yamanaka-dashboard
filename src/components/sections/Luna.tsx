@@ -5,9 +5,9 @@ import { ArrowUpRight, Brain, ShieldCheck, Sparkles } from "lucide-react";
 import { INSTRUMENT, SANS, EASE } from "@/lib/design-tokens";
 import { SectionShell, Em } from "@/components/primitives/SectionShell";
 
-const INK = "#0D0D0D";
-const RULE = "rgba(13,13,13,0.12)";
-const MUTED = "rgba(13,13,13,0.58)";
+const INK = "#132126";
+const RULE = "rgba(19,33,38,0.12)";
+const MUTED = "rgba(19,33,38,0.58)";
 const LUNA_URL = "https://lunatech-migration-guide.vercel.app";
 
 const PILLARS = [
@@ -165,12 +165,12 @@ export function Luna() {
                 <span style={{ fontFamily: INSTRUMENT, fontStyle: "italic", fontSize: 14, color: MUTED }}>
                   {pillar.code}
                 </span>
-                <Icon size={20} strokeWidth={1.5} color="#1F3A2E" aria-hidden="true" />
+                <Icon size={20} strokeWidth={1.5} color="#315A4E" aria-hidden="true" />
               </div>
               <h3 style={{ fontFamily: INSTRUMENT, fontSize: 34, fontWeight: 400, margin: "0 0 4px", color: INK }}>
                 {pillar.title}
               </h3>
-              <p style={{ fontFamily: SANS, fontSize: 12, fontWeight: 700, color: "#1F3A2E", margin: "0 0 16px" }}>
+              <p style={{ fontFamily: SANS, fontSize: 12, fontWeight: 700, color: "#315A4E", margin: "0 0 16px" }}>
                 {pillar.jp}
               </p>
               <p style={{ fontFamily: SANS, fontSize: 13, lineHeight: 1.8, color: MUTED, margin: 0 }}>
@@ -192,7 +192,7 @@ export function Luna() {
             gap: 8,
             padding: "12px 18px",
             borderRadius: 999,
-            background: "#1F3A2E",
+            background: "#315A4E",
             color: "#FFFFFF",
             fontFamily: SANS,
             fontSize: 12,

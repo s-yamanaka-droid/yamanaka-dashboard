@@ -7,18 +7,18 @@ const categoryStyle: Record<
   Project["category"],
   { label: string; color: string; bg: string; border: string }
 > = {
-  website:   { label: "Website",       color: "#1C3BCC", bg: "#EEF1FF", border: "#1C3BCC" },
-  internal:  { label: "Internal Tool", color: "#7C3AED", bg: "#F3EEFF", border: "#7C3AED" },
-  external:  { label: "External Tool", color: "#3A8C5C", bg: "#EDF5F1", border: "#3A8C5C" },
-  onboarding:{ label: "Onboarding",    color: "#B07D00", bg: "#FFF9CC", border: "#F5D800" },
-  ai_agent:  { label: "AI Agent",      color: "#D4317A", bg: "#FEF0F6", border: "#D4317A" },
-  analytics: { label: "Analytics",     color: "#C05A30", bg: "#FFF0EB", border: "#E8694A" },
+  website:   { label: "Website",       color: "#2C5268", bg: "#DFE9ED", border: "#2C5268" },
+  internal:  { label: "Internal Tool", color: "#5B5871", bg: "#E5E4EA", border: "#5B5871" },
+  external:  { label: "External Tool", color: "#315A4E", bg: "#DDE8E2", border: "#315A4E" },
+  onboarding:{ label: "Onboarding",    color: "#806126", bg: "#F0E8D5", border: "#A98643" },
+  ai_agent:  { label: "AI Agent",      color: "#7C445E", bg: "#EDE1E7", border: "#7C445E" },
+  analytics: { label: "Analytics",     color: "#A14C3B", bg: "#F1E3DE", border: "#A14C3B" },
 };
 
 const statusConfig: Record<Project["status"], { label: string; color: string; dot: string }> = {
-  live:     { label: "Live",      color: "#3A8C5C", dot: "#3A8C5C" },
-  dev:      { label: "In Dev",   color: "#B07D00", dot: "#F5D800" },
-  archived: { label: "Archived", color: "#B0ADA6", dot: "#D0CCC4" },
+  live:     { label: "Live",      color: "#315A4E", dot: "#315A4E" },
+  dev:      { label: "In Dev",   color: "#806126", dot: "#A14C3B" },
+  archived: { label: "Archived", color: "#6E7A7C", dot: "#A8B4AE" },
 };
 
 function fmt(s: string) {
@@ -68,16 +68,16 @@ export default function ProjectCard({ project, index }: { project: Project; inde
 
         {/* Title */}
         <div>
-          <h3 className="font-display font-semibold text-[15px] leading-snug text-[#0D0D0D] group-hover:text-[#1C3BCC] transition-colors">
+          <h3 className="font-display font-semibold text-[15px] leading-snug text-[#132126] group-hover:text-[#2C5268] transition-colors">
             {project.name}
           </h3>
           {project.client && (
-            <p className="text-[11px] text-[#B0ADA6] mt-0.5">for {project.client}</p>
+            <p className="text-[11px] text-[#6E7A7C] mt-0.5">for {project.client}</p>
           )}
         </div>
 
         {/* Description */}
-        <p className="text-[13px] text-[#6B6860] leading-relaxed line-clamp-2 flex-1">
+        <p className="text-[13px] text-[#45545A] leading-relaxed line-clamp-2 flex-1">
           {project.description}
         </p>
 
@@ -88,7 +88,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
               <span
                 key={tag}
                 className="text-[11px] font-medium rounded-md px-2 py-0.5"
-                style={{ color: "#6B6860", background: "#F0EDE6", border: "1px solid #E8E3D8" }}
+                style={{ color: "#45545A", background: "#DFE4E0", border: "1px solid #C7CFCA" }}
               >
                 {tag}
               </span>
@@ -100,9 +100,9 @@ export default function ProjectCard({ project, index }: { project: Project; inde
       {/* Footer */}
       <div
         className="flex items-center justify-between px-5 py-3"
-        style={{ borderTop: "1px solid #F0EDE6" }}
+        style={{ borderTop: "1px solid #DFE4E0" }}
       >
-        <div className="flex items-center gap-3 text-[11px] text-[#B0ADA6]">
+        <div className="flex items-center gap-3 text-[11px] text-[#6E7A7C]">
           <span className="flex items-center gap-1">
             <Calendar size={10} />
             {fmt(project.createdAt)}
@@ -112,7 +112,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
             {fmt(project.updatedAt)}
           </span>
         </div>
-        <div className="flex items-center gap-1 text-[11px] text-[#B0ADA6]">
+        <div className="flex items-center gap-1 text-[11px] text-[#6E7A7C]">
           <Code2 size={10} />
           <span>{project.builtWith === "claude_code" ? "Claude Code" : project.builtWith}</span>
         </div>
