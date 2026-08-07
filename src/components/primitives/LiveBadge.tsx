@@ -3,6 +3,7 @@ import { SANS } from "@/lib/design-tokens";
 export function LiveBadge({ products }: { products: number }) {
   return (
     <div
+      className="hero-live-badge"
       style={{
         position: "absolute",
         top: 78,
@@ -46,7 +47,7 @@ export function LiveBadge({ products }: { products: number }) {
       </span>
       <span>PUBLIC</span>
       <span style={{ opacity: 0.4 }}>—</span>
-      <span style={{ letterSpacing: "0.08em" }}>{products} works</span>
+      <span className="hero-live-badge-count" style={{ letterSpacing: "0.08em" }}>{products} works</span>
       <style>{`@keyframes lakkan-pulse { 0%,100% { transform:scale(1); opacity:1 } 50% { transform:scale(1.6); opacity:0.2 } }`}</style>
     </div>
   );

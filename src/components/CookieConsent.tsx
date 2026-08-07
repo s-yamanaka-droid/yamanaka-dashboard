@@ -70,6 +70,7 @@ export function CookieConsent() {
       </p>
       <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
         <button
+          className="cookie-consent-button"
           onClick={reject}
           style={{
             fontFamily: SANS,
@@ -85,6 +86,7 @@ export function CookieConsent() {
           拒否
         </button>
         <button
+          className="cookie-consent-button"
           onClick={accept}
           style={{
             fontFamily: SANS,

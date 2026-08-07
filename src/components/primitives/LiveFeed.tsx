@@ -33,6 +33,7 @@ export function LiveFeed() {
       <div>
         {projects.map((project, i) => (
           <motion.a
+            className="hero-feed-link"
             key={project.id}
             href={project.url}
             target="_blank"
@@ -63,6 +64,7 @@ export function LiveFeed() {
       </div>
 
       <a
+        className="hero-feed-all"
         href="/works"
         style={{
           display: "inline-block",

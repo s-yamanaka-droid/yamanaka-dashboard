@@ -69,10 +69,10 @@ export function Hero({
               padding:"28px 56px", position:"relative",
             }}>
               {/* Nav */}
-              <nav style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+              <nav aria-label="Primary" style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
                 <span style={{ display:"flex", alignItems:"baseline", gap:10, fontFamily:FRANK, fontSize:18, fontWeight:700, color:ink, letterSpacing:"0.04em" }}>
                   Lakkan<span style={{ color: ACCENT.vermillion, fontWeight: 900 }}>.</span>
-                  <span style={{ fontFamily:SANS, fontSize:10, fontWeight:500, opacity:0.55, letterSpacing:"0.18em", textTransform:"uppercase" }}>
+                  <span className="hero-brand-meta" style={{ fontFamily:SANS, fontSize:10, fontWeight:500, opacity:0.55, letterSpacing:"0.18em", textTransform:"uppercase" }}>
                     operates × 6
                   </span>
                 </span>
@@ -89,7 +89,7 @@ export function Hero({
                       borderRadius:6, padding:"5px 14px", opacity:0.85 }}>
                     Contact
                   </a>
-                  <button onClick={onOpenCmd}
+                  <button onClick={onOpenCmd} className="hero-command-button" aria-label="Open command menu"
                     style={{ display:"flex", alignItems:"center", gap:5, fontFamily:SANS, fontSize:11, fontWeight:500, color:ink,
                       background:"rgba(13,13,13,0.12)", border:"1px solid rgba(13,13,13,0.18)", borderRadius:6,
                       padding:"5px 10px", cursor:"pointer", opacity:0.8 }}>
