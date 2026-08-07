@@ -32,8 +32,8 @@ export function HeroBubble({
         whileHover={{ y: -4 }}
         transition={{ duration: 0.18 }}
         style={{
-          background: hov ? "#FFFFFF" : "#F7F4EE",
-          border: `1px solid ${hov ? accent : "rgba(13,13,13,0.12)"}`,
+          background: hov ? "#F8F9F6" : "#EEF0EC",
+          border: `1px solid ${hov ? accent : "rgba(19,33,38,0.12)"}`,
           borderTop: `3px solid ${accent}`,
           padding: "14px 20px 12px",
           cursor: "pointer",
@@ -41,8 +41,8 @@ export function HeroBubble({
           minWidth: 132,
           borderRadius: 2,
           boxShadow: hov
-            ? `0 14px 32px rgba(13,13,13,0.18), 0 0 0 1px ${accent}22`
-            : "0 4px 14px rgba(13,13,13,0.06)",
+            ? `0 14px 32px rgba(19,33,38,0.18), 0 0 0 1px ${accent}22`
+            : "0 4px 14px rgba(19,33,38,0.06)",
           transition: "background 0.18s, border-color 0.18s, box-shadow 0.18s",
           display: "flex",
           flexDirection: "column",
@@ -67,7 +67,7 @@ export function HeroBubble({
               fontSize: 9,
               fontWeight: 700,
               letterSpacing: "0.2em",
-              color: "#0D0D0D",
+              color: "#132126",
               opacity: 0.55,
               textTransform: "uppercase",
               lineHeight: 1,

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { INSTRUMENT, FRANK, SANS, EASE, ACCENT } from "@/lib/design-tokens";
 
-const RULE = "rgba(13,13,13,0.12)";
+const RULE = "rgba(19,33,38,0.12)";
 
 type Props = {
   /** Section label, e.g. "Lab" — appears italic in eyebrow */
@@ -24,7 +24,7 @@ type Props = {
  * - Title : Instrument Serif, huge, letter-spacing -0.025em
  * - Lede  : Frank Ruhl Libre italic
  */
-export function PageHero({ section, version, title, lede, background = "#F7F4EE" }: Props) {
+export function PageHero({ section, version, title, lede, background = "#EEF0EC" }: Props) {
   const hasTerminalPunctuation = /[。.!！?？]$/.test(title.trim());
   const pauseIndex = title.indexOf("、");
   const titleLead = pauseIndex >= 0 ? title.slice(0, pauseIndex + 1) : title;
@@ -34,7 +34,7 @@ export function PageHero({ section, version, title, lede, background = "#F7F4EE"
       className="page-hero"
       style={{
         background,
-        color: "#0D0D0D",
+        color: "#132126",
         padding: "120px 56px 64px",
         borderBottom: `1px solid ${RULE}`,
       }}
@@ -86,7 +86,7 @@ export function PageHero({ section, version, title, lede, background = "#F7F4EE"
             lineHeight: 0.92,
             letterSpacing: "-0.025em",
             margin: "0 0 28px",
-            color: "#0D0D0D",
+            color: "#132126",
           }}
         >
           <span className="heading-phrase">{titleLead}</span>
@@ -111,7 +111,7 @@ export function PageHero({ section, version, title, lede, background = "#F7F4EE"
             fontSize: "clamp(18px, 2vw, 24px)",
             fontWeight: 300,
             lineHeight: 1.55,
-            color: "rgba(13,13,13,0.7)",
+            color: "rgba(19,33,38,0.7)",
             maxWidth: 780,
             margin: 0,
           }}

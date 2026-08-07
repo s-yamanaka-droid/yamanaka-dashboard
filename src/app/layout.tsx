@@ -114,7 +114,7 @@ export default function RootLayout({
       lang="ja"
       className={`${geistMono.variable} ${spaceGrotesk.variable} ${frankRuhl.variable} ${instrument.variable} ${shippori.variable} ${notoSansJP.variable} antialiased`}
     >
-      <body className="bg-[#F7F4EE] text-[#0D0D0D]">
+      <body className="bg-[#EEF0EC] text-[#132126]">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

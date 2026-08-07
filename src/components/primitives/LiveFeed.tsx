@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FRANK, SANS } from "@/lib/design-tokens";
+import { ACCENT, FRANK, SANS } from "@/lib/design-tokens";
 import projectsData from "@/data/projects.json";
 import type { Project } from "@/types";
 
@@ -10,7 +10,7 @@ const projects = (projectsData as Project[])
   .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
   .slice(0, 5);
 
-const TONE = ["#1F3A2E", "#B8362E", "#1C3BCC", "#3A8C5C", "#7C3AED"];
+const TONE = [ACCENT.forest, ACCENT.vermillion, ACCENT.blue, "#647672", "#5B5871"];
 
 export function LiveFeed() {
   return (
@@ -21,7 +21,7 @@ export function LiveFeed() {
           fontSize: 10,
           fontWeight: 700,
           letterSpacing: "0.22em",
-          color: "#0D0D0D",
+          color: "#132126",
           opacity: 0.5,
           marginBottom: 14,
           textTransform: "uppercase",
@@ -47,9 +47,9 @@ export function LiveFeed() {
               alignItems: "center",
               gap: 10,
               padding: "10px 0",
-              borderTop: i === 0 ? "none" : "1px solid rgba(13,13,13,0.1)",
+              borderTop: i === 0 ? "none" : "1px solid rgba(19,33,38,0.1)",
               textDecoration: "none",
-              color: "#0D0D0D",
+              color: "#132126",
             }}
           >
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: TONE[i % TONE.length] }} />
@@ -68,13 +68,13 @@ export function LiveFeed() {
         href="/works"
         style={{
           display: "inline-block",
-          borderTop: "1px solid rgba(13,13,13,0.18)",
+          borderTop: "1px solid rgba(19,33,38,0.18)",
           paddingTop: 12,
           marginTop: 6,
           width: "100%",
           fontFamily: SANS,
           fontSize: 9,
-          color: "#0D0D0D",
+          color: "#132126",
           opacity: 0.55,
           letterSpacing: "0.18em",
           textTransform: "uppercase",

@@ -30,7 +30,7 @@ export function Sparkline({
   seed = 1,
   width = 80,
   height = 24,
-  color = "#0D0D0D",
+  color = "#132126",
   pointColor = ACCENT.vermillion,
 }: {
   target: number;

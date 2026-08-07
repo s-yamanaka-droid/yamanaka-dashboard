@@ -14,12 +14,12 @@ type Entry = {
 };
 
 const TAG_COLOR: Record<string, string> = {
-  BRAND:   "#FF4F00",
+  BRAND:   "#B4382B",
   UI:      "#3F73C3",
   PRODUCT: "#137333",
   OPS:     "#C9A84C",
-  ARCH:    "#7C3AED",
-  REPORT:  "#3A8C5C",
+  ARCH:    "#5B5871",
+  REPORT:  "#315A4E",
   COMPANY: "#8A3E00",
   COMING:  "#A0A0A0",
 };
@@ -43,8 +43,8 @@ export default function ChangelogPage() {
   const allTags = ["All", ...Array.from(new Set(entries.map(e => e.tag)))];
   const filtered = tag === "All" ? entries : entries.filter(e => e.tag === tag);
 
-  const ink = "#0D0D0D";
-  const accent = "#FF4F00";
+  const ink = "#132126";
+  const accent = "#B4382B";
   const lime = "#137333";
 
   // 月ごとにグルーピング
@@ -78,7 +78,7 @@ export default function ChangelogPage() {
         position: "sticky", top: 0, zIndex: 30,
         background: "rgba(245,245,240,.94)",
         backdropFilter: "blur(14px)",
-        borderBottom: "1px solid rgba(13,13,13,0.08)",
+        borderBottom: "1px solid rgba(19,33,38,0.08)",
         padding: "14px 40px",
         display: "flex", alignItems: "center", justifyContent: "space-between",
         height: 60,
@@ -142,7 +142,7 @@ export default function ChangelogPage() {
         position: "relative", zIndex: 1,
         padding: "80px 40px 40px",
         maxWidth: 1100, margin: "0 auto",
-        borderBottom: "1px solid rgba(13,13,13,0.08)",
+        borderBottom: "1px solid rgba(19,33,38,0.08)",
       }}>
         <div style={{
           display: "flex", alignItems: "center", gap: 14,
@@ -162,7 +162,7 @@ export default function ChangelogPage() {
           What&apos;s <em style={{ fontStyle: "italic", color: accent }}>new</em>.
         </h1>
         <p style={{
-          fontSize: 15, color: "#5A554D", lineHeight: 1.85,
+          fontSize: 15, color: "#45545A", lineHeight: 1.85,
           maxWidth: 640, marginBottom: 16,
           fontFamily: "'Noto Sans JP', sans-serif",
         }}>
@@ -177,7 +177,7 @@ export default function ChangelogPage() {
               fontSize: 10, letterSpacing: "0.1em",
               background: tag === t ? (t === "All" ? ink : TAG_COLOR[t] || ink) : "transparent",
               color: tag === t ? "#fff" : ink,
-              border: `1px solid ${tag === t ? (t === "All" ? ink : TAG_COLOR[t] || ink) : "rgba(13,13,13,0.15)"}`,
+              border: `1px solid ${tag === t ? (t === "All" ? ink : TAG_COLOR[t] || ink) : "rgba(19,33,38,0.15)"}`,
               borderRadius: 99, cursor: "pointer",
               textTransform: "uppercase",
             }}>{t}</button>
@@ -197,7 +197,7 @@ export default function ChangelogPage() {
               fontFamily: "'Playfair Display', serif", fontStyle: "italic",
               fontSize: 28, fontWeight: 400,
               color: "#8A857A", marginBottom: 24,
-              borderBottom: "1px solid rgba(13,13,13,0.08)",
+              borderBottom: "1px solid rgba(19,33,38,0.08)",
               paddingBottom: 12,
             }}>
               {month}
@@ -215,7 +215,7 @@ export default function ChangelogPage() {
                     gridTemplateColumns: "120px 1fr",
                     gap: 32,
                     padding: "24px 0",
-                    borderBottom: "1px solid rgba(13,13,13,0.06)",
+                    borderBottom: "1px solid rgba(19,33,38,0.06)",
                   }}
                 >
                   <div>
@@ -243,7 +243,7 @@ export default function ChangelogPage() {
                     </h3>
                     <p style={{
                       fontFamily: "'Noto Sans JP', sans-serif",
-                      fontSize: 13.5, color: "#5A554D", lineHeight: 1.85,
+                      fontSize: 13.5, color: "#45545A", lineHeight: 1.85,
                       marginBottom: 12,
                     }}>
                       {e.body}
@@ -274,7 +274,7 @@ export default function ChangelogPage() {
       <footer style={{
         position: "relative", zIndex: 1,
         padding: "32px 40px", textAlign: "center",
-        borderTop: "1px solid rgba(13,13,13,0.08)",
+        borderTop: "1px solid rgba(19,33,38,0.08)",
         fontFamily: "'DM Mono', monospace", fontSize: 10,
         letterSpacing: "0.18em", color: "#8A857A",
       }}>

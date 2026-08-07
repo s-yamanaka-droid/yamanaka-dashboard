@@ -9,17 +9,17 @@ const FRANK = "var(--font-frank), 'Frank Ruhl Libre', Georgia, serif";
 const SANS  = "var(--font-display), 'Space Grotesk', system-ui, sans-serif";
 
 const CAT_COLOR: Record<Exclude<Category, "all">, string> = {
-  website: "#1C3BCC", external: "#3A8C5C", internal: "#7C3AED",
-  analytics: "#E8694A", onboarding: "#B07D00", ai_agent: "#D4317A",
+  website: "#2C5268", external: "#315A4E", internal: "#5B5871",
+  analytics: "#A14C3B", onboarding: "#806126", ai_agent: "#7C445E",
 };
 const CAT_LABEL: Record<Exclude<Category, "all">, string> = {
   website: "Website", external: "External", internal: "Internal",
   analytics: "Analytics", onboarding: "Onboarding", ai_agent: "AI Agent",
 };
 const STATUS = {
-  live:     { label: "Live",  dot: "#3A8C5C" },
-  dev:      { label: "Dev",   dot: "#F4541A" },
-  archived: { label: "Arch",  dot: "#D0CCC4" },
+  live:     { label: "Live",  dot: "#315A4E" },
+  dev:      { label: "Dev",   dot: "#A14C3B" },
+  archived: { label: "Arch",  dot: "#A8B4AE" },
 };
 
 export function CommandSearch({
@@ -74,7 +74,7 @@ export function CommandSearch({
         onClick={onClose}
         style={{
           position: "fixed", inset: 0,
-          background: "rgba(13,13,13,0.72)",
+          background: "rgba(19,33,38,0.72)",
           backdropFilter: "blur(10px)",
           WebkitBackdropFilter: "blur(10px)",
           zIndex: 11000,
@@ -90,19 +90,19 @@ export function CommandSearch({
           onClick={e => e.stopPropagation()}
           style={{
             width: "min(620px, 92vw)",
-            background: "#F7F4EE",
+            background: "#F8F9F6",
             borderRadius: 16,
             overflow: "hidden",
-            boxShadow: "0 32px 80px rgba(13,13,13,0.28), 0 0 0 1px rgba(13,13,13,0.06)",
+            boxShadow: "0 32px 80px rgba(19,33,38,0.28), 0 0 0 1px rgba(19,33,38,0.06)",
           }}
         >
           {/* Search input */}
           <div style={{
             display: "flex", alignItems: "center", gap: 12,
             padding: "16px 20px",
-            borderBottom: "1px solid rgba(13,13,13,0.08)",
+            borderBottom: "1px solid rgba(19,33,38,0.08)",
           }}>
-            <Search size={16} color="#B0ADA6"/>
+            <Search size={16} color="#6E7A7C"/>
             <input
               ref={inputRef}
               type="text"
@@ -115,14 +115,14 @@ export function CommandSearch({
               style={{
                 flex: 1, fontFamily: FRANK, fontSize: 17, fontWeight: 300,
                 border: "none", background: "none", outline: "none",
-                color: "#0D0D0D",
+                color: "#132126",
               }}
             />
             <button
               onClick={onClose}
               style={{ background: "none", border: "none", cursor: "pointer", display: "flex", padding: 4 }}
             >
-              <X size={14} color="#B0ADA6"/>
+              <X size={14} color="#6E7A7C"/>
             </button>
           </div>
 
@@ -134,7 +134,7 @@ export function CommandSearch({
               </div>
             ) : (
               <>
-                <div style={{ padding: "8px 20px 4px", fontFamily: SANS, fontSize: 9, letterSpacing: "0.14em", color: "#B0ADA6" }}>
+                <div style={{ padding: "8px 20px 4px", fontFamily: SANS, fontSize: 9, letterSpacing: "0.14em", color: "#6E7A7C" }}>
                   {query ? `${results.length} RESULTS` : "RECENTLY UPDATED"}
                 </div>
                 {results.map((p, i) => {
@@ -148,7 +148,7 @@ export function CommandSearch({
                       style={{
                         display: "flex", alignItems: "center", gap: 14,
                         padding: "11px 20px",
-                        background: isActive ? "rgba(13,13,13,0.04)" : "transparent",
+                        background: isActive ? "rgba(19,33,38,0.04)" : "transparent",
                         cursor: "pointer",
                         transition: "background 0.1s",
                         borderLeft: isActive ? `3px solid ${catColor}` : "3px solid transparent",
@@ -160,14 +160,14 @@ export function CommandSearch({
                       {/* Info */}
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3 }}>
-                          <span style={{ fontFamily: SANS, fontSize: 14, fontWeight: 700, color: "#0D0D0D" }}>
+                          <span style={{ fontFamily: SANS, fontSize: 14, fontWeight: 700, color: "#132126" }}>
                             {p.name}
                           </span>
                           {p.client && (
-                            <span style={{ fontFamily: SANS, fontSize: 11, color: "#B0ADA6" }}>for {p.client}</span>
+                            <span style={{ fontFamily: SANS, fontSize: 11, color: "#6E7A7C" }}>for {p.client}</span>
                           )}
                         </div>
-                        <div style={{ fontFamily: SANS, fontSize: 11, color: "#B0ADA6", display: "flex", gap: 10, alignItems: "center" }}>
+                        <div style={{ fontFamily: SANS, fontSize: 11, color: "#6E7A7C", display: "flex", gap: 10, alignItems: "center" }}>
                           <span style={{ color: catColor, fontWeight: 600, fontSize: 10 }}>
                             {CAT_LABEL[p.category]}
                           </span>
@@ -192,7 +192,7 @@ export function CommandSearch({
 
                       {/* Active indicator */}
                       {isActive && (
-                        <span style={{ fontFamily: SANS, fontSize: 10, color: "#B0ADA6", flexShrink: 0, background: "rgba(13,13,13,0.06)", padding: "3px 7px", borderRadius: 4 }}>
+                        <span style={{ fontFamily: SANS, fontSize: 10, color: "#6E7A7C", flexShrink: 0, background: "rgba(19,33,38,0.06)", padding: "3px 7px", borderRadius: 4 }}>
                           ↵
                         </span>
                       )}
@@ -207,12 +207,12 @@ export function CommandSearch({
           <div style={{
             display: "flex", alignItems: "center", gap: 16,
             padding: "10px 20px",
-            borderTop: "1px solid rgba(13,13,13,0.07)",
-            background: "rgba(13,13,13,0.02)",
+            borderTop: "1px solid rgba(19,33,38,0.07)",
+            background: "rgba(19,33,38,0.02)",
           }}>
             {[["↑↓", "navigate"], ["↵", "open detail"], ["Esc", "close"]].map(([key, label]) => (
-              <span key={key} style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: SANS, fontSize: 10, color: "#B0ADA6" }}>
-                <kbd style={{ fontFamily: SANS, fontSize: 9, background: "rgba(13,13,13,0.07)", padding: "2px 5px", borderRadius: 3 }}>
+              <span key={key} style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: SANS, fontSize: 10, color: "#6E7A7C" }}>
+                <kbd style={{ fontFamily: SANS, fontSize: 9, background: "rgba(19,33,38,0.07)", padding: "2px 5px", borderRadius: 3 }}>
                   {key}
                 </kbd>
                 {label}

@@ -24,7 +24,7 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
     <footer
       id="contact"
       style={{
-        background: "#0D0D0D",
+        background: "#132126",
         padding: "96px 56px 36px",
         position: "relative",
         overflow: "hidden",
@@ -273,7 +273,7 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
                 fontSize: 12,
                 fontWeight: 700,
                 letterSpacing: "0.08em",
-                color: "#0D0D0D",
+                color: "#132126",
                 background: ACCENT.vermillion,
                 textTransform: "uppercase",
                 padding: "12px 18px",

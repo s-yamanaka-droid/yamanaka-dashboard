@@ -55,7 +55,7 @@ export function CodeRain() {
           fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
           fontSize: 12,
           lineHeight: 1.7,
-          color: "#0D0D0D",
+          color: "#132126",
           opacity: 0.045,
           whiteSpace: "pre",
           animation: "lakkan-coderain 60s linear infinite",

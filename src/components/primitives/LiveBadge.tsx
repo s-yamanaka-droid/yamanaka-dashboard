@@ -1,4 +1,4 @@
-import { SANS } from "@/lib/design-tokens";
+import { ACCENT, SANS } from "@/lib/design-tokens";
 
 export function LiveBadge({ products }: { products: number }) {
   return (
@@ -17,10 +17,10 @@ export function LiveBadge({ products }: { products: number }) {
         fontWeight: 600,
         letterSpacing: "0.18em",
         textTransform: "uppercase",
-        color: "#0D0D0D",
+        color: "#132126",
         background: "rgba(255,255,255,0.65)",
         backdropFilter: "blur(8px)",
-        border: "1px solid rgba(13,13,13,0.18)",
+        border: "1px solid rgba(19,33,38,0.18)",
         borderRadius: 999,
         padding: "6px 12px",
       }}
@@ -31,7 +31,7 @@ export function LiveBadge({ products }: { products: number }) {
             position: "absolute",
             inset: 0,
             borderRadius: "50%",
-            background: "#3A8C5C",
+            background: ACCENT.forest,
             animation: "lakkan-pulse 1.6s ease-in-out infinite",
           }}
         />
@@ -40,7 +40,7 @@ export function LiveBadge({ products }: { products: number }) {
             position: "absolute",
             inset: 0,
             borderRadius: "50%",
-            background: "#3A8C5C",
+            background: ACCENT.forest,
             opacity: 0.55,
           }}
         />

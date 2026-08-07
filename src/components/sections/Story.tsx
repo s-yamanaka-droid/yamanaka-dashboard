@@ -29,7 +29,7 @@ export function Story() {
           fontSize: "clamp(44px, 7.2vw, 112px)",
           fontWeight: 400,
           lineHeight: 0.98,
-          color: "#0D0D0D",
+          color: "#132126",
           letterSpacing: "-0.025em",
           margin: "0 0 56px",
           maxWidth: "22ch",
@@ -48,7 +48,7 @@ export function Story() {
         transition={{ duration: 0.6, ease: EASE }}
         data-mobile-stack="story-body"
         style={{
-          borderTop: "1px solid rgba(13,13,13,0.12)",
+          borderTop: "1px solid rgba(19,33,38,0.12)",
           paddingTop: 48,
           display: "grid",
           gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",
@@ -62,7 +62,7 @@ export function Story() {
             fontSize: "clamp(20px, 2.2vw, 30px)",
             fontWeight: 400,
             lineHeight: 1.5,
-            color: "#0D0D0D",
+            color: "#132126",
             margin: 0,
             letterSpacing: "-0.005em",
           }}
@@ -78,7 +78,7 @@ export function Story() {
           style={{
             fontFamily: SANS,
             fontSize: 14,
-            color: "#5A554D",
+            color: "#45545A",
             lineHeight: 1.95,
             margin: 0,
             maxWidth: "44ch",
@@ -95,7 +95,7 @@ export function Story() {
             style={{
               fontFamily: SANS,
               fontSize: 11,
-              color: "#B0ADA6",
+              color: "#6E7A7C",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
             }}
@@ -121,7 +121,7 @@ export function Story() {
         style={{
           margin: "80px auto 0",
           padding: "40px 0 0",
-          borderTop: "1px solid rgba(13,13,13,0.12)",
+          borderTop: "1px solid rgba(19,33,38,0.12)",
           maxWidth: 920,
           textAlign: "center",
         }}
@@ -133,7 +133,7 @@ export function Story() {
             fontSize: "clamp(22px, 3vw, 40px)",
             fontWeight: 400,
             lineHeight: 1.35,
-            color: "#0D0D0D",
+            color: "#132126",
             margin: 0,
             letterSpacing: "-0.01em",
           }}

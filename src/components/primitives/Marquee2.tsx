@@ -1,9 +1,9 @@
 "use client";
 
-import { FRANK, MarqueeItem } from "@/lib/design-tokens";
+import { ACCENT, FRANK, MarqueeItem } from "@/lib/design-tokens";
 
 export function Marquee2({
-  items, bg = "#0D0D0D", speed = "normal", reverse = false,
+  items, bg = "#132126", speed = "normal", reverse = false,
 }: {
   items: MarqueeItem[]; bg?: string; speed?: "fast"|"normal"|"slow"; reverse?: boolean;
 }) {
@@ -12,7 +12,7 @@ export function Marquee2({
     : speed === "fast" ? "marquee-track-fast"
     : speed === "slow" ? "marquee-track-slow"
     : "marquee-track";
-  const defaultColor = bg === "#0D0D0D" ? "#F4541A" : "#0D0D0D";
+  const defaultColor = bg === "#132126" ? ACCENT.vermillion : "#132126";
   return (
     <div style={{ overflow:"hidden", background:bg, padding:"12px 0" }}>
       <div className={cls}>

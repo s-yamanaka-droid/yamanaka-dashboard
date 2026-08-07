@@ -13,13 +13,13 @@ const CAT_LABEL: Record<Exclude<Category, "all">, string> = {
   analytics: "Analytics", onboarding: "Onboarding", ai_agent: "AI Agent",
 };
 const CAT_COLOR: Record<Exclude<Category, "all">, string> = {
-  website: "#1C3BCC", external: "#3A8C5C", internal: "#7C3AED",
-  analytics: "#E8694A", onboarding: "#B07D00", ai_agent: "#D4317A",
+  website: "#2C5268", external: "#315A4E", internal: "#5B5871",
+  analytics: "#A14C3B", onboarding: "#806126", ai_agent: "#7C445E",
 };
 const STATUS = {
-  live:     { label: "Live",     color: "#3A8C5C", dot: "#3A8C5C" },
-  dev:      { label: "In Dev",   color: "#B07D00", dot: "#F4541A" },
-  archived: { label: "Archived", color: "#B0ADA6", dot: "#D0CCC4" },
+  live:     { label: "Live",     color: "#315A4E", dot: "#315A4E" },
+  dev:      { label: "In Dev",   color: "#806126", dot: "#A14C3B" },
+  archived: { label: "Archived", color: "#6E7A7C", dot: "#A8B4AE" },
 };
 const BUILT_LABEL: Record<string, string> = {
   claude_code: "Claude Code", manual: "Manual", v0: "v0", bolt: "Bolt",
@@ -30,9 +30,9 @@ const WORK_TYPE_LABEL = {
   "ai-concept": "AI CONCEPT",
 };
 const WORK_TYPE_COLOR = {
-  client: "#3A8C5C",
-  own: "#1C3BCC",
-  "ai-concept": "#B8362E",
+  client: "#315A4E",
+  own: "#2C5268",
+  "ai-concept": "#B4382B",
 };
 
 export function ProjectModal({
@@ -64,7 +64,7 @@ export function ProjectModal({
             onClick={onClose}
             style={{
               position: "fixed", inset: 0,
-              background: "rgba(13,13,13,0.65)",
+              background: "rgba(19,33,38,0.65)",
               backdropFilter: "blur(8px)",
               WebkitBackdropFilter: "blur(8px)",
               zIndex: 10000,
@@ -79,7 +79,7 @@ export function ProjectModal({
             transition={{ type: "spring", stiffness: 380, damping: 42 }}
             style={{
               position: "fixed", bottom: 0, left: 0, right: 0,
-              maxHeight: "90vh", background: "#F7F4EE",
+              maxHeight: "90vh", background: "#F8F9F6",
               zIndex: 10001, borderRadius: "20px 20px 0 0",
               overflowY: "auto",
             }}
@@ -118,7 +118,7 @@ export function ProjectModal({
                       <span style={{ width: 6, height: 6, borderRadius: "50%", background: STATUS[project.status].dot, display: "inline-block" }}/>
                       {STATUS[project.status].label}
                     </span>
-                    <span style={{ fontFamily: SANS, fontSize: 11, color: "#B0ADA6" }}>
+                    <span style={{ fontFamily: SANS, fontSize: 11, color: "#6E7A7C" }}>
                       {BUILT_LABEL[project.builtWith] ?? project.builtWith}
                     </span>
                   </div>
@@ -129,12 +129,12 @@ export function ProjectModal({
                     fontSize: "clamp(32px, 5.5vw, 88px)",
                     fontWeight: 400, lineHeight: 0.92,
                     letterSpacing: "-0.02em",
-                    color: "#0D0D0D", margin: "0 0 8px",
+                    color: "#132126", margin: "0 0 8px",
                   }}>
                     {project.name}
                   </h2>
                   {project.client && (
-                    <p style={{ fontFamily: SANS, fontSize: 13, color: "#B0ADA6", margin: 0 }}>
+                    <p style={{ fontFamily: SANS, fontSize: 13, color: "#6E7A7C", margin: 0 }}>
                       for {project.client}
                     </p>
                   )}
@@ -145,23 +145,23 @@ export function ProjectModal({
                   onClick={onClose}
                   style={{
                     width: 40, height: 40, borderRadius: "50%",
-                    background: "rgba(13,13,13,0.07)", border: "none",
+                    background: "rgba(19,33,38,0.07)", border: "none",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     cursor: "pointer", flexShrink: 0, marginLeft: 20,
                   }}
                 >
-                  <X size={16} color="#0D0D0D"/>
+                  <X size={16} color="#132126"/>
                 </button>
               </div>
 
-              <div style={{ height: 1, background: "#0D0D0D", opacity: 0.08, marginBottom: 28 }}/>
+              <div style={{ height: 1, background: "#132126", opacity: 0.08, marginBottom: 28 }}/>
 
               {/* Description */}
               <p style={{
                 fontFamily: FRANK,
                 fontSize: "clamp(18px, 2.3vw, 30px)",
                 fontWeight: 300, lineHeight: 1.6,
-                color: "#0D0D0D", margin: "0 0 40px",
+                color: "#132126", margin: "0 0 40px",
                 maxWidth: 700,
               }}>
                 {project.description}
@@ -182,12 +182,12 @@ export function ProjectModal({
                       ...(project.client ? [["CLIENT", project.client]] : []),
                     ].map(([k, v]) => (
                       <div key={k}>
-                        <div style={{ fontFamily: SANS, fontSize: 9, letterSpacing: "0.14em", color: "#B0ADA6", marginBottom: 5 }}>{k}</div>
+                        <div style={{ fontFamily: SANS, fontSize: 9, letterSpacing: "0.14em", color: "#6E7A7C", marginBottom: 5 }}>{k}</div>
                         <div style={{
                           fontFamily: k === "BUILD TIME" ? FRANK : SANS,
                           fontSize: k === "BUILD TIME" ? 18 : 14,
                           fontWeight: k === "BUILD TIME" ? 400 : 400,
-                          color: k === "BUILD TIME" ? CAT_COLOR[project.category] : "#0D0D0D",
+                          color: k === "BUILD TIME" ? CAT_COLOR[project.category] : "#132126",
                         }}>{v}</div>
                       </div>
                     ))}
@@ -218,8 +218,8 @@ export function ProjectModal({
                     padding: "10px 16px", marginBottom: 16,
                     maxWidth: 520,
                   }}>
-                    <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#3A8C5C", flexShrink: 0 }}/>
-                    <span style={{ fontFamily: SANS, fontSize: 12, color: "#6B6860", wordBreak: "break-all" }}>
+                    <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#315A4E", flexShrink: 0 }}/>
+                    <span style={{ fontFamily: SANS, fontSize: 12, color: "#45545A", wordBreak: "break-all" }}>
                       {project.url}
                     </span>
                   </div>
@@ -230,7 +230,7 @@ export function ProjectModal({
                     style={{
                       display: "inline-flex", alignItems: "center", gap: 8,
                       fontFamily: FRANK, fontSize: 18, fontWeight: 400,
-                      color: "#F7F4EE",
+                      color: "#F8F9F6",
                       background: CAT_COLOR[project.category],
                       padding: "15px 36px", borderRadius: 100,
                       textDecoration: "none",
@@ -243,7 +243,7 @@ export function ProjectModal({
                 <div style={{
                   display: "inline-flex", alignItems: "center",
                   fontFamily: FRANK, fontSize: 15, fontWeight: 300,
-                  color: "#B0ADA6", border: "1px solid #E0DBD2",
+                  color: "#6E7A7C", border: "1px solid #E0DBD2",
                   padding: "12px 28px", borderRadius: 100,
                 }}>
                   Coming Soon

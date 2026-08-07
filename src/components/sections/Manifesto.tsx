@@ -25,7 +25,7 @@ export function Manifesto() {
           fontSize: "clamp(44px, 7.2vw, 112px)",
           fontWeight: 400,
           lineHeight: 0.98,
-          color: "#0D0D0D",
+          color: "#132126",
           letterSpacing: "-0.025em",
           margin: "0 0 48px",
           maxWidth: "20ch",
@@ -44,7 +44,7 @@ export function Manifesto() {
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
           gap: 0,
-          borderTop: "1px solid rgba(13,13,13,0.12)",
+          borderTop: "1px solid rgba(19,33,38,0.12)",
           marginTop: 48,
         }}
       >
@@ -74,7 +74,7 @@ export function Manifesto() {
             style={{
               padding: "40px 32px 40px 0",
               borderRight:
-                i < 2 ? "1px solid rgba(13,13,13,0.12)" : "none",
+                i < 2 ? "1px solid rgba(19,33,38,0.12)" : "none",
               paddingLeft: i > 0 ? 32 : 0,
             }}
           >
@@ -95,7 +95,7 @@ export function Manifesto() {
                 fontFamily: FRANK,
                 fontSize: 28,
                 fontWeight: 400,
-                color: "#0D0D0D",
+                color: "#132126",
                 lineHeight: 1.18,
                 margin: "0 0 14px",
                 letterSpacing: "-0.01em",
@@ -107,7 +107,7 @@ export function Manifesto() {
               style={{
                 fontFamily: SANS,
                 fontSize: 13.5,
-                color: "#5A554D",
+                color: "#45545A",
                 lineHeight: 1.7,
                 margin: 0,
               }}
@@ -131,14 +131,14 @@ export function Manifesto() {
           gap: 16,
           marginTop: 64,
           paddingTop: 28,
-          borderTop: "1px solid rgba(13,13,13,0.08)",
+          borderTop: "1px solid rgba(19,33,38,0.08)",
         }}
       >
         <span
           style={{
             fontFamily: SANS,
             fontSize: 11,
-            color: "#6B6860",
+            color: "#45545A",
             letterSpacing: "0.16em",
             textTransform: "uppercase",
           }}
@@ -150,7 +150,7 @@ export function Manifesto() {
             fontFamily: INSTRUMENT,
             fontStyle: "italic",
             fontSize: 22,
-            color: "#0D0D0D",
+            color: "#132126",
           }}
         >
           山中 秀斗

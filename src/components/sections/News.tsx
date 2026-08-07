@@ -25,12 +25,12 @@ type Payload = {
 const CAT_COLOR: Record<string, string> = {
   業界動向: ACCENT.vermillion,
   新モデル発表: ACCENT.blue,
-  ツール更新: "#3A8C5C",
-  研究: "#7C3AED",
+  ツール更新: ACCENT.forest,
+  研究: "#5B5871",
   投資: ACCENT.orange,
-  ポリシー: "#B07D00",
+  ポリシー: "#806126",
 };
-const colorFor = (c: string | null) => (c && CAT_COLOR[c]) || "#6B6860";
+const colorFor = (c: string | null) => (c && CAT_COLOR[c]) || "#45545A";
 
 export function News() {
   const [data, setData] = useState<Payload | null>(null);
@@ -50,10 +50,10 @@ export function News() {
     <section
       id="news"
       style={{
-        background: "#F5F3EE",
+        background: "#E4E8E4",
         padding: "96px 56px",
-        borderTop: "1px solid rgba(13,13,13,0.08)",
-        borderBottom: "1px solid rgba(13,13,13,0.08)",
+        borderTop: "1px solid rgba(19,33,38,0.08)",
+        borderBottom: "1px solid rgba(19,33,38,0.08)",
       }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
@@ -102,7 +102,7 @@ export function News() {
                 fontSize: "clamp(44px,7vw,104px)",
                 fontWeight: 400,
                 lineHeight: 0.96,
-                color: "#0D0D0D",
+                color: "#132126",
                 letterSpacing: "-0.025em",
                 margin: 0,
               }}
@@ -115,7 +115,7 @@ export function News() {
               style={{
                 fontFamily: SANS,
                 fontSize: 11,
-                color: "#6B6860",
+                color: "#45545A",
                 letterSpacing: "0.14em",
                 marginBottom: 8,
               }}
@@ -159,7 +159,7 @@ export function News() {
             fontFamily: FRANK,
             fontSize: 17,
             fontWeight: 300,
-            color: "#5A554D",
+            color: "#45545A",
             lineHeight: 1.7,
             maxWidth: 640,
             margin: "0 0 56px",
@@ -173,10 +173,10 @@ export function News() {
 
         {/* Articles grid */}
         {loading && (
-          <div style={{ fontFamily: SANS, color: "#6B6860" }}>Loading…</div>
+          <div style={{ fontFamily: SANS, color: "#45545A" }}>Loading…</div>
         )}
         {!loading && articles.length === 0 && (
-          <div style={{ fontFamily: SANS, color: "#6B6860" }}>
+          <div style={{ fontFamily: SANS, color: "#45545A" }}>
             ニュースが取得できませんでした。
           </div>
         )}
@@ -186,7 +186,7 @@ export function News() {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
             gap: 0,
-            borderTop: "1px solid rgba(13,13,13,0.08)",
+            borderTop: "1px solid rgba(19,33,38,0.08)",
           }}
         >
           {articles.map((a, i) => (
@@ -203,11 +203,11 @@ export function News() {
                 display: "block",
                 padding: "32px 32px 32px 0",
                 paddingLeft: i % 3 === 0 ? 0 : 32,
-                borderBottom: "1px solid rgba(13,13,13,0.08)",
+                borderBottom: "1px solid rgba(19,33,38,0.08)",
                 borderRight:
-                  (i + 1) % 3 !== 0 ? "1px solid rgba(13,13,13,0.08)" : "none",
+                  (i + 1) % 3 !== 0 ? "1px solid rgba(19,33,38,0.08)" : "none",
                 textDecoration: "none",
-                color: "#0D0D0D",
+                color: "#132126",
                 position: "relative",
               }}
               className="news-card"
@@ -245,7 +245,7 @@ export function News() {
                     style={{
                       fontFamily: SANS,
                       fontSize: 10,
-                      color: "#B0ADA6",
+                      color: "#6E7A7C",
                       marginLeft: "auto",
                       letterSpacing: "0.04em",
                     }}
@@ -262,7 +262,7 @@ export function News() {
                   lineHeight: 1.32,
                   margin: "0 0 14px",
                   letterSpacing: "-0.005em",
-                  color: "#0D0D0D",
+                  color: "#132126",
                 }}
               >
                 {a.title}
@@ -271,7 +271,7 @@ export function News() {
                 style={{
                   fontFamily: SANS,
                   fontSize: 13,
-                  color: "#5A554D",
+                  color: "#45545A",
                   lineHeight: 1.65,
                   margin: 0,
                   display: "-webkit-box",

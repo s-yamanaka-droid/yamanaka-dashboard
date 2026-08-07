@@ -101,7 +101,7 @@ export default function AtelierPage() {
               style={{
                 y: blobY, position: "absolute", inset: "-10% -15% auto auto",
                 width: "min(60vw, 720px)", aspectRatio: "1/1", borderRadius: "50%",
-                background: "radial-gradient(circle at 40% 40%, rgba(13,13,13,0.10), transparent 60%)",
+                background: "radial-gradient(circle at 40% 40%, rgba(19,33,38,0.10), transparent 60%)",
                 filter: "blur(48px)", opacity: .9, pointerEvents: "none",
               }}
             />
@@ -110,7 +110,7 @@ export default function AtelierPage() {
               style={{
                 y: blob2Y, position: "absolute", inset: "20% auto auto -10%",
                 width: "min(52vw, 600px)", aspectRatio: "1/1", borderRadius: "50%",
-                background: "radial-gradient(circle at 60% 60%, rgba(13,13,13,0.08), transparent 60%)",
+                background: "radial-gradient(circle at 60% 60%, rgba(19,33,38,0.08), transparent 60%)",
                 filter: "blur(60px)", opacity: .85, pointerEvents: "none",
               }}
             />
@@ -450,7 +450,7 @@ function PatternCard({ it, delay }: { it: Item; delay: number }) {
             aria-hidden
             style={{
               position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
-              background: "linear-gradient(180deg, transparent 50%, rgba(13,13,13,0.18))",
+              background: "linear-gradient(180deg, transparent 50%, rgba(19,33,38,0.18))",
               opacity: 0, transition: "opacity .5s ease",
             }}
             className="cat-glow"

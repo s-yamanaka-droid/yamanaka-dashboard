@@ -58,7 +58,7 @@ export function About() {
               position: "relative",
               width: "100%",
               aspectRatio: "3/2",
-              background: "#E8E3D8",
+              background: "#C7CFCA",
               borderRadius: 4,
               overflow: "hidden",
             }}
@@ -84,17 +84,17 @@ export function About() {
                 fontSize: "clamp(48px, 7vw, 104px)",
                 fontWeight: 400,
                 lineHeight: 0.92,
-                color: "#0D0D0D",
+                color: "#132126",
                 letterSpacing: "-0.025em",
                 margin: "0 0 12px",
               }}
             >
               Shuto<br />Yamanaka<em style={{ fontStyle: "italic", color: ACCENT.vermillion }}>.</em>
             </h2>
-            <p style={{ fontFamily: FRANK, fontSize: 18, fontWeight: 300, color: "#6B6860", margin: "0 0 8px", letterSpacing: "0.06em" }}>
+            <p style={{ fontFamily: FRANK, fontSize: 18, fontWeight: 300, color: "#45545A", margin: "0 0 8px", letterSpacing: "0.06em" }}>
               山中 秀斗
             </p>
-            <p style={{ fontFamily: SANS, fontSize: 13, color: "#6B6860", lineHeight: 1.8, margin: 0, letterSpacing: "0.02em" }}>
+            <p style={{ fontFamily: SANS, fontSize: 13, color: "#45545A", lineHeight: 1.8, margin: 0, letterSpacing: "0.02em" }}>
               Founder, Lakkan Inc.<br />
               COO, Trepro Co., Ltd. (TSE Growth)<br />
               東京・渋谷 / 1997年生
@@ -114,13 +114,13 @@ export function About() {
             gridTemplateColumns: "1fr 2fr",
             gap: 48,
             paddingTop: 64,
-            borderTop: "1px solid rgba(13,13,13,0.12)",
+            borderTop: "1px solid rgba(19,33,38,0.12)",
             marginBottom: 96,
           }}
         >
-          <div style={{ fontFamily: SANS, fontSize: 11, letterSpacing: "0.22em", color: "#6B6860", textTransform: "uppercase" }}>
+          <div style={{ fontFamily: SANS, fontSize: 11, letterSpacing: "0.22em", color: "#45545A", textTransform: "uppercase" }}>
             Essay · 01<br />
-            <span style={{ color: "#B0ADA6" }}>2026 / Self-portrait</span>
+            <span style={{ color: "#6E7A7C" }}>2026 / Self-portrait</span>
           </div>
           <div>
             <p
@@ -130,7 +130,7 @@ export function About() {
                 fontStyle: "italic",
                 fontWeight: 400,
                 lineHeight: 1.55,
-                color: "#0D0D0D",
+                color: "#132126",
                 margin: "0 0 32px",
                 letterSpacing: "-0.005em",
               }}
@@ -154,7 +154,7 @@ export function About() {
               この瞬間に、AIが世界の前提を書き換えはじめた。<br />
               ホシザキでの営業、ネオキャリアでの SaaS 立ち上げ、Sinple、Solve、トレプロでの COO──
               いくつもの会社を渡り歩きながら、僕は同じことをやり続けてきた。
-              <strong style={{ color: "#0D0D0D", fontWeight: 500 }}>「うまくいく仕組みを、もう一度作り直す。」</strong>
+              <strong style={{ color: "#132126", fontWeight: 500 }}>「うまくいく仕組みを、もう一度作り直す。」</strong>
               <br /><br />
               Lakkan は、その延長線上にある。
               人とAIが矛盾なく走れる組織。
@@ -179,7 +179,7 @@ export function About() {
           <div
             style={{
               fontFamily: SANS, fontSize: 11, letterSpacing: "0.22em",
-              color: "#6B6860", textTransform: "uppercase", marginBottom: 32,
+              color: "#45545A", textTransform: "uppercase", marginBottom: 32,
             }}
           >
             Three Credos · I — III
@@ -190,7 +190,7 @@ export function About() {
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
               gap: 0,
-              borderTop: "1px solid rgba(13,13,13,0.12)",
+              borderTop: "1px solid rgba(19,33,38,0.12)",
             }}
           >
             {CREDOS.map((c, i) => (
@@ -203,14 +203,14 @@ export function About() {
                 style={{
                   padding: "32px 28px 32px 0",
                   paddingLeft: i > 0 ? 28 : 0,
-                  borderRight: i < 2 ? "1px solid rgba(13,13,13,0.12)" : "none",
-                  borderBottom: "1px solid rgba(13,13,13,0.12)",
+                  borderRight: i < 2 ? "1px solid rgba(19,33,38,0.12)" : "none",
+                  borderBottom: "1px solid rgba(19,33,38,0.12)",
                 }}
               >
                 <div style={{ fontFamily: INSTRUMENT, fontStyle: "italic", fontSize: 18, color: ACCENT.vermillion, marginBottom: 14 }}>
                   {c.num}
                 </div>
-                <p style={{ fontFamily: FRANK, fontSize: 18, lineHeight: 1.55, color: "#0D0D0D", margin: 0, letterSpacing: "-0.005em" }}>
+                <p style={{ fontFamily: FRANK, fontSize: 18, lineHeight: 1.55, color: "#132126", margin: 0, letterSpacing: "-0.005em" }}>
                   {c.text}
                 </p>
               </motion.div>
@@ -228,7 +228,7 @@ export function About() {
         >
           <div style={{
             fontFamily: SANS, fontSize: 11, letterSpacing: "0.22em",
-            color: "#6B6860", textTransform: "uppercase", marginBottom: 32,
+            color: "#45545A", textTransform: "uppercase", marginBottom: 32,
           }}>
             Multi-Hat · 6 Companies (2026)
           </div>
@@ -236,7 +236,7 @@ export function About() {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             gap: 0,
-            borderTop: "1px solid rgba(13,13,13,0.12)",
+            borderTop: "1px solid rgba(19,33,38,0.12)",
           }}>
             {ROLES.map((r, i) => (
               <motion.div
@@ -247,8 +247,8 @@ export function About() {
                 transition={{ delay: i * 0.06, duration: 0.5, ease: EASE }}
                 style={{
                   padding: "28px 24px",
-                  borderRight: "1px solid rgba(13,13,13,0.08)",
-                  borderBottom: "1px solid rgba(13,13,13,0.08)",
+                  borderRight: "1px solid rgba(19,33,38,0.08)",
+                  borderBottom: "1px solid rgba(19,33,38,0.08)",
                 }}
               >
                 <div style={{
@@ -259,13 +259,13 @@ export function About() {
                 </div>
                 <div style={{
                   fontFamily: FRANK, fontSize: 22, fontWeight: 500,
-                  color: "#0D0D0D", marginBottom: 12, letterSpacing: "-0.01em",
+                  color: "#132126", marginBottom: 12, letterSpacing: "-0.01em",
                 }}>
                   {r.co}
                 </div>
                 <div style={{
                   fontFamily: SANS, fontSize: 13, lineHeight: 1.55,
-                  color: "#5A554D", marginBottom: 8,
+                  color: "#45545A", marginBottom: 8,
                 }}>
                   {r.domain}
                 </div>
@@ -284,7 +284,7 @@ export function About() {
         <div
           style={{
             fontFamily: SANS, fontSize: 11, letterSpacing: "0.22em",
-            color: "#6B6860", textTransform: "uppercase", marginBottom: 32,
+            color: "#45545A", textTransform: "uppercase", marginBottom: 32,
           }}
         >
           Timeline · 2016 — 2026
@@ -303,17 +303,17 @@ export function About() {
                 gridTemplateColumns: "100px 1fr",
                 gap: 32,
                 padding: "24px 0",
-                borderBottom: "1px solid rgba(13,13,13,0.06)",
+                borderBottom: "1px solid rgba(19,33,38,0.06)",
               }}
             >
               <span style={{ fontFamily: INSTRUMENT, fontStyle: "italic", fontSize: 20, fontWeight: 400, color: ACCENT.vermillion, letterSpacing: "-0.01em" }}>
                 {item.year}
               </span>
               <div>
-                <span style={{ fontFamily: FRANK, fontSize: 18, fontWeight: 400, color: "#0D0D0D", lineHeight: 1.45, display: "block", marginBottom: 6 }}>
+                <span style={{ fontFamily: FRANK, fontSize: 18, fontWeight: 400, color: "#132126", lineHeight: 1.45, display: "block", marginBottom: 6 }}>
                   {item.text}
                 </span>
-                <span style={{ fontFamily: INSTRUMENT, fontStyle: "italic", fontSize: 15, fontWeight: 400, color: "#5A554D", lineHeight: 1.55 }}>
+                <span style={{ fontFamily: INSTRUMENT, fontStyle: "italic", fontSize: 15, fontWeight: 400, color: "#45545A", lineHeight: 1.55 }}>
                   {item.note}
                 </span>
               </div>

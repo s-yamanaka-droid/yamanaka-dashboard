@@ -13,7 +13,7 @@ const PORTALS = [
     sub: "AI Kitting · Public",
     desc: "判断・言葉・失敗を手元に蓄積し、使うほど利用者専用に育つAIキッティングサービス。",
     url: "https://lunatech-migration-guide.vercel.app",
-    accent: "#1F3A2E",
+    accent: ACCENT.forest,
     meta: "by LunaTech",
   },
   {
@@ -40,7 +40,7 @@ const PORTALS = [
     sub: "Design Patterns · Public",
     desc: "WebGL、レイアウト、導線設計を実際に触って比較できる、Lakkanの公開制作実験場。",
     url: "/atelier",
-    accent: "#7C3AED",
+    accent: "#5B5871",
     meta: "Explore",
   },
 ];
@@ -64,34 +64,34 @@ function PortalCard({ portal, index }: { portal: (typeof PORTALS)[number]; index
         display: "block",
         padding: "32px 28px 28px",
         textDecoration: "none",
-        color: "#0D0D0D",
+        color: "#132126",
         background: hovered ? "#FFFFFF" : "transparent",
-        border: "1px solid rgba(13,13,13,0.1)",
+        border: "1px solid rgba(19,33,38,0.1)",
         borderRadius: 4,
         transition: "background 0.2s, transform 0.2s, box-shadow 0.2s",
         transform: hovered ? "translateY(-3px)" : "translateY(0)",
-        boxShadow: hovered ? `0 18px 40px rgba(13,13,13,0.08), 0 0 0 1px ${portal.accent}33` : "none",
+        boxShadow: hovered ? `0 18px 40px rgba(19,33,38,0.08), 0 0 0 1px ${portal.accent}33` : "none",
       }}
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
-        <span style={{ fontFamily: SANS, fontSize: 9, fontWeight: 700, letterSpacing: "0.22em", color: "#3A8C5C" }}>
+        <span style={{ fontFamily: SANS, fontSize: 9, fontWeight: 700, letterSpacing: "0.22em", color: ACCENT.forest }}>
           PUBLIC
         </span>
-        <ArrowUpRight size={14} color={hovered ? portal.accent : "#B0ADA6"} />
+        <ArrowUpRight size={14} color={hovered ? portal.accent : "#6E7A7C"} />
       </div>
-      <div style={{ fontFamily: INSTRUMENT, fontSize: 40, lineHeight: 1, color: hovered ? portal.accent : "#0D0D0D", marginBottom: 6 }}>
+      <div style={{ fontFamily: INSTRUMENT, fontSize: 40, lineHeight: 1, color: hovered ? portal.accent : "#132126", marginBottom: 6 }}>
         {portal.label}<em style={{ fontStyle: "italic", opacity: 0.4 }}>.</em>
       </div>
-      <div style={{ fontFamily: FRANK, fontSize: 13, color: "#6B6860", marginBottom: 18 }}>{portal.jaLabel}</div>
-      <div style={{ fontFamily: SANS, fontSize: 10, letterSpacing: "0.16em", color: "#B0ADA6", textTransform: "uppercase", marginBottom: 16 }}>
+      <div style={{ fontFamily: FRANK, fontSize: 13, color: "#45545A", marginBottom: 18 }}>{portal.jaLabel}</div>
+      <div style={{ fontFamily: SANS, fontSize: 10, letterSpacing: "0.16em", color: "#6E7A7C", textTransform: "uppercase", marginBottom: 16 }}>
         {portal.sub}
       </div>
-      <p style={{ fontFamily: SANS, fontSize: 13, color: "#5A554D", lineHeight: 1.65, margin: "0 0 24px" }}>
+      <p style={{ fontFamily: SANS, fontSize: 13, color: "#45545A", lineHeight: 1.65, margin: "0 0 24px" }}>
         {portal.desc}
       </p>
-      <div style={{ paddingTop: 16, borderTop: "1px solid rgba(13,13,13,0.08)", display: "flex", justifyContent: "space-between", fontFamily: SANS, fontSize: 10, color: "#B0ADA6" }}>
+      <div style={{ paddingTop: 16, borderTop: "1px solid rgba(19,33,38,0.08)", display: "flex", justifyContent: "space-between", fontFamily: SANS, fontSize: 10, color: "#6E7A7C" }}>
         <span>{portal.meta}</span>
-        <span style={{ fontFamily: INSTRUMENT, fontStyle: "italic", fontSize: 13, color: hovered ? portal.accent : "#B0ADA6" }}>
+        <span style={{ fontFamily: INSTRUMENT, fontStyle: "italic", fontSize: 13, color: hovered ? portal.accent : "#6E7A7C" }}>
           Visit →
         </span>
       </div>
@@ -113,7 +113,7 @@ export function Portals() {
         >
           <span className="heading-phrase">公開している、</span><br /><Em accent="blue"><span className="heading-phrase">仕事の入口。</span></Em>
         </motion.h2>
-        <p style={{ fontFamily: SANS, fontSize: 14, color: "#5A554D", lineHeight: 1.85, margin: 0, maxWidth: 420 }}>
+        <p style={{ fontFamily: SANS, fontSize: 14, color: "#45545A", lineHeight: 1.85, margin: 0, maxWidth: 420 }}>
           実際に公開・運用しているプロダクトだけを掲載しています。開発中、社内専用、顧客限定の情報はここには出しません。
         </p>
       </div>

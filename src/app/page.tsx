@@ -5,7 +5,7 @@ import { ProjectModal } from "@/components/ProjectModal";
 import { CommandSearch } from "@/components/CommandSearch";
 import projectsData from "@/data/projects.json";
 import { Category, Project } from "@/types";
-import { CAT_COLOR, MarqueeItem, isNew } from "@/lib/design-tokens";
+import { ACCENT, CAT_COLOR, MarqueeItem, isNew } from "@/lib/design-tokens";
 
 import { Hero } from "@/components/sections/Hero";
 import { Manifesto } from "@/components/sections/Manifesto";
@@ -77,8 +77,8 @@ export default function Home() {
         onOpenCmd={() => setCmdOpen(true)}
       />
 
-      <Marquee2 items={MARQUEE_TOP} bg="#0D0D0D" speed="normal" />
-      <Marquee2 items={marqueeRow1} bg="#0D0D0D" speed="slow" />
+      <Marquee2 items={MARQUEE_TOP} bg="#132126" speed="normal" />
+      <Marquee2 items={marqueeRow1} bg="#132126" speed="slow" />
 
       <Manifesto />
 
@@ -92,8 +92,8 @@ export default function Home() {
       {/* About は /about ページに隔離（個人色をトップから外し縦長解消・2026-05-23）*/}
       <Join />
 
-      <Marquee2 items={marqueeRow2} bg="#0D0D0D" speed="slow" />
-      <Marquee2 items={marqueeRow1} bg="#F4541A" speed="normal" reverse />
+      <Marquee2 items={marqueeRow2} bg="#132126" speed="slow" />
+      <Marquee2 items={marqueeRow1} bg={ACCENT.vermillion} speed="normal" reverse />
 
       <Portals />
       <Footer onOpenCmd={() => setCmdOpen(true)} />
