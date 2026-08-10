@@ -22,6 +22,27 @@
     "workType": "own"
   },
   {
+    "id": "luna-reception",
+    "name": "Luna Reception",
+    "description": "生成AIとの音声対話を、サービスの最初の接点として設計したAI受付。人物映像、音声、チャット、プライバシー案内を一画面にまとめ、Luna AIの体験デモとして公開・運用している。",
+    "category": "ai_agent",
+    "status": "live",
+    "builtWith": "claude_code",
+    "createdAt": "2026-08-10",
+    "updatedAt": "2026-08-11",
+    "url": "https://luna-receptionist.vercel.app",
+    "client": "LunaTech",
+    "tags": [
+      "AI受付",
+      "音声対話",
+      "会話UI",
+      "プライバシー設計"
+    ],
+    "cover": "/works/luna-reception.jpg",
+    "coverAlt": "Luna AIの受付デモ。人物映像、音声対話ボタン、チャット欄を濃紺の一画面に配置している。",
+    "workType": "own"
+  },
+  {
     "id": "central-medical",
     "name": "Central Medical",
     "description": "医療機関としての信頼感と相談しやすさを両立したコーポレートサイト。情報設計、実写ビジュアル、レスポンシブ対応、公開前のセキュリティ・表示検証まで一貫して実装。",
@@ -107,6 +128,27 @@
     "cover": "/works/lia-recruit.jpg",
     "coverAlt": "LiA採用LPの公開画面。濃紺のグリッド背景に採用メッセージと応募導線を配置している。",
     "featured": true,
+    "workType": "client"
+  },
+  {
+    "id": "plime-recruit",
+    "name": "PLIME 美容師採用LP",
+    "description": "福岡・山口で5店舗を展開する美容室の採用LP。実写を主役に、給与・休日・スタッフの声・募集要項・FAQ・応募導線までを一つの採用ストーリーとして設計した。",
+    "category": "external",
+    "status": "live",
+    "builtWith": "claude_code",
+    "createdAt": "2026-06-03",
+    "updatedAt": "2026-08-11",
+    "url": "https://plime-recruit.vercel.app",
+    "client": "hair & make PLIME",
+    "tags": [
+      "採用LP",
+      "美容師採用",
+      "実写設計",
+      "応募導線"
+    ],
+    "cover": "/works/plime-recruit.jpg",
+    "coverAlt": "PLIME美容師採用LP。実店舗の写真に、時間を大切にする人が長く輝ける美容室という採用メッセージを重ねている。",
     "workType": "client"
   },
   {

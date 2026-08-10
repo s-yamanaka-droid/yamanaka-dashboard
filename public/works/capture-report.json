@@ -9,6 +9,15 @@
     "elapsedMs": 3208
   },
   {
+    "id": "luna-reception",
+    "url": "https://luna-receptionist.vercel.app",
+    "status": "captured",
+    "width": 1440,
+    "height": 960,
+    "bytes": 69266,
+    "elapsedMs": 2500
+  },
+  {
     "id": "central-medical",
     "url": "https://lakkan-central-medical.vercel.app",
     "status": "captured",
@@ -43,6 +52,15 @@
     "height": 960,
     "bytes": 147550,
     "elapsedMs": 3277
+  },
+  {
+    "id": "plime-recruit",
+    "url": "https://plime-recruit.vercel.app",
+    "status": "captured",
+    "width": 1440,
+    "height": 960,
+    "bytes": 111943,
+    "elapsedMs": 3500
   },
   {
     "id": "atelier-patterns",
