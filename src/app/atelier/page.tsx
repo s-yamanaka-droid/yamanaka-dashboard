@@ -146,6 +146,23 @@ export default function AtelierPage() {
             検証済みの素地から、その会社版を最短で組み上げます。
           </motion.p>
 
+          <p
+            role="note"
+            style={{
+              width: "fit-content",
+              maxWidth: "62ch",
+              marginTop: 22,
+              padding: "10px 14px",
+              border: "1px solid var(--border)",
+              color: "var(--text-2)",
+              background: "var(--surface)",
+              fontSize: 12,
+              lineHeight: 1.7,
+            }}
+          >
+            掲載作例はすべて架空ブランドによるデザインデモです。実績・価格・保証・お客様の声は、レイアウト検証用のサンプル表現です。
+          </p>
+
           <motion.div style={{ opacity: heroFade }}>
             {/* スタッツ */}
             <div style={{ marginTop: 48, display: "flex", flexWrap: "wrap", gap: "32px 56px" }}>

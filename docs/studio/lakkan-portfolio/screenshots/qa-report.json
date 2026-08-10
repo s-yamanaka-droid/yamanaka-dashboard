@@ -1,0 +1,60 @@
+{
+  "checks": [
+    {
+      "viewport": 1440,
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "height": 7647,
+      "images": 15,
+      "brokenImages": [],
+      "cards": 8,
+      "title": "Works — Lakkan Inc. | 株式会社Lakkan"
+    },
+    {
+      "viewport": 1024,
+      "innerWidth": 1024,
+      "scrollWidth": 1024,
+      "height": 7084,
+      "images": 15,
+      "brokenImages": [],
+      "cards": 8,
+      "title": "Works — Lakkan Inc. | 株式会社Lakkan"
+    },
+    {
+      "viewport": 768,
+      "innerWidth": 768,
+      "scrollWidth": 768,
+      "height": 6701,
+      "images": 15,
+      "brokenImages": [],
+      "cards": 8,
+      "title": "Works — Lakkan Inc. | 株式会社Lakkan"
+    },
+    {
+      "viewport": 390,
+      "innerWidth": 390,
+      "scrollWidth": 390,
+      "height": 10110,
+      "images": 15,
+      "brokenImages": [],
+      "cards": 8,
+      "title": "Works — Lakkan Inc. | 株式会社Lakkan"
+    }
+  ],
+  "filterCheck": {
+    "pressed": "true",
+    "cards": 2
+  },
+  "dialogCheck": {
+    "open": true,
+    "title": "Central Medical",
+    "width": 1408
+  },
+  "mobileDialogCheck": {
+    "open": true,
+    "innerWidth": 390,
+    "scrollWidth": 390,
+    "width": 374
+  },
+  "browserErrors": []
+}

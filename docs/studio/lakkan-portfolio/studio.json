@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "slug": "lakkan-portfolio",
+    "name": "Lakkan Portfolio",
+    "company": "Lakkan",
+    "workType": "own",
+    "industry": "AIプロダクト開発・Web制作",
+    "goal": "公開済みの実案件・自社プロダクト・AIコンセプトを明確に分け、Lakkanの設計力と実装力を実画面で証明する",
+    "primaryCta": "制作・AI導入について相談する",
+    "status": "publish"
+  },
+  "gates": {
+    "referenceSelection": {
+      "status": "approved",
+      "selectedBy": "山中秀斗",
+      "selectedAt": "2026-08-06T23:24:39+09:00",
+      "primaryId": "21-snohetta",
+      "secondaryIds": ["10-not-a-hotel", "19-le-labo"]
+    },
+    "assetSelection": {
+      "status": "approved",
+      "selectedBy": "山中秀斗",
+      "selectedAt": "2026-08-06T23:24:39+09:00",
+      "mode": "実写真中心",
+      "heroAssetId": "public-live-product-screens"
+    },
+    "variantSelection": {
+      "status": "approved",
+      "selectedBy": "山中秀斗",
+      "selectedAt": "2026-08-06T23:24:39+09:00",
+      "variantId": "direction-a-corporate-editorial"
+    },
+    "publish": {
+      "status": "approved",
+      "approvedBy": "山中秀斗",
+      "approvedAt": "2026-08-07T13:01:39+09:00"
+    }
+  },
+  "references": [
+    {
+      "id": "21-snohetta",
+      "name": "Snøhetta",
+      "url": "https://www.snohetta.com/",
+      "role": "primary",
+      "adopt": ["価値宣言を軸にした編集構造", "作品中心の非対称グリッド", "サイト全体を回収する末尾設計"],
+      "avoid": ["固有のロゴ・文章・写真", "モバイルで切断に見える横カルーセル"]
+    },
+    {
+      "id": "10-not-a-hotel",
+      "name": "NOT A HOTEL",
+      "url": "https://notahotel.com/en",
+      "role": "secondary",
+      "adopt": ["第一画面から作品へ進む明快な導線", "写真からCTAへ段階的に接続する構成"],
+      "avoid": ["物件写真だけに依存する構成", "固有の青いCTA表現"]
+    },
+    {
+      "id": "19-le-labo",
+      "name": "Le Labo",
+      "url": "https://www.lelabofragrances.com/",
+      "role": "secondary",
+      "adopt": ["人の手と仕事途中を見せる写真方針", "暗い実画面から明るい情報面への切り替え"],
+      "avoid": ["EC向けの密なナビ", "地域選択とCookieの二重遮蔽"]
+    }
+  ],
+  "designDna": {
+    "layout": {
+      "container": "1280px",
+      "hero": "12-column editorial split with overlapping live product screens",
+      "featured": "7/5 asymmetric proof grid",
+      "archive": "responsive 2-column image-led index"
+    },
+    "spacing": {
+      "gutter": "clamp(20px, 5vw, 56px)",
+      "section": "clamp(80px, 10vw, 128px)",
+      "cardGap": "1px rules or 20px for image proof"
+    },
+    "typography": {
+      "display": "Instrument Serif",
+      "body": "Space Grotesk / Noto Sans JP",
+      "editorial": "Frank Ruhl Libre",
+      "utility": "Space Grotesk uppercase labels"
+    },
+    "color": {
+      "paper": "#F7F4EE",
+      "ink": "#0D0D0D",
+      "blue": "#1C3BCC",
+      "vermillion": "#B8362E",
+      "forest": "#1F3A2E",
+      "orange": "#F4541A"
+    },
+    "imagery": {
+      "mode": "公開中プロダクトの実画面＋既存の代表写真",
+      "crop": "ブラウザ画面は上端基準、人物は仕事の場が伝わる距離で切り取る",
+      "rule": "架空素材で実績を装わない"
+    },
+    "motion": {
+      "primary": "one orchestrated reveal for proof frames",
+      "secondary": "subtle image scale and focus shifts",
+      "reducedMotion": "all transforms and reveal timings removed"
+    },
+    "components": ["portfolio-hero", "proof-strip", "featured-proof", "work-filter", "work-card", "work-dialog", "human-process", "portfolio-cta"]
+  },
+  "assetPlan": {
+    "mode": "実写真中心",
+    "geminiModel": "",
+    "items": [
+      {
+        "id": "public-live-product-screens",
+        "purpose": "ヒーロー・作品カード・詳細表示",
+        "source": "src/data/projects.jsonの公開URL",
+        "capturedAt": "2026-08-06T23:24:39+09:00"
+      },
+      {
+        "id": "founder-photo",
+        "purpose": "人と仕事を示すプロセスセクション",
+        "source": "/public/photo.jpg"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "id": "direction-a-corporate-editorial",
+      "name": "Corporate Editorial",
+      "status": "selected",
+      "description": "Lakkanの価値宣言、公開作品、人、問い合わせを一つの編集構造へ統合する"
+    },
+    {
+      "id": "direction-b-hospitality-human",
+      "name": "Hospitality Human",
+      "status": "not-selected"
+    },
+    {
+      "id": "direction-c-ai-design-lab",
+      "name": "AI Design Lab",
+      "status": "not-selected"
+    }
+  ],
+  "componentNotes": [
+    { "id": "portfolio-hero", "status": "implemented", "qa": "1440/1024/768/390" },
+    { "id": "proof-strip", "status": "implemented", "qa": "public counts verified" },
+    { "id": "featured-proof", "status": "implemented", "qa": "visual review passed" },
+    { "id": "work-filter", "status": "implemented", "qa": "client filter returns 2" },
+    { "id": "work-card", "status": "implemented", "qa": "8 public works, 0 broken images" },
+    { "id": "work-dialog", "status": "implemented", "qa": "desktop and mobile open" },
+    { "id": "human-process", "status": "implemented", "qa": "desktop and mobile visual review passed" },
+    { "id": "portfolio-cta", "status": "implemented", "qa": "desktop and mobile footer capture passed" }
+  ]
+}

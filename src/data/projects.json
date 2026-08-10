@@ -16,6 +16,8 @@
       "長期記憶",
       "ローカルファースト"
     ],
+    "cover": "/works/luna-ai.jpg",
+    "coverAlt": "Luna AIの公開サイト。月明かりを表現した濃紺の画面に、サービスの価値と導入ボタンを配置している。",
     "featured": true,
     "workType": "own"
   },
@@ -36,6 +38,8 @@
       "Next.js",
       "レスポンシブ"
     ],
+    "cover": "/works/central-medical.jpg",
+    "coverAlt": "中央メディカルの公開サイト。料理人の手元写真と、食べる力を生きる力へというメッセージを表示している。",
     "featured": true,
     "workType": "client"
   },
@@ -56,6 +60,8 @@
       "自動更新",
       "編集"
     ],
+    "cover": "/works/now-on-air.jpg",
+    "coverAlt": "Now On AIrの公開画面。大きなタイポグラフィと当日のAIニュースを新聞のように編集している。",
     "featured": true,
     "workType": "own"
   },
@@ -76,26 +82,9 @@
       "React",
       "生成AI"
     ],
+    "cover": "/works/reskilllab-lunatech.jpg",
+    "coverAlt": "LunaTech AI Labの公開デモ画面。AI活用のレベルを切り替えて成果物を比較できる。",
     "featured": true,
-    "workType": "own"
-  },
-  {
-    "id": "competitor-intelligence",
-    "name": "Competitor Intelligence",
-    "description": "競合企業の公開情報を収集・整理し、変化点と意思決定材料へ変換するリサーチツール。調査結果を再利用できる構造で蓄積する。",
-    "category": "ai_agent",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-18",
-    "updatedAt": "2026-06-08",
-    "url": "https://competitor-research-gamma.vercel.app",
-    "client": "Solve",
-    "tags": [
-      "競合分析",
-      "AIリサーチ",
-      "レポート",
-      "意思決定"
-    ],
     "workType": "own"
   },
   {
@@ -115,6 +104,8 @@
       "モーション",
       "コンバージョン設計"
     ],
+    "cover": "/works/lia-recruit.jpg",
+    "coverAlt": "LiA採用LPの公開画面。濃紺のグリッド背景に採用メッセージと応募導線を配置している。",
     "featured": true,
     "workType": "client"
   },
@@ -135,6 +126,8 @@
       "UI/UX",
       "デザインシステム"
     ],
+    "cover": "/works/atelier-patterns.jpg",
+    "coverAlt": "Lakkan Atelierの公開画面。WebGLとレイアウトパターンを編集的な大見出しで紹介している。",
     "featured": true,
     "workType": "own"
   },
@@ -156,6 +149,8 @@
       "GSAP",
       "Fragrance"
     ],
+    "cover": "/works/aura-ai-concept.jpg",
+    "coverAlt": "AI CONCEPTのAURA Fragrance。淡い光の背景に香りのブランドメッセージを配置している。",
     "featured": true,
     "workType": "ai-concept"
   },
@@ -177,6 +172,8 @@
       "Local Business",
       "Responsive"
     ],
+    "cover": "/works/salon-solna-ai-concept.jpg",
+    "coverAlt": "AI CONCEPTのhair salon SOLNA。美容室の実景写真と予約導線を第一画面に配置している。",
     "featured": true,
     "workType": "ai-concept"
   }

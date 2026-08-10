@@ -26,6 +26,9 @@ export interface Project {
   client?: string;
   tags: string[];
   featured?: boolean;
+  /** 公開中サイトから取得したポートフォリオ用の実画面 */
+  cover?: string;
+  coverAlt?: string;
   /** client=実案件 / own=自社・関係会社 / ai-concept=架空ブランドのAI制作実験 */
   workType?: WorkType;
 }
