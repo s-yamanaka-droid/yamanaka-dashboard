@@ -1,10 +1,50 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { Pause, Play } from "lucide-react";
 import { FRANK, INSTRUMENT, SANS, EASE, ACCENT } from "@/lib/design-tokens";
 import { SectionShell, Em } from "@/components/primitives/SectionShell";
 
 export function Manifesto() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const [motionOverride, setMotionOverride] = useState<boolean | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const allowMotion = motionOverride ?? prefersReducedMotion === false;
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && allowMotion) {
+          void video.play().catch(() => setIsPlaying(false));
+        } else {
+          video.pause();
+        }
+      },
+      { rootMargin: "160px 0px", threshold: 0.25 },
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, [allowMotion]);
+
+  const togglePlayback = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      setMotionOverride(true);
+      void video.play().catch(() => setIsPlaying(false));
+    } else {
+      setMotionOverride(false);
+      video.pause();
+    }
+  };
+
   return (
     <SectionShell
       id="manifesto"
@@ -22,7 +62,7 @@ export function Manifesto() {
         transition={{ duration: 0.7, ease: EASE }}
         style={{
           fontFamily: INSTRUMENT,
-          fontSize: "clamp(44px, 7.2vw, 112px)",
+          fontSize: "clamp(38px, 7.2vw, 112px)",
           fontWeight: 400,
           lineHeight: 0.98,
           color: "#132126",
@@ -36,6 +76,87 @@ export function Manifesto() {
         <br />
         ここから始まる。
       </motion.h2>
+
+      <motion.figure
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.7, ease: EASE }}
+        style={{
+          position: "relative",
+          margin: "56px 0 64px",
+          border: "1px solid rgba(19,33,38,0.16)",
+          background: "#132126",
+          overflow: "hidden",
+        }}
+      >
+        <video
+          ref={videoRef}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/media/lakkan-blueprint-study-poster.jpg"
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          aria-hidden="true"
+          style={{
+            display: "block",
+            width: "100%",
+            aspectRatio: "16 / 9",
+            objectFit: "cover",
+          }}
+        >
+          <source src="/media/lakkan-blueprint-study.mp4" type="video/mp4" />
+        </video>
+
+        <figcaption
+          style={{
+            position: "absolute",
+            left: 16,
+            bottom: 14,
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 10,
+            padding: "7px 10px",
+            background: "rgba(238,240,236,0.88)",
+            border: "1px solid rgba(19,33,38,0.16)",
+            color: "#132126",
+            fontFamily: SANS,
+            fontSize: 10,
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            backdropFilter: "blur(8px)",
+          }}
+        >
+          <span style={{ width: 18, height: 1, background: ACCENT.vermillion }} />
+          Blueprint Motion
+        </figcaption>
+
+        <button
+          type="button"
+          onClick={togglePlayback}
+          aria-label={isPlaying ? "映像を一時停止" : "映像を再生"}
+          style={{
+            position: "absolute",
+            right: 14,
+            bottom: 14,
+            width: 44,
+            height: 44,
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: "1px solid rgba(238,240,236,0.42)",
+            borderRadius: "50%",
+            background: "rgba(19,33,38,0.74)",
+            color: "#EEF0EC",
+            cursor: "pointer",
+            backdropFilter: "blur(8px)",
+          }}
+        >
+          {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+        </button>
+      </motion.figure>
 
       {/* Three pillars */}
       <div
