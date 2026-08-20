@@ -15,7 +15,7 @@ export default function Header({ projects }: Props) {
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
         <div>
           <h1 className="text-sm font-semibold tracking-tight text-white/90">
-            Yamanaka Portfolio
+            Lakkan Portfolio
           </h1>
           <p className="text-[11px] text-white/35 mt-0.5">
             {projects.length} projects · {live} live · {claudeCode} built with Claude Code
@@ -31,9 +31,9 @@ export default function Header({ projects }: Props) {
           </div>
           <div
             className="h-8 w-8 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-[11px] font-bold text-white"
-            title="Yamanaka Shuto"
+            title="Lakkan Inc."
           >
-            Y
+            L
           </div>
         </div>
       </div>

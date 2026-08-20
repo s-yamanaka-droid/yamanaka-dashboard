@@ -387,7 +387,7 @@ export function Works({
               margin: "0 0 12px",
             }}
           >
-            山中秀斗が手がけたプロダクト群。<br />
+            Lakkanが手がけたプロダクト群。<br />
             毎週更新、生きている案件だけを掲載しています。
           </p>
         </div>

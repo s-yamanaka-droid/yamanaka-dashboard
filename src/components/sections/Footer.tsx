@@ -6,15 +6,15 @@ import { FRANK, INSTRUMENT, SANS, EASE, ACCENT } from "@/lib/design-tokens";
 
 const NAV_PRIMARY: [string, string][] = [
   ["Manifesto", "#manifesto"],
-  ["Works", "#works"],
+  ["Works", "/works"],
   ["News", "#news"],
   ["Story", "#story"],
-  ["Service", "#service"],
+  ["Services", "/services"],
 ];
 const NAV_SECONDARY: [string, string][] = [
   ["Luna AI", "#luna"],
   ["Atelier", "/atelier"],
-  ["About", "#about"],
+  ["About", "/about"],
   ["Join", "#join"],
   ["Portals", "#portals"],
 ];
@@ -150,7 +150,7 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
               Founded 2026
             </p>
             <a
-              href="mailto:s-yamanaka@tre-pro.co.jp"
+              href="/contact"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -164,7 +164,7 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
                 paddingBottom: 3,
               }}
             >
-              s-yamanaka@tre-pro.co.jp
+              Contact Lakkan
               <ArrowUpRight size={14} />
             </a>
           </div>
@@ -336,9 +336,7 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
               Privacy
             </a>
             <a
-              href="https://tre-pro.co.jp"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/about"
               style={{
                 fontFamily: SANS,
                 fontSize: 10,
@@ -348,7 +346,7 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
                 textTransform: "uppercase",
               }}
             >
-              Related: Trepro
+              Company
             </a>
             <button
               onClick={onOpenCmd}

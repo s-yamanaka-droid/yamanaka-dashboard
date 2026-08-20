@@ -331,7 +331,7 @@
 
 .processSection { display: grid; grid-template-columns: minmax(360px, 0.88fr) minmax(0, 1.12fr); min-height: 780px; background: var(--forest); color: #fff; }
 .processImage { position: relative; min-height: 680px; overflow: hidden; }
-.founderImage { object-fit: cover; object-position: 73% center; filter: saturate(0.86) contrast(1.03); }
+.processVisual { object-fit: cover; object-position: center; filter: saturate(0.86) contrast(1.03); }
 .processImage::after { position: absolute; inset: 0; background: linear-gradient(90deg, transparent 50%, rgba(31,58,46,0.62)); content: ""; }
 .processImage > span { position: absolute; z-index: 2; bottom: 24px; left: 24px; padding: 7px 9px; background: rgba(247,244,238,0.92); color: var(--forest); font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
 .processCopy { display: flex; flex-direction: column; justify-content: center; padding: clamp(60px, 8vw, 120px); }

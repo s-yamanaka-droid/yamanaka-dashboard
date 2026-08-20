@@ -40,8 +40,7 @@ export default function PrivacyPage() {
         <ul style={{ paddingLeft: 24, marginBottom: 32 }}>
           <li>事業者名：株式会社Lakkan</li>
           <li>所在地：東京都渋谷区神宮前六丁目23番4号</li>
-          <li>代表者：山中 秀斗</li>
-          <li>連絡先：s-yamanaka@tre-pro.co.jp</li>
+          <li>連絡先：当サイトのお問い合わせ窓口</li>
         </ul>
 
         <h2 style={{ fontFamily: FRANK, fontSize: 26, fontWeight: 400, marginTop: 56, marginBottom: 16, letterSpacing: "-0.01em" }}>
@@ -115,12 +114,12 @@ export default function PrivacyPage() {
         </p>
         <ul style={{ paddingLeft: 24, marginBottom: 64 }}>
           <li>株式会社Lakkan 個人情報問合せ窓口</li>
-          <li>Email：<a href="mailto:s-yamanaka@tre-pro.co.jp" style={{ color: "#315A4E", textDecoration: "underline" }}>s-yamanaka@tre-pro.co.jp</a></li>
+          <li><a href="/contact" style={{ color: "#315A4E", textDecoration: "underline" }}>お問い合わせページ</a></li>
         </ul>
 
         <p style={{ fontSize: 13, color: "#45545A", borderTop: "1px solid rgba(19,33,38,0.12)", paddingTop: 24 }}>
           制定：2026年5月23日<br />
-          株式会社Lakkan 代表取締役 山中 秀斗
+          株式会社Lakkan
         </p>
       </section>
     </main>

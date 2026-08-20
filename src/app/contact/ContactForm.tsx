@@ -93,7 +93,7 @@ export function ContactForm() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             style={fieldStyle}
-            placeholder="山中 秀斗"
+            placeholder="お名前"
           />
         </div>
 
@@ -160,11 +160,7 @@ export function ContactForm() {
         </div>
 
         <p style={{ fontFamily: SANS, fontSize: 12, color: MUTED, lineHeight: 1.7, marginTop: 8 }}>
-          送信ボタンを押すと、お使いのメールソフトが起動します。直接送信は{" "}
-          <a href="mailto:s-yamanaka@tre-pro.co.jp" style={{ color: FOREST, textDecoration: "underline" }}>
-            s-yamanaka@tre-pro.co.jp
-          </a>{" "}
-          まで。
+          送信ボタンを押すと、お使いのメールソフトが起動します。
           <br />
           ご相談内容は{" "}
           <a href="/privacy" style={{ color: FOREST, textDecoration: "underline" }}>
@@ -208,15 +204,10 @@ export function ContactForm() {
         }}
       >
         <p style={{ fontFamily: FRANK, fontSize: 18, color: INK, marginBottom: 16 }}>
-          直接連絡したい方へ
+          Lakkanへのお問い合わせ
         </p>
         <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
-          <li>
-            Email：
-            <a href="mailto:s-yamanaka@tre-pro.co.jp" style={{ color: FOREST }}>
-              s-yamanaka@tre-pro.co.jp
-            </a>
-          </li>
+          <li>上記フォームからご相談内容をお送りください。</li>
           <li>所在地：東京都渋谷区神宮前六丁目23番4号</li>
           <li>営業時間：平日 10:00–19:00（メールは24時間受付）</li>
         </ul>

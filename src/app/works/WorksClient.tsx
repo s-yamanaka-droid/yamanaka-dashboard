@@ -302,8 +302,8 @@ export function WorksClient() {
 
       <section id="process" className={styles.processSection} aria-labelledby="process-title">
         <div className={styles.processImage}>
-          <Image src="/photo.jpg" alt="株式会社Lakkan代表の山中秀斗" fill sizes="(max-width: 760px) 100vw, 42vw" className={styles.founderImage} />
-          <span>Shuto Yamanaka / Lakkan</span>
+          <Image src="/media/lakkan-blueprint-study-poster.jpg" alt="Lakkanの設計プロセスを表現したブループリント" fill sizes="(max-width: 760px) 100vw, 42vw" className={styles.processVisual} />
+          <span>Lakkan / Design &amp; Build</span>
         </div>
         <div className={styles.processCopy}>
           <p className={styles.processLabel}>03 / Human in the loop</p>
@@ -311,7 +311,7 @@ export function WorksClient() {
           <p className={styles.processLede}>AIに全部を任せるのではなく、良いものを選ぶ判断、誰に何を伝えるか、公開してよいかを人が持つ。だから速さと品質を両立できます。</p>
           <ol className={styles.processList}>
             <li><span>01</span><div><b>見つける</b><p>業界を越えて参考サイトを集め、良い点と弱い点を比較する。</p></div></li>
-            <li><span>02</span><div><b>決める</b><p>主参考、素材、方向性は山中が選び、採用しない表現も残す。</p></div></li>
+            <li><span>02</span><div><b>決める</b><p>主参考、素材、方向性をチームで選び、採用しない表現も残す。</p></div></li>
             <li><span>03</span><div><b>実装する</b><p>画像、フロントエンド、4画面幅のQA、公開確認まで一つの流れで進める。</p></div></li>
           </ol>
           <Link href="/atelier" className={styles.processLink}>AIデザイン実験を見る <ArrowUpRight size={16} /></Link>

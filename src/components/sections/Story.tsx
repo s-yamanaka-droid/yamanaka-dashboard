@@ -100,7 +100,7 @@ export function Story() {
               textTransform: "uppercase",
             }}
           >
-            ※ 個人の経歴は{" "}
+            ※ Lakkanの会社情報は{" "}
             <a
               href="/about"
               style={{ color: ACCENT.vermillion, textDecoration: "none", borderBottom: `1px solid ${ACCENT.vermillion}` }}
@@ -150,7 +150,7 @@ export function Story() {
             marginTop: 18,
           }}
         >
-          — Founder&apos;s Note
+          — Lakkan Principle
         </div>
       </motion.blockquote>
     </SectionShell>

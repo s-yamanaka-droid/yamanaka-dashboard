@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const LINKS = [
   { href: "/", label: "Home", desc: "トップへ戻る" },
-  { href: "/about", label: "About", desc: "山中秀斗 / Lakkan の思想" },
+  { href: "/about", label: "About", desc: "Lakkan の思想と会社情報" },
   { href: "/services", label: "Services", desc: "提供サービス一覧" },
   { href: "/works", label: "Works", desc: "プロダクトポートフォリオ" },
   { href: "https://lunatech-migration-guide.vercel.app", label: "Luna AI", desc: "あなた専用に育つAIの右腕" },

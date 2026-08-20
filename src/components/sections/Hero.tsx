@@ -73,7 +73,7 @@ export function Hero({
                 <span style={{ display:"flex", alignItems:"baseline", gap:10, fontFamily:FRANK, fontSize:18, fontWeight:700, color:ink, letterSpacing:"0.04em" }}>
                   Lakkan<span style={{ color: ACCENT.vermillion, fontWeight: 900 }}>.</span>
                   <span className="hero-brand-meta" style={{ fontFamily:SANS, fontSize:10, fontWeight:500, opacity:0.55, letterSpacing:"0.18em", textTransform:"uppercase" }}>
-                    operates × 6
+                    AI Company
                   </span>
                 </span>
                 <div style={{ display:"flex", gap:24, alignItems:"center" }}>
@@ -154,14 +154,14 @@ export function Hero({
                       lineHeight: 1.7,
                     }}
                   >
-                    山中秀斗 — 6 社マルチハット経営。
+                    AIを前提に、事業と業務を再設計する。
                     <br/>
-                    <strong style={{ fontWeight: 500 }}>Lakkan</strong> / <strong style={{ fontWeight: 500 }}>LunaTech</strong> / <strong style={{ fontWeight: 500 }}>SKYLINK</strong> / KANOA / トレプロ / Solve。
-                    <br/>
-                    AIで再設計された、楽観の実験体。
+                    構想からプロダクト、運用まで。
+                    <br />
+                    <strong style={{ fontWeight: 500 }}>楽観を、動く仕組みに。</strong>
                   </motion.p>
 
-                  {/* 6社 役割ミニチップ */}
+                  {/* Lakkan capabilities */}
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -171,12 +171,9 @@ export function Hero({
                     }}
                   >
                     {[
-                      { co: "Lakkan",   role: "代表" },
-                      { co: "トレプロ", role: "COO" },
-                      { co: "LunaTech", role: "COO" },
-                      { co: "SKYLINK",  role: "CTO" },
-                      { co: "KANOA",    role: "AI相談役" },
-                      { co: "Solve",    role: "代表" },
+                      { co: "Strategy", role: "01" },
+                      { co: "Product",  role: "02" },
+                      { co: "Operation", role: "03" },
                     ].map(c => (
                       <span key={c.co} style={{
                         fontFamily: SANS, fontSize: 10, letterSpacing: "0.12em",
@@ -210,7 +207,7 @@ export function Hero({
                 paddingBottom: 4,
               }}>
                 <span style={{ fontFamily:FRANK, fontSize:12, color:ink, opacity:0.55, letterSpacing:"0.04em" }}>
-                  Yamanaka Shuto · 6 companies · {totalProjects} public works · Built with AI
+                  Lakkan Inc. · Tokyo · {totalProjects} public works · Built with AI
                 </span>
                 <motion.div
                   initial={{ opacity:0 }} animate={{ opacity:0.55 }} transition={{ delay:1, duration:0.8 }}
@@ -279,7 +276,7 @@ export function Hero({
               </div>
               <div style={{ height:1, background:ink, opacity:0.18, margin:"48px 0 24px" }}/>
               <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                <span style={{ fontFamily:FRANK, fontSize:13, color:ink, opacity:0.38 }}>(LAKKAN@operates_6)</span>
+                <span style={{ fontFamily:FRANK, fontSize:13, color:ink, opacity:0.38 }}>(LAKKAN@TOKYO)</span>
                 <motion.a href="/works" whileHover={{ x:4 }}
                   style={{ display:"flex", alignItems:"center", gap:8, fontFamily:INSTRUMENT, fontStyle:"italic", fontSize:24, fontWeight:400, color:ink, textDecoration:"none", opacity:0.8 }}>
                   ↓ works
