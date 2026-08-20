@@ -239,44 +239,6 @@ export function Manifesto() {
         ))}
       </div>
 
-      {/* Signature */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ delay: 0.6, duration: 0.8, ease: EASE }}
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          gap: 16,
-          marginTop: 64,
-          paddingTop: 28,
-          borderTop: "1px solid rgba(19,33,38,0.08)",
-        }}
-      >
-        <span
-          style={{
-            fontFamily: SANS,
-            fontSize: 11,
-            color: "#45545A",
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-          }}
-        >
-          Shuto Yamanaka · Founder
-        </span>
-        <span
-          style={{
-            fontFamily: INSTRUMENT,
-            fontStyle: "italic",
-            fontSize: 22,
-            color: "#132126",
-          }}
-        >
-          山中 秀斗
-        </span>
-      </motion.div>
     </SectionShell>
   );
 }

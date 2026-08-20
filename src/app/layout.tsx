@@ -51,15 +51,14 @@ export const metadata: Metadata = {
     template: "%s | 株式会社Lakkan",
   },
   description:
-    "株式会社LakkanはAIエージェント開発・バイブコーディング・採用DXを軸とするAIファースト企業。生成AI・LLM・自律エージェントを活用し、企業の業務を構造化・自動化する。代表 山中秀斗（Shuto Yamanaka）。",
+    "株式会社Lakkanは、AIエージェント開発・AIプロダクト・業務再設計を軸に、構想から運用までを一つの流れで実装するAIファースト企業です。",
   keywords: [
     "AI", "AIエージェント", "生成AI", "LLM", "Claude", "Anthropic",
     "AI企業", "AIコーポレート", "AI活用", "バイブコーディング",
     "採用DX", "AI採用", "業務自動化", "Lakkan", "楽観",
-    "山中秀斗", "Shuto Yamanaka", "トレプロ", "Trepro", "COO",
   ],
-  authors: [{ name: "Shuto Yamanaka", url: "https://lakkan-inc.vercel.app" }],
-  creator: "Shuto Yamanaka",
+  authors: [{ name: "株式会社Lakkan", url: "https://lakkan-inc.vercel.app" }],
+  creator: "株式会社Lakkan",
   publisher: "株式会社Lakkan",
   applicationName: "Lakkan Inc.",
   category: "Technology",
@@ -88,7 +87,6 @@ export const metadata: Metadata = {
     description:
       "AIエージェント・生成AI・自律システムを核に、企業の業務を構造化・自動化するAIファースト企業。",
     images: ["/og.png"],
-    creator: "@yamanaka_shuto",
   },
   robots: {
     index: true,
@@ -127,14 +125,10 @@ export default function RootLayout({
                   name: "株式会社Lakkan",
                   alternateName: ["Lakkan Inc.", "Lakkan", "ラッカン"],
                   url: "https://lakkan-inc.vercel.app",
-                  logo: "https://lakkan-inc.vercel.app/photo.jpg",
+                  logo: "https://lakkan-inc.vercel.app/og.png",
                   description:
                     "AIエージェント・生成AI・自律システムを核に、企業の業務を構造化・自動化するAIファースト企業。",
                   foundingDate: "2026-03",
-                  founder: {
-                    "@type": "Person",
-                    "@id": "https://lakkan-inc.vercel.app/#person",
-                  },
                   address: {
                     "@type": "PostalAddress",
                     streetAddress: "神宮前六丁目23番4号",
@@ -142,7 +136,6 @@ export default function RootLayout({
                     addressRegion: "東京都",
                     addressCountry: "JP",
                   },
-                  email: "s-yamanaka@tre-pro.co.jp",
                   industry: "Artificial Intelligence",
                   knowsAbout: [
                     "Artificial Intelligence",
@@ -153,29 +146,6 @@ export default function RootLayout({
                     "Vibe Coding",
                     "AI Recruitment",
                     "Workflow Automation",
-                  ],
-                },
-                {
-                  "@type": "Person",
-                  "@id": "https://lakkan-inc.vercel.app/#person",
-                  name: "山中 秀斗",
-                  alternateName: ["Shuto Yamanaka", "Yamanaka Shuto"],
-                  jobTitle: "COO / Founder",
-                  worksFor: {
-                    "@id": "https://lakkan-inc.vercel.app/#org",
-                  },
-                  birthDate: "1997",
-                  nationality: "JP",
-                  image: "https://lakkan-inc.vercel.app/photo.jpg",
-                  url: "https://lakkan-inc.vercel.app",
-                  email: "s-yamanaka@tre-pro.co.jp",
-                  knowsAbout: [
-                    "AI",
-                    "Generative AI",
-                    "AI Agents",
-                    "SaaS",
-                    "Recruitment",
-                    "Management",
                   ],
                 },
                 {

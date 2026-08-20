@@ -45,7 +45,7 @@ const OFFERS = [
 
 const PROCESS = [
   { step: "01", label: "メールでカジュアル面談" },
-  { step: "02", label: "30分の対話 (代表 山中)" },
+  { step: "02", label: "30分の対話" },
   { step: "03", label: "1 週間トライアル (有償)" },
   { step: "04", label: "Offer / Decision" },
 ];
@@ -115,7 +115,7 @@ export function Join() {
           {ROLES.map((r, i) => (
             <motion.a
               key={r.code}
-              href="mailto:s-yamanaka@tre-pro.co.jp?subject=Lakkan%20Roles%20-%20"
+              href="/contact?topic=recruit"
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -483,7 +483,7 @@ export function Join() {
             まずは、1 通のメールから。
           </p>
           <motion.a
-            href="mailto:s-yamanaka@tre-pro.co.jp?subject=Lakkan%20-%20Hello"
+            href="/contact"
             whileHover={{ x: 4 }}
             style={{
               display: "inline-flex",
@@ -498,7 +498,7 @@ export function Join() {
               paddingBottom: 6,
             }}
           >
-            s-yamanaka@tre-pro.co.jp <ArrowUpRight size={20} />
+            Contact Lakkan <ArrowUpRight size={20} />
           </motion.a>
         </motion.div>
     </SectionShell>

@@ -3,12 +3,12 @@ import { About } from "@/components/sections/About";
 import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
-  title: "About — 山中秀斗 / Lakkan Inc.",
+  title: "About — Lakkan Inc.",
   description:
-    "株式会社Lakkan 代表 山中秀斗。6社マルチハット経営。AIで「使う」から「動かす」へ。経歴・思想・所属。",
+    "株式会社Lakkanは、AIを前提に事業と業務の流れを再設計するAIファースト企業です。思想・事業領域・会社情報をご紹介します。",
   openGraph: {
-    title: "About — 山中秀斗 / Lakkan Inc.",
-    description: "6社マルチハット経営の代表が、何を考えて何を作っているか。",
+    title: "About — Lakkan Inc.",
+    description: "AIを前提に、事業と業務をどう組み直すか。Lakkanの思想と会社情報。",
   },
 };
 
@@ -18,8 +18,8 @@ export default function AboutPage() {
       <PageHero
         section="About"
         version="v.1"
-        title="楽観と、計画と。"
-        lede="代表 山中秀斗 / 6社マルチハット経営 / 東京・渋谷"
+        title="Lakkanについて。"
+        lede="AIを前提に、事業と業務を再設計する。東京・渋谷のAIカンパニー。"
       />
       <About />
     </main>
