@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import { Command } from "lucide-react";
+import { ArrowRight, Command } from "lucide-react";
 // three.js を含む重量コンポーネントは dynamic import + ssr:false で初期バンドルから除外
 const HeroCanvas  = dynamic(() => import("@/components/HeroCanvas"),                     { ssr: false, loading: () => null });
 const HeroLetters = dynamic(() => import("@/components/HeroLetters"),                    { ssr: false, loading: () => null });
@@ -83,7 +83,7 @@ export function Hero({
                       {l}
                     </a>
                   ))}
-                  <a href="#join" className="hero-nav-link"
+                  <a href="/contact?topic=ai-consult" className="hero-nav-link"
                     style={{ fontFamily:SANS, fontSize:13, fontWeight:700, color:ink, textDecoration:"none",
                       background:"rgba(19,33,38,0.1)", border:"1px solid rgba(19,33,38,0.18)",
                       borderRadius:6, padding:"5px 14px", opacity:0.85 }}>
@@ -112,11 +112,8 @@ export function Hero({
               >
                 {/* LEFT — F6 magnetic heading */}
                 <div>
-                  <motion.h1
+                  <h1
                     className="editorial-heading hero-primary-heading"
-                    initial={{ opacity:0, y: 28 }}
-                    animate={{ opacity:1, y: 0 }}
-                    transition={{ delay: 0.15, duration: 0.85, ease: [0.22,1,0.36,1] }}
                     style={{
                       fontFamily: INSTRUMENT,
                       fontSize: "clamp(72px, 12vw, 200px)",
@@ -136,11 +133,8 @@ export function Hero({
                         { kind: "text", text: "。", italic: true, color: ACCENT.vermillion },
                       ]}
                     />
-                  </motion.h1>
-                  <motion.p
-                    initial={{ opacity:0, y: 12 }}
-                    animate={{ opacity:1, y: 0 }}
-                    transition={{ delay: 0.7, duration: 0.6 }}
+                  </h1>
+                  <p
                     style={{
                       fontFamily: FRANK,
                       fontSize: "clamp(14px, 1.4vw, 17px)",
@@ -150,16 +144,16 @@ export function Hero({
                       letterSpacing: "0.06em",
                       marginTop: 28,
                       marginBottom: 0,
-                      maxWidth: "32ch",
+                      maxWidth: "38ch",
                       lineHeight: 1.7,
                     }}
                   >
-                    AIを前提に、事業と業務を再設計する。
+                    企業のAI活用を、構想から運用まで。
                     <br/>
-                    構想からプロダクト、運用まで。
+                    AIエージェント、Web開発、業務再設計。
                     <br />
                     <strong style={{ fontWeight: 500 }}>楽観を、動く仕組みに。</strong>
-                  </motion.p>
+                  </p>
 
                   {/* Lakkan capabilities */}
                   <motion.div
@@ -187,6 +181,58 @@ export function Hero({
                         <strong style={{ fontWeight: 700 }}>{c.co}</strong>
                       </span>
                     ))}
+                  </motion.div>
+
+                  <motion.div
+                    className="hero-cta-row"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.05, duration: 0.6 }}
+                    style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 18 }}
+                  >
+                    <motion.a
+                      href="/contact?topic=ai-consult"
+                      className="hero-cta-primary"
+                      whileHover={{ y: -2 }}
+                      style={{
+                        minHeight: 46,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 9,
+                        padding: "0 18px",
+                        borderRadius: 6,
+                        background: ink,
+                        color: "#EEF0EC",
+                        fontFamily: SANS,
+                        fontSize: 12,
+                        fontWeight: 700,
+                        letterSpacing: "0.04em",
+                        textDecoration: "none",
+                      }}
+                    >
+                      AI活用を相談する <ArrowRight size={15} />
+                    </motion.a>
+                    <motion.a
+                      href="/works"
+                      className="hero-cta-secondary"
+                      whileHover={{ y: -2 }}
+                      style={{
+                        minHeight: 46,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        padding: "0 16px",
+                        borderRadius: 6,
+                        border: "1px solid rgba(19,33,38,0.24)",
+                        color: ink,
+                        fontFamily: SANS,
+                        fontSize: 12,
+                        fontWeight: 700,
+                        letterSpacing: "0.04em",
+                        textDecoration: "none",
+                      }}
+                    >
+                      公開実績を見る
+                    </motion.a>
                   </motion.div>
                 </div>
 

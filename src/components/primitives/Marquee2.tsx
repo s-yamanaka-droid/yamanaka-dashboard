@@ -1,25 +1,26 @@
 "use client";
 
-import { ACCENT, FRANK, MarqueeItem } from "@/lib/design-tokens";
+import { FRANK, MarqueeItem } from "@/lib/design-tokens";
 
 export function Marquee2({
   items, bg = "#132126", speed = "normal", reverse = false,
 }: {
   items: MarqueeItem[]; bg?: string; speed?: "fast"|"normal"|"slow"; reverse?: boolean;
 }) {
-  const quad = [...items, ...items, ...items, ...items];
+  // Two copies are enough for a seamless -50% loop and keep the DOM compact.
+  const loop = [...items, ...items];
   const cls = reverse ? "marquee-track-rev"
     : speed === "fast" ? "marquee-track-fast"
     : speed === "slow" ? "marquee-track-slow"
     : "marquee-track";
-  const defaultColor = bg === "#132126" ? ACCENT.vermillion : "#132126";
+  const textColor = bg === "#132126" ? "#EEF0EC" : "#FFFFFF";
   return (
     <div style={{ overflow:"hidden", background:bg, padding:"12px 0" }}>
       <div className={cls}>
-        {quad.map((item, i) => (
+        {loop.map((item, i) => (
           <span key={i} style={{
             fontFamily:FRANK, fontSize:13, fontWeight:300,
-            color: item.color || defaultColor,
+            color: textColor,
             paddingRight:48, whiteSpace:"nowrap", letterSpacing:"0.06em",
             display:"inline-flex", alignItems:"center", gap:6,
           }}>
