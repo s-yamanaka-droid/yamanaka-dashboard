@@ -207,7 +207,7 @@
 /* iPad and below ---------------------------------------- */
 @media (max-width: 1024px) {
   /* Tighten generic section paddings (Manifesto / Story / Service / Luna / About / Join / Portals) */
-  #manifesto, #story, #service, #luna, #about, #join, #portals {
+  #manifesto, #capabilities, #story, #service, #luna, #about, #join, #portals {
     padding: clamp(80px, 12vw, 120px) clamp(20px, 6vw, 56px) !important;
   }
   #news {
@@ -439,6 +439,28 @@
   #hero-panel-1 [data-mobile-stack="hero-main"] > div:last-child {
     display: none !important;
   }
+  #capabilities [data-mobile-stack="capability-grid"] {
+    grid-template-columns: 1fr !important;
+  }
+  #capabilities [data-mobile-stack="capability-head"] {
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+  }
+  #capabilities [data-mobile-stack="capability-head"] p {
+    margin-bottom: 0 !important;
+  }
+  #capabilities [data-mobile-stack="capability-card"] {
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(19,33,38,0.12);
+    padding: 30px 0 !important;
+  }
+  #capabilities [data-mobile-stack="capability-card"]:last-child {
+    border-bottom: 0;
+  }
+  #capabilities [data-mobile-stack="capability-proof"] {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+  }
 
   /* Hero panel 3 stat row */
   #hero-panel-3 [data-mobile-stack="hero-stats"] {
@@ -470,7 +492,7 @@
 
 /* iPhone SE / narrow phones ----------------------------- */
 @media (max-width: 414px) {
-  #manifesto, #story, #service, #luna, #about, #join, #portals,
+  #manifesto, #capabilities, #story, #service, #luna, #about, #join, #portals,
   #news, #contact {
     padding-left: 18px !important;
     padding-right: 18px !important;

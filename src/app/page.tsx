@@ -9,6 +9,7 @@ import { ACCENT, CAT_COLOR, MarqueeItem, isNew } from "@/lib/design-tokens";
 
 import { Hero } from "@/components/sections/Hero";
 import { Manifesto } from "@/components/sections/Manifesto";
+import { Capabilities } from "@/components/sections/Capabilities";
 import { News } from "@/components/sections/News";
 import { Story } from "@/components/sections/Story";
 import { Luna } from "@/components/sections/Luna";
@@ -67,7 +68,7 @@ export default function Home() {
   ];
 
   return (
-    <div>
+    <main id="main" tabIndex={-1}>
       <Hero
         totalProjects={projects.length}
         live={live}
@@ -81,6 +82,8 @@ export default function Home() {
       <Marquee2 items={marqueeRow1} bg="#132126" speed="slow" />
 
       <Manifesto />
+
+      <Capabilities totalProjects={projects.length} />
 
       {/* Works は /works ページに隔離（縦長解消・2026-05-23）*/}
 
@@ -106,6 +109,6 @@ export default function Home() {
           onClose={() => setCmdOpen(false)}
         />
       )}
-    </div>
+    </main>
   );
 }

@@ -116,7 +116,7 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
                 fontFamily: SANS,
                 fontSize: 9,
                 letterSpacing: "0.22em",
-                color: "rgba(255,255,255,0.4)",
+                color: "rgba(255,255,255,0.68)",
                 textTransform: "uppercase",
                 marginBottom: 18,
               }}
@@ -176,7 +176,7 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
                 fontFamily: SANS,
                 fontSize: 9,
                 letterSpacing: "0.22em",
-                color: "rgba(255,255,255,0.4)",
+                color: "rgba(255,255,255,0.68)",
                 textTransform: "uppercase",
                 marginBottom: 18,
               }}
@@ -210,7 +210,7 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
                 fontFamily: SANS,
                 fontSize: 9,
                 letterSpacing: "0.22em",
-                color: "rgba(255,255,255,0.4)",
+                color: "rgba(255,255,255,0.68)",
                 textTransform: "uppercase",
                 marginBottom: 18,
               }}
@@ -244,7 +244,7 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
                 fontFamily: SANS,
                 fontSize: 9,
                 letterSpacing: "0.22em",
-                color: "rgba(255,255,255,0.4)",
+                color: "rgba(255,255,255,0.68)",
                 textTransform: "uppercase",
                 marginBottom: 18,
               }}
@@ -273,7 +273,7 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
                 fontSize: 12,
                 fontWeight: 700,
                 letterSpacing: "0.08em",
-                color: "#132126",
+                color: "#FFFFFF",
                 background: ACCENT.vermillion,
                 textTransform: "uppercase",
                 padding: "12px 18px",
@@ -302,7 +302,7 @@ export function Footer({ onOpenCmd }: { onOpenCmd: () => void }) {
               fontFamily: SANS,
               fontSize: 10,
               letterSpacing: "0.14em",
-              color: "rgba(255,255,255,0.4)",
+              color: "rgba(255,255,255,0.68)",
               textTransform: "uppercase",
             }}
           >
