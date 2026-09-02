@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 import projectsData from "@/data/projects.json";
 import { Project } from "@/types";
 
-import { SB_URL, SB_KEY } from "@/lib/supabase";
+import { LUNA_SB_URL, LUNA_SB_KEY } from "@/lib/supabase";
 import { PageHero } from "@/components/PageHero";
 
 const FRANK = "var(--font-frank), 'Frank Ruhl Libre', Georgia, serif";
@@ -85,8 +85,8 @@ export default function SkillsPage() {
   const tagFreq = buildTagFreq();
 
   useEffect(() => {
-    fetch(`${SB_URL}/rest/v1/brain_stats?order=date.desc&limit=1`, {
-      headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` },
+    fetch(`${LUNA_SB_URL}/rest/v1/brain_stats?select=ceo_knowledge,cso_knowledge,patterns&order=date.desc&limit=1`, {
+      headers: { apikey: LUNA_SB_KEY, Authorization: `Bearer ${LUNA_SB_KEY}` },
     })
       .then(r => r.json())
       .then((d: BrainStat[]) => { if (d[0]) setBrain(d[0]); })

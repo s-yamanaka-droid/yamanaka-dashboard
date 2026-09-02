@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-import { SB_URL, SB_KEY } from "@/lib/supabase";
+import { LUNA_SB_URL, LUNA_SB_KEY } from "@/lib/supabase";
 import { PageHero } from "@/components/PageHero";
 
 const FRANK = "var(--font-frank), 'Frank Ruhl Libre', Georgia, serif";
@@ -19,7 +19,6 @@ type BrainStat = {
   today_processed: number;
   today_success: number;
   today_failed: number;
-  nightly_summary: string;
   recorded_at: string;
 };
 
@@ -87,8 +86,8 @@ export default function EvolutionPage() {
 
   const fetchStats = async () => {
     const res = await fetch(
-      `${SB_URL}/rest/v1/brain_stats?order=date.asc&limit=90`,
-      { headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` } }
+      `${LUNA_SB_URL}/rest/v1/brain_stats?select=date,recorded_at,ceo_knowledge,cso_knowledge,patterns,today_processed,today_success,today_failed&order=date.asc&limit=90`,
+      { headers: { apikey: LUNA_SB_KEY, Authorization: `Bearer ${LUNA_SB_KEY}` } }
     );
     const data: BrainStat[] = await res.json();
     setStats(data);
@@ -297,9 +296,7 @@ export default function EvolutionPage() {
               </div>
               <div style={{ fontFamily: SANS, fontSize: 12, color: "#0D0D0D",
                 opacity: 0.5, lineHeight: 1.6, paddingTop: 4 }}>
-                {s.nightly_summary
-                  ? s.nightly_summary.slice(0, 140) + (s.nightly_summary.length > 140 ? "..." : "")
-                  : "—"}
+                {s.today_processed > 0 ? `${s.today_processed} records processed` : "—"}
               </div>
             </motion.div>
           ))}
