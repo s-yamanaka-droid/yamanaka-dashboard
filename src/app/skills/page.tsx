@@ -85,7 +85,7 @@ export default function SkillsPage() {
   const tagFreq = buildTagFreq();
 
   useEffect(() => {
-    fetch(`${LUNA_SB_URL}/rest/v1/brain_stats?select=ceo_knowledge,cso_knowledge,patterns&order=date.desc&limit=1`, {
+    fetch(`${LUNA_SB_URL}/rest/v1/public_brain_stats?select=ceo_knowledge,cso_knowledge,patterns&order=date.desc&limit=1`, {
       headers: { apikey: LUNA_SB_KEY, Authorization: `Bearer ${LUNA_SB_KEY}` },
     })
       .then(r => r.json())

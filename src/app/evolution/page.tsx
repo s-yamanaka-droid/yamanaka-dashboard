@@ -86,7 +86,7 @@ export default function EvolutionPage() {
 
   const fetchStats = async () => {
     const res = await fetch(
-      `${LUNA_SB_URL}/rest/v1/brain_stats?select=date,recorded_at,ceo_knowledge,cso_knowledge,patterns,today_processed,today_success,today_failed&order=date.asc&limit=90`,
+      `${LUNA_SB_URL}/rest/v1/public_brain_stats?select=date,recorded_at,ceo_knowledge,cso_knowledge,patterns,today_processed,today_success,today_failed&order=date.asc&limit=90`,
       { headers: { apikey: LUNA_SB_KEY, Authorization: `Bearer ${LUNA_SB_KEY}` } }
     );
     const data: BrainStat[] = await res.json();
