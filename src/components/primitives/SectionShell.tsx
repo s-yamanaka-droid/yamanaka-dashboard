@@ -32,6 +32,7 @@ export function SectionShell({
   eyebrowVersion,
   accent = "vermillion",
   topBorder = false,
+  allowSticky = false,
   children,
 }: {
   id?: string;
@@ -43,6 +44,8 @@ export function SectionShell({
   /** Eyebrow と見出し強調の色 */
   accent?: AccentRole;
   topBorder?: boolean;
+  /** Sticky scrollytelling children need an ancestor that does not create a scroll container. */
+  allowSticky?: boolean;
   children: ReactNode;
 }) {
   const accentColor = ACCENT[accent];
@@ -54,7 +57,7 @@ export function SectionShell({
         padding: "var(--section-padding, 120px 56px)",
         borderTop: topBorder ? "1px solid rgba(19,33,38,0.08)" : undefined,
         position: "relative",
-        overflow: "hidden",
+        overflow: allowSticky ? "clip" : "hidden",
       }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
