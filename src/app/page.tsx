@@ -7,7 +7,7 @@ import projectsData from "@/data/projects.json";
 import { Category, Project } from "@/types";
 import { ACCENT, CAT_COLOR, MarqueeItem, isNew } from "@/lib/design-tokens";
 
-import { Hero } from "@/components/sections/Hero";
+import { VideoHero } from "@/components/sections/VideoHero";
 import { Manifesto } from "@/components/sections/Manifesto";
 import { Capabilities } from "@/components/sections/Capabilities";
 import { News } from "@/components/sections/News";
@@ -36,8 +36,6 @@ export default function Home() {
   const live     = useMemo(() => projects.filter(p => p.status==="live").length, []);
   const cc       = useMemo(() => projects.filter(p => p.builtWith==="claude_code").length, []);
   const newCount = useMemo(() => projects.filter(p => isNew(p.updatedAt)).length, []);
-  const todayStr = new Date().toISOString().split("T")[0];
-  const todayCount = useMemo(() => projects.filter(p => p.updatedAt === todayStr).length, [todayStr]);
 
   /* Tag frequency for marquee row 2 */
   const tagCounts = useMemo(() => {
@@ -69,14 +67,7 @@ export default function Home() {
 
   return (
     <main id="main" tabIndex={-1}>
-      <Hero
-        totalProjects={projects.length}
-        live={live}
-        cc={cc}
-        newCount={newCount}
-        todayCount={todayCount}
-        onOpenCmd={() => setCmdOpen(true)}
-      />
+      <VideoHero onOpenCmd={() => setCmdOpen(true)} />
 
       <Marquee2 items={MARQUEE_TOP} bg="#132126" speed="normal" />
       <Marquee2 items={marqueeRow1} bg="#132126" speed="slow" />
