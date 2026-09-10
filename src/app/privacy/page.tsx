@@ -12,7 +12,7 @@ const SANS = "var(--font-display), 'Space Grotesk', system-ui, sans-serif";
 
 export default function PrivacyPage() {
   return (
-    <main id="main" style={{ background: "#EEF0EC", minHeight: "100vh" }}>
+    <main id="main" className="new-site">
       <PageHero
         section="Privacy Policy"
         version="v.1"
