@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-const topics = [["ai-consult","AI・業務のご相談"],["luna","Luna AIについて"],["atelier-site","サイトのデザイン相談"],["corp-site","コーポレートサイト制作"],["recruit","採用サイト・LP制作"],["partnership","パートナーシップ"],["other","その他"]];
+const topics = [["ai-consult","AI・業務のご相談"],["luna","Luna AIについて"],["placement","人材紹介について"],["crm","CRM構築について"],["fde","FDEについて"],["atelier-site","サイトのデザイン相談"],["corp-site","コーポレートサイト制作"],["recruit","採用サイト・LP制作"],["partnership","パートナーシップ"],["other","その他"]];
 export function ContactForm({initialTopic = "ai-consult"}:{initialTopic?:string}) {
  const [topic,setTopic]=useState(topics.some(([id])=>id===initialTopic)?initialTopic:"ai-consult");
  const [status,setStatus]=useState("");

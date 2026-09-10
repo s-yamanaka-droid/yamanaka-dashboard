@@ -20,6 +20,7 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com data:",
       "img-src 'self' data: blob: https:",
       "connect-src 'self'",
+      "media-src 'self' https://d8j0ntlcm91z4.cloudfront.net",
       "frame-ancestors 'self'",
       "frame-src 'none'",
       "object-src 'none'",
