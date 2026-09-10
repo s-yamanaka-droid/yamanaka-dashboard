@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif, Shippori_Mincho, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import "./site.css";
+import "./prisma.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
     template: "%s | 株式会社Lakkan",
   },
   description:
-    "株式会社Lakkanは、AIエージェント開発・AIプロダクト・業務再設計を軸に、構想から運用までを一つの流れで実装するAIファースト企業です。",
+    "人とテクノロジーで、事業の可能性をひらく。株式会社LakkanのLuna AI、人材紹介、News、CRM構築、FDEをご紹介します。",
   keywords: [
     "AI", "AIエージェント", "生成AI", "LLM", "Claude", "Anthropic",
     "AI企業", "AIコーポレート", "AI活用", "バイブコーディング",
