@@ -72,6 +72,15 @@
   }
 }
 
+/* Short Japanese CTA copy wraps at phrase boundaries, not within a word. */
+.join-final-copy > span {
+  display: inline-block;
+  max-width: 100%;
+}
+@media (max-width: 640px) {
+  .join-final-copy > span { display: block; }
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }

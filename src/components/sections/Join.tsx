@@ -468,6 +468,7 @@ export function Join() {
           }}
         >
           <p
+            className="join-final-copy"
             style={{
               fontFamily: INSTRUMENT,
               fontStyle: "italic",
@@ -476,11 +477,11 @@ export function Join() {
               color: "#132126",
               lineHeight: 1.3,
               margin: 0,
-              maxWidth: "20ch",
+              maxWidth: "100%",
               letterSpacing: "-0.005em",
             }}
           >
-            まずは、1 通のメールから。
+            <span>まずは、</span><span>1通のメールから。</span>
           </p>
           <motion.a
             href="/contact"
