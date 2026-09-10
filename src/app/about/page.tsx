@@ -1,27 +1,6 @@
 import type { Metadata } from "next";
-import { About } from "@/components/sections/About";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
-
-export const metadata: Metadata = {
-  title: "About — Lakkan Inc.",
-  description:
-    "株式会社Lakkanは、AIを前提に事業と業務の流れを再設計するAIファースト企業です。思想・事業領域・会社情報をご紹介します。",
-  openGraph: {
-    title: "About — Lakkan Inc.",
-    description: "AIを前提に、事業と業務をどう組み直すか。Lakkanの思想と会社情報。",
-  },
-};
-
-export default function AboutPage() {
-  return (
-    <main id="main">
-      <PageHero
-        section="About"
-        version="v.1"
-        title="Lakkanについて。"
-        lede="AIを前提に、事業と業務を再設計する。東京・渋谷のAIカンパニー。"
-      />
-      <About />
-    </main>
-  );
-}
+export const metadata:Metadata={title:"Studio — Lakkanについて",description:"楽観と、計画と。AIを前提に事業と業務を再設計する株式会社Lakkanの考え方と会社情報。",alternates:{canonical:"https://lakkan-inc.vercel.app/about"}};
+export default function About(){return <main id="main" className="new-site"><PageHero section="STUDIO / ABOUT US" title="楽観を、前に進む力に。" lede="AIの可能性を、現場の力へ。東京・渋谷を拠点に、構想と実装の間をつなぐ会社です。"/><section className="about-manifesto"><div className="about-word">Luck.<br/>Plan.<br/><span>Lakkan.</span></div><div><p className="eyebrow">OUR PHILOSOPHY</p><h2>「できるかも」を、<br/>「できた」へ。</h2><p>新しい技術に出会ったとき、まずは可能性を信じてみる。それが、私たちの楽観です。</p><p>そして、現場の仕事を知り、必要な仕組みを考え、動くものをつくる。それが、私たちの計画です。</p><p>AIを使うこと自体をゴールにせず、事業や働き方がどう変わるかを考える。Lakkanは、つくることと運用することの両方に向き合います。</p><Link href="/services" className="text-link">私たちにできること<ArrowUpRight size={18}/></Link></div></section><section className="site-section company-section"><p className="eyebrow">COMPANY PROFILE</p><h2>会社情報</h2><dl>{[["会社名","株式会社Lakkan / Lakkan Inc."],["設立","2026年"],["所在地","東京都渋谷区神宮前六丁目23番4号"],["事業領域","AI導入・業務再設計、プロダクト開発、Webサイト制作"],["お問い合わせ","お問い合わせフォームよりご連絡ください。"]].map(([key,value])=><div key={key}><dt>{key}</dt><dd>{key==="お問い合わせ"?<Link href="/contact">{value}<ArrowUpRight size={16}/></Link>:value}</dd></div>)}</dl></section></main>;}

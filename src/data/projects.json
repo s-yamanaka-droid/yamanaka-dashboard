@@ -45,14 +45,14 @@
   {
     "id": "central-medical",
     "name": "Central Medical",
-    "description": "医療機関としての信頼感と相談しやすさを両立したコーポレートサイト。情報設計、実写ビジュアル、レスポンシブ対応、公開前のセキュリティ・表示検証まで一貫して実装。",
+    "description": "病院患者給食、院内レストラン・社員食堂、フードコンサルティングを手がける企業のコーポレートサイト。食への姿勢とサービスを、写真と読みやすい情報設計で伝える。",
     "category": "website",
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-08-02",
     "updatedAt": "2026-08-04",
     "url": "https://lakkan-central-medical.vercel.app",
-    "client": "中央メディカル",
+    "client": "中央メディカル株式会社",
     "tags": [
       "コーポレートサイト",
       "医療",

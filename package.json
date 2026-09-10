@@ -8,7 +8,8 @@
     "prebuild": "npm run check:public && node scripts/sync-now-on-air.js",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check": "tsc --noEmit && npm run lint && npm run build && node scripts/smoke.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.0",

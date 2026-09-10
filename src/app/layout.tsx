@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif, Shippori_Mincho, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
-import GlobalShell from "@/components/GlobalShell";
+import "./site.css";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
 import { CookieConsent } from "@/components/CookieConsent";
 
 const geistMono = Geist_Mono({
@@ -47,7 +49,7 @@ const notoSansJP = Noto_Sans_JP({
 export const metadata: Metadata = {
   metadataBase: new URL("https://lakkan-inc.vercel.app"),
   title: {
-    default: "株式会社Lakkan | AIコーポレートサイト — 楽観と、計画と。",
+    default: "株式会社Lakkan | 楽観と、計画と。",
     template: "%s | 株式会社Lakkan",
   },
   description:
@@ -112,7 +114,7 @@ export default function RootLayout({
       lang="ja"
       className={`${geistMono.variable} ${spaceGrotesk.variable} ${frankRuhl.variable} ${instrument.variable} ${shippori.variable} ${notoSansJP.variable} antialiased`}
     >
-      <body className="bg-[#EEF0EC] text-[#132126]">
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -186,8 +188,9 @@ export default function RootLayout({
           }}
         />
         <a href="#main" className="skip-link">メインコンテンツへスキップ</a>
-        <GlobalShell />
+        <SiteHeader />
         {children}
+        <SiteFooter />
         <CookieConsent />
       </body>
     </html>
