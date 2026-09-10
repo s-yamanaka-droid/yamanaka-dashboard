@@ -1,4 +1,4 @@
-.prisma-home { background:#e1e0cc;color:#20221d;font-family:var(--font-display),var(--font-sans-jp),sans-serif; }
+.prisma-home { background:#e1e0cc;color:#20221d;font-family:var(--font-prisma),var(--font-sans-jp),sans-serif;font-weight:300; }
 .prisma-hero { height:100svh;min-height:620px;padding:8px; }
 .prisma-frame { position:relative;width:100%;height:100%;overflow:hidden;border-radius:28px;background:#323e39; }
 .prisma-video,.prisma-grain,.prisma-shade { position:absolute;inset:0;width:100%;height:100%;object-fit:cover; }
@@ -10,7 +10,7 @@
 .prisma-nav a:hover { opacity:1; }
 .prisma-playback { position:absolute;top:22px;right:22px;border:1px solid #e1e0cc66;border-radius:50%;width:36px;height:36px;display:grid;place-items:center;color:#e1e0cc;background:#0003;cursor:pointer; }
 .prisma-hero-content { position:absolute;bottom:0;left:0;right:0;padding:0 32px 24px;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);align-items:end;gap:36px;color:#e1e0cc; }
-.prisma-hero h1 { font-family:var(--font-display),sans-serif;font-weight:500;line-height:.85;letter-spacing:-.075em;font-size:18.3vw;margin:0;padding-bottom:.02em; }
+.prisma-hero h1 { font-family:var(--font-prisma),sans-serif;font-weight:400;line-height:.9;letter-spacing:-.065em;font-size:18.3vw;margin:0;padding-bottom:.02em; }
 .prisma-hero h1>span { display:inline-block;position:relative; }
 .prisma-asterisk { position:absolute;top:.17em;right:-.35em;font-size:.31em;letter-spacing:0; }
 .prisma-hero-aside { padding-bottom:12px;display:flex;flex-direction:column;align-items:flex-start;gap:24px; }
@@ -25,9 +25,9 @@
 .prisma-index { max-width:1400px;margin:auto;padding:100px 64px 0; }
 .prisma-intro { display:flex;justify-content:space-between;font-size:12px;letter-spacing:.06em;padding-bottom:40px; }
 .prisma-item { display:grid;grid-template-columns:1fr 1fr;gap:48px;border-top:1px solid #20221d38;padding:64px 0;scroll-margin-top:32px; }
-.prisma-item-name h2 { font-size:clamp(30px,4vw,58px);font-weight:500;letter-spacing:-.04em;line-height:1.2;margin:0 0 14px; }
+.prisma-item-name h2 { font-size:clamp(30px,4vw,58px);font-weight:400;letter-spacing:-.035em;line-height:1.2;margin:0 0 14px; }
 .prisma-item-name>span { font-size:10px;letter-spacing:.08em; }
-.prisma-item-copy h3 { font-family:var(--font-sans-jp),sans-serif;font-size:clamp(22px,2.4vw,32px);font-weight:400;line-height:1.65;letter-spacing:-.03em;margin:0 0 22px; }
+.prisma-item-copy h3 { font-family:var(--font-sans-jp),sans-serif;font-size:clamp(22px,2.4vw,32px);font-weight:300;line-height:1.65;letter-spacing:.015em;margin:0 0 22px; }
 .prisma-item-copy h3 span,.prisma-contact h2 span { display:inline-block; }
 .prisma-item-copy p { max-width:34em;font-size:14px;line-height:2;margin:0; }
 .prisma-item-copy small { display:block;font-size:11px;margin-top:12px;opacity:.7; }

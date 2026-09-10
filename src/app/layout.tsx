@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif, Shippori_Mincho, Noto_Sans_JP } from "next/font/google";
+import { Inter, Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif, Shippori_Mincho, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import "./site.css";
 import "./prisma.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { CookieConsent } from "@/components/CookieConsent";
+
+const inter = Inter({ variable: "--font-prisma", subsets: ["latin"], display: "swap" });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -42,7 +44,7 @@ const shippori = Shippori_Mincho({
 // 日本語 sans（本文用）
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-sans-jp",
-  weight: ["400", "500", "700"],
+  weight: ["300", "400", "500", "700"],
   display: "swap",
   preload: false,
 });
@@ -113,7 +115,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${geistMono.variable} ${spaceGrotesk.variable} ${frankRuhl.variable} ${instrument.variable} ${shippori.variable} ${notoSansJP.variable} antialiased`}
+      className={`${inter.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${frankRuhl.variable} ${instrument.variable} ${shippori.variable} ${notoSansJP.variable} antialiased`}
     >
       <body>
         <script
