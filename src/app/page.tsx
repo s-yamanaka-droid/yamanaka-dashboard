@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PrismaHero } from "@/components/site/PrismaHero";
+import { ServiceScene } from "@/components/site/ServiceScene";
+import news from "../../public/now-on-air/index.json";
 
 const items = [
   { id: "luna", name: "Luna", category: "PERSONAL AI", title: ["あなた専用に、", "育つAI。"], text: "日々の判断や仕事の経験を蓄積し、あなたと働くAIの右腕。Luna AIの導入と活用をご案内します。", href: "https://lunatech-migration-guide.vercel.app", link: "Luna AIを知る", note: "LunaTechのサービスです。" },
@@ -14,10 +16,12 @@ export default function Home() {
   return <main id="main" className="prisma-home">
     <PrismaHero />
     <div className="prisma-index">
-      <div className="prisma-intro"><p>WHAT WE DO</p><p>楽観と、計画と。</p></div>
+      <div className="prisma-intro"><p>IDEAS INTO REALITY</p><p>LAKKAN / TOKYO</p></div>
+      <div className="prisma-statement"><p>少し先の未来を、<br/><span>一緒におもしろく。</span></p><span>人の可能性と、テクノロジーの可能性。<br/>その間に、新しい仕事をつくる。</span></div>
       {items.map(item => <section className="prisma-item" id={item.id} key={item.id} aria-labelledby={`${item.id}-title`}>
         <div className="prisma-item-name"><h2 id={`${item.id}-title`}>{item.name}</h2><span>{item.category}</span></div>
         <div className="prisma-item-copy"><h3>{item.title.map(phrase => <span key={phrase}>{phrase}</span>)}</h3><p>{item.text}</p>{item.note && <small>{item.note}</small>}<Link className="prisma-text-link" href={item.href}>{item.link}<ArrowUpRight size={18} aria-hidden="true" /></Link></div>
+        <ServiceScene id={item.id} articles={item.id === "news" ? news.articles.slice(0,3).map(a=>({title:a.title,category:a.category,image:a.image,link:a.link})) : []}/>
       </section>)}
       <div className="prisma-contact"><h2><span>まずは、</span><span>話してみませんか。</span></h2><Link className="prisma-pill" href="/contact">お問い合わせ<span><ArrowUpRight size={19} aria-hidden="true" /></span></Link></div>
     </div>
