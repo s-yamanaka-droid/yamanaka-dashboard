@@ -21,7 +21,7 @@ export default function Home() {
       {items.map(item => <section className="prisma-item" id={item.id} key={item.id} aria-labelledby={`${item.id}-title`}>
         <div className="prisma-item-name"><h2 id={`${item.id}-title`}>{item.name}</h2><span>{item.category}</span></div>
         <div className="prisma-item-copy"><h3>{item.title.map(phrase => <span key={phrase}>{phrase}</span>)}</h3><p>{item.text}</p>{item.note && <small>{item.note}</small>}<Link className="prisma-text-link" href={item.href}>{item.link}<ArrowUpRight size={18} aria-hidden="true" /></Link></div>
-        <ServiceScene id={item.id} articles={item.id === "news" ? news.articles.slice(0,3).map(a=>({title:a.title,category:a.category,image:a.image,link:a.link})) : []}/>
+        <ServiceScene id={item.id} articles={item.id === "news" ? news.articles.map(a=>({title:a.title,category:a.category,image:a.image,link:a.link,lede:a.lede})) : []}/>
       </section>)}
       <div className="prisma-contact"><h2><span>まずは、</span><span>話してみませんか。</span></h2><Link className="prisma-pill" href="/contact">お問い合わせ<span><ArrowUpRight size={19} aria-hidden="true" /></span></Link></div>
     </div>
