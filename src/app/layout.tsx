@@ -171,7 +171,7 @@ export default function RootLayout({
                   itemListElement: [
                     { "@type": "ListItem", position: 1, name: "Home",     item: "https://lakkan-inc.vercel.app/" },
                     { "@type": "ListItem", position: 2, name: "Services", item: "https://lakkan-inc.vercel.app/services" },
-                    { "@type": "ListItem", position: 3, name: "Luna AI", item: "https://lunatech-migration-guide.vercel.app" },
+                    { "@type": "ListItem", position: 3, name: "Luna AI", item: "https://luna-tech-public-site-h0wy4l4x9-s-yamanaka-droids-projects.vercel.app" },
                     { "@type": "ListItem", position: 4, name: "Works",    item: "https://lakkan-inc.vercel.app/works" },
                     { "@type": "ListItem", position: 5, name: "About",    item: "https://lakkan-inc.vercel.app/about" },
                     { "@type": "ListItem", position: 6, name: "Contact",  item: "https://lakkan-inc.vercel.app/contact" },

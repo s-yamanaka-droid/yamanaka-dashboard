@@ -14,7 +14,7 @@
       "title": "VigilからLunaへ — 現行ブランドと公開作品を統一",
       "body": "対外製品名をLuna AIへ統一し、Lakkanの公開ポートフォリオを再編集。公開済みの作品と検証可能な価値だけを掲載し、内部運用・開発中プロダクト・利用者データへの導線を公開面から除去しました。",
       "links": [
-        { "label": "Luna AI", "url": "https://lunatech-migration-guide.vercel.app" },
+        { "label": "Luna AI", "url": "https://luna-tech-public-site-h0wy4l4x9-s-yamanaka-droids-projects.vercel.app" },
         { "label": "Works", "url": "/works" }
       ]
     },
@@ -33,7 +33,7 @@
       "title": "Luna AI — 成長の根拠表示と更新品質を強化",
       "body": "Lunaが何を覚え、どこまで再現可能になったかを、自己申告ではなく実測証拠で示す構造へ更新。利用者の記憶と自作資産を守ったまま、安全に更新できる配布基盤を整えました。",
       "links": [
-        { "label": "Luna AI", "url": "https://lunatech-migration-guide.vercel.app" }
+        { "label": "Luna AI", "url": "https://luna-tech-public-site-h0wy4l4x9-s-yamanaka-droids-projects.vercel.app" }
       ]
     },
     {

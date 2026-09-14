@@ -8,7 +8,7 @@ import { SectionShell, Em } from "@/components/primitives/SectionShell";
 const INK = "#132126";
 const RULE = "rgba(19,33,38,0.12)";
 const MUTED = "rgba(19,33,38,0.58)";
-const LUNA_URL = "https://lunatech-migration-guide.vercel.app";
+const LUNA_URL = "https://luna-tech-public-site-h0wy4l4x9-s-yamanaka-droids-projects.vercel.app";
 
 const PILLARS = [
   {

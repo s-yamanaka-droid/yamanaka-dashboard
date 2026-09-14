@@ -12,7 +12,7 @@ const PORTALS = [
     jaLabel: "育つAIの右腕",
     sub: "AI Kitting · Public",
     desc: "判断・言葉・失敗を手元に蓄積し、使うほど利用者専用に育つAIキッティングサービス。",
-    url: "https://lunatech-migration-guide.vercel.app",
+    url: "https://luna-tech-public-site-h0wy4l4x9-s-yamanaka-droids-projects.vercel.app",
     accent: ACCENT.forest,
     meta: "by LunaTech",
   },
