@@ -1,53 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif, Shippori_Mincho, Noto_Sans_JP } from "next/font/google";
+import { Instrument_Serif, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import "./site.css";
 import "./prisma.css";
+import "./journal.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { CookieConsent } from "@/components/CookieConsent";
 
-const inter = Inter({ variable: "--font-prisma", subsets: ["latin"], display: "swap" });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const frankRuhl = Frank_Ruhl_Libre({
-  variable: "--font-frank",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700", "900"],
-});
-
-const instrument = Instrument_Serif({
-  variable: "--font-instrument",
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-});
-
-// 日本語 serif（見出し用・Frank Ruhl Libre とペアで使う）
-const shippori = Shippori_Mincho({
-  variable: "--font-mincho",
-  weight: ["500", "600", "700"],
-  display: "swap",
-  preload: false,
-});
-
-// 日本語 sans（本文用）
-const notoSansJP = Noto_Sans_JP({
-  variable: "--font-sans-jp",
-  weight: ["300", "400", "500", "700"],
-  display: "swap",
-  preload: false,
-});
+const instrument = Instrument_Serif({variable:"--font-instrument",subsets:["latin"],weight:"400",display:"swap"});
+const notoSansJP = Noto_Sans_JP({variable:"--font-sans-jp",weight:["400","500","700"],display:"swap",preload:false});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://lakkan-inc.vercel.app"),
@@ -115,9 +77,9 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${inter.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${frankRuhl.variable} ${instrument.variable} ${shippori.variable} ${notoSansJP.variable} antialiased`}
+      className={`${instrument.variable} ${notoSansJP.variable} antialiased`}
     >
-      <body>
+      <body className="brand-shell">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

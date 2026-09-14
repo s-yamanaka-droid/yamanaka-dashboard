@@ -1,0 +1,42 @@
+/* One typography system for all Lakkan corporate routes. */
+.brand-shell{--brand-sans:var(--font-sans-jp),Arial,sans-serif;--font-prisma:var(--brand-sans);--font-display:var(--brand-sans);--font-frank:var(--brand-sans);--font-mincho:var(--brand-sans);--font-geist-mono:var(--brand-sans);--site-ink:#202923;--site-bg:#faf9f6;--site-orange:#d8dfce;--section-padding:44px 32px;background:#faf9f6;color:#202923;font-family:var(--brand-sans);font-weight:400}
+.brand-shell :is(h1,h2,h3,h4,p,a,button,input,select,textarea,li,dt,dd,label,small,span,em){font-family:var(--brand-sans)!important;font-style:normal}
+.brand-shell :is(h1,h2,h3,h4){line-break:strict;overflow-wrap:normal;word-break:normal;letter-spacing:-.025em;font-weight:500;text-wrap:pretty}
+.brand-shell :is(p,li,dd){line-height:1.95}
+.brand-shell .journal-wordmark{font-family:var(--font-instrument),Georgia,serif!important;font-weight:400;letter-spacing:-.035em;line-height:1}
+.brand-shell .site-header.journal-header{position:relative;inset:auto;transform:none;display:block;max-width:1200px;width:calc(100% - 64px);margin:auto;padding:0;background:transparent;border:0;border-bottom:3px double #9da49a;border-radius:0;box-shadow:none;backdrop-filter:none;text-align:center;z-index:5}
+.journal-topline{display:flex;justify-content:space-between;border-bottom:1px solid #d7d8d0;padding:12px 0;font-size:9px;letter-spacing:.08em;color:#647063}
+.brand-shell .site-logo.journal-wordmark{display:block;font-size:96px;margin:22px auto 8px;width:max-content;text-decoration:none;color:#202923}
+.journal-header>p{font-size:11px;margin:0 0 22px;color:#616a60}
+.brand-shell .journal-header nav{display:flex;justify-content:center;flex-wrap:wrap;gap:32px;padding:14px 0;margin:0;font-size:12px}
+.journal-header nav a{padding:0;color:#30392f;text-decoration:none}
+.journal-header nav a[aria-current=page]{text-decoration:underline;text-underline-offset:6px}
+.journal-home{background:#faf9f6}.journal-home section>div{max-width:1120px!important}
+.journal-lead{display:grid;grid-template-columns:1.15fr 1fr;gap:60px;align-items:center;padding:8px 0 44px}
+.journal-label{font-size:11px;font-weight:500;letter-spacing:.08em;color:#536d59}
+.journal-lead h1{font-size:clamp(34px,4vw,56px);line-height:1.5;margin:22px 0}.journal-lead h1>span{display:block}
+.journal-lede{font-size:15px;margin-bottom:26px}
+.journal-link{display:inline-flex;align-items:center;gap:28px;font-size:13px;font-weight:500;border-bottom:1px solid #8f9b8d;padding:10px 0;text-decoration:none;color:#253c2c}
+.journal-link:hover{color:#547248;border-color:currentColor}.journal-link svg{flex-shrink:0}
+.journal-cover{position:relative;min-width:0;margin:0;aspect-ratio:1.1;background:#28382e;overflow:hidden}
+.journal-cover img{width:100%;height:100%;object-fit:cover;filter:brightness(.72)}
+.journal-cover figcaption{position:absolute;bottom:26px;left:26px;color:#fff}.journal-cover figcaption>span{font-size:9px;letter-spacing:.15em}.journal-cover figcaption p{font-size:23px;line-height:1.7;margin:12px 0 0}
+.journal-principle{border-top:1px solid #bac1b5;border-bottom:1px solid #bac1b5;padding:30px 0;display:grid;grid-template-columns:1fr 1.8fr;gap:50px}
+.journal-principle h2{font-size:25px;line-height:1.7}.journal-principle p{font-size:14px;margin:0;max-width:640px}
+.journal-section-title{margin:0 0 28px;display:flex;align-items:baseline;gap:36px}.journal-section-title>span{font-size:11px;color:#62725d}.journal-section-title h2{font-size:26px;line-height:1.7;margin:0}
+.journal-services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.journal-services article{padding-top:18px;border-top:2px solid #495c44;min-width:0}
+.journal-service-label{display:flex;align-items:center;gap:12px}.journal-service-label>span{font-size:10px;color:#73836a}.journal-service-label h3{font-size:13px;margin:0}
+.journal-services h4{font-size:23px;line-height:1.7;margin:23px 0 16px}.journal-services h4>span{display:block}
+.journal-services article>p{font-size:13px;min-height:126px;margin:0}.journal-services small{display:block;font-size:10px;color:#687762;margin:20px 0 12px}
+.journal-luna{display:grid;grid-template-columns:160px 1fr auto;align-items:center;gap:36px;padding:28px 0;margin-top:44px;border-top:1px solid #bac1b5;border-bottom:1px solid #bac1b5}.journal-luna h3{font-size:25px;margin:10px 0 0}.journal-luna p{font-size:13px;margin:0}.journal-luna small{display:block;font-size:10px;color:#65715f;margin-top:9px}
+.journal-news{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px}.journal-news>a{border-top:1px solid #b6bdb1;padding:22px 0;text-decoration:none;color:inherit}.journal-news h3{font-size:20px;line-height:1.7;margin:13px 0}.journal-news p{font-size:12px;color:#5b6457}.journal-read{display:flex;justify-content:space-between;font-size:11px;color:#526b4b;margin-top:20px}.journal-news-more{margin-top:16px}
+.journal-consult{border-top:3px double #9fa898;padding:40px 0}.journal-consult h2{font-size:34px;line-height:1.65;margin:22px 0}.journal-consult>p{font-size:14px}
+.brand-shell .site-footer.journal-footer{max-width:1200px;width:calc(100% - 64px);margin:auto;background:transparent;color:#28342a;display:block;border-top:1px solid #aab4a4;padding:32px 0 40px}.journal-footer>.journal-wordmark{font-size:48px;text-decoration:none;color:inherit}.journal-footer>p{font-size:12px;margin:12px 0 25px}.journal-footer nav{display:flex;gap:28px;flex-wrap:wrap;font-size:12px}.journal-footer>small{display:block;font-size:10px;margin-top:25px;color:#75806f}
+.brand-shell .new-site{background:#faf9f6;color:#202923;padding-top:0}.brand-shell .new-site .page-hero{padding-top:60px;padding-bottom:45px;background:transparent}.brand-shell .new-site .page-hero h1{font-size:clamp(32px,4vw,52px);line-height:1.5}.brand-shell .new-site .page-hero p{font-size:15px;line-height:1.95}.brand-shell .new-site :is(.service-detail-title h2,.section-heading h2,.contact-aside h2){font-size:clamp(25px,3vw,36px);line-height:1.65}
+.brand-shell :is(.service-depth,.people-approach){border-radius:0;background:#f1f2eb}.brand-shell .depth-heading h3{font-size:clamp(25px,3vw,36px)}.brand-shell :is(.depth-heading>p,.depth-active p,.depth-active dd){font-size:14px}
+.brand-shell a:focus-visible,.brand-shell button:focus-visible{outline:2px solid #48663c;outline-offset:5px}
+@media(max-width:760px){.brand-shell{--section-padding:26px 20px}.brand-shell .site-header.journal-header,.brand-shell .site-footer.journal-footer{width:calc(100% - 40px)}.brand-shell .site-logo.journal-wordmark{font-size:75px;margin-top:18px}.journal-topline{font-size:8px}.brand-shell .journal-header nav{gap:22px;font-size:11px}.journal-lead{grid-template-columns:1fr;gap:28px;padding-bottom:28px}.journal-lead h1{font-size:34px;line-height:1.55}.journal-lede{font-size:13px}.journal-cover{aspect-ratio:1.6}.journal-cover figcaption{left:20px;bottom:18px}.journal-cover figcaption p{font-size:20px}.journal-principle{grid-template-columns:1fr;gap:18px;padding:24px 0}.journal-principle h2{font-size:23px}.journal-principle p{font-size:13px}.journal-section-title{display:block}.journal-section-title h2{font-size:24px;margin-top:12px}.journal-services{grid-template-columns:1fr;gap:32px}.journal-services article>p{min-height:0}.journal-services h4{font-size:23px;margin:18px 0 12px}.journal-luna{grid-template-columns:1fr;gap:18px;margin-top:32px}.journal-luna .journal-link{justify-self:start}.journal-news{grid-template-columns:1fr}.journal-news h3{font-size:19px}.journal-consult h2{font-size:28px}.journal-consult>p{font-size:13px}.journal-footer nav{gap:18px}.brand-shell .new-site .page-hero{padding:35px 20px}.brand-shell .new-site:has(.service-depth){--section-padding:24px 12px}}
+.brand-shell .new-site .subpage-hero{padding:48px 32px;max-width:1200px;margin:auto;background:transparent;border-bottom:1px solid #b6c0b0}.brand-shell .new-site .subpage-hero h1{font-size:clamp(32px,4vw,52px);line-height:1.55;letter-spacing:-.025em}.brand-shell .new-site .subpage-hero>p{font-size:15px;line-height:1.95;max-width:780px}.brand-shell .subpage-top{margin-bottom:28px}
+@media(max-width:760px){.brand-shell .new-site .subpage-hero{padding:30px 20px}.brand-shell .new-site .subpage-hero>p{font-size:13px}}
+.brand-shell .site-header.journal-header{height:auto;min-height:0}

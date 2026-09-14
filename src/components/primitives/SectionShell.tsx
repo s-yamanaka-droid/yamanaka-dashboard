@@ -21,8 +21,8 @@ type AccentRole = "vermillion" | "blue" | "orange" | "forest";
 type Tone = "cream" | "creamLight"; // 互いの色違い
 
 const TONE_BG: Record<Tone, string> = {
-  cream: "#EEF0EC",
-  creamLight: "#E4E8E4",
+  cream: "#faf9f6",
+  creamLight: "#f0f0e9",
 };
 
 export function SectionShell({
