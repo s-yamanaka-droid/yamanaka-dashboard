@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
-const links = [["/works", "Works", "実績"], ["/services", "Services", "できること"], ["/about", "Studio", "会社紹介"], ["/atelier", "Lab", "実験室"]];
+const links = [["/works", "Works", "実績"], ["/services", "Services", "できること"], ["/about", "About", "会社情報"], ["/atelier", "Lab", "実験室"]];
 
 export function SiteHeader() {
   const pathname = usePathname();
