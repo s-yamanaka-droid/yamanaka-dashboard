@@ -1,24 +1,60 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Noto_Sans_JP } from "next/font/google";
+import { Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif, Shippori_Mincho, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import "./site.css";
-import "./prisma.css";
-import "./journal.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import GlobalShell from "@/components/GlobalShell";
 import { CookieConsent } from "@/components/CookieConsent";
 
-const instrument = Instrument_Serif({variable:"--font-instrument",subsets:["latin"],weight:"400",display:"swap"});
-const notoSansJP = Noto_Sans_JP({variable:"--font-sans-jp",weight:["400","500","700"],display:"swap",preload:false});
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const frankRuhl = Frank_Ruhl_Libre({
+  variable: "--font-frank",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700", "900"],
+});
+
+const instrument = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+});
+
+// 日本語 serif（見出し用・Frank Ruhl Libre とペアで使う）
+const shippori = Shippori_Mincho({
+  variable: "--font-mincho",
+  weight: ["500", "600", "700"],
+  display: "swap",
+  preload: false,
+});
+
+// 日本語 sans（本文用）
+const notoSansJP = Noto_Sans_JP({
+  variable: "--font-sans-jp",
+  weight: ["400", "500", "700"],
+  display: "swap",
+  preload: false,
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://lakkan-inc.vercel.app"),
   title: {
-    default: "株式会社Lakkan | 楽観と、計画と。",
+    default: "株式会社Lakkan | AIコーポレートサイト — 楽観と、計画と。",
     template: "%s | 株式会社Lakkan",
   },
   description:
-    "人とテクノロジーで、事業の可能性をひらく。株式会社LakkanのLuna AI、人材紹介、News、CRM構築、FDEをご紹介します。",
+    "株式会社Lakkanは、AIエージェント開発・AIプロダクト・業務再設計を軸に、構想から運用までを一つの流れで実装するAIファースト企業です。",
   keywords: [
     "AI", "AIエージェント", "生成AI", "LLM", "Claude", "Anthropic",
     "AI企業", "AIコーポレート", "AI活用", "バイブコーディング",
@@ -77,9 +113,9 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${instrument.variable} ${notoSansJP.variable} antialiased`}
+      className={`${geistMono.variable} ${spaceGrotesk.variable} ${frankRuhl.variable} ${instrument.variable} ${shippori.variable} ${notoSansJP.variable} antialiased`}
     >
-      <body className="brand-shell">
+      <body className="bg-[#EEF0EC] text-[#132126]">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -153,6 +189,7 @@ export default function RootLayout({
           }}
         />
         <a href="#main" className="skip-link">メインコンテンツへスキップ</a>
+        <GlobalShell />
         <SiteHeader />
         {children}
         <SiteFooter />

@@ -13,7 +13,7 @@ import { LiveBadge } from "@/components/primitives/LiveBadge";
 import { LiveFeed } from "@/components/primitives/LiveFeed";
 import { CodeMantra } from "@/components/primitives/CodeMantra";
 import { Sparkline } from "@/components/primitives/Sparkline";
-import { LineReveal } from "@/components/primitives/LineReveal";
+import { MagneticHeading } from "@/components/primitives/MagneticHeading";
 import { ACCENT, FRANK, INSTRUMENT, SANS } from "@/lib/design-tokens";
 
 export function Hero({
@@ -24,18 +24,10 @@ export function Hero({
   onOpenCmd: () => void;
 }) {
   const [statsStarted, setStatsStarted] = useState(false);
-  const [activePanel, setActivePanel] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: heroP } = useScroll({ target: heroRef, offset: ["start start","end end"] });
   const heroX = useTransform(heroP, [0,1], ["0%","-66.67%"]);
-  const panel2Y = useTransform(heroP, [0.14, 0.38, 0.62], [48, 0, -18]);
-  const panel2Opacity = useTransform(heroP, [0.14, 0.32, 0.64, 0.76], [0, 1, 1, 0.18]);
-  const panel3Y = useTransform(heroP, [0.5, 0.76, 1], [48, 0, -12]);
-  const panel3Opacity = useTransform(heroP, [0.5, 0.7, 1], [0, 1, 1]);
-  useMotionValueEvent(heroP, "change", v => {
-    if (v > 0.6 && !statsStarted) setStatsStarted(true);
-    setActivePanel(Math.min(2, Math.floor(v * 3)));
-  });
+  useMotionValueEvent(heroP, "change", v => { if (v > 0.6 && !statsStarted) setStatsStarted(true); });
 
   const ink = "#132126";
 
@@ -44,7 +36,7 @@ export function Hero({
 
   return (
     <>
-      <div ref={heroRef} style={{ height:"300vh", position:"relative" }}>
+      <div ref={heroRef} style={{ height:"300vh" }}>
         <div
           style={{
             position:"sticky",
@@ -68,16 +60,7 @@ export function Hero({
           {/* F2 — Live badge (top right, fixed within hero) */}
           <LiveBadge products={totalProjects} />
 
-          <div className="hero-motion-progress" aria-hidden="true">
-            <motion.span style={{ scaleX: heroP }} />
-          </div>
-          <div className="hero-motion-index" aria-hidden="true">
-            <span>0{activePanel + 1}</span>
-            <span>—</span>
-            <span>03</span>
-          </div>
-
-          <motion.div style={{ display:"flex", width:"300vw", height:"100%", translateX:heroX, position:"relative", zIndex:2, willChange:"transform" }}>
+          <motion.div style={{ display:"flex", width:"300vw", height:"100%", translateX:heroX, position:"relative", zIndex:2 }}>
 
             {/* ─── Panel 1 ─── */}
             <div id="hero-panel-1" style={{
@@ -127,10 +110,9 @@ export function Hero({
               }}
               data-mobile-stack="hero-main"
               >
-                {/* LEFT — masked line entrance, matching the reference's staged hero reveal */}
+                {/* LEFT — F6 magnetic heading */}
                 <div>
                   <h1
-                    aria-label="楽観と、計画と。"
                     className="editorial-heading hero-primary-heading"
                     style={{
                       fontFamily: INSTRUMENT,
@@ -142,12 +124,13 @@ export function Hero({
                       margin: 0,
                     }}
                   >
-                    <LineReveal
-                      lines={[
-                        "楽観と、",
-                        <em key="plan" className="heading-phrase" style={{ fontStyle: "italic" }}>
-                          計画と<span style={{ color: ACCENT.vermillion }}>。</span>
-                        </em>,
+                    <MagneticHeading
+                      segments={[
+                        { kind: "text", text: "楽観と、" },
+                        { kind: "br" },
+                        { kind: "text", text: "計画と", italic: true },
+                        // F-accent: only the period in vermillion
+                        { kind: "text", text: "。", italic: true, color: ACCENT.vermillion },
                       ]}
                     />
                   </h1>
@@ -283,7 +266,7 @@ export function Hero({
             </div>
 
             {/* ─── Panel 2 — F4 CodeMantra ─── */}
-            <motion.div id="hero-panel-2" style={{ width:"100vw", height:"100vh", flexShrink:0, display:"flex", flexDirection:"column", justifyContent:"center", padding:"0 56px", position:"relative", y:panel2Y, opacity:panel2Opacity }}>
+            <div id="hero-panel-2" style={{ width:"100vw", height:"100vh", flexShrink:0, display:"flex", flexDirection:"column", justifyContent:"center", padding:"0 56px", position:"relative" }}>
               <div style={{ position:"absolute", top:"22%", left:56, right:56, height:1, background:ink, opacity:0.18 }}/>
               <div style={{ position:"absolute", bottom:"22%", left:56, right:56, height:1, background:ink, opacity:0.18 }}/>
               <div style={{
@@ -306,10 +289,10 @@ export function Hero({
                   ({new Date().getFullYear()})
                 </span>
               </div>
-            </motion.div>
+            </div>
 
             {/* ─── Panel 3 — F5 Numbers + sparklines ─── */}
-            <motion.div id="hero-panel-3" style={{ width:"100vw", height:"100vh", flexShrink:0, display:"flex", flexDirection:"column", justifyContent:"center", padding:"0 56px", y:panel3Y, opacity:panel3Opacity }}>
+            <div id="hero-panel-3" style={{ width:"100vw", height:"100vh", flexShrink:0, display:"flex", flexDirection:"column", justifyContent:"center", padding:"0 56px" }}>
               <div style={{
                 fontFamily: SANS, fontSize: 11, letterSpacing: "0.22em",
                 color: ink, opacity: 0.55, textTransform: "uppercase",
@@ -345,7 +328,7 @@ export function Hero({
                   ↓ works
                 </motion.a>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>

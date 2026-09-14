@@ -15,7 +15,11 @@ try {
     const html = await response.text();
     assert.equal((html.match(/<main[ >]/g) || []).length, 1, path + " has one main");
     assert.equal((html.match(/<h1[ >]/g) || []).length, 1, path + " has one heading");
-    assert.ok(html.includes('site-header') && html.includes('site-footer'), path + " shared navigation");
+    if (path === "/") {
+      assert.ok(html.includes('hero-panel-1') && html.includes('aria-label="Primary"') && html.includes('<footer'), "original homepage hero and navigation");
+    } else {
+      assert.ok(html.includes('site-header') && html.includes('site-footer'), path + " shared navigation");
+    }
     console.log("PASS", path);
   }
   const contact = await (await fetch(base + "/contact?topic=luna")).text();
