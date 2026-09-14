@@ -5,7 +5,7 @@ import * as THREE from "three";
 
 /**
  * 3D 'L A K K A N' letters that fly in from space and align,
- * then disperse on scroll. Mobile uses a static fallback (no canvas).
+ * then disperse on scroll, with a viewport-fitted camera on mobile.
  */
 export default function HeroLetters() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -13,21 +13,27 @@ export default function HeroLetters() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const isMobile = window.innerWidth < 1024;
-    if (isMobile) return; // skip on mobile, see static fallback below
 
     const el = mountRef.current;
     if (!el) return;
 
     const W = el.clientWidth, H = el.clientHeight;
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true });
     renderer.setSize(W, H);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
     renderer.setClearColor(0x000000, 0);
     el.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, W / H, 0.1, 200);
     camera.position.z = 14;
+    const fitCamera = (width: number, height: number) => {
+      camera.aspect = width / Math.max(height, 1);
+      // Keep all six letters inside the narrow viewport, including side margins.
+      camera.position.z = Math.max(14, 7 / (Math.tan(THREE.MathUtils.degToRad(25)) * camera.aspect));
+      camera.updateProjectionMatrix();
+    };
+    fitCamera(W, H);
 
     // Lakkan のアイデンティティを 3D で表現（コーポレート看板）
     const letters = "LAKKAN".split("");
@@ -104,8 +110,7 @@ export default function HeroLetters() {
 
     const onResize = () => {
       const w = el.clientWidth, h = el.clientHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
+      fitCamera(w, h);
       renderer.setSize(w, h);
     };
     window.addEventListener("resize", onResize);
@@ -157,7 +162,10 @@ export default function HeroLetters() {
       }
 
       group.position.x = mx * 0.3;
-      group.position.y = -my * 0.2;
+      // Place the mobile wordmark below the main copy so both remain readable.
+      group.position.y = window.innerWidth < 1024
+        ? -camera.position.z * Math.tan(THREE.MathUtils.degToRad(25)) * 0.58
+        : -my * 0.2;
 
       renderer.render(scene, camera);
     };
@@ -182,6 +190,7 @@ export default function HeroLetters() {
   return (
     <div
       ref={mountRef}
+      data-hero-letters
       style={{
         position: "absolute",
         inset: 0,
