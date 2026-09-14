@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-/* eslint-disable @typescript-eslint/no-require-imports */
 /**
- * Now On AIr (https://nowonair.vercel.app/) のトップHTMLを取得し、
- * data-* 属性からカードをパースして public/now-on-air.json に保存する。
+ * Now On AIr (https://nowonair.vercel.app/) のhealth.jsonから最新号を特定し、
+ * 公開記事JSONを public/now-on-air/index.json に同期する。
  *
  * 実行: node scripts/sync-now-on-air.js
  * 失敗してもビルドは止めない（exit 0）。
@@ -27,68 +26,26 @@ function fetchUrl(url) {
         res.on("data", (c) => (data += c));
         res.on("end", () => resolve(data));
       })
+      .setTimeout(15000, function () { this.destroy(new Error("News fetch timed out")); })
       .on("error", reject);
   });
-}
-
-function decodeHtml(s) {
-  return s
-    .replace(/&quot;/g, '"')
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&#39;/g, "'");
-}
-
-function attr(card, name) {
-  const m = card.match(new RegExp(`${name}="([^"]*)"`));
-  return m ? decodeHtml(m[1]) : null;
-}
-
-function jsonAttr(card, name) {
-  const raw = attr(card, name);
-  if (!raw) return null;
-  try {
-    return JSON.parse(raw);
-  } catch {
-    return null;
-  }
-}
-
-function parseArticles(html) {
-  const re = /<div\s+class="[^"]*(?:ig-featured|ig-card)[^"]*"[^>]*?data-title="[^>]*?>/g;
-  const matches = html.match(re) || [];
-  const articles = [];
-  for (const card of matches) {
-    const title = attr(card, "data-title");
-    const link = attr(card, "data-link");
-    if (!title || !link) continue;
-    const fullLink = link.startsWith("./") ? new URL(link.slice(2), NOWONAIR).toString() : link;
-    const slide = attr(card, "data-slide") || attr(card, "data-src");
-    const image = slide && slide.startsWith("./") ? new URL(slide.slice(2), NOWONAIR).toString() : slide;
-    articles.push({
-      id: link.replace(/^\.\//, "").replace(/[^\w\-]/g, "_"),
-      title,
-      category: attr(card, "data-category"),
-      source: attr(card, "data-source"),
-      lede: attr(card, "data-lede"),
-      keypoints: jsonAttr(card, "data-keypoints"),
-      pull: attr(card, "data-pull"),
-      bizapp: jsonAttr(card, "data-bizapp"),
-      quickstart: jsonAttr(card, "data-quickstart"),
-      link: fullLink,
-      image,
-      publishedAt: attr(card, "data-date") || null,
-    });
-  }
-  return articles;
 }
 
 (async () => {
   try {
     fs.mkdirSync(OUT_DIR, { recursive: true });
-    const html = await fetchUrl(NOWONAIR);
-    const articles = parseArticles(html);
+    const health = JSON.parse(await fetchUrl(new URL("health.json", NOWONAIR)));
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(health.latest_issue)) throw new Error("Invalid issue date");
+    const date = health.latest_issue;
+    const raw = JSON.parse(await fetchUrl(new URL("news/" + date + "/articles.json", NOWONAIR)));
+    const articles = raw.map((a, i) => ({
+      id: date + "-" + (i + 1), title: a.title, category: a.category, source: a.source,
+      lede: a.lede, keypoints: a.keypoints || [], pull: a.pull || "",
+      bizapp: a.bizapp || null, quickstart: a.quickstart || null,
+      link: new URL("news/" + date + "/#topic-" + (i + 1), NOWONAIR).toString(),
+      image: ["research", "infrastructure"].includes(a.image) ? new URL("assets/newspaper/" + a.image + ".png", NOWONAIR).toString() : "",
+      publishedAt: a.published_at || date,
+    }));
     if (articles.length === 0) {
       console.warn("[now-on-air] 0 articles parsed — check page structure");
       process.exit(0);

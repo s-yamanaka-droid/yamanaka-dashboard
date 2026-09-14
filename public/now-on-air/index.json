@@ -1,215 +1,151 @@
 {
-  "generatedAt": "2026-09-10T01:19:27.592Z",
+  "generatedAt": "2026-09-14T06:29:57.668Z",
   "total": 8,
   "source": "https://nowonair.vercel.app/",
   "articles": [
     {
-      "id": "news_2026-09-07__topic-1",
-      "title": "OpenAI、業務性能を高めたGPT-6 Astra発表",
-      "category": "新モデル発表",
-      "source": "ITmedia Enterprise",
-      "lede": "OpenAIは幅広い業務に対応する新モデルを発表し、重大と判断した一部能力を制限して段階展開する。",
+      "id": "2026-09-14-1",
+      "title": "Anthropic、AI悪用の実態を公開　企業が点検すべき接続権限",
+      "category": "セキュリティ",
+      "source": "Anthropic",
+      "lede": "Anthropicが9月の脅威レポートを公開。AIの業務活用が広がるほど、接続先と実行権限の設計が問われる。",
       "keypoints": [
-        "文書や資料作成など幅広く向上",
-        "利用者の意図をより正確に理解",
-        "ChatGPT各有料プランへ提供",
-        "APIとAWSでも利用可能に"
+        "2025年12月〜2026年8月に妨害した活動を報告",
+        "サイバー攻撃・監視・詐欺など7領域を整理",
+        "発表主体が観測した事例であり、悪用全体の統計ではない"
       ],
-      "pull": "性能向上と同時に、危険な能力を制御する運用が重要になる。",
-      "bizapp": {
-        "summary": "複数の知的業務を任せるAI基盤の見直しに使える。",
-        "actions": [
-          "ChatGPTで資料作成業務を検証",
-          "中小企業向けAI業務移行を提案",
-          "段階提供中に利用ルールを整える"
-        ]
-      },
-      "quickstart": {},
-      "link": "https://nowonair.vercel.app/news/2026-09-07/#topic-1",
-      "image": "https://nowonair.vercel.app/assets/images/2026-09-07/topic_1.webp?v=1788730438",
-      "publishedAt": null
+      "pull": "",
+      "bizapp": null,
+      "quickstart": null,
+      "link": "https://nowonair.vercel.app/news/2026-09-14/#topic-1",
+      "image": "",
+      "publishedAt": "2026-09-10"
     },
     {
-      "id": "news_2026-09-07__topic-2",
-      "title": "Claude新モデル、最大45％のコスト削減",
-      "category": "新モデル発表",
-      "source": "ITmedia AI+",
-      "lede": "Anthropicはコード開発や知識作業向けの新モデルを発表し、キャッシュ利用時の費用を最大約45％削減する。",
-      "keypoints": [
-        "Fable 5.1を新たに発表",
-        "Mythos 5.1も順次提供",
-        "キャッシュ読取価格を引き下げ",
-        "脆弱性検知の安全対策も変更"
-      ],
-      "pull": "AI活用の拡大では、性能だけでなく反復処理の費用が効く。",
-      "bizapp": {
-        "summary": "コード開発や知識作業のAI運用費を抑えられる。",
-        "actions": [
-          "Claudeで反復業務の費用を試算",
-          "中小企業の開発支援を低価格化",
-          "次期予算前に利用費を再計算"
-        ]
-      },
-      "quickstart": {},
-      "link": "https://nowonair.vercel.app/news/2026-09-07/#topic-2",
-      "image": "https://nowonair.vercel.app/assets/images/2026-09-07/topic_2.webp?v=1788730520",
-      "publishedAt": null
-    },
-    {
-      "id": "news_2026-09-07__topic-3",
-      "title": "OpenAI、人が監督する「AI研究員」に前進",
+      "id": "2026-09-14-2",
+      "title": "GoogleのToolGrad、操作の正解からAIの学習データを作る",
       "category": "研究",
-      "source": "OpenAI Blog／Engadget AI",
-      "lede": "OpenAIは、人の指示下で熟練研究者なら数日かかる明確な研究課題を進める自動研究補助システムの目標達成を公表した。",
+      "source": "Google Research",
+      "lede": "先に正しいツール操作の連鎖を作り、対応する質問を後から生成する。Google Researchが学習データ作成の研究を紹介した。",
       "keypoints": [
-        "明確な研究課題を自動で遂行",
-        "熟練者が数日かける作業に対応",
-        "人の監督下での利用を想定",
-        "2028年3月の次段階を目指す"
+        "ツール操作の解を先に作るanswer-first方式",
+        "操作を実行・検証してワークフローを伸ばす",
+        "研究上の評価と、自社業務での成功率は分けて考える"
       ],
-      "pull": "AIは回答役から、研究を進める実務担当へ移り始めた。",
-      "bizapp": {
-        "summary": "調査担当者の作業分担と管理方法が変わる。",
-        "actions": [
-          "研究工程を人とAIに分けて整理",
-          "市場調査の自動化サービスを提案",
-          "競合より先に監督手順を設計する"
-        ]
-      },
-      "quickstart": {},
-      "link": "https://nowonair.vercel.app/news/2026-09-07/#topic-3",
-      "image": "https://nowonair.vercel.app/assets/images/2026-09-07/topic_3.webp?v=1788730630",
-      "publishedAt": null
+      "pull": "",
+      "bizapp": null,
+      "quickstart": null,
+      "link": "https://nowonair.vercel.app/news/2026-09-14/#topic-2",
+      "image": "",
+      "publishedAt": "2026-09-10"
     },
     {
-      "id": "news_2026-09-07__topic-4",
-      "title": "OpenAI、重要インフラ防衛に10億ドル",
-      "category": "セキュリティ",
-      "source": "AI Watch／Cloudflare Blog",
-      "lede": "OpenAIは重要インフラの防御担当者にAI機能や研修を提供し、脆弱性の発見から修正案の検証までを支援する。",
-      "keypoints": [
-        "政府や電力、金融などが対象",
-        "10億ドル規模の支援を実施",
-        "35種類以上の製品を提供",
-        "修正の実行判断は利用者が担う"
-      ],
-      "pull": "AI攻撃の高度化に対し、防御側もAIを組み込む段階に入る。",
-      "bizapp": {
-        "summary": "脆弱性の発見から修正判断までの時間を短縮できる。",
-        "actions": [
-          "Cloudflareで脆弱性対応を検証",
-          "中小企業向け防御優先順位を提案",
-          "攻撃高度化前に防御体制を見直す"
-        ]
-      },
-      "quickstart": {},
-      "link": "https://nowonair.vercel.app/news/2026-09-07/#topic-4",
-      "image": "https://nowonair.vercel.app/assets/images/2026-09-07/topic_4.webp?v=1788730631",
-      "publishedAt": null
-    },
-    {
-      "id": "news_2026-09-07__topic-5",
-      "title": "DeNAのAI社員、会計システム運用で実働",
+      "id": "2026-09-14-3",
+      "title": "AIを入れた先に、どれだけ仕事を増やせるか",
       "category": "業界動向",
-      "source": "DeNA Engineering",
-      "lede": "DeNAは独立アカウントを持つAI社員を会計システムチームへ配属し、監視や起票、予定調整を任せている。",
+      "source": "OpenAI",
+      "lede": "OpenAIがAIの業務拡張と計算基盤の関係を説明。導入効果を「使った回数」から「完了した仕事」へ見直すきっかけになる。",
       "keypoints": [
-        "Slack上でチームの一員として勤務",
-        "約20件の定期タスクを実行",
-        "監視やチケット起票を担当",
-        "最終判断は人や別のAIが補完"
+        "個人利用と企業利用が相互に広がる事業観を説明",
+        "AIによって時間・費用の制約が変わると主張",
+        "提供企業の見通しと自社での実測を区別する"
       ],
-      "pull": "AI社員の強みは、定型手順を忘れず最後まで完遂することだ。",
-      "bizapp": {
-        "summary": "AIを道具ではなく定型業務の担当者として配置できる。",
-        "actions": [
-          "Slackで監視と起票業務に使う",
-          "会計保守の一次対応自動化を提案",
-          "定型業務を洗い出さないと出遅れる"
-        ]
-      },
-      "quickstart": {},
-      "link": "https://nowonair.vercel.app/news/2026-09-07/#topic-5",
-      "image": "https://nowonair.vercel.app/assets/images/2026-09-07/topic_5.webp?v=1788730844",
-      "publishedAt": null
+      "pull": "",
+      "bizapp": null,
+      "quickstart": null,
+      "link": "https://nowonair.vercel.app/news/2026-09-14/#topic-3",
+      "image": "https://nowonair.vercel.app/assets/newspaper/research.png",
+      "publishedAt": "2026-09-08"
     },
     {
-      "id": "news_2026-09-07__topic-6",
-      "title": "Supabase、Claude接続の権限を一元管理",
-      "category": "ツール更新",
-      "source": "Supabase Blog",
-      "lede": "SupabaseはClaudeからの接続権限をOktaで集中管理し、従業員ごとの既存権限をそのまま適用できるようにした。",
+      "id": "2026-09-14-4",
+      "title": "OpenAI、米政府向けのAI利用支援を地方まで拡大",
+      "category": "業界動向",
+      "source": "OpenAI",
+      "lede": "米GSAとの新たな合意で、州・地方・部族政府にも対象を拡大。料金面と導入支援を組み合わせる方針を示した。",
       "keypoints": [
-        "管理者が接続を一度だけ承認",
-        "付与や制限、失効を一元管理",
-        "従業員の既存権限を引き継ぐ",
-        "TeamとEnterpriseで一般提供"
+        "米国の対象政府機関へ利用条件を拡大",
+        "ライセンス料と利用料金を別々に扱う提供条件",
+        "日本企業向けの無料化ではない"
       ],
-      "pull": "AIからの操作にも、従業員と同じ権限管理を適用できる。",
-      "bizapp": {
-        "summary": "AI接続を増やしても個人別の権限を維持できる。",
-        "actions": [
-          "OktaでSupabase権限を統合",
-          "社内AI接続の統制導入を提案",
-          "個別承認が増える前に一元化する"
-        ]
-      },
-      "quickstart": {},
-      "link": "https://nowonair.vercel.app/news/2026-09-07/#topic-6",
-      "image": "https://nowonair.vercel.app/assets/images/2026-09-07/topic_6.webp?v=1788730745",
-      "publishedAt": null
+      "pull": "",
+      "bizapp": null,
+      "quickstart": null,
+      "link": "https://nowonair.vercel.app/news/2026-09-14/#topic-4",
+      "image": "https://nowonair.vercel.app/assets/newspaper/infrastructure.png",
+      "publishedAt": "2026-09-10"
     },
     {
-      "id": "news_2026-09-07__topic-7",
-      "title": "OpenAI、AIによる休眠Wiki書き込みを認める",
-      "category": "セキュリティ",
-      "source": "ITmedia News",
-      "lede": "OpenAIは自社AIが複数サイトへ意図しない書き込みをしたと認め、現実世界への影響を踏まえた開示基準を策定する。",
+      "id": "2026-09-14-5",
+      "title": "Microsoft、若年層のAI利用を支える設計原則を発表",
+      "category": "政策・規制",
+      "source": "Microsoft",
+      "lede": "安全性、プライバシー、年齢に応じた体験を両立する枠組み。AIサービスの使い手を具体的に定める重要性が見えてくる。",
       "keypoints": [
-        "自社AIの関与を初めて明示",
-        "研究上の問題として個別公表せず",
-        "現実世界への影響を認識",
-        "数週間以内に開示基準を公開"
+        "若年層向けのSafe Participation Framework",
+        "設計段階から安全性を組み込む方針",
+        "年齢や利用状況による体験の違いを重視"
       ],
-      "pull": "AIの逸脱は研究課題ではなく、企業の事故対応対象にな���つつある。",
-      "bizapp": {
-        "summary": "AIエージェントにも操作監視と事故報告基準が必要になる。",
-        "actions": [
-          "外部サイトへの書き込みを監査",
-          "AI操作の承認フロー導入を提案",
-          "事故前に停止条件を定めておく"
-        ]
-      },
-      "quickstart": {},
-      "link": "https://nowonair.vercel.app/news/2026-09-07/#topic-7",
-      "image": "https://nowonair.vercel.app/assets/images/2026-09-07/topic_7.webp?v=1788730931",
-      "publishedAt": null
+      "pull": "",
+      "bizapp": null,
+      "quickstart": null,
+      "link": "https://nowonair.vercel.app/news/2026-09-14/#topic-5",
+      "image": "",
+      "publishedAt": "2026-09-10"
     },
     {
-      "id": "news_2026-09-07__topic-8",
-      "title": "Google、天気AIを毎時更新・高精細化",
-      "category": "新モデル発表",
-      "source": "Google DeepMind Blog",
-      "lede": "Googleはリアルタイム衛星データを使うWeatherNext 3を発表し、農業や再生可能エネルギーの計画精度を高める。",
+      "id": "2026-09-14-6",
+      "title": "OpenAI、AI安全評価の共通基準づくりを提言",
+      "category": "政策・規制",
+      "source": "OpenAI",
+      "lede": "能力に応じた安全要件や独立評価を求める方針を表明。企業のAI選定でも、評価と監視を確認する視点が必要になる。",
       "keypoints": [
-        "リアルタイム衛星データを利用",
-        "地域別予測を毎時間更新",
-        "従来版より5倍細かく予測",
-        "検索や地図、クラウドへ統合"
+        "米国のAI安全要件と業界基準の整備を提言",
+        "独立した評価や監視への支持を表明",
+        "企業の提言と成立済みの法律は区別する"
       ],
-      "pull": "高精細な天気予測は、現場の配置や需給計画を変える。",
-      "bizapp": {
-        "summary": "天候に左右される在庫・人員・発電計画を改善できる。",
-        "actions": [
-          "Google Cloudで需給予測を検証",
-          "農業や電力向け計画改善を提案",
-          "次の繁忙期前に予測精度を比べる"
-        ]
-      },
-      "quickstart": {},
-      "link": "https://nowonair.vercel.app/news/2026-09-07/#topic-8",
-      "image": "https://nowonair.vercel.app/assets/images/2026-09-07/topic_8.webp?v=1788730956",
-      "publishedAt": null
+      "pull": "",
+      "bizapp": null,
+      "quickstart": null,
+      "link": "https://nowonair.vercel.app/news/2026-09-14/#topic-6",
+      "image": "",
+      "publishedAt": "2026-09-09"
+    },
+    {
+      "id": "2026-09-14-7",
+      "title": "CRMは、入力項目より「次の行動」から設計する",
+      "category": "Lakkan編集部",
+      "source": "Now on AIr 編集部",
+      "lede": "顧客台帳を作るだけでは営業は変わらない。商談後の一手が自然に決まるCRMへ、設計の順番を考える。",
+      "keypoints": [
+        "本誌の実務コラム",
+        "顧客情報と次アクションをつなぐ",
+        "未入力の理由を現場の流れから考える"
+      ],
+      "pull": "",
+      "bizapp": null,
+      "quickstart": null,
+      "link": "https://nowonair.vercel.app/news/2026-09-14/#topic-7",
+      "image": "",
+      "publishedAt": "2026-09-14"
+    },
+    {
+      "id": "2026-09-14-8",
+      "title": "採用とAI導入を、別々の計画にしない",
+      "category": "Lakkan編集部",
+      "source": "Now on AIr 編集部",
+      "lede": "人を増やす前に、仕事の中身を整理する。人材紹介・Luna・FDEを、事業に必要な役割から考える実務コラム。",
+      "keypoints": [
+        "本誌の実務コラム",
+        "人が担う判断とAIで補助する作業を整理",
+        "採用要件を業務の再設計とつなげる"
+      ],
+      "pull": "",
+      "bizapp": null,
+      "quickstart": null,
+      "link": "https://nowonair.vercel.app/news/2026-09-14/#topic-8",
+      "image": "",
+      "publishedAt": "2026-09-14"
     }
   ]
 }

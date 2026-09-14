@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PrismaHero } from "@/components/site/PrismaHero";
 import { ServiceScene } from "@/components/site/ServiceScene";
+import { ServiceDepth, PeopleApproach } from "@/components/site/ServiceDepth";
 import news from "../../public/now-on-air/index.json";
 
 const items = [
@@ -17,11 +18,11 @@ export default function Home() {
     <PrismaHero />
     <div className="prisma-index">
       <div className="prisma-intro"><p>IDEAS INTO REALITY</p><p>LAKKAN / TOKYO</p></div>
-      <div className="prisma-statement"><p>少し先の未来を、<br/><span>一緒におもしろく。</span></p><span>人の可能性と、テクノロジーの可能性。<br/>その間に、新しい仕事をつくる。</span></div>
+      <div className="prisma-statement"><p>人が活きる仕事を、<br/><span>人と技術でつくる。</span></p><span>業務を組み直す。技術で負担を減らす。<br/>必要な人財と、これからの採用を考える。<br/>そのつながりまで、Lakkanの仕事です。</span></div>
       {items.map(item => <section className="prisma-item" id={item.id} key={item.id} aria-labelledby={`${item.id}-title`}>
         <div className="prisma-item-name"><h2 id={`${item.id}-title`}>{item.name}</h2><span>{item.category}</span></div>
         <div className="prisma-item-copy"><h3>{item.title.map(phrase => <span key={phrase}>{phrase}</span>)}</h3><p>{item.text}</p>{item.note && <small>{item.note}</small>}<Link className="prisma-text-link" href={item.href}>{item.link}<ArrowUpRight size={18} aria-hidden="true" /></Link></div>
-        <ServiceScene id={item.id} articles={item.id === "news" ? news.articles.map(a=>({title:a.title,category:a.category,image:a.image,link:a.link,lede:a.lede})) : []}/>
+        {item.id === "crm" || item.id === "fde" ? <ServiceDepth kind={item.id}/> : item.id === "recruitment" ? <PeopleApproach/> : <ServiceScene id={item.id} articles={item.id === "news" ? news.articles.map(a=>({title:a.title,category:a.category,image:a.image,link:a.link,lede:a.lede})) : []}/>}
       </section>)}
       <div className="prisma-contact"><h2><span>まずは、</span><span>話してみませんか。</span></h2><Link className="prisma-pill" href="/contact">お問い合わせ<span><ArrowUpRight size={19} aria-hidden="true" /></span></Link></div>
     </div>
