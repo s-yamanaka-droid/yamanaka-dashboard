@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { SectionShell } from "@/components/primitives/SectionShell";
-import { ServiceExplorer, ServiceSculpture } from "./services-client";
+import { ServiceExplorer } from "./services-client";
+import { ServiceLab } from "./service-lab";
 import "./services.css";
+import "./lab.css";
 
 export const metadata: Metadata = {
   title: "できること — 仕事と事業の、その先へ。",
@@ -14,20 +16,7 @@ export const metadata: Metadata = {
 export default function Services() {
   return <main id="main" className="services-lp new-site">
     <SectionShell id="services-intro">
-      <div className="sv-hero">
-        <div className="sv-hero-copy">
-          <p className="sv-kicker"><span/> LAKKAN / WHAT WE DO</p>
-          <h1>仕事と事業の、<br/><em>その先</em>へ。</h1>
-          <p className="sv-lead">人の力と、技術の力。<br/>いまある可能性を、動くかたちに。</p>
-          <p className="sv-intro">業務の見直しから、AI・システムの実装、<br className="sv-desktop"/>魅力を届けるWeb制作まで。<br/>Lakkanは、現場の一歩を一緒につくります。</p>
-          <Link className="sv-button" href="/contact?topic=ai-consult">いまの課題を話す <ArrowUpRight size={18}/></Link>
-        </div>
-        <div className="sv-art">
-          <ServiceSculpture/>
-          <div className="sv-art-caption"><span>IDEA → DESIGN → IMPLEMENTATION</span><span>可能性に、道筋を。</span></div>
-        </div>
-      </div>
-      <a className="sv-scroll" href="#support"><span>SCROLL TO EXPLORE</span><ArrowDown size={14}/></a>
+      <ServiceLab/>
     </SectionShell>
     <SectionShell id="support" tone="creamLight" topBorder>
       <div className="sv-section-head"><p className="sv-kicker">01 / OUR SERVICES</p><h2>どこからでも、<br/>変えられる。</h2><p>サービス名が分からなくても大丈夫。<br/>いま、変えたいことから選んでください。</p></div>

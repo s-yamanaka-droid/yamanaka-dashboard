@@ -1,5 +1,13 @@
 # Services LP rebuild
 
+## Interactive revision — 2026-09-15
+
+User feedback: make the page more interesting. The static rotating sculpture has been replaced by an interactive composition called the Possibility Studio. Forty-eight instanced 3D pieces morph from a scattered layout into four service-specific arrangements: work lanes, a customer-contact ring, a designed surface, and groups of roles. The original Blender model is reused in the operations scene. This revision is an original implementation; the additional 21st search returned HTTP 401, so no newly retrieved component is claimed.
+
+The service buttons change the shape target, color, problem, intended result, and flow. A native range control allows reversible exploration; a button animates the transition and a reset repeats it. The animation is a conceptual illustration, not a numerical business simulation. Reduced-motion preference makes user-triggered composition immediate and disables idle movement. Off-screen rendering pauses. The selected support link opens the corresponding existing service panel. Mobile places service choices above a sticky 3D stage so the transformation remains visible while operating the controls. GPU resources, listeners and scheduled animation are disposed on unmount.
+
+Verification: TypeScript and webpack build pass. Browser checks at actual CSS width 390px found no horizontal overflow; transformation reached range value 100 and the target outcome text, and CRM support navigation selected the matching panel. Additional desktop/browser checks are summarized in the completion response. Physical phone testing and OS reduced-motion emulation remain unperformed.
+
 ## Purpose
 
 A visitor should understand Lakkan's support, choose a current business problem, and reach Contact with the corresponding topic selected. Source claims come from the existing public `/services` page. No new performance metrics, pricing, customer claims or delivery guarantees were added.
