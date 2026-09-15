@@ -5,10 +5,10 @@ import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 
 const services = [
-  { id: "ai-operations", label: "仕事の負担を減らしたい", en: "AI & OPERATIONS", title: "仕事の流れを、\nAIと組み直す。", text: "転記、情報探し、確認待ち。日々の小さな負担から見直し、人にしかできない判断に時間を使える仕組みへ。", items: ["業務ヒアリングと改善テーマの整理", "AIエージェント・業務自動化の設計と実装", "AI活用研修・導入後の運用支援"], tags:["業務再設計", "AI導入", "Luna AI"], before:"情報を探す → 転記する → 確認を待つ", after:"情報を整理する → 人が判断する", topic:"ai-consult" },
-  { id: "crm", label: "情報と仕事をつなげたい", en: "CRM & DEVELOPMENT", title: "ばらばらの情報を、\n次の行動へ。", text: "顧客情報、商談の履歴、次にやること。チームの仕事がつながるCRMや業務アプリを、現場に合わせて設計します。", items:["顧客情報・画面・権限の設計", "CRM・Webアプリ・業務ツールの開発", "既存システムとの連携・運用改善"], tags:["CRM構築", "業務アプリ", "プロダクト開発"], before:"メール・表計算・担当者の記憶に分散", after:"顧客履歴 → 担当者 → 次の対応", topic:"crm" },
-  { id: "digital", label: "事業の魅力を届けたい", en: "WEB & EXPERIENCE", title: "らしさが伝わる。\n行動につながる。", text: "会社やサービスの強みを整理し、言葉とデザインを一つに。訪れた人が理解し、相談や応募へ進めるWeb体験をつくります。", items:["コーポレート・ブランドサイト制作", "採用LP・サービスLPの設計と制作", "モバイル対応・公開前検証・更新支援"], tags:["Webサイト", "サービスLP", "採用LP"], before:"伝えたいことが多く、強みが埋もれる", after:"強みを知る → 納得する → 相談する", topic:"corp-site" },
-  { id: "people", label: "人と組織の課題を解きたい", en: "PEOPLE & ORGANIZATION", title: "人が力を発揮する、\n仕事と組織へ。", text: "「人が足りない」の背景から整理します。技術で減らせる負担と、人に任せたい役割を分け、必要な人財との出会いにつなぎます。", items:["業務と役割の整理", "採用要件・魅力の伝え方の設計", "人財支援・人材紹介のご相談"], tags:["採用設計", "役割の整理", "人財支援"], before:"忙しいから、まず人を増やしたい", after:"仕事を見直す → 必要な役割を定める", topic:"placement" },
+  { id: "ai-operations", label: "仕事の負担を減らしたい", en: "AI導入・業務改善", title: "仕事の流れを、\nAIと組み直す。", text: "転記、情報探し、確認待ち。日々の小さな負担から見直し、人にしかできない判断に時間を使える仕組みへ。", items: ["業務ヒアリングと改善テーマの整理", "AIエージェント・業務自動化の設計と実装", "AI活用研修・導入後の運用支援"], tags:["業務再設計", "AI導入", "Luna AI"], before:"情報を探す → 転記する → 確認を待つ", after:"情報を整理する → 人が判断する", topic:"ai-consult" },
+  { id: "crm", label: "情報と仕事をつなげたい", en: "CRM・業務アプリ開発", title: "ばらばらの情報を、\n次の行動へ。", text: "顧客情報、商談の履歴、次にやること。チームの仕事がつながるCRMや業務アプリを、現場に合わせて設計します。", items:["顧客情報・画面・権限の設計", "CRM・Webアプリ・業務ツールの開発", "既存システムとの連携・運用改善"], tags:["CRM構築", "業務アプリ", "プロダクト開発"], before:"メール・表計算・担当者の記憶に分散", after:"顧客履歴 → 担当者 → 次の対応", topic:"crm" },
+  { id: "digital", label: "事業の魅力を届けたい", en: "Webサイト・LP制作", title: "らしさが伝わる。\n行動につながる。", text: "会社やサービスの強みを整理し、言葉とデザインを一つに。訪れた人が理解し、相談や応募へ進めるWeb体験をつくります。", items:["コーポレート・ブランドサイト制作", "採用LP・サービスLPの設計と制作", "モバイル対応・公開前検証・更新支援"], tags:["Webサイト", "サービスLP", "採用LP"], before:"伝えたいことが多く、強みが埋もれる", after:"強みを知る → 納得する → 相談する", topic:"corp-site" },
+  { id: "people", label: "人と組織の課題を解きたい", en: "採用・人財支援", title: "人が力を発揮する、\n仕事と組織へ。", text: "「人が足りない」の背景から整理します。技術で減らせる負担と、人に任せたい役割を分け、必要な人財との出会いにつなぎます。", items:["業務と役割の整理", "採用要件・魅力の伝え方の設計", "人財支援・人材紹介のご相談"], tags:["採用設計", "役割の整理", "人財支援"], before:"忙しいから、まず人を増やしたい", after:"仕事を見直す → 必要な役割を定める", topic:"placement" },
 ];
 
 export function ServiceExplorer() {
@@ -42,6 +42,6 @@ export function ServiceExplorer() {
         </div>
       </div>
     </div>
-    <div className="sv-fde" id="fde"><p className="sv-kicker">HOW WE WORK / FDE</p><h3>現場に入る。<br/>使われるまで、つなぐ。</h3><div><p>エンジニアが現場の仕事を理解し、課題の発見から開発・運用まで伴走する。それがLakkanのFDE支援です。</p><Link href="/contact?topic=fde" className="sv-text-link">伴走型の開発を相談する <ArrowUpRight size={17}/></Link></div></div>
+    <div className="sv-fde" id="fde"><p className="sv-kicker">伴走型の開発支援</p><h3>現場を理解し、<br/>開発と運用を支援。</h3><div><p>エンジニアが現場の仕事を理解し、課題の発見から開発・運用まで伴走する。それがLakkanのFDE支援です。</p><Link href="/contact?topic=fde" className="sv-text-link">伴走型の開発を相談する <ArrowUpRight size={17}/></Link></div></div>
   </>;
 }

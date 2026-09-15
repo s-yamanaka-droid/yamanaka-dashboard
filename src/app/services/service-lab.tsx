@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight, RotateCcw, Pause, Play } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Pause, Play } from "lucide-react";
 import type { CSSProperties } from "react";
 import type * as THREE from "three";
 
@@ -14,52 +14,26 @@ const worlds = [
 ];
 
 export function ServiceLab() {
-  const [world,setWorld]=useState(0);
-  const [amount,setAmount]=useState(12);
-  const [playing,setPlaying]=useState(false);
-  const [paused,setPaused]=useState(false);
-  const animation=useRef(0);
-  const worldData=worlds[world];
-  const organized=amount>=70;
-  useEffect(()=>()=>cancelAnimationFrame(animation.current),[]);
-  function stop(){cancelAnimationFrame(animation.current);setPlaying(false);}
-  function compose(){
-    stop();
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){setAmount(100);return;}
-    setPlaying(true);setAmount(0);
-    let start=0;
-    function tick(now:number){
-      if(!start)start=now;
-      const progress=Math.min((now-start)/2600,1);
-      setAmount(Math.round((progress<.5?4*progress**3:1-(-2*progress+2)**3/2)*100));
-      if(progress<1)animation.current=requestAnimationFrame(tick);else setPlaying(false);
-    }
-    animation.current=requestAnimationFrame(tick);
-  }
-  return <div className="lab" style={{'--lab-accent':worldData.color} as CSSProperties}>
-    <div className="lab-heading"><p className="sv-kicker"><span/> LAKKAN / POSSIBILITIES IN MOTION</p><h1>ばらばらを、<br/><em>可能性</em>に。</h1><p>仕事も、情報も、アイデアも。<br/>つながり方を変えると、動き出す。</p><Link href="/contact" className="lab-invite">あなたの事業なら？ <ArrowUpRight size={18}/></Link></div>
-    <div className="lab-stage">
-      <div className="lab-stage-label"><span>THE POSSIBILITY STUDIO</span><span>触って、変化を見てみる。</span></div>
-      <MorphSculpture world={world} amount={amount} paused={paused}/>
-      <div className="lab-stage-word" aria-hidden="true">{organized?'Possibility.':'Complexity.'}</div>
-      <div className="lab-coordinate" aria-hidden="true">{worldData.en} / LAKKAN</div>
-      <button className="lab-pause" onClick={()=>setPaused(!paused)} aria-label={paused?'自動モーションを再生':'自動モーションを停止'}>{paused?<Play size={13}/>:<Pause size={13}/>}</button>
+  const [paused, setPaused] = useState(true);
+  return <div className="lab" style={{'--lab-accent':'#b4472e'} as CSSProperties}>
+    <div className="lab-heading">
+      <p className="sv-kicker">Lakkanのサービス</p>
+      <h1>AIとシステムで、<br/>日々の業務を<br/><em>組み直す。</em></h1>
+      <p>手作業の整理から、顧客管理・Web制作まで。業務の見直しと、必要な仕組みづくりを支援します。</p>
+      <div className="lab-actions"><a href="#support" className="sv-button">困りごとから支援を探す <ArrowRight size={18}/></a><Link href="/contact" className="sv-text-link">相談する <ArrowUpRight size={18}/></Link></div>
     </div>
-    <div className="lab-console">
-      <div className="lab-worlds" role="group" aria-label="体験するサービス">{worlds.map((w,i)=><button key={w.en} aria-pressed={world===i} onClick={()=>{stop();setWorld(i);setAmount(12);}}><span>0{i+1}</span>{w.name}<ArrowUpRight size={13}/></button>)}</div>
-      <div className="lab-control">
-        <div className="lab-meaning" aria-live="polite"><span>{organized?'AFTER / 目指す状態':'BEFORE / よくある課題'}</span><strong>{organized?worldData.result:worldData.problem}</strong></div>
-        <div className="lab-range"><label htmlFor="lab-progress"><span>ばらばら</span><span>つながる</span></label><input id="lab-progress" aria-label="仕事の組み替え" aria-valuetext={amount<35?'ばらばらの状態':amount<70?'組み替えている途中':'つながった状態'} type="range" min="0" max="100" value={amount} onChange={e=>{stop();setAmount(Number(e.target.value));}}/><small>スライダーを動かして、組み替える。</small></div>
-        <button className="lab-transform" onClick={organized?()=>{stop();setAmount(12);}:compose}>{organized?<RotateCcw size={17}/>:<ArrowRight size={17}/>}<span>{organized?'もう一度、試す':playing?'組み替えています':'仕事を組み替える'}</span></button>
-      </div>
-      <div className="lab-story"><p>{worldData.caption}</p><a href={`#${worldData.detail}`}>支援内容を見る <ArrowDownIcon/></a></div>
+    <div className="lab-art">
+      <div className="lab-stage"><MorphSculpture world={0} amount={100} paused={paused}/><button className="lab-pause" onClick={()=>setPaused(!paused)} aria-label={paused?'立体の動きを再生':'立体の動きを停止'}>{paused?<Play size={16}/>:<Pause size={16}/>}<span>{paused?'動きを見る':'動きを止める'}</span></button></div>
+      <p className="lab-caption">業務を整理し、必要な仕組みをつなぐ。</p>
     </div>
-    <div className="lab-path" aria-label="支援の流れ">{worldData.path.map((step,i)=><div key={step} className={amount>i*33?'is-connected':''}><span>0{i+1}</span><p>{step}</p>{i<2&&<ArrowRight size={18}/>}</div>)}</div>
-    <p className="lab-note">小さな組み替えから、事業の可能性をひらく。</p>
+    <nav className="lab-services" aria-label="支援領域">
+      <a href="#ai-operations">AI導入・業務改善 <ArrowUpRight size={18}/></a>
+      <a href="#crm">CRM・業務アプリ開発 <ArrowUpRight size={18}/></a>
+      <a href="#digital">Webサイト・LP制作 <ArrowUpRight size={18}/></a>
+      <a href="#people">採用・人財支援 <ArrowUpRight size={18}/></a>
+    </nav>
   </div>;
 }
-
-function ArrowDownIcon(){return <ArrowRight size={15} style={{transform:'rotate(90deg)'}}/>;}
 
 function MorphSculpture({world,amount,paused}:{world:number;amount:number;paused:boolean}) {
   const host=useRef<HTMLDivElement>(null);
