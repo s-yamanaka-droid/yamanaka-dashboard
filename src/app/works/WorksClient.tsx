@@ -36,10 +36,10 @@ function ProjectView({project:p, featured=false}: {project:Project; featured?:bo
 export function WorksClient() {
   const [filter,setFilter] = useState("all");
   const visible = projects.filter(p=>filter === "all" || p.workType === filter);
-  return <main id="main" className={styles.page}>
+  return <main id="main" className={`${styles.page} brand-portfolio`}>
     <SectionShell id="works-gallery">
       <header className={styles.heading}>
-        <div><p className={styles.eyebrow}>制作実績</p><h1>アイデアを、<br className={styles.mobileBreak}/>使えるかたちに。</h1></div>
+        <div><p className={styles.eyebrow}>制作実績</p><h1>可能性を、<br className={styles.mobileBreak}/>かたちにした仕事。</h1></div>
         <p className={styles.intro}>Webサイトから、AIと業務の仕組みまで。<br/>Lakkanが手がけた、公開中の仕事をご紹介します。</p>
       </header>
       <div className={styles.toolbar}>
@@ -49,6 +49,7 @@ export function WorksClient() {
       {filter === "ai-concept" && <p className={styles.note}>架空のブランドを題材にした制作実験です。実在企業からの受託実績ではありません。</p>}
       {visible[0] && <ProjectView key={`featured-${visible[0].id}`} project={visible[0]} featured/>}
       <div className={styles.grid}>{visible.slice(1).map(p=><ProjectView key={p.id} project={p}/>)}</div>
+      <div className="brand-portfolio-mark"><Image src="/brand/possibility-poster.jpg" width={1280} height={800} alt="異なる幾何学がつながるLakkanの彫刻"/><p>ばらばらを、可能性に。</p></div>
       <div className={styles.closing}><div><p className={styles.eyebrow}>次は、あなたの事業で。</p><h2>つくりたいものからでも、<br/>困っていることからでも。</h2></div><Link href="/contact">制作について相談する <ArrowRight size={20}/></Link></div>
     </SectionShell>
   </main>;

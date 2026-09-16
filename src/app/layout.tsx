@@ -5,7 +5,7 @@ import "./site.css";
 import "./subpages.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import GlobalShell from "@/components/GlobalShell";
+import "./brand.css";
 import { CookieConsent } from "@/components/CookieConsent";
 
 const geistMono = Geist_Mono({
@@ -190,7 +190,6 @@ export default function RootLayout({
           }}
         />
         <a href="#main" className="skip-link">メインコンテンツへスキップ</a>
-        <GlobalShell />
         <SiteHeader />
         {children}
         <SiteFooter />

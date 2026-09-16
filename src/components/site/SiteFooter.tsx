@@ -1,8 +1,6 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 export function SiteFooter() {
-  if (usePathname() === "/") return null;
   return <footer className="site-footer original-footer">
     <Link href="/" className="original-footer-brand">Lakkan<span>.</span></Link>
     <p>楽観と、計画と。</p>
