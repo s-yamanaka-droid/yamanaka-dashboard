@@ -1,14 +1,14 @@
 [
   {
     "id": "luna-ai",
-    "name": "Luna AI",
-    "description": "判断・言葉・失敗をローカルに蓄積し、使うほど利用者専用に育つAIの右腕。記憶・スキル・安全な外部連携・更新機構を、導入後すぐ使える状態で届けるLunaTechのAIキッティングサービス。",
+    "name": "LunaTech",
+    "description": "Lunaを中心に、記憶・リサーチ・制作・実行・成長がつながる世界を表現した公式サイト。金属調のロゴ、月、インタラクティブな宇宙の演出を通じて、LunaTechの理念と可能性を伝える。",
     "category": "ai_agent",
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-07-25",
-    "updatedAt": "2026-08-03",
-    "url": "https://luna-tech-public-site-h0wy4l4x9-s-yamanaka-droids-projects.vercel.app",
+    "updatedAt": "2026-09-17",
+    "url": "https://luna-tech-public-site.vercel.app/",
     "client": "LunaTech",
     "tags": [
       "Luna AI",
@@ -16,8 +16,8 @@
       "長期記憶",
       "ローカルファースト"
     ],
-    "cover": "/works/luna-ai.jpg",
-    "coverAlt": "Luna AIの公開サイト。月明かりを表現した濃紺の画面に、サービスの価値と導入ボタンを配置している。",
+    "cover": "/works/lunatech-current.jpg",
+    "coverAlt": "LunaTechの現在の公式サイト。黒い背景に、銀と緑の金属調のLunaTechロゴを大きく配置している。",
     "featured": true,
     "workType": "own"
   },

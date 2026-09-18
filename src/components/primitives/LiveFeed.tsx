@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { ACCENT, FRANK, SANS } from "@/lib/design-tokens";
 import projectsData from "@/data/projects.json";
 import type { Project } from "@/types";
@@ -63,7 +64,7 @@ export function LiveFeed() {
         ))}
       </div>
 
-      <a
+      <Link
         className="hero-feed-all"
         href="/works"
         style={{
@@ -82,7 +83,7 @@ export function LiveFeed() {
         }}
       >
         View all public works →
-      </a>
+      </Link>
     </div>
   );
 }

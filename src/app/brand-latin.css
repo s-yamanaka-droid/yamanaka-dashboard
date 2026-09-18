@@ -1,0 +1,391 @@
+/* Clear glass, large type and an open composition. */
+:root{--brand-paper:#f2f2ef;--brand-ink:#171916;--brand-muted:#626660;--brand-line:#17191626;--brand-accent:#ce492b;--brand-heading:var(--font-sans-jp),sans-serif}
+.site-header{background:var(--brand-paper);border-bottom:0}
+.site-header .site-logo .brand-wordmark,.original-footer .brand-wordmark{font:500 42px/1 var(--font-display),sans-serif;letter-spacing:-.08em;color:var(--brand-ink)}
+.site-header .header-contact{background:#171916;color:#f2f2ef;border:0;border-radius:0;padding:14px 22px}
+.site-header .button-orb{background:transparent;color:inherit}
+.site-footer.original-footer{background:#e4e5e0;border:0}
+.original-footer .brand-wordmark{font-size:64px}
+.brand-home h1,.brand-home h2,.brand-home h3,body .services-lp :is(h1,h2,h3),body .brand-portfolio :is(h1,h2,h3){font-family:var(--brand-heading);font-weight:400;letter-spacing:-.055em}
+.brand-home-latin #brand-hero{height:calc(100svh - 90px);min-height:690px;max-height:1000px;background:#f2f2ef!important;border-radius:0}
+.brand-home-latin .brand-film{inset:110px -8% 0 25%;background:transparent;container-type:size;display:grid;place-items:center}
+.brand-film-media{position:relative;width:min(100cqw,160cqh);aspect-ratio:8/5;max-width:100%;max-height:100%}
+.brand-film-media .brand-film-still,.brand-home-latin #brand-hero .brand-film video,.brand-service-art .brand-film video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:none;mask-image:none;filter:grayscale(1) contrast(1.28)}
+.brand-film-media::after{content:"";position:absolute;inset:-2px;pointer-events:none;background:linear-gradient(90deg,#f2f2ef,transparent 18%,transparent 82%,#f2f2ef),linear-gradient(0deg,#f2f2ef,transparent 18%,transparent 82%,#f2f2ef)}
+.brand-home-latin .brand-film::after{display:none}
+.brand-home-latin .brand-hero-copy{position:absolute;inset:64px auto auto max(56px,calc((100vw - 1280px)/2));padding:0;display:block;background:transparent;max-width:52%;z-index:2}
+.brand-home-latin .brand-hero-copy .brand-label{color:#626660;font-size:13px;margin-bottom:36px;letter-spacing:.06em}
+.brand-home-latin .brand-hero-copy h1{font-size:clamp(56px,6.7vw,96px);font-weight:500;line-height:1.3;letter-spacing:-.065em;color:#171916;margin:0;white-space:pre-line}
+.brand-home-latin .brand-light-link{color:#171916;border-color:#17191666;margin-top:38px;padding:12px 0;font-size:14px;gap:54px}
+.brand-home-latin #brand-intro{border:0!important;padding-top:96px;padding-bottom:110px}
+.brand-intro-grid{grid-template-columns:.7fr 1.3fr;gap:48px;align-items:start}
+.brand-home .brand-label{font-size:13px;letter-spacing:.07em;color:#626660}
+.brand-home h2{font-size:clamp(30px,3.6vw,48px);line-height:1.55}
+.brand-home-latin #brand-work{border:0!important;background:#e5e6e1!important;border-radius:0}
+.brand-home-latin .brand-work-grid{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:48px 60px;align-items:start}
+.brand-home-latin .brand-work-grid article:first-child{grid-row:span 2}
+.brand-home-latin .brand-work-grid article:first-child img{aspect-ratio:1.6;object-fit:contain;background:#dbdcd6}
+.brand-home-latin .brand-work-grid article:first-child h3{font-size:28px}
+.brand-home-latin .brand-work-grid article:not(:first-child) img{aspect-ratio:1.8}
+.brand-home-latin .brand-work-grid img{border-radius:0;transition:filter .3s}
+.brand-home-latin .brand-work-grid a:hover img{filter:brightness(.94)}
+.brand-home-latin #brand-services{border:0!important;background:#f2f2ef!important}
+.brand-service-list{display:block;border-top:1px solid var(--brand-line)}
+.brand-service-list>a{display:grid;grid-template-columns:1fr 1.2fr 24px;gap:30px;border:0;border-bottom:1px solid var(--brand-line);border-radius:0;padding:32px 0;background:transparent}
+.brand-service-list>a p{color:#626660}
+.brand-service-list>a:hover{color:var(--brand-accent)}
+.brand-home-latin #brand-contact{background:#1b1e1b!important;border:0!important;border-radius:0}
+.brand-home-latin #brand-contact h2,.brand-home-latin #brand-contact p{color:#f2f2ef}
+.brand-button,.brand-home-latin #brand-contact .brand-button{border-radius:0;background:#f2f2ef;color:#171916}
+.brand-service-art{background:#f2f2ef;border-radius:0;min-height:430px;transform:none}
+.brand-service-art .brand-film{background:transparent;display:grid;place-items:center;container-type:size}
+.brand-service-art .brand-film video{max-width:100%;object-position:center}
+.brand-service-art .brand-film::after{display:none}
+body .services-lp .lab-heading h1{font-size:clamp(30px,3.5vw,48px);line-height:1.55}
+body .services-lp #services-intro{background:var(--brand-paper)!important}
+body .services-lp .lab-services{border-top:1px solid var(--brand-line);gap:0}
+body .services-lp .lab-services a{border-bottom:1px solid var(--brand-line);border-radius:0;background:transparent;color:#171916;padding:22px 12px}
+body .services-lp .sv-button{background:#171916;color:#f2f2ef;border:0;border-radius:0}
+body .services-lp #support{background:#e5e6e1!important;border-top:0!important;border-radius:0}
+body .services-lp #questions{background:#e5e6e1!important;border-top:0!important;border-radius:0}
+body .services-lp .sv-options button{border-radius:0;color:#4d534b}
+body .services-lp .sv-options button[aria-selected=true]{background:#171916;color:#f2f2ef}
+body .services-lp .sv-options button[aria-selected=true] small,body .services-lp .sv-options button[aria-selected=true]>span:first-child{color:#e0e2db}
+body .services-lp .sv-flow{border:0;border-left:2px solid #8b9485;border-radius:0;background:#f2f2ef}
+body .services-lp .sv-tags span{border-radius:0;color:#4d534b;border-color:var(--brand-line)}
+.brand-portfolio-mark{background:#efefed;height:300px;border-radius:0;max-width:680px;margin:90px auto 30px;filter:grayscale(1) contrast(1.28)}
+.brand-portfolio-mark::after{display:none}
+.brand-portfolio-mark img{object-fit:contain;object-position:center}
+.brand-page-enter{animation:brand-page-enter .3s ease both}
+@keyframes brand-page-enter{from{opacity:.85}to{opacity:1}}
+.new-site :is(h1,h2){font-family:var(--brand-heading)}
+.company-section dd,.contact-form,.contact-intro{font-family:var(--brand-font)}
+.brand-mobile-break{display:none}
+@media(max-width:760px){
+ .site-header .site-logo .brand-wordmark{font-size:36px}
+ .brand-home-latin #brand-hero{height:720px;min-height:0;border-radius:0}
+ .brand-home-latin .brand-hero-copy{inset:28px 24px auto;max-width:none}
+ .brand-home-latin .brand-hero-copy .brand-label{margin-bottom:24px;font-size:12px}
+ .brand-home-latin .brand-hero-copy h1{font-size:clamp(45px,12.5vw,70px);line-height:1.3;margin:0}
+ .brand-home-latin .brand-light-link{margin-top:24px;font-size:14px}
+ .brand-home-latin .brand-film{inset:290px -12% 0;max-width:none}
+ .brand-home-latin .brand-film-media{width:100%;max-width:100%}
+ .brand-mobile-break{display:initial}
+ .brand-home-latin #brand-intro{padding-top:56px;padding-bottom:64px}
+ .brand-intro-grid{grid-template-columns:1fr;gap:28px}
+ .brand-home h2{font-size:29px}
+ .brand-home-latin .brand-work-grid{grid-template-columns:1fr;gap:38px}
+ .brand-home-latin .brand-work-grid article:first-child{grid-row:auto}
+ .brand-home-latin .brand-work-grid article:first-child img{aspect-ratio:1.5}
+ .brand-home-latin .brand-work-grid article:first-child h3{font-size:24px}
+ .brand-service-list>a{grid-template-columns:1fr 24px;gap:12px;padding:26px 0}
+ .brand-service-list>a p{grid-row:2;grid-column:1/-1}
+ .brand-service-list>a svg{grid-column:2;grid-row:1}
+ .brand-service-art{min-height:280px;max-width:100%}
+ .brand-portfolio-mark{height:190px;margin-top:54px}
+ body .services-lp .lab-heading h1{font-size:clamp(24px,7.4vw,30px)}
+ body .services-lp .lab-services a{padding:16px 8px;font-size:14px}
+ .lab-service-line{display:block;white-space:nowrap}
+}
+@media(prefers-reduced-motion:reduce){.brand-page-enter{animation:none}.brand-home-latin .brand-work-grid a img{transition:none}}
+
+/* Approved water/typography composition. One image plane contains both the
+   refractive surface and the animated letters, so optics stay synchronized. */
+.site-header .header-contact{background:transparent;color:var(--brand-ink);padding:10px 0}
+.site-header .site-logo .brand-wordmark{font-size:30px;letter-spacing:-.065em}
+.brand-home-latin #brand-hero{height:calc(100svh - 90px);min-height:520px;max-height:1100px}
+.brand-home-latin .brand-film{inset:0;display:grid;place-items:center}
+.brand-film-media{width:min(100cqw,177.777cqh);height:auto;max-width:none;max-height:none;aspect-ratio:16/9}
+.brand-film-media .brand-film-still,.brand-home-latin #brand-hero .brand-film video,.brand-service-art .brand-film video{width:100%;height:100%;object-fit:contain;filter:none;inset:0}
+.brand-film-media::after{background:linear-gradient(0deg,#f2f2ef 0%,transparent 19%,transparent 81%,#f2f2ef 100%),linear-gradient(90deg,#f2f2ef 0%,transparent 8%,transparent 92%,#f2f2ef 100%);inset:-1px}
+.water-accessible-title{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.water-hero-caption{position:absolute;inset:auto 40px 34px;display:flex;align-items:center;justify-content:space-between;gap:24px;z-index:2;font-size:13px;letter-spacing:.02em}
+.water-hero-caption p{margin:0}.water-hero-caption a{display:inline-flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid transparent}
+.water-hero-caption a:hover{border-color:currentColor}
+.brand-portfolio-mark{filter:none;background:#f2f2ef}
+@media(max-width:760px){
+ .brand-home-latin #brand-hero{height:calc(62svh - 76px);min-height:390px;max-height:560px}
+ .brand-home-latin .brand-film{inset:0}
+ .brand-home-latin .brand-film-media{width:125%;height:auto;max-width:none}
+ .water-hero-caption{inset:auto 22px 24px;align-items:flex-start;font-size:12px;gap:12px}
+ .water-hero-caption a{gap:6px;padding:0}
+ .water-hero-caption p{max-width:12em}
+ .site-header .site-logo .brand-wordmark{font-size:28px}
+}
+@media(prefers-reduced-motion:reduce){.brand-film video{visibility:hidden}}
+
+/* Water edition: optical lettering and an editorial sequence of real work. */
+:root{--brand-paper:#f6f7f3;--brand-ink:#213b3e;--brand-muted:#536567;--brand-line:#213b3e30;--brand-accent:#f06442}
+.site-header .site-logo .brand-wordmark,.original-footer .brand-wordmark{font-family:var(--font-instrument),serif;font-weight:400;letter-spacing:-.035em;font-size:40px}
+.site-header{border-bottom:1px solid var(--brand-line)}
+.water-edition{--section-padding:112px 5vw}
+.brand-home.water-edition #brand-hero{height:auto;min-height:0;max-height:none;background:#e4eaeb!important;padding:0 0 80px!important}
+.brand-home.water-edition #brand-hero>div{height:auto}
+.water-hero-top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;padding:48px 5vw 0}
+.brand-home .water-hero-top h1{font-size:clamp(26px,3vw,44px);line-height:1.55;font-weight:400;letter-spacing:.01em}
+.brand-home .water-hero-top p{font-size:14px;line-height:2;text-align:right}
+.water-sculpture{position:relative;width:100%;aspect-ratio:1.8;overflow:hidden;isolation:isolate}
+.water-sculpture img{display:block;width:100%;height:100%;object-fit:cover}
+.water-sculpture canvas{position:absolute;inset:0;width:100%;height:100%;transition:opacity .5s;touch-action:pan-y}
+.water-edition #brand-hero .water-sculpture{margin-top:-26px;aspect-ratio:2.4}
+.water-edition #brand-hero .water-sculpture::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(#e4eaeb,transparent 16%,transparent 84%,#e4eaeb)}
+.water-edition .water-hero-caption{inset:auto 5vw 30px;border-top:1px solid var(--brand-line);padding-top:18px}
+.water-edition .water-hero-caption p{font-size:13px;color:var(--brand-ink);display:flex;align-items:center;gap:12px}
+.water-live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f06442}
+.water-edition .water-editorial-label{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-bottom:64px}
+.water-edition .water-editorial-label>span,.water-edition .water-editorial-label>h2{font:400 clamp(42px,6.4vw,92px)/1.05 var(--font-instrument),serif;letter-spacing:-.035em}
+.water-edition .water-editorial-label>p{font-size:12px;letter-spacing:.08em}
+.water-period{color:var(--brand-accent)}
+.brand-home.water-edition #brand-intro{padding-block:110px 130px;background:#f6f7f3!important}
+.water-intro-main{display:grid;grid-template-columns:1.1fr 1fr;gap:12%;align-items:start}
+.water-edition .water-intro-main h2,.water-edition .water-services-heading h2{font-size:clamp(28px,3.25vw,46px);line-height:1.65;letter-spacing:-.035em}
+.water-intro-main>div>p{margin-bottom:20px;font-size:15px;line-height:2.2}
+.water-intro-main .brand-text-link{margin-top:16px}
+.brand-home.water-edition #brand-work{background:#e9eeec!important}
+.water-projects{display:flex;flex-direction:column;gap:100px}
+.water-project{width:82%;margin:0}
+.water-project-1{width:70%;align-self:flex-end}
+.water-project-2{width:76%}
+.water-project-visual{display:block;position:relative;overflow:hidden;background:#dae1de}
+.water-project-visual img{width:100%;height:auto;aspect-ratio:1.6;object-fit:cover;object-position:top;transition:transform 1s cubic-bezier(.22,1,.36,1)}
+.water-project-visual:hover img,.water-project-visual:focus-visible img{transform:scale(1.035)}
+.water-project-open{position:absolute;bottom:24px;right:24px;display:flex;gap:24px;align-items:center;background:#f6f7f3ee;backdrop-filter:blur(8px);color:#213b3e;padding:15px 20px;font-size:13px;transform:translateY(6px);opacity:0;transition:opacity .3s,transform .3s}
+.water-project-visual:hover .water-project-open,.water-project-visual:focus-visible .water-project-open{opacity:1;transform:none}
+.water-project-caption{display:flex;justify-content:space-between;gap:24px;padding-top:22px;align-items:baseline}
+.water-edition .water-project-caption h3{font:400 clamp(28px,3.2vw,44px)/1.15 var(--font-instrument),serif;letter-spacing:-.025em}
+.water-project-caption h3 a{display:flex;align-items:center;gap:24px}
+.water-edition .water-project-caption p{font-size:12px;margin-top:8px}
+.water-all-work{display:flex;align-items:center;justify-content:space-between;gap:32px;margin-top:100px;padding:36px 0 8px;border-top:1px solid var(--brand-line)}
+.water-all-work>span:first-child{font:400 clamp(34px,5vw,68px)/1.1 var(--font-instrument),serif}
+.water-all-work>span:last-child{display:flex;align-items:center;gap:30px;font-size:14px}
+.brand-home.water-edition #brand-services{background:#f6f7f3!important}
+.water-services-heading{margin:0 0 64px 35%}
+.water-offerings>a{display:grid;grid-template-columns:1fr 1.5fr 24px;gap:40px;align-items:center;padding:38px 0;border-top:1px solid var(--brand-line);transition:padding .3s,color .3s}
+.water-offerings>a:last-child{border-bottom:1px solid var(--brand-line)}
+.water-offering-en{font:400 clamp(38px,5vw,68px)/1 var(--font-instrument),serif;letter-spacing:-.04em}
+.water-edition .water-offerings h3{font-size:20px;letter-spacing:.005em}
+.water-edition .water-offerings p{font-size:13px;line-height:1.9;margin-top:9px}
+.water-offerings>a:hover{color:#a44126;padding-inline:12px}
+.brand-home.water-edition #brand-contact{background:#dce9e9!important;color:#213b3e}
+.brand-home.water-edition #brand-contact :is(p,h2){color:#213b3e}
+.water-contact-top{display:flex;justify-content:space-between;gap:24px}
+.water-edition .water-contact-top h2,.water-edition .water-contact-top p{font-size:14px;line-height:1.8}
+.water-contact-link{display:flex;justify-content:space-between;align-items:center;gap:30px;font:400 clamp(84px,17vw,240px)/1.2 var(--font-instrument),serif;letter-spacing:-.05em;border-bottom:1px solid var(--brand-line);padding:24px 0 32px}
+.water-contact-link>svg{width:clamp(48px,9vw,120px);height:auto;stroke-width:1;transition:transform .4s}
+.water-contact-link:hover>svg{transform:translate(8px,-8px)}
+.water-edition .water-contact-note{font-size:13px;margin-top:26px}
+.site-footer.original-footer{background:#f6f7f3}
+.brand-service-art .water-sculpture{position:absolute;inset:0;height:100%;aspect-ratio:auto}
+.brand-service-art .water-sculpture img{object-fit:contain;background:#e4eaeb}
+.water-edition a:focus-visible{outline:2px solid #a44126;outline-offset:7px}
+@media(max-width:760px){
+ .water-edition{--section-padding:72px 22px}
+ .site-header .site-logo .brand-wordmark{font-size:36px}
+ .water-hero-top{padding:32px 22px 0;gap:20px;flex-direction:column;align-items:flex-start}
+ .brand-home .water-hero-top h1{font-size:27px;line-height:1.55}
+ .brand-home .water-hero-top p{font-size:12px;line-height:1.8;padding-bottom:3px;text-align:left}
+ .brand-home.water-edition #brand-hero{padding-bottom:85px!important}
+ .water-edition #brand-hero .water-sculpture{width:128%;margin:16px -14% 0;max-width:none;aspect-ratio:1.8}
+ .water-edition .water-hero-caption{inset:auto 22px 23px;gap:16px}
+ .water-edition .water-hero-caption p{font-size:10px;gap:7px;max-width:none}
+ .water-edition .water-hero-caption a{font-size:11px;white-space:nowrap}
+ .water-edition .water-editorial-label{margin-bottom:36px;gap:12px}
+ .water-edition .water-editorial-label>span,.water-edition .water-editorial-label>h2{font-size:43px}
+ .water-edition .water-editorial-label>p{font-size:10px}
+ .brand-home.water-edition #brand-intro{padding-block:64px 76px}
+ .water-intro-main{grid-template-columns:1fr;gap:32px}
+ .water-edition .water-intro-main h2,.water-edition .water-services-heading h2{font-size:29px}
+ .water-intro-main>div>p{font-size:14px}
+ .water-projects{gap:52px}
+ .water-project,.water-project-1,.water-project-2{width:100%}
+ .water-project-open{display:none}
+ .water-project-caption{gap:12px;padding-top:16px}
+ .water-edition .water-project-caption h3{font-size:31px}
+ .water-edition .water-project-caption p{font-size:10px}
+ .water-project-caption>p{max-width:8em;text-align:right}
+ .water-project-caption h3 a{gap:14px}
+ .water-all-work{margin-top:56px;align-items:flex-start;flex-direction:column;gap:20px;padding-top:26px}
+ .water-all-work>span:last-child{width:100%;justify-content:space-between;font-size:13px}
+ .water-services-heading{margin:0 0 40px}
+ .water-offerings>a{grid-template-columns:1fr 22px;gap:18px;padding:26px 0}
+ .water-offering-en{font-size:46px}
+ .water-offerings>a>div{grid-row:2;grid-column:1/-1}
+ .water-offerings>a>svg{grid-row:1;grid-column:2}
+ .water-edition .water-offerings h3{font-size:18px}
+ .water-edition .water-offerings p{font-size:12px}
+ .water-contact-top{flex-direction:column;gap:8px}
+ .water-edition .water-contact-top h2,.water-edition .water-contact-top p{font-size:12px}
+ .water-contact-link{font-size:84px;gap:12px;padding:24px 0}
+ .water-contact-link>svg{width:46px}
+ .water-edition .water-contact-note{font-size:12px;line-height:1.9}
+}
+@media(prefers-reduced-motion:reduce){.water-sculpture canvas{display:none}.water-edition *{transition:none!important}.water-project-visual:hover img{transform:none}}
+.brand-service-art{min-height:0;aspect-ratio:1.8;align-self:center}
+.water-edition .water-project-caption h3{font-family:var(--font-instrument),var(--font-sans-jp),sans-serif}
+
+/* Orange optical lettering and shared water-contact composition. */
+.site-header .brand-wordmark,.original-footer .brand-wordmark{color:#b64720!important}
+body :is(.services-lp,.brand-portfolio,.water-about) .water-page-kicker{font:400 clamp(44px,6vw,84px)/1.05 var(--font-instrument),serif!important;letter-spacing:-.04em!important;color:var(--brand-ink)!important;margin:0 0 32px!important;max-width:none!important}
+.water-page-kicker>span{color:#dd5c2e}
+body #water-contact{--section-padding:56px 5vw 42px;background:#e4eaeb!important;border:0}
+#water-contact>div{max-width:1280px}
+#water-contact .water-contact-top{align-items:center;position:relative;z-index:1}
+#water-contact .water-contact-top :is(h2,p){font:400 14px/1.8 var(--font-sans-jp),sans-serif;letter-spacing:.02em;color:var(--brand-ink);margin:0}
+.water-contact-art{display:block;position:relative;margin:8px -5vw 0;isolation:isolate;color:var(--brand-ink)}
+.water-contact-art .water-sculpture{aspect-ratio:3}
+.water-contact-art::after,#contact-water-hero .water-sculpture::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(#e4eaeb,transparent 15%,transparent 85%,#e4eaeb)}
+.water-contact-orb{position:absolute;right:6%;bottom:15%;display:grid;place-items:center;border:1px solid #213b3e55;border-radius:50%;width:64px;height:64px;background:#f6f7f370;backdrop-filter:blur(8px);z-index:2;transition:background .4s,transform .6s var(--water-ease)}
+.water-contact-orb svg{width:28px;height:28px;stroke-width:1.2}
+.water-contact-art:is(:hover,:focus-visible) .water-contact-orb{background:#f6f7f3;transform:translate(4px,-4px)}
+.water-contact-art:focus-visible{outline:2px solid #b64720;outline-offset:0}
+.water-contact-bottom{display:flex;justify-content:space-between;gap:32px;align-items:center;padding-top:20px;border-top:1px solid var(--brand-line)}
+#water-contact .water-contact-bottom p{font:400 13px/1.9 var(--font-sans-jp),sans-serif;color:var(--brand-muted);margin:0}
+.water-contact-bottom a{display:inline-flex;gap:24px;align-items:center;font-size:13px;white-space:nowrap;color:var(--brand-ink)}
+.water-about{--section-padding:80px 5vw}
+.water-about-intro{display:grid;grid-template-columns:1fr 1.2fr;align-items:center;gap:6%}
+.water-about-intro h1{font:400 clamp(28px,3.2vw,44px)/1.6 var(--font-sans-jp),sans-serif;letter-spacing:-.035em;margin:0 0 24px}
+.water-about-intro p{font-size:15px;line-height:2.1;color:var(--brand-muted)}
+.water-about-intro .water-sculpture{aspect-ratio:1.8}
+#company-facts{background:#e9eeec!important}
+.water-company-facts{max-width:none!important;padding:0!important;margin:0!important}
+.water-company-facts .water-editorial-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:44px}
+.water-company-facts h2{font:400 68px/1 var(--font-instrument),serif;margin:0}
+.water-company-facts .water-editorial-label p{font-size:12px}
+.water-company-facts dl{margin:0 0 0 22%;max-width:none}
+.water-company-facts dl>div{padding-block:28px}
+.water-company-facts :is(dt,dd){font-family:var(--font-sans-jp),sans-serif!important}
+.water-contact-page #contact-water-hero{--section-padding:36px 5vw 30px;background:#e4eaeb!important}
+#contact-water-hero>div{max-width:1280px}
+#contact-water-hero .water-contact-top p{font-size:13px;color:var(--brand-ink);margin:0}
+#contact-water-hero .water-sculpture{aspect-ratio:3;margin-top:6px}
+.water-form-jump{display:block;text-align:right;color:var(--brand-ink);font-size:13px;padding-top:12px}
+.water-contact-page .contact-layout{padding-block:88px;scroll-margin-top:28px}
+.water-contact-page .contact-aside h2{font:400 clamp(32px,4vw,48px)/1.55 var(--font-sans-jp),sans-serif;letter-spacing:-.035em;margin:30px 0}
+.water-contact-page .contact-aside h2 span{display:block}
+.water-contact-page .contact-aside>p:not(.eyebrow){font-family:var(--font-sans-jp),sans-serif;font-size:14px}
+.water-contact-page .pill-button.orange{background:#ad4523;color:white;border:0}
+.water-contact-page .eyebrow{font-family:var(--font-instrument),serif;letter-spacing:0;color:var(--brand-ink);font-size:22px}
+@media(max-width:760px){
+ body :is(.services-lp,.brand-portfolio,.water-about) .water-page-kicker{font-size:46px!important;margin-bottom:28px!important}
+ body #water-contact{--section-padding:32px 22px 30px}
+ #water-contact .water-contact-top{align-items:flex-start;gap:8px}
+ #water-contact .water-contact-top :is(h2,p){font-size:12px}
+ .water-contact-art{margin:10px -22px 0}
+ .water-contact-art .water-sculpture{aspect-ratio:1.8}
+ .water-contact-orb{width:36px;height:36px;right:24px;bottom:14%}
+ .water-contact-orb svg{width:20px;height:20px}
+ .water-contact-bottom{display:block;padding-top:16px}
+ #water-contact .water-contact-bottom p{font-size:12px}
+ .water-contact-bottom a{margin-top:18px;width:100%;justify-content:space-between}
+ .water-about{--section-padding:48px 22px}
+ .water-about-intro{grid-template-columns:1fr;gap:24px}
+ .water-about-intro h1{font-size:29px;margin-bottom:20px}
+ .water-about-intro p{font-size:13px}
+ .water-company-facts h2{font-size:48px}
+ .water-company-facts dl{margin:0}
+ .water-company-facts dl>div{padding-block:22px}
+ .water-contact-page #contact-water-hero{--section-padding:28px 22px 24px}
+ #contact-water-hero .water-sculpture{aspect-ratio:1.8;width:calc(100% + 44px);margin-inline:-22px;max-width:none}
+ #contact-water-hero .water-contact-top{gap:8px}
+ #contact-water-hero .water-contact-top p{font-size:12px}
+ .water-contact-page .contact-layout{padding-block:46px}
+ .water-contact-page .contact-aside h2{font-size:30px;margin-block:20px}
+}
+
+.water-assembly{position:relative;isolation:isolate}
+.water-assembly-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;transition:opacity .65s ease;z-index:1}
+.water-assembly.is-playing .water-assembly-film{opacity:1}
+@media(prefers-reduced-motion:reduce){.water-assembly-film{display:none}}
+
+/* Site architecture: case studies and the path from work to conversation. */
+.work-detail{color:var(--brand-ink);font-family:var(--font-sans-jp),sans-serif;--section-padding:72px 5vw}
+.case-title{display:grid;grid-template-columns:1.2fr 1fr;gap:6vw;align-items:end;margin:60px 0 44px}
+.case-kicker{font-size:12px;margin-bottom:18px;color:var(--brand-muted)}
+.case-title h1{font:400 clamp(40px,6.5vw,88px)/1.1 var(--font-instrument),var(--font-sans-jp),serif;letter-spacing:-.035em;overflow-wrap:anywhere;margin:0}
+.case-title>p{font-size:clamp(16px,1.8vw,24px);line-height:1.9;margin:0;max-width:36em}
+.case-cover{margin:0}.case-cover img{display:block;width:100%;height:auto;max-height:76vh;object-fit:contain;background:#e4eaeb}
+.case-cover figcaption{font-size:12px;color:var(--brand-muted);padding-top:14px}
+.case-story{display:grid;grid-template-columns:1fr 1.7fr;gap:9vw}.case-story dl{margin:36px 0}.case-story dl>div{padding:18px 0;border-bottom:1px solid var(--brand-line)}
+.case-story dt{font-size:11px;color:var(--brand-muted);margin-bottom:8px}.case-story dd{font-size:14px;margin:0;line-height:1.8}
+.case-story h2{font-size:24px;font-weight:400;margin:0 0 24px}.case-lead{font-size:16px;line-height:2.15}
+.case-point{display:flex;gap:24px;border-top:1px solid var(--brand-line);padding-top:30px;margin-top:34px}.case-point>span{font:24px var(--font-instrument),serif;color:#ac4829}.case-point h3{font-size:19px;font-weight:400;margin:0 0 12px}.case-point p{font-size:14px;line-height:2;color:var(--brand-muted);margin:0}
+.case-support{border-top:1px solid var(--brand-line);margin-top:44px;padding-top:24px}.case-support>p{font-size:12px;color:var(--brand-muted)}.case-support a{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 0;border-bottom:1px solid var(--brand-line);font-size:15px}
+.case-related{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:44px}.case-related img{width:100%;height:auto;aspect-ratio:1.5;object-fit:cover}.case-related h3{display:flex;justify-content:space-between;gap:18px;font-size:20px;font-weight:400}.case-related p,.case-disclosure{font-size:13px;line-height:1.8;color:var(--brand-muted)}
+.water-project-summary{font-size:14px!important;line-height:2!important;color:var(--brand-muted);max-width:48em;margin:20px 0 0}
+.home-process-list{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;list-style:none;padding:0;margin:56px 0 36px}.home-process-list li{border-top:1px solid var(--brand-line);padding-top:24px}.home-step{font:24px var(--font-instrument),serif;color:#ad4523}.home-process-list h3{font-size:19px!important;font-weight:400;margin:24px 0 12px}.home-process-list p{font-size:13px!important;line-height:2}
+.home-about-body{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:48px;align-items:center}.home-about-body p{font-size:14px;line-height:2}.home-about-body .brand-text-link{margin-top:24px}
+.about-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin:44px 0}.about-principles h3{font-size:21px;font-weight:400}.about-principles p{font-size:14px;line-height:2;color:var(--brand-muted)}
+.service-related{margin:28px 0;padding-block:20px;border-block:1px solid var(--brand-line)}.service-related>p{font-size:12px!important;color:var(--brand-muted)}.service-related a{display:flex;justify-content:space-between;gap:16px;padding:12px 0;font-size:15px}
+.contact-project-context{padding:18px;border-left:2px solid #ad4523;background:#e4eaeb;font-size:13px;line-height:1.8}
+.original-footer nav{flex-wrap:wrap}
+.work-detail .water-editorial-label h2,#about-approach .water-editorial-label h2{font:400 clamp(38px,5.8vw,76px)/1.1 var(--font-instrument),serif;letter-spacing:-.04em;margin:0}
+#about-approach .water-editorial-label p{font-size:13px;margin:0}
+.about-principles h3{margin:0 0 14px;line-height:1.6}.about-principles p{margin:0}
+@media(max-width:760px){.work-detail{--section-padding:40px 22px}.case-title{grid-template-columns:1fr;gap:22px;margin:36px 0 28px}.case-title h1{font-size:46px}.case-title>p{font-size:16px}.case-story{grid-template-columns:1fr;gap:48px}.case-related{grid-template-columns:1fr;gap:32px}.case-lead{font-size:14px}.case-point h3{font-size:17px}.home-process-list{grid-template-columns:1fr 1fr;gap:28px 20px;margin-top:32px}.home-about-body{grid-template-columns:1fr;gap:24px;margin-top:32px}.about-principles{grid-template-columns:1fr;gap:20px}.water-project-summary{font-size:12px!important}.home-process-list h3{font-size:16px!important}.home-step{font-size:22px}.case-cover img{max-height:none}}
+
+/* One motion cadence across navigation, editorial sections and interactions. */
+.water-subpage-hero{background:#f6f7f3!important;border-bottom:1px solid var(--brand-line);padding-block:72px!important}
+.water-subpage-hero .water-page-kicker{font:400 clamp(44px,6vw,84px)/1.05 var(--font-instrument),serif;letter-spacing:-.04em;color:var(--brand-ink);margin:0}
+.water-subpage-hero h1{font:400 clamp(28px,3.2vw,44px)/1.6 var(--font-sans-jp),sans-serif;letter-spacing:-.035em}
+.water-subpage-hero>p{font:400 15px/2 var(--font-sans-jp),sans-serif}
+@media(max-width:760px){.water-subpage-hero{padding-block:40px!important}.water-subpage-hero .water-page-kicker{font-size:42px}.water-subpage-hero .subpage-top{align-items:start;gap:18px}.water-subpage-hero h1{font-size:28px}.water-subpage-hero>p{font-size:13px}}
+:root{--water-ease:cubic-bezier(.19,1,.22,1)}
+.brand-page-enter{animation:water-page-arrive .65s var(--water-ease) both}
+@keyframes water-page-arrive{from{opacity:.45}to{opacity:1}}
+.water-reading-progress{position:fixed;inset:0 0 auto;height:2px;z-index:1000;background:var(--brand-accent);transform:scaleX(0);transform-origin:left;pointer-events:none}
+.site-header .desktop-nav a,.original-footer nav a,.water-hero-caption a,.brand-text-link,.sv-text-link{position:relative}
+.site-header .desktop-nav a::after,.original-footer nav a::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--water-ease)}
+.site-header .desktop-nav a:is(:hover,:focus-visible,[aria-current=page])::after,.original-footer nav a:is(:hover,:focus-visible)::after{transform:scaleX(1);transform-origin:left}
+.site-header .brand-wordmark,.original-footer .brand-wordmark{display:inline-block;transition:transform .65s var(--water-ease)}
+.site-logo:is(:hover,:focus-visible) .brand-wordmark,.original-footer-brand:is(:hover,:focus-visible) .brand-wordmark{transform:translateY(-2px)}
+:is(.header-contact,.brand-text-link,.sv-text-link,.sv-button,.water-hero-caption a,.water-all-work,.water-offerings>a,.water-project-caption a) svg{transition:transform .5s var(--water-ease)}
+:is(.header-contact,.brand-text-link,.sv-text-link,.sv-button,.water-hero-caption a,.water-offerings>a,.water-project-caption a):is(:hover,:focus-visible) svg{transform:translate(3px,-3px)}
+.water-all-work:is(:hover,:focus-visible) svg{transform:translateX(8px)}
+.water-project-visual img{transform:translate3d(0,var(--water-drift,0px),0) scale(1.055);transition:transform .75s var(--water-ease),filter .5s}
+.water-project-visual:is(:hover,:focus-visible) img{transform:translate3d(0,var(--water-drift,0px),0) scale(1.09)}
+.water-project-open{transition:opacity .4s,transform .6s var(--water-ease)}
+.water-offerings>a{position:relative;isolation:isolate;transition:padding .5s var(--water-ease),color .4s}
+.water-offerings>a::before{content:"";position:absolute;inset:0 -16px;background:#dce9e960;z-index:-1;transform:scaleY(0);transform-origin:bottom;transition:transform .55s var(--water-ease)}
+.water-offerings>a:is(:hover,:focus-visible)::before{transform:scaleY(1)}
+.water-offering-en{transition:transform .55s var(--water-ease)}
+.water-offerings>a:is(:hover,:focus-visible) .water-offering-en{transform:translateX(6px)}
+.water-contact-link>span{transition:transform .8s var(--water-ease)}
+.water-contact-link:is(:hover,:focus-visible)>span{transform:translateX(8px)}
+.water-contact-link:focus-visible>svg{transform:translate(8px,-8px)}
+.site-header .mobile-nav{transform-origin:top;animation:water-menu-in .4s var(--water-ease) both}
+.site-header .mobile-nav>a{animation:water-menu-link .5s var(--water-ease) both}
+.site-header .mobile-nav>a:nth-child(2){animation-delay:40ms}.site-header .mobile-nav>a:nth-child(3){animation-delay:80ms}.site-header .mobile-nav>a:nth-child(4){animation-delay:120ms}.site-header .mobile-nav>a:nth-child(5){animation-delay:160ms}
+@keyframes water-menu-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@keyframes water-menu-link{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.menu-toggle{transition:transform .3s var(--water-ease),background .3s}.menu-toggle:active{transform:scale(.92)}
+.sv-faq details[open]>p{animation:water-menu-link .45s var(--water-ease) both}
+.sv-faq summary span{transition:transform .35s var(--water-ease)}
+.sv-faq details[open] summary span{transform:rotate(45deg)}
+.contact-form :is(input,textarea,select){transition:border-color .25s,box-shadow .25s,background .25s}
+.contact-form :is(input,textarea,select):focus{box-shadow:0 0 0 3px #739b9e25}
+.sv-button,.brand-button,.contact-form button{transition:background .3s,box-shadow .3s,transform .3s var(--water-ease)}
+:is(.sv-button,.brand-button,.contact-form button):active{transform:translateY(2px)}
+@media(hover:none){.water-project-visual img{transform:translate3d(0,var(--water-drift,0px),0) scale(1.055)}}
+/* A continuous current: headings drift, controls follow the hand, artwork breathes. */
+.water-editorial-label,.water-page-kicker,.water-contact-top{translate:0 var(--heading-drift,0px);transition:translate .7s var(--water-ease)}
+.water-offerings>a .water-offering-en,.water-all-work>span:first-child,.water-contact-orb,.brand-text-link svg,.sv-button svg{translate:var(--pointer-x,0px) var(--pointer-y,0px);transition:translate .7s var(--water-ease),transform .6s var(--water-ease)}
+.water-live-dot{position:relative}
+.water-live-dot::after{content:"";position:absolute;inset:-5px;border:1px solid currentColor;border-radius:50%;animation:water-signal 3.6s ease-out infinite}
+@keyframes water-signal{0%{scale:.4;opacity:0}20%{opacity:.45}85%,100%{scale:1.6;opacity:0}}
+.water-contact-orb svg{animation:water-arrow-current 4s ease-in-out infinite}
+@keyframes water-arrow-current{0%,65%,100%{translate:0 0}80%{translate:4px -4px}}
+.water-project-visual{overflow:hidden}
+.water-offerings>a::before{border-radius:48% 48% 0 0;transition:transform .7s var(--water-ease),border-radius .7s var(--water-ease)}
+.water-offerings>a:is(:hover,:focus-visible)::before{border-radius:0}
+.water-contact-art .water-sculpture{transition:scale 1.4s var(--water-ease)}
+.water-contact-art:is(:hover,:focus-visible) .water-sculpture{scale:1.018}
+.water-contact-art{overflow:hidden}
+@media(prefers-reduced-motion:reduce){
+ .water-live-dot::after,.water-contact-orb svg{animation:none!important}
+ .water-editorial-label,.water-page-kicker,.water-contact-top,.water-offering-en,.water-all-work>span,.water-contact-orb,.brand-text-link svg,.sv-button svg{translate:none!important}
+ .water-contact-art .water-sculpture{scale:1!important}
+ .brand-page-enter,.site-header .mobile-nav,.site-header .mobile-nav>a,.sv-faq details[open]>p{animation:none!important}
+ .water-reading-progress{display:none}
+ .site-header *,.original-footer *,main *{transition:none!important;scroll-behavior:auto!important}
+ .water-project-visual img,.water-project-visual:hover img{transform:none!important}
+}

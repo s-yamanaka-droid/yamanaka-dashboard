@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
+import projects from "@/data/projects.json";
+
+const relatedWorks:Record<string,string[]>={"ai-operations":["luna-reception","now-on-air"],crm:[],digital:["central-medical","luna-ai"],people:["plime-recruit","lia-recruit"]};
 
 const services = [
   { id: "ai-operations", label: "仕事の負担を減らしたい", en: "AI導入・業務改善", title: "仕事の流れを、\nAIと組み直す。", text: "転記、情報探し、確認待ち。日々の小さな負担から見直し、人にしかできない判断に時間を使える仕組みへ。", items: ["業務ヒアリングと改善テーマの整理", "AIエージェント・業務自動化の設計と実装", "AI活用研修・導入後の運用支援"], tags:["業務再設計", "AI導入", "Luna AI"], before:"情報を探す → 転記する → 確認を待つ", after:"情報を整理する → 人が判断する", topic:"ai-consult" },
@@ -38,7 +41,9 @@ export function ServiceExplorer() {
       <div id="service-panel" role="tabpanel" aria-labelledby={`tab-${s.id}`} tabIndex={0} className="sv-panel">
         <div key={s.id} className="sv-panel-content"><p className="sv-kicker">{s.en}</p><h3>{s.title.split('\n').map(t=><span key={t}>{t}</span>)}</h3><p className="sv-body">{s.text}</p><div className="sv-tags">{s.tags.map(t=><span key={t}>{t}</span>)}</div>
           <div className="sv-flow"><small>たとえば、こんな変化を。</small><p>{s.before}</p><ArrowRight size={19}/><strong>{s.after}</strong></div>
-          <ul>{s.items.map(t=><li key={t}>{t}</li>)}</ul><Link className="sv-text-link" href={`/contact?topic=${s.topic}`}>この課題について相談する <ArrowUpRight size={18}/></Link>
+          <ul>{s.items.map(t=><li key={t}>{t}</li>)}</ul>
+          {relatedWorks[s.id].length>0&&<div className="service-related"><p>{s.id==='people'?'採用の魅力を伝えるWeb制作の例':'関連する制作・プロダクト'}</p>{relatedWorks[s.id].map(id=>{const p=projects.find(p=>p.id===id)!;return <Link key={id} href={`/works/${id}`}>{p.name}<ArrowUpRight size={16}/></Link>;})}</div>}
+          <Link className="sv-text-link" href={`/contact?topic=${s.topic}`}>この課題について相談する <ArrowUpRight size={18}/></Link>
         </div>
       </div>
     </div>

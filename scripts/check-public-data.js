@@ -44,6 +44,7 @@ for (const project of projects) {
   if (project.status !== "live") failures.push(`${project.id}: status must be live`);
   if (project.category === "internal") failures.push(`${project.id}: internal category is forbidden`);
   if (!/^https:\/\//.test(project.url || "")) failures.push(`${project.id}: public https URL is required`);
+  if (project.id === "luna-ai" && new URL(project.url).hostname !== "luna-tech-public-site.vercel.app") failures.push("luna-ai: use the verified stable production alias, not a frozen deployment URL");
   const text = JSON.stringify(project);
   if (/PRE-LAUNCH|WORKTREE|ARCHIVED|passphrase|password|access code/i.test(text)) {
     failures.push(`${project.id}: non-public marker found`);

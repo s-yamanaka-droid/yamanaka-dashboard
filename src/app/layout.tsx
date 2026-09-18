@@ -6,12 +6,14 @@ import "./subpages.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import "./brand.css";
+import "./brand-latin.css";
 import { CookieConsent } from "@/components/CookieConsent";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-display",
@@ -51,46 +53,42 @@ const notoSansJP = Noto_Sans_JP({
 export const metadata: Metadata = {
   metadataBase: new URL("https://lakkan-inc.vercel.app"),
   title: {
-    default: "株式会社Lakkan | AIコーポレートサイト — 楽観と、計画と。",
+    default: "株式会社Lakkan",
     template: "%s | 株式会社Lakkan",
   },
   description:
-    "株式会社Lakkanは、AIエージェント開発・AIプロダクト・業務再設計を軸に、構想から運用までを一つの流れで実装するAIファースト企業です。",
+    "株式会社Lakkanの公式サイト。事業内容、公開実績、会社情報をご紹介します。",
   keywords: [
-    "AI", "AIエージェント", "生成AI", "LLM", "Claude", "Anthropic",
-    "AI企業", "AIコーポレート", "AI活用", "バイブコーディング",
-    "採用DX", "AI採用", "業務自動化", "Lakkan", "楽観",
+    "株式会社Lakkan", "Lakkan", "ラッカン",
   ],
   authors: [{ name: "株式会社Lakkan", url: "https://lakkan-inc.vercel.app" }],
   creator: "株式会社Lakkan",
   publisher: "株式会社Lakkan",
   applicationName: "Lakkan Inc.",
-  category: "Technology",
-  classification: "AI / Artificial Intelligence Company",
   alternates: { canonical: "https://lakkan-inc.vercel.app" },
   openGraph: {
     type: "website",
     locale: "ja_JP",
     url: "https://lakkan-inc.vercel.app",
-    siteName: "株式会社Lakkan — AI Company",
-    title: "株式会社Lakkan | AIコーポレートサイト",
+    siteName: "株式会社Lakkan",
+    title: "株式会社Lakkan",
     description:
-      "AIエージェント・生成AI・自律システムを核に、企業の業務を構造化・自動化するAIファースト企業。",
+      "株式会社Lakkanの公式サイト。事業内容、公開実績、会社情報をご紹介します。",
     images: [
       {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "株式会社Lakkan — 楽観と、計画と。",
+        url: "/brand/lakkan-orange.jpg",
+        width: 1800,
+        height: 1000,
+        alt: "株式会社Lakkan",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "株式会社Lakkan | AIコーポレートサイト",
+    title: "株式会社Lakkan",
     description:
-      "AIエージェント・生成AI・自律システムを核に、企業の業務を構造化・自動化するAIファースト企業。",
-    images: ["/og.png"],
+      "株式会社Lakkanの公式サイト。事業内容、公開実績、会社情報をご紹介します。",
+    images: ["/brand/lakkan-orange.jpg"],
   },
   robots: {
     index: true,
@@ -131,7 +129,7 @@ export default function RootLayout({
                   url: "https://lakkan-inc.vercel.app",
                   logo: "https://lakkan-inc.vercel.app/og.png",
                   description:
-                    "AIエージェント・生成AI・自律システムを核に、企業の業務を構造化・自動化するAIファースト企業。",
+                    "株式会社Lakkanの公式サイト。事業内容、公開実績、会社情報をご紹介します。",
                   foundingDate: "2026-03",
                   address: {
                     "@type": "PostalAddress",
@@ -140,31 +138,17 @@ export default function RootLayout({
                     addressRegion: "東京都",
                     addressCountry: "JP",
                   },
-                  industry: "Artificial Intelligence",
-                  knowsAbout: [
-                    "Artificial Intelligence",
-                    "Large Language Models",
-                    "AI Agents",
-                    "Generative AI",
-                    "Claude",
-                    "Vibe Coding",
-                    "AI Recruitment",
-                    "Workflow Automation",
-                  ],
                 },
                 {
                   "@type": "WebSite",
                   "@id": "https://lakkan-inc.vercel.app/#website",
                   url: "https://lakkan-inc.vercel.app",
-                  name: "株式会社Lakkan — AI Corporate Site",
+                  name: "株式会社Lakkan 公式サイト",
                   inLanguage: "ja-JP",
                   publisher: {
                     "@id": "https://lakkan-inc.vercel.app/#org",
                   },
-                  about: {
-                    "@type": "Thing",
-                    name: "Artificial Intelligence",
-                  },
+                  about: { "@id": "https://lakkan-inc.vercel.app/#org" },
                 },
                 {
                   "@type": "BreadcrumbList",
@@ -172,7 +156,7 @@ export default function RootLayout({
                   itemListElement: [
                     { "@type": "ListItem", position: 1, name: "Home",     item: "https://lakkan-inc.vercel.app/" },
                     { "@type": "ListItem", position: 2, name: "Services", item: "https://lakkan-inc.vercel.app/services" },
-                    { "@type": "ListItem", position: 3, name: "Luna AI", item: "https://luna-tech-public-site-h0wy4l4x9-s-yamanaka-droids-projects.vercel.app" },
+                    { "@type": "ListItem", position: 3, name: "LunaTech", item: "https://luna-tech-public-site.vercel.app/" },
                     { "@type": "ListItem", position: 4, name: "Works",    item: "https://lakkan-inc.vercel.app/works" },
                     { "@type": "ListItem", position: 5, name: "About",    item: "https://lakkan-inc.vercel.app/about" },
                     { "@type": "ListItem", position: 6, name: "Contact",  item: "https://lakkan-inc.vercel.app/contact" },
