@@ -18,6 +18,11 @@ try {
     assert.equal((html.match(/<main[ >]/g) || []).length, 1, path + " has one main");
     assert.equal((html.match(/<h1[ >]/g) || []).length, 1, path + " has one heading");
     if (path === "/") {
+      const csp=response.headers.get('content-security-policy')||'';
+      assert.ok(csp.includes("frame-src 'self' https://luna-tech-public-site.vercel.app"), 'public preview origins permitted by CSP');
+      assert.ok(csp.includes("frame-ancestors 'self'"), 'embedding this site remains restricted');
+      assert.ok(html.includes('data-live-work="luna-ai"') && html.includes('LunaTechの作例を操作する'), 'home exposes inline work previews');
+      assert.ok(!html.includes('<iframe'), 'external sites are not loaded before client visibility check');
       assert.ok(html.includes('brand-hero') && html.includes('lakkan-orange-settled.jpg') && html.includes('water-assembly-film') && html.includes('site-header') && html.includes('<footer'), "Lakkan Blender assembly with static fallback and shared navigation");
       assert.ok(html.includes('/works/luna-ai') && html.includes('lunatech-current.jpg'), "LunaTech detail link and current cover");
       for (const id of ['central-medical','luna-ai','plime-recruit']) assert.ok(html.includes(`/works/${id}`), 'home links to detail: '+id);
@@ -43,6 +48,8 @@ try {
   const casePage = await (await fetch(base + '/works/central-medical')).text();
   assert.ok(casePage.includes('/services#digital') && casePage.includes('project=central-medical'), 'case study links to relevant support and contextual inquiry');
   const lunaCase = await (await fetch(base + '/works/luna-ai')).text();
+  assert.ok(lunaCase.includes('LunaTechの作例を操作する'), 'case includes live preview');
+  assert.ok(!casePage.includes('Central Medicalの作例を操作する'), 'frame-blocked work retains external fallback');
   assert.ok(lunaCase.includes('https://luna-tech-public-site.vercel.app/'), 'case study retains stable public URL');
   const caseContact = await (await fetch(base + '/contact?topic=corp-site&project=central-medical')).text();
   assert.ok(caseContact.includes('Central Medicalの実績を見て相談したいです。'), 'project context reaches editable message');

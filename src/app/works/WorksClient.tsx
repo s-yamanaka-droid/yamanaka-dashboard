@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import { LiveWork } from "@/components/site/LiveWork";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { WaterContact } from "@/components/site/WaterContact";
@@ -21,10 +21,7 @@ function label(p: Project) {
 
 function ProjectView({project:p, featured=false}: {project:Project; featured?:boolean}) {
   return <article className={featured ? styles.featured : styles.project}>
-    <Link className={styles.visual} href={`/works/${p.id}`} aria-label={`${p.name}の制作内容を見る`}>
-      <Image src={p.cover || "/og.png"} alt={p.coverAlt || `${p.name}の公開画面`} width={1440} height={960} sizes={featured ? "(max-width:760px) 100vw, 65vw" : "(max-width:760px) 100vw, 50vw"} priority={featured}/>
-      <span className={styles.open} aria-hidden="true"><ArrowUpRight size={22}/></span>
-    </Link>
+    <LiveWork project={p} priority={featured}/>
     <div className={styles.caption}>
       <p className={styles.category}>{label(p)}</p>
       <h2><Link href={`/works/${p.id}`}>{p.name}<ArrowUpRight size={22}/></Link></h2>

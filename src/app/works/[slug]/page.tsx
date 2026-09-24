@@ -1,3 +1,4 @@
+import { LiveWork } from "@/components/site/LiveWork";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -24,7 +25,7 @@ export default async function WorkDetail({params}:Props){
    <Link className="brand-text-link" href="/works"><ArrowLeft size={16}/> 実績一覧へ</Link>
    <div className="case-title"><div><p className="case-kicker">{kind}</p><h1>{p.name}</h1></div><p>{notes?.headline||p.description}</p></div>
    {p.workType==="ai-concept"&&<p className="case-disclosure">架空のブランドを題材にした自主制作です。実在企業からの受託実績ではありません。</p>}
-   <figure className="case-cover"><Image src={p.cover} alt={p.coverAlt} width={1440} height={960} sizes="(max-width:760px) 100vw, 90vw" priority/><figcaption>{p.client} / {p.tags[0]}</figcaption></figure>
+   <LiveWork project={p} priority/>
   </SectionShell>
   <SectionShell id="work-story" topBorder>
    <div className="case-story"><aside><p className="water-page-kicker">Overview.</p><dl><div><dt>名称</dt><dd>{p.client}</dd></div><div><dt>区分</dt><dd>{kind}</dd></div><div><dt>テーマ</dt><dd>{p.tags.slice(0,2).join(" / ")}</dd></div></dl><a className="brand-text-link" href={p.url} target="_blank" rel="noopener noreferrer">公開サイトを見る <ArrowUpRight size={18}/><span className="water-accessible-title">（別タブ）</span></a></aside>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { LiveWork } from "./LiveWork";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { SectionShell } from "@/components/primitives/SectionShell";
 import { WaterAssembly } from "./WaterAssembly";
@@ -7,7 +7,7 @@ import { WaterContact } from "./WaterContact";
 import { BrandHeading } from "./BrandHeading";
 import data from "@/data/projects.json";
 
-const featured=['central-medical','luna-ai','plime-recruit'];
+const featured=['luna-ai','central-medical','plime-recruit'];
 const offerings=[
  ['AI導入・業務改善','繰り返す作業を見直し、人が判断に集中できる仕事へ。','ai-operations','Rethink.'],
  ['CRM・システム開発','情報と仕事の流れをつなぐ、現場に合った仕組みを。','crm','Connect.'],
@@ -26,7 +26,7 @@ export function CinematicHome(){return <main id="main" className="brand-home bra
   </SectionShell>
   <SectionShell id="brand-work" topBorder>
     <div className="water-editorial-label"><h2>Selected work<span className="water-period">.</span></h2><p>公開中の仕事</p></div>
-    <div className="water-projects">{featured.map((id,index)=>{const p=data.find(p=>p.id===id)!;return <article key={p.id} className={`water-project water-project-${index}`}><Link className="water-project-visual" href={`/works/${p.id}`} aria-label={`${p.name}の制作内容を見る`}><Image src={p.cover} alt={p.coverAlt} width={1440} height={960} sizes="(max-width:760px) 100vw, 75vw"/><span className="water-project-open">View project <ArrowUpRight size={20}/></span></Link><div className="water-project-caption"><div><h3><Link href={`/works/${p.id}`}>{p.name}<ArrowUpRight size={20}/></Link></h3><p>{p.client} · {p.workType==='client'?'クライアントワーク':'プロダクト・共同事業'}</p></div><p>{p.tags[0]}</p></div><p className="water-project-summary">{p.description}</p></article>;})}</div>
+    <div className="water-projects">{featured.map((id,index)=>{const p=data.find(p=>p.id===id)!;return <article key={p.id} className={`water-project water-project-${index}`}><LiveWork project={p}/><div className="water-project-caption"><div><h3><Link href={`/works/${p.id}`}>{p.name}<ArrowUpRight size={20}/></Link></h3><p>{p.client} · {p.workType==='client'?'クライアントワーク':'プロダクト・共同事業'}</p></div><p>{p.tags[0]}</p></div><p className="water-project-summary">{p.description}</p></article>;})}</div>
     <Link className="water-all-work" href="/works"><span>More possibilities</span><span>すべての実績 <ArrowRight size={24}/></span></Link>
   </SectionShell>
   <SectionShell id="brand-services" tone="creamLight" topBorder>
