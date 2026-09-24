@@ -8,6 +8,11 @@ import styles from "./live-work.module.css";
 
 // Only public sites whose frame policy has been checked. Do not proxy blocked sites.
 const embeds: Record<string, string> = {
+  "central-medical": "https://lakkan-central-medical.vercel.app/",
+  "lia-recruit": "https://lia-recruit.vercel.app/",
+  "now-on-air": "https://nowonair.vercel.app/",
+  "reskilllab-lunatech": "https://lunatech-ai-lab.vercel.app/",
+  "luna-reception": "https://luna-receptionist.vercel.app/",
   "luna-ai": "https://luna-tech-public-site.vercel.app/",
   "plime-recruit": "https://plime-recruit.vercel.app/",
   "aura-ai-concept": "https://aura-beta-snowy.vercel.app/",

@@ -49,7 +49,7 @@ try {
   assert.ok(casePage.includes('/services#digital') && casePage.includes('project=central-medical'), 'case study links to relevant support and contextual inquiry');
   const lunaCase = await (await fetch(base + '/works/luna-ai')).text();
   assert.ok(lunaCase.includes('LunaTechの作例を操作する'), 'case includes live preview');
-  assert.ok(!casePage.includes('Central Medicalの作例を操作する'), 'frame-blocked work retains external fallback');
+  assert.ok(casePage.includes('Central Medicalの作例を操作する'), 'approved origin has an inline preview');
   assert.ok(lunaCase.includes('https://luna-tech-public-site.vercel.app/'), 'case study retains stable public URL');
   const caseContact = await (await fetch(base + '/contact?topic=corp-site&project=central-medical')).text();
   assert.ok(caseContact.includes('Central Medicalの実績を見て相談したいです。'), 'project context reaches editable message');
