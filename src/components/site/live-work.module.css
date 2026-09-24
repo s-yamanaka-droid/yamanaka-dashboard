@@ -1,5 +1,5 @@
 .work{width:100%;min-width:0;color:#132126}
-.viewport{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:16/10;min-height:300px;max-height:65vh;background:#e4e8e4}
+.viewport{position:relative;isolation:isolate;overflow:hidden;width:100%;aspect-ratio:16/10;min-height:300px;max-height:65vh;background:#e4e8e4}
 .cover{object-fit:cover;object-position:top}
 .frame{position:absolute;inset:0;border:0;width:100%;height:100%;opacity:0;background:white;transition:opacity .35s ease}
 .frame.ready{opacity:1}
