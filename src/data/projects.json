@@ -1,5 +1,22 @@
 [
   {
+    "id": "luna-management",
+    "name": "Luna Management",
+    "description": "一人ひとりの行動特性を、採用・配属・育成の対話につなげるプロダクト。ばらばらのカードが集まり、組織の構成へと変わるアニメーションで、その考え方を伝える。",
+    "category": "analytics",
+    "status": "live",
+    "builtWith": "claude_code",
+    "createdAt": "2026-09-25",
+    "updatedAt": "2026-09-25",
+    "url": "https://luna-management-jp.vercel.app/showcase",
+    "client": "LunaTech",
+    "tags": ["組織・人材", "プロダクトデザイン", "モーション"],
+    "cover": "/works/luna-management.jpg",
+    "coverAlt": "Luna Managementの公開紹介。行動特性を表すサンプルカードが、組織のまとまりに変わる。",
+    "featured": true,
+    "workType": "own"
+  },
+  {
     "id": "luna-ai",
     "name": "LunaTech",
     "description": "Lunaを中心に、記憶・リサーチ・制作・実行・成長がつながる世界を表現した公式サイト。金属調のロゴ、月、インタラクティブな宇宙の演出を通じて、LunaTechの理念と可能性を伝える。",

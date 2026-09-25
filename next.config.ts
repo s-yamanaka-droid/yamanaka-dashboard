@@ -22,7 +22,7 @@ const securityHeaders = [
       "connect-src 'self'",
       "media-src 'self' https://d8j0ntlcm91z4.cloudfront.net",
       "frame-ancestors 'self'",
-      "frame-src 'self' https://luna-tech-public-site.vercel.app https://plime-recruit.vercel.app https://aura-beta-snowy.vercel.app https://salon-solna.vercel.app https://lakkan-central-medical.vercel.app https://lia-recruit.vercel.app https://nowonair.vercel.app https://lunatech-ai-lab.vercel.app https://luna-receptionist.vercel.app",
+      "frame-src 'self' https://luna-tech-public-site.vercel.app https://plime-recruit.vercel.app https://aura-beta-snowy.vercel.app https://salon-solna.vercel.app https://lakkan-central-medical.vercel.app https://lia-recruit.vercel.app https://nowonair.vercel.app https://lunatech-ai-lab.vercel.app https://luna-receptionist.vercel.app https://luna-management-jp.vercel.app",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",

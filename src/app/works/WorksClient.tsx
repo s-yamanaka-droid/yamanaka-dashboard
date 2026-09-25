@@ -13,7 +13,7 @@ import type { Project } from "@/types";
 import styles from "./gallery.module.css";
 
 const filters = [["all", "すべて"], ["client", "クライアントワーク"], ["own", "プロダクト・共同事業"], ["ai-concept", "コンセプト作品"]];
-const order = ["central-medical", "luna-ai", "plime-recruit", "lia-recruit", "now-on-air", "luna-reception", "reskilllab-lunatech", "atelier-patterns", "aura-ai-concept", "salon-solna-ai-concept"];
+const order = ["luna-management", "luna-ai", "aura-ai-concept", "atelier-patterns", "central-medical", "lia-recruit", "salon-solna-ai-concept", "now-on-air", "luna-reception", "reskilllab-lunatech", "plime-recruit"];
 const projects = [...data as Project[]].sort((a,b) => order.indexOf(a.id) - order.indexOf(b.id));
 function label(p: Project) {
   return p.workType === "client" ? "クライアントワーク" : p.workType === "ai-concept" ? "コンセプト作品 / 架空ブランド" : "プロダクト・共同事業";

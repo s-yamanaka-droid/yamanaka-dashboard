@@ -2,11 +2,21 @@ import projects from "@/data/projects.json";
 
 export const publicWorks = projects.filter(p => p.status === "live");
 export function workSupport(id: string) {
+ if (id === "luna-management") return {id:"crm", label:"CRM・システム開発", topic:"crm"};
  if (["central-medical", "luna-ai", "aura-ai-concept", "salon-solna-ai-concept", "atelier-patterns"].includes(id)) return {id:"digital", label:"Webサイト・LP制作", topic:"corp-site"};
  if (["plime-recruit", "lia-recruit"].includes(id)) return {id:"digital", label:"採用サイト・LP制作", topic:"recruit"};
  return {id:"ai-operations", label:"AI導入・業務改善", topic:"ai-consult"};
 }
 export const workNotes: Record<string, {headline:string; theme:string; points:[string,string][]}> = {
+ "luna-management": {
+  headline:"一人ひとりから、組織の可能性へ。",
+  theme:"人材の行動特性を整理し、採用・配属・育成の対話につなげるLuna Management。公開作例では、カードが集まり、組織の構成へ変わるアニメーションを体験できます。",
+  points:[
+   ["特性を、ひと目で", "一人ひとりをカードとして表し、タイプや強みを並べて見られる表現です。"],
+   ["個人から組織へ", "ばらばらのカードが並び、まとまり、チームの構成に変わる動きで、製品の考え方を伝えます。"],
+   ["公開できる体験に", "作例は表現用のサンプルだけを使っています。実際の社員・候補者の情報や、管理画面は含みません。"],
+  ],
+ },
  "luna-ai": {
   headline:"Lunaの世界を、体験から伝える。",
   theme:"記憶・リサーチ・制作・実行・成長がつながるLunaTechの公式サイト。機能の紹介に加え、月や宇宙を使った表現で、ブランドの世界観に触れる入口をつくっています。",

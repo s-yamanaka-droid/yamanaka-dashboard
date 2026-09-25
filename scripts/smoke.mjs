@@ -25,8 +25,11 @@ try {
       assert.ok(!html.includes('<iframe'), 'external sites are not loaded before client visibility check');
       assert.ok(html.includes('brand-hero') && html.includes('lakkan-orange-settled.jpg') && html.includes('water-assembly-film') && html.includes('site-header') && html.includes('<footer'), "Lakkan Blender assembly with static fallback and shared navigation");
       assert.ok(html.includes('/works/luna-ai') && html.includes('lunatech-current.jpg'), "LunaTech detail link and current cover");
-      for (const id of ['central-medical','luna-ai','plime-recruit']) assert.ok(html.includes(`/works/${id}`), 'home links to detail: '+id);
+      for (const id of ['luna-management','luna-ai','aura-ai-concept','atelier-patterns']) assert.ok(html.includes(`/works/${id}`), 'home links to detail: '+id);
       assert.ok(!html.includes('h0wy4l4x9'), "old Luna deployment URL is absent");
+      assert.ok(!html.includes('/works/plime-recruit'), 'PLIME is not a featured home work');
+      assert.ok(html.includes('コンセプト作品 / 架空ブランド'), 'design concept is not presented as client work');
+      assert.ok(html.includes('Luna Managementの作例を操作する'), 'Management can be explored inline');
       assert.ok(!html.includes('楽観と、計画と。'), "invented brand phrase is absent");
       assert.match(html, /<img[^>]*class="water-sculpture-still"/, "logo image exists independently of WebGL");
     } else {
