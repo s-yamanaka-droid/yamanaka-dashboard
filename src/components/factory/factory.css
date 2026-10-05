@@ -6,7 +6,8 @@
 .factory-shell button:disabled { opacity: .35; }
 .factory-shell button:focus-visible, .factory-shell a:focus-visible, .factory-shell canvas:focus-visible { outline: 1px solid #ff7a1a; outline-offset: 5px; }
 .factory-shell .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-.factory-shell { position: relative; font-family: Arial, Helvetica, sans-serif; color-scheme: dark; height: 100dvh; min-height: 360px; overflow: hidden; color: #f4f1ea; background: #000; }
+.factory-shell { position: relative; font-family: Arial, var(--font-sans-jp), Helvetica, sans-serif; color-scheme: dark; height: 100dvh; min-height: 360px; overflow: hidden; color: #f4f1ea; background: #000; }
+.factory-shell h1, .factory-shell h2 { font-family: inherit; }
 .factory-shell .factory-scene { position: absolute; inset: 0; }
 .factory-shell .factory-header { position: absolute; inset: max(22px, env(safe-area-inset-top)) 34px auto; z-index: 20; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
 .factory-shell .factory-header button { pointer-events: auto; border: 0; background: transparent; color: inherit; min-height: 44px; }
@@ -14,6 +15,15 @@
 .factory-shell .menu-toggle { display: flex; align-items: center; gap: 16px; padding: 0; color: #b5b5b8 !important; font-size: 13px; }
 .factory-shell .menu-toggle svg { width: 20px; height: 20px; }
 .factory-shell .menu-toggle:hover { color: #fff !important; }
+.factory-shell .factory-intro { position: absolute; left: 34px; bottom: 86px; z-index: 20; max-width: 420px; }
+.factory-shell .factory-intro h1 { font-size: 18px; font-weight: 400; line-height: 1.65; letter-spacing: .015em; margin: 0 0 6px; text-wrap: balance; }
+.factory-shell .factory-intro h1 span { display: inline-block; }
+.factory-shell .factory-services { margin: 0; font-size: 11px; line-height: 1.8; color: #b4b4b9; }
+.factory-shell .factory-actions { display: flex; gap: 10px; margin-top: 16px; }
+.factory-shell .factory-actions button, .factory-shell .factory-actions a { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 44px; padding: 0 15px; border: 1px solid #ffffff35; border-radius: 3px; background: #0b0b0bf2; color: #eee; text-decoration: none; font-size: 12px; }
+.factory-shell .factory-actions a { background: #f4f1ea; border-color: #f4f1ea; color: #111; }
+.factory-shell .factory-actions svg { width: 15px; height: 15px; }
+.factory-shell .factory-intro[aria-hidden="true"] { visibility: hidden; }
 .factory-shell .factory-hud { position: absolute; inset: auto 26px max(18px, env(safe-area-inset-bottom)); height: 44px; z-index: 20; pointer-events: none; }
 .factory-shell .gesture-hint { position: absolute; left: 50%; transform: translateX(-50%); margin: 0; height: 44px; display: flex; align-items: center; gap: 12px; color: #85858b; font-size: 12px; white-space: nowrap; }
 .factory-shell .gesture-hint svg { width: 13px; height: 18px; }
@@ -35,14 +45,21 @@
 .factory-shell .panel-backdrop { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; }
 .factory-shell .factory-panel { position: absolute; width: 332px; right: 34px; top: 50%; transform: translateY(-50%); padding: 12px 16px 8px; border: 1px solid #ffffff21; border-radius: 8px; background: #0b0b0bf2; box-shadow: 0 22px 90px #0009; backdrop-filter: blur(16px); animation: factory-panel-in .28s ease both; max-height: calc(100dvh - 110px); overflow-y: auto; }
 .factory-shell .panel-top { display: flex; align-items: center; justify-content: space-between; min-height: 44px; margin: -5px -8px 7px 0; }
-.factory-shell .panel-top h1 { margin: 0; font-size: 12px; font-weight: 400; letter-spacing: .01em; }
+.factory-shell .panel-top h2 { margin: 0; font-size: 12px; font-weight: 400; letter-spacing: .01em; }
 .factory-shell .work-preview { position: relative; display: block; overflow: hidden; border-radius: 3px; background: #161616; color: #fff; }
 .factory-shell .work-image { display: block; width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; transition: transform .4s ease; }
 .factory-shell .work-preview:hover .work-image { transform: scale(1.025); }
 .factory-shell .preview-arrow { position: absolute; bottom: 10px; right: 10px; width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid #ffffff45; background: #0008; backdrop-filter: blur(5px); }
 .factory-shell .preview-arrow svg { width: 15px; height: 15px; }
-.factory-shell .work-caption { padding: 15px 0 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.factory-shell .work-caption h2 { margin: 0; font-size: 13px; font-weight: 400; }
+.factory-shell .work-caption { padding: 9px 0 15px; }
+.factory-shell .work-caption h2 { margin: 0 0 10px; font-size: 17px; font-weight: 400; line-height: 1.65; text-wrap: balance; }
+.factory-shell .work-caption p { margin: 0; font-size: 12px; line-height: 1.85; color: #b4b4b9; }
+.factory-shell .work-example-label { margin: 0 0 8px; color: #929299; font-size: 10px; line-height: 1.6; }
+.factory-shell .work-actions { display: flex; justify-content: space-between; align-items: center; gap: 6px; padding: 10px 0; }
+.factory-shell .service-contact { min-height: 44px; display: inline-flex; align-items: center; gap: 6px; color: #f4f1ea; font-size: 11px; text-decoration: none; }
+.factory-shell .service-contact svg { width: 13px; height: 13px; }
+.factory-shell .work-scope { padding: 0; margin: 5px 0; list-style: none; }
+.factory-shell .work-scope li { border-top: 1px solid #ffffff12; padding: 12px 0; font-size: 12px; line-height: 1.65; }
 .factory-shell .work-link { font-size: 10px; display: inline-flex; align-items: center; gap: 3px; color: #a1a1a7; text-decoration: none; white-space: nowrap; min-height: 32px; }
 .factory-shell .work-link svg { width: 13px; height: 13px; }
 .factory-shell .work-link:hover { color: #fff; }
@@ -53,6 +70,8 @@
 .factory-shell .menu-works button { display: flex; text-align: left; justify-content: space-between; gap: 12px; background: transparent; color: #e5e4df; border: 0; border-bottom: 1px solid #ffffff12; padding: 17px 0; font-size: 12px; min-height: 54px; }
 .factory-shell .menu-works button > span:first-child { color: #89898f; font-size: 11px; }
 .factory-shell .menu-works button > span:last-child { display: flex; align-items: center; gap: 8px; }
+.factory-shell .menu-works button { flex-direction: column; gap: 7px; }
+.factory-shell .menu-works button > span:last-child { justify-content: space-between; }
 .factory-shell .menu-works svg, .factory-shell .menu-secondary svg { width: 12px; height: 12px; }
 .factory-shell .menu-works button:hover > span { color: #fff; }
 .factory-shell .menu-secondary { display: flex; justify-content: space-between; padding: 18px 0 12px; flex-wrap: wrap; gap: 8px 18px; }
@@ -69,15 +88,22 @@
 .factory-shell .factory-header { left: 22px; right: 22px; top: max(14px, env(safe-area-inset-top)); }
 .factory-shell .lakkan-wordmark { font-size: 22px; }
 .factory-shell .factory-hud { left: 16px; right: 16px; bottom: max(18px, env(safe-area-inset-bottom)); }
+.factory-shell .factory-intro { left: 22px; right: 22px; bottom: 85px; max-width: 420px; }
+.factory-shell .factory-intro h1 { font-size: 16px; }
+.factory-shell .factory-services { font-size: 10px; }
+.factory-shell .factory-actions { margin-top: 12px; }
 .factory-shell .factory-panel { width: calc(100% - 36px); max-width: 410px; left: 50%; right: auto; top: auto; bottom: max(18px, env(safe-area-inset-bottom)); transform: translateX(-50%); padding: 8px 14px 4px; max-height: 62dvh; }
 .factory-shell .work-image { aspect-ratio: 2/1; }
 .factory-shell .work-caption { padding-top: 9px; padding-bottom: 6px; }
 .factory-shell .menu-panel { top: 78px; bottom: auto; }
-.factory-shell .gesture-hint { font-size: 11px; gap: 10px; }
+.factory-shell .gesture-hint { font-size: 10px; gap: 7px; left: 0; transform: none; }
 }
 @media (max-height: 550px) and (min-width: 650px) {
 .factory-shell .factory-panel { width: 290px; top: 74px; bottom: 14px; left: auto; right: 22px; transform: none; max-height: calc(100dvh - 88px); }
 .factory-shell .work-image { aspect-ratio: 2/1; }
+.factory-shell .factory-intro { bottom: 67px; }
+.factory-shell .factory-intro h1 { font-size: 14px; margin-bottom: 3px; }
+.factory-shell .factory-actions { margin-top: 7px; }
 }
 @media (prefers-reduced-motion: reduce) {
 .factory-shell *, .factory-shell *::before, .factory-shell *::after { animation: none !important; transition: none !important; }

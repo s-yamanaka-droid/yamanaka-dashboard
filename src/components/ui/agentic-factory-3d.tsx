@@ -303,7 +303,7 @@ function initMachineScene(
     const embedded = options.embedded
     const minimal = options.minimal ?? false
     const shortNames: Record<StationId, string> = {
-      engine: 'Motion', admin: 'AI', storefront: 'Work', cabinet: 'Lab', cashdesk: 'Contact',
+      engine: 'Web制作', admin: 'AI・業務改善', storefront: '採用・人財支援', cabinet: 'CRM・業務アプリ', cashdesk: '相談する',
     }
     const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
     const palette = { amber: 0xff7a1a, white: 0xf4f1ea, dark: 0x171b21, steel: 0x59616b }

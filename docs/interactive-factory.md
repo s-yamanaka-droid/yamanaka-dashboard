@@ -2,10 +2,16 @@
 
 The homepage is one fullscreen procedural Three.js scene. It keeps the supplied
 factory geometry, materials, lighting and simulation. The surrounding interface
-is limited to Lakkan, Menu, an interaction hint and pause.
+keeps Lakkan, Menu, an interaction hint and pause. A brief company introduction
+and two visible actions explain the support offered and lead to an inquiry
+without requiring visitors to discover or operate a 3D station.
 
 Hovering reveals a short station name. Clicking or tapping moves to that device
-and opens an existing public work with its cover and destination. Closing,
+and opens the relevant Lakkan support, a concrete description and a contextual
+inquiry link. Web, AI operations and recruitment show existing public examples;
+CRM describes its scope without inventing a case. Homepage stations do not link
+directly to Luna products. Examples open an internal case page so visitors can
+understand the work before leaving Lakkan. Closing,
 Escape or browser Back restores the exploration pose. Menu also provides the
 existing Works, Services, About and Contact routes.
 

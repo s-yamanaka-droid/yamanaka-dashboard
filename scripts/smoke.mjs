@@ -21,7 +21,10 @@ try {
       const csp=response.headers.get('content-security-policy')||'';
       assert.ok(csp.includes("frame-src 'self' https://luna-tech-public-site.vercel.app"), 'public preview origins permitted by CSP');
       assert.ok(csp.includes("frame-ancestors 'self'"), 'embedding this site remains restricted');
-      assert.ok(html.includes('factory-shell') && html.includes('Drag to explore'), 'home exposes the fullscreen interactive factory');
+      assert.ok(html.includes('factory-shell') && html.includes('装置を選ぶと支援内容が開きます'), 'home explains how the interactive factory works');
+      assert.ok(html.includes('人と仕事の課題を、') && html.includes('整理から実装まで。') && html.includes('AI・業務改善 / CRM開発 / Web制作 / 採用支援'), 'home explains Lakkan support without requiring exploration');
+      assert.ok(html.includes('支援内容を見る') && html.includes('/contact?topic=other'), 'support and inquiry are available before WebGL interaction');
+      assert.ok(!html.includes('luna-management') && !html.includes('luna-receptionist'), 'home does not route visitors directly to unrelated Luna products');
       assert.ok(html.includes('Menuを開く') && html.includes('動きを一時停止'), 'home exposes accessible exploration controls');
       assert.ok(!html.includes('<iframe') && !html.includes('<video'), 'home loads procedural geometry instead of old film or external previews');
       assert.ok(!html.includes('class="site-header"') && !html.includes('class="site-footer'), 'factory has its own minimal navigation');
