@@ -1,3 +1,5 @@
-import { CinematicHome } from "@/components/site/CinematicHome";
+import FactoryHome from "@/components/factory/FactoryHome";
 
-export default function Home() { return <CinematicHome/>; }
+export default function Home() {
+  return <FactoryHome />;
+}

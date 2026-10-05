@@ -21,17 +21,11 @@ try {
       const csp=response.headers.get('content-security-policy')||'';
       assert.ok(csp.includes("frame-src 'self' https://luna-tech-public-site.vercel.app"), 'public preview origins permitted by CSP');
       assert.ok(csp.includes("frame-ancestors 'self'"), 'embedding this site remains restricted');
-      assert.ok(html.includes('data-live-work="luna-ai"') && html.includes('LunaTechの作例を操作する'), 'home exposes inline work previews');
-      assert.ok(!html.includes('<iframe'), 'external sites are not loaded before client visibility check');
-      assert.ok(html.includes('brand-hero') && html.includes('lakkan-orange-settled.jpg') && html.includes('water-assembly-film') && html.includes('site-header') && html.includes('<footer'), "Lakkan Blender assembly with static fallback and shared navigation");
-      assert.ok(html.includes('/works/luna-ai') && html.includes('lunatech-current.jpg'), "LunaTech detail link and current cover");
-      for (const id of ['luna-management','luna-ai','aura-ai-concept','atelier-patterns']) assert.ok(html.includes(`/works/${id}`), 'home links to detail: '+id);
-      assert.ok(!html.includes('h0wy4l4x9'), "old Luna deployment URL is absent");
-      assert.ok(!html.includes('/works/plime-recruit'), 'PLIME is not a featured home work');
-      assert.ok(html.includes('コンセプト作品 / 架空ブランド'), 'design concept is not presented as client work');
-      assert.ok(html.includes('Luna Managementの作例を操作する'), 'Management can be explored inline');
-      assert.ok(!html.includes('楽観と、計画と。'), "invented brand phrase is absent");
-      assert.match(html, /<img[^>]*class="water-sculpture-still"/, "logo image exists independently of WebGL");
+      assert.ok(html.includes('factory-shell') && html.includes('Drag to explore'), 'home exposes the fullscreen interactive factory');
+      assert.ok(html.includes('Menuを開く') && html.includes('動きを一時停止'), 'home exposes accessible exploration controls');
+      assert.ok(!html.includes('<iframe') && !html.includes('<video'), 'home loads procedural geometry instead of old film or external previews');
+      assert.ok(!html.includes('class="site-header"') && !html.includes('class="site-footer'), 'factory has its own minimal navigation');
+      assert.ok(!html.includes('ばらばらを、可能性に。'), 'retired slogan is absent from the initial page');
     } else {
       assert.ok(html.includes('site-header') && html.includes('site-footer'), path + " shared navigation");
     }

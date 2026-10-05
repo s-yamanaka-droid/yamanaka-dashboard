@@ -47,3 +47,6 @@ audit-report-*.md
 .audit-scores.json
 src/data/products.full.json
 src/data/vault_stats.json
+
+# Isolated local visual baseline; archived outside the public release.
+/factory-lab/

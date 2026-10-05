@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const COOKIE_KEY = "lakkan-cookie-consent";
 const SANS = "var(--font-display), 'Space Grotesk', system-ui, sans-serif";
 
 export function CookieConsent() {
+  const pathname = usePathname();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export function CookieConsent() {
     setShow(false);
   };
 
-  if (!show) return null;
+  if (!show || pathname === "/") return null;
 
   return (
     <div
