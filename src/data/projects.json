@@ -19,21 +19,21 @@
   {
     "id": "luna-ai",
     "name": "LunaTech",
-    "description": "Lunaを中心に、記憶・リサーチ・制作・実行・成長がつながる世界を表現した公式サイト。金属調のロゴ、月、インタラクティブな宇宙の演出を通じて、LunaTechの理念と可能性を伝える。",
+    "description": "LunaTechの公式ブランドサイト。金属調の文字、月、宇宙の演出を通じて、理念と6つのサービスをひとつの世界観で伝えるWeb制作です。",
     "category": "ai_agent",
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-07-25",
-    "updatedAt": "2026-09-17",
+    "updatedAt": "2026-10-05",
     "url": "https://luna-tech-public-site.vercel.app/",
     "client": "LunaTech",
     "tags": [
-      "Luna AI",
-      "AIハーネス",
-      "長期記憶",
-      "ローカルファースト"
+      "ブランドサイト",
+      "Web制作",
+      "タイポグラフィ",
+      "モーション"
     ],
-    "cover": "/works/lunatech-current.jpg",
+    "cover": "/works/lunatech-curated.jpg",
     "coverAlt": "LunaTechの現在の公式サイト。黒い背景に、銀と緑の金属調のLunaTechロゴを大きく配置している。",
     "featured": true,
     "workType": "own"
@@ -83,23 +83,23 @@
   },
   {
     "id": "now-on-air",
-    "name": "Now On AIr",
-    "description": "AI業界の主要ニュースを、事業判断に使える論点へ編集して届けるモーニングディスパッチ。情報収集から要約、公開までを継続運用している。",
+    "name": "Now on AIr",
+    "description": "AIニュースを、事業判断に使える論点へ編集するLakkanの自社メディア。新聞のような見出しと段組、写真、記事のまとまりで、情報を読み進められるWebサイトです。",
     "category": "ai_agent",
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-05-12",
-    "updatedAt": "2026-08-05",
+    "updatedAt": "2026-10-05",
     "url": "https://nowonair.vercel.app",
     "client": "Lakkan",
     "tags": [
       "AIニュース",
-      "リサーチ",
-      "自動更新",
-      "編集"
+      "メディアサイト",
+      "Web制作",
+      "編集設計"
     ],
-    "cover": "/works/now-on-air.jpg",
-    "coverAlt": "Now On AIrの公開画面。大きなタイポグラフィと当日のAIニュースを新聞のように編集している。",
+    "cover": "/works/now-on-air-current.jpg",
+    "coverAlt": "Now on AIrの現在の白い紙面。大きな見出し、写真、記事を新聞のような段組で配置している。",
     "featured": true,
     "workType": "own"
   },

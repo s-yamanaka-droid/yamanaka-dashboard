@@ -8,22 +8,19 @@ import { WaterContact } from "@/components/site/WaterContact";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { BrandHeading } from "@/components/site/BrandHeading";
 import { SectionShell } from "@/components/primitives/SectionShell";
-import data from "@/data/projects.json";
+import { selectedWorks, workPresentationLabel } from "@/data/selected-works";
 import type { Project } from "@/types";
 import styles from "./gallery.module.css";
 
 const filters = [["all", "すべて"], ["client", "クライアントワーク"], ["own", "プロダクト・共同事業"], ["ai-concept", "コンセプト作品"]];
-const order = ["luna-management", "luna-ai", "aura-ai-concept", "atelier-patterns", "central-medical", "lia-recruit", "salon-solna-ai-concept", "now-on-air", "luna-reception", "reskilllab-lunatech", "plime-recruit"];
-const projects = [...data as Project[]].sort((a,b) => order.indexOf(a.id) - order.indexOf(b.id));
-function label(p: Project) {
-  return p.workType === "client" ? "クライアントワーク" : p.workType === "ai-concept" ? "コンセプト作品 / 架空ブランド" : "プロダクト・共同事業";
-}
+const projects = selectedWorks;
+const availableFilters = filters.filter(([id]) => id === "all" || projects.some(project => project.workType === id));
 
 function ProjectView({project:p, featured=false}: {project:Project; featured?:boolean}) {
   return <article className={featured ? styles.featured : styles.project}>
     <LiveWork project={p} priority={featured}/>
     <div className={styles.caption}>
-      <p className={styles.category}>{label(p)}</p>
+      <p className={styles.category}>{workPresentationLabel(p)}</p>
       <h2><Link href={`/works/${p.id}`}>{p.name}<ArrowUpRight size={22}/></Link></h2>
       <p className={styles.client}>{p.client}</p>
       <p className={styles.description}>{p.description}</p>
@@ -41,10 +38,10 @@ export function WorksClient() {
     <SectionShell id="works-gallery">
       <header className={styles.heading}>
         <div><p className="water-page-kicker">Selected work<span>.</span></p><BrandHeading as="h1">{"「できるかな」を、\nかたちに。"}</BrandHeading></div>
-        <p className={styles.intro}>Webサイトから、AIと業務の仕組みまで。<br/>Lakkanが手がけた、公開中の仕事です。</p>
+        <p className={styles.intro}>Lakkanが手がけた、公開中の制作例。<br/>表現と構成にこだわった仕事を、厳選してご紹介します。</p>
       </header>
       <div className={styles.toolbar}>
-        <div className={styles.filters} role="group" aria-label="実績を種類で絞り込む">{filters.map(([id,name])=><button key={id} aria-pressed={filter===id} onClick={()=>setFilter(id)}>{id==='client'?<>クライアント<wbr/>ワーク</>:id==='own'?<>プロダクト・<wbr/>共同事業</>:name}</button>)}</div>
+        {availableFilters.length > 2 && <div className={styles.filters} role="group" aria-label="実績を種類で絞り込む">{availableFilters.map(([id,name])=><button key={id} aria-pressed={filter===id} onClick={()=>setFilter(id)}>{id==='client'?<>クライアント<wbr/>ワーク</>:id==='own'?<>プロダクト・<wbr/>共同事業</>:name}</button>)}</div>}
         <p className={styles.count} role="status" aria-live="polite">{visible.length} 件</p>
       </div>
       {filter === "ai-concept" && <p className={styles.note}>架空のブランドを題材にした制作実験です。実在企業からの受託実績ではありません。</p>}

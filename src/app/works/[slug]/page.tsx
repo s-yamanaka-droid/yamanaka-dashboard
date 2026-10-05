@@ -7,6 +7,7 @@ import { ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
 import { SectionShell } from "@/components/primitives/SectionShell";
 import { WaterContact } from "@/components/site/WaterContact";
 import { publicWorks, workNotes, workSupport } from "@/lib/work-detail";
+import { selectedWorks, workPresentationLabel } from "@/data/selected-works";
 
 export const dynamicParams = false;
 export function generateStaticParams(){return publicWorks.map(p=>({slug:p.id}));}
@@ -18,8 +19,8 @@ export async function generateMetadata({params}:Props):Promise<Metadata>{
 export default async function WorkDetail({params}:Props){
  const {slug}=await params;const p=publicWorks.find(p=>p.id===slug);if(!p)notFound();
  const notes=workNotes[p.id], support=workSupport(p.id);
- const related=publicWorks.filter(item=>item.id!==p.id&&workSupport(item.id).id===support.id).slice(0,2);
- const kind=p.workType==="client"?"クライアントワーク":p.workType==="ai-concept"?"コンセプト作品 / 架空ブランド":"プロダクト・共同事業";
+ const related=selectedWorks.filter(item=>item.id!==p.id).slice(0,2);
+ const kind=workPresentationLabel(p);
  return <main id="main" className="work-detail">
   <SectionShell id="work-detail-hero">
    <Link className="brand-text-link" href="/works"><ArrowLeft size={16}/> 実績一覧へ</Link>
