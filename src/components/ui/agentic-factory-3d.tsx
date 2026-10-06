@@ -1429,7 +1429,7 @@ function initMachineScene(
       const horizontalFit =
         (minimal && !mobile ? 14.7 : 17.3) / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * aspect * availableWidth)
       const verticalFit =
-        (minimal && !mobile ? 9.6 : 11.5) / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * (embedded ? 0.85 : minimal ? 0.8 : 0.62))
+        (minimal && !mobile ? 10.3 : 11.5) / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * (embedded ? 0.85 : minimal ? 0.8 : 0.62))
       baseDistance =
         (Math.max(horizontalFit, verticalFit) * (mobile ? 0.97 : 1)) /
         (embedded ? (mobile ? 1.15 : 1.45) : 1)
@@ -1891,7 +1891,10 @@ function initMachineScene(
         mode !== 'order' &&
         cameraMode === 'overview' &&
         now - lastInteraction > (minimal ? 1800 : 6500)
-      controls.autoRotateSpeed = minimal ? 0.35 : 0.24
+      // Keep the idle presentation near its composed front view; manual orbit
+      // remains unrestricted. A full idle spin would present the backs of all
+      // screens and lose the visual hierarchy of the homepage.
+      controls.autoRotateSpeed = minimal ? 0.3 * Math.cos(flightTime * 0.16) : 0.24
       controls.update(dt)
       // Project station callouts after the camera update, clamping them inside the iframe.
       stations.forEach((s, i) => {
