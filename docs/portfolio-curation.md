@@ -6,6 +6,6 @@ The existing case-study URLs stay available. They are not promoted by the galler
 
 The two selected works use stable screenshots and public-site links. LunaTech's public response disallows external framing (`X-Frame-Options: DENY` and `frame-ancestors 'none'`); its former iframe was not a valid preview. Covers preserve their original 16:9 ratio on mobile.
 
-This release changes the portfolio selection, captions and covers. The new homepage design proposals are still under review; this release does not implement a new visual direction.
+The initial curation release changed the portfolio selection, captions and covers. The subsequent homepage release implements the accepted cobalt typography direction and presents the same two examples as large screenshot rows. See `homepage-quality.md` for the visual contract and validation.
 
-Validation: `npm run check:release`, public gallery rendering at desktop and mobile widths, and homepage support-panel checks. Passing these checks validates publication and interactions, not a user's design approval.
+Validation: `npm run check:release`, public gallery rendering at desktop and mobile widths, and homepage navigation and topic-specific inquiry checks. Passing these checks validates publication and interactions, not a user's design approval.

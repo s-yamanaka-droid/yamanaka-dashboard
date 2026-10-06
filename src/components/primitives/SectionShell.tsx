@@ -18,15 +18,18 @@ import { INSTRUMENT, SANS, FRANK, EASE, ACCENT } from "@/lib/design-tokens";
  */
 
 type AccentRole = "vermillion" | "blue" | "orange" | "forest";
-type Tone = "cream" | "creamLight"; // 互いの色違い
+type Tone = "cream" | "creamLight" | "white" | "cobalt";
 
 const TONE_BG: Record<Tone, string> = {
   cream: "#EEF0EC",
   creamLight: "#E4E8E4",
+  white: "#FFFFFF",
+  cobalt: "#234DEB",
 };
 
 export function SectionShell({
   id,
+  className,
   tone = "cream",
   eyebrow,
   eyebrowVersion,
@@ -35,6 +38,7 @@ export function SectionShell({
   children,
 }: {
   id?: string;
+  className?: string;
   tone?: Tone;
   /** "Origin Story" のようなセクション名 */
   eyebrow?: string;
@@ -49,6 +53,7 @@ export function SectionShell({
   return (
     <section
       id={id}
+      className={className}
       style={{
         background: TONE_BG[tone],
         padding: "var(--section-padding, 120px 56px)",

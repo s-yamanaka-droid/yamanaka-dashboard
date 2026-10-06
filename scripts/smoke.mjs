@@ -11,6 +11,7 @@ try {
     await new Promise(resolve => setTimeout(resolve, 250));
   }
   assert.ok(ready, "health endpoint is ready");
+  assert.equal((await (await fetch(base + '/api/health')).json()).experience, 'cobalt-corporate', 'health identifies the current homepage');
   for (const path of ["/", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy"]) {
     const response = await fetch(base + path);
     assert.equal(response.status, 200, path);
@@ -21,14 +22,23 @@ try {
       const csp=response.headers.get('content-security-policy')||'';
       assert.ok(csp.includes("frame-src 'self' https://luna-tech-public-site.vercel.app"), 'public preview origins permitted by CSP');
       assert.ok(csp.includes("frame-ancestors 'self'"), 'embedding this site remains restricted');
-      assert.ok(html.includes('factory-shell') && html.includes('装置を選ぶと支援内容が開きます'), 'home explains how the interactive factory works');
-      assert.ok(html.includes('人と仕事の課題を、') && html.includes('整理から実装まで。') && html.includes('AI・業務改善 / CRM開発 / Web制作 / 採用支援'), 'home explains Lakkan support without requiring exploration');
-      assert.ok(html.includes('支援内容を見る') && html.includes('/contact?topic=other'), 'support and inquiry are available before WebGL interaction');
+      assert.ok(html.includes('data-home="cobalt"') && !html.includes('factory-shell'), 'home renders the approved corporate direction');
+      assert.ok(html.includes('頭はやわらかく。') && html.includes('つくるのは、しっかり。'), 'home has the approved headline');
+      for (const label of ['業務改善・AI活用', 'CRM・業務アプリ', 'Webサイト・LP', '採用・人材支援']) assert.ok(html.includes(label), 'home states support: ' + label);
+      assert.ok(html.includes('href="/contact#inquiry"') && html.includes('相談をはじめる'), 'home leads directly to the inquiry form');
       assert.ok(!html.includes('luna-management') && !html.includes('luna-receptionist'), 'home does not route visitors directly to unrelated Luna products');
-      assert.ok(html.includes('Menuを開く') && html.includes('動きを一時停止'), 'home exposes accessible exploration controls');
-      assert.ok(!html.includes('<iframe') && !html.includes('<video'), 'home loads procedural geometry instead of old film or external previews');
-      assert.ok(!html.includes('class="site-header"') && !html.includes('class="site-footer'), 'factory has its own minimal navigation');
-      assert.ok(!html.includes('ばらばらを、可能性に。'), 'retired slogan is absent from the initial page');
+      assert.ok(html.includes('メニューを開く') && html.includes('aria-controls="home-mobile-nav"'), 'home has accessible mobile navigation');
+      assert.ok(!html.includes('<iframe') && !html.includes('<video') && !html.includes('<canvas'), 'home does not require media or WebGL to explain the company');
+      const homeIds = [...html.matchAll(/data-selected-work="([^"]+)"/g)].map(match => match[1]);
+      assert.deepEqual(homeIds, ['now-on-air', 'luna-ai'], 'home displays only selected work');
+      assert.ok(html.includes('自社メディア / Web制作') && html.includes('別ブランドのWeb制作'), 'home identifies the separate brands');
+      for (const topic of ['ai-consult','crm','corp-site','placement']) assert.ok(html.includes('/contact?topic=' + topic + '#inquiry'), 'service inquiry preserves topic ' + topic);
+      assert.ok(html.includes('フッターナビゲーション') && html.includes('href="/privacy"'), 'home retains company and privacy navigation');
+      const ogUrl = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
+      assert.ok(ogUrl, 'home exposes a share image');
+      const og = await fetch(base + new URL(ogUrl).pathname);
+      assert.equal(og.status, 200, 'current share image loads');
+      assert.ok(og.headers.get('content-type')?.includes('image/png'), 'share image is PNG');
     } else {
       assert.ok(html.includes('site-header') && html.includes('site-footer'), path + " shared navigation");
     }
@@ -45,6 +55,7 @@ try {
   assert.ok(assembly.headers.get('content-type')?.includes('video/mp4'),'assembly video MIME');
   const contact = await (await fetch(base + "/contact?topic=luna")).text();
   assert.ok(/value="luna" selected=""|selected="" value="luna"/.test(contact), "topic survives server rendering");
+  assert.ok(contact.includes('一緒に、') && contact.includes('次の一歩を。') && !contact.includes('<canvas') && !contact.includes('lets-talk-orange.jpg'), 'inquiry page uses the corporate contact direction');
   const casePage = await (await fetch(base + '/works/central-medical')).text();
   assert.ok(casePage.includes('/services#digital') && casePage.includes('project=central-medical'), 'case study links to relevant support and contextual inquiry');
   const lunaCase = await (await fetch(base + '/works/luna-ai')).text();
