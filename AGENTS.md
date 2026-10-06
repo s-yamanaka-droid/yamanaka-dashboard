@@ -20,6 +20,7 @@ This repository is public and deploys the Lakkan corporate website.
 
 1. Read the target component and `src/components/primitives/SectionShell.tsx`.
 2. Preserve the existing Lakkan visual language unless a design change is explicitly requested.
+   The oversized cobalt homepage is rejected. Do not restore it or reuse proposal B as an approved reference. The current homepage uses the original interactive 3D workshop; technical validation does not imply aesthetic approval.
 3. Use text, SVG, or Lucide icons instead of emoji.
 4. Run `npm run lint`, `npx tsc --noEmit`, and `npm run build`.
 5. Review `git diff` for invented metrics and non-public information.

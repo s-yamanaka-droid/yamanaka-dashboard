@@ -18,13 +18,12 @@ import { INSTRUMENT, SANS, FRANK, EASE, ACCENT } from "@/lib/design-tokens";
  */
 
 type AccentRole = "vermillion" | "blue" | "orange" | "forest";
-type Tone = "cream" | "creamLight" | "white" | "cobalt";
+type Tone = "cream" | "creamLight" | "white";
 
 const TONE_BG: Record<Tone, string> = {
   cream: "#EEF0EC",
   creamLight: "#E4E8E4",
   white: "#FFFFFF",
-  cobalt: "#234DEB",
 };
 
 export function SectionShell({
