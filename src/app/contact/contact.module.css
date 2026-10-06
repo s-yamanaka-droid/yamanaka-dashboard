@@ -1,13 +1,13 @@
 .page { background: #fff; color: #15171b; font-family: Arial, Helvetica, var(--font-sans-jp), sans-serif; }
 .intro { --section-padding: 170px clamp(20px, 4vw, 64px) 64px; }
 .introGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; padding-bottom: 56px; border-bottom: 1px solid #15171b; }
-.page .label { color: #234deb; font-size: 11px; letter-spacing: .12em; font-weight: 700; margin: 0 0 24px; }
-.page h1 { font-family: var(--font-sans-jp), sans-serif; font-size: clamp(40px, 5vw, 68px); font-weight: 900; letter-spacing: -.055em; line-height: 1.4; color: #234deb; }
+.page .label { color: #94501d; font-size: 11px; letter-spacing: .12em; font-weight: 500; margin: 0 0 24px; }
+.page h1 { font-family: var(--font-sans-jp), sans-serif; font-size: clamp(36px, 5vw, 60px); font-weight: 500; letter-spacing: -.035em; line-height: 1.5; color: #15171b; }
 .introGrid > p { font-size: 15px; line-height: 2; margin: 0; }
-.introGrid > p a { display: inline-flex; align-items: center; min-height: 44px; color: #234deb; text-decoration: underline; text-underline-offset: 6px; margin-top: 20px; }
+.introGrid > p a { display: inline-flex; align-items: center; min-height: 44px; color: #94501d; text-decoration: underline; text-underline-offset: 6px; margin-top: 20px; }
 .page :global(.contact-layout) { max-width: 1408px; margin: auto; padding: 0 clamp(20px, 4vw, 64px) 100px; gap: 10%; background: #fff; }
 .page :global(.contact-aside h2) { font-family: var(--font-sans-jp), sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -.035em; }
-.page :global(.contact-aside .eyebrow) { font-family: Arial, Helvetica, sans-serif; color: #234deb; }
+.page :global(.contact-aside .eyebrow) { font-family: Arial, Helvetica, sans-serif; color: #94501d; }
 .page :global(.contact-aside .eyebrow::before) { display: none; }
 .page :global(.contact-aside p) { color: #61646c; font-size: 13px; }
 .page :global(.contact-aside > p:not(.eyebrow)) { font-family: var(--font-sans-jp), sans-serif; }
@@ -15,10 +15,10 @@
 .page :global(.contact-form label) { font-size: 13px; font-weight: 700; }
 .page :global(.contact-form input), .page :global(.contact-form select), .page :global(.contact-form textarea) { background: #fff; border: 1px solid #c7cbd4; border-radius: 0; font-family: var(--font-sans-jp), sans-serif; font-size: 16px; min-height: 52px; padding: 14px; }
 .page :global(.contact-form .form-note) { color: #61646c; font-size: 12px; line-height: 1.9; }
-.page :global(.form-actions .pill-button.orange) { width: 100%; border-radius: 0; background: #234deb; color: #fff; padding: 16px 20px; min-height: 60px; font-size: 14px; }
-.page :global(.form-actions .pill-button.orange:hover) { background: #1739be; transform: none; }
-.page :global(.form-status) { color: #234deb; }
-.page :is(a,button,input,select,textarea):focus-visible { outline: 2px solid #234deb; outline-offset: 4px; border-radius: 0; }
+.page :global(.form-actions .pill-button.orange) { width: 100%; border-radius: 0; background: #15171b; color: #fff; padding: 16px 20px; min-height: 60px; font-size: 14px; }
+.page :global(.form-actions .pill-button.orange:hover) { background: #3b3028; transform: none; }
+.page :global(.form-status) { color: #94501d; }
+.page :is(a,button,input,select,textarea):focus-visible { outline: 2px solid #94501d; outline-offset: 4px; border-radius: 0; }
 @media (max-width: 760px) {
   .intro { --section-padding: 122px 20px 40px; }
   .introGrid { grid-template-columns: 1fr; gap: 28px; padding-bottom: 36px; }

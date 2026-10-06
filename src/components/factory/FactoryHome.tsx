@@ -5,9 +5,10 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import AgenticFactory3D, { type StationId } from "@/components/ui/agentic-factory-3d";
 import { works } from "@/data/factory-works";
+import { selectedWorks, workPresentationLabel } from "@/data/selected-works";
 import "./factory.css";
 
-type Panel = "menu" | "work" | "contact" | null;
+type Panel = "menu" | "work" | "contact" | "selected" | null;
 
 function Cross({ plus = false }: { plus?: boolean }) {
   return <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d={plus ? "M10 3v14M3 10h14" : "m4 4 12 12M16 4 4 16"} stroke="currentColor" strokeWidth="1.2" /></svg>;
@@ -20,7 +21,7 @@ function Arrow({ direction = "out" }: { direction?: "out" | "left" | "right" }) 
 function WorkImage({ work }: { work: (typeof works)[number] }) {
   const [failed, setFailed] = useState(false);
   if (!work.cover) return null;
-  return failed ? <div className="work-image-fallback">{work.name}<span>下のリンクから作品を開けます。</span></div> : <Image className="work-image" src={work.cover} width={800} height={600} alt={work.alt} unoptimized loading="eager" onError={() => setFailed(true)} />;
+  return failed ? <div className="work-image-fallback">{work.name}<span>下のリンクから作品を開けます。</span></div> : <Image className="work-image" src={work.cover} width={1280} height={720} alt={work.alt} unoptimized loading="eager" onError={() => setFailed(true)} />;
 }
 
 export default function FactoryHome() {
@@ -28,6 +29,7 @@ export default function FactoryHome() {
   const [paused, setPaused] = useState(false);
   const [panel, setPanel] = useState<Panel>(null);
   const [station, setStation] = useState<StationId | null>(null);
+  const [exploring, setExploring] = useState(false);
   const menuRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const returnFocus = useRef<HTMLElement | null>(null);
@@ -76,10 +78,20 @@ export default function FactoryHome() {
   }
 
   function togglePlayback() {
-    const playing = window.__machineDebug?.getState().playing;
-    if (playing) window.__machine?.pause();
-    else window.__machine?.play();
-    setPaused(Boolean(playing));
+    if (paused) window.__machine?.play();
+    else window.__machine?.pause();
+    setPaused(!paused);
+  }
+
+  function toggleExplore() {
+    window.__machine?.setMode(exploring ? "assembled" : "stations");
+    setExploring(!exploring);
+  }
+
+  function openSelected(opener: HTMLElement) {
+    returnFocus.current = opener;
+    rememberPanel();
+    setPanel("selected");
   }
 
   useEffect(() => {
@@ -110,27 +122,26 @@ export default function FactoryHome() {
 
   const activeIndex = works.findIndex(w => w.station === station);
   const work = works[activeIndex] ?? works[2];
-  const dialogTitle = panel === "menu" ? "Lakkanにできること" : panel === "contact" ? "Lakkanに相談する" : work.label;
+  const dialogTitle = panel === "selected" ? "制作・運用例" : panel === "menu" ? "Lakkanにできること" : panel === "contact" ? "Lakkanに相談する" : work.label;
 
   return (
-    <main id="main" className="factory-shell" data-ready={ready} data-station={station ?? ""} data-panel={panel ?? "none"}>
+    <main id="main" className="factory-shell" data-home="motion" data-ready={ready} data-exploring={exploring} data-station={station ?? ""} data-panel={panel ?? "none"}>
       <div className="factory-scene" inert={Boolean(panel)} aria-hidden={panel ? true : undefined}>
         <AgenticFactory3D minimal height="100dvh" onReady={() => {
           setReady(true);
-          setPaused(!window.__machineDebug?.getState().playing);
+          setPaused(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
         }} onStation={id => openStation(id, true)} />
       </div>
       <header className="factory-header" inert={Boolean(panel)}>
         <button className="lakkan-wordmark" aria-label="Lakkan — 全体に戻る" onClick={() => window.__machine?.setCamera("overview")}>Lakkan</button>
-        <button className="menu-toggle" ref={menuRef} onClick={e => openMenu(e.currentTarget)} aria-label="Menuを開く" aria-haspopup="dialog" aria-expanded={panel === "menu"}>Menu<Cross plus /></button>
+        <nav className="factory-nav" aria-label="メインナビゲーション"><button className="selected-toggle" onClick={e => openSelected(e.currentTarget)} aria-haspopup="dialog">制作・運用例<Arrow /></button><Link className="header-inquiry" href="/contact?topic=other#inquiry">相談する<Arrow /></Link><button className="menu-toggle" ref={menuRef} onClick={e => openMenu(e.currentTarget)} aria-label="Menuを開く" aria-haspopup="dialog" aria-expanded={panel === "menu"}>Menu<Cross plus /></button></nav>
       </header>
       <div className="factory-intro" inert={Boolean(panel)} aria-hidden={panel ? true : undefined}>
         <h1><span>人と仕事の課題を、</span><span>整理から実装まで。</span></h1>
-        <p className="factory-services">AI・業務改善 / CRM開発 / Web制作 / 採用支援</p>
-        <div className="factory-actions"><button onClick={e => openMenu(e.currentTarget)}>支援内容を見る<Arrow direction="right" /></button><Link href="/contact?topic=other#inquiry">相談する<Arrow /></Link></div>
+        <div className="factory-actions"><button onClick={toggleExplore} disabled={!ready} aria-pressed={exploring}>{exploring ? "ひとつに戻す" : "探索する"}<Arrow direction="right" /></button></div>
       </div>
       <div className="factory-hud" inert={Boolean(panel)}>
-        <p className="gesture-hint"><svg viewBox="0 0 16 22" fill="none" aria-hidden="true"><rect x="2.5" y="1.5" width="11" height="19" rx="5.5" stroke="currentColor" /><path d="M8 5v4" stroke="currentColor" strokeLinecap="round" /></svg><span>回して探索。装置を選ぶと支援内容が開きます。</span></p>
+        <p className="gesture-hint"><svg viewBox="0 0 16 22" fill="none" aria-hidden="true"><rect x="2.5" y="1.5" width="11" height="19" rx="5.5" stroke="currentColor" /><path d="M8 5v4" stroke="currentColor" strokeLinecap="round" /></svg><span>回して探索。装置を選ぶ。</span></p>
         <button className="play-toggle" onClick={togglePlayback} disabled={!ready} aria-label={paused ? "動きを再開" : "動きを一時停止"} aria-pressed={paused}>
           <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">{paused ? <path d="m6 4 10 6-10 6V4Z" /> : <><rect x="5" y="4" width="2" height="12" rx=".4" /><rect x="12" y="4" width="2" height="12" rx=".4" /></>}</svg>
         </button>
@@ -140,6 +151,7 @@ export default function FactoryHome() {
         <button className="panel-backdrop" aria-label="探索に戻る" tabIndex={-1} onClick={closePanel} />
         <div ref={dialogRef} className={`factory-panel ${panel}-panel`} role="dialog" aria-modal="true" aria-labelledby="panel-title">
           <div className="panel-top"><h2 id="panel-title">{dialogTitle}</h2><button className="icon-button" onClick={closePanel} aria-label="閉じて探索に戻る"><Cross /></button></div>
+          {panel === "selected" && <div className="selected-works">{selectedWorks.map(project => <article key={project.id} data-selected-work={project.id}><Link href={`/works/${project.id}`} className="work-preview"><Image className="work-image" src={project.cover} alt={project.coverAlt} width={1280} height={720} unoptimized /><span className="preview-arrow"><Arrow /></span></Link><div className="selected-caption"><div><h3>{project.name}</h3><p>{workPresentationLabel(project)}</p></div><a href={project.url} target="_blank" rel="noopener noreferrer" aria-label={`${project.name}の公開サイトを別タブで開く`}>公開サイト<Arrow /></a></div></article>)}<Link className="service-contact" href="/works">制作・運用例を詳しく<Arrow /></Link></div>}
           {panel === "work" && <>
             <div className="work-caption"><h2>{work.name}</h2><p>{work.description}</p></div>
             <p className="work-example-label">{work.example}</p>
@@ -149,7 +161,7 @@ export default function FactoryHome() {
           </>}
           {panel === "menu" && <>
             <nav className="menu-works" aria-label="支援内容を選ぶ">{works.map(w => <button key={w.id} onClick={() => openStation(w.station)}><span>{w.label}</span><span>{w.name}<Arrow /></span></button>)}</nav>
-            <nav className="menu-secondary" aria-label="Lakkanについて"><Link href="/works">制作・運用例<Arrow /></Link><Link href="/services">支援内容<Arrow /></Link><Link href="/about">会社情報<Arrow /></Link><Link href="/contact?topic=other#inquiry">相談する<Arrow /></Link></nav>
+            <nav className="menu-secondary" aria-label="Lakkanについて"><button onClick={e => openSelected(e.currentTarget)}>制作・運用例<Arrow /></button><Link href="/services">支援内容<Arrow /></Link><Link href="/about">会社情報<Arrow /></Link><Link href="/contact?topic=other#inquiry">相談する<Arrow /></Link><Link href="/privacy">Privacy<Arrow /></Link></nav>
           </>}
           {panel === "contact" && <div className="contact-content"><p>何を頼むか、まだ決まっていなくても。<br />いま困っていることから、お聞かせください。</p><Link href="/contact?topic=other#inquiry">相談内容を書く<Arrow /></Link></div>}
         </div>

@@ -1,4 +1,10 @@
-# Lakkan corporate homepage
+# Lakkan interactive homepage — current correction
+
+2026-10-07: The user explicitly rejected the cobalt/static result and the loss of 3D/motion. All acceptance language in the historical implementation description below is withdrawn. The current implementation reuses the original procedural Three.js workshop, black/metal/orange direction and prior interaction concept. A short camera entrance, real mechanics, drag rotation, idle orbit and station focus are the visual core. An exploration control spreads stations and exposes Japanese labels; a work control opens only two curated public examples in complete 16:9 previews. Shared navigation and inquiry accents have been corrected to black/off-white/warm tones. A motion preference starts playback paused and suppresses automatic camera movement. Company context, menu and inquiry remain accessible without WebGL.
+
+Source: tracked `src/components/ui/agentic-factory-3d.tsx`, original interaction-concept image and HANDOFF, current public business/work data. Reference storyboard and implementation evidence: local `output/lakkan-motion-recovery/`. The generated storyboard is not evidence of functioning animation. Validation is `npm run check:release` plus real browser motion frames, pause, drag, exploration, keyboard selection, dialogs, selected work and consultation topics. Aesthetic adoption and physical phone testing are unmeasured.
+
+## Historical rejected cobalt implementation
 
 The homepage now leads with Lakkan's name, the Japanese headline and a concrete explanation of its work. A cobalt introduction gives way to two large selected website examples, four support areas and an inquiry link. On mobile, each image precedes its caption and the support areas form a single column.
 

@@ -1,0 +1,25 @@
+/* Keep the immediate navigation frame consistent with the live 3D workshop. */
+.site-header { top: 0; left: 0; right: 0; height: 88px; width: auto; max-width: none; margin: 0; border: 0; border-bottom: 1px solid #ffffff1a; border-radius: 0; box-shadow: none; background: #080808f5; color: #f4f1ea; padding: 0 max(4vw, calc((100vw - 1280px) / 2)); font-family: Arial, Helvetica, var(--font-sans-jp), sans-serif; }
+.site-header .site-logo .brand-wordmark { font: 500 28px/1 Arial, Helvetica, sans-serif; letter-spacing: -.055em; color: #f4f1ea !important; }
+.site-header .desktop-nav { gap: 32px; margin-left: auto; }
+.site-header .desktop-nav a { display: inline-flex; align-items: center; min-height: 44px; font-size: 12px; font-weight: 400; color: #d2d2d2; }
+.site-header .header-contact { margin-left: 24px; background: #f4f1ea; color: #111; border-radius: 0; min-height: 44px; padding: 8px 18px; gap: 16px; }
+.site-header .button-orb { width: 24px; height: 28px; border-radius: 0; }
+.site-header .header-contact:hover { background: #ff9b53; }
+.site-header :is(a,button):focus-visible { outline-color: #ff7a1a; border-radius: 0; }
+.site-footer.original-footer { width: auto; max-width: none; margin: 0; background: #080808; padding: 40px max(4vw, calc((100vw - 1280px) / 2)) 30px; border-top: 1px solid #ffffff1a; color: #f4f1ea; font-family: Arial, Helvetica, var(--font-sans-jp), sans-serif; }
+.original-footer .brand-wordmark { font: 500 32px/1 Arial, Helvetica, sans-serif; letter-spacing: -.055em; color: #f4f1ea !important; }
+.water-reading-progress { background: #ff7a1a; }
+.original-footer > p { color: #aaa; font-family: var(--font-sans-jp), sans-serif; }
+.original-footer a { color: #bbb; }
+.original-footer a:hover { color: #ff9b53; }
+.original-footer a:focus-visible { outline-color: #ff7a1a; }
+@media (max-width: 760px) {
+  .site-header { height: 76px; padding: 0 20px; }
+  .site-header .site-logo .brand-wordmark { font-size: 25px; }
+  .site-header .menu-toggle { border: 0; border-radius: 0; color: #f4f1ea; background: transparent; width: 44px; height: 44px; }
+  .site-header .mobile-nav { top: 76px; left: 0; right: 0; background: #080808; color: #f4f1ea; border-radius: 0; border: 0; box-shadow: none; padding: 16px 20px 24px; }
+  .site-header .mobile-nav a { min-height: 56px; border-color: #ffffff25; }
+  .site-header .mobile-nav small { color: #aaa; }
+  .site-footer.original-footer { padding: 32px 20px 24px; }
+}

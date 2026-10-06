@@ -218,7 +218,7 @@ export default function AgenticFactory3D({
       </footer>
       <div id="loading">
         <i />
-        <span>Assembling your machine</span>
+        <span>{minimal ? '3Dを準備しています' : 'Assembling your machine'}</span>
       </div>
       <div id="error" role="alert">
         <strong>{minimal ? '3Dを表示できませんでした' : 'Could not start the 3D scene'}</strong>
@@ -584,7 +584,7 @@ function initMachineScene(
       c.lineWidth = 2
       c.strokeRect(2, 2, w - 4, h - 4)
       print(c, minimal ? 'LAKKAN' : 'STARTER', 45, 79, 40, '#d9d8cd', 650)
-      print(c, minimal ? '·  work  ·  motion  ·  experiments' : '·  site  ·  database  ·  admin in 35 minutes', 285, 79, 34, '#b8bdc1', 450)
+      print(c, minimal ? '·  work  ·  people  ·  possibilities' : '·  site  ·  database  ·  admin in 35 minutes', 285, 79, 34, '#b8bdc1', 450)
       print(c, minimal ? 'SELECTED WORKS    /    LAKKAN INC.' : 'AGENTIC ENGINEERING    /    YOUR FIRST PRODUCT', 47, 133, 19, '#737e88', 500)
       print(c, 'No. 001', 1360, 130, 23, '#c57e45')
     })
@@ -756,12 +756,19 @@ function initMachineScene(
         c.fillStyle = '#151a20'
         c.fillRect(0, 0, w, h)
         print(c, String(i + 1).padStart(2, '0'), 24, 76, 42, '#ff7a1a', 550)
-        print(c, d.name.toUpperCase(), 111, 73, 35, '#d7d9d7', 550)
+        print(c, minimal ? shortNames[d.id] : d.name.toUpperCase(), 111, 73, minimal ? 27 : 35, '#d7d9d7', 550)
       })
       screen(group, 1.54, 0.345, 0, 0.27, 0.891, plaque)
       const label = document.createElement('div')
       label.className = 'station-label'
-      label.innerHTML = `<div class="stem"></div><div class="label-card"><div class="label-title"><span>${String(i + 1).padStart(2, '0')}</span>${d.name}</div><div class="label-meta">Step ${d.step} · ${d.output}</div></div>`
+      label.innerHTML = minimal
+        ? `<div class="stem"></div><button class="label-card" aria-label="${shortNames[d.id]}を開く"><div class="label-title"><span>${String(i + 1).padStart(2, '0')}</span>${shortNames[d.id]}</div></button>`
+        : `<div class="stem"></div><div class="label-card"><div class="label-title"><span>${String(i + 1).padStart(2, '0')}</span>${d.name}</div><div class="label-meta">Step ${d.step} · ${d.output}</div></div>`
+      label.inert = true
+      if (minimal) listen(label, 'click', () => {
+        focusStation(d.id)
+        options.onStation?.(d.id)
+      })
       $('labels').appendChild(label)
       cleanups.push(() => label.remove())
 
@@ -904,8 +911,8 @@ function initMachineScene(
       const c = queue.ctx
       c.fillStyle = '#111b20'
       c.fillRect(0, 0, 640, 340)
-      print(c, 'VIDEO QUEUE', 25, 45, 21, '#acb9b8', 550)
-      print(c, '03 / 08', 497, 45, 20, '#ff7a1a', 500)
+      print(c, minimal ? 'AI WORKFLOW' : 'VIDEO QUEUE', 25, 45, 21, '#acb9b8', 550)
+      print(c, minimal ? 'LAKKAN' : '03 / 08', 497, 45, 20, '#ff7a1a', 500)
       for (let i = 0; i < 3; i++) {
         const y = 74 + i * 76
         c.fillStyle = '#202c30'
@@ -916,7 +923,7 @@ function initMachineScene(
         c.fillRect(34, y + 10, 27, 41)
         print(
           c,
-          ['Product overview', 'Brand story', 'New collection'][i],
+          (minimal ? ['課題を整理', '業務を設計', '実装・運用'] : ['Product overview', 'Brand story', 'New collection'])[i],
           77,
           y + 29,
           19,
@@ -1026,9 +1033,9 @@ function initMachineScene(
     const orderTex = canvasTexture(480, 460, (c, w, h) => {
       c.fillStyle = '#172224'
       c.fillRect(0, 0, w, h)
-      print(c, 'YOUR ORDERS', 30, 51, 27, '#e8e8d8', 550)
-      print(c, 'Today · 3 new', 30, 81, 16, '#869991')
-      ;['Anna', 'Michael', 'Maria'].forEach((n, i) => {
+      print(c, minimal ? 'CRM / BUSINESS APPS' : 'YOUR ORDERS', 30, 51, 27, '#e8e8d8', 550)
+      print(c, minimal ? '仕事の流れを、つなぐ。' : 'Today · 3 new', 30, 81, 16, '#869991')
+      ;(minimal ? ['顧客管理', '情報共有', '業務連携'] : ['Anna', 'Michael', 'Maria']).forEach((n, i) => {
         const y = 110 + i * 100
         c.fillStyle = '#283839'
         c.beginPath()
@@ -1038,9 +1045,9 @@ function initMachineScene(
         c.beginPath()
         c.arc(58, y + 40, 19, 0, TAU)
         c.fill()
-        print(c, n[0], 49, y + 47, 20, '#1b2828', 600)
+        print(c, minimal ? String(i + 1) : n[0], 49, y + 47, 20, '#1b2828', 600)
         print(c, n, 93, y + 33, 23, '#e6e8dc', 550)
-        print(c, ['New order', 'In production', 'Video ready'][i], 93, y + 58, 15, '#94a59b')
+        print(c, (minimal ? ['CUSTOMERS', 'KNOWLEDGE', 'WORKFLOW'] : ['New order', 'In production', 'Video ready'])[i], 93, y + 58, 15, '#94a59b')
         print(c, '↗', 410, y + 49, 25, '#c57e45')
       })
     })
@@ -1070,9 +1077,9 @@ function initMachineScene(
       c.beginPath()
       c.arc(58, 98, 32, 0, TAU)
       c.fill()
-      print(c, 'A', 42, 112, 34, '#ff7a1a', 550)
-      print(c, 'Anna', 108, 91, 38, '#222822', 600)
-      print(c, 'New order  +', 108, 138, 23, '#5b4c22', 500)
+      print(c, minimal ? 'L' : 'A', 42, 112, 34, '#ff7a1a', 550)
+      print(c, minimal ? 'Lakkan' : 'Anna', 108, 91, 38, '#222822', 600)
+      print(c, minimal ? 'A new possibility' : 'New order  +', 108, 138, 23, '#5b4c22', 500)
     })
     screen(incoming, 0.82, 0.39, 0, 0, 0.026, nameTex)
 
@@ -1104,8 +1111,8 @@ function initMachineScene(
       const c = cashTex.ctx
       c.fillStyle = '#12231e'
       c.fillRect(0, 0, 512, 176)
-      print(c, 'PAYMENT RECEIVED', 22, 44, 23, '#9cae91', 500)
-      print(c, '+ $29', 26, 131, 66, '#ecedc7', 500)
+      print(c, minimal ? 'LET’S TALK' : 'PAYMENT RECEIVED', 22, 44, 23, '#9cae91', 500)
+      print(c, minimal ? '相談する ↗' : '+ $29', 26, 131, minimal ? 52 : 66, '#ecedc7', 500)
     }
     drawCash()
     screen(cashdesk, 1.015, 0.349, -0.35, 1.98, -0.459, cashTex)
@@ -1116,17 +1123,17 @@ function initMachineScene(
     const receiptTex = canvasTexture(280, 540, (c, w, h) => {
       c.fillStyle = '#f4f1ea'
       c.fillRect(0, 0, w, h)
-      print(c, 'YOUR PRODUCT', 25, 52, 24, '#333d36', 650)
-      print(c, 'SALES RECEIPT', 32, 87, 19, '#566059')
+      print(c, minimal ? 'LAKKAN INC.' : 'YOUR PRODUCT', 25, 52, 24, '#333d36', 650)
+      print(c, minimal ? 'LET’S BUILD' : 'SALES RECEIPT', 32, 87, 19, '#566059')
       c.strokeStyle = '#8a9189'
       c.setLineDash([5, 6])
       c.beginPath()
       c.moveTo(22, 115)
       c.lineTo(258, 115)
       c.stroke()
-      print(c, 'Video', 25, 154, 22, '#333d36')
-      print(c, '1 × $29', 25, 190, 21, '#333d36')
-      print(c, 'PAID', 25, 263, 31, '#333d36', 650)
+      print(c, minimal ? '人と仕事の' : 'Video', 25, 154, 22, '#333d36')
+      print(c, minimal ? '課題から。' : '1 × $29', 25, 190, 21, '#333d36')
+      print(c, minimal ? '一緒につくる' : 'PAID', 25, 263, minimal ? 25 : 31, '#333d36', 650)
       print(c, 'Thank you!', 25, 317, 24, '#687067')
       for (let i = 0; i < 44; i++) {
         c.fillStyle = '#333d36'
@@ -1148,7 +1155,7 @@ function initMachineScene(
     const rubleTex = canvasTexture(128, 128, (c, w, h) => {
       c.clearRect(0, 0, w, h)
       c.textAlign = 'center'
-      print(c, '$', 64, 95, 91, '#80561c', 650)
+      print(c, minimal ? 'L' : '$', 64, 95, 91, '#80561c', 650)
     })
     const ruble = screen(coin, 0.28, 0.28, 0, 0, 0.04, rubleTex)
     ruble.material.transparent = true
@@ -1418,11 +1425,11 @@ function initMachineScene(
         height
       )
       const aspect = width / height
-      const availableWidth = mobile ? 0.91 : minimal ? 0.7 : Math.min(0.55, aspect > 2 ? 0.54 : 0.57)
+      const availableWidth = mobile ? 0.91 : minimal ? 0.78 : Math.min(0.55, aspect > 2 ? 0.54 : 0.57)
       const horizontalFit =
-        17.3 / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * aspect * availableWidth)
+        (minimal && !mobile ? 14.7 : 17.3) / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * aspect * availableWidth)
       const verticalFit =
-        11.5 / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * (embedded ? 0.85 : minimal ? 0.8 : 0.62))
+        (minimal && !mobile ? 9.6 : 11.5) / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * (embedded ? 0.85 : minimal ? 0.8 : 0.62))
       baseDistance =
         (Math.max(horizontalFit, verticalFit) * (mobile ? 0.97 : 1)) /
         (embedded ? (mobile ? 1.15 : 1.45) : 1)
@@ -1434,12 +1441,17 @@ function initMachineScene(
         camera.position.copy(desiredPosition)
         controls.target.copy(desiredTarget)
         controls.update()
-        cameraAnimating = false
+        cameraAnimating = minimal && !reduceMotion
+        if (cameraAnimating) {
+          // Reveal the actual model with a short physical camera move, then hand
+          // control to the visitor. No filmed or generated-image substitute.
+          camera.position.sub(controls.target).multiplyScalar(1.14).applyAxisAngle(new THREE.Vector3(0, 1, 0), -0.09).add(controls.target)
+        }
       }
     }
     function setCameraGoal() {
       if (minimal) {
-        camera.setViewOffset(width, height, !mobile && cameraMode === 'station' ? width * 0.16 : 0, mobile && cameraMode === 'station' ? height * 0.15 : 0, width, height)
+        camera.setViewOffset(width, height, !mobile && cameraMode === 'station' ? width * 0.16 : 0, mobile ? height * (cameraMode === 'station' ? 0.18 : 0.065) : 0, width, height)
         camera.updateProjectionMatrix()
       }
       const expand = mode === 'stations' ? 1.2 : 1
@@ -1530,7 +1542,7 @@ function initMachineScene(
       hovered = null
       $('tooltip').classList.remove('visible')
       if (minimal && explorePose && explorePose.width === width && explorePose.height === height) {
-        camera.setViewOffset(width, height, 0, 0, width, height)
+        camera.setViewOffset(width, height, 0, mobile ? height * 0.065 : 0, width, height)
         camera.updateProjectionMatrix()
         desiredPosition.copy(explorePose.position)
         desiredTarget.copy(explorePose.target)
@@ -1575,6 +1587,12 @@ function initMachineScene(
     }
     function pause() {
       playing = false
+      controls.autoRotate = false
+      // Drain orbit damping once, so pause freezes the physical scene promptly.
+      controls.enableDamping = false
+      controls.update()
+      controls.enableDamping = true
+      cameraAnimating = false
       syncPlayback()
       return true
     }
@@ -1740,7 +1758,7 @@ function initMachineScene(
       const t = simTime,
         beat = (t / 4) % 1,
         tact = (t * TAU) / 4,
-        smooth = 1 - Math.exp(-dt * 5)
+        smooth = reduceMotion || !playing ? 1 : 1 - Math.exp(-dt * 5)
       spread = THREE.MathUtils.lerp(spread, mode === 'stations' ? 1 : 0, smooth)
       cutPlane.constant = THREE.MathUtils.lerp(
         cutPlane.constant,
@@ -1854,7 +1872,7 @@ function initMachineScene(
         cameraAnimating = true
       } else if (cameraMode === 'station' && cameraAnimating) setCameraGoal()
       if (cameraAnimating && !dragging) {
-        const speed = 1 - Math.exp(-dt * (mode === 'order' ? 2.2 : 3))
+        const speed = reduceMotion || !playing ? 1 : 1 - Math.exp(-dt * (mode === 'order' ? 2.2 : 3))
         camera.position.lerp(desiredPosition, speed)
         controls.target.lerp(desiredTarget, speed)
         if (
@@ -1872,13 +1890,15 @@ function initMachineScene(
         !cameraAnimating &&
         mode !== 'order' &&
         cameraMode === 'overview' &&
-        now - lastInteraction > 6500
-      controls.autoRotateSpeed = 0.24
+        now - lastInteraction > (minimal ? 1800 : 6500)
+      controls.autoRotateSpeed = minimal ? 0.35 : 0.24
       controls.update(dt)
       // Project station callouts after the camera update, clamping them inside the iframe.
       stations.forEach((s, i) => {
-        const show = mode === 'stations'
+        const show = mode === 'stations' && cameraMode !== 'station'
         s.label.classList.toggle('visible', show)
+        s.label.inert = !show
+        s.label.setAttribute('aria-hidden', String(!show))
         if (!show) return
         anchor.copy(s.group.position).add(s.anchor).project(camera)
         const offsets = mobile
@@ -1902,7 +1922,7 @@ function initMachineScene(
         x = THREE.MathUtils.clamp(
           x,
           mobile || !embedded ? 9 : width * 0.425,
-          width - (mobile ? 123 : 165)
+          width - Math.max(s.label.offsetWidth, mobile ? 138 : 165) - 12
         )
         y = THREE.MathUtils.clamp(y, 130, height - 200)
         s.label.style.transform = `translate(${x}px,${y}px)`

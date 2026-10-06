@@ -7,7 +7,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import "./brand.css";
 import "./brand-latin.css";
-import "./cobalt-shell.css";
+import "./workshop-shell.css";
 import { CookieConsent } from "@/components/CookieConsent";
 
 const geistMono = Geist_Mono({
