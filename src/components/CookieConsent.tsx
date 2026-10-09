@@ -29,7 +29,7 @@ export function CookieConsent() {
     setShow(false);
   };
 
-  if (!show || pathname === "/") return null;
+  if (!show || ["/", "/racco", "/concept", "/brand-book", "/brand-guide"].includes(pathname)) return null;
 
   return (
     <div

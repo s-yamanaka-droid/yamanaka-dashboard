@@ -1,0 +1,87 @@
+// Component-handler tests only. No browser, layout, clipboard or actual DOM is used.
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { createRequire } from "node:module";
+import vm from "node:vm";
+const require = createRequire(import.meta.url);
+const ts = require("typescript");
+const compile = path => ts.transpileModule(readFileSync(new URL(path, import.meta.url), "utf8"), {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true },
+}).outputText;
+const dataContext = { exports: {} };
+vm.runInNewContext(compile("../src/data/brand-book.ts"), dataContext);
+const compiled = compile("../src/components/brand/BrandLibrary.tsx");
+
+function fixture(brand) {
+  const state = [], history = [], focused = [];
+  let cursor = 0;
+  const react = {
+    useState(initial) { const i = cursor++; if (!(i in state)) state[i] = initial; return [state[i], next => { state[i] = next; }]; },
+    useRef(initial) { const i = cursor++; return state[i] ??= { current: initial }; },
+    useEffect() {},
+  };
+  const context = {
+    exports: {},
+    require(name) {
+      if (name === "react") return react;
+      if (name === "next/link") return "a";
+      if (name === "next/image") return "img";
+      if (name.endsWith(".css")) return {};
+      if (name === "@/data/brand-book") return dataContext.exports;
+      if (name === "./useBrandReducedMotion") return { useBrandReducedMotion: () => false };
+      return require(name);
+    },
+    window: { history: { pushState: (...args) => history.push(args[2]), replaceState: (...args) => history.push(args[2]) } },
+    document: { getElementById: id => ({ focus: () => focused.push(id) }) },
+  };
+  vm.runInNewContext(compiled, context);
+  const render = () => { cursor = 0; return context.exports.default({ brand }); };
+  const find = predicate => {
+    function visit(node) {
+      if (!node || typeof node !== "object") return [];
+      if (Array.isArray(node)) return node.flatMap(visit);
+      return [...(predicate(node) ? [node] : []), ...visit(node.props?.children)];
+    }
+    return visit(render());
+  };
+  const event = props => ({ prevented: false, preventDefault() { this.prevented = true; }, ...props });
+  return { find, state, history, focused, event };
+}
+
+for (const brand of ["racco", "lakkan"]) {
+  const app = fixture(brand);
+  const hero = app.find(n => n.type === "img" && n.props?.preload)[0];
+  assert.equal(hero.props.quality, 90, "hero retains details with the configured quality");
+  assert.equal(hero.props.sizes, "(max-width: 600px) calc(170vw - 17px), 1100px", "mobile image supply matches the CSS crop width");
+  const tab = id => app.find(n => n.props?.id === `bl-tab-${id}`)[0];
+  tab("visual").props.onClick();
+  assert.equal(app.state[0], "visual");
+  assert.equal(app.history.at(-1), "#visual");
+  const home = app.find(n => brand === "racco" ? n.props?.className?.startsWith("bl-brand ") : n.props?.className === "bl-label")[0];
+  const modified = app.event({ ctrlKey: true }); home.props.onClick(modified);
+  assert.equal(modified.prevented, false, "modified clicks keep native navigation");
+  assert.equal(app.state[0], "visual");
+  app.find(n => n.props?.className === "bl-menu-button")[0].props.onClick();
+  assert.equal(app.state[3], true);
+  const click = app.event(); home.props.onClick(click);
+  assert.equal(click.prevented, true);
+  assert.equal(app.state[0], "concept", "same-page brand link resets the visible section");
+  assert.equal(app.state[3], false, "same-page brand link closes the menu");
+  assert.equal(app.history.at(-1), "#concept");
+  tab("concept").props.onKeyDown(app.event({ key: "ArrowLeft" }));
+  assert.equal(app.state[0], "assets");
+  assert.equal(app.focused.at(-1), "bl-tab-assets");
+  assert.equal(app.find(n => n.type === "main" && !n.props.role).length, 1, "main retains its landmark");
+  assert.equal(app.find(n => n.type === "dialog" && n.props["aria-label"]).length, 3, "all dialogs have accessible names");
+  const pause = app.find(n => n.type === "button" && n.props["aria-label"] === "動きを停止")[0];
+  pause.props.onClick();
+  assert.equal(app.find(n => n.props?.className === "brand-library")[0].props["data-motion"], "off");
+  if (brand === "racco") {
+    home.props.onClick(app.event());
+    const story = app.find(n => n.props?.className === "bl-story")[1];
+    story.props.onClick(app.event());
+    assert.equal(app.state[0], "posts"); assert.equal(app.state[1], "x");
+    assert.equal(app.history.at(-1), "#sns-x");
+  }
+  console.log(`PASS ${brand}: handler state, native modified click, tab keys, landmark, dialog names, pause`);
+}

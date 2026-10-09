@@ -12,7 +12,7 @@ try {
   }
   assert.ok(ready, "health endpoint is ready");
   assert.equal((await (await fetch(base + '/api/health')).json()).experience, 'interactive-workshop', 'health identifies the current homepage');
-  for (const path of ["/", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy"]) {
+  for (const path of ["/", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/concept", "/brand-book", "/brand-guide"]) {
     const response = await fetch(base + path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
@@ -34,17 +34,39 @@ try {
       const og = await fetch(base + new URL(ogUrl).pathname);
       assert.equal(og.status, 200, 'current share image loads');
       assert.ok(og.headers.get('content-type')?.includes('image/png'), 'share image is PNG');
+    } else if (["/racco", "/concept", "/brand-book", "/brand-guide"].includes(path)) {
+      assert.ok(html.includes(path === "/brand-book" ? 'brand-print-route' : path === "/brand-guide" ? 'brand-studio' : 'brand-library'), path + " renders the appropriate brand edition");
+      if (["/racco", "/concept"].includes(path)) {
+        for (const tab of ["concept", "visual", "posts", "assets"]) assert.ok(html.includes(`id="bl-tab-${tab}"`), path + " has " + tab + " navigation");
+        assert.ok(!html.includes('class="bs-sidebar"'), path + " uses a compact top navigation, not the full guide sidebar");
+        assert.ok(html.includes('href="/brand-guide"') && html.includes('href="/brand-book"'), path + " keeps the complete guide and print edition accessible");
+        assert.ok(html.includes('aria-label="Lakkanのキャラクター"'), path + " identifies Racco within Lakkan");
+        for (const destination of ['/works', '/services', '/contact?topic=other#inquiry']) assert.ok(html.includes(`href="${destination}"`), path + " exposes " + destination);
+        assert.ok(html.includes('ほんとの最終、どれ。') && html.includes('そのコピペ、明日もあるの。'), path + " offers concrete story headlines rather than asset metadata");
+        assert.ok(!html.includes('class="bl-hero-art is-workshop"'), path + " avoids the cropped baked-in Lakkan lettering");
+        if (path === '/racco') assert.ok(html.includes('ちょっと読む') && html.includes('LakkanのRacco'), 'Racco introduces its affiliation and reading entry');
+      }
+      assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), path + " has no overlapping corporate shell");
+      assert.ok(html.includes('name="robots" content="noindex'), path + " remains a non-indexed candidate");
     } else {
       assert.ok(html.includes('site-header') && html.includes('site-footer'), path + " shared navigation");
     }
     console.log("PASS", path);
   }
+  for (const width of [640, 1080, 1920]) {
+    const optimized = await fetch(base + `/_next/image?url=%2Fbrand-book%2Fracco-library-hero.png&w=${width}&q=90`, { headers: { Accept: "image/webp" } });
+    assert.equal(optimized.status, 200, `Racco image at ${width}px`);
+    assert.ok(optimized.headers.get("content-type")?.startsWith("image/"), "optimized hero is an image");
+    assert.ok((await optimized.arrayBuffer()).byteLength > 1000, "optimized image has content");
+  }
+  console.log("PASS responsive hero image delivery at quality 90");
   const film = await fetch(base + "/brand/lakkan-water-horizontal.mp4", { headers: { Range: "bytes=0-1023" } });
   assert.equal(film.status, 206, "film supports byte-range playback");
   assert.ok(film.headers.get("content-type")?.includes("video/mp4"), "film MIME type");
   assert.equal((await fetch(base + "/brand/lakkan-water-horizontal-poster.jpg")).status, 200, "film poster");
   console.log("PASS Blender film range playback and poster");
   for (const asset of ["/brand/lakkan-orange.jpg", "/brand/lakkan-orange-settled.jpg", "/brand/lets-talk-orange.jpg", "/works/lunatech-current.jpg"]) assert.equal((await fetch(base + asset)).status, 200, asset);
+  for (const asset of ["/brand-book/racco-library-hero.png", "/brand-book/racco-post-wide.png", "/brand-book/racco-banner.png", "/brand-book/lakkan-cover.png"]) assert.equal((await fetch(base + asset)).status, 200, asset);
   const assembly=await fetch(base+'/brand/lakkan-orange-assembly.mp4',{headers:{Range:'bytes=0-1023'}});
   assert.equal(assembly.status,206,'new Blender assembly supports range requests');
   assert.ok(assembly.headers.get('content-type')?.includes('video/mp4'),'assembly video MIME');
