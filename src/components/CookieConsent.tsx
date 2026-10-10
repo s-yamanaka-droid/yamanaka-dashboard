@@ -29,7 +29,7 @@ export function CookieConsent() {
     setShow(false);
   };
 
-  if (!show || ["/", "/racco", "/concept", "/brand-book", "/brand-guide"].includes(pathname)) return null;
+  if (!show || pathname.startsWith("/racco/columns/") || ["/", "/racco", "/concept", "/brand-book", "/brand-guide"].includes(pathname)) return null;
 
   return (
     <div

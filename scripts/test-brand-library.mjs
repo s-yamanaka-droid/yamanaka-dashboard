@@ -12,6 +12,15 @@ const dataContext = { exports: {} };
 vm.runInNewContext(compile("../src/data/brand-book.ts"), dataContext);
 const kitContext = { exports: {} };
 vm.runInNewContext(compile("../src/data/racco-kit.ts"), kitContext);
+const columnsContext = { exports: {} };
+vm.runInNewContext(compile("../src/data/racco-columns.ts"), columnsContext);
+assert.equal(columnsContext.exports.raccoColumns.length, 3);
+assert.equal(new Set(columnsContext.exports.raccoColumns.map(article => article.slug)).size, 3);
+for (const article of columnsContext.exports.raccoColumns) {
+  assert.equal(article.sections.length, 3, article.slug + " has a complete article, not just a teaser");
+  assert.ok(article.prompt.length > 60 && article.takeaway.length > 20, article.slug + " has a usable prompt and next action");
+  assert.ok(readFileSync(new URL("../public" + article.image, import.meta.url)).byteLength > 1000);
+}
 assert.equal(dataContext.exports.bookMarkdown, readFileSync(new URL("../public/brand-book/brand-book.md", import.meta.url), "utf8"), "downloadable manuscript stays in sync with shared content");
 assert.equal(new Set(dataContext.exports.channels.map(channel => channel.subtitle)).size, 4, "each channel has a distinct editorial topic");
 for (const phrase of ["知らない会社の自分", "そこだけ、ちょっと起きる", "距離が遠い。", "そこは起きてる。"]) {
@@ -25,6 +34,22 @@ for (const path of ["../src/data/brand-book.ts", "../src/data/racco-kit.ts", "..
   assert.ok(!/本人用|本人のRacco|本人アバター|本人の分身|発信用アバター/.test(readFileSync(new URL(path, import.meta.url), "utf8")), "public brand content does not expose internal identity notes: " + path);
 }
 const compiled = compile("../src/components/brand/BrandLibrary.tsx");
+
+for (const allowed of [true, false]) {
+  const state = [];
+  let cursor = 0, copied = null;
+  const context = { exports: {}, navigator: { clipboard: { async writeText(text) { if (!allowed) throw new Error("denied"); copied = text; } } }, require(name) {
+    if (name === "react") return { useState(initial) { const i = cursor++; if (!(i in state)) state[i] = initial; return [state[i], value => { state[i] = value; }]; } };
+    return require(name);
+  } };
+  vm.runInNewContext(compile("../src/components/brand/ColumnPrompt.tsx"), context);
+  const render = () => { cursor = 0; return context.exports.default({ text: "匿名化したメモを下書きに整理して。送信しない。" }); };
+  await render().props.children[0].props.children[1].props.onClick();
+  assert.equal(Boolean(copied), allowed, "copy success is based on actual write result");
+  assert.equal(state[1], !allowed, "clipboard rejection enables manual selection");
+  assert.equal(render().props.children[4]?.type === "textarea", !allowed);
+}
+console.log("PASS column prompt: clipboard success and manual fallback");
 
 function fixture(brand) {
   const state = [], history = [], focused = [];
@@ -43,6 +68,7 @@ function fixture(brand) {
       if (name.endsWith(".css")) return {};
       if (name === "@/data/brand-book") return dataContext.exports;
       if (name === "@/data/racco-kit") return kitContext.exports;
+      if (name === "@/data/racco-columns") return columnsContext.exports;
       if (name === "./useBrandReducedMotion") return { useBrandReducedMotion: () => false };
       return require(name);
     },
@@ -77,6 +103,10 @@ for (const brand of ["racco", "lakkan"]) {
     assert.equal(hero.props.src, "/brand-book/racco-library-hero.png", "the Lakkan concept keeps its existing hero");
   }
   const tab = id => app.find(n => n.props?.id === `bl-tab-${id}`)[0];
+  tab("columns").props.onClick();
+  assert.equal(app.history.at(-1), "#columns");
+  assert.equal(app.find(n => n.props?.className === "bl-column-card").length, 3, "all articles have a reading entry");
+  for (const article of columnsContext.exports.raccoColumns) assert.ok(app.find(n => n.props?.href === `/racco/columns/${article.slug}`).length);
   tab("visual").props.onClick();
   assert.equal(app.state[0], "visual");
   assert.equal(app.history.at(-1), "#visual");

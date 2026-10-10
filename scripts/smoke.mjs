@@ -12,7 +12,7 @@ try {
   }
   assert.ok(ready, "health endpoint is ready");
   assert.equal((await (await fetch(base + '/api/health')).json()).experience, 'interactive-workshop', 'health identifies the current homepage');
-  for (const path of ["/", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/concept", "/brand-book", "/brand-guide"]) {
+  for (const path of ["/", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/concept", "/brand-book", "/brand-guide", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => `/racco/columns/${slug}`)]) {
     const response = await fetch(base + path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
@@ -54,6 +54,13 @@ try {
       assert.ok(!/仕込/.test(html), path + ' does not restore rejected abstract copy');
       assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), path + " has no overlapping corporate shell");
       assert.ok(html.includes('name="robots" content="noindex'), path + " remains a non-indexed candidate");
+    } else if (path.startsWith('/racco/columns/')) {
+      assert.ok(html.includes('bl-column-article'), 'real article body is server rendered');
+      assert.ok(html.includes('依頼文をコピー') && html.includes('今日、ひとつ試すなら。'), 'article has reusable prompt and takeaway');
+      assert.ok(html.includes('href="/racco#columns"'), 'article has a return path');
+      assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), 'article avoids duplicate corporate shell');
+      assert.ok(html.includes('property="og:type" content="article"'), 'article share metadata');
+      assert.ok(html.includes('name="robots" content="noindex'), 'existing noindex boundary is preserved');
     } else {
       assert.ok(html.includes('site-header') && html.includes('site-footer'), path + " shared navigation");
     }
@@ -116,5 +123,6 @@ try {
     assert.equal((await fetch(base + "/atelier/" + name)).status, 200, name);
   }
   assert.equal((await fetch(base + "/missing-smoke-page")).status, 404);
+  assert.equal((await fetch(base + "/racco/columns/not-an-article")).status, 404);
   console.log("PASS topic selection, seven demos, 404");
 } finally { server?.kill(); }
