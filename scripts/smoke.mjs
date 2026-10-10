@@ -44,7 +44,11 @@ try {
         for (const destination of ['/works', '/services', '/contact?topic=other#inquiry']) assert.ok(html.includes(`href="${destination}"`), path + " exposes " + destination);
         assert.ok(html.includes('ほんとの最終、どれ。') && html.includes('そのコピペ、明日もあるの。'), path + " offers concrete story headlines rather than asset metadata");
         assert.ok(!html.includes('class="bl-hero-art is-workshop"'), path + " avoids the cropped baked-in Lakkan lettering");
-        if (path === '/racco') assert.ok(html.includes('ちょっと読む') && html.includes('LakkanのRacco'), 'Racco introduces its affiliation and reading entry');
+        if (path === '/racco') {
+          assert.ok(html.includes('ひとりごとを読む') && html.includes('LakkanのRacco'), 'Racco introduces its affiliation and reading entry');
+          assert.ok(html.includes('だいたい、眠い。') && html.includes('自己紹介をコピー'), 'the self-portrait edition has real text and a useful profile action');
+          assert.ok(html.includes('racco-self-morning.png') && html.includes('racco-self-avatar.png'), 'new identity is present in the server-rendered page');
+        }
       }
       assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), path + " has no overlapping corporate shell");
       assert.ok(html.includes('name="robots" content="noindex'), path + " remains a non-indexed candidate");
@@ -67,6 +71,11 @@ try {
   console.log("PASS Blender film range playback and poster");
   for (const asset of ["/brand/lakkan-orange.jpg", "/brand/lakkan-orange-settled.jpg", "/brand/lets-talk-orange.jpg", "/works/lunatech-current.jpg"]) assert.equal((await fetch(base + asset)).status, 200, asset);
   for (const asset of ["/brand-book/racco-library-hero.png", "/brand-book/racco-post-wide.png", "/brand-book/racco-banner.png", "/brand-book/lakkan-cover.png"]) assert.equal((await fetch(base + asset)).status, 200, asset);
+  for (const name of ['morning', 'cafe', 'avatar', 'merch', 'sticker']) {
+    const response = await fetch(base + `/brand-book/racco-self-${name}.png`);
+    assert.equal(response.status, 200, `self-portrait ${name}`);
+    assert.ok(response.headers.get('content-type')?.includes('image/png'), `download MIME ${name}`);
+  }
   const assembly=await fetch(base+'/brand/lakkan-orange-assembly.mp4',{headers:{Range:'bytes=0-1023'}});
   assert.equal(assembly.status,206,'new Blender assembly supports range requests');
   assert.ok(assembly.headers.get('content-type')?.includes('video/mp4'),'assembly video MIME');

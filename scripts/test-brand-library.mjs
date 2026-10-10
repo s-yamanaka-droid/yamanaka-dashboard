@@ -52,7 +52,15 @@ for (const brand of ["racco", "lakkan"]) {
   const app = fixture(brand);
   const hero = app.find(n => n.type === "img" && n.props?.preload)[0];
   assert.equal(hero.props.quality, 90, "hero retains details with the configured quality");
-  assert.equal(hero.props.sizes, "(max-width: 600px) calc(170vw - 17px), 1100px", "mobile image supply matches the CSS crop width");
+  assert.equal(hero.props.sizes, brand === "racco" ? "(max-width: 600px) 100vw, 1100px" : "(max-width: 600px) calc(170vw - 17px), 1100px", "image supply matches each brand's crop width");
+  if (brand === "racco") {
+    assert.equal(hero.props.src, "/brand-book/racco-self-morning.png", "own thick-glasses Racco leads the website");
+    assert.equal(hero.props.width, 1672);
+    assert.equal(hero.props.height, 941);
+    assert.equal(app.find(n => n.props?.className === "bl-self").length, 1, "a usable self introduction is present");
+  } else {
+    assert.equal(hero.props.src, "/brand-book/racco-library-hero.png", "the Lakkan concept keeps its existing hero");
+  }
   const tab = id => app.find(n => n.props?.id === `bl-tab-${id}`)[0];
   tab("visual").props.onClick();
   assert.equal(app.state[0], "visual");
