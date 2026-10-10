@@ -1,11 +1,23 @@
-export type AssetGroup = "self" | "cast" | "social";
+export type AssetGroup = "all" | "self" | "stickers" | "hina" | "cast" | "social";
 export type RaccoAsset = { title: string; kind: string; src: string; width: number; height: number; alt: string; group?: AssetGroup };
 
 export const assetGroups: { id: AssetGroup; label: string }[] = [
+  { id: "all", label: "すべて" },
   { id: "self", label: "Racco" },
+  { id: "stickers", label: "ホロシール" },
+  { id: "hina", label: "ひなラッコ" },
   { id: "cast", label: "3人の仲間" },
   { id: "social", label: "SNSの画像" },
 ];
+
+export const assetDescriptions: Record<AssetGroup, string> = {
+  all: "いつものRacco、ホロシール、ひなラッコ。気になる一枚を大きく見て、保存できます。",
+  self: "太縁メガネのRacco。いつもの顔と、のんびり過ごす風景。",
+  stickers: "3つのポーズと、8つの配色。きらっと光る、レトロなホロシールのコレクション。",
+  hina: "きちんと、やさしく。シックな服と、ふわっとした表情のひなラッコ。",
+  cast: "のんびり・テキパキ・自動化オタク。3人の世界観と造形見本。",
+  social: "表紙・ヘッダー・投稿の表現見本。実アカウントでの切り抜きは別途確認します。",
+};
 
 export const raccoAssets: RaccoAsset[] = [
   { title: "朝は、ゆっくり。", kind: "朝の風景", src: "/brand-book/racco-self-morning.png", width: 1672, height: 941, alt: "太縁の黒いメガネと灰色パーカーのRacco。眠そうに頬づえをつき、自分のステッカーを貼ったPCと朝のコーヒー", group: "self" },
@@ -22,6 +34,16 @@ export const raccoAssets: RaccoAsset[] = [
   { title: "言葉を主役に", kind: "投稿の表現見本", src: "/brand-book/racco-words-post.png", width: 1254, height: 1254, alt: "短い言葉を主役にしたRaccoの投稿画像見本", group: "social" },
   { title: "顔と、ひとこと", kind: "投稿の表現見本", src: "/brand-book/racco-speech-post.png", width: 1254, height: 1254, alt: "Raccoの表情と吹き出しを組み合わせた投稿画像見本", group: "social" },
   { title: "試したことを並べる", kind: "実験の説明用レイアウト見本", src: "/brand-book/racco-experiment-post.png", width: 1122, height: 1402, alt: "試したことと修正を並べて説明するRaccoの投稿レイアウト見本", group: "social" },
+  { title: "だるい天才", kind: "ホロシール / 3ポーズ", src: "/brand-book/racco-sticker-lazy-genius.png", width: 1254, height: 1254, alt: "半目のRaccoがソファで寝転びPCを開く、コーラルのホロシール", group: "stickers" },
+  { title: "ラクするために本気", kind: "ホロシール / 3ポーズ", src: "/brand-book/racco-sticker-think-to-slack.png", width: 1254, height: 1254, alt: "ラクする方法を考えるRaccoのレトロなホロシール", group: "stickers" },
+  { title: "楽観サバイバー", kind: "ホロシール / 3ポーズ", src: "/brand-book/racco-sticker-optimistic-survivor.png", width: 1254, height: 1254, alt: "楽観的な表情のRaccoを描いたレトロなホロシール", group: "stickers" },
+  ...[
+    ["rose-candy", "ローズキャンディ"], ["apricot-orange", "アプリコットオレンジ"],
+    ["grape-purple", "グレープパープル"], ["ruby-red", "ルビーレッド"],
+    ["champagne-gold", "シャンパンゴールド"], ["pearl-white", "パールホワイト"],
+    ["graphite-silver", "グラファイトシルバー"], ["caramel-mocha", "キャラメルモカ"],
+  ].map(([id, title]): RaccoAsset => ({ title, kind: "ホロシール / 8カラー", src: `/brand-book/racco-sticker-${id}.png`, width: 1254, height: 1254, alt: `寝転んだRaccoのホロシール、${title}の配色`, group: "stickers" })),
+  { title: "ひなちゃん Racco", kind: "番外編 / きれいめシール", src: "/brand-book/racco-hina-sticker.png", width: 1254, height: 1254, alt: "白いブラウスとチャコールのカーディガン、スカート姿で書類とペンを持つ、ひなちゃんRaccoの白ふちシール", group: "hina" },
 ];
 
 export const raccoCast = [
