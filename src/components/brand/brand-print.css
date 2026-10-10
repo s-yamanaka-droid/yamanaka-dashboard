@@ -6,7 +6,7 @@
   --bp-accent: #f36755;
   color: var(--bp-ink);
   background: #e8eae7;
-  font-family: var(--font-sans-jp), sans-serif;
+  font-family: var(--font-racco-rounded), "Hiragino Maru Gothic ProN", sans-serif;
   font-size: 11pt;
   line-height: 1.7;
   padding: 0 24px 48px;
@@ -18,7 +18,7 @@
 .brand-print-route :is(button, a) { font: inherit; }
 .brand-print-route button, .brand-print-route a { color: inherit; }
 .brand-print-route a { text-decoration: none; }
-.brand-print-route h2, .brand-print-route h3, .brand-print-route h4 { font-family: var(--font-sans-jp), sans-serif; font-weight: 700; }
+.brand-print-route h2, .brand-print-route h3, .brand-print-route h4 { font-family: inherit; font-weight: 700; }
 
 .brand-print-route .bp-toolbar { max-width: 277mm; margin: 0 auto; min-height: 84px; display: flex; gap: 22px; align-items: center; justify-content: space-between; font-size: 12px; }
 .brand-print-route .bp-toolbar > a, .brand-print-route .bp-toolbar > div, .brand-print-route .bp-toolbar > div > a, .brand-print-route .bp-toolbar button { display: flex; align-items: center; gap: 8px; }
@@ -31,7 +31,7 @@
 .brand-print-route .bp-pages { display: flex; flex-direction: column; align-items: center; gap: 28px; }
 .brand-print-route .bp-sheet { width: 277mm; height: 190mm; padding: 8mm 11mm 7mm; background: var(--bp-paper); display: flex; flex-direction: column; box-shadow: 0 5px 22px #252c2810; break-inside: avoid; }
 .brand-print-route .bp-sheet-head { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--bp-line); padding-bottom: 3mm; font-size: 8pt; letter-spacing: .065em; color: var(--bp-muted); flex: 0 0 auto; }
-.brand-print-route .bp-edition, .brand-print-route .bp-page-number, .brand-print-route .bp-kicker, .brand-print-route .bp-small-number { font-family: var(--font-sans-jp), sans-serif; }
+.brand-print-route .bp-edition, .brand-print-route .bp-page-number, .brand-print-route .bp-kicker, .brand-print-route .bp-small-number { font-family: var(--font-racco-logo), var(--font-racco-rounded), sans-serif; }
 .brand-print-route .bp-sheet-body { flex: 1; min-height: 0; padding-top: 6mm; display: flex; flex-direction: column; }
 .brand-print-route .bp-page-foot { margin-top: 5mm; border-top: 1px solid var(--bp-line); padding-top: 3mm; display: flex; align-items: center; justify-content: space-between; color: var(--bp-muted); font-size: 7.5pt; flex: 0 0 auto; }
 .brand-print-route .bp-page-number { color: var(--bp-ink); font-size: 9pt; }
@@ -46,7 +46,7 @@
 
 .brand-print-route .bp-cover .bp-sheet-body { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 9mm; padding-top: 7mm; }
 .brand-print-route .bp-cover-copy { position: relative; z-index: 1; }
-.brand-print-route .bp-logo { font-family: var(--font-display), sans-serif; font-size: 73pt; font-weight: 700; line-height: 1.05; letter-spacing: -.07em; margin: 4mm 0 9mm; color: var(--bp-accent); }
+.brand-print-route .bp-logo { font-family: var(--font-racco-logo), sans-serif; font-size: 73pt; font-weight: 800; line-height: 1.05; letter-spacing: -.07em; margin: 4mm 0 9mm; color: var(--bp-accent); }
 .brand-print-route .bp-logo span { color: var(--bp-accent); font-size: 42pt; margin-left: 2mm; display: inline-block; vertical-align: top; }
 .brand-print-route .bp-cover h2 { font-size: 23pt; line-height: 1.5; letter-spacing: -.055em; }
 .brand-print-route .bp-cover-lead { margin-top: 6mm; font-size: 11pt; line-height: 1.9; }
@@ -56,7 +56,7 @@
 
 .brand-print-route .bp-axis-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 12mm; }
 .brand-print-route .bp-axis-sheet .bp-title { font-size: 25pt; margin-bottom: 5mm; }
-.brand-print-route .bp-axis-intro > p + p { margin-top: 4mm; }
+.brand-print-route .bp-axis-intro > p + p { margin-top: 3mm; }
 .brand-print-route .bp-axis-boundary { font-size: 9pt; color: var(--bp-muted); padding-top: 3mm; border-top: 1px solid var(--bp-line); }
 .brand-print-route .bp-large-copy { font-size: 14pt; line-height: 1.8; font-weight: 500; }
 .brand-print-route .bp-principles > div { display: grid; grid-template-columns: 8mm 1fr; column-gap: 3mm; padding: 2mm 0; border-bottom: 1px solid var(--bp-line); }
@@ -66,9 +66,29 @@
 .brand-print-route .bp-takeaway { margin-top: auto; display: flex; align-items: baseline; gap: 7mm; border-top: 2px solid var(--bp-accent); padding-top: 4mm; }
 .brand-print-route .bp-takeaway span { font-size: 9pt; color: var(--bp-muted); }
 .brand-print-route .bp-takeaway strong { font-size: 13pt; font-weight: 500; }
+@media print, screen and (min-width: 1121px) {
+  .brand-print-route .bp-axis-sheet .bp-sheet-body { padding-top: 5mm; }
+  .brand-print-route .bp-axis-sheet .bp-kicker { margin-bottom: 1mm; }
+  .brand-print-route .bp-axis-sheet .bp-title { margin-bottom: 3mm; }
+  .brand-print-route .bp-axis-sheet .bp-principles > div { padding-block: 1mm; }
+  .brand-print-route .bp-axis-sheet .bp-principles > div:first-child { padding-top: 0; }
+  .brand-print-route .bp-axis-sheet .bp-takeaway { padding-top: 3mm; }
+}
 
-.brand-print-route .bp-character-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
-.brand-print-route .bp-character-grid img { width: 100%; height: 61mm; object-fit: contain; display: block; background: #f4f4f2; }
+.brand-print-route .bp-cast-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 8mm; }
+.brand-print-route .bp-trio-image img { width: 100%; height: 61mm; object-fit: contain; display: block; background: #f4f4f2; }
+.brand-print-route .bp-main-avatar { display: flex; align-items: center; gap: 3mm; margin-top: 3mm; }
+.brand-print-route .bp-main-avatar img { width: 17mm; height: 17mm; border-radius: 50%; flex-shrink: 0; }
+.brand-print-route .bp-main-avatar strong { display: block; font-size: 9pt; }
+.brand-print-route .bp-main-avatar span { display: block; font-size: 8.5pt; line-height: 1.55; color: var(--bp-muted); }
+.brand-print-route .bp-cast-roles { display: grid; gap: 3mm; align-content: start; }
+.brand-print-route .bp-cast-roles>div { border-top: 1px solid var(--bp-line); padding-top: 2mm; }
+.brand-print-route .bp-cast-roles h3 { font-size: 11pt; margin-bottom: 1mm; }
+.brand-print-route .bp-cast-roles p { font-size: 10pt; line-height: 1.65; color: var(--bp-muted); }
+.brand-print-route .bp-cast-sheet .bp-rule-strip { grid-template-columns: 32mm 1fr; padding-top: 3mm; }
+.brand-print-route .bp-cast-sheet .bp-rule-strip p { font-size: 9pt; line-height: 1.6; }
+.brand-print-route .bp-resource-links { display: flex; flex-wrap: wrap; gap: 3mm 8mm; margin-top: 3mm; font-size: 9pt; }
+.brand-print-route .bp-resource-links a, .brand-print-route .bp-cast-sheet .bp-note a { text-decoration: underline; text-underline-offset: 3px; }
 .brand-print-route figcaption { display: flex; flex-direction: column; gap: 2mm; padding-top: 3mm; }
 .brand-print-route figcaption strong { font-size: 11pt; font-weight: 700; }
 .brand-print-route figcaption span { font-size: 10pt; color: var(--bp-muted); line-height: 1.75; }
@@ -81,7 +101,7 @@
 .brand-print-route .bp-voice-table small { display: block; font-size: 8pt; color: var(--bp-muted); margin-top: 1mm; line-height: 1.6; }
 .brand-print-route .bp-cycle { list-style: none; padding: 0; }
 .brand-print-route .bp-cycle li { display: grid; grid-template-columns: 8mm 1fr; gap: 3mm; padding: 2mm 0; border-top: 1px solid var(--bp-line); }
-.brand-print-route .bp-cycle li > span { font-family: var(--font-sans-jp), sans-serif; font-size: 17pt; color: var(--bp-accent); line-height: 1.2; }
+.brand-print-route .bp-cycle li > span { font-family: var(--font-racco-logo), sans-serif; font-size: 17pt; color: var(--bp-accent); line-height: 1.2; }
 .brand-print-route .bp-cycle h4 { display: inline; font-size: 10pt; margin-right: 2mm; }
 .brand-print-route .bp-cycle p { display: inline; font-size: 10pt; color: var(--bp-muted); line-height: 1.65; }
 
@@ -95,15 +115,15 @@
   .brand-print-route .bp-voice-sheet .bp-rule-strip p { font-size: 9pt; line-height: 1.55; }
 }
 
-.brand-print-route .bp-channel-heading { display: flex; gap: 10mm; align-items: baseline; margin-bottom: 6mm; padding-bottom: 4mm; border-bottom: 2px solid var(--bp-accent); }
-.brand-print-route .bp-channel-name { font-family: var(--font-sans-jp), sans-serif; font-size: 44pt; letter-spacing: -.06em; line-height: 1.1; }
+.brand-print-route .bp-channel-heading { display: flex; gap: 10mm; align-items: baseline; margin-bottom: 4mm; padding-bottom: 3mm; border-bottom: 2px solid var(--bp-accent); }
+.brand-print-route .bp-channel-name { font-family: var(--font-racco-logo), var(--font-racco-rounded), sans-serif; font-size: 44pt; letter-spacing: -.06em; line-height: 1.1; }
 .brand-print-route .bp-channel-heading > p { font-size: 12pt; color: var(--bp-muted); }
 .brand-print-route .bp-channel-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 13mm; flex: 1; min-height: 0; }
 .brand-print-route .bp-channel-role > span { color: var(--bp-muted); font-size: 8pt; }
-.brand-print-route .bp-channel-role h3 { font-size: 19pt; line-height: 1.5; margin: 2mm 0 6mm; letter-spacing: -.045em; }
+.brand-print-route .bp-channel-role h3 { font-size: 19pt; line-height: 1.5; margin: 2mm 0 4mm; letter-spacing: -.045em; }
 .brand-print-route .bp-channel-profile h3 { font-size: 9pt; color: var(--bp-muted); margin-bottom: 2mm; }
 .brand-print-route .bp-channel-profile p { white-space: pre-line; font-size: 11pt; line-height: 1.85; }
-.brand-print-route .bp-channel-spec { margin-top: 6mm; font-size: 10pt; }
+.brand-print-route .bp-channel-spec { margin-top: 4mm; font-size: 10pt; }
 .brand-print-route .bp-channel-spec > div { display: grid; grid-template-columns: 23mm 1fr; gap: 3mm; border-top: 1px solid var(--bp-line); padding: 3mm 0; }
 .brand-print-route .bp-channel-spec dt { font-size: 8pt; color: var(--bp-muted); }
 .brand-print-route .bp-channel-spec dd { line-height: 1.7; }
@@ -111,13 +131,15 @@
 .brand-print-route .bp-example-head { display: flex; align-items: center; gap: 3mm; border-bottom: 1px solid var(--bp-line); padding-bottom: 4mm; }
 .brand-print-route .bp-avatar { width: 13mm; height: 13mm; overflow: hidden; border-radius: 50%; background: #f4f4f2; flex: 0 0 auto; }
 .brand-print-route .bp-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.brand-print-route .bp-example-head strong { display: block; font-family: var(--font-sans-jp), sans-serif; font-size: 11pt; }
+.brand-print-route .bp-example-head strong { display: block; font-family: var(--font-racco-logo), var(--font-racco-rounded), sans-serif; font-size: 11pt; }
 .brand-print-route .bp-example-head span { display: block; color: var(--bp-muted); font-size: 7.5pt; }
 .brand-print-route .bp-post-example > p { white-space: pre-line; font-size: 11pt; line-height: 1.9; margin-top: 5mm; }
 @media print, screen and (min-width: 721px) {
   .brand-print-route .bp-channel-note .bp-post-example > p { font-size: 10pt; line-height: 1.75; margin-top: 4mm; }
 }
 .brand-print-route .bp-example-bottom { margin-top: auto; padding-top: 4mm; font-size: 8pt; color: var(--bp-muted); }
+.brand-print-route .bp-example-bottom strong { display: block; font-weight: 500; }
+.brand-print-route .bp-example-bottom a { display: block; margin-top: 2mm; font-size: 10pt; text-decoration: underline; overflow-wrap: anywhere; }
 .brand-print-route .bp-channel-sheet .bp-note { border-top: 1px solid var(--bp-line); padding-top: 3mm; margin-top: 5mm; }
 
 .brand-print-route .bp-merch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
@@ -125,7 +147,7 @@
 .brand-print-route .bp-merch-sheet .bp-rule-strip { grid-template-columns: 57mm 1fr; }
 .brand-print-route .bp-prompts { display: grid; grid-template-columns: 1fr 1fr; gap: 9mm; }
 .brand-print-route .bp-prompts h3 { font-size: 10pt; margin-bottom: 2mm; }
-.brand-print-route .bp-prompts pre { font-family: var(--font-sans-jp), sans-serif; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 10pt; line-height: 1.45; border-left: 2px solid var(--bp-accent); padding: 1mm 0 1mm 4mm; background: none; }
+.brand-print-route .bp-prompts pre { font-family: inherit; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 10pt; line-height: 1.45; border-left: 2px solid var(--bp-accent); padding: 1mm 0 1mm 4mm; background: none; }
 .brand-print-route .bp-use-sheet .bp-title { font-size: 24pt; margin-bottom: 4mm; }
 .brand-print-route .bp-use-note { margin-top: 3mm; font-size: 8pt; line-height: 1.6; color: var(--bp-muted); }
 .brand-print-route .bp-source { border-top: 1px solid var(--bp-line); margin-top: auto; padding-top: 3mm; font-size: 7.5pt; line-height: 1.65; color: var(--bp-muted); }
@@ -153,7 +175,7 @@
   .brand-print-route .bp-sheet-body { padding-top: 20px; }
   .brand-print-route .bp-title { font-size: 25px; margin-bottom: 20px; line-height: 1.5; }
   .brand-print-route .bp-kicker { font-size: 10px; }
-  .brand-print-route .bp-cover .bp-sheet-body, .brand-print-route .bp-axis-grid, .brand-print-route .bp-character-grid, .brand-print-route .bp-voice-grid, .brand-print-route .bp-channel-grid, .brand-print-route .bp-merch-grid, .brand-print-route .bp-prompts { grid-template-columns: 1fr; gap: 24px; }
+  .brand-print-route .bp-cover .bp-sheet-body, .brand-print-route .bp-axis-grid, .brand-print-route .bp-cast-grid, .brand-print-route .bp-voice-grid, .brand-print-route .bp-channel-grid, .brand-print-route .bp-merch-grid, .brand-print-route .bp-prompts { grid-template-columns: 1fr; gap: 24px; }
   .brand-print-route .bp-cover .bp-sheet-body { gap: 28px; }
   .brand-print-route .bp-cover-image { height: 250px; margin: 0 -20px; }
   .brand-print-route .bp-cover-image img { object-fit: cover; object-position: 70% center; }
@@ -165,8 +187,8 @@
   .brand-print-route .bp-large-copy { font-size: 17px; }
   .brand-print-route .bp-takeaway { flex-direction: column; gap: 8px; }
   .brand-print-route .bp-takeaway strong { font-size: 15px; }
-  .brand-print-route .bp-rule-strip, .brand-print-route .bp-merch-sheet .bp-rule-strip { grid-template-columns: 1fr; gap: 8px; }
-  .brand-print-route .bp-character-grid img, .brand-print-route .bp-merch-grid img { height: auto; }
+  .brand-print-route .bp-rule-strip, .brand-print-route .bp-merch-sheet .bp-rule-strip, .brand-print-route .bp-cast-sheet .bp-rule-strip { grid-template-columns: 1fr; gap: 8px; }
+  .brand-print-route .bp-trio-image img, .brand-print-route .bp-merch-grid img { height: auto; }
   .brand-print-route .bp-channel-heading { flex-direction: column; gap: 8px; padding-bottom: 16px; }
   .brand-print-route .bp-channel-name { font-size: 46px; }
   .brand-print-route .bp-channel-heading > p { font-size: 13px; }

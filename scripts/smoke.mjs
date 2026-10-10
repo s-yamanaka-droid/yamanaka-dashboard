@@ -37,19 +37,21 @@ try {
     } else if (["/racco", "/concept", "/brand-book", "/brand-guide"].includes(path)) {
       assert.ok(html.includes(path === "/brand-book" ? 'brand-print-route' : path === "/brand-guide" ? 'brand-studio' : 'brand-library'), path + " renders the appropriate brand edition");
       if (["/racco", "/concept"].includes(path)) {
-        for (const tab of ["concept", "visual", "posts", "assets"]) assert.ok(html.includes(`id="bl-tab-${tab}"`), path + " has " + tab + " navigation");
+        for (const tab of ["concept", "members", "visual", "posts", "assets"]) assert.ok(html.includes(`id="bl-tab-${tab}"`), path + " has " + tab + " navigation");
         assert.ok(!html.includes('class="bs-sidebar"'), path + " uses a compact top navigation, not the full guide sidebar");
         assert.ok(html.includes('href="/brand-guide"') && html.includes('href="/brand-book"'), path + " keeps the complete guide and print edition accessible");
         assert.ok(html.includes('aria-label="Lakkanのキャラクター"'), path + " identifies Racco within Lakkan");
         for (const destination of ['/works', '/services', '/contact?topic=other#inquiry']) assert.ok(html.includes(`href="${destination}"`), path + " exposes " + destination);
-        assert.ok(html.includes('ほんとの最終、どれ。') && html.includes('そのコピペ、明日もあるの。'), path + " offers concrete story headlines rather than asset metadata");
+        assert.ok(html.includes('丁寧に。いや、そこまでじゃなくて。') && html.includes('「丁寧に」だけだと、距離が遠い。'), path + " offers a concrete AI-use editorial example");
         assert.ok(!html.includes('class="bl-hero-art is-workshop"'), path + " avoids the cropped baked-in Lakkan lettering");
         if (path === '/racco') {
           assert.ok(html.includes('ひとりごとを読む') && html.includes('LakkanのRacco'), 'Racco introduces its affiliation and reading entry');
           assert.ok(html.includes('だいたい、眠い。') && html.includes('自己紹介をコピー'), 'the self-portrait edition has real text and a useful profile action');
           assert.ok(html.includes('racco-self-morning.png') && html.includes('racco-self-avatar.png'), 'new identity is present in the server-rendered page');
+          assert.ok(html.includes('racco-trio.png') && html.includes('3人に会う'), 'three-person cast has a visible entry from home');
         }
       }
+      assert.ok(!/仕込/.test(html), path + ' does not restore rejected abstract copy');
       assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), path + " has no overlapping corporate shell");
       assert.ok(html.includes('name="robots" content="noindex'), path + " remains a non-indexed candidate");
     } else {
@@ -75,6 +77,11 @@ try {
     const response = await fetch(base + `/brand-book/racco-self-${name}.png`);
     assert.equal(response.status, 200, `self-portrait ${name}`);
     assert.ok(response.headers.get('content-type')?.includes('image/png'), `download MIME ${name}`);
+  }
+  for (const name of ['trio', 'cast', 'facebook-cover', 'social-header', 'instagram-feed', 'reels-cover', 'words-post', 'speech-post', 'experiment-post']) {
+    const response = await fetch(base + `/brand-book/racco-${name}.png`, { method: 'HEAD' });
+    assert.equal(response.status, 200, `cast/social asset ${name}`);
+    assert.ok(response.headers.get('content-type')?.includes('image/png'), `asset MIME ${name}`);
   }
   const assembly=await fetch(base+'/brand/lakkan-orange-assembly.mp4',{headers:{Range:'bytes=0-1023'}});
   assert.equal(assembly.status,206,'new Blender assembly supports range requests');

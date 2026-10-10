@@ -4,26 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BookOpen, Check, Copy, Download, Menu, Pause, Play, X } from "lucide-react";
 import { KeyboardEvent, MouseEvent, useEffect, useRef, useState } from "react";
-import { channels, type ChannelId } from "@/data/brand-book";
+import { channels, raccoProfile, type ChannelId } from "@/data/brand-book";
+import { raccoAssets, raccoCast, assetGroups, channelAssetPaths, type RaccoAsset as Asset, type AssetGroup } from "@/data/racco-kit";
 import "./brand-library.css";
 import { useBrandReducedMotion } from "./useBrandReducedMotion";
 
 const sections = [
   { id: "concept", label: "はじめに" },
+  { id: "members", label: "なかま" },
   { id: "visual", label: "ギャラリー" },
-  { id: "posts", label: "読みもの" },
+  { id: "posts", label: "SNS" },
   { id: "assets", label: "素材" },
 ] as const;
 type Section = typeof sections[number]["id"];
-type Asset = { title: string; kind: string; src: string; width: number; height: number; alt: string };
-const raccoAssets: Asset[] = [
-  { title: "朝は、ゆっくり。", kind: "朝の風景", src: "/brand-book/racco-self-morning.png", width: 1672, height: 941, alt: "太縁の黒いメガネと灰色パーカーのRacco。眠そうに頬づえをつき、自分のステッカーを貼ったPCと朝のコーヒー" },
-  { title: "雨の日は、ここで。", kind: "カフェの風景", src: "/brand-book/racco-self-cafe.png", width: 1672, height: 941, alt: "雨のカフェで太縁メガネのRaccoがノートPCを開いている" },
-  { title: "いつもの顔。", kind: "プロフィール", src: "/brand-book/racco-self-avatar.png", width: 1254, height: 1254, alt: "太い黒縁メガネに半目、灰色パーカーを着たRaccoの顔" },
-  { title: "持ちものにも、自分。", kind: "グッズのイメージ", src: "/brand-book/racco-self-merch.png", width: 1672, height: 941, alt: "太縁メガネのRaccoをあしらったPCやスマホ、カード、ステッカーの生成モック" },
-  { title: "ぺたっと、Racco。", kind: "ステッカー", src: "/brand-book/racco-self-sticker.png", width: 1254, height: 1254, alt: "自分の顔のステッカーを貼ったPCを抱える、太縁メガネのRaccoの白ふちシール" },
-];
-const raccoProfile = "同じ作業は、なるべくやりたくない。\nメールの下書きや調べものを、AIとやってみる。\nうまくいったことも、微妙だったことも、ぼちぼち。";
 const lakkanAsset: Asset = { title: "つくって、確かめる。", kind: "ブランドブック表紙", src: "/brand-book/lakkan-cover.png", width: 1672, height: 941, alt: "白背景にLakkanの文字と黒・銀・オレンジの小さな工房の生成カンプ" };
 
 export default function BrandLibrary({ brand }: { brand: "racco" | "lakkan" }) {
@@ -34,6 +27,7 @@ export default function BrandLibrary({ brand }: { brand: "racco" | "lakkan" }) {
   const [preview, setPreview] = useState<Asset | null>(null);
   const [manualCopy, setManualCopy] = useState<string | null>(null);
   const [toast, setToast] = useState("");
+  const [assetGroup, setAssetGroup] = useState<AssetGroup>("self");
   const reduced = useBrandReducedMotion();
   const dialog = useRef<HTMLDialogElement>(null);
   const menu = useRef<HTMLDialogElement>(null);
@@ -43,7 +37,8 @@ export default function BrandLibrary({ brand }: { brand: "racco" | "lakkan" }) {
   const focusPanelAfterNavigation = useRef(false);
   const isRacco = brand === "racco";
   const current = channels.find(item => item.id === channel) ?? channels[0];
-  const assets = isRacco ? raccoAssets : [lakkanAsset];
+  const assets = isRacco ? raccoAssets.filter(asset => asset.group === assetGroup) : [lakkanAsset];
+  const socialAssets = raccoAssets.filter(asset => channelAssetPaths[channel].includes(asset.src));
   const heroAsset = isRacco ? raccoAssets[0] : { src: "/brand-book/racco-library-hero.png", width: 2172, height: 724, alt: "白いソファでくつろぐLakkanのRacco" };
   const motionOff = paused || Boolean(reduced);
 
@@ -114,9 +109,10 @@ export default function BrandLibrary({ brand }: { brand: "racco" | "lakkan" }) {
     </figure>;
   }
   const brandLinks = <div className="bl-brands" aria-label="Lakkanのキャラクター">
-    <span className="bl-belongs">のんびり担当</span>
+    <span className="bl-belongs">Raccoと、なかま</span>
     <Link href="/racco" onClick={event => returnHome(event, isRacco)} className={`bl-brand ${isRacco ? "is-selected" : ""}`} aria-current={isRacco ? "page" : undefined}><span className="bl-brand-thumb"><Image src={isRacco ? raccoAssets[2].src : "/brand-book/racco-profile.png"} width={48} height={48} alt=""/></span><span>Racco</span></Link>
   </div>;
+  const assetFilters = isRacco && <div className="bl-asset-filters" role="group" aria-label="素材の種類">{assetGroups.map(group => <button key={group.id} type="button" aria-pressed={assetGroup === group.id} onClick={() => setAssetGroup(group.id)}>{group.label}<span>{raccoAssets.filter(asset => asset.group === group.id).length}</span></button>)}</div>;
 
   return <div className="brand-library" data-brand={brand} data-motion={motionOff ? "off" : "on"}>
     <div className="bl-shell">
@@ -128,15 +124,18 @@ export default function BrandLibrary({ brand }: { brand: "racco" | "lakkan" }) {
             <div className="bl-hero-art"><Image src={heroAsset.src} width={heroAsset.width} height={heroAsset.height} alt={heroAsset.alt} sizes={isRacco ? "(max-width: 600px) 100vw, 1100px" : "(max-width: 600px) calc(170vw - 17px), 1100px"} quality={90} preload/></div>
           </section>
           {isRacco && <section className="bl-self" aria-labelledby="bl-self-title"><Image src={raccoAssets[2].src} width={128} height={128} alt="太縁メガネのRaccoの顔" sizes="96px"/><div><p className="bl-kicker">Lakkanの、のんびり担当。</p><h2 id="bl-self-title">こんなやつです。</h2><p>メールの返事も、メモの整理も。<br/>面倒なところをAIに頼んで、<br className="bl-mobile-break"/>違ったら直す。</p></div><button type="button" className="bl-pill" onClick={() => copy(raccoProfile, "自己紹介")}>自己紹介をコピー<Copy size={14}/></button></section>}
+          {isRacco && <section className="bl-cast-teaser" aria-labelledby="bl-cast-teaser-title"><button className="bl-cast-teaser-image" type="button" onClick={() => select("members", true)} aria-label="3人の紹介を見る"><Image src="/brand-book/racco-trio.png" width={1672} height={941} alt="朝の部屋でのんびり過ごすRaccoと、テキパキ担当・自動化オタク担当" sizes="(max-width: 600px) 100vw, 550px"/></button><div><p className="bl-kicker">ひとりじゃ、後回しにしちゃうから。</p><h2 id="bl-cast-teaser-title">Raccoと、ふたりの仲間。</h2><p>のんびり、テキパキ、つい凝っちゃう。<br/>同じ面倒を、それぞれのやり方で。</p><button type="button" className="bl-pill" onClick={() => select("members", true)}>3人に会う<ArrowRight size={15}/></button></div></section>}
           <section className="bl-showcase" aria-label="読みものの入口"><div className="bl-section-head"><h2>{isRacco ? "Raccoのひとりごと" : "Lakkanの、のんびり担当。"}</h2><button type="button" onClick={() => select("visual", true)}>ギャラリーへ<ArrowRight size={14}/></button></div><div className="bl-grid">{channels.slice(0, 2).map((story, i) => <Link key={story.id} className="bl-story" href={`/racco#sns-${story.id}`} onClick={event => { if (isRacco && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); openStory(story.id); } }}><div className="bl-card-image"><Image src={raccoAssets[i].src} width={raccoAssets[i].width} height={raccoAssets[i].height} alt={raccoAssets[i].alt} sizes="(max-width: 600px) 100vw, 50vw"/></div><div className="bl-story-caption"><div><span>{story.id === "threads" ? "仕事のすみっこ" : "AIに頼んでみる"}</span><h3>{story.subtitle}</h3></div><ArrowUpRight size={19}/></div></Link>)}</div></section>
           <div className="bl-company-strip"><div><span className="bl-kicker">{isRacco ? "Raccoがいる会社" : "Lakkanについて"}</span><h2>{isRacco ? "Lakkan" : "つくる相談も、どうぞ。"}</h2><p>仕事の整理から、サイトや仕組みづくりまで。</p></div><nav aria-label="Lakkanの仕事"><Link href="/services">できること<ArrowUpRight size={15}/></Link><Link href="/works">つくったもの<ArrowUpRight size={15}/></Link><Link href="/contact?topic=other#inquiry">相談する<ArrowRight size={15}/></Link></nav></div>
         </>}
-        {section === "visual" && <section className="bl-pane"><div className="bl-section-head"><div><p className="bl-kicker">VISUAL LIBRARY</p><h1>{isRacco ? "Raccoのいる日常。" : "考え方を、見える形に。"}</h1></div><button type="button" className="bl-pill" onClick={() => select("assets", true)}>素材を保存<ArrowRight size={15}/></button></div><div className="bl-grid bl-visual-grid">{assets.map(asset => assetCard(asset))}</div><p className="bl-note">生成モック・制作候補です。商品化・入稿品質・実媒体での表示は別途確認します。</p></section>}
-        {section === "posts" && <section className="bl-pane"><div className="bl-section-head"><div><p className="bl-kicker">RACCOのひとりごと</p><h1>{isRacco ? "めんどい日にも、いろいろある。" : "LakkanのRacco、考え中。"}</h1></div></div>{isRacco ? <>
+        {section === "members" && <section className="bl-pane bl-members"><div className="bl-section-head"><div><p className="bl-kicker">LakkanのRacco</p><h1>Raccoと、ふたりの仲間。</h1></div></div><Image className="bl-cast-scene" src="/brand-book/racco-trio.png" width={1672} height={941} alt="左から、のんびりRacco、コーラルのテキパキ担当、丸メガネの自動化オタク担当" sizes="(max-width: 600px) 100vw, 1100px"/><div className="bl-cast-roles">{raccoCast.map(member => <article key={member.id}><p className="bl-kicker">{member.role}</p><h2>{member.name}</h2><blockquote>「{member.quote}」</blockquote><p>{member.detail}</p><small>{member.look}</small></article>)}</div><div className="bl-cast-identity"><Image src={raccoAssets[2].src} width={96} height={96} alt="本人用の太縁メガネRacco"/><p><strong>太縁メガネは、本人用のRacco。</strong><br/>のんびり担当の発信用アバターです。細い丸メガネの自動化オタクとは、別のキャラ。</p></div><div className="bl-member-actions"><button type="button" className="bl-pill" onClick={() => { setAssetGroup("cast"); select("assets", true); }}>3人の画像を使う<Download size={15}/></button><button type="button" className="bl-text-link" onClick={() => select("posts", true)}>SNSでの使い方を見る<ArrowRight size={15}/></button></div></section>}
+        {section === "visual" && <section className="bl-pane"><div className="bl-section-head"><div><p className="bl-kicker">VISUAL LIBRARY</p><h1>{isRacco ? "Raccoのいる日常。" : "考え方を、見える形に。"}</h1></div><button type="button" className="bl-pill" onClick={() => select("assets", true)}>素材を保存<ArrowRight size={15}/></button></div>{assetFilters}<div className="bl-grid bl-visual-grid">{assets.map(asset => assetCard(asset))}</div><p className="bl-note">生成モック・制作見本です。商品化・入稿品質・実媒体での表示は別途確認します。</p></section>}
+        {section === "posts" && <section className="bl-pane"><div className="bl-section-head"><div><p className="bl-kicker">SNSの文面と画像</p><h1>{isRacco ? "試して、違って、直した話。" : "LakkanのRacco、考え中。"}</h1></div></div>{isRacco ? <>
+          <div className="bl-editorial-path" aria-label="発信する内容"><span>面倒だったこと</span><ArrowRight size={14}/><span>AIに頼んだこと</span><ArrowRight size={14}/><span>どう直したか</span></div><p className="bl-sns-intro">同じ話を、媒体に合わせた長さで。以下は「メールの返事」を題材にした文面案です。</p>
           <div className="bl-channel-tabs" role="tablist" aria-label="SNS媒体">{channels.map((item, i) => <button key={item.id} id={`bl-channel-${item.id}`} type="button" role="tab" aria-selected={channel === item.id} aria-controls="bl-social-panel" tabIndex={channel === item.id ? 0 : -1} onClick={() => selectChannel(item.id)} onKeyDown={event => tabKey(event, i, true)}>{item.name}</button>)}</div>
-          <div className="bl-social-layout" id="bl-social-panel" role="tabpanel" aria-labelledby={`bl-channel-${channel}`} tabIndex={0}><div className="bl-social-direction"><Image src={raccoAssets[1].src} width={1672} height={941} alt={raccoAssets[1].alt} sizes="(max-width: 600px) 100vw, 50vw"/><h2>{current.subtitle}</h2><p>Lakkanのすみっこで、<br/>ラクするほうを考えてる。</p><details className="bl-profile"><summary>この文面の制作メモ</summary><p>{current.format}</p><Link href="/brand-guide#experiment" className="bl-pill">制作ガイドを見る<ArrowUpRight size={14}/></Link></details></div><article className="bl-social-card"><div className="bl-social-user"><Image src={raccoAssets[2].src} width={48} height={48} alt=""/><div><strong>Racco</strong><span>Lakkan・{current.name}</span></div><span className="bl-state">文面案</span></div><p className="bl-social-text">{current.sample}</p><button type="button" className="bl-pill" onClick={() => copy(current.sample, "投稿例")}>文面をコピー<Copy size={15}/></button><details className="bl-profile"><summary>プロフィール案を見る</summary><p>{raccoProfile}</p><button type="button" className="bl-pill" onClick={() => copy(raccoProfile, "プロフィール")}>プロフィールをコピー<Copy size={14}/></button></details></article></div><p className="bl-note">文面の下書きです。実体験や効果を報告する際は事実を確認します。ここからSNSへ投稿されることはありません。</p>
+          <div className="bl-social-layout" id="bl-social-panel" role="tabpanel" aria-labelledby={`bl-channel-${channel}`} tabIndex={0}><div className="bl-social-direction"><Image src="/brand-book/racco-trio.png" width={1672} height={941} alt="同じ仕事をそれぞれの視点で考えるRaccoの3人" sizes="(max-width: 600px) 100vw, 550px"/><h2>{current.subtitle}</h2><p>{current.role}</p><details className="bl-profile"><summary>この文面の制作メモ</summary><p>{current.format}</p><Link href="/brand-guide#experiment" className="bl-pill">制作ガイドを見る<ArrowUpRight size={14}/></Link></details></div><article className="bl-social-card"><div className="bl-social-user"><Image src={raccoAssets[2].src} width={48} height={48} alt=""/><div><strong>Racco</strong><span>Lakkan・{current.name}</span></div><span className="bl-state">未投稿・文面案</span></div><p className="bl-social-text">{current.sample}</p><button type="button" className="bl-pill" onClick={() => copy(current.sample, "投稿例")}>文面をコピー<Copy size={15}/></button><details className="bl-profile"><summary>プロフィール案を見る</summary><p>{raccoProfile}</p><button type="button" className="bl-pill" onClick={() => copy(raccoProfile, "プロフィール")}>プロフィールをコピー<Copy size={14}/></button></details></article></div><section className="bl-channel-assets" aria-label={`${current.name}の画像素材`}><div className="bl-section-head"><h2>{current.name}で使う画像</h2><button type="button" onClick={() => { setAssetGroup("social"); select("assets", true); }}>すべてのSNS素材<ArrowRight size={14}/></button></div><div className="bl-grid">{socialAssets.map(asset => assetCard(asset, true))}</div><p className="bl-note">画像は既存の表現見本です。上の文面専用の完成投稿ではありません。文字入り画像は、本文と内容を合わせてから使います。</p></section><p className="bl-note">文面の下書きです。実体験や効果を報告する際は事実を確認します。ここからSNSへ投稿されることはありません。</p>
         </> : <div className="bl-brand-boundary"><p>Lakkanは会社の考え方を短く、具体的に。Raccoはいつもの面倒をいっしょに試す味方。発信の口調と役割は分けます。</p><Link href="/racco#posts" className="bl-pill">Raccoの投稿の型を見る<ArrowRight size={15}/></Link></div>}</section>}
-        {section === "assets" && <section className="bl-pane"><div className="bl-section-head"><div><p className="bl-kicker">BRAND KIT</p><h1>使うものを、ここから。</h1></div><Link href="/brand-book" className="bl-pill"><BookOpen size={15}/>資料版を開く</Link></div><div className="bl-grid bl-visual-grid">{assets.map(asset => assetCard(asset, true))}</div><div className="bl-kit-foot"><p>原寸画像を保存できます。ステッカーは図案です。印刷前の色・外周・実寸は別途確認してください。</p><a href="/brand-book/brand-book.md" download className="bl-pill">原稿を保存<Download size={14}/></a></div>{isRacco && <div className="bl-palette">{["#393B38", "#FFFFFF", "#F36755"].map(hex => <button key={hex} type="button" onClick={() => copy(hex, "カラーコード")}><i style={{ background: hex }} aria-hidden="true"/>{hex}<Copy size={13}/></button>)}<span>日本語：Zen Maru Gothic / 英字：Nunito</span></div>}</section>}
+        {section === "assets" && <section className="bl-pane"><div className="bl-section-head"><div><p className="bl-kicker">BRAND KIT</p><h1>使うものを、ここから。</h1></div><Link href="/brand-book" className="bl-pill"><BookOpen size={15}/>資料版を開く</Link></div>{assetFilters}{isRacco && <p className="bl-asset-context">{assetGroup === "self" ? "太縁メガネの本人用アバター。アイコン、風景、ステッカー。" : assetGroup === "cast" ? "のんびり・テキパキ・自動化オタク。3人の世界観と造形見本。" : "初期絵柄も含めた表紙・ヘッダー・投稿の表現見本。実アカウントでの切り抜きは別途確認します。"}</p>}<div className="bl-grid bl-visual-grid">{assets.map(asset => assetCard(asset, true))}</div><div className="bl-kit-foot"><p>原寸画像を保存できます。ステッカーは図案です。印刷前の色・外周・実寸は別途確認してください。</p><a href="/brand-book/brand-book.md" download className="bl-pill">原稿を保存<Download size={14}/></a></div>{isRacco && <div className="bl-palette">{["#393B38", "#FFFFFF", "#F36755"].map(hex => <button key={hex} type="button" onClick={() => copy(hex, "カラーコード")}><i style={{ background: hex }} aria-hidden="true"/>{hex}<Copy size={13}/></button>)}<span>日本語：Zen Maru Gothic / 英字：Nunito</span></div>}</section>}
       </div></main>
       <footer className="bl-footer"><span>考え方を、使うところまで。</span><div><Link href="/brand-guide">詳しいブランドブック<ArrowUpRight size={14}/></Link><Link href="/brand-book">資料版<BookOpen size={14}/></Link><button type="button" aria-label={motionOff ? "動きを再開" : "動きを停止"} aria-pressed={paused} disabled={Boolean(reduced)} onClick={() => setPaused(!paused)}>{motionOff ? <Play size={14}/> : <Pause size={14}/>}<span>{reduced ? "動き控えめ" : paused ? "動きを再開" : "動きを停止"}</span></button></div></footer>
     </div>

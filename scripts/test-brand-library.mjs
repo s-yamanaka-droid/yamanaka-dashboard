@@ -10,6 +10,11 @@ const compile = path => ts.transpileModule(readFileSync(new URL(path, import.met
 }).outputText;
 const dataContext = { exports: {} };
 vm.runInNewContext(compile("../src/data/brand-book.ts"), dataContext);
+const kitContext = { exports: {} };
+vm.runInNewContext(compile("../src/data/racco-kit.ts"), kitContext);
+assert.equal(dataContext.exports.bookMarkdown, readFileSync(new URL("../public/brand-book/brand-book.md", import.meta.url), "utf8"), "downloadable manuscript stays in sync with shared content");
+assert.equal(kitContext.exports.raccoCast.length, 3, "approved cast has three roles");
+assert.equal(kitContext.exports.raccoAssets.length, 14, "all approved identity, cast, and SNS assets are available");
 const compiled = compile("../src/components/brand/BrandLibrary.tsx");
 
 function fixture(brand) {
@@ -28,6 +33,7 @@ function fixture(brand) {
       if (name === "next/image") return "img";
       if (name.endsWith(".css")) return {};
       if (name === "@/data/brand-book") return dataContext.exports;
+      if (name === "@/data/racco-kit") return kitContext.exports;
       if (name === "./useBrandReducedMotion") return { useBrandReducedMotion: () => false };
       return require(name);
     },
@@ -90,6 +96,16 @@ for (const brand of ["racco", "lakkan"]) {
     story.props.onClick(app.event());
     assert.equal(app.state[0], "posts"); assert.equal(app.state[1], "x");
     assert.equal(app.history.at(-1), "#sns-x");
+    tab("members").props.onClick();
+    assert.equal(app.state[0], "members");
+    assert.equal(app.history.at(-1), "#members");
+    assert.equal(app.find(n => n.props?.className === "bl-cast-roles").length, 1);
+    assert.equal(app.find(n => n.type === "article").length, 3, "three distinct approved roles are present");
+    app.find(n => n.type === "button" && n.props?.children?.[0] === "3人の画像を使う")[0].props.onClick();
+    assert.equal(app.state[0], "assets");
+    assert.equal(app.find(n => n.props?.className === "bl-card").length, 2, "cast filter contains the approved scene and cast sheet");
+    app.find(n => n.type === "button" && n.props?.children?.[0] === "SNSの画像")[0].props.onClick();
+    assert.equal(app.find(n => n.props?.className === "bl-card").length, 7, "SNS reference assets can be selected separately");
   }
   console.log(`PASS ${brand}: handler state, native modified click, tab keys, landmark, dialog names, pause`);
 }

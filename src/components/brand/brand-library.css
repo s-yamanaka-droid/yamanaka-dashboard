@@ -290,6 +290,58 @@ body:has(.brand-library[data-brand="racco"]) { background:#fff; }
 .brand-library[data-brand="racco"] .bl-footer { padding-block:12px; }
 .brand-library[data-brand="racco"] .bl-footer :is(a,button) { font-size:11px!important; }
 .brand-library[data-brand="racco"] .bl-note { font-size:12px; line-height:1.9; }
+.bl-cast-teaser { display:grid; grid-template-columns:1.1fr 1fr; gap:36px; align-items:center; padding:12px 0 34px; }
+.bl-cast-teaser-image { display:block; width:100%; padding:0; border:0; border-radius:18px; overflow:hidden; background:#fff; }
+.bl-cast-teaser-image img { width:100%; height:auto; transition:transform .3s ease; }
+.bl-cast-teaser-image:hover img { transform:scale(1.025); }
+.brand-library .bl-cast-teaser h2 { font-size:clamp(22px,2.4vw,29px); margin:10px 0; font-weight:500; }
+.bl-cast-teaser p:not(.bl-kicker) { color:var(--bl-muted); font-size:14px; line-height:1.9; }
+.bl-cast-teaser .bl-pill { margin-top:20px; }
+.bl-cast-scene { width:100%; height:auto; border-radius:20px; }
+.bl-cast-roles { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; padding:30px 0; }
+.bl-cast-roles article { border-top:2px solid var(--bl-line); padding-top:18px; }
+.bl-cast-roles article:nth-child(2) { border-color:#f3b6a9; }
+.brand-library .bl-cast-roles h2 { font-size:25px; font-weight:500; margin:8px 0 14px; }
+.bl-cast-roles blockquote { font-size:17px; margin:0 0 14px; line-height:1.8; }
+.bl-cast-roles p:not(.bl-kicker) { font-size:14px; color:var(--bl-muted); line-height:1.9; }
+.bl-cast-roles small { display:block; font-size:11px; margin-top:16px; color:var(--bl-muted); }
+.bl-cast-identity { display:flex; align-items:center; gap:18px; padding:20px 24px; border:1px solid var(--bl-line); border-radius:18px; }
+.bl-cast-identity img { width:76px; height:76px; border-radius:50%; }
+.bl-cast-identity p { font-size:13px; line-height:1.9; }
+.bl-cast-identity strong { font-weight:500; }
+.bl-member-actions { display:flex; flex-wrap:wrap; gap:16px; align-items:center; margin:24px 0; }
+.bl-asset-filters { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+.bl-asset-filters button { display:flex; gap:10px; align-items:center; min-height:44px; border:1px solid var(--bl-line); border-radius:999px; padding:8px 16px; background:#fff; font-size:13px!important; }
+.bl-asset-filters button[aria-pressed="true"] { color:#fff; background:#393b38; border-color:#393b38; }
+.bl-asset-filters span { font-size:11px; opacity:.75; }
+.bl-asset-context { color:var(--bl-muted); font-size:13px; margin:0 0 24px!important; }
+.bl-editorial-path { display:flex; align-items:center; flex-wrap:wrap; gap:10px; font-size:14px; padding:18px 0; border-top:1px solid var(--bl-line); }
+.bl-editorial-path svg { color:var(--bl-muted); }
+.bl-sns-intro { color:var(--bl-muted); margin:0 0 26px!important; font-size:13px; }
+.bl-channel-assets { border-top:1px solid var(--bl-line); margin-top:36px; padding-top:28px; }
+.bl-channel-assets .bl-card-image { aspect-ratio:1.8; }
+.bl-channel-assets .bl-section-head h2 { font-size:22px; }
+@media(max-width:850px) {
+  .bl-cast-teaser { gap:24px; }
+  .bl-cast-roles { gap:18px; }
+  .brand-library .bl-cast-roles h2 { font-size:21px; }
+  .bl-cast-roles blockquote { font-size:15px; }
+}
+@media(max-width:600px) {
+  .bl-cast-teaser { grid-template-columns:1fr; gap:20px; padding-bottom:30px; }
+  .bl-cast-teaser .bl-pill { margin-top:16px; }
+  .bl-cast-roles { grid-template-columns:1fr; padding:22px 0; gap:24px; }
+  .bl-cast-scene { border-radius:14px; }
+  .bl-cast-identity { padding:16px; gap:12px; align-items:flex-start; }
+  .bl-cast-identity img { width:52px; height:52px; }
+  .bl-cast-identity p { font-size:12px; }
+  .bl-asset-filters { gap:6px; }
+  .bl-asset-filters button { padding-inline:11px; gap:6px; font-size:11px!important; }
+  .bl-editorial-path { font-size:12px; gap:7px; }
+  .bl-channel-assets .bl-section-head { align-items:flex-start; flex-direction:column; gap:4px; }
+  .brand-library[data-brand="racco"] .bl-tabs { gap:0; justify-content:space-between; }
+  .brand-library[data-brand="racco"] .bl-tabs button { padding-inline:8px; }
+}
 @media(max-width:1100px) {
   .brand-library[data-brand="racco"] .bl-hero { min-height:438px; }
   .brand-library[data-brand="racco"] .bl-wordmark { font-size:92px; }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BrandGuide } from "@/components/brand/BrandStudio";
+import { raccoLogo, raccoRounded } from "@/lib/racco-fonts";
 
 export const metadata: Metadata = {
   title: "Lakkan / Racco — 詳しいブランドブック",
@@ -8,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <BrandGuide brand="lakkan"/>;
+  return <div className={`${raccoRounded.variable} ${raccoLogo.variable}`}><BrandGuide brand="lakkan"/></div>;
 }

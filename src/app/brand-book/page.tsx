@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BrandBookPrint } from "@/components/brand/BrandBookPrint";
+import { raccoLogo, raccoRounded } from "@/lib/racco-fonts";
 import "@/components/brand/brand-print.css";
 
 export const metadata: Metadata = {
@@ -14,5 +15,5 @@ export const metadata: Metadata = {
 };
 
 export default function BrandBookPage() {
-  return <BrandBookPrint />;
+  return <div className={`${raccoRounded.variable} ${raccoLogo.variable}`}><BrandBookPrint /></div>;
 }
