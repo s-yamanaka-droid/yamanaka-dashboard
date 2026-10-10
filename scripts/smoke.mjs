@@ -90,7 +90,7 @@ try {
           assert.ok(html.includes('<details') && html.includes('SNS') && html.includes('素材'), 'production tools remain accessible in collapsed menus');
           assert.ok(html.includes('/racco/columns/from-bookmark-to-work'), 'home points to an actual article');
           assert.ok(html.includes('racco-self-morning.png') && html.includes('racco-self-avatar.png'), 'new identity is present in the server-rendered page');
-          assert.ok(html.includes('racco-trio.png') && html.includes('3人に会う'), 'three-person cast has a visible entry from home');
+          assert.ok(html.includes('racco-trio.png') && html.includes('なかまに会う'), 'original Racco trio still leads into the expanded members view');
         } else {
           assert.ok(html.includes('AIすごい。で、自分の仕事には？') && html.includes('毎回「もっと短く」って言ってない？'), 'Lakkan keeps its existing editorial examples');
         }
@@ -100,6 +100,9 @@ try {
       assert.ok(html.includes('name="robots" content="noindex'), path + " remains a non-indexed candidate");
     } else if (path === '/racco/contact') {
       assertRaccoContact(html);
+      const heroImage = html.match(/<div class="rc-hero-image">([\s\S]*?)<\/div>/)?.[1];
+      assert.ok(heroImage?.includes('racco-fuwafuwa-shop-v2.png'), "Racco inquiry hero uses the new Racco and Fuwafuwa scene");
+      assert.ok(!heroImage.includes('racco-contact-lounge.png'), "the old lounge does not remain the inquiry hero");
       assert.ok(html.includes('href="/racco"'), "dedicated inquiry provides a route back to Racco");
       assert.ok(html.includes('href="#inquiry"'), "the in-page hero CTA still scrolls to the form");
       assert.ok(html.includes('name="robots" content="noindex'), "new inquiry keeps the existing noindex boundary");
@@ -151,6 +154,16 @@ try {
     assert.equal(response.status, 200, `cast/social asset ${name}`);
     assert.ok(response.headers.get('content-type')?.includes('image/png'), `asset MIME ${name}`);
   }
+  for (const name of ['fuwafuwa-character-v2', 'racco-fuwafuwa-shop-v2']) {
+    const path = `/brand-book/${name}.png`;
+    const response = await fetch(base + path);
+    assert.equal(response.status, 200, path + " is downloadable");
+    assert.ok(response.headers.get('content-type')?.includes('image/png'), path + " is served as PNG");
+    const served = Buffer.from(await response.arrayBuffer());
+    const original = readFileSync(new URL('../public' + path, import.meta.url));
+    assert.ok(served.equals(original), path + " download preserves the original PNG bytes and transparency");
+  }
+  console.log("PASS Fuwafuwa standalone and scene downloads retain their source PNG bytes");
   const assembly=await fetch(base+'/brand/lakkan-orange-assembly.mp4',{headers:{Range:'bytes=0-1023'}});
   assert.equal(assembly.status,206,'new Blender assembly supports range requests');
   assert.ok(assembly.headers.get('content-type')?.includes('video/mp4'),'assembly video MIME');

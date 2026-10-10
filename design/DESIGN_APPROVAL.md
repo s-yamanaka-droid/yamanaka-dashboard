@@ -15,3 +15,11 @@
 Original images remain in the Codex generated images for this chat. The implemented hero is a separate text-free image derived from C; UI copy is real HTML. Approval is not proof of functionality, visual equality, or publication.
 
 Intended differences: shorter human copy; functional radio selection and form; dark button text for contrast; no mobile image/text overlap; generic corporate contact remains untouched.
+
+## Fuwafuwa companion update
+
+- User approval: 「もう少し可愛く」への修正版 v2 提示後の「すすめて」。
+- Scope: approved round-eyed seal v2 in members, gallery/downloads, and the existing Racco contact hero. Preserve all three existing Racco roles and the approved rounded typography. No new UI theme or sending behavior.
+- Approved standalone: `fuwafuwa-character-v2.png`, SHA-256 `95ae2cdd8ca6bb1b5875c7ecec91af902f1bef9c29c34408b99237029d67255b`.
+- Derived shop scene: `racco-fuwafuwa-shop-v2.png`, SHA-256 `fec9b5228e70c24eb0f3fb1ccb9f598186bbaa7b886c3883310a97bed398ed6b`.
+- Hero copy is separated from the image to keep both faces visible. Product objects in the scene are visual mockups, not manufacturing or availability claims.

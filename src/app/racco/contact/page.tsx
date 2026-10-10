@@ -25,8 +25,8 @@ export default async function RaccoContactPage({ searchParams }: {
       <Link className="rc-back" href="/racco"><ArrowLeft size={16} aria-hidden="true" /><span>Raccoに戻る</span></Link>
     </header>
     <main id="main" className="rc-main">
-      <section className="rc-hero" aria-labelledby="rc-title">
-        <div className="rc-hero-image"><Image src="/brand-book/racco-contact-lounge.png" alt="メガネのRaccoがコーヒーを飲んでくつろぐ、グッズの並んだ明るいお店" fill sizes="(max-width: 760px) 100vw, 1240px" priority /></div>
+      <section className="rc-hero rc-hero-companions" aria-labelledby="rc-title">
+        <div className="rc-hero-image"><Image src="/brand-book/racco-fuwafuwa-shop-v2.png" alt="メガネのRaccoとゴマアザラシのふわふわさんが、お店で並んでくつろいでいる" fill sizes="(max-width: 900px) 100vw, 750px" priority /></div>
         <div className="rc-hero-copy">
           <p className="rc-eyebrow">RACCO / LET’S TALK</p>
           <h1 id="rc-title"><span>AIのこと、</span><span>ちょっと話そう。</span></h1>

@@ -15,3 +15,11 @@
 - Scope: /racco/contact と既存Racco遷移リンク。旧/contactのRacco sourceのみ安全に転送。一般/contactの法人向け表示は保持。
 - Approval: 2026-10-10、同チャットの本人メッセージ「ABC全部OK」。A/B/C画像参照とsha256は design/DESIGN_APPROVAL.md。
 - Publication: design approval and release verification are separate. No email or inquiry has been sent by this implementation.
+
+## Fuwafuwa companion
+
+- Approved round-eyed v2 seal; separate species and listening-role companion, not a replacement for the original Racco trio. Approval reference: `design/DESIGN_APPROVAL.md`.
+- Single character + shop scene use the existing preview/download component, with original PNGs preserved. Additive asset group; no new dependency.
+- Members: short introduction, transparent portrait, scene preview and save link. Contact: grid above 900px and stacked copy/image below, never text over faces.
+- Sourcecraft search: existing modal/filter/download is an exact functional match. ReUI product-detail-6 and Kokonut voice/search/calendar are unrelated or redundant; 21st lookup unavailable. No external code adopted.
+- Verification: four breakpoints 375/768/1024/1440, heading lines, overflow, action size, modal/Escape and original image download; release and production checks remain separate.

@@ -5,6 +5,9 @@ import { createRequire } from "node:module";
 import vm from "node:vm";
 const require = createRequire(import.meta.url);
 const ts = require("typescript");
+const sharp = require("sharp");
+const fuwafuwaCharacter = "/brand-book/fuwafuwa-character-v2.png";
+const fuwafuwaScene = "/brand-book/racco-fuwafuwa-shop-v2.png";
 const compile = path => ts.transpileModule(readFileSync(new URL(path, import.meta.url), "utf8"), {
   compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true },
 }).outputText;
@@ -52,10 +55,27 @@ for (const phrase of ["知らない会社の自分", "そこだけ、ちょっ�
 }
 for (const id of ["x", "instagram", "note"]) assert.match(dataContext.exports.channels.find(channel => channel.id === id).sample, /メモ.*次|次.*メモ|次.*貼る/s, id + " explains how a correction can be reused");
 assert.equal(kitContext.exports.raccoCast.length, 3, "approved cast has three roles");
-assert.equal(kitContext.exports.raccoAssets.length, 26, "existing 14 assets plus 11 stickers and Hina are available");
+assert.deepEqual(Array.from(kitContext.exports.raccoCast, member => member.id), ["racco", "practical", "automation"], "Fuwafuwa does not replace any of the original three Racco roles");
+assert.deepEqual(Array.from(kitContext.exports.raccoCast, member => [member.name, member.role]), [["Racco", "のんびり担当"], ["まず、ひとつ。", "テキパキ担当"], ["つい、凝っちゃう。", "自動化オタク担当"]], "original names and roles are unchanged");
+assert.equal(kitContext.exports.raccoAssets.length, 28, "all existing assets remain alongside two Fuwafuwa assets");
+assert.equal(kitContext.exports.fuwafuwaAssets.length, 2, "standalone character and shared scene are defined once");
+assert.deepEqual(Array.from(kitContext.exports.fuwafuwaAssets, asset => asset.src), [fuwafuwaCharacter, fuwafuwaScene]);
+assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "fuwafuwa").length, 2);
 assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "stickers").length, 11);
 assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "hina").length, 1);
 for (const asset of kitContext.exports.raccoAssets) assert.ok(readFileSync(new URL("../public" + asset.src, import.meta.url)).byteLength > 1000, asset.src + " exists");
+const characterPng = readFileSync(new URL("../public" + fuwafuwaCharacter, import.meta.url));
+const characterInfo = await sharp(characterPng).metadata();
+assert.equal(characterInfo.format, "png");
+assert.deepEqual([characterInfo.width, characterInfo.height], [1254, 1254], "approved standalone Fuwafuwa has the supplied square dimensions");
+assert.ok(characterInfo.hasAlpha, "standalone PNG has an alpha channel");
+const characterAlpha = (await sharp(characterPng).stats()).channels.at(-1);
+assert.equal(characterAlpha.min, 0, "standalone PNG contains actually transparent pixels, not an opaque background");
+assert.ok(characterAlpha.max > 0, "standalone PNG also contains visible subject pixels");
+const sceneInfo = await sharp(readFileSync(new URL("../public" + fuwafuwaScene, import.meta.url))).metadata();
+assert.equal(sceneInfo.format, "png");
+assert.deepEqual([sceneInfo.width, sceneInfo.height], [1672, 941], "shared scene retains the supplied landscape dimensions");
+console.log("PASS Fuwafuwa assets: standalone PNG size and real transparency, landscape scene PNG");
 for (const path of ["../src/data/brand-book.ts", "../src/data/racco-kit.ts", "../src/components/brand/BrandLibrary.tsx", "../src/components/brand/BrandStudio.tsx", "../src/components/brand/BrandBookPrint.tsx", "../public/brand-book/brand-book.md"]) {
   assert.ok(!/本人用|本人のRacco|本人アバター|本人の分身|発信用アバター/.test(readFileSync(new URL(path, import.meta.url), "utf8")), "public brand content does not expose internal identity notes: " + path);
 }
@@ -206,8 +226,30 @@ for (const brand of ["racco", "lakkan"]) {
     tab("members").props.onClick();
     assert.equal(app.state[0], "members");
     assert.equal(app.history.at(-1), "#members");
-    assert.equal(app.find(n => n.props?.className === "bl-cast-roles").length, 1);
-    assert.equal(app.find(n => n.type === "article").length, 3, "three distinct approved roles are present");
+    const castRoles = app.find(n => n.props?.className === "bl-cast-roles");
+    assert.equal(castRoles.length, 1);
+    assert.equal(castRoles[0].props.children.filter(node => node.type === "article").length, 3, "the original three role cards remain together");
+    for (const member of kitContext.exports.raccoCast) {
+      assert.ok(nodeText(castRoles[0]).includes(member.name) && nodeText(castRoles[0]).includes(member.role), member.id + " retains its original name and role");
+    }
+    assert.ok(app.find(n => n.type === "img" && n.props.src === "/brand-book/racco-trio.png").length, "original three-person scene remains available in members");
+    assert.ok(app.find(n => n.type === "h1" && nodeText(n) === "Raccoと、なかまたち。").length, "members heading includes the expanded cast");
+    const fuwafuwa = app.find(n => n.props?.id === "bl-fuwafuwa");
+    assert.equal(fuwafuwa.length, 1, "new member has its own named section");
+    assert.ok(nodeText(fuwafuwa[0]).includes("ふわふわさん"));
+    function assertDownloadableMemberImage(src, width, height) {
+      const image = app.find(n => n.type === "img" && n.props.src === src)[0];
+      assert.ok(image, src + " is shown in the member view or its preview");
+      assert.equal(image.props.width, width);
+      assert.equal(image.props.height, height);
+      assert.ok(image.props.alt, src + " has alternative text");
+      assert.ok(app.find(n => n.type === "a" && n.props.href === src && n.props.download != null && n.props.download !== false).length, src + " has a direct PNG download link");
+    }
+    assertDownloadableMemberImage(fuwafuwaCharacter, 1254, 1254);
+    app.find(n => n.type === "button" && nodeText(n) === "ふたりの風景を見る")[0].props.onClick();
+    assertDownloadableMemberImage(fuwafuwaScene, 1672, 941);
+    app.find(n => n.type === "dialog" && n.props.id === "bl-preview")[0].props.onClose();
+    assert.equal(app.find(n => n.type === "img" && n.props.src === fuwafuwaScene).length, 0, "closing the shared scene preview clears it");
     app.setHash("#assets-cast");
     assert.equal(app.state[0], "assets");
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 2, "cast filter contains the approved scene and cast sheet");
@@ -221,8 +263,12 @@ for (const brand of ["racco", "lakkan"]) {
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 1);
     assert.equal(app.history.at(-1), "#assets-hina");
     assert.ok(app.find(n => n.type === "a" && n.props?.href === "/brand-book/racco-hina-sticker.png" && n.props.download).length);
+    app.find(n => n.type === "button" && n.props?.children?.[0] === "ふわふわさん")[0].props.onClick();
+    assert.equal(app.find(n => n.props?.className === "bl-card").length, 2, "Fuwafuwa filter contains the standalone and shared scene only");
+    assert.equal(app.history.at(-1), "#assets-fuwafuwa");
+    for (const src of [fuwafuwaCharacter, fuwafuwaScene]) assert.ok(app.find(n => n.type === "a" && n.props.href === src && n.props.download).length, src + " can also be saved from the asset filter");
     app.find(n => n.type === "button" && n.props?.children?.[0] === "すべて")[0].props.onClick();
-    assert.equal(app.find(n => n.props?.className === "bl-card").length, 26, "all filter does not hide older work");
+    assert.equal(app.find(n => n.props?.className === "bl-card").length, 28, "all filter does not hide older work or the new member");
     app.setHash("#gallery-stickers");
     assert.equal(app.state[0], "visual", "legacy collection hash opens the gallery");
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 11);
