@@ -180,7 +180,7 @@ export function BrandBookPrint() {
           <div className="bp-cast-grid">
             <div>
               <figure className="bp-trio-image"><BookImage name="racco-trio" alt="灰色パーカーのRacco、コーラルの小柄な仲間、チャコールと丸メガネの長顔の仲間が過ごす朝" /></figure>
-              <div className="bp-main-avatar"><BookImage name="racco-self-avatar" alt="主役Racco単独の太縁メガネのSNSアイコン" square /><p><strong>本人アバター / SNSアイコン</strong><span>太縁メガネのRaccoを単独で。丸メガネの仲間とは別の顔です。</span></p></div>
+              <div className="bp-main-avatar"><BookImage name="racco-self-avatar" alt="主役Racco単独の太縁メガネのSNSアイコン" square /><p><strong>Raccoのアイコン</strong><span>太縁メガネに、眠そうな目。いつものRacco。</span></p></div>
             </div>
             <div className="bp-cast-roles">
               <div><h3>のんびり担当 / Racco</h3><p>灰色パーカー、横に広い丸顔、半目。面倒に気づき、何を試すかと採否を決める主役。</p></div>

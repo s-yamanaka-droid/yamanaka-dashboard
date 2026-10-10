@@ -21,6 +21,9 @@ for (const phrase of ["知らない会社の自分", "そこだけ、ちょっ�
 for (const id of ["x", "instagram", "note"]) assert.match(dataContext.exports.channels.find(channel => channel.id === id).sample, /メモ.*次|次.*メモ|次.*貼る/s, id + " explains how a correction can be reused");
 assert.equal(kitContext.exports.raccoCast.length, 3, "approved cast has three roles");
 assert.equal(kitContext.exports.raccoAssets.length, 14, "all approved identity, cast, and SNS assets are available");
+for (const path of ["../src/data/brand-book.ts", "../src/data/racco-kit.ts", "../src/components/brand/BrandLibrary.tsx", "../src/components/brand/BrandStudio.tsx", "../src/components/brand/BrandBookPrint.tsx", "../public/brand-book/brand-book.md"]) {
+  assert.ok(!/本人用|本人のRacco|本人アバター|本人の分身|発信用アバター/.test(readFileSync(new URL(path, import.meta.url), "utf8")), "public brand content does not expose internal identity notes: " + path);
+}
 const compiled = compile("../src/components/brand/BrandLibrary.tsx");
 
 function fixture(brand) {

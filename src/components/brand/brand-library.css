@@ -305,10 +305,6 @@ body:has(.brand-library[data-brand="racco"]) { background:#fff; }
 .bl-cast-roles blockquote { font-size:17px; margin:0 0 14px; line-height:1.8; }
 .bl-cast-roles p:not(.bl-kicker) { font-size:14px; color:var(--bl-muted); line-height:1.9; }
 .bl-cast-roles small { display:block; font-size:11px; margin-top:16px; color:var(--bl-muted); }
-.bl-cast-identity { display:flex; align-items:center; gap:18px; padding:20px 24px; border:1px solid var(--bl-line); border-radius:18px; }
-.bl-cast-identity img { width:76px; height:76px; border-radius:50%; }
-.bl-cast-identity p { font-size:13px; line-height:1.9; }
-.bl-cast-identity strong { font-weight:500; }
 .bl-member-actions { display:flex; flex-wrap:wrap; gap:16px; align-items:center; margin:24px 0; }
 .bl-asset-filters { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
 .bl-asset-filters button { display:flex; gap:10px; align-items:center; min-height:44px; border:1px solid var(--bl-line); border-radius:999px; padding:8px 16px; background:#fff; font-size:13px!important; }
@@ -332,9 +328,6 @@ body:has(.brand-library[data-brand="racco"]) { background:#fff; }
   .bl-cast-teaser .bl-pill { margin-top:16px; }
   .bl-cast-roles { grid-template-columns:1fr; padding:22px 0; gap:24px; }
   .bl-cast-scene { border-radius:14px; }
-  .bl-cast-identity { padding:16px; gap:12px; align-items:flex-start; }
-  .bl-cast-identity img { width:52px; height:52px; }
-  .bl-cast-identity p { font-size:12px; }
   .bl-asset-filters { gap:6px; }
   .bl-asset-filters button { padding-inline:11px; gap:6px; font-size:11px!important; }
   .bl-editorial-path { font-size:12px; gap:7px; }

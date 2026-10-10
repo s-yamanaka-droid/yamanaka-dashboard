@@ -2,7 +2,7 @@ export type AssetGroup = "self" | "cast" | "social";
 export type RaccoAsset = { title: string; kind: string; src: string; width: number; height: number; alt: string; group?: AssetGroup };
 
 export const assetGroups: { id: AssetGroup; label: string }[] = [
-  { id: "self", label: "本人のRacco" },
+  { id: "self", label: "Racco" },
   { id: "cast", label: "3人の仲間" },
   { id: "social", label: "SNSの画像" },
 ];
@@ -11,7 +11,7 @@ export const raccoAssets: RaccoAsset[] = [
   { title: "朝は、ゆっくり。", kind: "朝の風景", src: "/brand-book/racco-self-morning.png", width: 1672, height: 941, alt: "太縁の黒いメガネと灰色パーカーのRacco。眠そうに頬づえをつき、自分のステッカーを貼ったPCと朝のコーヒー", group: "self" },
   { title: "雨の日は、ここで。", kind: "カフェの風景", src: "/brand-book/racco-self-cafe.png", width: 1672, height: 941, alt: "雨のカフェで太縁メガネのRaccoがノートPCを開いている", group: "self" },
   { title: "いつもの顔。", kind: "プロフィール", src: "/brand-book/racco-self-avatar.png", width: 1254, height: 1254, alt: "太い黒縁メガネに半目、灰色パーカーを着たRaccoの顔", group: "self" },
-  { title: "持ちものにも、自分。", kind: "グッズのイメージ", src: "/brand-book/racco-self-merch.png", width: 1672, height: 941, alt: "太縁メガネのRaccoをあしらったPCやスマホ、カード、ステッカーの生成モック", group: "self" },
+  { title: "持ちものにも、Racco。", kind: "グッズのイメージ", src: "/brand-book/racco-self-merch.png", width: 1672, height: 941, alt: "太縁メガネのRaccoをあしらったPCやスマホ、カード、ステッカーの生成モック", group: "self" },
   { title: "ぺたっと、Racco。", kind: "ステッカー", src: "/brand-book/racco-self-sticker.png", width: 1254, height: 1254, alt: "自分の顔のステッカーを貼ったPCを抱える、太縁メガネのRaccoの白ふちシール", group: "self" },
   { title: "Raccoと、ふたりの仲間。", kind: "3人の朝の場面", src: "/brand-book/racco-trio.png", width: 1672, height: 941, alt: "朝の部屋で集まる、灰色パーカーののんびりRacco、コーラルのテキパキ担当、丸メガネの自動化オタク担当", group: "cast" },
   { title: "それぞれ、こんな顔。", kind: "3人の造形見本", src: "/brand-book/racco-cast.png", width: 1536, height: 1024, alt: "顔の形、体格、服装の違いが分かるRaccoの3人のキャラクター見本", group: "cast" },
