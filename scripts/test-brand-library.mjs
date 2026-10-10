@@ -13,6 +13,12 @@ vm.runInNewContext(compile("../src/data/brand-book.ts"), dataContext);
 const kitContext = { exports: {} };
 vm.runInNewContext(compile("../src/data/racco-kit.ts"), kitContext);
 assert.equal(dataContext.exports.bookMarkdown, readFileSync(new URL("../public/brand-book/brand-book.md", import.meta.url), "utf8"), "downloadable manuscript stays in sync with shared content");
+assert.equal(new Set(dataContext.exports.channels.map(channel => channel.subtitle)).size, 4, "each channel has a distinct editorial topic");
+for (const phrase of ["知らない会社の自分", "そこだけ、ちょっと起きる", "距離が遠い。", "そこは起きてる。"]) {
+  assert.ok(!dataContext.exports.bookMarkdown.includes(phrase), "rejected opaque copy stays out: " + phrase);
+  assert.ok(!readFileSync(new URL("../src/components/brand/BrandBookPrint.tsx", import.meta.url), "utf8").includes(phrase), "print edition does not retain rejected copy: " + phrase);
+}
+for (const id of ["x", "instagram", "note"]) assert.match(dataContext.exports.channels.find(channel => channel.id === id).sample, /メモ.*次|次.*メモ|次.*貼る/s, id + " explains how a correction can be reused");
 assert.equal(kitContext.exports.raccoCast.length, 3, "approved cast has three roles");
 assert.equal(kitContext.exports.raccoAssets.length, 14, "all approved identity, cast, and SNS assets are available");
 const compiled = compile("../src/components/brand/BrandLibrary.tsx");

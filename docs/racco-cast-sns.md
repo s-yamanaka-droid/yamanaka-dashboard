@@ -10,7 +10,7 @@ The already-approved three-character world now appears in the existing Racco sit
 - `/brand-guide`: shared cast direction and typography, with the existing work-card tools preserved.
 - `/brand-book`: ten-page print layout, short excerpts and explicit links to full web text. No previously exported PDF is silently replaced.
 
-SNS drafts use a concrete hypothetical email-reply example. They are not claims of a real experiment or measured savings. Existing text-in-image assets are expression references, not finished posts matching the new copy. Reels artwork is a static cover, not generated video. No social account, profile, or post was changed.
+SNS drafts cover four concrete topics: choosing an everyday task (Threads), saving a correction for the next request (X), sorting notes with an input/output example (Instagram), and improving weekly-report instructions across requests (note). Each gives a usable instruction rather than an abstract slogan or a forced sleepy punchline. These are examples to try, not claims of a real experiment or measured savings. Existing text-in-image assets are expression references, not finished posts matching the new copy. Reels artwork is a static cover, not generated video. No social account, profile, or post was changed.
 
 ## Existing sources and implementation
 

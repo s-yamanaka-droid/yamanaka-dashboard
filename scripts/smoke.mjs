@@ -42,7 +42,7 @@ try {
         assert.ok(html.includes('href="/brand-guide"') && html.includes('href="/brand-book"'), path + " keeps the complete guide and print edition accessible");
         assert.ok(html.includes('aria-label="Lakkanのキャラクター"'), path + " identifies Racco within Lakkan");
         for (const destination of ['/works', '/services', '/contact?topic=other#inquiry']) assert.ok(html.includes(`href="${destination}"`), path + " exposes " + destination);
-        assert.ok(html.includes('丁寧に。いや、そこまでじゃなくて。') && html.includes('「丁寧に」だけだと、距離が遠い。'), path + " offers a concrete AI-use editorial example");
+        assert.ok(html.includes('AIすごい。で、自分の仕事には？') && html.includes('毎回「もっと短く」って言ってない？'), path + " offers concrete work and instruction-reuse topics");
         assert.ok(!html.includes('class="bl-hero-art is-workshop"'), path + " avoids the cropped baked-in Lakkan lettering");
         if (path === '/racco') {
           assert.ok(html.includes('ひとりごとを読む') && html.includes('LakkanのRacco'), 'Racco introduces its affiliation and reading entry');
