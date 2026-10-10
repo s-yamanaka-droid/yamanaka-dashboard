@@ -34,9 +34,11 @@ for (const [source, intent, topic, label] of [
   assert.equal(context.topic, topic);
   assert.equal(context.sourceLabel, label);
   assert.match(context.initialMessage, /相談したいです。\n\n$/);
+  assert.doesNotMatch(context.initialMessage, /AI・業務について|グッズについて|キャラクター・デザインについて/,
+    "initial draft must stay neutral when the user switches inquiry topics");
   const href = new URL(buildRaccoInquiryHref({ source }), "https://example.test");
-  assert.equal(href.pathname, "/contact");
-  assert.equal(href.hash, "#inquiry");
+  assert.equal(href.pathname, "/racco/contact");
+  assert.equal(href.hash, "#main", "incoming links show the approved hero before the form");
   assert.equal(href.searchParams.get("source"), source);
   assert.equal(href.searchParams.get("intent"), intent);
 }
@@ -61,9 +63,9 @@ for (const item of goods.exports.raccoGoods) {
 assert.equal(resolveRaccoInquiryContext({ source: "racco-home", intent: "design" }).topic, "racco-design");
 assert.equal(resolveRaccoInquiryContext({ source: "racco-goods", intent: "ai" }).topic, "ai-consult");
 
-for (const invalid of [undefined, null, {}, [], { source: ["racco-home"] }, { source: "unknown" }, { source: "constructor" }, { source: "__proto__" }, { source: "racco-home\nInjected" }]) {
+for (const invalid of [undefined, null, {}, [], { source: ["racco-home"] }, { source: "unknown" }, { source: "constructor" }, { source: "__proto__" }, { source: "racco-home\nInjected" }, { source: "javascript:alert(1)" }, { source: "https://example.invalid" }, { source: "//example.invalid" }]) {
   assert.equal(resolveRaccoInquiryContext(invalid), undefined);
-  assert.equal(buildRaccoInquiryHref(invalid), "/contact#inquiry");
+  assert.equal(buildRaccoInquiryHref(invalid), "/racco/contact#main");
 }
 for (const value of [[article.slug], "not-an-article", "from-bookmark-to-work%0AInjected", "line one\nline two", {}, 123]) {
   const context = resolveRaccoInquiryContext({ source: "racco-column", article: value, intent: ["design"] });
@@ -81,13 +83,20 @@ for (const value of [[product.slug], "not-a-product", "holo-sticker%0AInjected",
 }
 assert.equal(resolveRaccoInquiryContext({ source: "racco-home", article: article.slug, product: product.slug }).article, undefined);
 assert.equal(resolveRaccoInquiryContext({ source: "racco-column", article: article.slug, product: product.slug }).product, undefined);
-console.log("PASS inquiry helper: sources, intent mapping, all public references, round trips, invalid arrays and unknown/encoded references");
+const sanitizedHref = new URL(buildRaccoInquiryHref({
+  source: "racco-goods", product: product.slug, intent: "goods", article: article.slug,
+  topic: "javascript:alert(1)", project: "not-a-project", next: "https://example.invalid", redirect: "//example.invalid",
+}), "https://example.test");
+assert.equal(sanitizedHref.origin, "https://example.test");
+assert.deepEqual([...sanitizedHref.searchParams.keys()].sort(), ["intent", "product", "source"], "only the allowlisted route context is encoded");
+assert.ok(!sanitizedHref.href.includes("example.invalid"));
+console.log("PASS inquiry helper: dedicated route, sources, intent mapping, public references, round trips, invalid arrays, URL schemes and unknown/encoded references");
 
-function fixture({ raccoContext, projectName, initialTopic, clipboard = "success", valid = true } = {}) {
+function fixture({ raccoContext, projectName, initialTopic, variant, clipboard = "success", valid = true } = {}) {
   const state = [];
   let cursor = 0, copied, validationCalls = 0;
-  const values = { name: "確認用テスト", email: "test@example.invalid", company: "架空の所属", message: "一行目 & 記号 ? # = + %\n二行目：編集した相談内容\n三行目" };
-  const form = { reportValidity: () => { validationCalls++; return valid; } };
+  const values = { name: "確認用テスト", email: "test@example.invalid", company: variant === "racco" ? undefined : "架空の所属", message: "一行目 & 記号 ? # = + %\n二行目：編集した相談内容\n三行目" };
+  const form = { reportValidity: () => { validationCalls++; return valid; }, reset: () => { throw new Error("Inputs must not be reset"); } };
   const location = { href: "" };
   const context = {
     exports: {},
@@ -97,6 +106,8 @@ function fixture({ raccoContext, projectName, initialTopic, clipboard = "success
         useState(initial) { const i = cursor++; if (!(i in state)) state[i] = initial; return [state[i], next => { state[i] = next; }]; },
       };
       if (name === "next/link") return "a";
+      if (name === "next/image") return "img";
+      if (name.endsWith(".css")) return {};
       return require(name);
     },
     FormData: class { get(key) { return values[key] ?? null; } },
@@ -107,7 +118,7 @@ function fixture({ raccoContext, projectName, initialTopic, clipboard = "success
     window: { location },
   };
   vm.runInNewContext(compile("../src/app/contact/ContactForm.tsx"), context);
-  const render = () => { cursor = 0; return context.exports.ContactForm({ raccoContext, projectName, initialTopic }); };
+  const render = () => { cursor = 0; return context.exports.ContactForm({ raccoContext, projectName, initialTopic, variant }); };
   const find = predicate => {
     function visit(node) {
       if (!node || typeof node !== "object") return [];
@@ -134,8 +145,8 @@ assert.ok(mailto.searchParams.get("body").endsWith(editedMessage), "encoded mult
 assert.equal(formApp.values.message, editedMessage, "opening mailto does not reset inputs");
 assert.match(formApp.find(node => node.props?.role === "status")[0].props.children, /まだ送信されていません/);
 
-for (const clipboard of ["success", "reject", "unavailable"]) {
-  const app = fixture({ raccoContext, initialTopic: raccoContext.topic, clipboard });
+for (const variant of [undefined, "racco"]) for (const clipboard of ["success", "reject", "unavailable"]) {
+  const app = fixture({ raccoContext, initialTopic: raccoContext.topic, variant, clipboard });
   await app.find(node => node.type === "button" && node.props.type === "button")[0].props.onClick();
   assert.equal(app.validations(), 1);
   assert.equal(app.values.message, editedMessage, "copying/failing does not reset inputs");
@@ -161,4 +172,29 @@ assert.equal(invalidForm.getCopied(), undefined, "copy respects required fields"
 const existingProject = fixture({ projectName: "公開実績のテスト", initialTopic: "unknown" });
 assert.equal(existingProject.find(node => node.props?.id === "topic")[0].props.value, "ai-consult");
 assert.match(existingProject.find(node => node.props?.id === "message")[0].props.defaultValue, /公開実績のテストの実績/);
-console.log("PASS contact handlers: editable context, encoded mailto, unchanged recipient, not-sent status, clipboard fallback, input preservation and existing projects");
+assert.equal(existingProject.find(node => node.type === "input" && node.props.type === "radio").length, 0, "corporate form keeps its select");
+
+const goodsContext = resolveRaccoInquiryContext({ source: "racco-goods", product: product.slug, intent: "goods" });
+const raccoApp = fixture({ raccoContext: goodsContext, initialTopic: goodsContext.topic, variant: "racco" });
+const radios = () => raccoApp.find(node => node.type === "input" && node.props.type === "radio");
+assert.deepEqual(radios().map(node => node.props.value).sort(), ["ai-consult", "racco-design", "racco-goods"]);
+assert.ok(radios().every(node => node.props.name === "topic"), "topic cards form one radio group");
+assert.equal(radios().find(node => node.props.checked)?.props.value, "racco-goods");
+assert.equal(raccoApp.find(node => node.type === "select").length, 0, "Racco uses three topic cards instead of the corporate select");
+assert.equal(raccoApp.find(node => node.props?.id === "message")[0].props.defaultValue, goodsContext.initialMessage);
+for (const [topic, label] of [["racco-design", "キャラクター・デザインの相談"], ["ai-consult", "AI・業務のご相談"], ["racco-goods", "グッズについて"]]) {
+  radios().find(node => node.props.value === topic).props.onChange({ target: { value: topic } });
+  raccoApp.find(node => node.type === "form")[0].props.onChange();
+  assert.equal(radios().find(node => node.props.checked)?.props.value, topic);
+  assert.equal(raccoApp.values.message, editedMessage, "changing a topic does not clear edited content");
+  raccoApp.find(node => node.type === "form")[0].props.onSubmit({ preventDefault() {}, currentTarget: {} });
+  const draft = new URL(raccoApp.location.href);
+  assert.equal(draft.protocol, "mailto:");
+  assert.equal(draft.pathname, "s-yamanaka@tre-pro.co.jp");
+  assert.equal(draft.searchParams.get("subject"), `[Lakkan] ${label}`);
+  assert.ok(!draft.searchParams.get("body").includes("undefined") && !draft.searchParams.get("body").includes("null"), "omitted optional fields do not leak placeholder values");
+  assert.ok(draft.searchParams.get("body").includes(`見ていたグッズ：${product.title}`));
+  assert.ok(draft.searchParams.get("body").endsWith(editedMessage), "topic change preserves the edited multiline message in the generated email");
+  assert.match(raccoApp.find(node => node.props?.role === "status")[0].props.children, /まだ送信されていません/);
+}
+console.log("PASS contact handlers: corporate select and Racco radio cards, topic switching preserves text, encoded mailto, unchanged recipient, not-sent status, clipboard fallback and existing projects");

@@ -54,7 +54,6 @@ export function resolveRaccoInquiryContext(
     ? raccoGoods.find(item => item.slug === searchParams.product)
     : undefined;
   const reference = article ? `コラム「${article.title}」` : product ? `「${product.title}」` : sourceLabel;
-  const purpose = intent === "goods" ? "グッズについて相談したいです。" : intent === "design" ? "キャラクター・デザインについて相談したいです。" : "AI・業務について相談したいです。";
 
   return {
     source,
@@ -63,7 +62,7 @@ export function resolveRaccoInquiryContext(
     topic: intentTopics[intent],
     article: article ? { slug: article.slug, title: article.title } : undefined,
     product: product ? { slug: product.slug, title: product.title } : undefined,
-    initialMessage: `${reference}を見て、${purpose}\n\n`,
+    initialMessage: `${reference}を見て相談したいです。\n\n`,
     bodyLines: [
       `きっかけ：${sourceLabel}`,
       ...(article ? [`見ていた記事：${article.title}`] : []),
@@ -74,9 +73,9 @@ export function resolveRaccoInquiryContext(
 
 export function buildRaccoInquiryHref(input: RaccoInquiryInput): string {
   const context = resolveRaccoInquiryContext(input);
-  if (!context) return "/contact#inquiry";
+  if (!context) return "/racco/contact#main";
   const query = new URLSearchParams({ source: context.source, intent: context.intent });
   if (context.article) query.set("article", context.article.slug);
   if (context.product) query.set("product", context.product.slug);
-  return `/contact?${query.toString()}#inquiry`;
+  return `/racco/contact?${query.toString()}#main`;
 }

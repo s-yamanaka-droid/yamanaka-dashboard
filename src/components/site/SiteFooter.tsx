@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 export function SiteFooter() {
   const pathname = usePathname();
-  if ((pathname.startsWith("/racco/columns/") || pathname.startsWith("/racco/goods/")) || ["/", "/racco", "/concept", "/brand-book", "/brand-guide"].includes(pathname)) return null;
+  if ((pathname.startsWith("/racco/columns/") || pathname.startsWith("/racco/goods/") || pathname === "/racco/contact") || ["/", "/racco", "/concept", "/brand-book", "/brand-guide"].includes(pathname)) return null;
   return <footer className="site-footer original-footer">
     <Link href="/" className="original-footer-brand" aria-label="Lakkan ホーム"><span className="brand-wordmark">Lakkan</span></Link>
     <p>業務を見直す。技術を活かす。人と組織をつなぐ。</p>

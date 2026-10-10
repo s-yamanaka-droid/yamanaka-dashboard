@@ -9,6 +9,37 @@ const goods = [
 ];
 const server = process.env.SMOKE_BASE_URL ? null : spawn("node", ["node_modules/next/dist/bin/next", "start", "-p", "3118"], { stdio: "ignore" });
 const base = process.env.SMOKE_BASE_URL || "http://127.0.0.1:3118";
+const messageText = html => html.match(/<textarea[^>]*id="message"[^>]*>([\s\S]*?)<\/textarea>/)?.[1];
+function assertRaccoContact(html, topic = "ai-consult") {
+  assert.ok(html.includes('data-brand="racco"'), "dedicated inquiry stays in the Racco visual shell");
+  assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), "dedicated inquiry does not render the corporate shell");
+  const radios = html.match(/<input(?=[^>]*type="radio")(?=[^>]*name="topic")[^>]*>/g) ?? [];
+  assert.equal(radios.length, 3, "Racco inquiry has three topic choices");
+  assert.deepEqual(radios.map(input => input.match(/value="([^"]+)"/)?.[1]).sort(), ["ai-consult", "racco-design", "racco-goods"]);
+  assert.ok(radios.find(input => /\schecked(?:=|\s|>)/.test(input))?.includes(`value="${topic}"`), "Racco inquiry selects the intended topic");
+  for (const id of ["name", "email", "message"]) assert.ok(html.includes(`id="${id}"`), "Racco retains the " + id + " field");
+  assert.ok(html.includes("下書き") && /送信するまで|送信されません|送られません|未送信/.test(html), "Racco inquiry makes its draft-only boundary visible");
+}
+async function assertLegacyRaccoRedirect(path, expectedQuery) {
+  const response = await fetch(base + path, { redirect: "manual" });
+  let target;
+  if ([307, 308].includes(response.status)) {
+    target = response.headers.get("location");
+  } else {
+    assert.equal(response.status, 200, "legacy inquiry uses an HTTP or streamed Next redirect");
+    const html = await response.text();
+    const meta = (html.match(/<meta\b[^>]*>/g) ?? []).find(tag => /http-equiv="refresh"/i.test(tag));
+    target = meta?.match(/content="[^"]*?url=([^\"]+)"/i)?.[1]?.replaceAll("&amp;", "&");
+    assert.ok(target, "a 200 legacy response must contain an actual Next streaming redirect, not the corporate form");
+  }
+  assert.ok(target, "legacy redirect supplies a destination");
+  const destination = new URL(target, base);
+  assert.equal(destination.origin, new URL(base).origin, "legacy redirect stays on the same origin");
+  assert.equal(destination.pathname, "/racco/contact");
+  assert.equal(destination.hash, "#main", "legacy arrivals show the hero, not only the form");
+  assert.deepEqual(Object.fromEntries(destination.searchParams), expectedQuery, "legacy redirect keeps only allowlisted context");
+  console.log("PASS legacy inquiry redirect", response.status, path.split("?")[1]);
+}
 try {
   let ready = false;
   for (let i = 0; i < 40; i++) {
@@ -17,7 +48,7 @@ try {
   }
   assert.ok(ready, "health endpoint is ready");
   assert.equal((await (await fetch(base + '/api/health')).json()).experience, 'interactive-workshop', 'health identifies the current homepage');
-  for (const path of ["/", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/concept", "/brand-book", "/brand-guide", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => `/racco/columns/${slug}`), ...goods.map(item => `/racco/goods/${item.slug}`)]) {
+  for (const path of ["/", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/racco/contact", "/concept", "/brand-book", "/brand-guide", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => `/racco/columns/${slug}`), ...goods.map(item => `/racco/goods/${item.slug}`)]) {
     const response = await fetch(base + path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
@@ -48,7 +79,7 @@ try {
         assert.ok(html.includes('href="/brand-guide"') && html.includes('href="/brand-book"'), path + " keeps the complete guide and print edition accessible");
         assert.ok(html.includes('aria-label="Lakkanのキャラクター"'), path + " identifies Racco within Lakkan");
         for (const destination of ['/works', '/services']) assert.ok(html.includes(`href="${destination}"`), path + " exposes " + destination);
-        assert.ok(html.replaceAll('&amp;', '&').includes(path === '/racco' ? 'href="/contact?source=racco-home&intent=ai#inquiry"' : 'href="/contact?topic=other#inquiry"'), path + " exposes its contextual inquiry");
+        assert.ok(html.replaceAll('&amp;', '&').includes(path === '/racco' ? 'href="/racco/contact?source=racco-home&intent=ai#main"' : 'href="/contact?topic=other#inquiry"'), path + " exposes its contextual inquiry");
         assert.ok(!html.includes('class="bl-hero-art is-workshop"'), path + " avoids the cropped baked-in Lakkan lettering");
         if (path === '/racco') {
           assert.ok(html.includes('読みものを見る') && html.includes('グッズを見る'), 'Racco leads to real articles and goods designs');
@@ -67,6 +98,11 @@ try {
       assert.ok(!/仕込/.test(html), path + ' does not restore rejected abstract copy');
       assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), path + " has no overlapping corporate shell");
       assert.ok(html.includes('name="robots" content="noindex'), path + " remains a non-indexed candidate");
+    } else if (path === '/racco/contact') {
+      assertRaccoContact(html);
+      assert.ok(html.includes('href="/racco"'), "dedicated inquiry provides a route back to Racco");
+      assert.ok(html.includes('href="#inquiry"'), "the in-page hero CTA still scrolls to the form");
+      assert.ok(html.includes('name="robots" content="noindex'), "new inquiry keeps the existing noindex boundary");
     } else if (path.startsWith('/racco/columns/')) {
       assert.ok(html.includes('bl-column-article'), 'real article body is server rendered');
       assert.ok(html.includes('依頼文をコピー') && html.includes('今日、ひとつ試すなら。'), 'article has reusable prompt and takeaway');
@@ -74,13 +110,14 @@ try {
       assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), 'article avoids duplicate corporate shell');
       assert.ok(html.includes('property="og:type" content="article"'), 'article share metadata');
       assert.ok(html.includes('name="robots" content="noindex'), 'existing noindex boundary is preserved');
+      assert.ok(html.replaceAll('&amp;', '&').includes(`/racco/contact?source=racco-column&intent=ai&article=${path.split('/').at(-1)}#main`), 'article leads to the dedicated contextual inquiry');
     } else if (path.startsWith('/racco/goods/')) {
       const item = goods.find(item => path.endsWith('/' + item.slug));
       assert.ok(html.includes('bl-goods-detail') && html.includes(item.title), 'goods design detail is server rendered');
       assert.ok(html.includes('商品化準備中') && html.includes('製造済み商品の写真ではありません'), 'goods design is not represented as a manufactured product');
       for (const label of ['価格', 'サイズ', '素材・加工', '送料・発送時期']) assert.ok(html.includes(label), 'goods discloses unsettled ' + label);
       assert.ok(html.includes('調整中') && html.includes('注文・予約は受け付けていません'), 'goods cannot be ordered or reserved');
-      assert.ok(html.replaceAll('&amp;', '&').includes(`href="/contact?source=racco-goods&intent=goods&product=${item.slug}#inquiry"`), 'goods inquiry carries the selected design');
+      assert.ok(html.replaceAll('&amp;', '&').includes(`href="/racco/contact?source=racco-goods&intent=goods&product=${item.slug}#main"`), 'goods inquiry carries the selected design to the dedicated page');
       assert.ok(html.includes('href="/racco#goods"') && html.includes('href="/racco#gallery-'), 'goods has return and collection paths');
       assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), 'goods avoids duplicate corporate shell');
       assert.ok(html.includes('name="robots" content="noindex'), 'goods remains a non-indexed candidate');
@@ -120,23 +157,45 @@ try {
   const contact = await (await fetch(base + "/contact?topic=luna")).text();
   assert.ok(/value="luna" selected=""|selected="" value="luna"/.test(contact), "topic survives server rendering");
   assert.ok(contact.includes('一緒に、') && contact.includes('次の一歩を。') && !contact.includes('<canvas') && !contact.includes('lets-talk-orange.jpg'), 'inquiry page uses the corporate contact direction');
+  assert.ok(!contact.includes('data-brand="racco"') && !contact.includes('type="radio"'), "ordinary corporate inquiry keeps its existing visual shell and select");
   for (const item of goods) {
-    const response = await fetch(base + `/contact?source=racco-goods&intent=goods&product=${item.slug}`);
+    const response = await fetch(base + `/racco/contact?source=racco-goods&intent=goods&product=${item.slug}`);
     assert.equal(response.status, 200, item.slug + ' inquiry');
     const html = await response.text();
-    assert.ok(html.includes(item.title) && html.includes('Raccoのグッズ') && html.includes('からのご相談です。'), item.slug + ' title and source reach the form');
-    assert.ok(/value="racco-goods" selected=""|selected="" value="racco-goods"/.test(html), item.slug + ' selects the goods topic');
-    const message = html.match(/<textarea[^>]*id="message"[^>]*>([\s\S]*?)<\/textarea>/)?.[1];
-    assert.ok(message?.includes(item.title) && message.includes('グッズについて相談したいです。'), item.slug + ' prefilled message is editable');
-    assert.ok(html.includes('メールの下書きを作る') && html.includes('下書きをコピーする') && html.includes('アプリ側で送信するまで'), 'inquiry stays draft-only with copy fallback');
+    assertRaccoContact(html, "racco-goods");
+    assert.ok(html.includes(item.title) && html.includes('Raccoのグッズ'), item.slug + ' title and source reach the form');
+    const message = messageText(html);
+    assert.ok(message?.includes(item.title) && message.includes('を見て相談したいです。') && !message.includes('グッズについて相談したいです。'), item.slug + ' prefilled message is editable and independent of selected topic');
+    assert.ok(/コピー/.test(html), 'dedicated inquiry offers copy fallback');
+    await assertLegacyRaccoRedirect(`/contact?source=racco-goods&intent=goods&product=${item.slug}`, { source: "racco-goods", intent: "goods", product: item.slug });
   }
-  const articleContact = await (await fetch(base + '/contact?source=racco-column&intent=ai&article=from-bookmark-to-work')).text();
-  assert.ok(articleContact.includes('AIのすごい投稿、保存したままになってない？') && articleContact.includes('Raccoのコラム') && articleContact.includes('からのご相談です。'), 'article context reaches the inquiry form');
-  assert.ok(/value="ai-consult" selected=""|selected="" value="ai-consult"/.test(articleContact), 'article selects the AI topic');
-  const unknownGoodsContact = await (await fetch(base + '/contact?source=racco-goods&product=not-a-real-product')).text();
-  const unknownMessage = unknownGoodsContact.match(/<textarea[^>]*id="message"[^>]*>([\s\S]*?)<\/textarea>/)?.[1];
+  const articleContact = await (await fetch(base + '/racco/contact?source=racco-column&intent=ai&article=from-bookmark-to-work')).text();
+  assertRaccoContact(articleContact);
+  assert.ok(articleContact.includes('AIのすごい投稿、保存したままになってない？') && articleContact.includes('Raccoのコラム'), 'article context reaches the dedicated inquiry form');
+  await assertLegacyRaccoRedirect('/contact?source=racco-column&intent=ai&article=from-bookmark-to-work', { source: "racco-column", intent: "ai", article: "from-bookmark-to-work" });
+  await assertLegacyRaccoRedirect('/contact?source=racco-home&intent=ai', { source: "racco-home", intent: "ai" });
+  await assertLegacyRaccoRedirect('/contact?source=racco-gallery&intent=design', { source: "racco-gallery", intent: "design" });
+  await assertLegacyRaccoRedirect('/contact?source=racco-goods&product=not-a-real-product&topic=luna&project=central-medical&next=https%3A%2F%2Fexample.invalid', { source: "racco-goods", intent: "goods" });
+  await assertLegacyRaccoRedirect('/contact?source=racco-goods&product=glasses-sticker&product=holo-sticker&intent=goods&intent=ai', { source: "racco-goods", intent: "goods" });
+  const unknownGoodsContact = await (await fetch(base + '/racco/contact?source=racco-goods&product=not-a-real-product')).text();
+  assertRaccoContact(unknownGoodsContact, "racco-goods");
+  const unknownMessage = messageText(unknownGoodsContact);
   assert.ok(unknownMessage && !unknownMessage.includes('not-a-real-product'), 'unknown goods do not enter the editable message');
-  console.log('PASS goods and article inquiry contexts, draft-only controls, unknown references');
+  for (const query of ['source=unknown', 'source=racco-home&source=racco-goods', 'source=javascript%3Aalert%281%29']) {
+    const legacyResponse = await fetch(base + '/contact?' + query, { redirect: "manual" });
+    assert.equal(legacyResponse.status, 200, "an invalid source must not cause a Racco redirect");
+    const legacyHtml = await legacyResponse.text();
+    assert.ok(legacyHtml.includes('class="site-header') && legacyHtml.includes('id="topic"'), "invalid sources stay in the ordinary contact form");
+    assert.ok(!legacyHtml.includes('http-equiv="refresh"'), "invalid sources do not create a streamed redirect either");
+    const dedicatedHtml = await (await fetch(base + '/racco/contact?' + query)).text();
+    assertRaccoContact(dedicatedHtml);
+    assert.ok(!messageText(dedicatedHtml)?.includes('javascript:') && !messageText(dedicatedHtml)?.includes('unknown'), "dedicated form does not echo invalid source text");
+  }
+  const duplicateArticle = await (await fetch(base + '/racco/contact?source=racco-column&article=from-bookmark-to-work&article=draft-before-automation')).text();
+  assert.ok(!messageText(duplicateArticle)?.includes('AIのすごい投稿') && !messageText(duplicateArticle)?.includes('いきなり自動化しない'), "duplicate article values do not select an arbitrary reference");
+  const galleryContact = await (await fetch(base + '/racco/contact?source=racco-gallery&intent=design')).text();
+  assertRaccoContact(galleryContact, "racco-design");
+  console.log('PASS dedicated inquiry contexts, legacy redirects, corporate isolation, draft-only controls and invalid references');
   const casePage = await (await fetch(base + '/works/central-medical')).text();
   assert.ok(casePage.includes('/services#digital') && casePage.includes('project=central-medical'), 'case study links to relevant support and contextual inquiry');
   const lunaCase = await (await fetch(base + '/works/luna-ai')).text();
