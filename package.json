@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "eslint",
     "check": "tsc --noEmit && npm run lint && npm run test:brand && npm run build && node scripts/smoke.mjs",
-    "test:brand": "node scripts/test-brand-library.mjs",
+    "test:brand": "node scripts/test-brand-library.mjs && node scripts/test-racco-inquiry.mjs",
     "check:release": "tsc --noEmit && npm run lint && npm run test:brand && npm run check:public && next build --webpack && node scripts/smoke.mjs"
   },
   "dependencies": {

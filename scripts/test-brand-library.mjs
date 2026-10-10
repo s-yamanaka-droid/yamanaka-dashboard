@@ -14,6 +14,29 @@ const kitContext = { exports: {} };
 vm.runInNewContext(compile("../src/data/racco-kit.ts"), kitContext);
 const columnsContext = { exports: {} };
 vm.runInNewContext(compile("../src/data/racco-columns.ts"), columnsContext);
+const goodsContext = { exports: {} };
+vm.runInNewContext(compile("../src/data/racco-goods.ts"), goodsContext);
+const inquiryContext = { exports: {}, URLSearchParams, require(name) {
+  if (name === "@/data/racco-columns") return columnsContext.exports;
+  if (name === "@/data/racco-goods") return goodsContext.exports;
+  throw new Error(`Unexpected inquiry dependency: ${name}`);
+} };
+vm.runInNewContext(compile("../src/lib/racco-inquiry.ts"), inquiryContext);
+const goodsComponent = { exports: {}, require(name) {
+  if (name === "next/link") return "a";
+  if (name === "next/image") return "img";
+  if (name === "@/data/racco-goods") return goodsContext.exports;
+  return require(name);
+} };
+vm.runInNewContext(compile("../src/components/brand/RaccoGoods.tsx"), goodsComponent);
+assert.equal(goodsContext.exports.raccoGoods.length, 3);
+assert.equal(new Set(goodsContext.exports.raccoGoods.map(item => item.slug)).size, 3);
+for (const item of goodsContext.exports.raccoGoods) {
+  assert.equal(item.statusLabel, "商品化準備中");
+  const image = readFileSync(new URL("../public" + item.image, import.meta.url));
+  assert.equal(image.readUInt32BE(16), item.width, item.slug + " actual image width");
+  assert.equal(image.readUInt32BE(20), item.height, item.slug + " actual image height");
+}
 assert.equal(columnsContext.exports.raccoColumns.length, 3);
 assert.equal(new Set(columnsContext.exports.raccoColumns.map(article => article.slug)).size, 3);
 for (const article of columnsContext.exports.raccoColumns) {
@@ -55,13 +78,21 @@ for (const allowed of [true, false]) {
 }
 console.log("PASS column prompt: clipboard success and manual fallback");
 
-function fixture(brand) {
-  const state = [], history = [], focused = [];
-  let cursor = 0;
+function nodeText(node) {
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(nodeText).join("");
+  return nodeText(node?.props?.children ?? "");
+}
+
+function fixture(brand, initialHash = "") {
+  const state = [], history = [], focused = [], effects = [];
+  const listeners = new Map();
+  const location = { hash: initialHash };
+  let cursor = 0, mounted = false;
   const react = {
     useState(initial) { const i = cursor++; if (!(i in state)) state[i] = initial; return [state[i], next => { state[i] = next; }]; },
     useRef(initial) { const i = cursor++; return state[i] ??= { current: initial }; },
-    useEffect() {},
+    useEffect(callback) { if (!mounted) effects.push(callback); },
   };
   const context = {
     exports: {},
@@ -73,28 +104,42 @@ function fixture(brand) {
       if (name === "@/data/brand-book") return dataContext.exports;
       if (name === "@/data/racco-kit") return kitContext.exports;
       if (name === "@/data/racco-columns") return columnsContext.exports;
+      if (name === "@/data/racco-goods") return goodsContext.exports;
+      if (name === "@/lib/racco-inquiry") return inquiryContext.exports;
+      if (name === "./RaccoGoods") return goodsComponent.exports;
       if (name === "./useBrandReducedMotion") return { useBrandReducedMotion: () => false };
       return require(name);
     },
-    window: { history: { pushState: (...args) => history.push(args[2]), replaceState: (...args) => history.push(args[2]) } },
+    window: {
+      history: { pushState: (...args) => history.push(args[2]), replaceState: (...args) => history.push(args[2]) },
+      location,
+      addEventListener: (name, callback) => listeners.set(name, callback),
+      removeEventListener: name => listeners.delete(name),
+    },
     document: { getElementById: id => ({ focus: () => focused.push(id) }) },
   };
   vm.runInNewContext(compiled, context);
-  const render = () => { cursor = 0; return context.exports.default({ brand }); };
+  const render = () => { cursor = 0; const result = context.exports.default({ brand }); mounted = true; return result; };
+  render();
+  effects[0]();
   const find = predicate => {
     function visit(node) {
       if (!node || typeof node !== "object") return [];
       if (Array.isArray(node)) return node.flatMap(visit);
+      if (node.type === goodsComponent.exports.default) return visit(node.type(node.props));
       return [...(predicate(node) ? [node] : []), ...visit(node.props?.children)];
     }
     return visit(render());
   };
   const event = props => ({ prevented: false, preventDefault() { this.prevented = true; }, ...props });
-  return { find, state, history, focused, event };
+  const setHash = hash => { location.hash = hash; listeners.get("hashchange")?.(); };
+  return { find, state, history, focused, event, setHash };
 }
 
 for (const brand of ["racco", "lakkan"]) {
   const app = fixture(brand);
+  const publicTabs = app.find(n => n.props?.role === "tab" && n.props.id?.startsWith("bl-tab-"));
+  assert.deepEqual(publicTabs.map(n => n.props.id), (brand === "racco" ? ["concept", "columns", "members", "visual", "goods"] : ["concept", "columns", "members", "visual", "posts", "assets"]).map(id => `bl-tab-${id}`), brand + " has the intended public navigation");
   const hero = app.find(n => n.type === "img" && n.props?.preload)[0];
   assert.equal(hero.props.quality, 90, "hero retains details with the configured quality");
   assert.equal(hero.props.sizes, brand === "racco" ? "(max-width: 600px) 100vw, 1100px" : "(max-width: 600px) calc(170vw - 17px), 1100px", "image supply matches each brand's crop width");
@@ -103,8 +148,21 @@ for (const brand of ["racco", "lakkan"]) {
     assert.equal(hero.props.width, 1672);
     assert.equal(hero.props.height, 941);
     assert.equal(app.find(n => n.props?.className === "bl-self").length, 1, "a usable self introduction is present");
+    assert.deepEqual(publicTabs.map(nodeText), ["はじめに", "読みもの", "なかま", "ギャラリー", "グッズ"]);
+    assert.equal(app.find(n => n.props?.className === "bl-story").length, 0, "unpublished social drafts are not home reading cards");
+    assert.equal(app.find(n => n.props?.className === "bl-social-card").length, 0, "home does not render social drafts");
+    assert.equal(app.find(n => n.type === "button" && nodeText(n).includes("自己紹介をコピー")).length, 0, "consumer home does not lead with asset production tools");
+    for (const [label, section] of [["読みものを見る", "columns"], ["グッズを見る", "goods"], ["ギャラリーを見る", "visual"]]) {
+      app.find(n => n.type === "button" && nodeText(n) === label)[0].props.onClick();
+      assert.equal(app.state[0], section, label + " opens its actual destination");
+      app.find(n => n.props?.id === "bl-tab-concept")[0].props.onClick();
+    }
+    const productionDetails = app.find(n => n.type === "details" && /SNS/.test(nodeText(n)) && /素材/.test(nodeText(n)));
+    assert.ok(productionDetails.length >= 2, "desktop footer and mobile menu retain production tools inside details");
+    assert.ok(productionDetails.every(n => !n.props.open), "production tools are collapsed by default");
   } else {
     assert.equal(hero.props.src, "/brand-book/racco-library-hero.png", "the Lakkan concept keeps its existing hero");
+    assert.equal(app.find(n => n.props?.className === "bl-story").length, 2, "Lakkan retains its existing story entries");
   }
   const tab = id => app.find(n => n.props?.id === `bl-tab-${id}`)[0];
   tab("columns").props.onClick();
@@ -126,8 +184,15 @@ for (const brand of ["racco", "lakkan"]) {
   assert.equal(app.state[3], false, "same-page brand link closes the menu");
   assert.equal(app.history.at(-1), "#concept");
   tab("concept").props.onKeyDown(app.event({ key: "ArrowLeft" }));
-  assert.equal(app.state[0], "assets");
-  assert.equal(app.focused.at(-1), "bl-tab-assets");
+  assert.equal(app.state[0], brand === "racco" ? "goods" : "assets");
+  assert.equal(app.focused.at(-1), brand === "racco" ? "bl-tab-goods" : "bl-tab-assets");
+  if (brand === "racco") {
+    assert.equal(app.find(n => n.props?.className === "bl-goods-card").length, 3, "goods tab renders the real reusable component");
+    for (const item of goodsContext.exports.raccoGoods) {
+      assert.ok(app.find(n => n.type === "a" && n.props.href === `/racco/goods/${item.slug}`).length, item.slug + " has a real detail route");
+      assert.ok(app.find(n => n.type === "h3" && nodeText(n) === item.title).length);
+    }
+  }
   assert.equal(app.find(n => n.type === "main" && !n.props.role).length, 1, "main retains its landmark");
   assert.equal(app.find(n => n.type === "dialog" && n.props["aria-label"]).length, 3, "all dialogs have accessible names");
   const pause = app.find(n => n.type === "button" && n.props["aria-label"] === "動きを停止")[0];
@@ -135,16 +200,15 @@ for (const brand of ["racco", "lakkan"]) {
   assert.equal(app.find(n => n.props?.className === "brand-library")[0].props["data-motion"], "off");
   if (brand === "racco") {
     home.props.onClick(app.event());
-    const story = app.find(n => n.props?.className === "bl-story")[1];
-    story.props.onClick(app.event());
+    app.setHash("#sns-x");
     assert.equal(app.state[0], "posts"); assert.equal(app.state[1], "x");
-    assert.equal(app.history.at(-1), "#sns-x");
+    assert.equal(app.find(n => n.props?.className === "bl-social-card").length, 1, "legacy social hashes still open the draft workspace");
     tab("members").props.onClick();
     assert.equal(app.state[0], "members");
     assert.equal(app.history.at(-1), "#members");
     assert.equal(app.find(n => n.props?.className === "bl-cast-roles").length, 1);
     assert.equal(app.find(n => n.type === "article").length, 3, "three distinct approved roles are present");
-    app.find(n => n.type === "button" && n.props?.children?.[0] === "3人の画像を使う")[0].props.onClick();
+    app.setHash("#assets-cast");
     assert.equal(app.state[0], "assets");
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 2, "cast filter contains the approved scene and cast sheet");
     app.find(n => n.type === "button" && n.props?.children?.[0] === "SNSの画像")[0].props.onClick();
@@ -159,6 +223,13 @@ for (const brand of ["racco", "lakkan"]) {
     assert.ok(app.find(n => n.type === "a" && n.props?.href === "/brand-book/racco-hina-sticker.png" && n.props.download).length);
     app.find(n => n.type === "button" && n.props?.children?.[0] === "すべて")[0].props.onClick();
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 26, "all filter does not hide older work");
+    app.setHash("#gallery-stickers");
+    assert.equal(app.state[0], "visual", "legacy collection hash opens the gallery");
+    assert.equal(app.find(n => n.props?.className === "bl-card").length, 11);
+    app.find(n => n.type === "button" && n.props?.["aria-label"] === "だるい天才を拡大")[0].props.onClick();
+    assert.ok(app.find(n => n.type === "a" && n.props?.href === "/racco/goods/holo-sticker").length, "gallery preview leads to its matching goods design");
+    app.setHash("#goods");
+    assert.equal(app.find(n => n.props?.className === "bl-goods-card").length, 3, "direct goods hash opens the complete collection");
   }
   console.log(`PASS ${brand}: handler state, native modified click, tab keys, landmark, dialog names, pause`);
 }

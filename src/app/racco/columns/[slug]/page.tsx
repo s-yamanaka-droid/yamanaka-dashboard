@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { raccoColumns } from "@/data/racco-columns";
 import { raccoRounded, raccoLogo } from "@/lib/racco-fonts";
+import { buildRaccoInquiryHref } from "@/lib/racco-inquiry";
 import ColumnPrompt from "@/components/brand/ColumnPrompt";
 import "@/components/brand/brand-library.css";
 
@@ -44,6 +45,7 @@ export default async function Page({ params }: Props) {
           <ColumnPrompt text={article.prompt}/>
           <aside className="bl-column-takeaway"><p className="bl-kicker">今日、ひとつ試すなら。</p><p>{article.takeaway}</p></aside>
         </article>
+        <aside className="bl-column-inquiry"><p className="bl-kicker">自分の仕事で、試したいなら。</p><h2>どこから頼めばいいか、<br/>そこから一緒に。</h2><p>手間がかかっていることを、Lakkanに聞かせてください。</p><Link className="bl-pill bl-hero-cta" href={buildRaccoInquiryHref({ source: "racco-column", article: article.slug, intent: "ai" })}>この記事をきっかけに相談する<ArrowRight size={15}/></Link></aside>
         <nav className="bl-column-related" aria-label="ほかのコラム"><h2>こっちも、どうぞ。</h2>{raccoColumns.filter(item => item.slug !== article.slug).map(item => <Link key={item.slug} href={`/racco/columns/${item.slug}`}><span>{item.title}</span><ArrowRight size={18}/></Link>)}</nav>
       </main>
       <footer className="bl-footer"><span>サボるためのAI生存術</span><div><Link href="/racco#columns">コラム一覧</Link><Link href="/racco#members">Raccoと、なかま</Link><Link href="/concept">Lakkanについて</Link></div></footer>

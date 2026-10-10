@@ -2,6 +2,11 @@ import { spawn } from "node:child_process";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 const projects = JSON.parse(readFileSync(new URL('../src/data/projects.json', import.meta.url),'utf8'));
+const goods = [
+  { slug: "glasses-sticker", title: "いつものRacco ステッカー" },
+  { slug: "holo-sticker", title: "だるい天才 ホロシール" },
+  { slug: "hina-sticker", title: "ひなラッコ ステッカー" },
+];
 const server = process.env.SMOKE_BASE_URL ? null : spawn("node", ["node_modules/next/dist/bin/next", "start", "-p", "3118"], { stdio: "ignore" });
 const base = process.env.SMOKE_BASE_URL || "http://127.0.0.1:3118";
 try {
@@ -12,7 +17,7 @@ try {
   }
   assert.ok(ready, "health endpoint is ready");
   assert.equal((await (await fetch(base + '/api/health')).json()).experience, 'interactive-workshop', 'health identifies the current homepage');
-  for (const path of ["/", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/concept", "/brand-book", "/brand-guide", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => `/racco/columns/${slug}`)]) {
+  for (const path of ["/", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/concept", "/brand-book", "/brand-guide", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => `/racco/columns/${slug}`), ...goods.map(item => `/racco/goods/${item.slug}`)]) {
     const response = await fetch(base + path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
@@ -37,18 +42,26 @@ try {
     } else if (["/racco", "/concept", "/brand-book", "/brand-guide"].includes(path)) {
       assert.ok(html.includes(path === "/brand-book" ? 'brand-print-route' : path === "/brand-guide" ? 'brand-studio' : 'brand-library'), path + " renders the appropriate brand edition");
       if (["/racco", "/concept"].includes(path)) {
-        for (const tab of ["concept", "members", "visual", "posts", "assets"]) assert.ok(html.includes(`id="bl-tab-${tab}"`), path + " has " + tab + " navigation");
+        const tabs = path === "/racco" ? ["concept", "columns", "members", "visual", "goods"] : ["concept", "columns", "members", "visual", "posts", "assets"];
+        for (const tab of tabs) assert.ok(html.includes(`id="bl-tab-${tab}"`), path + " has " + tab + " navigation");
         assert.ok(!html.includes('class="bs-sidebar"'), path + " uses a compact top navigation, not the full guide sidebar");
         assert.ok(html.includes('href="/brand-guide"') && html.includes('href="/brand-book"'), path + " keeps the complete guide and print edition accessible");
         assert.ok(html.includes('aria-label="Lakkanのキャラクター"'), path + " identifies Racco within Lakkan");
-        for (const destination of ['/works', '/services', '/contact?topic=other#inquiry']) assert.ok(html.includes(`href="${destination}"`), path + " exposes " + destination);
-        assert.ok(html.includes('AIすごい。で、自分の仕事には？') && html.includes('毎回「もっと短く」って言ってない？'), path + " offers concrete work and instruction-reuse topics");
+        for (const destination of ['/works', '/services']) assert.ok(html.includes(`href="${destination}"`), path + " exposes " + destination);
+        assert.ok(html.replaceAll('&amp;', '&').includes(path === '/racco' ? 'href="/contact?source=racco-home&intent=ai#inquiry"' : 'href="/contact?topic=other#inquiry"'), path + " exposes its contextual inquiry");
         assert.ok(!html.includes('class="bl-hero-art is-workshop"'), path + " avoids the cropped baked-in Lakkan lettering");
         if (path === '/racco') {
-          assert.ok(html.includes('ひとりごとを読む') && html.includes('LakkanのRacco'), 'Racco introduces its affiliation and reading entry');
-          assert.ok(html.includes('だいたい、眠い。') && html.includes('自己紹介をコピー'), 'the self-portrait edition has real text and a useful profile action');
+          assert.ok(html.includes('読みものを見る') && html.includes('グッズを見る'), 'Racco leads to real articles and goods designs');
+          assert.ok(html.includes('だいたい、眠い。') && html.includes('ギャラリーを見る'), 'the self-portrait edition has real text and a visitor-facing action');
+          assert.ok(!html.includes('id="bl-tab-posts"') && !html.includes('id="bl-tab-assets"'), 'production tools are not public navigation tabs');
+          assert.ok(!html.includes('class="bl-story"') && !html.includes('class="bl-social-card"'), 'unpublished social drafts are not rendered as home stories');
+          assert.ok(!html.includes('自己紹介をコピー'), 'home does not promote profile production tools');
+          assert.ok(html.includes('<details') && html.includes('SNS') && html.includes('素材'), 'production tools remain accessible in collapsed menus');
+          assert.ok(html.includes('/racco/columns/from-bookmark-to-work'), 'home points to an actual article');
           assert.ok(html.includes('racco-self-morning.png') && html.includes('racco-self-avatar.png'), 'new identity is present in the server-rendered page');
           assert.ok(html.includes('racco-trio.png') && html.includes('3人に会う'), 'three-person cast has a visible entry from home');
+        } else {
+          assert.ok(html.includes('AIすごい。で、自分の仕事には？') && html.includes('毎回「もっと短く」って言ってない？'), 'Lakkan keeps its existing editorial examples');
         }
       }
       assert.ok(!/仕込/.test(html), path + ' does not restore rejected abstract copy');
@@ -61,6 +74,17 @@ try {
       assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), 'article avoids duplicate corporate shell');
       assert.ok(html.includes('property="og:type" content="article"'), 'article share metadata');
       assert.ok(html.includes('name="robots" content="noindex'), 'existing noindex boundary is preserved');
+    } else if (path.startsWith('/racco/goods/')) {
+      const item = goods.find(item => path.endsWith('/' + item.slug));
+      assert.ok(html.includes('bl-goods-detail') && html.includes(item.title), 'goods design detail is server rendered');
+      assert.ok(html.includes('商品化準備中') && html.includes('製造済み商品の写真ではありません'), 'goods design is not represented as a manufactured product');
+      for (const label of ['価格', 'サイズ', '素材・加工', '送料・発送時期']) assert.ok(html.includes(label), 'goods discloses unsettled ' + label);
+      assert.ok(html.includes('調整中') && html.includes('注文・予約は受け付けていません'), 'goods cannot be ordered or reserved');
+      assert.ok(html.replaceAll('&amp;', '&').includes(`href="/contact?source=racco-goods&intent=goods&product=${item.slug}#inquiry"`), 'goods inquiry carries the selected design');
+      assert.ok(html.includes('href="/racco#goods"') && html.includes('href="/racco#gallery-'), 'goods has return and collection paths');
+      assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), 'goods avoids duplicate corporate shell');
+      assert.ok(html.includes('name="robots" content="noindex'), 'goods remains a non-indexed candidate');
+      assert.ok(!/"@type"\s*:\s*"(?:Product|Offer)"/.test(html), 'goods does not publish unsupported sale schema');
     } else {
       assert.ok(html.includes('site-header') && html.includes('site-footer'), path + " shared navigation");
     }
@@ -96,6 +120,23 @@ try {
   const contact = await (await fetch(base + "/contact?topic=luna")).text();
   assert.ok(/value="luna" selected=""|selected="" value="luna"/.test(contact), "topic survives server rendering");
   assert.ok(contact.includes('一緒に、') && contact.includes('次の一歩を。') && !contact.includes('<canvas') && !contact.includes('lets-talk-orange.jpg'), 'inquiry page uses the corporate contact direction');
+  for (const item of goods) {
+    const response = await fetch(base + `/contact?source=racco-goods&intent=goods&product=${item.slug}`);
+    assert.equal(response.status, 200, item.slug + ' inquiry');
+    const html = await response.text();
+    assert.ok(html.includes(item.title) && html.includes('Raccoのグッズ') && html.includes('からのご相談です。'), item.slug + ' title and source reach the form');
+    assert.ok(/value="racco-goods" selected=""|selected="" value="racco-goods"/.test(html), item.slug + ' selects the goods topic');
+    const message = html.match(/<textarea[^>]*id="message"[^>]*>([\s\S]*?)<\/textarea>/)?.[1];
+    assert.ok(message?.includes(item.title) && message.includes('グッズについて相談したいです。'), item.slug + ' prefilled message is editable');
+    assert.ok(html.includes('メールの下書きを作る') && html.includes('下書きをコピーする') && html.includes('アプリ側で送信するまで'), 'inquiry stays draft-only with copy fallback');
+  }
+  const articleContact = await (await fetch(base + '/contact?source=racco-column&intent=ai&article=from-bookmark-to-work')).text();
+  assert.ok(articleContact.includes('AIのすごい投稿、保存したままになってない？') && articleContact.includes('Raccoのコラム') && articleContact.includes('からのご相談です。'), 'article context reaches the inquiry form');
+  assert.ok(/value="ai-consult" selected=""|selected="" value="ai-consult"/.test(articleContact), 'article selects the AI topic');
+  const unknownGoodsContact = await (await fetch(base + '/contact?source=racco-goods&product=not-a-real-product')).text();
+  const unknownMessage = unknownGoodsContact.match(/<textarea[^>]*id="message"[^>]*>([\s\S]*?)<\/textarea>/)?.[1];
+  assert.ok(unknownMessage && !unknownMessage.includes('not-a-real-product'), 'unknown goods do not enter the editable message');
+  console.log('PASS goods and article inquiry contexts, draft-only controls, unknown references');
   const casePage = await (await fetch(base + '/works/central-medical')).text();
   assert.ok(casePage.includes('/services#digital') && casePage.includes('project=central-medical'), 'case study links to relevant support and contextual inquiry');
   const lunaCase = await (await fetch(base + '/works/luna-ai')).text();
@@ -124,5 +165,6 @@ try {
   }
   assert.equal((await fetch(base + "/missing-smoke-page")).status, 404);
   assert.equal((await fetch(base + "/racco/columns/not-an-article")).status, 404);
+  assert.equal((await fetch(base + "/racco/goods/not-a-product")).status, 404);
   console.log("PASS topic selection, seven demos, 404");
 } finally { server?.kill(); }
