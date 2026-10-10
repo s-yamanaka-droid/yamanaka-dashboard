@@ -37,6 +37,7 @@ for (const path of ["../src/data/brand-book.ts", "../src/data/racco-kit.ts", "..
   assert.ok(!/本人用|本人のRacco|本人アバター|本人の分身|発信用アバター/.test(readFileSync(new URL(path, import.meta.url), "utf8")), "public brand content does not expose internal identity notes: " + path);
 }
 const compiled = compile("../src/components/brand/BrandLibrary.tsx");
+assert.match(readFileSync(new URL("../src/components/brand/BrandLibrary.tsx", import.meta.url), "utf8"), /className="bl-heading-phrase">いつもの風景も。/, "gallery heading keeps Japanese phrases together on narrow screens");
 
 for (const allowed of [true, false]) {
   const state = [];

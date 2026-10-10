@@ -81,6 +81,7 @@ body:has(.brand-library) { background:#f1f2f3; }
 .bl-pane { padding:28px 0 12px; min-height:620px; }
 .bl-pane .bl-section-head { margin-bottom:26px; }
 .bl-pane h1 { font-size:32px; margin-top:7px; }
+.bl-heading-phrase { display:inline-block; white-space:nowrap; }
 .bl-visual-grid { gap:20px 24px; }
 .bl-visual-grid .bl-card-image { aspect-ratio:1.8; }
 .bl-note { font-size:11px; color:var(--bl-muted); margin-top:24px!important; }
