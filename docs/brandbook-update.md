@@ -21,6 +21,13 @@ The old eight-page avatar supplement and original generated cover are production
 
 ## Checks
 
+### Decorative navigation cleanup
+
+- Removed the noninteractive diagonal arrow beside the cover wordmark and its dedicated CSS. At a 768px viewport the arrow wrapped into an unnecessary second line.
+- Removed the trailing arrow from the guide's noninteractive SNS explanation. The explanation itself remains.
+- Reviewed `/concept`, `/racco`, `/brand-guide` and `/brand-book`. Kept working CTA arrows, process connectors, page labels, and the small cursor explicitly documented as part of the brand expression. No character, logo asset, content or navigation was removed.
+- Added regression checks for the plain cover wordmark, absence of orphaned arrow CSS and the text-only SNS explanation.
+
 - `npm run check:release`: typecheck, lint, brand tests, public-data gate, build and HTTP smoke.
 - Browser measurements: twelve pages, no horizontal/body overflow, no body/footer collision, no missing images at four widths.
 - Independent read-only review: identity rules, five companions, page/contents consistency and public-data boundary.

@@ -150,7 +150,7 @@ export function BrandBookPrint() {
         <Sheet page={1} label="CONCEPT & EXPRESSION" className="bp-cover">
           <div className="bp-cover-copy">
             <p className="bp-kicker">Racco Brand Book</p>
-            <h1 className="bp-logo">Racco<span aria-hidden="true">↗</span></h1>
+            <h1 className="bp-logo">Racco</h1>
             <h2>同じ作業は、<br />AIに任せたい。</h2>
             <p className="bp-cover-lead">Lakkanの中にいる、だるそうなラッコ。<br />できれば寝てたい。<br />でも、ラクするための工夫はする。</p>
             <p className="bp-cover-caption">Lakkanのロゴ / Raccoと仲間たち / 言葉 / SNS / グッズ</p>

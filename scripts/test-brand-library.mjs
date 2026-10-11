@@ -123,6 +123,10 @@ const printComponent = { exports: {}, require(name) {
 } };
 vm.runInNewContext(compile("../src/components/brand/BrandBookPrint.tsx"), printComponent);
 const printHtml = require("react-dom/server").renderToStaticMarkup(require("react").createElement(printComponent.exports.BrandBookPrint));
+assert.match(printHtml, /<h1 class="bp-logo">Racco<\/h1>/, "cover wordmark has no decorative navigation arrow");
+assert.ok(!readFileSync(new URL("../src/components/brand/brand-print.css", import.meta.url), "utf8").includes(".bp-logo span"), "removed cover arrow has no leftover styles");
+const guideSource = readFileSync(new URL("../src/components/brand/BrandStudio.tsx", import.meta.url), "utf8");
+assert.match(guideSource, /className="bs-channel-path"><span>\{current\.cta\}<\/span><\/div>/, "noninteractive SNS explanation has no misleading trailing arrow");
 assert.equal((printHtml.match(/<article /g) ?? []).length, 12, "brand book has exactly twelve pages");
 for (let page = 1; page <= 12; page++) {
   assert.ok(printHtml.includes(`id="book-page-${page}"`), "stable page anchor " + page);
