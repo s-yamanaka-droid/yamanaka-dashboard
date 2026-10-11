@@ -302,6 +302,7 @@ body:has(.brand-library[data-brand="racco"]) { background:#fff; }
 .bl-fuwafuwa { display:grid; grid-template-columns:minmax(0, .85fr) minmax(0, 1fr); align-items:center; gap:28px; margin:0 0 36px; padding:24px 40px; border-radius:20px; background:#f6f8f8; }
 .bl-fuwafuwa-portrait { display:flex; justify-content:center; }
 .bl-fuwafuwa-portrait img { display:block; width:100%; max-width:400px; height:auto; }
+.bl-character-preview { width:100%; padding:0; border:0; border-radius:16px; background:transparent; }
 .brand-library .bl-fuwafuwa h2 { margin:8px 0 16px; font-size:32px; font-weight:500; }
 .bl-fuwafuwa blockquote { margin:0 0 12px; font-size:18px; line-height:1.8; }
 .bl-fuwafuwa-copy>p:not(.bl-kicker) { font-size:14px; color:var(--bl-muted); line-height:1.9; }

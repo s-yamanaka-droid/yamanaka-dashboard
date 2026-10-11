@@ -1,4 +1,4 @@
-export type AssetGroup = "all" | "self" | "stickers" | "hina" | "cast" | "social" | "fuwafuwa";
+export type AssetGroup = "all" | "self" | "stickers" | "hina" | "cast" | "social" | "fuwafuwa" | "muchimuchi";
 export type RaccoAsset = { title: string; kind: string; src: string; width: number; height: number; alt: string; group?: AssetGroup };
 
 export const assetGroups: { id: AssetGroup; label: string }[] = [
@@ -7,16 +7,18 @@ export const assetGroups: { id: AssetGroup; label: string }[] = [
   { id: "stickers", label: "ホロシール" },
   { id: "hina", label: "ひなラッコ" },
   { id: "fuwafuwa", label: "ふわふわさん" },
+  { id: "muchimuchi", label: "むちむち猫" },
   { id: "cast", label: "3人の仲間" },
   { id: "social", label: "SNSの画像" },
 ];
 
 export const assetDescriptions: Record<AssetGroup, string> = {
-  all: "いつものRacco、ひなラッコ、ふわふわさん。気になる一枚を大きく見て、保存できます。",
+  all: "いつものRaccoと、なかまたち。気になる一枚を大きく見て、保存できます。",
   self: "太縁メガネのRacco。いつもの顔と、のんびり過ごす風景。",
   stickers: "3つのポーズと、8つの配色。きらっと光る、レトロなホロシールのコレクション。",
   hina: "きちんと、やさしく。シックな服と、ふわっとした表情のひなラッコ。",
   fuwafuwa: "まるくて、ふわふわ。ゴマアザラシのふわふわさんと、お店で過ごす風景。",
+  muchimuchi: "まるいお腹に、ちょっと得意げな顔。むちむち猫の単体画像と、みんなでくつろぐ風景。",
   cast: "のんびり・テキパキ・自動化オタク。3人の世界観と造形見本。",
   social: "表紙・ヘッダー・投稿の表現見本。実アカウントでの切り抜きは別途確認します。",
 };
@@ -24,6 +26,11 @@ export const assetDescriptions: Record<AssetGroup, string> = {
 export const fuwafuwaAssets: RaccoAsset[] = [
   { title: "ふわふわさん", kind: "キャラクター / 透過PNG", src: "/brand-book/fuwafuwa-character-v2.png", width: 1254, height: 1254, alt: "丸い黒目と小さなヒレ、淡いグレーのゴマ模様のふわふわさん", group: "fuwafuwa" },
   { title: "となり、空いてるよ。", kind: "Raccoとふわふわさんの風景", src: "/brand-book/racco-fuwafuwa-shop-v2.png", width: 1672, height: 941, alt: "グッズの並ぶお店で、メガネのRaccoと丸い目のふわふわさんが並んでくつろぐ", group: "fuwafuwa" },
+];
+
+export const muchimuchiAssets: RaccoAsset[] = [
+  { title: "むちむち猫", kind: "キャラクター / 透過PNG", src: "/brand-book/muchimuchi-cat-character-v1.png", width: 1254, height: 1254, alt: "青灰色のカーディガンを着て、まるいお腹を見せながら片手を上げる茶トラ白のむちむち猫", group: "muchimuchi" },
+  { title: "今日も、ここにいる。", kind: "Racco・むちむち猫・ふわふわさん", src: "/brand-book/racco-muchimuchi-shop-v1.png", width: 1672, height: 941, alt: "ぬいぐるみや服が並ぶお店で、メガネのRacco、むちむち猫、ふわふわさんがソファでくつろぐ", group: "muchimuchi" },
 ];
 
 export const raccoAssets: RaccoAsset[] = [
@@ -52,6 +59,7 @@ export const raccoAssets: RaccoAsset[] = [
   ].map(([id, title]): RaccoAsset => ({ title, kind: "ホロシール / 8カラー", src: `/brand-book/racco-sticker-${id}.png`, width: 1254, height: 1254, alt: `寝転んだRaccoのホロシール、${title}の配色`, group: "stickers" })),
   { title: "ひなちゃん Racco", kind: "番外編 / きれいめシール", src: "/brand-book/racco-hina-sticker.png", width: 1254, height: 1254, alt: "白いブラウスとチャコールのカーディガン、スカート姿で書類とペンを持つ、ひなちゃんRaccoの白ふちシール", group: "hina" },
   ...fuwafuwaAssets,
+  ...muchimuchiAssets,
 ];
 
 export const raccoCast = [

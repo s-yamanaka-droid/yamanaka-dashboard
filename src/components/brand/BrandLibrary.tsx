@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BookOpen, Check, Copy, Download, Menu, Pause, Play, X } from "lucide-react";
 import { KeyboardEvent, MouseEvent, useEffect, useRef, useState } from "react";
 import { channels, raccoProfile, type ChannelId } from "@/data/brand-book";
-import { raccoAssets, raccoCast, fuwafuwaAssets, assetGroups, assetDescriptions, channelAssetPaths, type RaccoAsset as Asset, type AssetGroup } from "@/data/racco-kit";
+import { raccoAssets, raccoCast, fuwafuwaAssets, muchimuchiAssets, assetGroups, assetDescriptions, channelAssetPaths, type RaccoAsset as Asset, type AssetGroup } from "@/data/racco-kit";
 import "./brand-library.css";
 import { useBrandReducedMotion } from "./useBrandReducedMotion";
 import { raccoColumns } from "@/data/racco-columns";
@@ -149,6 +149,10 @@ export default function BrandLibrary({ brand }: { brand: "racco" | "lakkan" }) {
         {section === "columns" && <section className="bl-pane bl-columns"><div className="bl-section-head"><div><p className="bl-kicker">RaccoのAIコラム</p><h1>今日の仕事で、どう使う？</h1></div></div><p className="bl-columns-intro">頼んで、直して、次にも使う。<br/>自分の仕事でAIを試すための、短い読みもの。</p>{columnCards}</section>}
         {section === "members" && <section className="bl-pane bl-members">
           <div className="bl-section-head"><div><p className="bl-kicker">LakkanのRacco</p><h1>Raccoと、なかまたち。</h1></div></div>
+          <section id="bl-muchimuchi" className="bl-fuwafuwa" aria-labelledby="bl-muchimuchi-title">
+            <button type="button" className="bl-fuwafuwa-portrait bl-character-preview" aria-label="むちむち猫を拡大" onClick={() => setPreview(muchimuchiAssets[0])}><Image src={muchimuchiAssets[0].src} width={1254} height={1254} alt={muchimuchiAssets[0].alt} quality={90} sizes="(max-width: 600px) 280px, 400px" /></button>
+            <div className="bl-fuwafuwa-copy"><p className="bl-kicker">まるいお腹に、ちょっと得意げな顔。</p><h2 id="bl-muchimuchi-title">むちむち猫</h2><blockquote>「うん、まかせて。」</blockquote><p>そう言いながら、まだ座っている。<br />今日も、いちばん座り心地のいい場所に。</p><div className="bl-fuwafuwa-actions"><button type="button" className="bl-pill" onClick={() => setPreview(muchimuchiAssets[1])}>みんなの風景を見る<ArrowUpRight size={15}/></button><a className="bl-text-link" href={muchimuchiAssets[0].src} download="muchimuchi-cat.png">むちむち猫の画像を保存<Download size={15}/></a></div></div>
+          </section>
           <section id="bl-fuwafuwa" className="bl-fuwafuwa" aria-labelledby="bl-fuwafuwa-title">
             <div className="bl-fuwafuwa-portrait"><Image src={fuwafuwaAssets[0].src} width={1254} height={1254} alt={fuwafuwaAssets[0].alt} sizes="(max-width: 600px) 280px, 400px" /></div>
             <div className="bl-fuwafuwa-copy"><p className="bl-kicker">ゴマアザラシの、聞き役。</p><h2 id="bl-fuwafuwa-title">ふわふわさん</h2><blockquote>「うんうん、それでどうなった？」</blockquote><p>話がまとまる前から、隣で聞いている。<br />今日もRaccoのお店で、のんびり。</p><div className="bl-fuwafuwa-actions"><button type="button" className="bl-pill" onClick={() => setPreview(fuwafuwaAssets[1])}>ふたりの風景を見る<ArrowUpRight size={15}/></button><a className="bl-text-link" href={fuwafuwaAssets[0].src} download="fuwafuwa-character.png">ふわふわさんの画像を保存<Download size={15}/></a></div></div>

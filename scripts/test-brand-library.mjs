@@ -8,6 +8,8 @@ const ts = require("typescript");
 const sharp = require("sharp");
 const fuwafuwaCharacter = "/brand-book/fuwafuwa-character-v2.png";
 const fuwafuwaScene = "/brand-book/racco-fuwafuwa-shop-v2.png";
+const muchimuchiCharacter = "/brand-book/muchimuchi-cat-character-v1.png";
+const muchimuchiScene = "/brand-book/racco-muchimuchi-shop-v1.png";
 const compile = path => ts.transpileModule(readFileSync(new URL(path, import.meta.url), "utf8"), {
   compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true },
 }).outputText;
@@ -57,10 +59,15 @@ for (const id of ["x", "instagram", "note"]) assert.match(dataContext.exports.ch
 assert.equal(kitContext.exports.raccoCast.length, 3, "approved cast has three roles");
 assert.deepEqual(Array.from(kitContext.exports.raccoCast, member => member.id), ["racco", "practical", "automation"], "Fuwafuwa does not replace any of the original three Racco roles");
 assert.deepEqual(Array.from(kitContext.exports.raccoCast, member => [member.name, member.role]), [["Racco", "のんびり担当"], ["まず、ひとつ。", "テキパキ担当"], ["つい、凝っちゃう。", "自動化オタク担当"]], "original names and roles are unchanged");
-assert.equal(kitContext.exports.raccoAssets.length, 28, "all existing assets remain alongside two Fuwafuwa assets");
+assert.equal(kitContext.exports.raccoAssets.length, 30, "all 28 existing assets remain alongside two Muchimuchi assets");
 assert.equal(kitContext.exports.fuwafuwaAssets.length, 2, "standalone character and shared scene are defined once");
 assert.deepEqual(Array.from(kitContext.exports.fuwafuwaAssets, asset => asset.src), [fuwafuwaCharacter, fuwafuwaScene]);
 assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "fuwafuwa").length, 2);
+assert.equal(kitContext.exports.muchimuchiAssets.length, 2, "Muchimuchi has one standalone character and one shared scene");
+assert.deepEqual(Array.from(kitContext.exports.muchimuchiAssets, asset => asset.src), [muchimuchiCharacter, muchimuchiScene]);
+assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "muchimuchi").length, 2);
+assert.equal(kitContext.exports.assetGroups.find(group => group.id === "muchimuchi")?.label, "むちむち猫", "the approved name appears on the collection filter");
+assert.equal(new Set(kitContext.exports.raccoAssets.map(asset => asset.src)).size, 30, "new assets are not duplicated in the combined collection");
 assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "stickers").length, 11);
 assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "hina").length, 1);
 for (const asset of kitContext.exports.raccoAssets) assert.ok(readFileSync(new URL("../public" + asset.src, import.meta.url)).byteLength > 1000, asset.src + " exists");
@@ -76,6 +83,18 @@ const sceneInfo = await sharp(readFileSync(new URL("../public" + fuwafuwaScene, 
 assert.equal(sceneInfo.format, "png");
 assert.deepEqual([sceneInfo.width, sceneInfo.height], [1672, 941], "shared scene retains the supplied landscape dimensions");
 console.log("PASS Fuwafuwa assets: standalone PNG size and real transparency, landscape scene PNG");
+const muchimuchiPng = readFileSync(new URL("../public" + muchimuchiCharacter, import.meta.url));
+const muchimuchiInfo = await sharp(muchimuchiPng).metadata();
+assert.equal(muchimuchiInfo.format, "png");
+assert.deepEqual([muchimuchiInfo.width, muchimuchiInfo.height], [1254, 1254], "approved Muchimuchi standalone retains its supplied square dimensions");
+assert.ok(muchimuchiInfo.hasAlpha, "Muchimuchi standalone has an alpha channel");
+const muchimuchiAlpha = (await sharp(muchimuchiPng).stats()).channels.at(-1);
+assert.equal(muchimuchiAlpha.min, 0, "Muchimuchi standalone contains actually transparent pixels");
+assert.ok(muchimuchiAlpha.max > 0, "Muchimuchi standalone contains visible subject pixels");
+const muchimuchiSceneInfo = await sharp(readFileSync(new URL("../public" + muchimuchiScene, import.meta.url))).metadata();
+assert.equal(muchimuchiSceneInfo.format, "png");
+assert.deepEqual([muchimuchiSceneInfo.width, muchimuchiSceneInfo.height], [1672, 941], "Muchimuchi shared scene retains its supplied landscape dimensions");
+console.log("PASS Muchimuchi assets: standalone PNG size and real transparency, landscape scene PNG");
 for (const path of ["../src/data/brand-book.ts", "../src/data/racco-kit.ts", "../src/components/brand/BrandLibrary.tsx", "../src/components/brand/BrandStudio.tsx", "../src/components/brand/BrandBookPrint.tsx", "../public/brand-book/brand-book.md"]) {
   assert.ok(!/本人用|本人のRacco|本人アバター|本人の分身|発信用アバター/.test(readFileSync(new URL(path, import.meta.url), "utf8")), "public brand content does not expose internal identity notes: " + path);
 }
@@ -250,6 +269,22 @@ for (const brand of ["racco", "lakkan"]) {
     assertDownloadableMemberImage(fuwafuwaScene, 1672, 941);
     app.find(n => n.type === "dialog" && n.props.id === "bl-preview")[0].props.onClose();
     assert.equal(app.find(n => n.type === "img" && n.props.src === fuwafuwaScene).length, 0, "closing the shared scene preview clears it");
+    const muchimuchi = app.find(n => n.props?.id === "bl-muchimuchi");
+    assert.equal(muchimuchi.length, 1, "Muchimuchi has a separate named member section");
+    assert.ok(app.find(n => n.type === "h2" && nodeText(n) === "むちむち猫").length, "member heading uses the approved name");
+    assertDownloadableMemberImage(muchimuchiCharacter, 1254, 1254);
+    const muchimuchiDownload = app.find(n => n.type === "a" && n.props.href === muchimuchiCharacter && n.props.download === "muchimuchi-cat.png");
+    assert.equal(muchimuchiDownload.length, 1, "standalone member download has a clear filename");
+    assert.ok(nodeText(muchimuchiDownload[0]).includes("むちむち猫の画像を保存"));
+    app.find(n => n.type === "button" && n.props["aria-label"] === "むちむち猫を拡大")[0].props.onClick();
+    assert.equal(app.find(n => n.type === "dialog" && n.props.id === "bl-preview")[0].props["aria-label"], "むちむち猫のプレビュー", "member portrait opens its standalone preview");
+    assertDownloadableMemberImage(muchimuchiCharacter, 1254, 1254);
+    app.find(n => n.type === "dialog" && n.props.id === "bl-preview")[0].props.onClose();
+    assert.equal(app.find(n => n.type === "dialog" && n.props.id === "bl-preview")[0].props["aria-label"], "画像のプレビュー", "closing the standalone preview clears selection");
+    app.find(n => n.type === "button" && nodeText(n) === "みんなの風景を見る")[0].props.onClick();
+    assertDownloadableMemberImage(muchimuchiScene, 1672, 941);
+    app.find(n => n.type === "dialog" && n.props.id === "bl-preview")[0].props.onClose();
+    assert.equal(app.find(n => n.type === "img" && n.props.src === muchimuchiScene).length, 0, "closing the Muchimuchi shared scene preview clears it");
     app.setHash("#assets-cast");
     assert.equal(app.state[0], "assets");
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 2, "cast filter contains the approved scene and cast sheet");
@@ -267,8 +302,23 @@ for (const brand of ["racco", "lakkan"]) {
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 2, "Fuwafuwa filter contains the standalone and shared scene only");
     assert.equal(app.history.at(-1), "#assets-fuwafuwa");
     for (const src of [fuwafuwaCharacter, fuwafuwaScene]) assert.ok(app.find(n => n.type === "a" && n.props.href === src && n.props.download).length, src + " can also be saved from the asset filter");
+    app.find(n => n.type === "button" && n.props?.children?.[0] === "むちむち猫")[0].props.onClick();
+    assert.equal(app.history.at(-1), "#assets-muchimuchi");
+    assert.equal(app.find(n => n.props?.className === "bl-card").length, 2, "Muchimuchi filter contains the standalone and shared scene only");
+    for (const src of [muchimuchiCharacter, muchimuchiScene]) assert.ok(app.find(n => n.type === "a" && n.props.href === src && n.props.download).length, src + " can be saved from the asset filter");
     app.find(n => n.type === "button" && n.props?.children?.[0] === "すべて")[0].props.onClick();
-    assert.equal(app.find(n => n.props?.className === "bl-card").length, 28, "all filter does not hide older work or the new member");
+    assert.equal(app.find(n => n.props?.className === "bl-card").length, 30, "all filter does not hide older work or the new member");
+    app.setHash("#gallery-muchimuchi");
+    assert.equal(app.state[0], "visual", "Muchimuchi collection hash opens the gallery");
+    assert.equal(app.find(n => n.props?.className === "bl-card").length, 2);
+    app.find(n => n.type === "button" && n.props?.["aria-label"] === "むちむち猫を拡大")[0].props.onClick();
+    assertDownloadableMemberImage(muchimuchiCharacter, 1254, 1254);
+    app.find(n => n.type === "dialog" && n.props.id === "bl-preview")[0].props.onClose();
+    for (const [hash, section] of [["#gallery-muchimuchi", "visual"], ["#assets-muchimuchi", "assets"]]) {
+      const direct = fixture("racco", hash);
+      assert.equal(direct.state[0], section, hash + " works on initial arrival");
+      assert.equal(direct.find(n => n.props?.className === "bl-card").length, 2, hash + " selects the two Muchimuchi assets");
+    }
     app.setHash("#gallery-stickers");
     assert.equal(app.state[0], "visual", "legacy collection hash opens the gallery");
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 11);

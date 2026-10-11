@@ -23,3 +23,13 @@ Intended differences: shorter human copy; functional radio selection and form; d
 - Approved standalone: `fuwafuwa-character-v2.png`, SHA-256 `95ae2cdd8ca6bb1b5875c7ecec91af902f1bef9c29c34408b99237029d67255b`.
 - Derived shop scene: `racco-fuwafuwa-shop-v2.png`, SHA-256 `fec9b5228e70c24eb0f3fb1ccb9f598186bbaa7b886c3883310a97bed398ed6b`.
 - Hero copy is separated from the image to keep both faces visible. Product objects in the scene are visual mockups, not manufacturing or availability claims.
+
+## Muchimuchi cat companion update
+
+- User approval: after the standalone cat and three-character shop scene were shown, 「猫単体もいれれね、むちむち猫という名前にしよう」.
+- Official name: むちむち猫. An orange-and-white tabby in a slate-blue cardigan, a relaxed equal among Racco's friends rather than a teacher or salesperson.
+- Scope: add the standalone portrait and shop scene to members, gallery, previews and original-PNG downloads. Keep the three original Racco roles and Fuwafuwa. Preserve typography, colors, homepage and inquiry behavior.
+- Standalone: `muchimuchi-cat-character-v1.png`, 1254 × 1254 with genuine alpha; SHA-256 `7343110effc2916fe3c9ec73f254dbeef2b8b2c43a0e7f64bb216aadc11f48f5`.
+- Shop scene: `racco-muchimuchi-shop-v1.png`, 1672 × 941; SHA-256 `6becdea6e74c1983e292e3923a11385e3dca2b29dd8bcd87c2d9417bc4974d1f`.
+- The source gallery shortlist did not offer a better fit than the existing approved member card and native image dialog; no third-party component or dependency was added. Product objects in the scene remain visual mockups, not available merchandise.
+- Visual/name approval does not itself prove publication or functioning downloads. Those are checked separately.

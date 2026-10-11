@@ -164,6 +164,16 @@ try {
     assert.ok(served.equals(original), path + " download preserves the original PNG bytes and transparency");
   }
   console.log("PASS Fuwafuwa standalone and scene downloads retain their source PNG bytes");
+  for (const name of ['muchimuchi-cat-character-v1', 'racco-muchimuchi-shop-v1']) {
+    const path = `/brand-book/${name}.png`;
+    const response = await fetch(base + path);
+    assert.equal(response.status, 200, path + " is downloadable");
+    assert.ok(response.headers.get('content-type')?.includes('image/png'), path + " is served as PNG");
+    const served = Buffer.from(await response.arrayBuffer());
+    const original = readFileSync(new URL('../public' + path, import.meta.url));
+    assert.ok(served.equals(original), path + " download preserves the approved original PNG bytes and transparency");
+  }
+  console.log("PASS Muchimuchi standalone and scene downloads retain their source PNG bytes");
   const assembly=await fetch(base+'/brand/lakkan-orange-assembly.mp4',{headers:{Range:'bytes=0-1023'}});
   assert.equal(assembly.status,206,'new Blender assembly supports range requests');
   assert.ok(assembly.headers.get('content-type')?.includes('video/mp4'),'assembly video MIME');
@@ -239,4 +249,14 @@ try {
   assert.equal((await fetch(base + "/racco/columns/not-an-article")).status, 404);
   assert.equal((await fetch(base + "/racco/goods/not-a-product")).status, 404);
   console.log("PASS topic selection, seven demos, 404");
-} finally { server?.kill(); }
+} finally {
+  if (server && server.exitCode === null && server.signalCode === null) {
+    // Range/stream probes can leave connections open. Bound cleanup to this
+    // test's own child process; never leave a preview server running after CI.
+    await new Promise(resolve => {
+      const deadline = setTimeout(() => server.kill("SIGKILL"), 3000);
+      server.once("exit", () => { clearTimeout(deadline); resolve(); });
+      server.kill();
+    });
+  }
+}
