@@ -77,7 +77,7 @@ try {
       assert.ok(html.includes(path === "/brand-book" ? 'brand-print-route' : path === "/brand-guide" ? 'brand-studio' : 'brand-library'), path + " renders the appropriate brand edition");
       if (path === "/brand-book") {
         for (let page = 1; page <= 12; page++) assert.ok(html.includes(`id="book-page-${page}"`), "brand book page " + page);
-        for (const copy of ["会社の顔と、いつもの顔。", "むちむち猫", "ふわふわさん", "ふらっと来て、つい長居。", "12 / 12"]) assert.ok(html.includes(copy), "current brand book includes " + copy);
+        for (const copy of ["会社の顔と、いつもの顔。", "むちむち猫", "ふわふわさん", "ふらっと来て、つい長居。", "12 / 12"]) assert.ok(html.replaceAll("<!-- -->", "").includes(copy), "current brand book includes " + copy);
         assert.ok(!html.includes("racco-hina"), "withdrawn character is absent from current book");
       }
       if (["/racco", "/concept"].includes(path)) {
