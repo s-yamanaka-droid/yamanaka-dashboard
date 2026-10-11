@@ -70,7 +70,9 @@ with sync_playwright() as playwright:
                     cat.get_by_role("link", name="むちむち猫の画像を保存", exact=True).click()
                 download = download_event.value
                 assert download.failure() is None
-                assert download.suggested_filename == "muchimuchi-cat.png"
+                # Vercel's Content-Disposition filename takes precedence over
+                # the link's download name; both preserve the original PNG.
+                assert download.suggested_filename in {"muchimuchi-cat.png", "muchimuchi-cat-character-v1.png"}, download.suggested_filename
                 assert hashlib.sha256(Path(download.path()).read_bytes()).hexdigest() == hashes[character]
 
                 page.goto(base + "/racco#gallery-muchimuchi", wait_until="networkidle")
