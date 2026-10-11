@@ -5,7 +5,6 @@ const projects = JSON.parse(readFileSync(new URL('../src/data/projects.json', im
 const goods = [
   { slug: "glasses-sticker", title: "いつものRacco ステッカー" },
   { slug: "holo-sticker", title: "だるい天才 ホロシール" },
-  { slug: "hina-sticker", title: "ひなラッコ ステッカー" },
 ];
 const server = process.env.SMOKE_BASE_URL ? null : spawn("node", ["node_modules/next/dist/bin/next", "start", "-p", "3118"], { stdio: "ignore" });
 const base = process.env.SMOKE_BASE_URL || "http://127.0.0.1:3118";
@@ -248,6 +247,7 @@ try {
   assert.equal((await fetch(base + "/missing-smoke-page")).status, 404);
   assert.equal((await fetch(base + "/racco/columns/not-an-article")).status, 404);
   assert.equal((await fetch(base + "/racco/goods/not-a-product")).status, 404);
+  assert.equal((await fetch(base + "/racco/goods/hina-sticker")).status, 404, "withdrawn Hina product is not published");
   console.log("PASS topic selection, seven demos, 404");
 } finally {
   if (server && server.exitCode === null && server.signalCode === null) {

@@ -1,11 +1,10 @@
-export type AssetGroup = "all" | "self" | "stickers" | "hina" | "cast" | "social" | "fuwafuwa" | "muchimuchi";
+export type AssetGroup = "all" | "self" | "stickers" | "cast" | "social" | "fuwafuwa" | "muchimuchi";
 export type RaccoAsset = { title: string; kind: string; src: string; width: number; height: number; alt: string; group?: AssetGroup };
 
 export const assetGroups: { id: AssetGroup; label: string }[] = [
   { id: "all", label: "すべて" },
   { id: "self", label: "Racco" },
   { id: "stickers", label: "ホロシール" },
-  { id: "hina", label: "ひなラッコ" },
   { id: "fuwafuwa", label: "ふわふわさん" },
   { id: "muchimuchi", label: "むちむち猫" },
   { id: "cast", label: "3人の仲間" },
@@ -16,7 +15,6 @@ export const assetDescriptions: Record<AssetGroup, string> = {
   all: "いつものRaccoと、なかまたち。気になる一枚を大きく見て、保存できます。",
   self: "太縁メガネのRacco。いつもの顔と、のんびり過ごす風景。",
   stickers: "3つのポーズと、8つの配色。きらっと光る、レトロなホロシールのコレクション。",
-  hina: "きちんと、やさしく。シックな服と、ふわっとした表情のひなラッコ。",
   fuwafuwa: "まるくて、ふわふわ。ゴマアザラシのふわふわさんと、お店で過ごす風景。",
   muchimuchi: "まるいお腹に、ちょっと得意げな顔。むちむち猫の単体画像と、みんなでくつろぐ風景。",
   cast: "のんびり・テキパキ・自動化オタク。3人の世界観と造形見本。",
@@ -57,7 +55,6 @@ export const raccoAssets: RaccoAsset[] = [
     ["champagne-gold", "シャンパンゴールド"], ["pearl-white", "パールホワイト"],
     ["graphite-silver", "グラファイトシルバー"], ["caramel-mocha", "キャラメルモカ"],
   ].map(([id, title]): RaccoAsset => ({ title, kind: "ホロシール / 8カラー", src: `/brand-book/racco-sticker-${id}.png`, width: 1254, height: 1254, alt: `寝転んだRaccoのホロシール、${title}の配色`, group: "stickers" })),
-  { title: "ひなちゃん Racco", kind: "番外編 / きれいめシール", src: "/brand-book/racco-hina-sticker.png", width: 1254, height: 1254, alt: "白いブラウスとチャコールのカーディガン、スカート姿で書類とペンを持つ、ひなちゃんRaccoの白ふちシール", group: "hina" },
   ...fuwafuwaAssets,
   ...muchimuchiAssets,
 ];

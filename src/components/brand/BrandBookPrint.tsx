@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { LakkanLogo } from "./LakkanLogo";
 import { useState, type ReactNode } from "react";
 import { ArrowLeft, Download, Printer } from "lucide-react";
 import {
@@ -148,6 +149,7 @@ export function BrandBookPrint() {
             <h2>同じ作業は、<br />AIに任せたい。</h2>
             <p className="bp-cover-lead">Lakkanの中にいる、だるそうなラッコ。<br />できれば寝てたい。<br />でも、ラクするための工夫はする。</p>
             <p className="bp-cover-caption">コンセプト / 世界観 / 編集の姿勢 / 媒体別の使い方</p>
+            <LakkanLogo size="small" />
           </div>
           <div className="bp-cover-image"><BookImage name="racco-self-morning" alt="太縁メガネと灰色のパーカーで、朝をのんびり過ごす主役のRacco" /></div>
         </Sheet>
@@ -250,7 +252,7 @@ export function BrandBookPrint() {
           </div>
           <p className="bp-use-note">材料は匿名化し、秘密・認証・不要な個人情報を除く。事実・権利・送信・公開は人が確認する。</p>
           <div className="bp-resource-links"><Link href="/brand-guide#experiment">指示の全文：/brand-guide#experiment</Link><Link href="/racco#assets">全素材：/racco#assets</Link><Link href="/racco#posts">投稿：/racco#posts</Link></div>
-          <p className="bp-source">Lakkan / Racco ブランドブック。日本語はZen Maru Gothic、英字ロゴはNunito。Webと本冊は同じ内容から展開しています。画像は生成素材、本文は制作・運用案を含みます。効果・商標・印刷品質・商品化の確認は別工程です。</p>
+          <p className="bp-source">Lakkan / Racco ブランドブック。日本語はZen Maru Gothic、Raccoの英字はNunito、LakkanはA3ロゴ。Webと本冊は同じ内容から展開しています。画像は生成素材、本文は制作・運用案を含みます。効果・商標・印刷品質・商品化の確認は別工程です。</p>
         </Sheet>
       </div>
     </main>

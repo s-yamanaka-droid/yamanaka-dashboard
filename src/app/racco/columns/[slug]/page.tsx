@@ -7,6 +7,7 @@ import { raccoColumns } from "@/data/racco-columns";
 import { raccoRounded, raccoLogo } from "@/lib/racco-fonts";
 import { buildRaccoInquiryHref } from "@/lib/racco-inquiry";
 import ColumnPrompt from "@/components/brand/ColumnPrompt";
+import { LakkanLogo } from "@/components/brand/LakkanLogo";
 import "@/components/brand/brand-library.css";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -32,7 +33,7 @@ export default async function Page({ params }: Props) {
   return <div className={`${raccoRounded.variable} ${raccoLogo.variable}`}>
     <div className="brand-library" data-brand="racco" data-motion="off"><div className="bl-shell">
       <header className="bl-header bl-column-header">
-        <Link href="/concept" className="bl-label" aria-label="Lakkanについて">Lakkan<span>ラクするほうを、つくろう。</span></Link>
+        <Link href="/concept" className="bl-label" aria-label="Lakkanについて"><LakkanLogo /><span>ラクするほうを、つくろう。</span></Link>
         <Link href="/racco" className="bl-brand"><span className="bl-brand-thumb"><Image src="/brand-book/racco-self-avatar.png" width={48} height={48} alt=""/></span>Racco</Link>
         <Link href="/racco#columns" className="bl-text-link">コラム一覧<ArrowRight size={15}/></Link>
       </header>

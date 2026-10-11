@@ -17,6 +17,9 @@ const dataContext = { exports: {} };
 vm.runInNewContext(compile("../src/data/brand-book.ts"), dataContext);
 const kitContext = { exports: {} };
 vm.runInNewContext(compile("../src/data/racco-kit.ts"), kitContext);
+const worldContext = { exports: {} };
+vm.runInNewContext(compile("../src/data/racco-world.ts"), worldContext);
+assert.deepEqual(Object.keys(worldContext.exports.characterBackgrounds).sort(), ["automation", "fuwafuwa", "muchimuchi", "practical", "racco"], "the shared world defines all five approved characters");
 const columnsContext = { exports: {} };
 vm.runInNewContext(compile("../src/data/racco-columns.ts"), columnsContext);
 const goodsContext = { exports: {} };
@@ -34,8 +37,9 @@ const goodsComponent = { exports: {}, require(name) {
   return require(name);
 } };
 vm.runInNewContext(compile("../src/components/brand/RaccoGoods.tsx"), goodsComponent);
-assert.equal(goodsContext.exports.raccoGoods.length, 3);
-assert.equal(new Set(goodsContext.exports.raccoGoods.map(item => item.slug)).size, 3);
+assert.equal(goodsContext.exports.raccoGoods.length, 2);
+assert.equal(new Set(goodsContext.exports.raccoGoods.map(item => item.slug)).size, 2);
+assert.ok(!goodsContext.exports.raccoGoods.some(item => item.slug === "hina-sticker"), "withdrawn Hina design is not a published product");
 for (const item of goodsContext.exports.raccoGoods) {
   assert.equal(item.statusLabel, "商品化準備中");
   const image = readFileSync(new URL("../public" + item.image, import.meta.url));
@@ -59,7 +63,7 @@ for (const id of ["x", "instagram", "note"]) assert.match(dataContext.exports.ch
 assert.equal(kitContext.exports.raccoCast.length, 3, "approved cast has three roles");
 assert.deepEqual(Array.from(kitContext.exports.raccoCast, member => member.id), ["racco", "practical", "automation"], "Fuwafuwa does not replace any of the original three Racco roles");
 assert.deepEqual(Array.from(kitContext.exports.raccoCast, member => [member.name, member.role]), [["Racco", "のんびり担当"], ["まず、ひとつ。", "テキパキ担当"], ["つい、凝っちゃう。", "自動化オタク担当"]], "original names and roles are unchanged");
-assert.equal(kitContext.exports.raccoAssets.length, 30, "all 28 existing assets remain alongside two Muchimuchi assets");
+assert.equal(kitContext.exports.raccoAssets.length, 29, "only the withdrawn Hina asset is excluded");
 assert.equal(kitContext.exports.fuwafuwaAssets.length, 2, "standalone character and shared scene are defined once");
 assert.deepEqual(Array.from(kitContext.exports.fuwafuwaAssets, asset => asset.src), [fuwafuwaCharacter, fuwafuwaScene]);
 assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "fuwafuwa").length, 2);
@@ -67,9 +71,11 @@ assert.equal(kitContext.exports.muchimuchiAssets.length, 2, "Muchimuchi has one 
 assert.deepEqual(Array.from(kitContext.exports.muchimuchiAssets, asset => asset.src), [muchimuchiCharacter, muchimuchiScene]);
 assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "muchimuchi").length, 2);
 assert.equal(kitContext.exports.assetGroups.find(group => group.id === "muchimuchi")?.label, "むちむち猫", "the approved name appears on the collection filter");
-assert.equal(new Set(kitContext.exports.raccoAssets.map(asset => asset.src)).size, 30, "new assets are not duplicated in the combined collection");
+assert.equal(new Set(kitContext.exports.raccoAssets.map(asset => asset.src)).size, 29, "remaining assets are not duplicated in the combined collection");
 assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "stickers").length, 11);
-assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "hina").length, 1);
+assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "hina" || asset.src.includes("racco-hina-")).length, 0, "withdrawn Hina asset is absent from public data");
+assert.ok(!kitContext.exports.assetGroups.some(group => group.id === "hina"), "withdrawn Hina filter is absent");
+assert.ok(!Object.hasOwn(kitContext.exports.assetDescriptions, "hina"), "withdrawn Hina description is absent");
 for (const asset of kitContext.exports.raccoAssets) assert.ok(readFileSync(new URL("../public" + asset.src, import.meta.url)).byteLength > 1000, asset.src + " exists");
 const characterPng = readFileSync(new URL("../public" + fuwafuwaCharacter, import.meta.url));
 const characterInfo = await sharp(characterPng).metadata();
@@ -99,6 +105,18 @@ for (const path of ["../src/data/brand-book.ts", "../src/data/racco-kit.ts", "..
   assert.ok(!/本人用|本人のRacco|本人アバター|本人の分身|発信用アバター/.test(readFileSync(new URL(path, import.meta.url), "utf8")), "public brand content does not expose internal identity notes: " + path);
 }
 const compiled = compile("../src/components/brand/BrandLibrary.tsx");
+const logoComponent = { exports: {}, require(name) {
+  if (name.endsWith(".module.css")) return { logo: "logo", small: "small", default: "default", feature: "feature", inverse: "inverse" };
+  return require(name);
+} };
+vm.runInNewContext(compile("../src/components/brand/LakkanLogo.tsx"), logoComponent);
+assert.equal(logoComponent.exports.LakkanLogo({}).props["aria-label"], "Lakkan");
+assert.equal(logoComponent.exports.LakkanLogo({ variant: "signature" }).props["aria-label"], "Lakkan 楽観");
+for (const variant of ["wordmark", "signature"]) {
+  const info = await sharp(new URL("../public/brand/lakkan-logo/lakkan-a3-" + variant + ".png", import.meta.url).pathname).metadata();
+  assert.ok(info.hasAlpha, variant + " logo retains transparency");
+  assert.deepEqual([info.width, info.height], [1983, 793]);
+}
 assert.match(readFileSync(new URL("../src/components/brand/BrandLibrary.tsx", import.meta.url), "utf8"), /className="bl-heading-phrase">いつもの風景も。/, "gallery heading keeps Japanese phrases together on narrow screens");
 
 for (const allowed of [true, false]) {
@@ -142,10 +160,12 @@ function fixture(brand, initialHash = "") {
       if (name.endsWith(".css")) return {};
       if (name === "@/data/brand-book") return dataContext.exports;
       if (name === "@/data/racco-kit") return kitContext.exports;
+      if (name === "@/data/racco-world") return worldContext.exports;
       if (name === "@/data/racco-columns") return columnsContext.exports;
       if (name === "@/data/racco-goods") return goodsContext.exports;
       if (name === "@/lib/racco-inquiry") return inquiryContext.exports;
       if (name === "./RaccoGoods") return goodsComponent.exports;
+      if (name === "./LakkanLogo") return logoComponent.exports;
       if (name === "./useBrandReducedMotion") return { useBrandReducedMotion: () => false };
       return require(name);
     },
@@ -165,7 +185,7 @@ function fixture(brand, initialHash = "") {
     function visit(node) {
       if (!node || typeof node !== "object") return [];
       if (Array.isArray(node)) return node.flatMap(visit);
-      if (node.type === goodsComponent.exports.default) return visit(node.type(node.props));
+      if (node.type === goodsComponent.exports.default || node.type === logoComponent.exports.LakkanLogo) return visit(node.type(node.props));
       return [...(predicate(node) ? [node] : []), ...visit(node.props?.children)];
     }
     return visit(render());
@@ -177,6 +197,10 @@ function fixture(brand, initialHash = "") {
 
 for (const brand of ["racco", "lakkan"]) {
   const app = fixture(brand);
+  assert.equal(app.find(n => n.props?.["data-lakkan-logo"] === "signature").length, brand === "lakkan" ? 1 : 0, "signature is restricted to Lakkan company concept");
+  assert.ok(app.find(n => n.props?.["data-lakkan-logo"] === "wordmark").length >= 2, "navigation and footer use English only");
+  assert.ok(!nodeText(app.find(n => n.props?.className === "brand-library")[0]).includes("Lakkanの、のんびり担当。"), "repeated assigned-role headline is removed");
+  assert.equal(app.find(n => n.type === "img" && n.props.src === "/brand-book/racco-hina-sticker.png").length, 0, "home does not promote the withdrawn Hina design");
   const publicTabs = app.find(n => n.props?.role === "tab" && n.props.id?.startsWith("bl-tab-"));
   assert.deepEqual(publicTabs.map(n => n.props.id), (brand === "racco" ? ["concept", "columns", "members", "visual", "goods"] : ["concept", "columns", "members", "visual", "posts", "assets"]).map(id => `bl-tab-${id}`), brand + " has the intended public navigation");
   const hero = app.find(n => n.type === "img" && n.props?.preload)[0];
@@ -226,7 +250,7 @@ for (const brand of ["racco", "lakkan"]) {
   assert.equal(app.state[0], brand === "racco" ? "goods" : "assets");
   assert.equal(app.focused.at(-1), brand === "racco" ? "bl-tab-goods" : "bl-tab-assets");
   if (brand === "racco") {
-    assert.equal(app.find(n => n.props?.className === "bl-goods-card").length, 3, "goods tab renders the real reusable component");
+    assert.equal(app.find(n => n.props?.className === "bl-goods-card").length, 2, "goods tab renders the two remaining designs");
     for (const item of goodsContext.exports.raccoGoods) {
       assert.ok(app.find(n => n.type === "a" && n.props.href === `/racco/goods/${item.slug}`).length, item.slug + " has a real detail route");
       assert.ok(app.find(n => n.type === "h3" && nodeText(n) === item.title).length);
@@ -245,17 +269,26 @@ for (const brand of ["racco", "lakkan"]) {
     tab("members").props.onClick();
     assert.equal(app.state[0], "members");
     assert.equal(app.history.at(-1), "#members");
+    const worldIntro = app.find(n => n.props?.className === "bl-world-intro");
+    assert.equal(worldIntro.length, 1, "members introduce the shared shop world once");
+    assert.equal(nodeText(worldIntro[0].props.children[0]), worldContext.exports.raccoWorld.title, "members use the shared world title");
+    for (const key of ["intro", "tone"]) {
+      assert.ok(nodeText(worldIntro[0]).includes(worldContext.exports.raccoWorld[key]), "members show the shared world " + key);
+    }
     const castRoles = app.find(n => n.props?.className === "bl-cast-roles");
     assert.equal(castRoles.length, 1);
     assert.equal(castRoles[0].props.children.filter(node => node.type === "article").length, 3, "the original three role cards remain together");
     for (const member of kitContext.exports.raccoCast) {
       assert.ok(nodeText(castRoles[0]).includes(member.name) && nodeText(castRoles[0]).includes(member.role), member.id + " retains its original name and role");
+      const roleCard = castRoles[0].props.children.find(node => node.type === "article" && node.key === member.id);
+      assert.ok(nodeText(roleCard).includes(worldContext.exports.characterBackgrounds[member.id]), member.id + " displays its shared character background");
     }
     assert.ok(app.find(n => n.type === "img" && n.props.src === "/brand-book/racco-trio.png").length, "original three-person scene remains available in members");
     assert.ok(app.find(n => n.type === "h1" && nodeText(n) === "Raccoと、なかまたち。").length, "members heading includes the expanded cast");
     const fuwafuwa = app.find(n => n.props?.id === "bl-fuwafuwa");
     assert.equal(fuwafuwa.length, 1, "new member has its own named section");
     assert.ok(nodeText(fuwafuwa[0]).includes("ふわふわさん"));
+    assert.ok(nodeText(fuwafuwa[0]).includes(worldContext.exports.characterBackgrounds.fuwafuwa), "Fuwafuwa displays its shared character background");
     function assertDownloadableMemberImage(src, width, height) {
       const image = app.find(n => n.type === "img" && n.props.src === src)[0];
       assert.ok(image, src + " is shown in the member view or its preview");
@@ -271,6 +304,7 @@ for (const brand of ["racco", "lakkan"]) {
     assert.equal(app.find(n => n.type === "img" && n.props.src === fuwafuwaScene).length, 0, "closing the shared scene preview clears it");
     const muchimuchi = app.find(n => n.props?.id === "bl-muchimuchi");
     assert.equal(muchimuchi.length, 1, "Muchimuchi has a separate named member section");
+    assert.ok(nodeText(muchimuchi[0]).includes(worldContext.exports.characterBackgrounds.muchimuchi), "Muchimuchi displays its shared character background");
     assert.ok(app.find(n => n.type === "h2" && nodeText(n) === "むちむち猫").length, "member heading uses the approved name");
     assertDownloadableMemberImage(muchimuchiCharacter, 1254, 1254);
     const muchimuchiDownload = app.find(n => n.type === "a" && n.props.href === muchimuchiCharacter && n.props.download === "muchimuchi-cat.png");
@@ -294,10 +328,8 @@ for (const brand of ["racco", "lakkan"]) {
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 11, "all sticker designs are selectable");
     assert.equal(app.history.at(-1), "#assets-stickers");
     assert.equal(app.find(n => n.type === "a" && n.props?.download && n.props.href.includes("racco-sticker-")).length, 11);
-    app.find(n => n.type === "button" && n.props?.children?.[0] === "ひなラッコ")[0].props.onClick();
-    assert.equal(app.find(n => n.props?.className === "bl-card").length, 1);
-    assert.equal(app.history.at(-1), "#assets-hina");
-    assert.ok(app.find(n => n.type === "a" && n.props?.href === "/brand-book/racco-hina-sticker.png" && n.props.download).length);
+    assert.equal(app.find(n => n.type === "button" && n.props?.children?.[0] === "ひなラッコ").length, 0, "withdrawn Hina filter is not offered");
+    assert.equal(app.find(n => n.type === "a" && n.props?.href === "/brand-book/racco-hina-sticker.png" && n.props.download).length, 0, "withdrawn Hina asset has no download entry");
     app.find(n => n.type === "button" && n.props?.children?.[0] === "ふわふわさん")[0].props.onClick();
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 2, "Fuwafuwa filter contains the standalone and shared scene only");
     assert.equal(app.history.at(-1), "#assets-fuwafuwa");
@@ -307,7 +339,7 @@ for (const brand of ["racco", "lakkan"]) {
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 2, "Muchimuchi filter contains the standalone and shared scene only");
     for (const src of [muchimuchiCharacter, muchimuchiScene]) assert.ok(app.find(n => n.type === "a" && n.props.href === src && n.props.download).length, src + " can be saved from the asset filter");
     app.find(n => n.type === "button" && n.props?.children?.[0] === "すべて")[0].props.onClick();
-    assert.equal(app.find(n => n.props?.className === "bl-card").length, 30, "all filter does not hide older work or the new member");
+    assert.equal(app.find(n => n.props?.className === "bl-card").length, 29, "all filter includes all remaining assets");
     app.setHash("#gallery-muchimuchi");
     assert.equal(app.state[0], "visual", "Muchimuchi collection hash opens the gallery");
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 2);
@@ -325,7 +357,7 @@ for (const brand of ["racco", "lakkan"]) {
     app.find(n => n.type === "button" && n.props?.["aria-label"] === "だるい天才を拡大")[0].props.onClick();
     assert.ok(app.find(n => n.type === "a" && n.props?.href === "/racco/goods/holo-sticker").length, "gallery preview leads to its matching goods design");
     app.setHash("#goods");
-    assert.equal(app.find(n => n.props?.className === "bl-goods-card").length, 3, "direct goods hash opens the complete collection");
+    assert.equal(app.find(n => n.props?.className === "bl-goods-card").length, 2, "direct goods hash opens the two remaining designs");
   }
   console.log(`PASS ${brand}: handler state, native modified click, tab keys, landmark, dialog names, pause`);
 }

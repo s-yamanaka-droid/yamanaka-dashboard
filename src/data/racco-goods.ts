@@ -40,17 +40,4 @@ export const raccoGoods: RaccoGoodsItem[] = [
     collectionHref: "/racco#gallery-stickers",
     statusLabel: "商品化準備中",
   },
-  {
-    slug: "hina-sticker",
-    title: "ひなラッコ ステッカー",
-    subtitle: "きちんと、やさしく。番外編。",
-    description: "書類とペンを持って、ひとつずつ。いつものRaccoとは少し違う、きれいめなひなラッコのステッカーデザインです。",
-    image: "/brand-book/racco-hina-sticker.png",
-    imageAlt: "白いブラウスとチャコールのカーディガン姿で書類とペンを持つ、ひなラッコのステッカーの生成デザイン",
-    width: 1254,
-    height: 1254,
-    designNote: "シックな服と、やわらかな表情。ひなラッコは番外編のキャラクターとして、いつもと少し違う雰囲気を楽しむデザインです。",
-    collectionHref: "/racco#gallery-hina",
-    statusLabel: "商品化準備中",
-  },
 ];

@@ -7,6 +7,7 @@ import AgenticFactory3D, { type StationId } from "@/components/ui/agentic-factor
 import { works } from "@/data/factory-works";
 import { selectedWorks, workPresentationLabel } from "@/data/selected-works";
 import "./factory.css";
+import { LakkanLogo } from "@/components/brand/LakkanLogo";
 
 type Panel = "menu" | "work" | "contact" | "selected" | null;
 
@@ -133,7 +134,7 @@ export default function FactoryHome() {
         }} onStation={id => openStation(id, true)} />
       </div>
       <header className="factory-header" inert={Boolean(panel)}>
-        <button className="lakkan-wordmark" aria-label="Lakkan — 全体に戻る" onClick={() => window.__machine?.setCamera("overview")}>Lakkan</button>
+        <button className="lakkan-wordmark" aria-label="Lakkan — 全体に戻る" onClick={() => window.__machine?.setCamera("overview")}><LakkanLogo size="small" inverse /></button>
         <nav className="factory-nav" aria-label="メインナビゲーション"><button className="selected-toggle" onClick={e => openSelected(e.currentTarget)} aria-haspopup="dialog">制作・運用例<Arrow /></button><Link className="header-inquiry" href="/contact?topic=other#inquiry">相談する<Arrow /></Link><button className="menu-toggle" ref={menuRef} onClick={e => openMenu(e.currentTarget)} aria-label="Menuを開く" aria-haspopup="dialog" aria-expanded={panel === "menu"}>Menu<Cross plus /></button></nav>
       </header>
       <div className="factory-intro" inert={Boolean(panel)} aria-hidden={panel ? true : undefined}>

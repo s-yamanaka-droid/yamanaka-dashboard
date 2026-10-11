@@ -7,6 +7,7 @@ import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, Check, Chevro
 import { FormEvent, KeyboardEvent, ReactNode, useEffect, useRef, useState } from "react";
 import { channels, lakkanPrinciples, repairPrompt, starterPrompt, voiceRules, workCycle } from "@/data/brand-book";
 import BrandLibrary from "./BrandLibrary";
+import { LakkanLogo } from "./LakkanLogo";
 import { useBrandReducedMotion } from "./useBrandReducedMotion";
 import "./brand-studio.css";
 
@@ -29,7 +30,8 @@ const assets = [
 ];
 
 function Wordmark({ brand = "racco", large = false }: { brand?: "racco" | "lakkan"; large?: boolean }) {
-  return <span className={`bs-wordmark ${large ? "bs-wordmark-large" : ""} ${brand === "lakkan" ? "is-lakkan" : ""}`} aria-label={brand === "racco" ? "Racco" : "Lakkan"}>
+  if (brand === "lakkan") return <LakkanLogo size={large ? "feature" : "default"} variant={large ? "signature" : "wordmark"} />;
+  return <span className={`bs-wordmark ${large ? "bs-wordmark-large" : ""}`} aria-label="Racco">
     <span aria-hidden="true">{brand === "racco" ? "Racco" : "Lakkan"}<svg className="bs-cursor" viewBox="0 0 28 32" fill="none"><path d="M4 2v25l6-6 5 10 5-3-5-9h9L4 2Z" fill="currentColor"/></svg></span>
   </span>;
 }

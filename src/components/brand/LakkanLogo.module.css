@@ -1,0 +1,12 @@
+.logo {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 120px;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.small { width: 88px; }
+.inverse { filter: brightness(0) invert(1); }
+.feature { width: 360px; margin-block: 8px 20px; }

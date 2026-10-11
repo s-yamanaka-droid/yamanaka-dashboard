@@ -78,6 +78,9 @@ body:has(.brand-library) { background:#f1f2f3; }
 .bl-footer>div { display:flex; align-items:center; gap:20px; }
 .bl-footer :is(a,button) { display:flex; gap:6px; align-items:center; min-height:44px; font-size:10px!important; }
 .bl-footer button { border:0; background:none; padding:0; }
+.bl-world-intro { max-width:720px; margin:0 0 40px; }
+.bl-world-intro h2 { font-size:clamp(22px,3vw,30px); line-height:1.5; margin:0 0 14px; }
+.bl-world-intro p { font-size:14px; line-height:1.9; margin:0 0 12px; }
 .bl-pane { padding:28px 0 12px; min-height:620px; }
 .bl-pane .bl-section-head { margin-bottom:26px; }
 .bl-pane h1 { font-size:32px; margin-top:7px; }

@@ -5,6 +5,7 @@ import { SectionShell } from "@/components/primitives/SectionShell";
 import { WaterSculpture } from "@/components/site/WaterSculpture";
 import { WaterContact } from "@/components/site/WaterContact";
 import { BrandHeading } from "@/components/site/BrandHeading";
+import { LakkanLogo } from "@/components/brand/LakkanLogo";
 
 export const metadata: Metadata = {
   title: "会社情報",
@@ -22,7 +23,7 @@ export default function About() {
         ["使われるところまで。","公開や導入の先にも、日々の仕事は続く。運用と改善を見据えて、支援の範囲を一緒に考えます。"],
       ].map(([title,text])=><div key={title}><h3>{title}</h3><p>{text}</p></div>)}</div><Link className="brand-text-link" href="/works">取り組みを実績で見る <ArrowUpRight size={18}/></Link></SectionShell>
       <SectionShell id="company-facts"><div className="company-section water-company-facts">
-        <div className="water-editorial-label"><h2>Company</h2><p>会社情報</p></div>
+        <div><div className="water-editorial-label"><h2>Company</h2><p>会社情報</p></div><LakkanLogo variant="signature" size="feature" /></div>
         <dl>
           <div><dt>会社名</dt><dd>株式会社Lakkan / Lakkan Inc.</dd></div>
           <div><dt>所在地</dt><dd>東京都渋谷区神宮前六丁目23番4号</dd></div>

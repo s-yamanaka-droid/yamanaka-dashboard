@@ -22,6 +22,7 @@ vm.runInNewContext(compile("../src/lib/racco-inquiry.ts"), helper);
 const { buildRaccoInquiryHref, resolveRaccoInquiryContext } = helper.exports;
 const article = columns.exports.raccoColumns[0];
 const product = goods.exports.raccoGoods[0];
+assert.equal(goods.exports.raccoGoods.length, 2, "only the two remaining product designs can enter inquiries");
 
 for (const [source, intent, topic, label] of [
   ["racco-home", "ai", "ai-consult", "Raccoのホーム"],
@@ -74,7 +75,7 @@ for (const value of [[article.slug], "not-an-article", "from-bookmark-to-work%0A
   assert.equal(context.bodyLines.length, 1);
   assert.equal(buildRaccoInquiryHref({ source: "racco-column", article: value }).includes("article="), false);
 }
-for (const value of [[product.slug], "not-a-product", "holo-sticker%0AInjected", "<script>bad</script>", {}, 123]) {
+for (const value of [[product.slug], "not-a-product", "hina-sticker", "holo-sticker%0AInjected", "<script>bad</script>", {}, 123]) {
   const context = resolveRaccoInquiryContext({ source: "racco-goods", product: value, intent: "constructor" });
   assert.equal(context.product, undefined);
   assert.equal(context.intent, "goods");
