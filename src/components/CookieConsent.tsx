@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 const COOKIE_KEY = "lakkan-cookie-consent";
-const SANS = "var(--font-display), 'Space Grotesk', system-ui, sans-serif";
+const SANS = "var(--cookie-font, var(--font-display)), system-ui, sans-serif";
 
 export function CookieConsent() {
   const pathname = usePathname();
@@ -34,7 +34,7 @@ export function CookieConsent() {
   return (
     <div
       role="dialog"
-      aria-label="Cookie consent"
+      aria-label="Cookieの設定"
       style={{
         position: "fixed",
         bottom: 20,
@@ -43,11 +43,11 @@ export function CookieConsent() {
         maxWidth: 560,
         margin: "0 auto",
         zIndex: 9999,
-        background: "#132126",
-        color: "#F8F9F6",
+        background: "var(--cookie-background, #132126)",
+        color: "var(--cookie-color, #F8F9F6)",
         padding: "20px 24px",
         borderRadius: 10,
-        boxShadow: "0 20px 50px rgba(0,0,0,0.35)",
+        boxShadow: "0 12px 40px rgba(0,0,0,0.16)",
         fontFamily: SANS,
         fontSize: 14,
         lineHeight: 1.6,
@@ -61,7 +61,7 @@ export function CookieConsent() {
         <a
           href="/privacy"
           style={{
-            color: "#F8F9F6",
+            color: "inherit",
             textDecoration: "underline",
             textUnderlineOffset: 2,
           }}
@@ -77,11 +77,12 @@ export function CookieConsent() {
           style={{
             fontFamily: SANS,
             fontSize: 12,
-            color: "rgba(247,244,238,0.7)",
+            color: "inherit",
             background: "transparent",
-            border: "1px solid rgba(247,244,238,0.3)",
+            border: "1px solid var(--cookie-border, rgba(247,244,238,0.3))",
             borderRadius: 6,
             padding: "8px 16px",
+            minHeight: 44,
             cursor: "pointer",
           }}
         >
@@ -94,11 +95,12 @@ export function CookieConsent() {
             fontFamily: SANS,
             fontSize: 12,
             fontWeight: 600,
-            color: "#132126",
-            background: "#F8F9F6",
-            border: "1px solid #F8F9F6",
+            color: "var(--cookie-button-color, #132126)",
+            background: "var(--cookie-button-background, #F8F9F6)",
+            border: "1px solid var(--cookie-button-background, #F8F9F6)",
             borderRadius: 6,
             padding: "8px 18px",
+            minHeight: 44,
             cursor: "pointer",
           }}
         >

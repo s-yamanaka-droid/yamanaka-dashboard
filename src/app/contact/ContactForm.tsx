@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, ArrowRight, Check, Copy } from "lucide-react";
@@ -32,11 +32,13 @@ export function ContactForm({
   projectName,
   raccoContext,
   variant = "default",
+  posterIntro,
 }: {
   initialTopic?: string;
   projectName?: string;
   raccoContext?: RaccoInquiryContext;
-  variant?: "default" | "racco";
+  variant?: "default" | "racco" | "poster";
+  posterIntro?: ReactNode;
 }) {
   const formRef = useRef<HTMLFormElement>(null);
   const [topic, setTopic] = useState(topics.some(([id]) => id === initialTopic) ? initialTopic : "ai-consult");
@@ -76,6 +78,7 @@ export function ContactForm({
   }
 
   const isRacco = variant === "racco";
+  const isPoster = variant === "poster";
   const fields = <>
         <div><label htmlFor="name">お名前（必須）</label><input id="name" name="name" autoComplete="name" required maxLength={100} /></div>
         <div><label htmlFor="email">メールアドレス（必須）</label><input id="email" name="email" type="email" autoComplete="email" required maxLength={254} /></div>
@@ -83,7 +86,7 @@ export function ContactForm({
         {!isRacco && <div><label htmlFor="topic">ご相談のテーマ</label><select id="topic" value={topic} onChange={event => setTopic(event.target.value)}>{topics.map(([id, label]) => <option key={id} value={id}>{label}</option>)}</select></div>}
         {raccoContext && (!isRacco || raccoContext.article || raccoContext.product) && <p className="contact-project-context">{raccoContext.sourceLabel}からのご相談です。{raccoContext.article && <>記事：<strong>{raccoContext.article.title}</strong>。</>}{raccoContext.product && <>グッズ：<strong>{raccoContext.product.title}</strong>。</>}<br />下の文章は自由に変更できます。</p>}
         {projectName && <p className="contact-project-context">「{projectName}」の実績からのご相談です。下の文章は自由に変更できます。</p>}
-        <div><label htmlFor="message">{isRacco ? "相談したいこと（必須）" : "ご相談内容（必須）"}</label><textarea id="message" name="message" rows={isRacco ? 5 : 7} required maxLength={4000} defaultValue={raccoContext?.initialMessage ?? (projectName ? `${projectName}の実績を見て相談したいです。\n\n` : undefined)} placeholder={isRacco ? "たとえば、毎週の報告書づくりをAIに任せたい。まだぼんやりした相談でも大丈夫です。" : "いまの課題や、実現したいことをお聞かせください。"} /></div>
+        <div><label htmlFor="message">{isRacco ? "相談したいこと（必須）" : "ご相談内容（必須）"}</label><textarea id="message" name="message" rows={isRacco || isPoster ? 5 : 7} required maxLength={4000} defaultValue={raccoContext?.initialMessage ?? (projectName ? `${projectName}の実績を見て相談したいです。\n\n` : undefined)} placeholder={isRacco ? "たとえば、毎週の報告書づくりをAIに任せたい。まだぼんやりした相談でも大丈夫です。" : "いまの課題や、実現したいことをお聞かせください。"} /></div>
         <p className="form-note">お使いのメールアプリに下書きを作成します。アプリ側で送信するまで、お問い合わせは送られません。<br />ご相談内容は<Link href="/privacy">プライバシーポリシー</Link>に基づき取り扱います。</p>
         <div className="form-actions"><button className={isRacco ? "rc-primary" : "pill-button orange"} type="submit">メールの下書きを作る <span><ArrowUpRight size={18} aria-hidden="true" /></span></button></div>
         <p className="form-note">メールアプリが開かない場合は、下書きをコピーして、<a href={`mailto:${recipient}`}>{recipient}</a> へ直接お送りください。</p>
@@ -92,8 +95,9 @@ export function ContactForm({
         {manualDraft !== null && <div><label htmlFor="manual-draft">手動コピー用の下書き（未送信）</label><textarea id="manual-draft" readOnly rows={12} value={manualDraft} onFocus={event => event.currentTarget.select()} /><p className="form-note">欄を選ぶと下書き全体が選択されます。コピーしてメールアプリへ貼り付けてください。</p></div>}
   </>;
   return (
-    <section id="inquiry" className={isRacco ? "rc-inquiry" : "contact-layout"}>
-      {!isRacco && <aside className="contact-aside">
+    <section id="inquiry" className={isRacco ? "rc-inquiry" : isPoster ? "poster-inquiry" : "contact-layout"}>
+      {isPoster && <aside className="poster-contact-aside">{posterIntro}</aside>}
+      {!isRacco && !isPoster && <aside className="contact-aside">
         <p className="eyebrow">CONTACT / LAKKAN</p>
         <h2><span>まずは、</span><span>話そう。</span></h2>
         <p>人のこと。仕事の仕組みのこと。<br />いま困っていることから、お聞かせください。</p>

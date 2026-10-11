@@ -9,14 +9,14 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
 const subscribe = () => () => {};
 const EXPO_OUT = [.19, 1, .22, 1] as const;
 
-export function BrandHeading({children, as:Tag="h2", className, delay=0}: {
-  children:string; as?:"h1"|"h2"; className?:string; delay?:number;
+export function BrandHeading({children, as:Tag="h2", className, delay=0, reveal=true}: {
+  children:string; as?:"h1"|"h2"; className?:string; delay?:number; reveal?:boolean;
 }) {
   const ref=useRef<HTMLHeadingElement>(null);
   const hydrated=useSyncExternalStore(subscribe,()=>true,()=>false);
   const reduced=useReducedMotion();
   const inView=useInView(ref,{once:true,margin:"0px 0px -8% 0px"});
-  const animated=hydrated && !reduced;
+  const animated=reveal && hydrated && !reduced;
   return <Tag ref={ref} className={className} aria-label={children.replaceAll("\n", " ")}
     data-brand-reveal={animated ? (inView ? "revealed" : "waiting") : "static"}>
     {children.split("\n").map((line,index)=><span key={`${index}-${line}`}

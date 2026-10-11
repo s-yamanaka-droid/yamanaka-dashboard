@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function Services() {
-  return <main id="main" className="services-lp new-site">
+  return <main id="main" className="services-lp new-site poster-page poster-services">
     <SectionShell id="services-intro">
       <ServiceLab/>
     </SectionShell>

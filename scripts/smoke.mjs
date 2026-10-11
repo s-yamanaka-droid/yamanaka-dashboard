@@ -46,8 +46,8 @@ try {
     await new Promise(resolve => setTimeout(resolve, 250));
   }
   assert.ok(ready, "health endpoint is ready");
-  assert.equal((await (await fetch(base + '/api/health')).json()).experience, 'interactive-workshop', 'health identifies the current homepage');
-  for (const path of ["/", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/racco/contact", "/concept", "/brand-book", "/brand-guide", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => `/racco/columns/${slug}`), ...goods.map(item => `/racco/goods/${item.slug}`)]) {
+  assert.equal((await (await fetch(base + '/api/health')).json()).experience, 'poster-crowd', 'health identifies the current homepage');
+  for (const path of ["/", "/workshop", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/racco/contact", "/concept", "/brand-book", "/brand-guide", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => `/racco/columns/${slug}`), ...goods.map(item => `/racco/goods/${item.slug}`)]) {
     const response = await fetch(base + path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
@@ -57,18 +57,22 @@ try {
       const csp=response.headers.get('content-security-policy')||'';
       assert.ok(csp.includes("frame-src 'self' https://luna-tech-public-site.vercel.app"), 'public preview origins permitted by CSP');
       assert.ok(csp.includes("frame-ancestors 'self'"), 'embedding this site remains restricted');
-      assert.ok(html.includes('data-home="motion"') && html.includes('factory-shell'), 'home renders the actual interactive workshop');
-      assert.ok(html.includes('人と仕事の課題を、') && html.includes('整理から実装まで。'), 'company context remains available before WebGL');
+      assert.ok(html.includes('data-home="poster-crowd"') && html.includes('wpl-root'), 'home renders the supplied poster hero');
+      assert.ok(html.includes('id="people"') && html.includes('crowd-canvas'), 'walking crowd follows the hero');
+      assert.ok(html.includes('人と仕事の') && html.includes('あいだに、') && html.includes('いい動きを。'), 'company context remains available as text');
       assert.ok(html.includes('href="/contact?topic=other#inquiry"') && html.includes('相談する'), 'home leads directly to the inquiry form');
       assert.ok(!html.includes('luna-management') && !html.includes('luna-receptionist'), 'home does not route visitors directly to unrelated Luna products');
-      assert.ok(html.includes('Menuを開く') && html.includes('aria-haspopup="dialog"'), 'home has accessible fallback navigation');
-      assert.ok(html.includes('制作・運用例') && html.includes('探索する') && html.includes('動きを一時停止'), 'work, exploration and playback controls are present');
-      assert.ok(html.includes('id="scene"') && !html.includes('<video'), 'home mounts the procedural renderer rather than a film');
+      assert.ok(html.includes('aria-label="メインナビゲーション"') && html.includes('href="/workshop"'), 'home has navigation and access to the workshop');
+      assert.ok(html.includes('制作・運用例') && html.includes('工房を探索する'), 'work and workshop links are present');
+      assert.equal((await fetch(base + '/people/open-peeps-crowd.png')).status, 200, 'crowd sprite loads');
       const ogUrl = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
       assert.ok(ogUrl, 'home exposes a share image');
       const og = await fetch(base + new URL(ogUrl).pathname);
       assert.equal(og.status, 200, 'current share image loads');
       assert.ok(og.headers.get('content-type')?.includes('image/png'), 'share image is PNG');
+    } else if (path === "/workshop") {
+      assert.ok(html.includes('data-home="motion"') && html.includes('factory-shell'), 'interactive workshop remains available');
+      assert.ok(html.includes('探索する') && html.includes('動きを一時停止'), 'workshop retains its controls');
     } else if (["/racco", "/concept", "/brand-book", "/brand-guide"].includes(path)) {
       assert.ok(html.includes(path === "/brand-book" ? 'brand-print-route' : path === "/brand-guide" ? 'brand-studio' : 'brand-library'), path + " renders the appropriate brand edition");
       if (path === "/brand-book") {

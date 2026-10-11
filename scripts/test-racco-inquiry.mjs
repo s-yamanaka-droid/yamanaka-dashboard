@@ -146,7 +146,7 @@ assert.ok(mailto.searchParams.get("body").endsWith(editedMessage), "encoded mult
 assert.equal(formApp.values.message, editedMessage, "opening mailto does not reset inputs");
 assert.match(formApp.find(node => node.props?.role === "status")[0].props.children, /まだ送信されていません/);
 
-for (const variant of [undefined, "racco"]) for (const clipboard of ["success", "reject", "unavailable"]) {
+for (const variant of [undefined, "racco", "poster"]) for (const clipboard of ["success", "reject", "unavailable"]) {
   const app = fixture({ raccoContext, initialTopic: raccoContext.topic, variant, clipboard });
   await app.find(node => node.type === "button" && node.props.type === "button")[0].props.onClick();
   assert.equal(app.validations(), 1);
