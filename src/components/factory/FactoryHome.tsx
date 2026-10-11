@@ -6,8 +6,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import AgenticFactory3D, { type StationId } from "@/components/ui/agentic-factory-3d";
 import { works } from "@/data/factory-works";
 import { selectedWorks, workPresentationLabel } from "@/data/selected-works";
-import "./factory.css";
 import { LakkanLogo } from "@/components/brand/LakkanLogo";
+import "./factory.css";
 
 type Panel = "menu" | "work" | "contact" | "selected" | null;
 
@@ -162,7 +162,7 @@ export default function FactoryHome() {
           </>}
           {panel === "menu" && <>
             <nav className="menu-works" aria-label="支援内容を選ぶ">{works.map(w => <button key={w.id} onClick={() => openStation(w.station)}><span>{w.label}</span><span>{w.name}<Arrow /></span></button>)}</nav>
-            <nav className="menu-secondary" aria-label="Lakkanについて"><button onClick={e => openSelected(e.currentTarget)}>制作・運用例<Arrow /></button><Link href="/services">支援内容<Arrow /></Link><Link href="/about">会社情報<Arrow /></Link><Link href="/contact?topic=other#inquiry">相談する<Arrow /></Link><Link href="/privacy">Privacy<Arrow /></Link></nav>
+            <nav className="menu-secondary" aria-label="Lakkanについて"><Link href="/">トップへ戻る<Arrow /></Link><button onClick={e => openSelected(e.currentTarget)}>制作・運用例<Arrow /></button><Link href="/services">支援内容<Arrow /></Link><Link href="/about">会社情報<Arrow /></Link><Link href="/contact?topic=other#inquiry">相談する<Arrow /></Link><Link href="/privacy">Privacy<Arrow /></Link></nav>
           </>}
           {panel === "contact" && <div className="contact-content"><p>何を頼むか、まだ決まっていなくても。<br />いま困っていることから、お聞かせください。</p><Link href="/contact?topic=other#inquiry">相談内容を書く<Arrow /></Link></div>}
         </div>

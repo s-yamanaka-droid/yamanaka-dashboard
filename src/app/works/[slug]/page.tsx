@@ -21,7 +21,7 @@ export default async function WorkDetail({params}:Props){
  const notes=workNotes[p.id], support=workSupport(p.id);
  const related=selectedWorks.filter(item=>item.id!==p.id).slice(0,2);
  const kind=workPresentationLabel(p);
- return <main id="main" className="work-detail">
+ return <main id="main" className="work-detail poster-page poster-case">
   <SectionShell id="work-detail-hero">
    <Link className="brand-text-link" href="/works"><ArrowLeft size={16}/> 実績一覧へ</Link>
    <div className="case-title"><div><p className="case-kicker">{kind}</p><h1>{p.name}</h1></div><p>{notes?.headline||p.description}</p></div>

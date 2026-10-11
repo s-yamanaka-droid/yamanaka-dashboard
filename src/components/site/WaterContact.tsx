@@ -1,14 +1,9 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SectionShell } from "@/components/primitives/SectionShell";
-import { WaterSculpture } from "./WaterSculpture";
+import { StudioPeople } from "./PosterHeading";
 export function WaterContact({href="/contact",note="いま困っていること、これから実現したいことを聞かせてください。"}:{href?:string;note?:string}){
- return <SectionShell id="water-contact">
-  <div className="water-contact-top"><h2>一緒に、次の一歩を。</h2><p>まだ、まとまっていなくても。</p></div>
-  <Link className="water-contact-art" href={href} aria-label="相談をはじめる — Let’s talk">
-   <WaterSculpture src="/brand/lets-talk-orange.jpg" alt="水滴と水面に浮かぶ、オレンジのLet’s talk."/>
-   <span className="water-contact-orb" aria-hidden="true"><ArrowUpRight/></span>
-  </Link>
-  <div className="water-contact-bottom"><p>{note}</p><Link href={href}>相談をはじめる <ArrowUpRight size={18}/></Link></div>
+ return <SectionShell id="poster-contact-cta" className="poster-contact-cta" topBorder>
+  <div className="poster-cta-layout"><div><p className="poster-small-label">LET’S TALK</p><h2><span>一緒に、</span><span>次の一歩を。</span></h2><p>{note}</p><Link className="poster-button" href={href}>相談をはじめる <ArrowUpRight size={20} aria-hidden="true"/></Link></div><StudioPeople scene="wave"/></div>
  </SectionShell>;
 }

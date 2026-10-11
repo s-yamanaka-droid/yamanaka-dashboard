@@ -4,14 +4,15 @@ type Props = {
   variant?: "wordmark" | "signature";
   size?: "small" | "default" | "feature";
   inverse?: boolean;
+  tone?: "ink" | "red";
 };
 
 /** English-only by default. Reserve the signature for company introductions. */
-export function LakkanLogo({ variant = "wordmark", size = "default", inverse = false }: Props) {
+export function LakkanLogo({ variant = "wordmark", size = "default", inverse = false, tone = "ink" }: Props) {
   const signature = variant === "signature";
   return (
     <svg
-      className={`${styles.logo} ${styles[size]} ${inverse && !signature ? styles.inverse : ""}`}
+      className={`${styles.logo} ${styles[size]} ${inverse && !signature ? styles.inverse : tone === "red" && !signature ? styles.red : ""}`}
       data-lakkan-logo={variant}
       viewBox={signature ? "139 216 1712 366" : "75 170 1830 438"}
       width={signature ? 1712 : 1830}

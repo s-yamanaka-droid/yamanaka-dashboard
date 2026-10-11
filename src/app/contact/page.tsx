@@ -4,7 +4,8 @@ import { SectionShell } from "@/components/primitives/SectionShell";
 import { publicWorks } from "@/lib/work-detail";
 import { buildRaccoInquiryHref, resolveRaccoInquiryContext } from "@/lib/racco-inquiry";
 import { redirect } from "next/navigation";
-import styles from "./contact.module.css";
+import { PosterRule, StudioPeople } from "@/components/site/PosterHeading";
+import { BrandHeading } from "@/components/site/BrandHeading";
 export const metadata: Metadata = { title: "お問い合わせ — Lakkan", description: "人財支援・CRM構築・FDE・AI活用のご相談。株式会社Lakkan。" };
 export default async function ContactPage({searchParams}:{searchParams:Promise<Record<string,string|string[]|undefined>>}) {
   const query=await searchParams;
@@ -13,5 +14,5 @@ export default async function ContactPage({searchParams}:{searchParams:Promise<R
   const topic=typeof query.topic==="string"?query.topic:undefined;
   const selectedProject=typeof query.project==="string"?publicWorks.find(p=>p.id===query.project):undefined;
   const contextKey=selectedProject?.id;
-  return <main id="main" className={`new-site contact-page ${styles.page}`}><SectionShell id="contact-intro" tone="white" className={styles.intro}><div className={styles.introGrid}><div><p className={styles.label}>CONTACT</p><h1>一緒に、<br />次の一歩を。</h1></div><p>やりたいことが、まだ曖昧でも。<br />いまの課題から、一緒に考えます。<br /><a href="#inquiry">相談内容を書く ↓</a></p></div></SectionShell><ContactForm key={`${topic}-${contextKey}`} initialTopic={topic} projectName={selectedProject?.name} raccoContext={raccoContext}/></main>;
+  return <main id="main" className="poster-page poster-contact"><SectionShell id="contact-intro"><PosterRule index="04"/><ContactForm key={`${topic}-${contextKey}`} initialTopic={topic} projectName={selectedProject?.name} raccoContext={raccoContext} variant="poster" posterIntro={<><p className="poster-page-name" aria-hidden="true">CONTACT</p><BrandHeading as="h1" reveal={false}>{"一緒に、\n次の一歩を。"}</BrandHeading><p>やりたいことが、まだ曖昧でも。<br/>いまの課題から、一緒に考えます。<br/>まずは、お気軽にご相談ください。</p><StudioPeople scene="wave"/><p className="poster-contact-caption">まとまっていなくても、どうぞ。</p></>}/></SectionShell></main>;
 }

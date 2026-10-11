@@ -9,4 +9,5 @@
 }
 .small { width: 88px; }
 .inverse { filter: brightness(0) invert(1); }
+.red { filter: brightness(0) saturate(100%) invert(27%) sepia(43%) saturate(2412%) hue-rotate(342deg) brightness(87%) contrast(85%); }
 .feature { width: 360px; margin-block: 8px 20px; }

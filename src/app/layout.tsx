@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif, Shippori_Mincho, Noto_Sans_JP } from "next/font/google";
+import { Geist_Mono, Space_Grotesk, Frank_Ruhl_Libre, Instrument_Serif, Shippori_Mincho, Noto_Sans_JP, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import "./site.css";
 import "./subpages.css";
@@ -7,8 +7,12 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import "./brand.css";
 import "./brand-latin.css";
-import "./workshop-shell.css";
+import "./corporate-paper.css";
+import "./company-introduction.css";
 import { CookieConsent } from "@/components/CookieConsent";
+import { SiteFrame } from "@/components/site/SiteFrame";
+
+const bebas = Bebas_Neue({ variable: "--font-poster", subsets: ["latin"], weight: "400", display: "swap" });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -104,7 +108,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${geistMono.variable} ${spaceGrotesk.variable} ${frankRuhl.variable} ${instrument.variable} ${shippori.variable} ${notoSansJP.variable} antialiased`}
+      className={`${geistMono.variable} ${spaceGrotesk.variable} ${frankRuhl.variable} ${instrument.variable} ${shippori.variable} ${notoSansJP.variable} ${bebas.variable} antialiased`}
     >
       <body className="bg-[#EEF0EC] text-[#132126]">
         <script
@@ -154,10 +158,10 @@ export default function RootLayout({
           }}
         />
         <a href="#main" className="skip-link">メインコンテンツへスキップ</a>
-        <SiteHeader />
+        <SiteFrame><SiteHeader />
         {children}
         <SiteFooter />
-        <CookieConsent />
+        <CookieConsent /></SiteFrame>
       </body>
     </html>
   );

@@ -1,5 +1,9 @@
 # Component references
 
+The homepage poster is adapted from **Waving Portfolio Landing** by Kedhareswer Naidu, published at https://21st.dev/@kedhareswer/components/waving-portfolio-landing under the MIT License. The component is used with Lakkan copy and colors, Japanese interaction labels, a separate navigation layer, and an optional self-hosted Bebas Neue face inside the original animated letter reels. Copyright remains with its original author.
+
+The animated crowd is adapted from **Skiper 39 Canvas** by Skiper UI / Gurvinder Singh, published at https://21st.dev/@reuno-ui/components/skiper39. Its free use requires attribution to Skiper UI. The implementation here changes the rendering loop, sprite count, motion behavior and accessibility handling. The locally hosted illustration sheet derives from **Open Peeps** by Pablo Stanley, https://www.openpeeps.com/, released under CC0. Attribution appears on the homepage.
+
 The SNS tab selection and sliding-highlight interaction in BrandStudio is reconstructed with an adaptation of the interaction pattern of Smooth Tab by @dorianbaffier / kokonutUI. Source: https://kokonutui.com/r/smooth-tab.json . Our implementation uses the project's existing framer-motion, variable-height content and added Arrow/Home/End keyboard support. It is not a verbatim distribution of the full component.
 
 MIT License

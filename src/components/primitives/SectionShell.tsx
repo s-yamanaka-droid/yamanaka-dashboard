@@ -54,7 +54,7 @@ export function SectionShell({
       id={id}
       className={className}
       style={{
-        background: TONE_BG[tone],
+        background: `var(--section-background, ${TONE_BG[tone]})`,
         padding: "var(--section-padding, 120px 56px)",
         borderTop: topBorder ? "1px solid rgba(19,33,38,0.08)" : undefined,
         position: "relative",
