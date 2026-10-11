@@ -4,8 +4,8 @@ import { raccoLogo, raccoRounded } from "@/lib/racco-fonts";
 import "@/components/brand/brand-print.css";
 
 export const metadata: Metadata = {
-  title: "Racco Brand Book — 印刷版",
-  description: "Raccoのコンセプト、世界観、言葉、媒体別の編集方針をまとめたブランドブック。",
+  title: "Lakkan / Racco ブランドブック",
+  description: "Lakkanのロゴ、Raccoと仲間たちの世界観、言葉、SNS・グッズの使い方をまとめたブランドブック。印刷・PDF保存にも対応。",
   alternates: { canonical: "/brand-book" },
   robots: {
     index: false,

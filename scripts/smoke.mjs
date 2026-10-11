@@ -71,6 +71,11 @@ try {
       assert.ok(og.headers.get('content-type')?.includes('image/png'), 'share image is PNG');
     } else if (["/racco", "/concept", "/brand-book", "/brand-guide"].includes(path)) {
       assert.ok(html.includes(path === "/brand-book" ? 'brand-print-route' : path === "/brand-guide" ? 'brand-studio' : 'brand-library'), path + " renders the appropriate brand edition");
+      if (path === "/brand-book") {
+        for (let page = 1; page <= 12; page++) assert.ok(html.includes(`id="book-page-${page}"`), "brand book page " + page);
+        for (const copy of ["会社の顔と、いつもの顔。", "むちむち猫", "ふわふわさん", "ふらっと来て、つい長居。", "12 / 12"]) assert.ok(html.includes(copy), "current brand book includes " + copy);
+        assert.ok(!html.includes("racco-hina"), "withdrawn character is absent from current book");
+      }
       if (["/racco", "/concept"].includes(path)) {
         const tabs = path === "/racco" ? ["concept", "columns", "members", "visual", "goods"] : ["concept", "columns", "members", "visual", "posts", "assets"];
         for (const tab of tabs) assert.ok(html.includes(`id="bl-tab-${tab}"`), path + " has " + tab + " navigation");

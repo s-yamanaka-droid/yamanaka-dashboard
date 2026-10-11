@@ -1,4 +1,4 @@
-// Component-handler tests only. No browser, layout, clipboard or actual DOM is used.
+// Component-handler and server-rendered content tests. No browser/layout or actual clipboard is used.
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
@@ -112,6 +112,28 @@ const logoComponent = { exports: {}, require(name) {
 vm.runInNewContext(compile("../src/components/brand/LakkanLogo.tsx"), logoComponent);
 assert.equal(logoComponent.exports.LakkanLogo({}).props["aria-label"], "Lakkan");
 assert.equal(logoComponent.exports.LakkanLogo({ variant: "signature" }).props["aria-label"], "Lakkan 楽観");
+const printComponent = { exports: {}, require(name) {
+  if (name === "next/link") return "a";
+  if (name === "next/image") return ({ unoptimized, ...props }) => { void unoptimized; return require("react").createElement("img", props); };
+  if (name.endsWith(".css")) return {};
+  if (name === "@/data/brand-book") return dataContext.exports;
+  if (name === "@/data/racco-world") return worldContext.exports;
+  if (name === "./LakkanLogo") return logoComponent.exports;
+  return require(name);
+} };
+vm.runInNewContext(compile("../src/components/brand/BrandBookPrint.tsx"), printComponent);
+const printHtml = require("react-dom/server").renderToStaticMarkup(require("react").createElement(printComponent.exports.BrandBookPrint));
+assert.equal((printHtml.match(/<article /g) ?? []).length, 12, "brand book has exactly twelve pages");
+for (let page = 1; page <= 12; page++) {
+  assert.ok(printHtml.includes(`id="book-page-${page}"`), "stable page anchor " + page);
+  assert.ok(printHtml.includes(`${String(page).padStart(2, "0")} / 12`), "correct page number " + page);
+}
+for (const page of [2, 3, 4, 5, 7, 11]) assert.ok(printHtml.includes(`href="#book-page-${page}"`), "contents target exists " + page);
+for (const copy of [...Object.values(worldContext.exports.characterBackgrounds), ...Object.values(worldContext.exports.raccoWorld)]) assert.ok(printHtml.includes(copy), "print book uses shared character/world copy");
+for (const source of [muchimuchiCharacter, fuwafuwaCharacter, muchimuchiScene, "/brand/lakkan-logo/lakkan-a3-wordmark.png", "/brand/lakkan-logo/lakkan-a3-signature.png"]) assert.ok(printHtml.includes(source), "current print asset " + source);
+assert.ok(!/ひな|racco-hina|本人用|ラクする仕込み/.test(printHtml), "withdrawn characters and copy remain absent");
+assert.ok(printHtml.includes("会社の顔と、いつもの顔。") && printHtml.includes("Raccoの英字はNunito"), "logo and type roles are explicit");
+console.log("PASS brand book: twelve pages, contents, five characters, shared world and A3 logo variants");
 for (const variant of ["wordmark", "signature"]) {
   const info = await sharp(new URL("../public/brand/lakkan-logo/lakkan-a3-" + variant + ".png", import.meta.url).pathname).metadata();
   assert.ok(info.hasAlpha, variant + " logo retains transparency");

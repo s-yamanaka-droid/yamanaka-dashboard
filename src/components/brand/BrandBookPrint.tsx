@@ -5,6 +5,7 @@ import Link from "next/link";
 import { LakkanLogo } from "./LakkanLogo";
 import { useState, type ReactNode } from "react";
 import { ArrowLeft, Download, Printer } from "lucide-react";
+import { raccoWorld, characterBackgrounds } from "@/data/racco-world";
 import {
   brandPrinciples,
   channels,
@@ -12,7 +13,7 @@ import {
   workCycle,
 } from "@/data/brand-book";
 
-const totalPages = channels.length + 6;
+const totalPages = channels.length + 8;
 const printChannels = {
   threads: {
     role: "仕事をひとつ選ぶ",
@@ -75,7 +76,7 @@ function Sheet({
   children: ReactNode;
 }) {
   return (
-    <article className={`bp-sheet ${className}`} aria-label={`${page}ページ：${label}`}>
+    <article id={`book-page-${page}`} className={`bp-sheet ${className}`} aria-label={`${page}ページ：${label}`}>
       <header className="bp-sheet-head">
         <span className="bp-edition">RACCO / BRAND BOOK</span>
         <span>{label}</span>
@@ -102,8 +103,8 @@ function BookImage({
     <Image
       src={`/brand-book/${name}.png`}
       alt={alt}
-      width={square ? 1254 : name === "racco-self-morning" || name === "racco-trio" ? 1672 : 1536}
-      height={square ? 1254 : name === "racco-self-morning" || name === "racco-trio" ? 941 : 1024}
+      width={square ? 1254 : ["racco-self-morning", "racco-trio", "racco-muchimuchi-shop-v1"].includes(name) ? 1672 : 1536}
+      height={square ? 1254 : ["racco-self-morning", "racco-trio", "racco-muchimuchi-shop-v1"].includes(name) ? 941 : 1024}
       sizes="(max-width: 720px) 100vw, 700px"
       loading="eager"
       unoptimized
@@ -132,7 +133,7 @@ export function BrandBookPrint() {
     <main id="main" className="brand-print-route">
       <div className="bp-toolbar" aria-label="資料の操作">
         <Link href="/racco"><ArrowLeft size={16} aria-hidden="true" />Raccoへ戻る</Link>
-        <p>A4横 / {totalPages}ページ <span>印刷設定で「背景のグラフィック」をオンに</span></p>
+        <p>ブランドブック本体 / A4横・{totalPages}ページ <span>印刷設定で「背景のグラフィック」をオンに</span></p>
         <div>
           <a href="/brand-book/brand-book.md" download><Download size={16} aria-hidden="true" />原稿 MD</a>
           <button type="button" onClick={printBook} disabled={preparingPrint} aria-busy={preparingPrint}>
@@ -141,6 +142,10 @@ export function BrandBookPrint() {
         </div>
       </div>
 
+      <nav className="bp-contents" aria-label="ブランドブックの目次">
+        <a href="#book-page-2">考え方</a><a href="#book-page-3">ロゴ</a><a href="#book-page-4">Racco</a><a href="#book-page-5">なかま</a><a href="#book-page-7">SNS</a><a href="#book-page-11">グッズ</a>
+      </nav>
+
       <div className="bp-pages">
         <Sheet page={1} label="CONCEPT & EXPRESSION" className="bp-cover">
           <div className="bp-cover-copy">
@@ -148,7 +153,7 @@ export function BrandBookPrint() {
             <h1 className="bp-logo">Racco<span aria-hidden="true">↗</span></h1>
             <h2>同じ作業は、<br />AIに任せたい。</h2>
             <p className="bp-cover-lead">Lakkanの中にいる、だるそうなラッコ。<br />できれば寝てたい。<br />でも、ラクするための工夫はする。</p>
-            <p className="bp-cover-caption">コンセプト / 世界観 / 編集の姿勢 / 媒体別の使い方</p>
+            <p className="bp-cover-caption">Lakkanのロゴ / Raccoと仲間たち / 言葉 / SNS / グッズ</p>
             <LakkanLogo size="small" />
           </div>
           <div className="bp-cover-image"><BookImage name="racco-self-morning" alt="太縁メガネと灰色のパーカーで、朝をのんびり過ごす主役のRacco" /></div>
@@ -176,25 +181,50 @@ export function BrandBookPrint() {
           <div className="bp-takeaway"><span>持ち帰る最小単位</span><strong>仕事カード1枚 ＋ 直した指示の差分 ＋ 残る確認</strong></div>
         </Sheet>
 
-        <Sheet page={3} label="02 / CHARACTER & WORLD" className="bp-cast-sheet">
-          <p className="bp-kicker">Racco and two friends</p>
-          <h2 className="bp-title">Raccoと、ふたりの仲間。</h2>
+        <Sheet page={3} label="02 / LAKKAN IDENTITY" className="bp-identity-sheet">
+          <p className="bp-kicker">Lakkan and Racco</p>
+          <h2 className="bp-title">会社の顔と、いつもの顔。</h2>
+          <p className="bp-identity-lead">Lakkanの中に、Raccoがいる。会社のロゴと、仲間たちの顔は、役割を分けて使います。</p>
+          <div className="bp-identity-grid">
+            <div><div className="bp-logo-sample"><LakkanLogo size="feature" /></div><h3>いつもは、英字だけ。</h3><p>ヘッダー、フッター、名刺、資料の署名に。画像の比率と字形はそのまま使います。</p></div>
+            <div><div className="bp-logo-sample"><LakkanLogo variant="signature" size="feature" /></div><h3>「楽観」は、会社を語るとき。</h3><p>会社紹介やコンセプトの説明に。すべての場所へ落款を付け足す必要はありません。</p></div>
+          </div>
+          <div className="bp-rule-strip"><h3>文字とキャラクター</h3><p>日本語はZen Maru Gothic。Raccoの英字はNunito。LakkanはA3のロゴ素材を使い、書体で打ち直しません。Raccoたちは会社ロゴの代わりではなく、日々の話を届ける顔です。</p></div>
+          <p className="bp-note"><Link href="/concept#assets">ロゴ素材と使用ルール：lakkan-inc.vercel.app/concept#assets</Link></p>
+        </Sheet>
+
+        <Sheet page={4} label="03 / RACCO" className="bp-cast-sheet">
+          <p className="bp-kicker">Three ways to take it easy</p>
+          <h2 className="bp-title">のんびり。でも、それぞれ。</h2>
           <div className="bp-cast-grid">
             <div>
               <figure className="bp-trio-image"><BookImage name="racco-trio" alt="灰色パーカーのRacco、コーラルの小柄な仲間、チャコールと丸メガネの長顔の仲間が過ごす朝" /></figure>
               <div className="bp-main-avatar"><BookImage name="racco-self-avatar" alt="主役Racco単独の太縁メガネのSNSアイコン" square /><p><strong>Raccoのアイコン</strong><span>太縁メガネに、眠そうな目。いつものRacco。</span></p></div>
             </div>
             <div className="bp-cast-roles">
-              <div><h3>のんびり担当 / Racco</h3><p>灰色パーカー、横に広い丸顔、半目。面倒に気づき、何を試すかと採否を決める主役。</p></div>
-              <div><h3>テキパキ担当</h3><p>コーラルの上着、小柄で軽い体格。今日できるひとつを隣で進める。叱る上司にはしない。</p></div>
-              <div><h3>自動化オタク担当</h3><p>チャコール、細長い顔と胴、寝癖と丸メガネ。繰り返しを減らす仕組みを考え、つい凝る仲間。</p></div>
+              <div><h3>Racco</h3><p>{characterBackgrounds.racco}</p></div>
+              <div><h3>テキパキした仲間</h3><p>{characterBackgrounds.practical}</p></div>
+              <div><h3>自動化好きの仲間</h3><p>{characterBackgrounds.automation}</p></div>
             </div>
           </div>
           <div className="bp-rule-strip"><h3>3人とも、味方。</h3><p>先生・営業マン・万能役にしない。顔・体格・姿勢で区別し、投稿には必要な人数だけ。世界観は暖かな朝、柔らかな毛、布と木。画像は生成表現で、実績の証拠ではありません。</p></div>
-          <p className="bp-note"><Link href="/racco#members">3人の紹介：lakkan-inc.vercel.app/racco#members</Link></p>
+          <p className="bp-note"><Link href="/racco#members">なかまの紹介：lakkan-inc.vercel.app/racco#members</Link></p>
         </Sheet>
 
-        <Sheet page={4} label="03 / VOICE & WORK CYCLE" className="bp-voice-sheet">
+        <Sheet page={5} label="04 / FRIENDS & WORLD" className="bp-world-sheet">
+          <p className="bp-kicker">Same shop, different pace</p>
+          <h2 className="bp-title">{raccoWorld.title}</h2>
+          <div className="bp-world-grid">
+            <figure className="bp-world-scene"><BookImage name="racco-muchimuchi-shop-v1" alt="服やぬいぐるみが並ぶお店で、Racco、むちむち猫、ふわふわさんがくつろぐ" /><figcaption><strong>いつものお店、いつもの顔。</strong><span>{raccoWorld.intro}</span></figcaption></figure>
+            <div className="bp-friend-profiles">
+              <div><BookImage name="muchimuchi-cat-character-v1" alt="青灰色のカーディガンを着た、まるいお腹のむちむち猫" square /><div><h3>むちむち猫</h3><p>{characterBackgrounds.muchimuchi}</p></div></div>
+              <div><BookImage name="fuwafuwa-character-v2" alt="ゴマアザラシのふわふわさん" square /><div><h3>ふわふわさん</h3><p>{characterBackgrounds.fuwafuwa}</p></div></div>
+            </div>
+          </div>
+          <div className="bp-rule-strip"><h3>何もしない日もある。</h3><p>{raccoWorld.tone}</p></div>
+        </Sheet>
+
+        <Sheet page={6} label="05 / VOICE & WORK CYCLE" className="bp-voice-sheet">
           <p className="bp-kicker">Voice, proof, and the next try</p>
           <h2 className="bp-title">試したことも、ズレも、隠さない。</h2>
           <div className="bp-voice-grid">
@@ -214,7 +244,7 @@ export function BrandBookPrint() {
         </Sheet>
 
         {channels.map((channel, index) => (
-          <Sheet key={channel.id} page={index + 5} label={`04 / CHANNEL ${String(index + 1).padStart(2, "0")}`} className={`bp-channel-sheet bp-channel-${channel.id}`}>
+          <Sheet key={channel.id} page={index + 7} label={`06 / CHANNEL ${String(index + 1).padStart(2, "0")}`} className={`bp-channel-sheet bp-channel-${channel.id}`}>
             <p className="bp-kicker">Same Racco, different everyday moments</p>
             <div className="bp-channel-heading"><h2 className="bp-channel-name">{channel.name}</h2><p>{channel.subtitle}</p></div>
             <div className="bp-channel-grid">
@@ -233,7 +263,7 @@ export function BrandBookPrint() {
           </Sheet>
         ))}
 
-        <Sheet page={channels.length + 5} label="05 / WORLD TO OBJECTS" className="bp-merch-sheet">
+        <Sheet page={channels.length + 7} label="07 / WORLD TO OBJECTS" className="bp-merch-sheet">
           <p className="bp-kicker">Take the mood home</p>
           <h2 className="bp-title">サボる気分を、持ち帰る。</h2>
           <div className="bp-merch-grid">
@@ -243,7 +273,7 @@ export function BrandBookPrint() {
           <div className="bp-rule-strip"><h3>生成モック / 販売・製造は未決定</h3><p>世界観の表現であり、実物・製造仕様・商品化完了ではない。入稿は単一の編集原稿から展開し、ロゴの権利、色、線幅、素材別の再現性を別に確認する。ここに購入導線は設けない。</p></div>
         </Sheet>
 
-        <Sheet page={channels.length + 6} label="06 / USE & BOUNDARIES" className="bp-use-sheet">
+        <Sheet page={channels.length + 8} label="08 / USE & BOUNDARIES" className="bp-use-sheet">
           <p className="bp-kicker">Start small. Keep the correction.</p>
           <h2 className="bp-title">ひとつ渡す。違ったら、直す。</h2>
           <div className="bp-prompts">

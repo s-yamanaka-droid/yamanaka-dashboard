@@ -22,6 +22,7 @@
 
 .brand-print-route .bp-toolbar { max-width: 277mm; margin: 0 auto; min-height: 84px; display: flex; gap: 22px; align-items: center; justify-content: space-between; font-size: 12px; }
 .brand-print-route .bp-toolbar > a, .brand-print-route .bp-toolbar > div, .brand-print-route .bp-toolbar > div > a, .brand-print-route .bp-toolbar button { display: flex; align-items: center; gap: 8px; }
+.brand-print-route .bp-toolbar a, .brand-print-route .bp-toolbar button { min-height: 44px; }
 .brand-print-route .bp-toolbar > div { gap: 18px; }
 .brand-print-route .bp-toolbar p { color: #4f5350; font-size: 12px; }
 .brand-print-route .bp-toolbar p span { display: block; font-size: 10px; }
@@ -29,6 +30,10 @@
 .brand-print-route .bp-toolbar button:disabled { opacity: .6; cursor: wait; }
 .brand-print-route .bp-toolbar :is(a, button):focus-visible { outline: 2px solid var(--bp-accent); outline-offset: 5px; }
 .brand-print-route .bp-pages { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+.brand-print-route .bp-contents { max-width: 277mm; margin: 0 auto 20px; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 12px; }
+.brand-print-route .bp-contents a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; text-decoration: underline; text-underline-offset: 4px; }
+.brand-print-route .bp-contents a:focus-visible { outline: 2px solid var(--bp-accent); outline-offset: 4px; }
+.brand-print-route .bp-sheet { scroll-margin-top: 20px; }
 .brand-print-route .bp-sheet { width: 277mm; height: 190mm; padding: 8mm 11mm 7mm; background: var(--bp-paper); display: flex; flex-direction: column; box-shadow: 0 5px 22px #252c2810; break-inside: avoid; }
 .brand-print-route .bp-sheet-head { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--bp-line); padding-bottom: 3mm; font-size: 8pt; letter-spacing: .065em; color: var(--bp-muted); flex: 0 0 auto; }
 .brand-print-route .bp-edition, .brand-print-route .bp-page-number, .brand-print-route .bp-kicker, .brand-print-route .bp-small-number { font-family: var(--font-racco-logo), var(--font-racco-rounded), sans-serif; }
@@ -85,6 +90,18 @@
 .brand-print-route .bp-cast-roles>div { border-top: 1px solid var(--bp-line); padding-top: 2mm; }
 .brand-print-route .bp-cast-roles h3 { font-size: 11pt; margin-bottom: 1mm; }
 .brand-print-route .bp-cast-roles p { font-size: 10pt; line-height: 1.65; color: var(--bp-muted); }
+.brand-print-route .bp-identity-lead { max-width: 210mm; font-size: 11pt; margin-bottom: 6mm; }
+.brand-print-route .bp-identity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; }
+.brand-print-route .bp-logo-sample { display: flex; align-items: center; min-height: 46mm; padding: 6mm; background: #f4f4f2; margin-bottom: 4mm; }
+.brand-print-route .bp-logo-sample svg { margin: 0; width: 100%; }
+.brand-print-route .bp-identity-grid h3, .brand-print-route .bp-friend-profiles h3 { font-size: 13pt; margin-bottom: 2mm; }
+.brand-print-route .bp-identity-grid p { font-size: 11pt; line-height: 1.8; }
+.brand-print-route .bp-world-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 8mm; }
+.brand-print-route .bp-world-scene > img { width: 100%; height: 65mm; object-fit: contain; }
+.brand-print-route .bp-friend-profiles { display: grid; gap: 5mm; }
+.brand-print-route .bp-friend-profiles > div { display: grid; grid-template-columns: 20mm 1fr; gap: 3mm; align-items: start; }
+.brand-print-route .bp-friend-profiles img { width: 20mm; height: 20mm; object-fit: contain; }
+.brand-print-route .bp-friend-profiles p { font-size: 10pt; line-height: 1.8; color: var(--bp-muted); }
 .brand-print-route .bp-cast-sheet .bp-rule-strip { grid-template-columns: 32mm 1fr; padding-top: 3mm; }
 .brand-print-route .bp-cast-sheet .bp-rule-strip p { font-size: 9pt; line-height: 1.6; }
 .brand-print-route .bp-resource-links { display: flex; flex-wrap: wrap; gap: 3mm 8mm; margin-top: 3mm; font-size: 9pt; }
@@ -105,7 +122,7 @@
 .brand-print-route .bp-cycle h4 { display: inline; font-size: 10pt; margin-right: 2mm; }
 .brand-print-route .bp-cycle p { display: inline; font-size: 10pt; color: var(--bp-muted); line-height: 1.65; }
 
-/* Page 04: retain the 10pt reading size; reclaim spacing instead of shrinking all pages. */
+/* Voice page: retain the 10pt reading size; reclaim spacing instead of shrinking all pages. */
 @media print, screen and (min-width: 721px) {
   .brand-print-route .bp-voice-sheet .bp-title { font-size: 27pt; margin-bottom: 4mm; }
   .brand-print-route .bp-voice-sheet .bp-voice-grid { gap: 8mm; }
@@ -174,6 +191,7 @@
   .brand-print-route .bp-sheet-head { font-size: 8px; gap: 12px; }
   .brand-print-route .bp-sheet-body { padding-top: 20px; }
   .brand-print-route .bp-title { font-size: 25px; margin-bottom: 20px; line-height: 1.5; }
+  .brand-print-route .bp-axis-sheet .bp-title, .brand-print-route .bp-use-sheet .bp-title { font-size: 25px; }
   .brand-print-route .bp-kicker { font-size: 10px; }
   .brand-print-route .bp-cover .bp-sheet-body, .brand-print-route .bp-axis-grid, .brand-print-route .bp-cast-grid, .brand-print-route .bp-voice-grid, .brand-print-route .bp-channel-grid, .brand-print-route .bp-merch-grid, .brand-print-route .bp-prompts { grid-template-columns: 1fr; gap: 24px; }
   .brand-print-route .bp-cover .bp-sheet-body { gap: 28px; }
@@ -202,11 +220,18 @@
 
 @page racco-book { size: A4 landscape; margin: 10mm; }
 
+@media screen and (max-width: 720px) {
+  .brand-print-route .bp-identity-grid, .brand-print-route .bp-world-grid { grid-template-columns: 1fr; gap: 24px; }
+  .brand-print-route .bp-world-scene > img { height: auto; }
+  .brand-print-route .bp-friend-profiles > div { grid-template-columns: 72px 1fr; gap: 12px; }
+  .brand-print-route .bp-friend-profiles img { width: 72px; height: 72px; }
+}
+
 @media print {
   body:has(.brand-print-route) { margin: 0; padding: 0; background: #fff; }
   body:has(.brand-print-route) > .skip-link { display: none; }
   .brand-print-route { padding: 0; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .brand-print-route .bp-toolbar { display: none; }
+  .brand-print-route .bp-toolbar, .brand-print-route .bp-contents { display: none; }
   .brand-print-route .bp-pages { display: block; }
   .brand-print-route .bp-sheet { page: racco-book; width: 277mm; height: 190mm; margin: 0; box-shadow: none; break-after: page; page-break-after: always; }
   .brand-print-route .bp-sheet:last-child { break-after: auto; page-break-after: auto; }
