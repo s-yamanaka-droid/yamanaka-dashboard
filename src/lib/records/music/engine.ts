@@ -24,7 +24,7 @@ import {
   type Deck,
   type Rig,
 } from "./instruments"
-import { decodeSamples, fetchSamples, type Bytes, type SampleSource } from "./samples"
+import { decodeInstruments, decodeSamples, fetchSamples, INSTRUMENT_FILES, type Bytes, type SampleSource } from "./samples"
 
 export type TrackSource = { kind: "generated"; spec: TrackSpec } | { kind: "file"; src: string }
 
@@ -59,8 +59,9 @@ export class MusicEngine {
   private want: "play" | "pause" = "pause"
   private turn = 0
   private stateCheck = 0
-  /** The recorded instruments' bytes, on their way since `preload`. */
+  /** The recorded instruments' bytes, on their way since `preload`: the core first, the lo-fi instruments after. */
   private sampleBytes: Promise<Bytes> | null = null
+  private instrumentBytes: Promise<Bytes> | null = null
   /** Called when the record playing now reaches its end. */
   onEnded: (() => void) | null = null
   /** Called when the system takes the audio away (a call, the lock screen), so the UI can show it paused. */
@@ -83,6 +84,7 @@ export class MusicEngine {
   preload(src: SampleSource) {
     if (this.sampleBytes) return
     this.sampleBytes = fetchSamples(src)
+    this.instrumentBytes = this.sampleBytes.then(() => fetchSamples(src, INSTRUMENT_FILES))
     this.attachSamples()
   }
 
@@ -90,10 +92,14 @@ export class MusicEngine {
     const ctx = this.ctx
     const rig = this.rig
     if (!ctx || !rig || !this.sampleBytes || rig.samples.current) return
+    const instruments = this.instrumentBytes
     void this.sampleBytes
       .then((bytes) => decodeSamples(ctx, bytes))
-      .then((bank) => {
-        if (this.rig === rig) rig.samples.current = bank
+      .then(async (bank) => {
+        if (this.rig !== rig) return
+        rig.samples.current = bank
+        // the lo-fi instruments join the bank as they arrive; their synth stand-ins play until then
+        if (instruments) Object.assign(bank.inst, await decodeInstruments(ctx, await instruments))
       })
       .catch(() => undefined)
   }
@@ -134,7 +140,7 @@ export class MusicEngine {
     rig.master.gain.cancelScheduledValues(now)
     rig.master.gain.setTargetAtTime(MASTER_LEVEL, now, 0.02)
 
-    const deck = createDeck(rig, source.kind === "generated" ? source.spec.bpm : 120)
+    const deck = createDeck(rig, source.kind === "generated" ? source.spec.bpm : 120, source.kind === "generated" && source.spec.style === "lofi")
     needleDrop(ctx, deck, now + 0.05)
     const spin: Spin = { source, deck, start: now + 0.4, step: 0, bar: -1, notes: [], motif: [], done: false }
     if (source.kind === "generated") {
@@ -334,7 +340,7 @@ function scheduleSteps(ctx: BaseAudioContext, s: Spin, spec: TrackSpec, horizon:
     const when = t + (at % 2 ? (spec.swing ?? 0) * sd : 0)
     if (when >= late) {
       let order = 0
-      for (const ev of s.notes) if (ev.step === at) playNote(ctx, s.deck, ev, Math.max(0, late, when + feel(ev, s.step, ev.voice === "keys" ? order++ : 0)), sd, spec.lead)
+      for (const ev of s.notes) if (ev.step === at) playNote(ctx, s.deck, ev, Math.max(0, late, when + feel(ev, s.step, ev.voice === "keys" ? order++ : 0) + (spec.style === "lofi" ? lazy(ev) : 0)), sd, spec.lead, spec.keys)
     }
     s.step++
   }
@@ -362,11 +368,19 @@ export async function renderOffline(
   const ctx = new Offline(2, Math.ceil((bars * barSeconds(spec) + 2.5) * rate), rate)
   const rig = createRig(ctx, ctx.destination, false)
   if (opts.samples) rig.samples.current = await decodeSamples(ctx, opts.samples)
-  const deck = createDeck(rig, spec.bpm)
+  const deck = createDeck(rig, spec.bpm, spec.style === "lofi")
   startTexture(ctx, deck, spec.texture, 0, spec.seed)
   const s: Spin = { source: { kind: "generated", spec }, deck, start: -fromBar * barSeconds(spec), step: fromBar * STEPS, bar: -1, notes: [], motif: motifOf(spec), done: false }
   scheduleSteps(ctx, s, spec, Infinity, -Infinity, fromBar + bars)
   return ctx.startRendering()
+}
+
+/** Lo-fi sits further back: the snare and keys late, the hats dragging a little. */
+function lazy(ev: NoteEvent): number {
+  if (ev.voice === "snare" || ev.voice === "rim") return 0.018
+  if (ev.voice === "keys" || ev.voice === "lead") return 0.012
+  if (ev.voice === "hat") return 0.008
+  return 0
 }
 
 /**

@@ -6,7 +6,15 @@ Lakkan の事業を6枚のレコードにしたページです。曲は1枚ず�
 - 画面：`src/components/records/RecordsPoster.tsx`。左上は共通の `LakkanLogo`（押すとトップへ戻る）、右上は問い合わせ
 - 演奏の仕組み：`src/lib/records/music/`（作曲・編曲・音色・再生）
 - 曲とディスク：`src/data/records/songs/*.json` と `src/data/records/discs.json`
+- レコードの絵：`public/records/discs/<ディスクid>.webp`
+  - 盤の全面に、名画や風景の絵を刷ったピクチャー盤にしている。
+  - 絵はシカゴ美術館のパブリックドメイン作品（CC0）。月・海・山・畑・池から選んだ。
+  - 作り方は `python3 scripts/records-picture-discs.py`。
+  - 承認済みのロゴは焼き込まない。ページの `RecordImprint` が、元の PNG のまま盤の上に重ねる。ラベルの文字は、ロゴが重なる位置を避けて置いている。
+  - 絵を替えるときは、スクリプトの `ART` と `src/lib/records/catalog.ts` の `ART` の両方を直す。
 - 楽器の録音：`public/records/samples/`
+  - ローファイ用の楽器（アップライトピアノ、ビブラフォン、カリンバ、ダン・チャン、テナーサックス）は VCSL（CC0）から使っている。作り方とテストは試作 `~/apps/disc-records`（`scripts/prepare-lofi-samples.py`）にある。
+  - 曲はすべて `"style": "lofi"`。曲ごとに、ノリ（`groove`）、鍵盤（`keys`）、メロディの楽器（`lead`）、メロディの高さ（`octave`）、背景の音（`texture`）を変えている。
   - エレピ：Wurlitzer EP200（CC BY 3.0、表記が必要）
   - ドラム：Virtuosity Drums（CC0）
   - 表記は `CREDITS.txt` に書き、ページ右下の SOUND CREDITS からリンクしている

@@ -79,6 +79,11 @@ const CADENCE: [number, number][] = [[0, 2], [2, 2], [4, 4], [8, 8]]
 export function formOf(spec: TrackSpec): Slot[] {
   const short = (spec.form ?? (spec.groove === "drift" ? "short" : "full")) === "short"
   const s = (name: SectionName, bars: number, shift = 0): Slot => ({ name, bars, shift })
+  // lo-fi loops round instead of climbing: the hook twice, a bridge between, no key change
+  if (spec.style === "lofi")
+    return short
+      ? [s("intro", 4), s("a", 8), s("c", 8), s("outro", 4)]
+      : [s("intro", 4), s("a", 8), s("c", 8), s("a", 8), s("b", 8), s("c", 8), s("outro", 4)]
   return short
     ? [s("intro", 4), s("a", 8), s("b", 8), s("c", 8), s("outro", 4)]
     : [s("intro", 4), s("a", 8), s("b", 8), s("c", 8), s("inter", 4), s("a", 8), s("b", 8), s("c", 8), s("c", 8, 1), s("outro", 4)]
@@ -224,7 +229,7 @@ export function planSong(spec: TrackSpec): BarPlan[] {
       const segs = segments(chords[at % chords.length])
       const tonic = spec.tonic + slot.shift
       const voicings = segs.map((g) => (prev = voiceLead(tonic, g.chord, prev)))
-      const melody = (tune?.[at % tune.length] ?? []).map((n) => ({ ...n, midi: n.midi + slot.shift }))
+      const melody = (tune?.[at % tune.length] ?? []).map((n) => ({ ...n, midi: n.midi + slot.shift + 12 * (spec.leadOctave ?? 0) }))
       out.push({ section: slot.name, at, of: slot.bars, pass, shift: slot.shift, chords: segs, voicings, melody })
     }
   }
@@ -260,7 +265,7 @@ function fifthOf(ch: Chord): number {
 export function anticipates(spec: TrackSpec, plan: BarPlan[], bar: number): boolean {
   const b = plan[bar]
   const n = plan[bar + 1]
-  if (!b || !n || spec.groove === "drift" || n.at === 0 || n.section !== b.section) return false
+  if (!b || !n || spec.groove === "drift" || spec.style === "lofi" || n.at === 0 || n.section !== b.section) return false
   if (b.section !== "a" && b.section !== "c") return false
   if (same(b.chords[b.chords.length - 1].chord, n.chords[0].chord)) return false
   return rng(spec.seed * 31 + bar * 977)() < (b.section === "c" ? 0.6 : 0.45)
@@ -287,6 +292,8 @@ export function composeSongBar(spec: TrackSpec, bar: number): NoteEvent[] {
   // this bar's first chord already sounded at the end of the last one
   const landed = bar > 0 && anticipates(spec, plan, bar - 1)
   const finalChorus = sec === "c" && b.shift > 0
+  // lo-fi: laid back, nothing pushed early, no horns or guitar, a boom-bap kit
+  const lofi = spec.style === "lofi"
 
   // keys: every chord voiced close to the last; in the verse and chorus they comp, and push into the next bar
   const comp = keysVoice === "keys" && (sec === "a" || sec === "c")
@@ -295,7 +302,10 @@ export function composeSongBar(spec: TrackSpec, bar: number): NoteEvent[] {
     const end = ahead && k === b.chords.length - 1 ? 14 : g.to
     const hits: [number, number][] = []
     if (!(landed && k === 0)) hits.push([g.from, 1])
-    if (comp && g.to - g.from === STEPS) {
+    if (lofi) {
+      // a chord held from the downbeat, struck again softly on the "and" of three every other bar
+      if (keysVoice === "keys" && odd && g.to - g.from === STEPS && sec !== "intro" && sec !== "outro") hits.push([10, 0.5])
+    } else if (comp && g.to - g.from === STEPS) {
       if (sec === "c") hits.push([6, 0.5], [10, 0.7])
       else if (odd) hits.push([6, 0.45], [10, 0.6])
       else hits.push([10, 0.55])
@@ -339,6 +349,17 @@ export function composeSongBar(spec: TrackSpec, bar: number): NoteEvent[] {
     const span = g.to - g.from
     if (sec === "intro" || sec === "outro" || drift) {
       if (!(sec === "intro" && b.at < 2) && !lastBar) push("bass", g.from, span, root, 0.5)
+    } else if (lofi) {
+      // round and patient, following the kick: a long root, a pickup, the root again
+      if (span < STEPS) {
+        down(6, 0.8)
+        if (lastSeg) lead(14)
+      } else {
+        down(6, 0.82)
+        if (odd) push("bass", 7, 1, root + 12, 0.32)
+        push("bass", 10, 3, odd ? fifth : root, 0.62)
+        if (r() < 0.6) lead(14)
+      }
     } else if (sec === "inter") {
       push("bass", g.from, span, root, 0.6)
     } else if (span < STEPS) {
@@ -385,7 +406,7 @@ export function composeSongBar(spec: TrackSpec, bar: number): NoteEvent[] {
   for (const n of b.melody) push("lead", n.step, n.len, n.midi, lv)
 
   // strings: a soft bed in the pre-chorus; a counter-line on the 3rds and 7ths in the chorus
-  if (sec === "b" || sec === "c" || (sec === "inter" && !drift)) {
+  if (!lofi && (sec === "b" || sec === "c" || (sec === "inter" && !drift))) {
     b.chords.forEach((g, k) => {
       const v = b.voicings[k]
       if (sec === "b") for (const m of v.slice(-3)) push("strings", g.from, g.to - g.from, m + 12, 0.42)
@@ -400,7 +421,7 @@ export function composeSongBar(spec: TrackSpec, bar: number): NoteEvent[] {
   }
 
   // guitar: muted chops on the off-beats in the chorus, leaving the push to the keys and bass
-  if (sec === "c" && !drift) {
+  if (sec === "c" && !drift && !lofi) {
     const top = b.voicings[0].slice(-3).map((m) => m + 12)
     for (const st of ahead ? [2, 6, 10] : [2, 6, 10, 14]) {
       const g = b.chords.find((x) => st >= x.from && st < x.to) ?? b.chords[0]
@@ -410,7 +431,7 @@ export function composeSongBar(spec: TrackSpec, bar: number): NoteEvent[] {
   }
 
   // brass: a stab where the chorus lands, and a push into it from the end of the pre-chorus
-  if (!drift) {
+  if (!drift && !lofi) {
     if (sec === "c" && b.at === 0) for (const m of b.voicings[0]) push("brass", 0, 3, m + 12, 0.7)
     if (sec === "b" && endOfSection) {
       const into = nextFirst ? nextFirst.voicings[0] : b.voicings[0]
@@ -421,8 +442,45 @@ export function composeSongBar(spec: TrackSpec, bar: number): NoteEvent[] {
     }
   }
 
-  // drums: two-bar phrases with ghost notes; the pre-chorus builds; the hat opens where a phrase ends
-  if (!drift) {
+  // lo-fi drums: a lazy boom-bap (or a lighter chillhop bounce), quiet in the intro, gone by the end
+  if (lofi && !drift) {
+    const quiet = sec === "intro" || sec === "outro"
+    const playKit = !(sec === "intro" && b.at < 2) && !(sec === "outro" && b.at >= 2)
+    if (playKit) {
+      const bounce = spec.groove === "bounce"
+      const hv = quiet ? 0.55 : sec === "c" ? 0.95 : 0.85
+      for (let st = 0; st < STEPS; st += bounce ? 1 : 2) {
+        const accent = st % 4 === 0 ? 0.3 : st % 2 === 0 ? 0.2 : 0.11
+        if (!(bounce && st % 2 === 1 && r() < 0.35)) push("hat", st, 1, 0, accent * hv * (0.85 + r() * 0.3))
+      }
+      if (!bounce && r() < 0.4) push("hat", 15, 1, 0, 0.1 * hv)
+      push("kick", 0, 1, 0, quiet ? 0.7 : 0.9)
+      if (!quiet) {
+        if (bounce) push("kick", 6, 1, 0, 0.55)
+        else if (odd) push("kick", 7, 1, 0, 0.45)
+        push("kick", 10, 1, 0, 0.72)
+        if (odd && r() < 0.5) push("kick", 13, 1, 0, 0.35)
+        // the snare (a rim in the first verse) on two and four, with a ghost before the four
+        const back: Voice = sec === "a" && b.pass === 0 ? "rim" : "snare"
+        push(back, 4, 1, 0, 0.7)
+        push(back, 12, 1, 0, 0.74)
+        if (r() < 0.5) push("snare", 11, 1, 0, 0.12)
+        if (odd) push("snare", 7, 1, 0, 0.1)
+        if (sec === "c" && b.at === 0 && b.pass === 0) push("crash", 0, 1, 0, 0.35)
+      }
+    }
+    // a soft drag into the next section
+    if (endOfSection && nextFirst && nextFirst.section !== "outro" && sec !== "intro" && !quiet) {
+      for (let i = out.length - 1; i >= 0; i--) if (out[i].step >= 13 && ["hat", "snare", "rim"].includes(out[i].voice)) out.splice(i, 1)
+      push("snare", 13, 1, 0, 0.18)
+      push("snare", 14, 1, 0, 0.26)
+      push("snare", 15, 1, 0, 0.36)
+    }
+  } else if (lofi && drift && sec !== "intro" && sec !== "outro") {
+    // ambient: no kit, a rim every other bar and a soft shaker
+    if (odd) push("rim", 12, 1, 0, 0.32)
+    for (const st of [2, 6, 10, 14]) push("shaker", st, 1, 0, 0.18 + r() * 0.06)
+  } else if (!drift) {
     const quiet = sec === "intro" || sec === "outro" || sec === "inter"
     const playKit = !(sec === "intro" && b.at < 2) && !(sec === "outro" && b.at >= 2)
     if (playKit) {

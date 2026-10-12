@@ -32,7 +32,10 @@ SOFTWARE.
 
 The songs are written for Lakkan and played in the browser by `src/lib/records/music`; no recorded music is used.
 
+Each record is a picture disc of a public-domain artwork from the Art Institute of Chicago (CC0, https://www.artic.edu/open-access/public-api): George Inness, *Moonrise*; Claude Monet, *Cliff Walk at Pourville*, *Stacks of Wheat (End of Summer)* and *Water Lilies*; Katsushika Hokusai, *Under the Wave off Kanagawa*; Utagawa Hiroshige, *Hara: Mount Fuji in the Morning*. They are cropped and overlaid with grooves, sheen and a label by `scripts/records-picture-discs.py` into `public/records/discs/`.
+
 Two instruments play from recordings, served from `public/records/samples/` (full credits in `public/records/samples/CREDITS.txt`, linked from the page as SOUND CREDITS):
 
 - **Wurlitzer EP200** electric piano samples by Greg Sullivan (http://www.sullivang.net/), SFZ mapping by SFZ Instruments (https://github.com/sfzinstruments/GregSullivan.E-Pianos), licensed under Creative Commons Attribution 3.0 Unported (https://creativecommons.org/licenses/by/3.0/). Changes: 24 of the 42 samples (the mp and f dynamics) were converted to mono 44.1 kHz 16-bit FLAC, trimmed to the strike and faded out.
 - **Virtuosity Drums** by Versilian Studios and Karoryfer Samples (https://versilian-studios.com/virtuosity-drums/, https://github.com/sfzinstruments/virtuosity_drums), dedicated to the public domain under CC0 1.0. One hit of each drum from the mid microphone, mixed to mono, shortened and faded.
+- **Versilian Community Sample Library (VCSL)** by Versilian Studios (https://github.com/sgossner/VCSL), dedicated to the public domain under CC0 1.0: upright piano, vibraphone, kalimba, dan tranh zither and tenor saxophone for the lo-fi songs. A few notes of each, mixed to mono, trimmed, faded and (kalimba, dan tranh) retuned to equal temperament (`public/records/samples/<instrument>/`).
