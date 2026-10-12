@@ -6,6 +6,7 @@ import CrowdCanvas from "@/components/ui/skiper39";
 import { SectionShell } from "@/components/primitives/SectionShell";
 import { CompanyIntroduction } from "@/components/site/CompanyIntroduction";
 import { LakkanLogo } from "@/components/brand/LakkanLogo";
+import { ServiceEntry } from "@/components/site/ServiceEntry";
 import "./poster-home.css";
 
 export const metadata: Metadata = {
@@ -62,6 +63,7 @@ export default function Home() {
         </div>
         <p className="people-credit">Illustrations: Open Peeps by Pablo Stanley · Crowd interaction adapted from Skiper UI</p>
       </SectionShell>
+      <SectionShell id="racco-services" className="poster-home-services" topBorder><ServiceEntry /></SectionShell>
       <SectionShell id="company" className="poster-home-company" topBorder>
         <div className="home-company-mark"><LakkanLogo tone="red" size="feature" /></div>
         <CompanyIntroduction compact />

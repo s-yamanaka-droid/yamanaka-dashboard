@@ -9,8 +9,8 @@ import "./services.css";
 import "./lab.css";
 
 export const metadata: Metadata = {
-  title: "サービス — AI導入・業務改善・システム開発",
-  description: "業務再設計とAI導入、CRM・業務アプリ開発、Web制作、人財支援。Lakkanは、いまの困りごとから実装・運用まで一緒に考えます。",
+  title: "できること — 仕事・仕組み・事業・人",
+  description: "仕事を軽くする。仕組みをつなぐ。事業を伝えて育てる。人が活きる形にする。Lakkanは業務再設計、AI、開発、Web体験、採用を、実装と日々の運用まで支援します。",
   alternates: { canonical: "https://lakkan-inc.vercel.app/services" },
 };
 
@@ -19,13 +19,12 @@ export default function Services() {
     <SectionShell id="services-intro">
       <ServiceLab/>
     </SectionShell>
-    <SectionShell id="support" tone="creamLight" topBorder>
-      <div className="sv-section-head"><p className="sv-kicker">01　支援できること</p><h2>いまの困りごとから、<br/>支援を選ぶ。</h2><p>課題を選ぶと、対応するサービスと<br/>具体的な支援内容が表示されます。</p></div>
+    <SectionShell id="support" className="racco-support">
       <ServiceExplorer/>
     </SectionShell>
     <SectionShell id="approach" topBorder>
       <div className="sv-approach">
-        <div><p className="sv-kicker">02　進め方</p><h2>業務の整理から、<br/>開発・運用まで。</h2><p className="sv-body">必要なものを、一緒に見極める。<br/>小さく試し、現場で確かめる。<br/>使われるところまで、つなげていきます。</p><Link href="/works" className="sv-text-link">これまでにつくったもの <ArrowUpRight size={17}/></Link></div>
+        <div><p className="sv-kicker">02　進め方</p><h2>業務の整理から、<br/>開発・運用まで。</h2><p className="sv-body">必要なものを、一緒に見極める。<br/>小さく試し、現場で確かめる。<br/>使われるところまで、つなげていきます。</p><Link href="/works" className="sv-text-link">これまでにつくったもの <ArrowUpRight size={17}/></Link><aside className="service-field-note" id="fde"><strong>現場に伴走する開発支援 / FDE</strong><p>現場の仕事を理解し、課題の整理から開発・運用まで、一緒に進めます。</p><Link href="/contact?topic=fde#inquiry">伴走型の開発を相談する <ArrowUpRight size={16} aria-hidden="true"/></Link></aside></div>
         <ol className="sv-process">{[
           ["Listen", "現状と課題を整理する", "現場の流れと困りごとを整理。人が判断すること、AIに任せること、なくせる作業を見極めます。"],
           ["Design", "必要な支援と道筋を決める", "取り組む範囲、優先順位、費用と進行計画を整理。既存の仕組みも確認し、無理なく始める方法を考えます。"],
