@@ -15,7 +15,7 @@ import { mod, SCALES, type ScaleName } from "./music/theory"
 import { vinylFace, type LabelArt, type VinylLabel } from "./vinyl"
 
 
-const GROOVES: Groove[] = ["drift", "lofi", "pulse", "drive", "bounce", "city", "shuffle"]
+const GROOVES: Groove[] = ["drift", "lofi", "pulse", "drive", "bounce", "city", "shuffle", "swing", "bossa", "ballad"]
 const LEADS: LeadTone[] = ["pluck", "bell", "glass", "reed", "vibes", "piano", "vibraphone", "kalimba", "zither", "sax"]
 const TEXTURES: Texture[] = ["vinyl", "waves", "rain", "none"]
 const ARTS: LabelArt[] = ["blob", "rings", "halftone", "stripes", "split", "dots"]

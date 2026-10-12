@@ -3,14 +3,14 @@
   "kind": "score",
   "key": "A",
   "mode": "major",
-  "bpm": 76,
+  "bpm": 84,
   "style": "lofi",
-  "groove": "lofi",
+  "groove": "swing",
   "keys": "rhodes",
   "lead": "zither",
   "octave": -1,
   "texture": "waves",
-  "swing": 0.2,
+  "swing": 0.28,
   "seed": 23,
   "a": {
     "chords": [

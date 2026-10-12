@@ -12,7 +12,10 @@
 import { chordTones, degreeToMidi, mod, rng, type ScaleName } from "./theory"
 import { composeSongBar, planSong, type Score } from "./song"
 
-export type Groove = "drift" | "lofi" | "pulse" | "drive" | "bounce" | "city" | "shuffle"
+export type Groove = "drift" | "lofi" | "pulse" | "drive" | "bounce" | "city" | "shuffle" | JazzGroove
+/** Jazz feels for lo-fi records: a swung ride and walking bass, a bossa nova, a slow ballad. */
+export type JazzGroove = "swing" | "bossa" | "ballad"
+export const isJazz = (g: Groove): g is JazzGroove => g === "swing" || g === "bossa" || g === "ballad"
 export type LeadTone = "pluck" | "bell" | "glass" | "reed" | "vibes" | RecordedLead
 /** Melody instruments played from recordings (public/samples); a synth stands in until they load. */
 export type RecordedLead = "piano" | "vibraphone" | "kalimba" | "zither" | "sax"
@@ -78,7 +81,7 @@ export type Quality = keyof typeof QUALITIES
 /** A chord: its root as semitones above the key's tonic, its colour, and optionally another bass note. */
 export type Chord = { root: number; q: Quality; bass?: number }
 
-export type Voice = "pad" | "keys" | "bass" | "lead" | "kick" | "snare" | "rim" | "hat" | "shaker" | "strings" | "gtr" | "brass" | "tom" | "crash" | "ohat"
+export type Voice = "pad" | "keys" | "bass" | "lead" | "kick" | "snare" | "rim" | "hat" | "shaker" | "strings" | "gtr" | "brass" | "tom" | "crash" | "ohat" | "ride" | "foot"
 export type NoteEvent = { voice: Voice; step: number; len: number; midi: number; vel: number }
 export type Section = "intro" | "body" | "break" | "outro"
 
@@ -141,6 +144,10 @@ const KIT: Record<Groove, Partial<Record<DrumVoice, Hit[]>>> = {
     snare: [[4, 0.78], [7, 0.12], [12, 0.82], [15, 0.16]],
     hat: sixteenths([0.36, 0.1, 0.25, 0.1]),
   },
+  // the jazz feels are written by the song arranger (song.ts); these only cover a chordless spec
+  swing: { kick: [[0, 0.3], [8, 0.3]], snare: [[6, 0.2], [14, 0.25]], hat: [[4, 0.4], [12, 0.4]] },
+  bossa: { kick: [[0, 0.8], [6, 0.4], [8, 0.8], [14, 0.4]], rim: [[0, 0.6], [6, 0.6], [12, 0.6]], hat: sixteenths([0.2, 0.1]) },
+  ballad: { kick: [[0, 0.3]], rim: [[12, 0.4]], hat: [[4, 0.3], [12, 0.3]] },
 }
 
 /** Bass lines: step, length in steps, scale degrees above the chord root (7 = octave), velocity. */
@@ -152,9 +159,12 @@ const BASS: Record<Groove, [step: number, len: number, above: number, vel: numbe
   bounce: [[0, 2, 0, 0.9], [3, 1, 7, 0.6], [6, 2, 0, 0.75], [10, 2, 4, 0.7], [12, 1, 0, 0.55], [14, 2, 7, 0.6]],
   city: [[0, 3, 0, 0.85], [6, 2, 4, 0.55], [10, 3, 0, 0.7], [14, 2, 7, 0.5]],
   shuffle: [[0, 2, 0, 0.9], [3, 1, 0, 0.45], [6, 2, 4, 0.65], [10, 2, 0, 0.75], [14, 2, 7, 0.55]],
+  swing: [[0, 4, 0, 0.8], [4, 4, 2, 0.6], [8, 4, 4, 0.7], [12, 4, 2, 0.6]],
+  bossa: [[0, 6, 0, 0.8], [6, 2, 4, 0.6], [8, 6, 4, 0.7], [14, 2, 0, 0.5]],
+  ballad: [[0, 8, 0, 0.7], [8, 8, 4, 0.6]],
 }
 
-const DENSITY: Record<Groove, number> = { drift: 0.16, lofi: 0.26, pulse: 0.3, drive: 0.34, bounce: 0.32, city: 0.28, shuffle: 0.3 }
+const DENSITY: Record<Groove, number> = { drift: 0.16, lofi: 0.26, pulse: 0.3, drive: 0.34, bounce: 0.32, city: 0.28, shuffle: 0.3, swing: 0.28, bossa: 0.26, ballad: 0.18 }
 
 export type MotifNote = { step: number; tone: number; len: number }
 

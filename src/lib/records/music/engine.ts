@@ -10,7 +10,7 @@
  * so the song keeps going.
  */
 
-import { barSeconds, composeBar, durationOf, motifOf, STEPS, stepSeconds, type MotifNote, type NoteEvent, type TrackSpec } from "./compose"
+import { barSeconds, composeBar, durationOf, isJazz, motifOf, STEPS, stepSeconds, type MotifNote, type NoteEvent, type TrackSpec } from "./compose"
 import {
   createDeck,
   createRig,
@@ -140,7 +140,7 @@ export class MusicEngine {
     rig.master.gain.cancelScheduledValues(now)
     rig.master.gain.setTargetAtTime(MASTER_LEVEL, now, 0.02)
 
-    const deck = createDeck(rig, source.kind === "generated" ? source.spec.bpm : 120, source.kind === "generated" && source.spec.style === "lofi")
+    const deck = createDeck(rig, source.kind === "generated" ? source.spec.bpm : 120, source.kind === "generated" && source.spec.style === "lofi", source.kind === "generated" && isJazz(source.spec.groove))
     needleDrop(ctx, deck, now + 0.05)
     const spin: Spin = { source, deck, start: now + 0.4, step: 0, bar: -1, notes: [], motif: [], done: false }
     if (source.kind === "generated") {
@@ -337,7 +337,10 @@ function scheduleSteps(ctx: BaseAudioContext, s: Spin, spec: TrackSpec, horizon:
       s.notes = composeBar(spec, bar, s.motif)
     }
     const at = s.step % STEPS
-    const when = t + (at % 2 ? (spec.swing ?? 0) * sd : 0)
+    // swing: every other 16th lags; in the jazz feels the off-beat eighths lag too, toward a triplet
+    const sw = spec.swing ?? 0
+    const eighths = spec.style === "lofi" && (spec.groove === "swing" || spec.groove === "ballad")
+    const when = t + (eighths && at % 4 === 2 ? sw * 2 * sd : at % 2 ? sw * sd : 0)
     if (when >= late) {
       let order = 0
       for (const ev of s.notes) if (ev.step === at) playNote(ctx, s.deck, ev, Math.max(0, late, when + feel(ev, s.step, ev.voice === "keys" ? order++ : 0) + (spec.style === "lofi" ? lazy(ev) : 0)), sd, spec.lead, spec.keys)
@@ -368,7 +371,7 @@ export async function renderOffline(
   const ctx = new Offline(2, Math.ceil((bars * barSeconds(spec) + 2.5) * rate), rate)
   const rig = createRig(ctx, ctx.destination, false)
   if (opts.samples) rig.samples.current = await decodeSamples(ctx, opts.samples)
-  const deck = createDeck(rig, spec.bpm, spec.style === "lofi")
+  const deck = createDeck(rig, spec.bpm, spec.style === "lofi", isJazz(spec.groove))
   startTexture(ctx, deck, spec.texture, 0, spec.seed)
   const s: Spin = { source: { kind: "generated", spec }, deck, start: -fromBar * barSeconds(spec), step: fromBar * STEPS, bar: -1, notes: [], motif: motifOf(spec), done: false }
   scheduleSteps(ctx, s, spec, Infinity, -Infinity, fromBar + bars)

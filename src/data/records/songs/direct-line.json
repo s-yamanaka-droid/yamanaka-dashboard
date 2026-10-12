@@ -3,15 +3,14 @@
   "kind": "score",
   "key": "Bb",
   "mode": "major",
-  "bpm": 64,
+  "bpm": 60,
   "style": "lofi",
-  "groove": "drift",
-  "form": "full",
+  "groove": "ballad",
   "keys": "piano",
   "lead": "vibraphone",
   "octave": 0,
   "texture": "rain",
-  "swing": 0.12,
+  "swing": 0.26,
   "seed": 53,
   "a": {
     "chords": [

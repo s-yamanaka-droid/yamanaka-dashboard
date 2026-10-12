@@ -3,14 +3,14 @@
   "kind": "score",
   "key": "F",
   "mode": "major",
-  "bpm": 88,
+  "bpm": 100,
   "style": "lofi",
-  "groove": "bounce",
+  "groove": "bossa",
   "keys": "piano",
-  "lead": "kalimba",
+  "lead": "vibraphone",
   "octave": 0,
   "texture": "waves",
-  "swing": 0.16,
+  "swing": 0.03,
   "seed": 11,
   "a": {
     "chords": [

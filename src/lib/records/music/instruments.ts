@@ -60,6 +60,8 @@ export type Deck = {
     tom: GainNode
     crash: GainNode
     ohat: GainNode
+    ride: GainNode
+    foot: GainNode
   }
   fxRoom: GainNode
   /** Long-running sources (texture loops, LFOs) to stop when the deck goes. */
@@ -69,6 +71,8 @@ export type Deck = {
   samples: SampleSlot
   /** A lo-fi record: muffled, wobbling, the keys pumping harder on the kick, a rounder bass. */
   lofi: boolean
+  /** Lo-fi jazz: the same tape, a little more top for the ride, and no pumping. */
+  jazz: boolean
 }
 
 export const MASTER_LEVEL = 0.66
@@ -185,7 +189,7 @@ export function createRig(ctx: BaseAudioContext, out: AudioNode, withAnalyser: b
   return { ctx, master, reverb, room, reverbReturn: ret, predelay, roomVerb, roomIr, roomReturn, analyser, samples: { current: null } }
 }
 
-export function createDeck(rig: Rig, bpm: number, lofi = false): Deck {
+export function createDeck(rig: Rig, bpm: number, lofi = false, jazz = false): Deck {
   const { ctx } = rig
   const bus = ctx.createGain()
   const dry = ctx.createGain()
@@ -198,7 +202,7 @@ export function createDeck(rig: Rig, bpm: number, lofi = false): Deck {
     // a worn tape: the top rolled off, the lowest rumble cut, and a slow pitch drift with a little flutter
     const top = ctx.createBiquadFilter()
     top.type = "lowpass"
-    top.frequency.value = 5200
+    top.frequency.value = jazz ? 6800 : 5200
     top.Q.value = 0.45
     const floor = ctx.createBiquadFilter()
     floor.type = "highpass"
@@ -256,6 +260,8 @@ export function createDeck(rig: Rig, bpm: number, lofi = false): Deck {
     tom: panned(0.05),
     crash: panned(-0.28),
     ohat: panned(0.32),
+    ride: panned(0.36),
+    foot: panned(0.2),
   }
   const send = { pad: ctx.createGain(), lead: ctx.createGain(), drum: ctx.createGain() }
   send.pad.gain.value = 0.55
@@ -315,6 +321,7 @@ export function createDeck(rig: Rig, bpm: number, lofi = false): Deck {
     sources: [...sources, ...tapeSources],
     samples: rig.samples,
     lofi,
+    jazz,
     nodes: [bus, dry, fx, ...Object.values(send), echo, delay, fb, tone, keys, wobble, depth, middle, ...nodes, ...tapeNodes],
   }
 }
@@ -608,8 +615,8 @@ function kick(ctx: BaseAudioContext, deck: Deck, t: number, vel: number) {
 function duckOn(deck: Deck, t: number) {
   const d = deck.duck.gain
   d.setValueAtTime(1, t)
-  d.linearRampToValueAtTime(deck.lofi ? 0.62 : 0.8, t + 0.012)
-  d.setTargetAtTime(1, t + 0.03, deck.lofi ? 0.16 : 0.08)
+  d.linearRampToValueAtTime(deck.jazz ? 0.92 : deck.lofi ? 0.62 : 0.8, t + 0.012)
+  d.setTargetAtTime(1, t + 0.03, deck.lofi && !deck.jazz ? 0.16 : 0.08)
 }
 
 function snare(ctx: BaseAudioContext, deck: Deck, t: number, vel: number) {
@@ -776,6 +783,18 @@ function crash(ctx: BaseAudioContext, deck: Deck, t: number, vel: number) {
   n.start(1.85)
 }
 
+/** A ride cymbal: bright noise ringing through a few metallic bands, a longer, quieter wash than a crash. */
+function rideSynth(ctx: BaseAudioContext, deck: Deck, t: number, vel: number, bell: boolean) {
+  const n = noiseHit(ctx, t, "bandpass", bell ? 3200 : 5600, bell ? 6 : 1.4)
+  const g = ctx.createGain()
+  g.gain.setValueAtTime(0.07 * vel, t)
+  g.gain.exponentialRampToValueAtTime(0.0001, t + (bell ? 0.9 : 1.2))
+  n.out.connect(g)
+  g.connect(deck.ch.ride)
+  g.connect(deck.send.drum)
+  n.start(bell ? 0.95 : 1.25)
+}
+
 function openHat(ctx: BaseAudioContext, deck: Deck, t: number, vel: number) {
   const n = noiseHit(ctx, t, "highpass", 7000, 0.7)
   const g = ctx.createGain()
@@ -803,6 +822,10 @@ export const SAMPLE_GAIN: Record<DrumHit | "wurli" | "keys-piano" | Instrument, 
   crash: 0.243,
   htom: 0.609,
   ltom: 0.516,
+  ride: 0.285,
+  "ride-2": 0.240,
+  "ride-bell": 0.579,
+  "hat-foot": 0.085,
   "keys-piano": 0.222,
   "upright-piano": 0.247,
   vibraphone: 0.093,
@@ -883,6 +906,13 @@ function drum(ctx: BaseAudioContext, deck: Deck, bank: SampleBank, ev: NoteEvent
     case "crash":
       hit("crash", ev.vel, [deck.ch.crash, deck.send.drum])
       return true
+    case "ride":
+      // midi 1 is the bell; the bow alternates two strokes so a pattern never repeats one sample
+      hit(ev.midi === 1 ? "ride-bell" : ev.step % 4 === 2 ? "ride-2" : "ride", ev.vel, [deck.ch.ride, deck.send.drum])
+      return true
+    case "foot":
+      hit("hat-foot", ev.vel, [deck.ch.foot])
+      return true
     case "tom":
       // 1 high, 2 the high tom tuned down a little, 3 floor
       hit(ev.midi === 3 ? "ltom" : "htom", ev.vel, [deck.ch.tom, deck.send.drum], ev.midi === 2 ? 2 ** (-3 / 12) : 1)
@@ -939,6 +969,10 @@ export function playNote(ctx: BaseAudioContext, deck: Deck, ev: NoteEvent, t: nu
       return crash(ctx, deck, t, ev.vel)
     case "ohat":
       return openHat(ctx, deck, t, ev.vel)
+    case "ride":
+      return rideSynth(ctx, deck, t, ev.vel, ev.midi === 1)
+    case "foot":
+      return hat(ctx, deck, t, ev.vel * 0.7, false)
   }
 }
 

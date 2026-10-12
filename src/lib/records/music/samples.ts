@@ -30,7 +30,7 @@ export const WURLI: { mp: WurliZone[]; f: WurliZone[] } = {
   ],
 }
 
-export const DRUMS = ["kick", "snare", "ghost", "rim", "hat", "hat-hard", "ohat", "crash", "htom", "ltom"] as const
+export const DRUMS = ["kick", "snare", "ghost", "rim", "hat", "hat-hard", "ohat", "crash", "htom", "ltom", "ride", "ride-2", "ride-bell", "hat-foot"] as const
 export type DrumHit = (typeof DRUMS)[number]
 
 /** Where the recordings are served and in which format: FLAC on the site, WAV where FLAC isn't served. */

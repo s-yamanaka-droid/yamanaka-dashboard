@@ -14,7 +14,7 @@
  * Everything is a pure function of the spec, planned once and cached.
  */
 
-import { chordClasses, leadFloor, QUALITIES, STEPS, type Chord, type NoteEvent, type TrackSpec, type Voice } from "./compose"
+import { chordClasses, isJazz, leadFloor, QUALITIES, STEPS, type Chord, type NoteEvent, type TrackSpec, type Voice } from "./compose"
 import { mod, rng, SCALES } from "./theory"
 
 export type SectionName = "intro" | "a" | "b" | "c" | "inter" | "outro"
@@ -203,6 +203,24 @@ function writeMelody(spec: TrackSpec, name: "a" | "b" | "c", chords: Chord[][], 
   return out
 }
 
+/**
+ * Anticipate some on-the-beat notes by an eighth, the way a player phrases a
+ * tune the second time: only into silence, and never across a chord change.
+ */
+function displace(notes: ScoreNote[], segs: { from: number; to: number }[], r: () => number): ScoreNote[] {
+  const out = notes.map((n) => ({ ...n }))
+  for (const n of out) {
+    if (n.step === 0 || n.step % 4 !== 0 || r() >= 0.45) continue
+    const at = n.step - 2
+    const same = segs.find((g) => n.step >= g.from && n.step < g.to)
+    if (!same || at < same.from) continue
+    if (out.some((m) => m !== n && m.step < n.step && m.step + m.len > at)) continue
+    n.step = at
+    n.len += 2
+  }
+  return out
+}
+
 const plans = new WeakMap<TrackSpec, BarPlan[]>()
 
 export function planSong(spec: TrackSpec): BarPlan[] {
@@ -229,7 +247,9 @@ export function planSong(spec: TrackSpec): BarPlan[] {
       const segs = segments(chords[at % chords.length])
       const tonic = spec.tonic + slot.shift
       const voicings = segs.map((g) => (prev = voiceLead(tonic, g.chord, prev)))
-      const melody = (tune?.[at % tune.length] ?? []).map((n) => ({ ...n, midi: n.midi + slot.shift + 12 * (spec.leadOctave ?? 0) }))
+      let melody = (tune?.[at % tune.length] ?? []).map((n) => ({ ...n, midi: n.midi + slot.shift + 12 * (spec.leadOctave ?? 0) }))
+      // jazz: when a tune comes round again, some of its notes arrive an eighth early
+      if (spec.style === "lofi" && isJazz(spec.groove) && pass > 0) melody = displace(melody, segs, rng(spec.seed * 389 + out.length * 7))
       out.push({ section: slot.name, at, of: slot.bars, pass, shift: slot.shift, chords: segs, voicings, melody })
     }
   }
@@ -294,6 +314,8 @@ export function composeSongBar(spec: TrackSpec, bar: number): NoteEvent[] {
   const finalChorus = sec === "c" && b.shift > 0
   // lo-fi: laid back, nothing pushed early, no horns or guitar, a boom-bap kit
   const lofi = spec.style === "lofi"
+  // lo-fi jazz: a swung ride or a bossa or a ballad, walking bass, comping that answers back
+  const jazz = lofi && isJazz(spec.groove)
 
   // keys: every chord voiced close to the last; in the verse and chorus they comp, and push into the next bar
   const comp = keysVoice === "keys" && (sec === "a" || sec === "c")
@@ -302,7 +324,21 @@ export function composeSongBar(spec: TrackSpec, bar: number): NoteEvent[] {
     const end = ahead && k === b.chords.length - 1 ? 14 : g.to
     const hits: [number, number][] = []
     if (!(landed && k === 0)) hits.push([g.from, 1])
-    if (lofi) {
+    if (jazz && sec !== "intro" && sec !== "outro" && !lastBar) {
+      // comping: short chords off the beat, a different figure each bar
+      hits.length = 0
+      const span = g.to - g.from
+      const figs: [number, number][][] =
+        spec.groove === "bossa"
+          ? [[[0, 0.75], [6, 0.6], [10, 0.6], [14, 0.5]], [[0, 0.75], [3, 0.45], [6, 0.6], [12, 0.55]]]
+          : spec.groove === "ballad"
+            ? [[[0, 0.7]], [[0, 0.7], [10, 0.4]]]
+            : span < STEPS
+              ? [[[0, 0.75], [6, 0.55]], [[2, 0.6]], [[0, 0.7], [4, 0.45]]]
+              : [[[0, 0.8], [6, 0.6]], [[2, 0.6], [10, 0.7]], [[0, 0.75], [10, 0.5]], [[4, 0.6], [12, 0.65]], [[6, 0.7], [14, 0.55]]]
+      const fig = figs[Math.floor(r() * figs.length)]
+      for (const [st, v] of fig) if (g.from + st < g.to && !(landed && k === 0 && st === 0)) hits.push([g.from + st, v])
+    } else if (lofi) {
       // a chord held from the downbeat, struck again softly on the "and" of three every other bar
       if (keysVoice === "keys" && odd && g.to - g.from === STEPS && sec !== "intro" && sec !== "outro") hits.push([10, 0.5])
     } else if (comp && g.to - g.from === STEPS) {
@@ -312,9 +348,16 @@ export function composeSongBar(spec: TrackSpec, bar: number): NoteEvent[] {
     }
     hits.forEach(([st, v], i) => {
       const until = i + 1 < hits.length ? hits[i + 1][0] : end
-      if (until > st) for (const m of b.voicings[k]) push(keysVoice, st, until - st, m, vel * v)
+      // jazz chords are short, so the space between them is heard
+      const len = jazz && spec.groove !== "ballad" && sec !== "intro" && sec !== "outro" ? Math.min(until - st, 3) : until - st
+      if (len > 0) for (const m of b.voicings[k]) push(keysVoice, st, len, m, vel * v)
     })
   })
+  // jazz: now and then the comping jumps the next bar's chord on the "and" of four
+  if (jazz && spec.groove !== "ballad" && !ahead && nextFirst && nextFirst.section === sec && sec !== "intro" && sec !== "outro"
+      && !same(b.chords[b.chords.length - 1].chord, nextFirst.chords[0].chord) && r() < 0.3 && !out.some((n) => n.voice === "keys" && n.step + n.len > 14)) {
+    for (const m of nextFirst.voicings[0]) push(keysVoice, 14, 2, m, 0.5)
+  }
   if (ahead && nextFirst) {
     // held until the next bar strikes again
     const first = nextFirst.chords[0]
@@ -349,6 +392,36 @@ export function composeSongBar(spec: TrackSpec, bar: number): NoteEvent[] {
     const span = g.to - g.from
     if (sec === "intro" || sec === "outro" || drift) {
       if (!(sec === "intro" && b.at < 2) && !lastBar) push("bass", g.from, span, root, 0.5)
+    } else if (jazz && spec.groove === "swing") {
+      // walking: a note on every beat, chord tones in between, and a half step into the next chord
+      const tones = QUALITIES[g.chord.q].filter((i) => i !== 0 && i < 12).map((i) => fold(tonic - 12 + g.chord.root + i, root - 2, root + 11))
+      const beats = Array.from({ length: span / 4 }, (_, j) => g.from + j * 4)
+      let prevNote = root
+      beats.forEach((st, j) => {
+        let m: number
+        if (j === 0) m = root
+        else if (j === beats.length - 1) m = fold(target + (r() < 0.5 ? -1 : 1), 36, 50)
+        else {
+          const pick = tones.filter((x) => x !== prevNote)
+          m = pick.length ? pick.reduce((a, x) => (Math.abs(x - prevNote) < Math.abs(a - prevNote) ? x : a)) : root + 12
+          if (r() < 0.3 && tones.length) m = tones[Math.floor(r() * tones.length)]
+        }
+        push("bass", st, 4, fold(m, 36, 50), j === 0 ? 0.82 : 0.66 + r() * 0.08)
+        prevNote = m
+      })
+    } else if (jazz && spec.groove === "bossa") {
+      // bossa: the root on one, the fifth on three, each anticipated by its pickup
+      down(5, 0.8)
+      if (span === STEPS) {
+        push("bass", 6, 2, fifth, 0.5)
+        push("bass", 8, 5, fifth, 0.7)
+      }
+      if (lastSeg) lead(14)
+    } else if (jazz) {
+      // ballad: long notes, a little movement at the end of the bar
+      down(span === STEPS ? 8 : span - 1, 0.7)
+      if (span === STEPS) push("bass", 8, 6, fifth, 0.55)
+      if (lastSeg) lead(14)
     } else if (lofi) {
       // round and patient, following the kick: a long root, a pickup, the root again
       if (span < STEPS) {
@@ -442,8 +515,57 @@ export function composeSongBar(spec: TrackSpec, bar: number): NoteEvent[] {
     }
   }
 
-  // lo-fi drums: a lazy boom-bap (or a lighter chillhop bounce), quiet in the intro, gone by the end
-  if (lofi && !drift) {
+  // lo-fi jazz drums: the ride swings, the foot keeps two and four, the snare and kick talk back off the beat
+  if (jazz) {
+    const quiet = sec === "intro" || sec === "outro"
+    const playKit = !(sec === "intro" && b.at < 2) && !(sec === "outro" && b.at >= 2)
+    const hv = quiet ? 0.6 : sec === "c" ? 1 : 0.9
+    if (playKit && spec.groove === "swing") {
+      for (const [st, v] of [[0, 0.7], [4, 0.8], [6, 0.48], [8, 0.7], [12, 0.8], [14, 0.48]] as const) {
+        if (st % 4 === 2 && r() < 0.12) continue
+        push("ride", st, 1, 0, v * hv * (0.9 + r() * 0.2))
+      }
+      if (r() < 0.15) push("ride", 10, 1, 0, 0.4 * hv)
+      push("foot", 4, 1, 0, 0.55)
+      push("foot", 12, 1, 0, 0.55)
+      if (!quiet) {
+        for (const st of [0, 4, 8, 12]) push("kick", st, 1, 0, 0.13)
+        // comping on the snare: a few ghosted off-beats, sometimes a real one
+        const spots = [2, 6, 7, 10, 11, 14]
+        for (let i = 0; i < 1 + Math.floor(r() * 3); i++) push("snare", spots[Math.floor(r() * spots.length)], 1, 0, 0.12 + r() * 0.22)
+        // a "bomb": the kick drops on an off-beat
+        if (r() < 0.28) push("kick", [6, 10, 14][Math.floor(r() * 3)], 1, 0, 0.5)
+        // the end of every fourth bar sets up the next phrase, snare and kick together on the "and" of four
+        if (b.at % 4 === 3 && !endOfSection) {
+          push("snare", 14, 1, 0, 0.5)
+          push("kick", 14, 1, 0, 0.45)
+        }
+        if (sec === "c" && b.at === 0 && b.pass === 0) push("crash", 0, 1, 0, 0.32)
+      }
+    } else if (playKit && spec.groove === "bossa") {
+      // the cross-stick's two-bar figure over a soft shaker, the kick on one and three with pickups
+      for (const st of b.at % 2 === 0 ? [0, 6, 12] : [4, 10]) push("rim", st, 1, 0, 0.6 * hv)
+      for (let st = 0; st < STEPS; st++) push("shaker", st, 1, 0, (st % 2 ? 0.1 : 0.16) * hv * (0.85 + r() * 0.3))
+      if (!quiet) for (const [st, v] of [[0, 0.7], [6, 0.35], [8, 0.7], [14, 0.35]] as const) push("kick", st, 1, 0, v)
+    } else if (playKit) {
+      // ballad: the ride barely touched, the foot on two and four, a soft snare where a brush would sweep
+      for (const st of [0, 4, 8, 12]) push("ride", st, 1, 0, 0.32 * hv * (0.9 + r() * 0.2))
+      push("foot", 4, 1, 0, 0.4)
+      push("foot", 12, 1, 0, 0.4)
+      if (!quiet) {
+        push("kick", 0, 1, 0, 0.18)
+        push("snare", 12, 1, 0, 0.16)
+        if (odd) push("snare", 14, 1, 0, 0.12)
+      }
+    }
+    // a short setup into each new section
+    if (endOfSection && nextFirst && nextFirst.section !== "outro" && sec !== "intro" && !quiet && spec.groove !== "ballad") {
+      for (let i = out.length - 1; i >= 0; i--) if (out[i].step >= 10 && ["snare", "kick"].includes(out[i].voice)) out.splice(i, 1)
+      push("snare", 10, 1, 0, 0.3)
+      push("snare", 14, 1, 0, 0.55)
+      push("kick", 14, 1, 0, 0.5)
+    }
+  } else if (lofi && !drift) {
     const quiet = sec === "intro" || sec === "outro"
     const playKit = !(sec === "intro" && b.at < 2) && !(sec === "outro" && b.at >= 2)
     if (playKit) {
