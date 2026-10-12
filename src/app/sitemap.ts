@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { publicWorks } from "@/lib/work-detail";
+import { raccoColumns } from "@/data/racco-columns";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://lakkan-inc.vercel.app";
@@ -16,5 +17,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/atelier`,  lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/contact`,  lastModified: now, changeFrequency: "yearly",  priority: 0.7 },
     { url: `${base}/privacy`,  lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
+    // Only public Racco reading pages; studio, books and goods stay out.
+    { url: `${base}/racco`, changeFrequency: "monthly", priority: 0.7 },
+    ...raccoColumns.map(article => ({
+      url: `${base}/racco/columns/${article.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
   ];
 }

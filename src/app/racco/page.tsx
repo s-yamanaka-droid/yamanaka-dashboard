@@ -18,7 +18,11 @@ export const metadata: Metadata = {
     description: "メールの下書きも、調べものも。LakkanのRacco。",
     images: ["/brand-book/racco-self-morning.png"],
   },
-  robots: { index: false, follow: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
 };
 
 export default function Page() {

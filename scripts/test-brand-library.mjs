@@ -178,10 +178,11 @@ function nodeText(node) {
   return nodeText(node?.props?.children ?? "");
 }
 
-function fixture(brand, initialHash = "") {
-  const state = [], history = [], focused = [], effects = [];
+function fixture(brand, initialHash = "", studio = false) {
+  const state = [], history = [], focused = [], effects = [], redirects = [];
   const listeners = new Map();
-  const location = { hash: initialHash };
+  const location = { hash: initialHash, replace: href => redirects.push(href) };
+  const router = { push: href => redirects.push(href), replace: href => redirects.push(href) };
   let cursor = 0, mounted = false;
   const react = {
     useState(initial) { const i = cursor++; if (!(i in state)) state[i] = initial; return [state[i], next => { state[i] = next; }]; },
@@ -193,6 +194,7 @@ function fixture(brand, initialHash = "") {
     require(name) {
       if (name === "react") return react;
       if (name === "next/link") return "a";
+      if (name === "next/navigation") return { useRouter: () => router };
       if (name === "next/image") return "img";
       if (name.endsWith(".css")) return {};
       if (name === "@/data/brand-book") return dataContext.exports;
@@ -215,7 +217,7 @@ function fixture(brand, initialHash = "") {
     document: { getElementById: id => ({ focus: () => focused.push(id) }) },
   };
   vm.runInNewContext(compiled, context);
-  const render = () => { cursor = 0; const result = context.exports.default({ brand }); mounted = true; return result; };
+  const render = () => { cursor = 0; const result = context.exports.default({ brand, studio }); mounted = true; return result; };
   render();
   effects[0]();
   const find = predicate => {
@@ -229,8 +231,45 @@ function fixture(brand, initialHash = "") {
   };
   const event = props => ({ prevented: false, preventDefault() { this.prevented = true; }, ...props });
   const setHash = hash => { location.hash = hash; listeners.get("hashchange")?.(); };
-  return { find, state, history, focused, event, setHash };
+  return { find, state, history, focused, event, setHash, redirects };
 }
+
+for (const hash of ["#posts", "#sns-x", "#sns-threads", "#assets", "#assets-cast", "#assets-muchimuchi"]) {
+  const publicPage = fixture("racco", hash);
+  assert.equal(publicPage.redirects.at(-1), "/racco/studio" + hash, "legacy production hashes move to the noindex studio");
+  assert.equal(publicPage.find(n => n.props?.className === "bl-social-card").length, 0);
+}
+const studio = fixture("racco", "#sns-x", true);
+assert.equal(studio.state[0], "posts");
+assert.equal(studio.state[1], "x");
+assert.equal(studio.redirects.length, 0, "studio does not redirect into a loop");
+assert.equal(studio.find(n => n.props?.className === "bl-social-card").length, 1);
+studio.find(n => n.props?.className === "bl-menu-button")[0].props.onClick();
+assert.equal(studio.state[3], true);
+const studioAssets = studio.find(n => n.type === "a" && nodeText(n) === "画像素材").at(-1);
+studioAssets.props.onClick(studio.event({ metaKey: true }));
+assert.equal(studio.state[0], "posts", "modified production links preserve the current panel");
+studioAssets.props.onClick(studio.event());
+assert.equal(studio.state[0], "assets", "same-route studio links update the panel");
+assert.equal(studio.state[3], false, "studio links close the menu covering their destination");
+studio.find(n => n.props?.className === "bl-menu-button")[0].props.onClick();
+studio.find(n => n.type === "a" && nodeText(n) === "SNS文面案").at(-1).props.onClick(studio.event());
+assert.equal(studio.state[0], "posts");
+assert.equal(studio.state[3], false);
+const studioHome = studio.find(n => n.props?.className?.startsWith("bl-brand "))[0];
+const exitStudio = studio.event();
+studioHome.props.onClick(exitStudio);
+assert.equal(exitStudio.prevented, false, "Racco logo leaves the studio through its real public URL");
+assert.equal(studioHome.props.href, "/racco");
+assert.equal(fixture("racco", "#sns-unknown").redirects.length, 0, "unknown hashes are not used as redirect destinations");
+const publicMembers = fixture("racco", "#members");
+publicMembers.find(n => n.type === "button" && nodeText(n) === "3人の画像を使う")[0].props.onClick();
+assert.equal(publicMembers.redirects.at(-1), "/racco/studio#assets-cast", "member assets keep the cast filter");
+const concept = fixture("lakkan");
+for (const story of concept.find(n => n.props?.className === "bl-story")) {
+  assert.ok(story.props.href.startsWith("/racco/columns/"), "concept reading cards open published articles, not draft text");
+}
+console.log("PASS public/studio separation: legacy routes, draft exclusion, cast filter, public return and actual reading links");
 
 for (const brand of ["racco", "lakkan"]) {
   const app = fixture(brand);
@@ -301,8 +340,8 @@ for (const brand of ["racco", "lakkan"]) {
   if (brand === "racco") {
     home.props.onClick(app.event());
     app.setHash("#sns-x");
-    assert.equal(app.state[0], "posts"); assert.equal(app.state[1], "x");
-    assert.equal(app.find(n => n.props?.className === "bl-social-card").length, 1, "legacy social hashes still open the draft workspace");
+    assert.equal(app.redirects.at(-1), "/racco/studio#sns-x");
+    assert.equal(app.find(n => n.props?.className === "bl-social-card").length, 0, "public URL never renders the legacy social draft");
     tab("members").props.onClick();
     assert.equal(app.state[0], "members");
     assert.equal(app.history.at(-1), "#members");
@@ -359,7 +398,8 @@ for (const brand of ["racco", "lakkan"]) {
     assertDownloadableMemberImage(muchimuchiScene, 1672, 941);
     app.find(n => n.type === "dialog" && n.props.id === "bl-preview")[0].props.onClose();
     assert.equal(app.find(n => n.type === "img" && n.props.src === muchimuchiScene).length, 0, "closing the Muchimuchi shared scene preview clears it");
-    app.setHash("#assets-cast");
+    {
+    const app = fixture("racco", "#assets-cast", true);
     assert.equal(app.state[0], "assets");
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 2, "cast filter contains the approved scene and cast sheet");
     app.find(n => n.type === "button" && n.props?.children?.[0] === "SNSの画像")[0].props.onClick();
@@ -380,6 +420,7 @@ for (const brand of ["racco", "lakkan"]) {
     for (const src of [muchimuchiCharacter, muchimuchiScene]) assert.ok(app.find(n => n.type === "a" && n.props.href === src && n.props.download).length, src + " can be saved from the asset filter");
     app.find(n => n.type === "button" && n.props?.children?.[0] === "すべて")[0].props.onClick();
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 29, "all filter includes all remaining assets");
+    }
     app.setHash("#gallery-muchimuchi");
     assert.equal(app.state[0], "visual", "Muchimuchi collection hash opens the gallery");
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 2);
@@ -387,7 +428,7 @@ for (const brand of ["racco", "lakkan"]) {
     assertDownloadableMemberImage(muchimuchiCharacter, 1254, 1254);
     app.find(n => n.type === "dialog" && n.props.id === "bl-preview")[0].props.onClose();
     for (const [hash, section] of [["#gallery-muchimuchi", "visual"], ["#assets-muchimuchi", "assets"]]) {
-      const direct = fixture("racco", hash);
+      const direct = fixture("racco", hash, section === "assets");
       assert.equal(direct.state[0], section, hash + " works on initial arrival");
       assert.equal(direct.find(n => n.props?.className === "bl-card").length, 2, hash + " selects the two Muchimuchi assets");
     }

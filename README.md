@@ -6,7 +6,9 @@ Public corporate site and curated work portfolio for 株式会社Lakkan.
 
 - [ブランドブック本体](https://lakkan-inc.vercel.app/brand-book) — A4横12ページ。ロゴ、Raccoと仲間、世界観、SNS、グッズ。印刷・PDF保存対応。
 - [詳しい制作ガイド](https://lakkan-inc.vercel.app/brand-guide) — コピー、仕事の試し方、制作規定の全文。
-- [Lakkanロゴ素材](https://lakkan-inc.vercel.app/concept#assets) / [Racco画像素材](https://lakkan-inc.vercel.app/racco#assets)
+- [Lakkanロゴ素材](https://lakkan-inc.vercel.app/concept#assets) / [Racco画像素材](https://lakkan-inc.vercel.app/racco/studio#assets)
+
+Raccoトップと3本のAIコラムは検索対象。SNS文面案・画像素材は [制作資料](https://lakkan-inc.vercel.app/racco/studio) へ分離し、ブランドブック・制作ガイド・原稿MDとともに検索除外しています。noindexは閲覧制限ではなく、URLからはアクセスできます。旧 `/racco#posts`・`#sns-*`・`#assets-*` は制作資料へ引き継ぎます。
 
 本体の編集は `src/components/brand/BrandBookPrint.tsx` と `brand-print.css`。
 設定の共通正本は `src/data/brand-book.ts`、世界観・5人の背景は `src/data/racco-world.ts`。
