@@ -11,6 +11,14 @@ import { LakkanLogo } from "@/components/brand/LakkanLogo";
 import "@/components/brand/brand-library.css";
 
 type Props = { params: Promise<{ slug: string }> };
+const siteUrl = "https://lakkan-inc.vercel.app";
+const editorialOrganization = {
+  "@type": "Organization",
+  "@id": `${siteUrl}/#org`,
+  name: "株式会社Lakkan",
+  url: `${siteUrl}/about`,
+};
+
 export function generateStaticParams() { return raccoColumns.map(({ slug }) => ({ slug })); }
 export const dynamicParams = false;
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -20,9 +28,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${article.title} | Racco`, description: article.excerpt,
     alternates: { canonical: `/racco/columns/${article.slug}` },
+    authors: [{ name: editorialOrganization.name, url: editorialOrganization.url }],
+    publisher: editorialOrganization.name,
     openGraph: { type: "article", title: article.title, description: article.excerpt, url: `/racco/columns/${article.slug}`, images: [{ url: article.image, width: 1672, height: 941, alt: article.imageAlt }] },
     twitter: { card: "summary_large_image", title: article.title, description: article.excerpt, images: [article.image] },
-    robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+    robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
   };
 }
 
@@ -30,7 +40,35 @@ export default async function Page({ params }: Props) {
   const { slug } = await params;
   const article = raccoColumns.find(item => item.slug === slug);
   if (!article) notFound();
+  const articleUrl = `${siteUrl}/racco/columns/${article.slug}`;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${articleUrl}#article`,
+        url: articleUrl,
+        mainEntityOfPage: articleUrl,
+        headline: article.title,
+        description: article.excerpt,
+        image: `${siteUrl}${article.image}`,
+        articleSection: article.category,
+        inLanguage: "ja-JP",
+        author: editorialOrganization,
+        publisher: editorialOrganization,
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${articleUrl}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Racco", item: `${siteUrl}/racco` },
+          { "@type": "ListItem", position: 2, name: article.title, item: articleUrl },
+        ],
+      },
+    ],
+  };
   return <div className={`${raccoRounded.variable} ${raccoLogo.variable}`}>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}/>
     <div className="brand-library" data-brand="racco" data-motion="off"><div className="bl-shell">
       <header className="bl-header bl-column-header">
         <Link href="/concept" className="bl-label" aria-label="Lakkanについて"><LakkanLogo /><span>ラクするほうを、つくろう。</span></Link>
@@ -40,13 +78,13 @@ export default async function Page({ params }: Props) {
       <main id="main" className="bl-column-main">
         <nav aria-label="コラムのナビゲーション"><Link className="bl-text-link" href="/racco#columns"><ArrowLeft size={15}/>コラムに戻る</Link></nav>
         <article className="bl-column-article" data-brand-reveal>
-          <header><p className="bl-kicker">RaccoのAIコラム / {article.category}</p><h1>{article.title}</h1><p className="bl-column-lead">{article.excerpt}</p><p className="bl-column-byline">Lakkan / Racco</p></header>
+          <header><p className="bl-kicker">RaccoのAIコラム / {article.category}</p><h1>{article.title}</h1><p className="bl-column-lead">{article.excerpt}</p><p className="bl-column-byline">企画・編集：<Link href="/about">株式会社Lakkan</Link> / Racco</p><p className="bl-column-byline">仕事でAIを試すための編集例です。実際の顧客事例や、効果を実測した報告ではありません。</p></header>
           <Image className="bl-column-cover" src={article.image} width={1672} height={941} alt={article.imageAlt} sizes="(max-width: 760px) calc(100vw - 44px), 720px" quality={90} preload/>
           {article.sections.map(part => <section key={part.heading} className="bl-column-section"><h2>{part.heading}</h2>{part.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</section>)}
           <ColumnPrompt text={article.prompt}/>
           <aside className="bl-column-takeaway"><p className="bl-kicker">今日、ひとつ試すなら。</p><p>{article.takeaway}</p></aside>
         </article>
-        <aside className="bl-column-inquiry"><p className="bl-kicker">自分の仕事で、試したいなら。</p><h2>どこから頼めばいいか、<br/>そこから一緒に。</h2><p>手間がかかっていることを、Lakkanに聞かせてください。</p><Link className="bl-pill bl-hero-cta" href={buildRaccoInquiryHref({ source: "racco-column", article: article.slug, intent: "ai" })}>この記事をきっかけに相談する<ArrowRight size={15}/></Link></aside>
+        <aside className="bl-column-inquiry"><p className="bl-kicker">自分の仕事で、試したいなら。</p><h2>どこから頼めばいいか、<br/>そこから一緒に。</h2><p>手間がかかっていることを、Lakkanに聞かせてください。</p><Link className="bl-pill bl-hero-cta" href={buildRaccoInquiryHref({ source: "racco-column", article: article.slug, intent: "ai" })}>この記事をきっかけに相談する<ArrowRight size={15}/></Link><p><Link className="bl-text-link" href="/services#ai-operations">LakkanのAI・業務改善支援を見る<ArrowRight size={15}/></Link></p></aside>
         <nav className="bl-column-related" aria-label="ほかのコラム"><h2>こっちも、どうぞ。</h2>{raccoColumns.filter(item => item.slug !== article.slug).map(item => <Link key={item.slug} href={`/racco/columns/${item.slug}`}><span>{item.title}</span><ArrowRight size={18}/></Link>)}</nav>
       </main>
       <footer className="bl-footer"><span>サボるためのAI生存術</span><div><Link href="/racco#columns">コラム一覧</Link><Link href="/racco#members">Raccoと、なかま</Link><Link href="/concept">Lakkanについて</Link></div></footer>

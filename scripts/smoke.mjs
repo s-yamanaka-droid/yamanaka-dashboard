@@ -47,7 +47,7 @@ try {
   }
   assert.ok(ready, "health endpoint is ready");
   assert.equal((await (await fetch(base + '/api/health')).json()).experience, 'poster-crowd', 'health identifies the current homepage');
-  for (const path of ["/", "/workshop", "/records", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/racco/contact", "/concept", "/brand-book", "/brand-guide", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => `/racco/columns/${slug}`), ...goods.map(item => `/racco/goods/${item.slug}`)]) {
+  for (const path of ["/", "/workshop", "/records", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/racco/contact", "/racco/studio", "/concept", "/brand-book", "/brand-guide", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => `/racco/columns/${slug}`), ...goods.map(item => `/racco/goods/${item.slug}`)]) {
     const response = await fetch(base + path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
@@ -77,7 +77,7 @@ try {
       assert.ok(html.includes('data-layout="poster"') && html.includes('class="dr-play"'), 'records renders the poster record player');
       assert.ok(html.includes('data-lakkan-logo="wordmark"') && html.includes('href="/contact?topic=other#inquiry"'), 'records carries the logo and the inquiry link');
       assert.ok(html.includes('href="/records/samples/CREDITS.txt"'), 'records credits its recorded instruments');
-    } else if (["/racco", "/concept", "/brand-book", "/brand-guide"].includes(path)) {
+    } else if (["/racco", "/racco/studio", "/concept", "/brand-book", "/brand-guide"].includes(path)) {
       assert.ok(html.includes(path === "/brand-book" ? 'brand-print-route' : path === "/brand-guide" ? 'brand-studio' : 'brand-library'), path + " renders the appropriate brand edition");
       if (path === "/brand-book") {
         for (let page = 1; page <= 12; page++) assert.ok(html.includes(`id="book-page-${page}"`), "brand book page " + page);
@@ -104,12 +104,20 @@ try {
           assert.ok(html.includes('racco-self-morning.png') && html.includes('racco-self-avatar.png'), 'new identity is present in the server-rendered page');
           assert.ok(html.includes('racco-trio.png') && html.includes('なかまに会う'), 'original Racco trio still leads into the expanded members view');
         } else {
-          assert.ok(html.includes('AIすごい。で、自分の仕事には？') && html.includes('毎回「もっと短く」って言ってない？'), 'Lakkan keeps its existing editorial examples');
+          assert.ok(html.includes('href="/racco/columns/from-bookmark-to-work"') && html.includes('href="/racco/columns/make-it-sound-like-you"'), 'Lakkan reading entries point to published articles');
         }
       }
       assert.ok(!/仕込/.test(html), path + ' does not restore rejected abstract copy');
       assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), path + " has no overlapping corporate shell");
-      assert.ok(html.includes('name="robots" content="noindex'), path + " remains a non-indexed candidate");
+      assert.ok(html.includes(`name="robots" content="${path === "/racco" ? "index, follow" : "noindex"}`), path + " has the intended search boundary");
+      if (path === "/racco/studio") {
+        assert.ok(html.includes('class="bl-social-card"') && html.includes("未投稿・文面案"), "studio has clearly labeled drafts");
+        assert.ok(html.includes('id="bl-tab-posts"') && html.includes('id="bl-tab-assets"'), "studio retains editing resources");
+      }
+      if (path === "/racco") {
+        assert.ok(html.includes('href="/racco/studio#posts"') && html.includes('href="/racco/studio#assets"'), "production links point to a separate URL");
+        assert.ok(html.includes('rel="canonical" href="https://lakkan-inc.vercel.app/racco"'), "Racco has a self canonical");
+      }
     } else if (path === '/racco/contact') {
       assertRaccoContact(html);
       const heroImage = html.match(/<div class="rc-hero-image">([\s\S]*?)<\/div>/)?.[1];
@@ -124,7 +132,24 @@ try {
       assert.ok(html.includes('href="/racco#columns"'), 'article has a return path');
       assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), 'article avoids duplicate corporate shell');
       assert.ok(html.includes('property="og:type" content="article"'), 'article share metadata');
-      assert.ok(html.includes('name="robots" content="noindex'), 'existing noindex boundary is preserved');
+      assert.ok(html.includes('name="robots" content="index, follow"'), 'published article permits indexing');
+      const canonical = "https://lakkan-inc.vercel.app" + path;
+      assert.ok(html.includes(`rel="canonical" href="${canonical}"`), "article has a self canonical");
+      const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+      const graph = schemas.flatMap(schema => schema["@graph"] ?? []);
+      const articleSchema = graph?.find(item => item["@type"] === "Article");
+      assert.ok(articleSchema, "article JSON-LD is valid JSON");
+      assert.equal(articleSchema.url, canonical);
+      const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1].replaceAll("<!-- -->", "");
+      assert.equal(articleSchema.headline, h1, "schema headline matches the actual heading");
+      assert.equal(articleSchema.author["@type"], "Organization", "fictional characters are not claimed as expert human authors");
+      assert.equal(articleSchema.author.name, "株式会社Lakkan");
+      assert.equal(articleSchema.author.url, "https://lakkan-inc.vercel.app/about");
+      assert.deepEqual(articleSchema.author, articleSchema.publisher);
+      assert.ok(!articleSchema.datePublished && !articleSchema.dateModified, "unknown publication dates are not invented");
+      assert.equal(graph.find(item => item["@type"] === "BreadcrumbList")?.itemListElement.at(-1)?.item, canonical);
+      assert.ok(html.includes('href="/about"') && html.includes('href="/services#ai-operations"'), "visible editorial responsibility and service path are available");
+      assert.ok(html.includes("実際の顧客事例や、効果を実測した報告ではありません。"), "illustrations are distinguished from evidence");
       assert.ok(html.replaceAll('&amp;', '&').includes(`/racco/contact?source=racco-column&intent=ai&article=${path.split('/').at(-1)}#main`), 'article leads to the dedicated contextual inquiry');
     } else if (path.startsWith('/racco/goods/')) {
       const item = goods.find(item => path.endsWith('/' + item.slug));
@@ -254,6 +279,16 @@ try {
   assert.equal((await fetch(base+'/works/unknown-project')).status,404,'unknown case is not published');
   const sitemap=await (await fetch(base+'/sitemap.xml')).text();
   for(const p of projects) assert.ok(sitemap.includes('/works/'+p.id),'case present in sitemap');
+  const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]).pathname);
+  for (const path of ["/racco", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => "/racco/columns/" + slug)]) assert.ok(sitemapUrls.includes(path), path + " is discoverable in sitemap");
+  for (const path of ["/racco/studio", "/racco/contact", "/concept", "/brand-book", "/brand-guide", ...goods.map(item => "/racco/goods/" + item.slug)]) assert.ok(!sitemapUrls.includes(path), path + " is excluded from sitemap");
+  assert.equal(sitemapUrls.length, new Set(sitemapUrls).size, "sitemap has no duplicates");
+  const manuscript = await fetch(base + "/brand-book/brand-book.md");
+  assert.equal(manuscript.status, 200, "manuscript remains downloadable");
+  assert.equal(manuscript.headers.get("x-robots-tag"), "noindex, nofollow", "downloaded manuscript also stays out of search");
+  const robots = await (await fetch(base + "/robots.txt")).text();
+  assert.ok(!/Disallow:\s*\/(?:racco|$)/m.test(robots), "robots must allow fetching the public articles and reading studio noindex");
+  console.log("PASS search boundary: public articles, sitemap, manuscript header and robots");
   for (const name of ["particles","fluid","terrain","saas","portfolio","restaurant","leadform"]) {
     assert.equal((await fetch(base + "/atelier/" + name)).status, 200, name);
   }

@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { LakkanLogo } from "@/components/brand/LakkanLogo";
 export function SiteFooter() {
   const pathname = usePathname();
-  if ((pathname.startsWith("/racco/columns/") || pathname.startsWith("/racco/goods/") || pathname === "/racco/contact") || ["/", "/workshop", "/records", "/racco", "/concept", "/brand-book", "/brand-guide"].includes(pathname)) return null;
+  if ((pathname.startsWith("/racco/columns/") || pathname.startsWith("/racco/goods/") || pathname === "/racco/contact" || pathname === "/racco/studio") || ["/", "/workshop", "/records", "/racco", "/concept", "/brand-book", "/brand-guide"].includes(pathname)) return null;
   return <footer className="site-footer original-footer">
     <Link href="/" className="original-footer-brand" aria-label="Lakkan ホーム"><LakkanLogo tone="red" /></Link>
     <p>考えたら、つくる。<br/>つくったら、動かす。</p>
