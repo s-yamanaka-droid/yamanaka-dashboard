@@ -1,0 +1,63 @@
+{
+  "guitar": [
+    {"file": "guitar/n40", "midi": 40},
+    {"file": "guitar/n45", "midi": 45},
+    {"file": "guitar/n48", "midi": 48},
+    {"file": "guitar/n51", "midi": 51},
+    {"file": "guitar/n54", "midi": 54},
+    {"file": "guitar/n57", "midi": 57},
+    {"file": "guitar/n60", "midi": 60},
+    {"file": "guitar/n63", "midi": 63},
+    {"file": "guitar/n66", "midi": 66},
+    {"file": "guitar/n69", "midi": 69},
+    {"file": "guitar/n72", "midi": 72},
+    {"file": "guitar/n75", "midi": 75},
+    {"file": "guitar/n78", "midi": 78},
+    {"file": "guitar/n81", "midi": 81},
+    {"file": "guitar/n84", "midi": 84}
+  ],
+  "guitar-mute": [
+    {"file": "guitar-mute/n64", "midi": 64},
+    {"file": "guitar-mute/n70", "midi": 70}
+  ],
+  "upright-bass": [
+    {"file": "upright-bass/n28", "midi": 28},
+    {"file": "upright-bass/n31", "midi": 31},
+    {"file": "upright-bass/n34", "midi": 34},
+    {"file": "upright-bass/n37", "midi": 37},
+    {"file": "upright-bass/n40", "midi": 40},
+    {"file": "upright-bass/n43", "midi": 43},
+    {"file": "upright-bass/n46", "midi": 46},
+    {"file": "upright-bass/n49", "midi": 49},
+    {"file": "upright-bass/n52", "midi": 52},
+    {"file": "upright-bass/n55", "midi": 55}
+  ],
+  "drums": [
+    "brush-tap",
+    "brush-tap-soft",
+    "brush-sweep",
+    "brush-hat",
+    "brush-ride",
+    "br-kick",
+    "br-kick-2",
+    "br-kick-soft",
+    "br-snare",
+    "br-snare-2",
+    "br-rimshot",
+    "br-ghost",
+    "br-ghost-2",
+    "br-hat",
+    "br-hat-2",
+    "br-hat-hard",
+    "br-ohat",
+    "br-foot",
+    "conga-open",
+    "conga-slap",
+    "conga-low",
+    "bongo-hi",
+    "bongo-lo",
+    "shaker",
+    "shaker-2",
+    "cowbell"
+  ]
+}

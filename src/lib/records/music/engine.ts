@@ -10,21 +10,23 @@
  * so the song keeps going.
  */
 
-import { barSeconds, composeBar, durationOf, motifOf, STEPS, stepSeconds, type MotifNote, type NoteEvent, type TrackSpec } from "./compose"
+import { barSeconds, composeBar, durationOf, isJazz, motifOf, STEPS, stepSeconds, type MotifNote, type NoteEvent, type TrackSpec } from "./compose"
 import {
   createDeck,
   createRig,
   fadeDeck,
   freshReverb,
   MASTER_LEVEL,
+  kitOf,
   needleDrop,
   playNote,
+  recordingsFor,
   startTexture,
   teardownDeck,
   type Deck,
   type Rig,
 } from "./instruments"
-import { decodeInstruments, decodeSamples, fetchSamples, INSTRUMENT_FILES, type Bytes, type SampleSource } from "./samples"
+import { addRecordings, decodeSamples, fetchSamples, INSTRUMENT_FILES, type Bytes, type SampleBank, type SampleSource } from "./samples"
 
 export type TrackSource = { kind: "generated"; spec: TrackSpec } | { kind: "file"; src: string }
 
@@ -59,9 +61,12 @@ export class MusicEngine {
   private want: "play" | "pause" = "pause"
   private turn = 0
   private stateCheck = 0
-  /** The recorded instruments' bytes, on their way since `preload`: the core first, the lo-fi instruments after. */
+  /** The recorded instruments' bytes, on their way since `preload`: the core first, the rest of the page's after. */
+  private src: SampleSource | null = null
   private sampleBytes: Promise<Bytes> | null = null
   private instrumentBytes: Promise<Bytes> | null = null
+  /** The core bank, decoded for this audio context; every later recording is added to it. */
+  private bank: Promise<SampleBank | null> | null = null
   /** Called when the record playing now reaches its end. */
   onEnded: (() => void) | null = null
   /** Called when the system takes the audio away (a call, the lock screen), so the UI can show it paused. */
@@ -81,26 +86,39 @@ export class MusicEngine {
    * before the first tap, so they're usually ready when it comes. Until they
    * are, and if they never load, the synthesised instruments play.
    */
-  preload(src: SampleSource) {
+  preload(src: SampleSource, specs?: TrackSpec[]) {
     if (this.sampleBytes) return
+    this.src = src
     this.sampleBytes = fetchSamples(src)
-    this.instrumentBytes = this.sampleBytes.then(() => fetchSamples(src, INSTRUMENT_FILES))
+    // after the core: what the page's records play (or everything, not knowing them)
+    const rest = specs ? [...new Set(specs.flatMap(recordingsFor))] : INSTRUMENT_FILES
+    this.instrumentBytes = this.sampleBytes.then(() => fetchSamples(src, rest))
     this.attachSamples()
   }
 
   private attachSamples() {
     const ctx = this.ctx
     const rig = this.rig
-    if (!ctx || !rig || !this.sampleBytes || rig.samples.current) return
-    const instruments = this.instrumentBytes
-    void this.sampleBytes
+    if (!ctx || !rig || !this.sampleBytes || this.bank) return
+    this.bank = this.sampleBytes
       .then((bytes) => decodeSamples(ctx, bytes))
-      .then(async (bank) => {
-        if (this.rig !== rig) return
+      .then((bank) => {
+        if (this.rig !== rig) return null
         rig.samples.current = bank
-        // the lo-fi instruments join the bank as they arrive; their synth stand-ins play until then
-        if (instruments) Object.assign(bank.inst, await decodeInstruments(ctx, await instruments))
+        return bank
       })
+      .catch(() => null)
+    // the rest join the bank as they arrive; their synth stand-ins play until then
+    this.addRecordings(this.instrumentBytes)
+  }
+
+  /** Decode recordings into the bank when both have arrived. */
+  private addRecordings(bytes: Promise<Bytes> | null) {
+    const ctx = this.ctx
+    const bank = this.bank
+    if (!ctx || !bank || !bytes) return
+    void Promise.all([bank, bytes])
+      .then(([b, by]) => (b ? addRecordings(ctx, b, by) : undefined))
       .catch(() => undefined)
   }
 
@@ -140,7 +158,9 @@ export class MusicEngine {
     rig.master.gain.cancelScheduledValues(now)
     rig.master.gain.setTargetAtTime(MASTER_LEVEL, now, 0.02)
 
-    const deck = createDeck(rig, source.kind === "generated" ? source.spec.bpm : 120, source.kind === "generated" && source.spec.style === "lofi")
+    // a record asks for its own recordings first, ahead of the rest of the page's
+    if (source.kind === "generated" && this.src) this.addRecordings(fetchSamples(this.src, recordingsFor(source.spec)))
+    const deck = source.kind === "generated" ? deckFor(rig, source.spec) : createDeck(rig, 120)
     needleDrop(ctx, deck, now + 0.05)
     const spin: Spin = { source, deck, start: now + 0.4, step: 0, bar: -1, notes: [], motif: [], done: false }
     if (source.kind === "generated") {
@@ -337,10 +357,19 @@ function scheduleSteps(ctx: BaseAudioContext, s: Spin, spec: TrackSpec, horizon:
       s.notes = composeBar(spec, bar, s.motif)
     }
     const at = s.step % STEPS
-    const when = t + (at % 2 ? (spec.swing ?? 0) * sd : 0)
+    // swing: every other 16th lags; in the jazz feels the off-beat eighths lag too, toward a triplet
+    const sw = spec.swing ?? 0
+    const eighths = spec.style === "lofi" && (spec.groove === "swing" || spec.groove === "ballad" || spec.groove === "brush")
+    const when = t + (eighths && at % 4 === 2 ? sw * 2 * sd : at % 2 ? sw * sd : 0)
     if (when >= late) {
       let order = 0
-      for (const ev of s.notes) if (ev.step === at) playNote(ctx, s.deck, ev, Math.max(0, late, when + feel(ev, s.step, ev.voice === "keys" ? order++ : 0) + (spec.style === "lofi" ? lazy(ev) : 0)), sd, spec.lead, spec.keys)
+      // a guitar strums its chords across the strings, wider than a pianist rolls them
+      const strum = spec.keys === "guitar" ? 0.009 : 0
+      for (const ev of s.notes)
+        if (ev.step === at) {
+          const k = ev.voice === "keys" ? order++ : 0
+          playNote(ctx, s.deck, ev, Math.max(0, late, when + feel(ev, s.step, k) + k * strum + (spec.style === "lofi" ? lazy(ev, spec.groove) : 0)), sd, spec.lead, spec.keys)
+        }
     }
     s.step++
   }
@@ -368,7 +397,7 @@ export async function renderOffline(
   const ctx = new Offline(2, Math.ceil((bars * barSeconds(spec) + 2.5) * rate), rate)
   const rig = createRig(ctx, ctx.destination, false)
   if (opts.samples) rig.samples.current = await decodeSamples(ctx, opts.samples)
-  const deck = createDeck(rig, spec.bpm, spec.style === "lofi")
+  const deck = deckFor(rig, spec)
   startTexture(ctx, deck, spec.texture, 0, spec.seed)
   const s: Spin = { source: { kind: "generated", spec }, deck, start: -fromBar * barSeconds(spec), step: fromBar * STEPS, bar: -1, notes: [], motif: motifOf(spec), done: false }
   scheduleSteps(ctx, s, spec, Infinity, -Infinity, fromBar + bars)
@@ -376,7 +405,16 @@ export async function renderOffline(
 }
 
 /** Lo-fi sits further back: the snare and keys late, the hats dragging a little. */
-function lazy(ev: NoteEvent): number {
+function lazy(ev: NoteEvent, groove: TrackSpec["groove"]): number {
+  // jazz-hop drags like a drummer playing behind the beat: the kick a touch early, the snare well late
+  if (groove === "hop") {
+    if (ev.voice === "kick") return -0.006
+    if (ev.voice === "snare") return ev.vel < 0.3 ? 0.02 : 0.03
+    if (ev.voice === "hat") return ev.step % 2 ? 0.014 : 0.004
+    if (ev.voice === "keys" || ev.voice === "lead" || ev.voice === "bass") return 0.016
+  }
+  // funk and the Latin feels sit right on it
+  if (groove === "funk" || groove === "latin") return ev.voice === "snare" ? 0.006 : 0
   if (ev.voice === "snare" || ev.voice === "rim") return 0.018
   if (ev.voice === "keys" || ev.voice === "lead") return 0.012
   if (ev.voice === "hat") return 0.008
@@ -407,4 +445,14 @@ export function feel(ev: NoteEvent, step: number, order: number): number {
     default:
       return j * 0.004
   }
+}
+
+/**
+ * A record's deck: the tape for lo-fi, the jazz mix, and the kit its groove
+ * plays. A ballad is lifted 3 dB: its plucked bass dies away under long chords
+ * and brushes replace the sticks, and it should still play as loud as the rest.
+ */
+function deckFor(rig: Rig, spec: TrackSpec): Deck {
+  const lofi = spec.style === "lofi"
+  return createDeck(rig, spec.bpm, lofi, lofi && isJazz(spec.groove), kitOf(spec), lofi && spec.groove === "ballad" ? 1.4 : 1)
 }

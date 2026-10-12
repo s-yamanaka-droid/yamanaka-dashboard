@@ -1,12 +1,16 @@
 /**
  * Recorded instruments: a Wurlitzer electric piano and an acoustic drum kit,
- * cut down by scripts/prepare-samples.py into public/samples/ (see CREDITS.txt).
+ * cut down by scripts/prepare-samples.py into public/samples/ (see CREDITS.txt);
+ * the lo-fi melody instruments (scripts/prepare-lofi-samples.py); and the band
+ * (scripts/prepare-band-samples.py): an archtop guitar, a double bass, brushes,
+ * a punchier kit and hand drums.
  *
  * The bytes are fetched once per page and shared, so they can be on their way
  * before the first tap; each audio context decodes its own copy. Until a bank
  * is ready (or if it never loads) the synthesised instruments play instead.
  */
 
+import BAND from "./band-samples.json"
 import LOFI from "./lofi-samples.json"
 
 /** One Wurlitzer recording and the keys it covers, from the instrument's SFZ map. */
@@ -30,26 +34,58 @@ export const WURLI: { mp: WurliZone[]; f: WurliZone[] } = {
   ],
 }
 
-export const DRUMS = ["kick", "snare", "ghost", "rim", "hat", "hat-hard", "ohat", "crash", "htom", "ltom"] as const
+export const DRUMS = ["kick", "snare", "ghost", "rim", "hat", "hat-hard", "ohat", "crash", "htom", "ltom", "ride", "ride-2", "ride-bell", "hat-foot"] as const
 export type DrumHit = (typeof DRUMS)[number]
 
 /** Where the recordings are served and in which format: FLAC on the site, WAV where FLAC isn't served. */
 export type SampleSource = { base: string; ext: "flac" | "wav" }
 
+/** One recorded note: the pitch it sounds, and for an instrument evened out, the level that brings it in line. */
+export type Note = { midi: number; buf: AudioBuffer; gain?: number }
+
+/**
+ * Instruments whose recordings are evened out note by note: the double bass
+ * was recorded quieter the higher it goes (about 20 dB from C#2 to G3), which
+ * would sink a walking line, and one of the guitar's notes rings louder than
+ * its neighbours. The others keep the differences their players made.
+ */
+const EVEN = new Set(["upright-bass", "guitar"])
+
+/** Loudness of the first tenth of a second of a recording, where a pluck is heard. */
+function attack(buf: AudioBuffer): number {
+  const d = buf.getChannelData(0)
+  const n = Math.min(d.length, Math.round(buf.sampleRate * 0.1))
+  let sum = 0
+  for (let i = 0; i < n; i++) sum += d[i] * d[i]
+  return Math.sqrt(sum / Math.max(1, n))
+}
+
+/** Levels that bring every note to the instrument's middle loudness, within 12 dB either way. */
+export function evenOut(notes: Note[]): Note[] {
+  const levels = notes.map((n) => attack(n.buf))
+  const middle = [...levels].sort((a, b) => a - b)[Math.floor(levels.length / 2)]
+  return notes.map((n, i) => ({ ...n, gain: Math.min(4, Math.max(0.25, middle / (levels[i] || middle))) }))
+}
+
 export type SampleBank = {
   wurli: Record<string, AudioBuffer>
   drums: Record<DrumHit, AudioBuffer>
   /** Recorded instruments played across the keyboard, each a few notes apart; filled in as they arrive. */
-  inst: Record<string, { midi: number; buf: AudioBuffer }[]>
+  inst: Record<string, Note[]>
+  /** The band's extra kit pieces (brushes, the punchier kit, hand drums), by name; filled in as they arrive. */
+  kit: Record<string, AudioBuffer>
 }
 
 /** The core recordings (Wurlitzer and kit), as paths under the samples folder, without the extension. */
 export const SAMPLE_FILES: string[] = [...[...WURLI.mp, ...WURLI.f].map((w) => `wurlitzer/${w.file}`), ...DRUMS.map((d) => `drums/${d}`)]
 
-/** The lo-fi instruments (scripts/prepare-lofi-samples.py): each note's file and the pitch it sounds. */
-export const INSTRUMENTS: Record<string, { file: string; midi: number }[]> = LOFI
-/** Their files, fetched after the core ones so the first record isn't kept waiting. */
-export const INSTRUMENT_FILES: string[] = Object.values(INSTRUMENTS).flatMap((notes) => notes.map((n) => n.file))
+const { drums: BAND_KIT, ...BAND_NOTES } = BAND as unknown as { drums: string[] } & Record<string, { file: string; midi: number }[]>
+/** The pitched instruments beyond the core: each note's file and the pitch it sounds. */
+export const INSTRUMENTS: Record<string, { file: string; midi: number }[]> = { ...LOFI, ...BAND_NOTES }
+/** The band's extra kit pieces, by name (drums/<name> under the samples folder). */
+export const KIT_PIECES: string[] = BAND_KIT
+/** All of their files, fetched after the core ones so the first record isn't kept waiting. */
+export const INSTRUMENT_FILES: string[] = [...Object.values(INSTRUMENTS).flatMap((notes) => notes.map((n) => n.file)), ...KIT_PIECES.map((k) => `drums/${k}`)]
 
 /** The zone that plays a key at a loudness: f from 0.5 up, mp below. */
 export function wurliZone(midi: number, vel: number): WurliZone {
@@ -60,19 +96,23 @@ export function wurliZone(midi: number, vel: number): WurliZone {
 
 export type Bytes = Map<string, ArrayBuffer>
 
-const fetched = new Map<string, Promise<Bytes>>()
+const fetched = new Map<string, Promise<ArrayBuffer>>()
 
-/** Fetch a set of files once per source; the same promise is handed to every player on the page. */
+/** Fetch a set of files, each once per page however many lists it's in; the same promises go to every player. */
 export function fetchSamples(src: SampleSource, files: string[] = SAMPLE_FILES, get: (url: string) => Promise<ArrayBuffer> = defaultGet): Promise<Bytes> {
-  const key = `${src.base}*.${src.ext}:${files.length}:${files[0]}`
-  let p = fetched.get(key)
-  if (!p) {
-    p = Promise.all(files.map(async (f) => [f, await get(`${src.base}${f}.${src.ext}`)] as const)).then((pairs) => new Map(pairs))
-    // a failed load may be retried later (the network came back)
-    p.catch(() => fetched.delete(key))
-    fetched.set(key, p)
-  }
-  return p
+  return Promise.all(
+    files.map(async (f) => {
+      const url = `${src.base}${f}.${src.ext}`
+      let p = fetched.get(url)
+      if (!p) {
+        p = get(url)
+        // a failed load may be retried later (the network came back)
+        p.catch(() => fetched.delete(url))
+        fetched.set(url, p)
+      }
+      return [f, await p] as const
+    }),
+  ).then((pairs) => new Map(pairs))
 }
 
 async function defaultGet(url: string): Promise<ArrayBuffer> {
@@ -93,15 +133,34 @@ export async function decodeSamples(ctx: BaseAudioContext, bytes: Bytes): Promis
   const wurli: Record<string, AudioBuffer> = {}
   for (const w of [...WURLI.mp, ...WURLI.f]) wurli[w.file] = take(`wurlitzer/${w.file}`)
   const drums = Object.fromEntries(DRUMS.map((d) => [d, take(`drums/${d}`)])) as Record<DrumHit, AudioBuffer>
-  return { wurli, drums, inst: await decodeInstruments(ctx, bytes) }
+  const bank: SampleBank = { wurli, drums, inst: {}, kit: {} }
+  await addRecordings(ctx, bank, bytes)
+  return bank
 }
 
-/** The lo-fi instruments among some bytes, decoded; an instrument missing any note is left out. */
-export async function decodeInstruments(ctx: BaseAudioContext, bytes: Bytes): Promise<SampleBank["inst"]> {
-  const out: SampleBank["inst"] = {}
+const claimed = new WeakMap<SampleBank, Set<string>>()
+
+/**
+ * Put whatever recordings are among some bytes into a bank, skipping what it
+ * already has: an instrument once all its notes are there, a kit piece on its own.
+ */
+export async function addRecordings(ctx: BaseAudioContext, bank: SampleBank, bytes: Bytes) {
+  // what's already being decoded for this bank, so two arrivals of the same files decode them once
+  let taken = claimed.get(bank)
+  if (!taken) claimed.set(bank, (taken = new Set()))
+  const claim = (key: string) => !taken.has(key) && !!taken.add(key)
+  const jobs: Promise<void>[] = []
   for (const [name, notes] of Object.entries(INSTRUMENTS)) {
-    if (!notes.every((n) => bytes.has(n.file))) continue
-    out[name] = await Promise.all(notes.map(async (n) => ({ midi: n.midi, buf: await ctx.decodeAudioData(bytes.get(n.file)!.slice(0)) })))
+    if (bank.inst[name] || !notes.every((n) => bytes.has(n.file)) || !claim(name)) continue
+    jobs.push(
+      Promise.all(notes.map(async (n) => ({ midi: n.midi, buf: await ctx.decodeAudioData(bytes.get(n.file)!.slice(0)) }))).then((decoded) => {
+        bank.inst[name] = EVEN.has(name) ? evenOut(decoded) : decoded
+      }),
+    )
   }
-  return out
+  for (const k of KIT_PIECES) {
+    const b = bytes.get(`drums/${k}`)
+    if (b && !bank.kit[k] && claim(`drums/${k}`)) jobs.push(ctx.decodeAudioData(b.slice(0)).then((buf) => void (bank.kit[k] = buf)))
+  }
+  await Promise.all(jobs)
 }
