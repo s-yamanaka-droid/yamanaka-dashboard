@@ -1,0 +1,158 @@
+/* Approved Racco / paper services: real type, source portraits, useful motion. */
+.racco-eyebrow { margin: 0 0 16px; color: var(--red, #b4382b); font: 700 13px/1.5 var(--font-sans-jp), sans-serif; letter-spacing: .07em; }
+.racco-guide { position: relative; align-self: end; width: 100%; max-width: 520px; margin: 0 auto; padding: 12px 16px 0; }
+.racco-guide-portrait { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; color: inherit; }
+.racco-guide-portrait img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; transition: transform .32s ease; transform: rotate(3deg); }
+.racco-guide-portrait:hover img { transform: rotate(-2deg) translateY(-5px); }
+.racco-guide-portrait:active img { transform: rotate(1deg) scale(.98); }
+.racco-guide-speech { position: absolute; z-index: 1; right: 0; top: 8px; width: 142px; padding: 19px 15px; border: 2px solid var(--ink, #17221f); border-radius: 48% 45% 43% 46%; background: var(--paper, #f4f0e8); color: var(--ink, #17221f); font: 900 18px/1.45 var(--font-sans-jp), sans-serif; transform: rotate(6deg); pointer-events: none; }
+.racco-guide-speech::after { content: ""; position: absolute; bottom: -9px; left: 27px; width: 15px; height: 16px; background: var(--paper, #f4f0e8); border-right: 2px solid var(--ink, #17221f); border-bottom: 2px solid var(--ink, #17221f); transform: skew(-25deg) rotate(28deg); }
+.racco-guide-link { position: absolute; right: 5px; bottom: 30px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 5px 10px; background: var(--paper, #f4f0e8); color: var(--ink, #17221f); border-bottom: 2px solid var(--red, #b4382b); font: 700 14px/1.5 var(--font-sans-jp), sans-serif; transform: rotate(-7deg); }
+.racco-ticket { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 56px; padding: 16px 26px; color: var(--paper, #f4f0e8); background: var(--red, #b4382b); font: 900 20px/1.5 var(--font-sans-jp), sans-serif; clip-path: polygon(2% 0, 100% 2%, 99% 96%, 2% 100%, 0 92%, 0 7%); transform: rotate(-1.5deg); transition: transform .2s, background .2s; text-decoration: none; }
+.racco-ticket svg { flex: 0 0 auto; }
+.racco-ticket:hover { background: #962d22; transform: rotate(0deg) translateY(-2px); }
+.racco-ticket:focus-visible, .corporate-frame .header-contact:focus-visible { box-shadow: inset 0 0 0 3px var(--paper, #f4f0e8), inset 0 0 0 5px var(--ink, #17221f); }
+.corporate-frame .header-contact { border-radius: 2px; clip-path: polygon(0 0, 98% 0, 100% 10%, 100% 100%, 2% 100%, 0 90%); font-weight: 700; }
+.corporate-frame .poster-services #services-intro { --section-padding: 12px 48px 0; }
+.racco-service-hero { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,.8fr); align-items: center; gap: 20px; }
+.racco-service-hero > div:first-child { position: relative; z-index: 1; padding: 24px 0 36px; }
+.corporate-frame .racco-service-hero h1, .service-entry h2 { margin: 0; font: 900 clamp(44px,6.5vw,92px)/1.16 var(--font-sans-jp), sans-serif; color: var(--red, #b4382b); letter-spacing: -.075em; text-shadow: .7px .7px currentColor; }
+.racco-service-hero h1 > span, .service-entry h2 > span { display: block; }
+.corporate-frame .racco-service-lead { margin-top: 24px; color: var(--ink); font: 700 17px/1.8 var(--font-sans-jp), sans-serif; }
+.racco-service-hero .racco-guide { max-width: 450px; }
+.corporate-frame .poster-services #support.racco-support { --section-padding: 0 48px 72px; border-top: 0 !important; }
+.racco-service-explorer { position: relative; }
+.racco-service-tabs, .service-entry-tabs { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 8px; align-items: stretch; }
+.racco-service-tabs button, .service-entry-tabs a { position: relative; min-width: 0; min-height: 126px; padding: 24px 20px 22px; border: 1px solid #17221f66; border-radius: 5px 0 0 0; background: var(--paper, #f4f0e8); color: var(--ink, #17221f); text-align: left; cursor: pointer; font-family: var(--font-sans-jp), sans-serif; transition: transform .2s, background .2s; }
+.racco-service-tabs button:nth-child(2), .service-entry-tabs a:nth-child(2) { transform: rotate(.8deg); }
+.racco-service-tabs button:nth-child(4), .service-entry-tabs a:nth-child(4) { transform: rotate(-.8deg); }
+.racco-service-tabs button::after, .service-entry-tabs a::after { content: ""; position: absolute; top: 0; right: 0; width: 17px; height: 17px; border-left: 1px solid #17221f66; border-bottom: 1px solid #17221f66; background: linear-gradient(45deg,#e6dfd1 49%,var(--paper,#f4f0e8) 50%); }
+.racco-service-tabs button[aria-selected=true] { border-color: var(--red); background: var(--red); color: var(--paper); transform: rotate(-1.2deg); }
+.racco-service-tabs button[aria-selected=true]::after { display: none; }
+.racco-service-tabs button:hover, .service-entry-tabs a:hover { transform: translateY(-4px) rotate(0); }
+.racco-service-tabs strong, .service-entry-tabs strong { display: block; font: 900 clamp(18px,1.9vw,26px)/1.45 var(--font-sans-jp), sans-serif; letter-spacing: -.04em; }
+.racco-service-tabs strong span, .service-entry-tabs strong span { display: inline-block; }
+.racco-service-tabs small, .service-entry-tabs small { display: block; margin-top: 8px; font-size: 12px; line-height: 1.6; font-weight: 700; }
+.racco-service-tabs small span, .service-entry-tabs small span { display: inline-block; }
+.service-selected-mark { position: absolute; right: 10px; top: 10px; padding: 2px; width: 23px; height: 23px; border-radius: 50%; background: var(--paper); color: var(--red); }
+.service-hash-anchor { position: absolute; top: -110px; }
+.racco-service-panel { position: relative; margin-top: 5px; padding: 40px 34px 24px; border: 1px solid #17221f22; background: #f9f6ee; box-shadow: 3px 6px 0 #17221f06; }
+.racco-service-panel::after { content: ""; position: absolute; top: 0; right: 0; border: 13px solid transparent; border-left-color: #e3dbcb; border-bottom-color: #e3dbcb; }
+.racco-service-panel-content { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.4fr); gap: 26px 32px; animation: racco-paper-enter .28s ease both; }
+.corporate-frame .service-poster-title h2 { font: 900 clamp(42px,5.6vw,80px)/1.15 var(--font-sans-jp), sans-serif; letter-spacing: -.075em; color: var(--red); text-shadow: .5px .5px currentColor; }
+.service-poster-title h2 span { display: block; }
+.corporate-frame .service-poster-title h3 { margin-top: 22px; font: 900 18px/1.65 var(--font-sans-jp), sans-serif; color: var(--ink); }
+.corporate-frame .service-poster-title > p:last-child { margin-top: 12px; font-size: 14px; line-height: 1.95; color: var(--ink); text-wrap: pretty; }
+.work-story { min-width: 0; align-self: center; margin: 0; }
+.work-story-note { margin-bottom: 18px; color: var(--muted); font-size: 12px; }
+.work-story-scenes { display: grid; grid-template-columns: minmax(0,1fr) 24px minmax(0,1fr) 24px minmax(0,1fr); align-items: center; gap: 8px; }
+.work-story-scenes > div { min-width: 0; align-self: start; text-align: center; }
+.work-story-scenes > div > svg { display: block; width: 100%; aspect-ratio: 220/150; color: var(--ink); }
+.corporate-frame .work-story-scenes p { margin-top: 16px; font: 700 13px/1.65 var(--font-sans-jp), sans-serif; text-wrap: balance; color: var(--ink); }
+.work-story-scenes p span { display: inline-block; }
+.work-story-arrow { width: 24px; height: 24px; color: var(--red); stroke-width: 3; margin-bottom: 35px; }
+.work-story-desk { position: relative; width: 100%; aspect-ratio: 220/150; background: #f9f6ee; }
+.work-story-desk img { position: absolute; width: 68%; height: auto; left: 17%; top: -6%; mix-blend-mode: multiply; }
+.work-story-desk svg { position: relative; display: block; width: 100%; height: 100%; }
+.service-practical-steps { grid-column: 1/-1; display: flex; flex-wrap: wrap; gap: 16px 30px; margin: 0; padding: 18px 0 0; border-top: 1px solid #17221f55; list-style: none; }
+.service-practical-steps li { display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 700; }
+.service-practical-steps svg { border: 2px solid var(--red); border-radius: 50%; width: 24px; height: 24px; padding: 2px; color: var(--red); flex-shrink: 0; }
+.service-ticket { grid-column: 2; justify-self: end; align-self: start; }
+.service-detail-note { grid-column: 1; grid-row: 3; min-width: 0; align-self: start; }
+.service-detail-note summary { display: flex; align-items: center; justify-content: space-between; min-height: 44px; gap: 14px; padding: 8px 0; font-size: 13px; cursor: pointer; list-style: none; border-bottom: 1px solid #17221f44; }
+.service-detail-note summary::-webkit-details-marker { display: none; }
+.service-detail-note[open] summary svg { transform: rotate(45deg); }
+.service-detail-note ul { margin: 16px 0 0; padding-left: 20px; font-size: 14px; line-height: 1.85; }
+.service-detail-note li + li { margin-top: 10px; }
+.corporate-frame .poster-contact-cta { --section-padding: 56px 48px; }
+.corporate-frame .racco-consultation { grid-template-columns: minmax(0,.5fr) minmax(0,1fr); gap: 46px; align-items: center; max-width: 1050px; margin: 0 auto; padding: 34px; background: #ecd7cc; border-radius: 3px 24px 4px 12px; }
+.racco-consultation .racco-guide { max-width: 310px; padding: 0; }
+.racco-consultation .racco-guide-speech { width: 115px; font-size: 14px; padding: 14px; top: 0; }
+.racco-consultation .racco-guide-link { bottom: 5px; font-size: 12px; }
+.corporate-frame .racco-consultation h2 { font: 900 clamp(30px,3.6vw,52px)/1.4 var(--font-sans-jp), sans-serif; letter-spacing: -.055em; }
+.corporate-frame .racco-consultation h2 span { display: inline-block; }
+.corporate-frame .racco-consultation > div:last-child > p:not(.poster-small-label) { margin: 14px 0 24px; font-size: 14px; max-width: 36em; color: var(--ink); }
+.corporate-frame .site-footer.original-footer { display: grid; grid-template-columns: 180px minmax(0,1fr); gap: 20px 36px; border-top: 2px solid var(--red); }
+.corporate-frame .original-footer > p { font-weight: 700; color: var(--ink); }
+.corporate-frame .original-footer > nav { grid-column: 1/-1; display: flex; flex-wrap: wrap; justify-content: flex-start; margin: 0; gap: 10px 24px; }
+.corporate-frame .original-footer > nav a { border-bottom: 1px solid transparent; }
+.corporate-frame .original-footer > nav a:hover { border-color: var(--red); }
+.corporate-frame .original-footer > small { grid-column: 1/-1; }
+.corporate-frame .poster-services .sv-approach h2, .corporate-frame .poster-services .sv-faq-layout h2 { font: 900 clamp(30px,3.4vw,44px)/1.45 var(--font-sans-jp),sans-serif; letter-spacing: -.045em; }
+.corporate-frame .poster-services .sv-process li { position: relative; margin-bottom: 12px; padding: 25px 24px; background: #f9f6ee; border: 1px solid #17221f33; border-radius: 3px 0 0 0; }
+.corporate-frame .poster-services .sv-step-no { color: var(--red); font: 400 36px/1 var(--font-poster),sans-serif; padding: 7px 0 0; }
+.corporate-frame .poster-services .sv-process h3 { margin-top: 0; font-weight: 700; color: var(--ink); }
+.corporate-frame .poster-services .sv-faq summary { font-weight: 700; }
+.corporate-frame .poster-services .sv-faq summary span { color: var(--red); font-weight: 700; }
+.service-field-note { margin-top: 28px; padding: 24px; border-left: 3px solid var(--red); background: #f9f6ee; }
+.service-field-note strong { color: var(--red); font-size: 13px; }
+.service-field-note p { margin-top: 12px !important; font-size: 14px; line-height: 1.9; }
+.service-field-note a { display: flex; align-items: center; justify-content: space-between; min-height: 44px; gap: 16px; margin-top: 12px; font-size: 13px; font-weight: 700; }
+.poster-home-services { --paper: #f4f0e8; --red: #b4382b; --ink: #17221f; --section-background: var(--paper); --section-padding: 80px 48px; background: var(--paper) !important; font-family: var(--font-sans-jp),sans-serif; }
+.service-entry { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,.8fr); gap: 16px 30px; align-items: center; }
+.service-entry h2 { font-size: clamp(42px,5.5vw,78px); }
+.service-entry-heading > p:last-child { font-size: 16px; font-weight: 700; line-height: 1.85; margin-top: 24px; }
+.service-entry-tabs { grid-column: 1/-1; }
+.service-entry-tabs a { text-decoration: none; padding-right: 30px; }
+.service-entry-tabs a > svg { position: absolute; bottom: 14px; right: 12px; }
+.service-entry .racco-guide { max-width: 340px; }
+.service-entry .racco-guide-speech { width: 130px; font-size: 16px; }
+@keyframes racco-paper-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media(max-width:1000px) {
+  .racco-service-tabs button, .service-entry-tabs a { padding: 22px 12px 18px; }
+  .racco-service-tabs strong, .service-entry-tabs strong { font-size: 20px; }
+  .racco-service-tabs strong span, .service-entry-tabs strong span { display: block; }
+  .racco-service-panel { padding: 28px 24px 22px; }
+  .racco-service-panel-content { grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 24px; }
+  .corporate-frame .service-poster-title h2 { font-size: 48px; }
+  .work-story-scenes { gap: 4px; grid-template-columns: minmax(0,1fr) 14px minmax(0,1fr) 14px minmax(0,1fr); }
+  .work-story-arrow { width: 14px; }
+  .corporate-frame .work-story-scenes p { font-size: 12px; }
+  .racco-guide-speech { width: 115px; padding: 15px 12px; font-size: 16px; }
+  .racco-ticket { font-size: 18px; padding: 14px 20px; }
+}
+@media(max-width:760px) {
+  .corporate-frame .poster-services #services-intro { --section-padding: 16px 22px 0; }
+  .corporate-frame .poster-services #support.racco-support { --section-padding: 0 22px 48px; }
+  .racco-service-hero, .service-entry { grid-template-columns: 1fr; gap: 0; }
+  .racco-service-hero > div:first-child { padding: 8px 0 0; }
+  .corporate-frame .racco-service-hero h1, .service-entry h2 { font-size: clamp(40px,11.8vw,60px); line-height: 1.22; }
+  .racco-eyebrow { margin-bottom: 13px; font-size: 11px; }
+  .corporate-frame .racco-service-lead { margin-top: 18px; font-size: 14px; line-height: 1.8; }
+  .racco-service-hero .racco-guide, .service-entry .racco-guide { width: 78%; max-width: 300px; margin-top: 5px; }
+  .racco-guide-speech { right: -25px; top: 13px; width: 105px; font-size: 14px; padding: 13px 12px; }
+  .racco-guide-link { right: -25px; bottom: 8px; font-size: 12px; }
+  .racco-service-tabs, .service-entry-tabs { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; }
+  .racco-service-tabs button, .service-entry-tabs a { min-height: 126px; padding: 20px 12px 16px; }
+  .racco-service-tabs strong, .service-entry-tabs strong { font-size: 18px; line-height: 1.45; }
+  .racco-service-tabs strong span, .service-entry-tabs strong span { display: block; }
+  .racco-service-tabs small, .service-entry-tabs small { font-size: 11px; margin-top: 7px; line-height: 1.7; }
+  .service-selected-mark { right: 6px; top: 6px; width: 19px; height: 19px; }
+  .racco-service-panel { margin-top: 10px; padding: 25px 17px; }
+  .racco-service-panel-content { grid-template-columns: minmax(0,1fr); gap: 22px; }
+  .service-poster-title > .racco-eyebrow { margin-bottom: 13px; }
+  .corporate-frame .service-poster-title h2 { font-size: clamp(32px,10vw,45px); line-height: 1.2; }
+  .service-poster-title h2 span { display: inline-block; }
+  .corporate-frame .service-poster-title h3 { font-size: 16px; margin-top: 18px; }
+  .corporate-frame .service-poster-title > p:last-child { font-size: 14px; margin-top: 10px; }
+  .work-story-note { margin-bottom: 12px; font-size: 11px; }
+  .corporate-frame .work-story-scenes p { font-size: 12px; margin-top: 7px; }
+  .work-story-arrow { margin-bottom: 25px; }
+  .service-practical-steps { grid-column: 1; flex-direction: column; gap: 12px; padding-top: 16px; }
+  .service-practical-steps li { font-size: 13px; }
+  .service-ticket { grid-column: 1; justify-self: stretch; }
+  .service-detail-note { grid-column: 1; grid-row: auto; }
+  .corporate-frame .poster-contact-cta { --section-padding: 32px 22px 48px; }
+  .corporate-frame .racco-consultation { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+  .racco-consultation .racco-guide { width: 70%; max-width: 220px; }
+  .corporate-frame .racco-consultation h2 { font-size: 31px; line-height: 1.5; }
+  .corporate-frame .racco-consultation > div:last-child > p:not(.poster-small-label) { font-size: 13px; }
+  .racco-consultation .racco-ticket { width: 100%; font-size: 16px; }
+  .corporate-frame .site-footer.original-footer { grid-template-columns: 1fr; gap: 12px; }
+  .poster-home-services { --section-padding: 50px 22px; }
+  .service-entry-heading > p:last-child { font-size: 14px; margin-top: 18px; }
+  .service-entry-tabs { margin-top: 10px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .racco-guide *, .racco-ticket, .racco-service-tabs *, .racco-service-panel-content, .service-entry-tabs * { animation: none !important; transition: none !important; }
+}

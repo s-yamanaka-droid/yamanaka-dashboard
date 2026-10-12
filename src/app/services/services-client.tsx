@@ -2,51 +2,44 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
-import projects from "@/data/projects.json";
-
-const relatedWorks:Record<string,string[]>={"ai-operations":["now-on-air"],crm:[],digital:["luna-ai"],people:[]};
-
-const services = [
-  { id: "ai-operations", label: "仕事の負担を減らしたい", en: "AI導入・業務改善", title: "仕事の流れを、\nAIと組み直す。", text: "転記、情報探し、確認待ち。日々の小さな負担から見直し、人にしかできない判断に時間を使える仕組みへ。", items: ["業務ヒアリングと改善テーマの整理", "AIエージェント・業務自動化の設計と実装", "AI活用研修・導入後の運用支援"], tags:["業務再設計", "AI導入", "Luna AI"], before:"情報を探す → 転記する → 確認を待つ", after:"情報を整理する → 人が判断する", topic:"ai-consult" },
-  { id: "crm", label: "情報と仕事をつなげたい", en: "CRM・業務アプリ開発", title: "ばらばらの情報を、\n次の行動へ。", text: "顧客情報、商談の履歴、次にやること。チームの仕事がつながるCRMや業務アプリを、現場に合わせて設計します。", items:["顧客情報・画面・権限の設計", "CRM・Webアプリ・業務ツールの開発", "既存システムとの連携・運用改善"], tags:["CRM構築", "業務アプリ", "プロダクト開発"], before:"メール・表計算・担当者の記憶に分散", after:"顧客履歴 → 担当者 → 次の対応", topic:"crm" },
-  { id: "digital", label: "事業の魅力を届けたい", en: "Webサイト・LP制作", title: "らしさが伝わる。\n行動につながる。", text: "会社やサービスの強みを整理し、言葉とデザインを一つに。訪れた人が理解し、相談や応募へ進めるWeb体験をつくります。", items:["コーポレート・ブランドサイト制作", "採用LP・サービスLPの設計と制作", "モバイル対応・公開前検証・更新支援"], tags:["Webサイト", "サービスLP", "採用LP"], before:"伝えたいことが多く、強みが埋もれる", after:"強みを知る → 納得する → 相談する", topic:"corp-site" },
-  { id: "people", label: "人と組織の課題を解きたい", en: "採用・人財支援", title: "人が力を発揮する、\n仕事と組織へ。", text: "「人が足りない」の背景から整理します。技術で減らせる負担と、人に任せたい役割を分け、必要な人財との出会いにつなぎます。", items:["業務と役割の整理", "採用要件・魅力の伝え方の設計", "人財支援・人材紹介のご相談"], tags:["採用設計", "役割の整理", "人財支援"], before:"忙しいから、まず人を増やしたい", after:"仕事を見直す → 必要な役割を定める", topic:"placement" },
-];
+import { ArrowRight, Check, Plus } from "lucide-react";
+import { serviceStories } from "@/data/service-stories";
+import { WorkStory } from "@/components/site/WorkStory";
 
 export function ServiceExplorer() {
   const [active, setActive] = useState(0);
   useEffect(() => {
     const change = () => {
       const hash = window.location.hash.slice(1);
-      const i = services.findIndex(s=>s.id===hash);
-      if(i>=0) setActive(i);
-      if(hash==='product') setActive(1);
+      const i = serviceStories.findIndex(s => s.id === (hash === "product" ? "crm" : hash));
+      if (i >= 0) setActive(i);
     };
-    change(); window.addEventListener('hashchange', change);
-    return ()=>window.removeEventListener('hashchange', change);
+    change(); window.addEventListener("hashchange", change);
+    return () => window.removeEventListener("hashchange", change);
   }, []);
-  const s = services[active];
-  return <>
-    <div className="sv-explorer">
-      <div className="sv-options" role="tablist" aria-label="変えたいことから支援を選ぶ" aria-orientation="vertical">{services.map((item,i)=><button key={item.id} id={`tab-${item.id}`} role="tab" aria-selected={active===i} aria-controls="service-panel" tabIndex={active===i?0:-1} onClick={()=>setActive(i)} onKeyDown={e=>{
-        let next=i;
-        if(e.key==='ArrowDown'||e.key==='ArrowRight') next=(i+1)%services.length;
-        else if(e.key==='ArrowUp'||e.key==='ArrowLeft') next=(i+services.length-1)%services.length;
-        else if(e.key==='Home') next=0;
-        else if(e.key==='End') next=services.length-1;
-        else return;
-        e.preventDefault();setActive(next);document.getElementById(`tab-${services[next].id}`)?.focus();
-      }}><span id={item.id}>0{i+1}{item.id==='crm'&&<span id="product"/>}</span><span>{item.label}<small>{item.en}</small></span><ArrowUpRight size={19}/></button>)}</div>
-      <div id="service-panel" role="tabpanel" aria-labelledby={`tab-${s.id}`} tabIndex={0} className="sv-panel">
-        <div key={s.id} className="sv-panel-content"><p className="sv-kicker">{s.en}</p><h3>{s.title.split('\n').map(t=><span key={t}>{t}</span>)}</h3><p className="sv-body">{s.text}</p><div className="sv-tags">{s.tags.map(t=><span key={t}>{t}</span>)}</div>
-          <div className="sv-flow"><small>たとえば、こんな変化を。</small><p>{s.before}</p><ArrowRight size={19}/><strong>{s.after}</strong></div>
-          <ul>{s.items.map(t=><li key={t}>{t}</li>)}</ul>
-          {relatedWorks[s.id].length>0&&<div className="service-related"><p>{s.id==='people'?'採用の魅力を伝えるWeb制作の例':'関連する制作・プロダクト'}</p>{relatedWorks[s.id].map(id=>{const p=projects.find(p=>p.id===id)!;return <Link key={id} href={`/works/${id}`}>{p.name}<ArrowUpRight size={16}/></Link>;})}</div>}
-          <Link className="sv-text-link" href={`/contact?topic=${s.topic}`}>この課題について相談する <ArrowUpRight size={18}/></Link>
-        </div>
+  const s = serviceStories[active];
+  function select(i: number) {
+    setActive(i);
+    window.history.replaceState(null, "", `#${serviceStories[i].id}`);
+  }
+  return <div className="racco-service-explorer">
+    <div className="racco-service-tabs" role="tablist" aria-label="変えたいことから支援を選ぶ">{serviceStories.map((item, i) => <button type="button" key={item.id} id={`tab-${item.id}`} role="tab" aria-selected={active === i} aria-controls="service-panel" tabIndex={active === i ? 0 : -1} onClick={() => select(i)} onKeyDown={e => {
+      let next = i;
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") next = (i + 1) % serviceStories.length;
+      else if (e.key === "ArrowUp" || e.key === "ArrowLeft") next = (i + serviceStories.length - 1) % serviceStories.length;
+      else if (e.key === "Home") next = 0;
+      else if (e.key === "End") next = serviceStories.length - 1;
+      else return;
+      e.preventDefault(); select(next); document.getElementById(`tab-${serviceStories[next].id}`)?.focus();
+    }}><span id={item.id} className="service-hash-anchor"/>{item.id === "crm" && <span id="product" className="service-hash-anchor"/>}<strong>{item.label.map(part => <span key={part}>{part}</span>)}</strong><small>{item.category.split("・").map((part, index, parts) => <span key={part}>{part}{index < parts.length - 1 ? "・" : ""}</span>)}</small>{active === i && <Check className="service-selected-mark" size={17} aria-hidden="true"/>}</button>)}</div>
+    <div id="service-panel" role="tabpanel" aria-labelledby={`tab-${s.id}`} tabIndex={0} className="racco-service-panel">
+      <div key={s.id} className="racco-service-panel-content">
+        <div className="service-poster-title"><p className="racco-eyebrow">{s.category}</p><h2>{s.poster.map(part => <span key={part}>{part}</span>)}</h2><h3>{s.title}</h3><p>{s.text}</p></div>
+        <WorkStory kind={s.id} captions={s.scenes}/>
+        <ul className="service-practical-steps">{s.steps.map(step => <li key={step}><Check size={18} aria-hidden="true"/>{step}</li>)}</ul>
+        <Link className="racco-ticket service-ticket" href={`/contact?topic=${s.topic}#inquiry`}>{s.cta}<ArrowRight size={22} aria-hidden="true"/></Link>
+        <details className="service-detail-note"><summary>支援の中身をひらく<Plus size={18} aria-hidden="true"/></summary><ul>{s.details.map(item => <li key={item}>{item}</li>)}</ul></details>
       </div>
     </div>
-    <div className="sv-fde" id="fde"><p className="sv-kicker">伴走型の開発支援</p><h3>現場を理解し、<br/>開発と運用を支援。</h3><div><p>エンジニアが現場の仕事を理解し、課題の発見から開発・運用まで伴走する。それがLakkanのFDE支援です。</p><Link href="/contact?topic=fde" className="sv-text-link">伴走型の開発を相談する <ArrowUpRight size={17}/></Link></div></div>
-  </>;
+  </div>;
 }

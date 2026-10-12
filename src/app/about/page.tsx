@@ -32,7 +32,7 @@ export default function About() {
         <div className="about-business-list">{[
           ["01", "AI・業務改善", "仕事の流れを整理し、AIに任せる作業と、人が判断する役割を見極めます。日々の仕事で使える形への導入・活用を支援します。", "/services#ai-operations"],
           ["02", "CRM・システム開発", "顧客情報や対応履歴をつなぎ、管理の手間を減らす。既存の仕組みを確認し、業務アプリや現場に伴走する開発支援で実装します。", "/services#crm"],
-          ["03", "Webサイト・LP制作", "会社やサービスの魅力を整理し、伝わる画面へ。情報設計、デザイン、実装、問い合わせまでの導線をまとめて考えます。", "/services#digital"],
+          ["03", "伝え方・Web体験", "会社やサービスの強みを、言葉と体験に。WebサイトやLP、相談・応募への導線、公開後の更新まで、一緒につくり続けます。", "/services#digital"],
           ["04", "採用・人財支援", "必要な役割と人材像を整理するところから。仕事の魅力の伝え方、採用の仕組み、人財紹介や受け入れまで、一緒に考えます。", "/services#people"],
         ].map(([number,title,body,href])=><Link key={number} href={href}><span>{number}</span><div><h3>{title.split("・").map((part,index,parts)=><span key={part}>{part}{index < parts.length - 1 ? "・" : ""}</span>)}</h3><p>{body}</p></div><ArrowUpRight size={20} aria-hidden="true"/></Link>)}</div>
       </SectionShell>

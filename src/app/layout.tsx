@@ -9,6 +9,7 @@ import "./brand.css";
 import "./brand-latin.css";
 import "./corporate-paper.css";
 import "./company-introduction.css";
+import "./racco-corporate.css";
 import { CookieConsent } from "@/components/CookieConsent";
 import { SiteFrame } from "@/components/site/SiteFrame";
 
