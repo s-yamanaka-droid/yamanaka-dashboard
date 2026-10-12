@@ -52,9 +52,10 @@
 .corporate-frame .work-story-scenes p { margin-top: 16px; font: 700 13px/1.65 var(--font-sans-jp), sans-serif; text-wrap: balance; color: var(--ink); }
 .work-story-scenes p span { display: inline-block; }
 .work-story-arrow { width: 24px; height: 24px; color: var(--red); stroke-width: 3; margin-bottom: 35px; }
-.work-story-desk { position: relative; width: 100%; aspect-ratio: 220/150; background: #f9f6ee; }
-.work-story-desk img { position: absolute; width: 68%; height: auto; left: 17%; top: -6%; mix-blend-mode: multiply; }
-.work-story-desk svg { position: relative; display: block; width: 100%; height: 100%; }
+.work-story-illustration { display: block; width: 100%; height: auto; }
+.work-story-illustrated-captions { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; text-align: center; }
+.corporate-frame .work-story-illustrated-captions p { margin: 0; font: 700 13px/1.65 var(--font-sans-jp), sans-serif; color: var(--ink); text-wrap: balance; }
+.work-story-illustrated-captions p span { display: inline-block; }
 .work-story-outcome { position: relative; width: 100%; aspect-ratio: 220/150; }
 .work-story-outcome img { object-fit: contain; object-position: center bottom; }
 .work-story-outcome.is-crm img { padding-left: 27%; }
@@ -147,6 +148,7 @@
   .corporate-frame .service-poster-title > p:last-child { font-size: 14px; margin-top: 10px; }
   .work-story-note { margin-bottom: 12px; font-size: 11px; }
   .corporate-frame .work-story-scenes p { font-size: 12px; margin-top: 7px; }
+  .corporate-frame .work-story-illustrated-captions p { font-size: 12px; }
   .work-story-arrow { margin-bottom: 25px; }
   .service-practical-steps { grid-column: 1; flex-direction: column; gap: 12px; padding-top: 16px; }
   .service-practical-steps li { font-size: 13px; }

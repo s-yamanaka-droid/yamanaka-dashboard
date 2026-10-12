@@ -13,27 +13,21 @@ function Caption({ text }: { text: string }) {
   return <p>{(captionParts[text] ?? [text]).map(part => <span key={part}>{part}</span>)}</p>;
 }
 
-function PaperPile() {
-  return <svg viewBox="0 0 220 150" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-    {[0, 1, 2, 3, 4, 5].map(i => <g key={i} transform={`translate(${i % 2 ? 4 : 0} ${i * 12})`}><path d="m30 20 66-6 17 14-68 8-15-16Z M30 20v7l15 15 68-8v-6"/><path d="m46 24 42-4"/></g>)}
-    <path d="m145 32 22-8 22 13-23 10-21-15Zm-7 38 31-9 23 17-33 7-21-15Zm-6 52h72M149 109c-1-17 5-28 17-28s18 13 17 28M159 67c-1 7 4 14 10 13 9-1 11-13 7-18-4-5-14-4-17 5Z"/>
-    <path d="m141 7 4 10m20-10-6 9m39 38-11 2" stroke="var(--red)" />
-  </svg>;
-}
-
-function AutomatedWork() {
-  return <svg viewBox="0 0 220 150" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M83 35C31 42 25 104 79 119m61-85c49 15 56 64 10 84M90 25l20-3 21 4M89 130l21 3 20-4" stroke="var(--red)" />
-    {[ [20, 53], [83, 3], [168, 53], [83, 107] ].map(([x,y]) => <g key={x+":"+y} transform={`translate(${x} ${y})`}><rect x="0" y="0" width="35" height="42" rx="3"/><path d="M8 11h19M8 20h19M8 29h13"/></g>)}
-    <g stroke="var(--red)" strokeWidth="7"><circle cx="110" cy="76" r="18"/><path d="M110 49v9m0 37v9M83 76h9m37 0h9M91 57l7 7m25 24 6 7m-38 0 7-7m25-24 6-7"/></g>
-  </svg>;
-}
-
-function ClearDesk() {
-  return <div className="work-story-desk" aria-hidden="true">
-    <Image src="/brand-book/racco-self-avatar.png" alt="" width={1254} height={1254} unoptimized />
-    <svg viewBox="0 0 220 150" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M32 91h122l-11 47H45L32 91Zm9 47h120M20 141h185M169 116h21v23h-21v-23Zm21 5c17-3 17 14 0 12" fill="var(--paper)"/><path d="m89 113 6 6 12-13" stroke="var(--red)"/><path d="m184 104-2-10m-24 3-6-8" stroke="var(--red)"/></svg>
-  </div>;
+function IllustratedWorkStory({ captions }: { captions: readonly string[] }) {
+  return <figure className="work-story work-story-illustrated" data-story-kind="ai-operations">
+    <figcaption className="work-story-note">仕事の変化の例</figcaption>
+    <Image
+      className="work-story-illustration"
+      src="/brand-book/racco-scenes/ai-work-story-ink.png"
+      alt="紙の山に埋もれる人から、歯車で作業を整理し、机で落ち着いて考えるラッコへ"
+      width={2098}
+      height={750}
+      sizes="(max-width: 760px) calc(100vw - 68px), (max-width: 1000px) calc(100vw - 166px), 720px"
+    />
+    <div className="work-story-illustrated-captions">
+      {captions.map(text => <Caption key={text} text={text} />)}
+    </div>
+  </figure>;
 }
 
 function Drawing({ children }: { children: ReactNode }) {
@@ -111,10 +105,11 @@ function RaccoOutcome({ kind }: { kind: Exclude<ServiceId, "ai-operations"> }) {
   </div>;
 }
 
-const beforeScenes = { "ai-operations": PaperPile, crm: ScatteredInformation, digital: BuriedMessage, people: OverloadedRole };
-const changeScenes = { "ai-operations": AutomatedWork, crm: ConnectedInformation, digital: MessageJourney, people: RolesThatFit };
+const beforeScenes = { crm: ScatteredInformation, digital: BuriedMessage, people: OverloadedRole };
+const changeScenes = { crm: ConnectedInformation, digital: MessageJourney, people: RolesThatFit };
 
 export function WorkStory({ kind, captions }: { kind: ServiceId; captions: readonly string[] }) {
+  if (kind === "ai-operations") return <IllustratedWorkStory captions={captions} />;
   const BeforeScene = beforeScenes[kind];
   const ChangeScene = changeScenes[kind];
   return <figure className="work-story" data-story-kind={kind}>
@@ -122,7 +117,7 @@ export function WorkStory({ kind, captions }: { kind: ServiceId; captions: reado
     <div className="work-story-scenes">
       <div><BeforeScene /><Caption text={captions[0]}/></div><ArrowRight className="work-story-arrow" aria-hidden="true" />
       <div><ChangeScene /><Caption text={captions[1]}/></div><ArrowRight className="work-story-arrow" aria-hidden="true" />
-      <div>{kind === "ai-operations" ? <ClearDesk /> : <RaccoOutcome kind={kind} />}<Caption text={captions[2]}/></div>
+      <div><RaccoOutcome kind={kind} /><Caption text={captions[2]}/></div>
     </div>
   </figure>;
 }
