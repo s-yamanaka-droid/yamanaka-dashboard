@@ -12,6 +12,7 @@ import "./company-introduction.css";
 import "./racco-corporate.css";
 import { CookieConsent } from "@/components/CookieConsent";
 import { SiteFrame } from "@/components/site/SiteFrame";
+import { browserIcons, brandShareImage } from "@/lib/browser-brand";
 
 const bebas = Bebas_Neue({ variable: "--font-poster", subsets: ["latin"], weight: "400", display: "swap" });
 
@@ -78,12 +79,14 @@ export const metadata: Metadata = {
     url: "https://lakkan-inc.vercel.app",
     siteName: "株式会社Lakkan",
     title: "株式会社Lakkan",
+    images: [brandShareImage],
     description:
       "株式会社Lakkanの公式サイト。事業内容、公開実績、会社情報をご紹介します。",
   },
   twitter: {
     card: "summary_large_image",
     title: "株式会社Lakkan",
+    images: [brandShareImage.url],
     description:
       "株式会社Lakkanの公式サイト。事業内容、公開実績、会社情報をご紹介します。",
   },
@@ -98,7 +101,7 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  icons: { icon: "/favicon.ico" },
+  icons: browserIcons("lakkan"),
 };
 
 export default function RootLayout({
@@ -124,7 +127,7 @@ export default function RootLayout({
                   name: "株式会社Lakkan",
                   alternateName: ["Lakkan Inc.", "Lakkan", "ラッカン"],
                   url: "https://lakkan-inc.vercel.app",
-                  logo: "https://lakkan-inc.vercel.app/og.png",
+                  logo: "https://lakkan-inc.vercel.app/brand/lakkan-logo/lakkan-a3-wordmark.png",
                   description:
                     "株式会社Lakkanの公式サイト。事業内容、公開実績、会社情報をご紹介します。",
                   foundingDate: "2026-03",

@@ -6,10 +6,22 @@ import { ContactForm } from "@/app/contact/ContactForm";
 import { raccoLogo, raccoRounded } from "@/lib/racco-fonts";
 import { resolveRaccoInquiryContext } from "@/lib/racco-inquiry";
 import "./racco-contact.css";
+import { brandShareImage } from "@/lib/browser-brand";
 
 export const metadata: Metadata = {
   title: "AIのこと、ちょっと話そう。 — Racco",
   description: "自分の仕事だと何に使える？ 毎回やっているこの作業、任せられない？ AIのことも、Raccoのグッズのことも、Lakkanへ気軽にご相談ください。",
+  alternates: { canonical: "/racco/contact" },
+  openGraph: {
+    type: "website", title: "AIのこと、ちょっと話そう。 — Racco",
+    description: "AIのことも、Raccoのグッズのことも、Lakkanへ気軽に。",
+    url: "/racco/contact", images: [brandShareImage],
+  },
+  twitter: {
+    card: "summary_large_image", title: "AIのこと、ちょっと話そう。 — Racco",
+    description: "AIのことも、Raccoのグッズのことも、Lakkanへ気軽に。",
+    images: [brandShareImage.url],
+  },
   robots: { index: false, follow: true },
 };
 

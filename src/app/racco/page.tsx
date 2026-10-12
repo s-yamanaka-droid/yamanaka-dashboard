@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { raccoRounded, raccoLogo } from "@/lib/racco-fonts";
 import BrandStudio from "@/components/brand/BrandStudio";
+import { brandShareImage } from "@/lib/browser-brand";
 
 export const metadata: Metadata = {
   title: "Racco — 同じ作業は、AIに任せたい。",
@@ -10,13 +11,13 @@ export const metadata: Metadata = {
     title: "Racco｜同じ作業は、AIに任せたい。",
     description: "メールの下書きも、調べものも。LakkanのRacco。",
     url: "/racco",
-    images: [{ url: "/brand-book/racco-self-morning.png", width: 1672, height: 941, alt: "太縁メガネと灰色のパーカーで、朝をのんびり過ごすLakkanのRacco" }],
+    images: [brandShareImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "Racco｜同じ作業は、AIに任せたい。",
     description: "メールの下書きも、調べものも。LakkanのRacco。",
-    images: ["/brand-book/racco-self-morning.png"],
+    images: [brandShareImage.url],
   },
   robots: {
     index: true,
