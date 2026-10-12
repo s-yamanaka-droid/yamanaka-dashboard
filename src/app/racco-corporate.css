@@ -7,6 +7,7 @@
 .racco-guide-portrait:active img { transform: rotate(1deg) scale(.98); }
 .racco-guide-speech { position: absolute; z-index: 1; right: 0; top: 8px; width: 142px; padding: 19px 15px; border: 2px solid var(--ink, #17221f); border-radius: 48% 45% 43% 46%; background: var(--paper, #f4f0e8); color: var(--ink, #17221f); font: 900 18px/1.45 var(--font-sans-jp), sans-serif; text-wrap: balance; transform: rotate(6deg); pointer-events: none; }
 .racco-guide-speech::after { content: ""; position: absolute; bottom: -9px; left: 27px; width: 15px; height: 16px; background: var(--paper, #f4f0e8); border-right: 2px solid var(--ink, #17221f); border-bottom: 2px solid var(--ink, #17221f); transform: skew(-25deg) rotate(28deg); }
+.racco-guide-speech > span { display: inline-block; }
 .racco-guide-link { position: absolute; right: 5px; bottom: 30px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 5px 10px; background: var(--paper, #f4f0e8); color: var(--ink, #17221f); border-bottom: 2px solid var(--red, #b4382b); font: 700 14px/1.5 var(--font-sans-jp), sans-serif; transform: rotate(-7deg); }
 .racco-ticket { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 56px; padding: 16px 26px; color: var(--paper, #f4f0e8); background: var(--red, #b4382b); font: 900 20px/1.5 var(--font-sans-jp), sans-serif; clip-path: polygon(2% 0, 100% 2%, 99% 96%, 2% 100%, 0 92%, 0 7%); transform: rotate(-1.5deg); transition: transform .2s, background .2s; text-decoration: none; }
 .racco-ticket svg { flex: 0 0 auto; }
