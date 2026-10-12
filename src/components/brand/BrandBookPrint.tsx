@@ -207,7 +207,7 @@ export function BrandBookPrint() {
               <div><h3>{characterEpithets.automation}</h3><p>{characterBackgrounds.automation}</p></div>
             </div>
           </div>
-          <div className="bp-rule-strip"><h3>先生じゃなく、隣の席。</h3><p>隣人がぼやく。オタクが凝る。現実派が「今日はここまで」とお茶にする。誰かが全員を仕切るわけではない。呼び分けは二つ名で。Raccoの看板は、そのままに。</p></div>
+          <div className="bp-rule-strip"><h3>3匹とも、味方。</h3><p>隣人がぼやく。オタクが凝る。現実派が「今日はここまで」とお茶にする。誰かが全員を仕切るわけではない。呼び分けは二つ名で。Raccoの看板は、そのままに。</p></div>
           <p className="bp-note"><Link href="/racco#members">なかまの紹介：lakkan-inc.vercel.app/racco#members</Link></p>
         </Sheet>
 
