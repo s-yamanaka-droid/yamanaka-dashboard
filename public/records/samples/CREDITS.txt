@@ -27,6 +27,22 @@ Drums: Virtuosity Drums
   License: CC0 1.0 Universal (public domain dedication) — attribution not required, given with thanks.
   Changes: one hit of each drum from the mid microphone, mixed to mono, shortened and faded.
 
+Lo-fi instruments: Versilian Community Sample Library (VCSL)
+  By Versilian Studios — https://github.com/sgossner/VCSL (commit c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e)
+  License: CC0 1.0 Universal (public domain dedication) — attribution not required, given with thanks.
+  Instruments used:
+    Upright piano: "Upright Piano, Yamaha", sustained strikes at the middle dynamic (no release noises), 8 notes.
+    Vibraphone: "Vibraphone", soft mallets at the louder of their two dynamics (not bowed), 11 notes.
+    Kalimba: "Kalimba, Tanzania" (MBira3) plucks, 12 tines.
+    Zither: "Dan Tranh", single plucks at mf (no effects, glissandi, tremolo or vibrato), 12 strings.
+    Tenor saxophone: "Tenor Saxophone", non-vibrato notes (BrettTenor_NV) at the middle dynamic, 8 notes.
+  Changes: converted to mono 44.1 kHz 16-bit FLAC (the piano from its right microphone only, the others
+  with both channels mixed), trimmed to 1 ms before the strike with a 1 ms fade-in, shortened to at most
+  3.5 s (2.5 s for the saxophone) and faded out at the end. Within each instrument every note was raised
+  by the same amount, so the loudest note peaks at -1 dBFS. The kalimba and dan tranh notes were retuned
+  to equal temperament by changing their playback speed (the kalimba's own tuning sits up to about
+  60 cents away from it).
+
 レコードの絵：シカゴ美術館のパブリックドメイン作品（CC0）。イネス《月の出》、モネ《プールヴィルの断崖の散歩》、北斎《神奈川沖浪裏》、広重《原 朝之富士》、モネ《積みわら（夏の終わり）》、モネ《睡蓮》。
 
 楽器の録音について
@@ -36,3 +52,16 @@ Drums: Virtuosity Drums
   打鍵の位置で頭を切り、終わりをフェードアウトさせています。
 ドラム：Virtuosity Drums（Versilian Studios と Karoryfer Samples、CC0）
   mid マイクの各太鼓から1打ずつを使用。モノラルにまとめ、短く切ってフェードアウトさせています。
+ローファイ用の楽器：Versilian Community Sample Library（VCSL、Versilian Studios、CC0）
+  https://github.com/sgossner/VCSL （コミット c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e）
+  使用した楽器：
+    アップライトピアノ（Upright Piano, Yamaha）中くらいの強さの打鍵、リリース音なし、8音
+    ビブラフォン（Vibraphone）ソフトマレットの強い方、弓弾きなし、11音
+    カリンバ（Kalimba, Tanzania）12本の舌
+    ダン・チャン（Dan Tranh）mf で1音ずつ弾いた録音、FX・グリッサンド・トレモロ・ビブラートなし、12本の弦
+    テナーサックス（Tenor Saxophone）ノンビブラート、中くらいの強さ、8音
+  モノラル・44.1kHz・16bit の FLAC に変換し（ピアノは右マイクだけ、他は左右を混ぜて）、
+  打鍵の 1ms 手前で頭を切って 1ms のフェードインを付け、最大3.5秒（サックスは2.5秒）に切り詰めて
+  終わりをフェードアウトさせています。楽器ごとに全部の音を同じだけ持ち上げ、いちばん大きい音の
+  ピークを -1dBFS にしています。カリンバとダン・チャンは、再生速度を変えて平均律の高さに
+  合わせ直しています（カリンバは楽器の調律そのものが平均律から最大で約60セント離れているため）。

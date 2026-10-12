@@ -7,6 +7,8 @@
  * is ready (or if it never loads) the synthesised instruments play instead.
  */
 
+import LOFI from "./lofi-samples.json"
+
 /** One Wurlitzer recording and the keys it covers, from the instrument's SFZ map. */
 export type WurliZone = { file: string; lo: number; hi: number; center: number; tune: number; volume: number }
 
@@ -37,10 +39,17 @@ export type SampleSource = { base: string; ext: "flac" | "wav" }
 export type SampleBank = {
   wurli: Record<string, AudioBuffer>
   drums: Record<DrumHit, AudioBuffer>
+  /** Recorded instruments played across the keyboard, each a few notes apart; filled in as they arrive. */
+  inst: Record<string, { midi: number; buf: AudioBuffer }[]>
 }
 
-/** Every recording the bank needs, as paths under the samples folder, without the extension. */
+/** The core recordings (Wurlitzer and kit), as paths under the samples folder, without the extension. */
 export const SAMPLE_FILES: string[] = [...[...WURLI.mp, ...WURLI.f].map((w) => `wurlitzer/${w.file}`), ...DRUMS.map((d) => `drums/${d}`)]
+
+/** The lo-fi instruments (scripts/prepare-lofi-samples.py): each note's file and the pitch it sounds. */
+export const INSTRUMENTS: Record<string, { file: string; midi: number }[]> = LOFI
+/** Their files, fetched after the core ones so the first record isn't kept waiting. */
+export const INSTRUMENT_FILES: string[] = Object.values(INSTRUMENTS).flatMap((notes) => notes.map((n) => n.file))
 
 /** The zone that plays a key at a loudness: f from 0.5 up, mp below. */
 export function wurliZone(midi: number, vel: number): WurliZone {
@@ -53,12 +62,12 @@ export type Bytes = Map<string, ArrayBuffer>
 
 const fetched = new Map<string, Promise<Bytes>>()
 
-/** Fetch every file once per source; the same promise is handed to every player on the page. */
-export function fetchSamples(src: SampleSource, get: (url: string) => Promise<ArrayBuffer> = defaultGet): Promise<Bytes> {
-  const key = `${src.base}*.${src.ext}`
+/** Fetch a set of files once per source; the same promise is handed to every player on the page. */
+export function fetchSamples(src: SampleSource, files: string[] = SAMPLE_FILES, get: (url: string) => Promise<ArrayBuffer> = defaultGet): Promise<Bytes> {
+  const key = `${src.base}*.${src.ext}:${files.length}:${files[0]}`
   let p = fetched.get(key)
   if (!p) {
-    p = Promise.all(SAMPLE_FILES.map(async (f) => [f, await get(`${src.base}${f}.${src.ext}`)] as const)).then((pairs) => new Map(pairs))
+    p = Promise.all(files.map(async (f) => [f, await get(`${src.base}${f}.${src.ext}`)] as const)).then((pairs) => new Map(pairs))
     // a failed load may be retried later (the network came back)
     p.catch(() => fetched.delete(key))
     fetched.set(key, p)
@@ -75,7 +84,7 @@ async function defaultGet(url: string): Promise<ArrayBuffer> {
 /** Decode the bytes for one audio context. Decoding detaches a buffer, so each context gets copies. */
 export async function decodeSamples(ctx: BaseAudioContext, bytes: Bytes): Promise<SampleBank> {
   const decoded = new Map<string, AudioBuffer>()
-  await Promise.all([...bytes].map(async ([f, b]) => decoded.set(f, await ctx.decodeAudioData(b.slice(0)))))
+  await Promise.all(SAMPLE_FILES.map(async (f) => { const b = bytes.get(f); if (b) decoded.set(f, await ctx.decodeAudioData(b.slice(0))) }))
   const take = (f: string) => {
     const buf = decoded.get(f)
     if (!buf) throw new Error(`missing sample ${f}`)
@@ -84,5 +93,15 @@ export async function decodeSamples(ctx: BaseAudioContext, bytes: Bytes): Promis
   const wurli: Record<string, AudioBuffer> = {}
   for (const w of [...WURLI.mp, ...WURLI.f]) wurli[w.file] = take(`wurlitzer/${w.file}`)
   const drums = Object.fromEntries(DRUMS.map((d) => [d, take(`drums/${d}`)])) as Record<DrumHit, AudioBuffer>
-  return { wurli, drums }
+  return { wurli, drums, inst: await decodeInstruments(ctx, bytes) }
+}
+
+/** The lo-fi instruments among some bytes, decoded; an instrument missing any note is left out. */
+export async function decodeInstruments(ctx: BaseAudioContext, bytes: Bytes): Promise<SampleBank["inst"]> {
+  const out: SampleBank["inst"] = {}
+  for (const [name, notes] of Object.entries(INSTRUMENTS)) {
+    if (!notes.every((n) => bytes.has(n.file))) continue
+    out[name] = await Promise.all(notes.map(async (n) => ({ midi: n.midi, buf: await ctx.decodeAudioData(bytes.get(n.file)!.slice(0)) })))
+  }
+  return out
 }

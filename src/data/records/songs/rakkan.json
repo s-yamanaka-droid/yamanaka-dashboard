@@ -3,15 +3,26 @@
   "kind": "score",
   "key": "Eb",
   "mode": "major",
-  "bpm": 86,
-  "groove": "city",
+  "bpm": 80,
+  "style": "lofi",
+  "groove": "lofi",
   "keys": "rhodes",
-  "lead": "vibes",
+  "lead": "piano",
+  "octave": 0,
   "texture": "vinyl",
-  "swing": 0.12,
+  "swing": 0.22,
   "seed": 7,
   "a": {
-    "chords": ["IVmaj9", "IIIm7 VI7b9", "IIm9", "V9sus V13", "Imaj9", "bVII9", "VIm9 bVImaj7#11", "IIm9 V13"],
+    "chords": [
+      "IVmaj9",
+      "IIIm7 VI7b9",
+      "IIm9",
+      "V9sus V13",
+      "Imaj9",
+      "bVII9",
+      "VIm9 bVImaj7#11",
+      "IIm9 V13"
+    ],
     "melody": [
       ". C5 Eb5 G5 - - Eb5 C5",
       "D5 - Bb4 G4 E5 - Db5 C5",
@@ -24,7 +35,16 @@
     ]
   },
   "b": {
-    "chords": ["IVmaj7", "IIIm7", "IIm9", "Imaj7/III", "IVmaj7", "IIIm7 VI7b9", "IIm9", "V9sus V13"],
+    "chords": [
+      "IVmaj7",
+      "IIIm7",
+      "IIm9",
+      "Imaj7/III",
+      "IVmaj7",
+      "IIIm7 VI7b9",
+      "IIm9",
+      "V9sus V13"
+    ],
     "melody": [
       "Eb4 F4 G4 Ab4 C5 - - Bb4",
       "Bb4 - D5 - F5 - D5 C5",
@@ -37,7 +57,16 @@
     ]
   },
   "c": {
-    "chords": ["IVmaj9", "V13", "IIIm7 VI7b9", "VIm9", "IVmaj9", "V13", "IIIm7 bIIImaj7", "IIm9 V13"],
+    "chords": [
+      "IVmaj9",
+      "V13",
+      "IIIm7 VI7b9",
+      "VIm9",
+      "IVmaj9",
+      "V13",
+      "IIIm7 bIIImaj7",
+      "IIm9 V13"
+    ],
     "melody": [
       "Eb5 - - G5 - - Bb5 -",
       "Ab5 - - - G5 - - -",

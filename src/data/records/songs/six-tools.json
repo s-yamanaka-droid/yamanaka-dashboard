@@ -3,12 +3,14 @@
   "kind": "score",
   "key": "D",
   "mode": "major",
-  "bpm": 80,
-  "groove": "city",
+  "bpm": 72,
+  "style": "lofi",
+  "groove": "lofi",
   "keys": "rhodes",
-  "lead": "glass",
+  "lead": "sax",
+  "octave": -1,
   "texture": "vinyl",
-  "swing": 0.14,
+  "swing": 0.26,
   "seed": 41,
   "a": {
     "chords": [

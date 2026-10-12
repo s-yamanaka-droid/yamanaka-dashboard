@@ -14,7 +14,7 @@
  */
 
 import { midiToHz, rng } from "./theory"
-import type { LeadTone, NoteEvent, Texture } from "./compose"
+import type { LeadTone, NoteEvent, RecordedLead, Texture, TrackSpec } from "./compose"
 import { wurliZone, type DrumHit, type SampleBank } from "./samples"
 
 /** Where the recorded instruments arrive once decoded; shared by the rig and every deck on it. */
@@ -67,6 +67,8 @@ export type Deck = {
   nodes: AudioNode[]
   /** The rig's recorded instruments; empty until they load, and the synths play meanwhile. */
   samples: SampleSlot
+  /** A lo-fi record: muffled, wobbling, the keys pumping harder on the kick, a rounder bass. */
+  lofi: boolean
 }
 
 export const MASTER_LEVEL = 0.66
@@ -183,13 +185,39 @@ export function createRig(ctx: BaseAudioContext, out: AudioNode, withAnalyser: b
   return { ctx, master, reverb, room, reverbReturn: ret, predelay, roomVerb, roomIr, roomReturn, analyser, samples: { current: null } }
 }
 
-export function createDeck(rig: Rig, bpm: number): Deck {
+export function createDeck(rig: Rig, bpm: number, lofi = false): Deck {
   const { ctx } = rig
   const bus = ctx.createGain()
   const dry = ctx.createGain()
   const fx = ctx.createGain()
   const fxRoom = ctx.createGain()
-  dry.connect(bus).connect(rig.master)
+  dry.connect(bus)
+  const tapeNodes: AudioNode[] = []
+  const tapeSources: AudioScheduledSourceNode[] = []
+  if (lofi) {
+    // a worn tape: the top rolled off, the lowest rumble cut, and a slow pitch drift with a little flutter
+    const top = ctx.createBiquadFilter()
+    top.type = "lowpass"
+    top.frequency.value = 5200
+    top.Q.value = 0.45
+    const floor = ctx.createBiquadFilter()
+    floor.type = "highpass"
+    floor.frequency.value = 48
+    const drift = ctx.createDelay(0.05)
+    drift.delayTime.value = 0.008
+    for (const [hz, depth] of [[0.31, 0.0016], [4.8, 0.00007]] as const) {
+      const lfo = ctx.createOscillator()
+      lfo.frequency.value = hz
+      const amt = ctx.createGain()
+      amt.gain.value = depth
+      lfo.connect(amt).connect(drift.delayTime)
+      lfo.start()
+      tapeSources.push(lfo)
+      tapeNodes.push(amt)
+    }
+    bus.connect(floor).connect(top).connect(drift).connect(rig.master)
+    tapeNodes.push(top, floor, drift)
+  } else bus.connect(rig.master)
   fx.connect(rig.predelay)
   fxRoom.connect(rig.roomVerb)
   const nodes: AudioNode[] = [fxRoom]
@@ -284,9 +312,10 @@ export function createDeck(rig: Rig, bpm: number): Deck {
   keys.connect(send.pad)
   return {
     bus, dry, fx, fxRoom, send, echo, keys, duck, ch,
-    sources,
+    sources: [...sources, ...tapeSources],
     samples: rig.samples,
-    nodes: [bus, dry, fx, ...Object.values(send), echo, delay, fb, tone, keys, wobble, depth, middle, ...nodes],
+    lofi,
+    nodes: [bus, dry, fx, ...Object.values(send), echo, delay, fb, tone, keys, wobble, depth, middle, ...nodes, ...tapeNodes],
   }
 }
 
@@ -413,7 +442,9 @@ function bass(ctx: BaseAudioContext, deck: Deck, t: number, midi: number, vel: n
   saw.type = "sawtooth"
   saw.frequency.value = f
   const sg = ctx.createGain()
-  sg.gain.value = 0.45
+  // a lo-fi bass is mostly the round sine underneath
+  sg.gain.value = deck.lofi ? 0.16 : 0.45
+  if (deck.lofi) lp.frequency.value = 340
   saw.connect(sg).connect(lp)
   const sub = ctx.createOscillator()
   sub.type = "sine"
@@ -573,12 +604,12 @@ function kick(ctx: BaseAudioContext, deck: Deck, t: number, vel: number) {
   duckOn(deck, t)
 }
 
-/** The keys and pad lean back for an instant, so the kick lands clean. */
+/** The keys and pad lean back for an instant, so the kick lands clean (on a lo-fi record, a clear pump). */
 function duckOn(deck: Deck, t: number) {
   const d = deck.duck.gain
   d.setValueAtTime(1, t)
-  d.linearRampToValueAtTime(0.8, t + 0.012)
-  d.setTargetAtTime(1, t + 0.03, 0.08)
+  d.linearRampToValueAtTime(deck.lofi ? 0.62 : 0.8, t + 0.012)
+  d.setTargetAtTime(1, t + 0.03, deck.lofi ? 0.16 : 0.08)
 }
 
 function snare(ctx: BaseAudioContext, deck: Deck, t: number, vel: number) {
@@ -760,19 +791,38 @@ function openHat(ctx: BaseAudioContext, deck: Deck, t: number, vel: number) {
  * Levels that sit each recording where its synth stood, measured by
  * scripts/calibrate-samples.test.ts (loudness over the first part of a hit).
  */
-export const SAMPLE_GAIN: Record<DrumHit | "wurli", number> = {
+export const SAMPLE_GAIN: Record<DrumHit | "wurli" | "keys-piano" | Instrument, number> = {
   wurli: 0.287,
-  kick: 1.855,
-  snare: 0.191,
+  kick: 1.803,
+  snare: 0.190,
   ghost: 1.115,
-  rim: 0.244,
+  rim: 0.243,
   hat: 1.002,
   "hat-hard": 0.106,
   ohat: 0.826,
   crash: 0.243,
-  htom: 0.608,
+  htom: 0.609,
   ltom: 0.516,
+  "keys-piano": 0.222,
+  "upright-piano": 0.247,
+  vibraphone: 0.093,
+  kalimba: 0.140,
+  zither: 0.151,
+  "tenor-sax": 0.093,
 }
+
+/** The recorded melody instruments, by the folder their notes live in under public/samples. */
+export const RECORDED: Record<RecordedLead, Instrument> = {
+  piano: "upright-piano",
+  vibraphone: "vibraphone",
+  kalimba: "kalimba",
+  zither: "zither",
+  sax: "tenor-sax",
+}
+export type Instrument = "upright-piano" | "vibraphone" | "kalimba" | "zither" | "tenor-sax"
+/** The synth that plays a recorded instrument's part until its notes arrive. */
+const STANDIN: Record<RecordedLead, LeadTone> = { piano: "bell", vibraphone: "vibes", kalimba: "pluck", zither: "pluck", sax: "reed" }
+const isRecorded = (tone: LeadTone): tone is RecordedLead => tone in RECORDED
 
 /** One recording, from time t, at a playback rate; cut away softly after `hold` seconds if given. */
 function sample(ctx: BaseAudioContext, buf: AudioBuffer, t: number, gain: number, outs: AudioNode[], rate = 1, hold?: number, release = 0.15) {
@@ -799,6 +849,13 @@ function wurlitzer(ctx: BaseAudioContext, deck: Deck, bank: SampleBank, t: numbe
   const w = wurliZone(midi, vel)
   const rate = 2 ** ((midi - w.center) / 12 + w.tune / 1200)
   sample(ctx, bank.wurli[w.file], t, SAMPLE_GAIN.wurli * vel * 10 ** (w.volume / 20), [deck.keys], rate, Math.max(dur, 0.2), 0.22)
+}
+
+/** A note on a recorded instrument: the nearest of its recordings, retuned to the key. */
+function multi(ctx: BaseAudioContext, notes: { midi: number; buf: AudioBuffer }[], t: number, midi: number, gain: number, outs: AudioNode[], hold: number, release: number) {
+  let near = notes[0]
+  for (const n of notes) if (Math.abs(n.midi - midi) < Math.abs(near.midi - midi)) near = n
+  sample(ctx, near.buf, t, gain, outs, 2 ** ((midi - near.midi) / 12), hold, release)
 }
 
 /** The kit, played from its recordings; the shaker stays synthesised. Returns false for anything it doesn't play. */
@@ -835,11 +892,20 @@ function drum(ctx: BaseAudioContext, deck: Deck, bank: SampleBank, ev: NoteEvent
   }
 }
 
-export function playNote(ctx: BaseAudioContext, deck: Deck, ev: NoteEvent, t: number, stepSec: number, tone: LeadTone) {
+export function playNote(ctx: BaseAudioContext, deck: Deck, ev: NoteEvent, t: number, stepSec: number, tone: LeadTone, keysOn: TrackSpec["keys"] = "rhodes") {
   const dur = ev.len * stepSec
   const bank = deck.samples.current
   if (bank) {
-    if (ev.voice === "keys") return wurlitzer(ctx, deck, bank, t, ev.midi, ev.vel, dur)
+    if (ev.voice === "keys") {
+      // an upright piano skips the electric piano's tremolo and chorus
+      const piano = keysOn === "piano" ? bank.inst["upright-piano"] : undefined
+      if (piano?.length) return multi(ctx, piano, t, ev.midi, SAMPLE_GAIN["keys-piano"] * ev.vel, [deck.duck, deck.send.pad], Math.max(dur, 0.25), 0.35)
+      return wurlitzer(ctx, deck, bank, t, ev.midi, ev.vel, dur)
+    }
+    if (ev.voice === "lead" && isRecorded(tone)) {
+      const notes = bank.inst[RECORDED[tone]]
+      if (notes?.length) return multi(ctx, notes, t, ev.midi, SAMPLE_GAIN[RECORDED[tone]] * ev.vel, [deck.ch.lead, deck.send.lead, deck.echo], Math.max(dur, 0.12), tone === "sax" ? 0.12 : 0.3)
+    }
     if (drum(ctx, deck, bank, ev, t, dur)) return
   }
   switch (ev.voice) {
@@ -852,7 +918,7 @@ export function playNote(ctx: BaseAudioContext, deck: Deck, ev: NoteEvent, t: nu
     case "bass":
       return bass(ctx, deck, t, ev.midi, ev.vel, dur)
     case "lead":
-      return lead(ctx, deck, t, ev.midi, ev.vel, dur, tone)
+      return lead(ctx, deck, t, ev.midi, ev.vel, dur, isRecorded(tone) ? STANDIN[tone] : tone)
     case "kick":
       return kick(ctx, deck, t, ev.vel)
     case "snare":
