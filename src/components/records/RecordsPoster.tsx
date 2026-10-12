@@ -85,7 +85,7 @@ function Title({ text }: { text: string }) {
     <span className="lx-ptitle-type" aria-hidden="true">
       {[...text.toUpperCase()].map((ch, i) => (
         <span key={i} className="lx-glyph" style={{ ["--i" as string]: i } as React.CSSProperties}>
-          {ch === " " ? " " : ch}
+          {ch === " " ? "\u00a0" : ch}
         </span>
       ))}
     </span>

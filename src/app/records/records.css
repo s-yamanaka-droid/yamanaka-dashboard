@@ -268,18 +268,18 @@ div.dcc-root {
    poster: red on paper (the taste the Lakkan site is moving to)
    ===================================================================================== */
 .dr-stage[data-theme="poster"] {
-  --dr-bg: #F4F0E8;
+  --dr-bg: #FFFFFF;
   --dr-ink: #17221F;
   --dr-accent: #B4382B;
-  --color-background: #F4F0E8;
+  --color-background: #FFFFFF;
   --color-foreground: #17221F;
   --color-primary: #17221F;
   color: #17221F;
-  background: #F4F0E8;
+  background: #FFFFFF;
 }
 .dr-stage[data-layout="poster"] { --dr-stage-x: 73%; --dr-stage-y: 52%; }
 .dr-stage[data-layout="poster"] .dr-glow { opacity: 0; }
-.dr-stage[data-layout="poster"] .lx-scrim { background: linear-gradient(90deg, #F4F0E8 0, #F4F0E8 45cqw, transparent 54cqw); }
+.dr-stage[data-layout="poster"] .lx-scrim { background: linear-gradient(90deg, #FFFFFF 0, #FFFFFF 45cqw, transparent 54cqw); }
 
 /* the site's faces: Bebas Neue (the home poster's letters) for Latin labels and
    numbers, Noto Sans JP for Japanese */
@@ -368,7 +368,7 @@ div.dcc-root {
 
 @container (max-width: 720px) {
   .dr-stage[data-layout="poster"] .dcc-stage { --dr-stage-x: 56%; --dr-stage-y: 72%; }
-  .dr-stage[data-layout="poster"] .lx-scrim { background: linear-gradient(180deg, #F4F0E8 0, #F4F0E8 48svh, transparent 56svh), linear-gradient(0deg, #F4F0E8 0, #F4F0E8 90px, transparent 160px); }
+  .dr-stage[data-layout="poster"] .lx-scrim { background: linear-gradient(180deg, #FFFFFF 0, #FFFFFF 48svh, transparent 56svh), linear-gradient(0deg, #FFFFFF 0, #FFFFFF 90px, transparent 160px); }
   .lx-poster { width: calc(100cqw - var(--dr-pad) * 2); top: calc(var(--dr-pad) * 4); }
   
   .lx-ptitle { margin-bottom: 14px; }

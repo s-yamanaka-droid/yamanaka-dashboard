@@ -1,5 +1,18 @@
+Lakkan Records — credits
+========================
+
+Picture discs: public-domain artworks from the Art Institute of Chicago (CC0)
+  https://www.artic.edu/open-access/public-api
+  01 Lakkan   George Inness, Moonrise (1891)
+  02 Recruit  Claude Monet, Cliff Walk at Pourville (1882)
+  03 AI Work  Katsushika Hokusai, Under the Wave off Kanagawa (1830/33)
+  04 Product  Utagawa Hiroshige, Hara: Mount Fuji in the Morning (1833/34)
+  05 Method   Claude Monet, Stacks of Wheat (End of Summer) (1890/91)
+  06 Contact  Claude Monet, Water Lilies (1906)
+  Cropped to a square, with grooves, sheen and a label added (scripts/records-picture-discs.py).
+
 Recorded instruments used by the record player
-==============================================
+----------------------------------------------
 
 Electric piano: Wurlitzer EP200
   Samples by Greg Sullivan — http://www.sullivang.net/
@@ -13,6 +26,8 @@ Drums: Virtuosity Drums
   Source: https://github.com/sfzinstruments/virtuosity_drums
   License: CC0 1.0 Universal (public domain dedication) — attribution not required, given with thanks.
   Changes: one hit of each drum from the mid microphone, mixed to mono, shortened and faded.
+
+レコードの絵：シカゴ美術館のパブリックドメイン作品（CC0）。イネス《月の出》、モネ《プールヴィルの断崖の散歩》、北斎《神奈川沖浪裏》、広重《原 朝之富士》、モネ《積みわら（夏の終わり）》、モネ《睡蓮》。
 
 楽器の録音について
 ------------------
