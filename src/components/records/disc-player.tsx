@@ -120,8 +120,8 @@ export default function DiscPlayer({
 
   // fetch the recorded instruments now, so they're ready by the first tap
   React.useEffect(() => {
-    if (samples !== false) engine().preload(samples)
-  }, [engine, samples])
+    if (samples !== false) engine().preload(samples, records.flatMap((r) => (r.track ? [r.track] : [])))
+  }, [engine, samples, records])
 
   const hold = React.useCallback((on: boolean) => {
     heldRef.current = on

@@ -3,14 +3,14 @@
   "kind": "score",
   "key": "E",
   "mode": "dorian",
-  "bpm": 84,
+  "bpm": 108,
   "style": "lofi",
-  "groove": "lofi",
+  "groove": "latin",
   "keys": "piano",
-  "lead": "vibraphone",
+  "lead": "kalimba",
   "octave": 0,
   "texture": "vinyl",
-  "swing": 0.2,
+  "swing": 0,
   "seed": 31,
   "a": {
     "chords": [
