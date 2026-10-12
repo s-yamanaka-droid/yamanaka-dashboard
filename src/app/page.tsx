@@ -55,7 +55,8 @@ export default function Home() {
         <div className="people-links">
           <Link href="/services"><span>01 / WHAT WE DO</span><strong>できること</strong><ArrowUpRight aria-hidden="true" /></Link>
           <Link href="/works"><span>02 / SELECTED WORKS</span><strong>制作・運用例</strong><ArrowUpRight aria-hidden="true" /></Link>
-          <Link href="/workshop"><span>03 / INTERACTIVE</span><strong>工房を探索する</strong><ArrowUpRight aria-hidden="true" /></Link>
+          <Link href="/records"><span>03 / LAKKAN RECORDS</span><strong>Lakkanを聴く</strong><ArrowUpRight aria-hidden="true" /></Link>
+          <Link href="/workshop"><span>04 / INTERACTIVE</span><strong>工房を探索する</strong><ArrowUpRight aria-hidden="true" /></Link>
         </div>
         <div className="people-outro">
           <p>一緒に、次の動きを。</p>

@@ -11,6 +11,7 @@
 .company-introduction-copy > .company-introduction-lead { margin-bottom: 28px; font: 600 clamp(23px, 2.2vw, 30px)/1.65 var(--font-mincho), serif; letter-spacing: -.025em; }
 .company-introduction-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 32px; min-height: 48px; margin-top: 10px; border-bottom: 1px solid #b4382b; color: #b4382b; text-decoration: none; font-size: 14px; font-weight: 700; }
 .company-introduction-link svg { flex-shrink: 0; }
+.company-introduction-actions { display: flex; flex-wrap: wrap; gap: 8px 30px; }
 .corporate-frame .company-introduction .company-eyebrow { margin: 0 0 26px; }
 .corporate-frame .company-introduction .company-introduction-caption { margin: 26px 0 0; }
 .corporate-frame .company-introduction-copy > p { margin: 0 0 22px; }

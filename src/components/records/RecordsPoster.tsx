@@ -130,7 +130,7 @@ function Poster({ api, discs }: { api: PlayerApi; discs: RecordDisc[] }) {
       <NowPlaying {...api.transport} className="lx-tp lx-ptp" />
       <Pager api={api} n={discs.length} />
       <footer className="lx-prow lx-prow-bottom">
-        <span className="lx-plabel">採用支援・AI研修・プロダクト開発</span>
+        <Link className="lx-plabel lx-plink" href="/services">できることを見る <ArrowUpRight size={15} aria-hidden="true" /></Link>
         <Rule />
         {/* the Wurlitzer recordings ask for credit (CC BY 3.0) */}
         <a className="lx-plabel lx-plink" href="/records/samples/CREDITS.txt">
