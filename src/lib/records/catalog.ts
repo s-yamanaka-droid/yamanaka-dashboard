@@ -32,5 +32,7 @@ export const recordDiscs: RecordDisc[] = loadLakkanDiscs(discsJson, songs).map((
     colors: i % 2 ? [INKS.paper, INKS.ink, INKS.red] : [INKS.paper, INKS.red, INKS.ink],
     ink: INKS.ink,
     face: "glyph",
+    mark: "",
+    hideTitle: d.id === "lakkan",
   }),
 )

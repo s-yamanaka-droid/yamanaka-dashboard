@@ -76,6 +76,16 @@ try {
     } else if (path === "/records") {
       assert.ok(html.includes('data-layout="poster"') && html.includes('class="dr-play"'), 'records renders the poster record player');
       assert.ok(html.includes('data-lakkan-logo="wordmark"') && html.includes('href="/contact?topic=other#inquiry"'), 'records carries the logo and the inquiry link');
+      assert.equal((html.match(/data-lakkan-logo="wordmark"/g) ?? []).length, 2, 'records header and company heading both use the approved wordmark');
+      const discImage = (html.match(/<img\b[^>]*>/g) ?? []).find(tag => tag.includes('alt="Lakkan のレコード"'));
+      assert.ok(discImage, 'company record face is rendered');
+      assert.ok(html.includes('data-record-imprint="lakkan"'), 'company record carries its original wordmark');
+      assert.equal((html.match(/data-record-imprint="business"/g) ?? []).length, 5, 'all business records carry the company imprint');
+      const logoResponse = await fetch(base + '/brand/lakkan-logo/lakkan-a3-wordmark.png');
+      assert.equal(logoResponse.status, 200, 'approved record logo is delivered');
+      const approvedLogo = readFileSync(new URL('../public/brand/lakkan-logo/lakkan-a3-wordmark.png', import.meta.url));
+      assert.ok(Buffer.from(await logoResponse.arrayBuffer()).equals(approvedLogo), 'record logo retains the approved original PNG bytes');
+      assert.ok(Buffer.byteLength(html) < 500_000, 'record artwork shares the logo asset without duplicating PNG bytes in page markup');
       assert.ok(html.includes('href="/records/samples/CREDITS.txt"'), 'records credits its recorded instruments');
     } else if (["/racco", "/concept", "/brand-book", "/brand-guide"].includes(path)) {
       assert.ok(html.includes(path === "/brand-book" ? 'brand-print-route' : path === "/brand-guide" ? 'brand-studio' : 'brand-library'), path + " renders the appropriate brand edition");

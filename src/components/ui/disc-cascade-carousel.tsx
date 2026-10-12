@@ -47,6 +47,8 @@ export type DiscCascadeItem = {
   /** Label art. Without one the label is generated from `pattern` and `palette`. */
   src?: string
   alt?: string
+  /** Artwork that turns with the disc; external brand assets can be cached once. */
+  artworkOverlay?: React.ReactNode
   /** Generated label pattern. Defaults by position. */
   pattern?: DiscPattern
   /** Generated label colours: background, figure, accent. */
@@ -1107,6 +1109,7 @@ export default function DiscCascadeCarousel({
                           <Art pattern={item.pattern ?? PATTERNS[i % PATTERNS.length]} pal={pal} seed={i + 1} uid={id} />
                         </svg>
                       )}
+                      {item.artworkOverlay}
                       <Print item={item} i={i} uid={id} mark={brand} ink={ink} halo={item.src ? "rgba(0,0,0,.45)" : pal[0]} />
                     </span>
                   </span>

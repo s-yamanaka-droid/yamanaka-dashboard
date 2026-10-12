@@ -12,7 +12,7 @@
 import { QUALITIES, type Chord, type Groove, type LeadTone, type Quality, type Texture, type TrackSpec } from "./music/compose"
 import { formBars, type Score, type ScoreNote } from "./music/song"
 import { mod, SCALES, type ScaleName } from "./music/theory"
-import { vinylFace, type LabelArt } from "./vinyl"
+import { vinylFace, type LabelArt, type VinylLabel } from "./vinyl"
 
 
 const GROOVES: Groove[] = ["drift", "lofi", "pulse", "drive", "bounce", "city", "shuffle"]
@@ -237,7 +237,7 @@ export function loadLakkanDiscs(raw: unknown, songs: Map<string, Song>): LakkanD
  * A disc ready for the carousel: the record face drawn, the song attached.
  * `print` reprints every label in one set of inks, keeping each disc's pattern.
  */
-export function pressRecord(d: LakkanDisc, i: number, print?: { colors: [string, string, string]; ink: string; face?: "type" | "glyph" }) {
+export function pressRecord(d: LakkanDisc, i: number, print?: Pick<VinylLabel, "colors" | "ink" | "face" | "mark" | "hideTitle">) {
   return {
     title: d.title,
     src: vinylFace({ title: d.title, sub: "SIDE A · 33⅓ RPM", mark: "LAKKAN", ...d.label, ...print }, i + 3),

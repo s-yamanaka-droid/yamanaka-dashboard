@@ -330,6 +330,8 @@ div.dcc-root {
 .lx-poster { position: absolute; left: var(--dr-pad); top: calc(var(--dr-pad) * 2.4); width: min(44cqw, 620px); }
 .lx-pno { margin-bottom: 18px !important; font-size: 13px; }
 .lx-ptitle { margin: 0 0 22px; color: #B4382B; }
+.lx-ptitle-logo { display: block; width: min(100%, 560px); overflow: hidden; }
+.lx-ptitle-logo svg { display: block; width: 100%; height: auto; margin: 0; animation: lx-rise 0.75s cubic-bezier(0.2, 0.9, 0.2, 1) both; }
 /* the record's name in the home poster's face, clipped so each letter can rise into it */
 .lx-ptitle-type {
   display: block;
@@ -341,7 +343,7 @@ div.dcc-root {
   letter-spacing: 0.01em;
   white-space: nowrap;
 }
-.lx-plogo { display: block; line-height: 0; }
+.lx-plogo { display: flex; align-items: center; flex: 0 0 auto; min-height: 44px; line-height: 0; }
 .lx-plogo:focus-visible { outline: 2px solid #B4382B; outline-offset: 4px; }
 
 .lx-glyph { display: inline-block; animation: lx-rise 0.75s cubic-bezier(0.2, 0.9, 0.2, 1) both; animation-delay: calc(var(--i) * 45ms); }
@@ -367,7 +369,7 @@ div.dcc-root {
 @container (max-width: 720px) {
   .dr-stage[data-layout="poster"] .dcc-stage { --dr-stage-x: 56%; --dr-stage-y: 72%; }
   .dr-stage[data-layout="poster"] .lx-scrim { background: linear-gradient(180deg, #F4F0E8 0, #F4F0E8 48svh, transparent 56svh), linear-gradient(0deg, #F4F0E8 0, #F4F0E8 90px, transparent 160px); }
-  .lx-poster { width: calc(100cqw - var(--dr-pad) * 2); top: calc(var(--dr-pad) * 3); }
+  .lx-poster { width: calc(100cqw - var(--dr-pad) * 2); top: calc(var(--dr-pad) * 4); }
   
   .lx-ptitle { margin-bottom: 14px; }
   .lx-ptitle-type { font-size: 84px; }
@@ -375,5 +377,5 @@ div.dcc-root {
   .lx-plabel { font-size: 11px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .lx-glyph { animation: none; }
+  .lx-glyph, .lx-ptitle-logo svg { animation: none; }
 }

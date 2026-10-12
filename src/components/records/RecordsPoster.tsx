@@ -25,9 +25,13 @@ const CONTACT = "/contact?topic=other#inquiry";
 const pad2 = (n: number) => String(n).padStart(2, "0");
 
 export function RecordsPoster({ discs }: { discs: RecordDisc[] }) {
+  const records = React.useMemo(() => discs.map(disc => ({
+    ...disc,
+    artworkOverlay: <RecordImprint companyTitle={disc.title === "Lakkan"} />,
+  })), [discs]);
   return (
     <DiscPlayer
-      records={discs}
+      records={records}
       theme="poster"
       medium="vinyl"
       samples={SAMPLES}
@@ -43,6 +47,21 @@ export function RecordsPoster({ discs }: { discs: RecordDisc[] }) {
   );
 }
 
+/** Keep the approved PNG as a cached asset inside the rotating artwork. */
+function RecordImprint({ companyTitle }: { companyTitle: boolean }) {
+  const mark = (x: number, y: number, width: number) => (
+    <svg x={x} y={y} width={width} height={width * 438 / 1830} viewBox="75 170 1830 438">
+      <image href="/brand/lakkan-logo/lakkan-a3-wordmark.png" width="1983" height="793" />
+    </svg>
+  );
+  return (
+    <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false" data-record-imprint={companyTitle ? "lakkan" : "business"}>
+      {companyTitle && mark(80, 74, 38)}
+      {mark(88, 122, 24)}
+    </svg>
+  );
+}
+
 function Rule() {
   return (
     <span className="lx-rule" aria-hidden="true">
@@ -53,8 +72,15 @@ function Rule() {
   );
 }
 
-/** The record's title in the home page's poster face, each letter rising into place. */
+/** The company keeps its approved wordmark; business titles use the poster face. */
 function Title({ text }: { text: string }) {
+  if (text === "Lakkan") {
+    return (
+      <span className="lx-ptitle-logo" aria-hidden="true">
+        <LakkanLogo size="feature" tone="red" />
+      </span>
+    );
+  }
   return (
     <span className="lx-ptitle-type" aria-hidden="true">
       {[...text.toUpperCase()].map((ch, i) => (
@@ -97,7 +123,7 @@ function Poster({ api, discs }: { api: PlayerApi; discs: RecordDisc[] }) {
       <div className="lx-scrim" aria-hidden="true" />
       <header className="lx-prow lx-prow-top">
         <Link className="lx-plogo" href="/" aria-label="Lakkan のトップへ戻る">
-          <LakkanLogo size="small" tone="red" />
+          <LakkanLogo tone="red" />
         </Link>
         <Rule />
         <Link className="lx-plabel lx-plink" href={CONTACT}>

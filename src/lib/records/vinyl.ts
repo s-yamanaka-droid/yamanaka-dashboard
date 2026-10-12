@@ -25,6 +25,8 @@ export type VinylLabel = {
   ink: string
   /** "glyph" draws the title and mark in the poster's stroke letters instead of a system font. */
   face?: "type" | "glyph"
+  /** Leave room for artwork supplied by the carousel. */
+  hideTitle?: boolean
 }
 
 const R = 100
@@ -152,7 +154,7 @@ export function vinylFace(label: VinylLabel, seed = 1): string {
     `<g clip-path="url(#l)">${art(label.art, label.colors)}</g>` +
     (label.face === "glyph"
       ? // the poster's letters: cap height to fit the arc, a quiet grotesk for the small print
-        arcTitle(label.title, Math.min(7, 46 / Math.max(label.title.length, 1) / 0.62), 21.5, label.ink, label.colors[0]) +
+        (label.hideTitle ? "" : arcTitle(label.title, Math.min(7, 46 / Math.max(label.title.length, 1) / 0.62), 21.5, label.ink, label.colors[0])) +
         // busy art gets a paper plate under the small print
         ((label.sub || label.mark) && BUSY.has(label.art) ? `<rect x="82.5" y="115.2" width="35" height="13.4" rx="6.7" fill="${label.colors[0]}"/>` : "") +
         `<g font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" fill="${label.ink}" text-anchor="middle">` +
