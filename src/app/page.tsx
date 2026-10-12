@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import WavingPortfolioLanding from "@/components/ui/waving-portfolio-landing";
 import CrowdCanvas from "@/components/ui/skiper39";
@@ -38,10 +39,26 @@ export default function Home() {
           <Link href="/works">実績</Link>
           <Link href="/services">できること</Link>
           <Link href="/about">会社情報</Link>
+          <Link href="/racco">Racco</Link>
           <Link className="poster-nav-contact" href="/contact?topic=other#inquiry">相談する <ArrowUpRight size={15} aria-hidden="true" /></Link>
         </nav>
         <a className="poster-scroll" href="#people">SCROLL TO PEOPLE <ArrowDownRight size={17} aria-hidden="true" /></a>
       </div>
+
+      <SectionShell id="home-racco" className="poster-home-racco" tone="white" topBorder>
+        <Link href="/racco" className="home-racco-link" aria-labelledby="home-racco-title home-racco-cta">
+          <div className="home-racco-copy">
+            <p className="home-racco-kicker">LAKKAN / RACCO</p>
+            <h2 id="home-racco-title">Racco</h2>
+            <p className="home-racco-tagline"><span>同じ作業は、</span><span>AIに任せたい。</span></p>
+            <p className="home-racco-description"><span>AIの読みもの、</span><span>仲間たち、</span><span>ギャラリー。</span></p>
+            <span className="home-racco-cta" id="home-racco-cta">Raccoの世界へ <ArrowUpRight size={20} aria-hidden="true" /></span>
+          </div>
+          <div className="home-racco-portrait">
+            <Image src="/brand-book/racco-scenes/welcoming.png" alt="" width={1254} height={1254} sizes="(max-width: 760px) 42vw, 340px" />
+          </div>
+        </Link>
+      </SectionShell>
 
       <SectionShell id="people" className="poster-people" tone="white" eyebrow="PEOPLE MAKE THINGS MOVE" topBorder>
         <div className="people-intro">
