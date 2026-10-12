@@ -13,7 +13,9 @@ import { chordTones, degreeToMidi, mod, rng, type ScaleName } from "./theory"
 import { composeSongBar, planSong, type Score } from "./song"
 
 export type Groove = "drift" | "lofi" | "pulse" | "drive" | "bounce" | "city" | "shuffle"
-export type LeadTone = "pluck" | "bell" | "glass" | "reed" | "vibes"
+export type LeadTone = "pluck" | "bell" | "glass" | "reed" | "vibes" | RecordedLead
+/** Melody instruments played from recordings (public/samples); a synth stands in until they load. */
+export type RecordedLead = "piano" | "vibraphone" | "kalimba" | "zither" | "sax"
 export type Texture = "vinyl" | "waves" | "rain" | "none"
 
 export type TrackSpec = {
@@ -29,8 +31,12 @@ export type TrackSpec = {
    * semitones above the tonic, so the song can step outside the scale.
    */
   chords?: Chord[][]
-  /** What plays the chords: a soft synth pad, or an electric piano. */
-  keys?: "pad" | "rhodes"
+  /** What plays the chords: a soft synth pad, an electric piano, or an upright piano. */
+  keys?: "pad" | "rhodes" | "piano"
+  /** The band's way of playing: city pop (the default), or lo-fi (laid back, muffled, no key change). */
+  style?: "city" | "lofi"
+  /** Octaves the written melody is moved, to sit where its instrument sounds best. */
+  leadOctave?: number
   /** For chord songs: the whole song with a key change ("full", about three minutes) or one pass ("short"). */
   form?: "full" | "short"
   /** For chord songs: the pre-chorus and chorus chords. Left out, they're chosen from a small library. */

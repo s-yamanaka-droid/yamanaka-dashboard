@@ -1,0 +1,63 @@
+{
+  "upright-piano": [
+    {"file": "upright-piano/n43", "midi": 43},
+    {"file": "upright-piano/n48", "midi": 48},
+    {"file": "upright-piano/n55", "midi": 55},
+    {"file": "upright-piano/n60", "midi": 60},
+    {"file": "upright-piano/n67", "midi": 67},
+    {"file": "upright-piano/n72", "midi": 72},
+    {"file": "upright-piano/n79", "midi": 79},
+    {"file": "upright-piano/n84", "midi": 84}
+  ],
+  "vibraphone": [
+    {"file": "vibraphone/n53", "midi": 53},
+    {"file": "vibraphone/n57", "midi": 57},
+    {"file": "vibraphone/n60", "midi": 60},
+    {"file": "vibraphone/n64", "midi": 64},
+    {"file": "vibraphone/n67", "midi": 67},
+    {"file": "vibraphone/n71", "midi": 71},
+    {"file": "vibraphone/n74", "midi": 74},
+    {"file": "vibraphone/n77", "midi": 77},
+    {"file": "vibraphone/n81", "midi": 81},
+    {"file": "vibraphone/n84", "midi": 84},
+    {"file": "vibraphone/n88", "midi": 88}
+  ],
+  "kalimba": [
+    {"file": "kalimba/n55", "midi": 55},
+    {"file": "kalimba/n58", "midi": 58},
+    {"file": "kalimba/n61", "midi": 61},
+    {"file": "kalimba/n63", "midi": 63},
+    {"file": "kalimba/n65", "midi": 65},
+    {"file": "kalimba/n67", "midi": 67},
+    {"file": "kalimba/n70", "midi": 70},
+    {"file": "kalimba/n73", "midi": 73},
+    {"file": "kalimba/n75", "midi": 75},
+    {"file": "kalimba/n77", "midi": 77},
+    {"file": "kalimba/n79", "midi": 79},
+    {"file": "kalimba/n82", "midi": 82}
+  ],
+  "zither": [
+    {"file": "zither/n56", "midi": 56},
+    {"file": "zither/n59", "midi": 59},
+    {"file": "zither/n61", "midi": 61},
+    {"file": "zither/n63", "midi": 63},
+    {"file": "zither/n66", "midi": 66},
+    {"file": "zither/n68", "midi": 68},
+    {"file": "zither/n71", "midi": 71},
+    {"file": "zither/n73", "midi": 73},
+    {"file": "zither/n75", "midi": 75},
+    {"file": "zither/n78", "midi": 78},
+    {"file": "zither/n80", "midi": 80},
+    {"file": "zither/n83", "midi": 83}
+  ],
+  "tenor-sax": [
+    {"file": "tenor-sax/n46", "midi": 46},
+    {"file": "tenor-sax/n48", "midi": 48},
+    {"file": "tenor-sax/n52", "midi": 52},
+    {"file": "tenor-sax/n56", "midi": 56},
+    {"file": "tenor-sax/n60", "midi": 60},
+    {"file": "tenor-sax/n64", "midi": 64},
+    {"file": "tenor-sax/n68", "midi": 68},
+    {"file": "tenor-sax/n72", "midi": 72}
+  ]
+}

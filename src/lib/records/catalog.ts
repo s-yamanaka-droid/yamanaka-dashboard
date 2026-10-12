@@ -27,12 +27,23 @@ const songs = loadSongs({
   "direct-line": directLine,
 })
 
-export const recordDiscs: RecordDisc[] = loadLakkanDiscs(discsJson, songs).map((d, i) =>
-  pressRecord(d, i, {
-    colors: i % 2 ? [INKS.paper, INKS.ink, INKS.red] : [INKS.paper, INKS.red, INKS.ink],
-    ink: INKS.ink,
-    face: "glyph",
-    mark: "",
-    hideTitle: d.id === "lakkan",
-  }),
-)
+/**
+ * Each record is a picture disc of a public-domain artwork from the Art
+ * Institute of Chicago (CC0), pressed by scripts/records-picture-discs.py into
+ * public/records/discs/<id>.webp; the page lays the approved wordmark over it.
+ */
+const ART: Record<string, { title: string; artist: string }> = {
+  lakkan: { title: "Moonrise", artist: "George Inness" },
+  recruit: { title: "Cliff Walk at Pourville", artist: "Claude Monet" },
+  "ai-quest": { title: "Under the Wave off Kanagawa", artist: "Katsushika Hokusai" },
+  product: { title: "Hara: Mount Fuji in the Morning", artist: "Utagawa Hiroshige" },
+  method: { title: "Stacks of Wheat (End of Summer)", artist: "Claude Monet" },
+  contact: { title: "Water Lilies", artist: "Claude Monet" },
+}
+
+export const recordDiscs: RecordDisc[] = loadLakkanDiscs(discsJson, songs).map((d, i) => {
+  const art = ART[d.id]
+  if (!art) throw new Error(`src/lib/records/catalog.ts: ディスク "${d.id}" の絵がありません（ART に足して scripts/records-picture-discs.py で作る）`)
+  const disc = pressRecord(d, i, { colors: [INKS.paper, INKS.red, INKS.ink], ink: INKS.ink, face: "glyph", mark: "", hideTitle: true })
+  return { ...disc, src: `/records/discs/${d.id}.webp`, credits: [...disc.credits, { label: "Art", value: `${art.title} — ${art.artist}` }] }
+})

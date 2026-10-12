@@ -16,7 +16,7 @@ import { vinylFace, type LabelArt, type VinylLabel } from "./vinyl"
 
 
 const GROOVES: Groove[] = ["drift", "lofi", "pulse", "drive", "bounce", "city", "shuffle"]
-const LEADS: LeadTone[] = ["pluck", "bell", "glass", "reed", "vibes"]
+const LEADS: LeadTone[] = ["pluck", "bell", "glass", "reed", "vibes", "piano", "vibraphone", "kalimba", "zither", "sax"]
 const TEXTURES: Texture[] = ["vinyl", "waves", "rain", "none"]
 const ARTS: LabelArt[] = ["blob", "rings", "halftone", "stripes", "split", "dots"]
 const NOTES: Record<string, number> = { C: 0, "C#": 1, Db: 1, D: 2, "D#": 3, Eb: 3, E: 4, F: 5, "F#": 6, Gb: 6, G: 7, "G#": 8, Ab: 8, A: 9, "A#": 10, Bb: 10, B: 11 }
@@ -132,7 +132,9 @@ export function parseSong(id: string, data: unknown, file = `src/data/records/so
     scale,
     bars,
     groove: oneOf(file, "groove", d.groove, GROOVES),
-    keys: oneOf(file, "keys", d.keys ?? "rhodes", ["pad", "rhodes"] as const),
+    keys: oneOf(file, "keys", d.keys ?? "rhodes", ["pad", "rhodes", "piano"] as const),
+    style: oneOf(file, "style", d.style ?? "city", ["city", "lofi"] as const),
+    leadOctave: num(file, "octave", d.octave ?? 0, -2, 2),
     lead: oneOf(file, "lead", d.lead, LEADS),
     texture: oneOf(file, "texture", d.texture ?? "none", TEXTURES),
     swing: num(file, "swing", d.swing ?? 0, 0, 0.4),
