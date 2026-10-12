@@ -1,0 +1,79 @@
+{
+  "title": "Good People",
+  "kind": "score",
+  "key": "F",
+  "mode": "major",
+  "bpm": 98,
+  "groove": "city",
+  "keys": "rhodes",
+  "lead": "bell",
+  "texture": "none",
+  "swing": 0.1,
+  "seed": 11,
+  "a": {
+    "chords": [
+      "Imaj9",
+      "IIm7 IIIm7",
+      "IVmaj7",
+      "IIIm7 VI7",
+      "IIm9",
+      "bVII9",
+      "Imaj7/III IVmaj7",
+      "IIm9 V9sus"
+    ],
+    "melody": [
+      ". A4 C5 E5 - D5 C5 A4",
+      "Bb4 - D5 - C5 - E5 -",
+      "F5 - - - D5 - A4 Bb4",
+      "A4 - G4 - F#4 - A4 C5",
+      "Bb4 - - A4 G4 - F4 G4",
+      "G4 - Bb4 - Db5 - Bb4 F4",
+      "E5 - C5 - D5 - F5 -",
+      "F5 - D5 - C5 - . ."
+    ]
+  },
+  "b": {
+    "chords": [
+      "IVmaj7",
+      "IVm6",
+      "IIIm7",
+      "bIIImaj7",
+      "IIm9",
+      "bIImaj7#11",
+      "IIm7 IIIm7",
+      "V9sus V13"
+    ],
+    "melody": [
+      "D5 - - - A4 - D5 -",
+      "Db5 - - - G4 - Bb4 -",
+      "C5 - - - E5 - G5 -",
+      "G5 - - - Eb5 - C5 -",
+      "D5 - F5 - A5 - G5 F5",
+      "F5 - - - Db5 - C5 -",
+      "Bb4 - D5 - E5 - G5 -",
+      "F5 - - - E5 - D5 C5"
+    ]
+  },
+  "c": {
+    "chords": [
+      "Imaj9",
+      "IIIm7 VI7b9",
+      "IIm9",
+      "bVII9",
+      "IVmaj9",
+      "IIIm7 bIIImaj7",
+      "IIm9 V13",
+      "I69"
+    ],
+    "melody": [
+      "C5 - - E5 - - G5 -",
+      "A5 - G5 - F#5 - - -",
+      "F5 - - - A5 - G5 F5",
+      "F5 - - - - - . .",
+      "D5 - - F5 - - A5 -",
+      "C6 - - - G5 - Eb5 -",
+      "D5 - F5 - E5 - D5 C5",
+      "C5 - - - - - . ."
+    ]
+  }
+}

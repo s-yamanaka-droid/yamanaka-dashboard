@@ -1,0 +1,23 @@
+Recorded instruments used by the record player
+==============================================
+
+Electric piano: Wurlitzer EP200
+  Samples by Greg Sullivan — http://www.sullivang.net/
+  SFZ mapping by SFZ Instruments — https://github.com/sfzinstruments/GregSullivan.E-Pianos
+  License: Creative Commons Attribution 3.0 Unported — https://creativecommons.org/licenses/by/3.0/
+  Changes: 24 of the 42 samples (the mp and f dynamics) were taken, converted to mono
+  44.1 kHz 16-bit FLAC, trimmed to the strike and faded out at the end.
+
+Drums: Virtuosity Drums
+  By Versilian Studios and Karoryfer Samples — https://versilian-studios.com/virtuosity-drums/
+  Source: https://github.com/sfzinstruments/virtuosity_drums
+  License: CC0 1.0 Universal (public domain dedication) — attribution not required, given with thanks.
+  Changes: one hit of each drum from the mid microphone, mixed to mono, shortened and faded.
+
+楽器の録音について
+------------------
+エレピ：Wurlitzer EP200（録音：Greg Sullivan、SFZ化：SFZ Instruments、CC BY 3.0）
+  42個の録音のうち24個（mp と f の強さ）を使用。モノラル・44.1kHz・16bit の FLAC に変換し、
+  打鍵の位置で頭を切り、終わりをフェードアウトさせています。
+ドラム：Virtuosity Drums（Versilian Studios と Karoryfer Samples、CC0）
+  mid マイクの各太鼓から1打ずつを使用。モノラルにまとめ、短く切ってフェードアウトさせています。

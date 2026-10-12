@@ -1,0 +1,238 @@
+[
+  {
+    "id": "lakkan",
+    "title": "Lakkan",
+    "kicker": "楽観と、計画と。",
+    "lead": [
+      "楽観的に動く。",
+      "悲観的に計画する。",
+      "運は偶然じゃない、",
+      "準備をした人にだけ来る。"
+    ],
+    "rows": [
+      [
+        "Name",
+        "LUCK × 楽観"
+      ],
+      [
+        "Since",
+        "2026"
+      ],
+      [
+        "Model",
+        "1社でAI運用基盤"
+      ]
+    ],
+    "song": "rakkan",
+    "label": {
+      "art": "blob",
+      "colors": [
+        "#f4ece0",
+        "#f4541a",
+        "#16110d"
+      ],
+      "ink": "#16110d"
+    },
+    "stage": {
+      "bg": "#ede4d6",
+      "ink": "#1a1612",
+      "accent": "#f4541a"
+    },
+    "glow": "#f4a26b"
+  },
+  {
+    "id": "recruit",
+    "title": "Recruit",
+    "kicker": "人材・採用支援",
+    "lead": [
+      "感覚でなく、",
+      "仕組みで良い人と出会う。",
+      "AIスカウトと人の目利きで、",
+      "採用の歩留まりを",
+      "設計し直す。"
+    ],
+    "rows": [
+      [
+        "For",
+        "人事・採用責任者"
+      ],
+      [
+        "Scale",
+        "30〜500名の事業会社"
+      ],
+      [
+        "How",
+        "AIスカウト × 人の目利き"
+      ]
+    ],
+    "song": "good-people",
+    "label": {
+      "art": "halftone",
+      "colors": [
+        "#f4ece0",
+        "#16110d",
+        "#f4541a"
+      ],
+      "ink": "#16110d"
+    },
+    "stage": {
+      "bg": "#8fa0b2",
+      "ink": "#12171d",
+      "accent": "#f4541a"
+    },
+    "glow": "#c9d6e6"
+  },
+  {
+    "id": "ai-quest",
+    "title": "AI Quest",
+    "kicker": "AIリスキリング",
+    "lead": [
+      "ゲームのように進める",
+      "AI研修で、",
+      "全社員にAIを",
+      "行き渡らせる。"
+    ],
+    "rows": [
+      [
+        "For",
+        "全社員にAIを浸透させたい企業"
+      ],
+      [
+        "How",
+        "ゲーミフィケーション型研修"
+      ]
+    ],
+    "song": "level-up",
+    "label": {
+      "art": "dots",
+      "colors": [
+        "#ffc857",
+        "#16110d",
+        "#f4541a"
+      ],
+      "ink": "#16110d"
+    },
+    "stage": {
+      "bg": "#c2b6d3",
+      "ink": "#1e1a28",
+      "accent": "#f4541a"
+    },
+    "glow": "#e6dcf2"
+  },
+  {
+    "id": "product",
+    "title": "Product",
+    "kicker": "プロダクト開発・運営",
+    "lead": [
+      "「動くもの」を",
+      "翌日に出す。",
+      "自社のプロダクトも、",
+      "すべて内製で回している。"
+    ],
+    "rows": [
+      [
+        "How",
+        "バイブコーディング"
+      ],
+      [
+        "Pace",
+        "動くものを翌日に"
+      ],
+      [
+        "Own",
+        "自社プロダクト群を内製"
+      ]
+    ],
+    "song": "next-morning",
+    "label": {
+      "art": "stripes",
+      "colors": [
+        "#f4541a",
+        "#16110d",
+        "#f4ece0"
+      ],
+      "ink": "#ffffff"
+    },
+    "stage": {
+      "bg": "#f2b38a",
+      "ink": "#2a1a12",
+      "accent": "#1a1612"
+    },
+    "glow": "#ffd2b0"
+  },
+  {
+    "id": "method",
+    "title": "Method",
+    "kicker": "運用基盤",
+    "lead": [
+      "6つの武器を、",
+      "必要な事業に",
+      "必要な分だけ。",
+      "少人数のまま、",
+      "AI倍率で動く。"
+    ],
+    "rows": [
+      [
+        "Model",
+        "1社でAI運用基盤"
+      ],
+      [
+        "Team",
+        "少人数のまま"
+      ]
+    ],
+    "song": "six-tools",
+    "label": {
+      "art": "rings",
+      "colors": [
+        "#e8c9a0",
+        "#be2410",
+        "#16110d"
+      ],
+      "ink": "#2a0d04"
+    },
+    "stage": {
+      "bg": "#3f5247",
+      "ink": "#efe7da",
+      "accent": "#f2b38a"
+    },
+    "glow": "#9fc2a8"
+  },
+  {
+    "id": "contact",
+    "title": "Contact",
+    "kicker": "相談する",
+    "lead": [
+      "お客さんの課題を、",
+      "AIでダイレクトに",
+      "解決する。",
+      "それだけだ。"
+    ],
+    "rows": [
+      [
+        "For",
+        "経営者・事業オーナー・人事"
+      ],
+      [
+        "Start",
+        "まずは相談から"
+      ]
+    ],
+    "song": "direct-line",
+    "label": {
+      "art": "split",
+      "colors": [
+        "#f4ece0",
+        "#2f4a3a",
+        "#f4541a"
+      ],
+      "ink": "#16110d"
+    },
+    "stage": {
+      "bg": "#1c1b1f",
+      "ink": "#efe7da",
+      "accent": "#f4541a"
+    },
+    "glow": "#f4a26b"
+  }
+]

@@ -1,0 +1,380 @@
+/* Lakkan Records (/records): the record player and the poster laid over it, in the site's inks. */
+
+/* ---- record player ---------------------------------------------------------------- */
+
+/* The carousel hides its overflow, but a hidden box can still be scrolled: clicking a
+   disc that hangs off the edge focuses it and the browser scrolls the whole carousel
+   sideways to show it. Clip instead, which can't scroll. */
+div.dcc-root {
+  overflow: clip;
+}
+
+.dr-stage {
+  --color-background: #141417;
+  --color-foreground: #ecebe7;
+  --color-primary: #ecebe7;
+  --dr-pad: clamp(16px, 3.6cqw, 44px);
+  position: relative;
+  height: 100svh;
+  overflow: clip;
+  container-type: inline-size;
+  color: #ecebe7;
+  background: radial-gradient(120% 90% at 50% 40%, #1d1d21, #0b0b0d);
+}
+
+/* the light behind the platter, breathing with the bass */
+.dr-glow {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: min(110vmin, 1100px);
+  aspect-ratio: 1;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle closest-side, color-mix(in oklab, var(--dr-glow) 58%, transparent), transparent 70%);
+  opacity: calc(0.12 + var(--e, 0) * 0.75);
+  transform: translate(-50%, -50%) scale(calc(0.84 + var(--e, 0) * 0.12 + var(--beat, 0) * 0.14));
+  transition: background 0.9s ease;
+}
+
+/* discs stand still while the music is stopped, keeping their angle */
+.dcc-root.dr-still[data-spin] .dcc-slide[data-active] .dcc-idle {
+  animation-play-state: paused;
+}
+
+.dr-player {
+  position: absolute;
+  left: var(--dr-pad);
+  bottom: var(--dr-pad);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* stop short of the press quotes centred along the bottom */
+  max-width: calc(50cqw - (2 * clamp(130px, 15cqw, 200px) + clamp(24px, 7cqw, 96px)) / 2 - var(--dr-pad) - 16px);
+}
+
+.dr-play {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.dr-play:hover { background: color-mix(in oklab, currentColor 8%, transparent); }
+.dr-play:active { transform: scale(0.92); }
+.dr-play:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.dr-player[data-state="idle"] .dr-play { animation: dr-call 2.4s ease-in-out infinite; }
+@keyframes dr-call {
+  50% { background: color-mix(in oklab, currentColor 10%, transparent); }
+}
+
+.dr-ring { position: absolute; inset: 0; transform: rotate(-90deg); }
+.dr-ring circle { fill: none; stroke: currentColor; stroke-width: 1.2; }
+.dr-ring-track { opacity: 0.22; }
+.dr-ring-bar { stroke-linecap: round; }
+
+.dr-meta { min-width: 0; }
+.dr-kicker {
+  display: flex;
+  gap: 8px;
+  font-size: 9px;
+  line-height: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  white-space: nowrap;
+}
+.dr-time { font-variant-numeric: tabular-nums; letter-spacing: 0.08em; }
+.dr-title {
+  font-size: 18px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dr-num { font-size: 10px; opacity: 0.5; margin-right: 6px; vertical-align: 0.35em; font-family: var(--lx-plat, sans-serif); }
+
+.dr-spec { flex: none; width: 72px; height: 22px; color: inherit; margin-left: 4px; }
+
+@container (max-width: 1100px) {
+  .dr-spec { display: none; }
+}
+/* one quote below 720px, and none along the bottom below 420px */
+@container (max-width: 720px) {
+  .dr-player { max-width: calc(50cqw - clamp(130px, 15cqw, 200px) / 2 - var(--dr-pad) - 12px); }
+  .dr-time { display: none; }
+  .dr-title { font-size: 15px; }
+}
+@container (max-width: 420px) {
+  .dr-player { max-width: calc(100cqw - var(--dr-pad) * 2 - 158px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dr-glow { transition: none; }
+  .dr-player[data-state="idle"] .dr-play { animation: none; }
+}
+
+/* ---- a stage that takes each record's colours ----------------------------------------- */
+
+/* let a layout move the platter */
+.dr-stage .dcc-stage {
+  left: var(--dr-stage-x, 50%);
+  top: var(--dr-stage-y, 52%);
+}
+
+/* ---- 12-inch records ---------------------------------------------------------------- */
+
+/* a spindle hole, not a CD's centre hole */
+.dr-stage[data-medium="vinyl"] .dcc-disc,
+.dr-stage[data-medium="vinyl"] .dcc-edge {
+  -webkit-mask: radial-gradient(circle closest-side, transparent 2.2%, #000 2.7%);
+  mask: radial-gradient(circle closest-side, transparent 2.2%, #000 2.7%);
+}
+.dr-stage[data-medium="vinyl"] .dcc-edge {
+  background: linear-gradient(160deg, #3a3a3d, #070708 55%, #2a2a2d);
+}
+.dr-stage[data-medium="vinyl"] .dcc-disc {
+  background: #0c0c0d;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+/* no clamping ring or mirror band: those are a CD's */
+.dr-stage[data-medium="vinyl"] .dcc-hub {
+  display: none;
+}
+.dr-stage[data-medium="vinyl"] .dcc-shade {
+  background: radial-gradient(circle closest-side, transparent 40%, rgba(0, 0, 0, 0.32) 62%, rgba(0, 0, 0, 0.12) 85%, transparent 100%);
+}
+/* a hairline progress bar inside the transport, hidden unless a layout shows it */
+.dr-bar { display: none; }
+.dr-bar > span { display: block; height: 100%; background: currentColor; transform-origin: 0 50%; transform: scaleX(0); }
+
+/* ---- the poster over the stage (components/records/RecordsPoster.tsx) ------------------ */
+
+.lx {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  font-family: var(--font-sans-jp), "Noto Sans JP", sans-serif;
+}
+.lx a,
+.lx button,
+.lx .dr-player { pointer-events: auto; }
+.lx p { margin: 0; }
+
+.dr-stage[data-layout] .dr-glow { opacity: calc(0.1 + var(--e, 0) * 0.35); }
+
+.lx-pager button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+.lx-credits { margin: 0; font-size: 11px; }
+.lx-credits div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 7px 0 8px;
+  border-top: 1px solid color-mix(in oklab, currentColor 32%, transparent);
+}
+.lx-credits dt { font-family: var(--lx-plat, sans-serif); font-size: 9px; line-height: 15px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.66; }
+.lx-credits dd { margin: 0; text-align: right; }
+
+.lx-pager {
+  position: absolute;
+  right: var(--dr-pad);
+  bottom: var(--dr-pad);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--lx-plat, sans-serif);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+.lx-pager b { font-weight: 600; }
+.lx-pager button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid color-mix(in oklab, currentColor 34%, transparent);
+  border-radius: 999px;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.lx-pager button:hover { background: color-mix(in oklab, currentColor 10%, transparent); }
+
+.lx p span { display: inline-block; }
+
+/* the transport, placed by each layout */
+.lx .dr-player.lx-tp { position: absolute; left: var(--dr-pad); bottom: var(--dr-pad); max-width: min(40cqw, 420px); }
+
+/* ---- phones -------------------------------------------------------------------------- */
+@container (max-width: 720px) {
+  .lx .dr-player.lx-tp { max-width: calc(100cqw - var(--dr-pad) * 2 - 150px); }
+  .lx-credits div:nth-child(n + 3) { display: none; }
+
+  /* a container query can't restyle the container itself, so these go on its children */
+  
+    
+
+}
+
+/* ---- the page under the words: records slide beneath it and fade into the paper ------ */
+
+/* registered so the page colours glide from one record to the next, gradients included */
+@property --dr-bg {
+  syntax: "<color>"; inherits: true; initial-value: #141417;
+}
+@property --dr-ink {
+  syntax: "<color>"; inherits: true; initial-value: #ecebe7;
+}
+@property --dr-accent {
+  syntax: "<color>"; inherits: true; initial-value: #f4541a;
+}
+
+.lx-scrim { position: absolute; inset: 0; }
+
+@container (max-width: 720px) {
+  /* records a third of the screen tall, not a fifth */
+  .dr-stage[data-medium="vinyl"] .dcc-root { --dcc-s: min(84vw, 44svh) !important; }
+}
+
+/* ---- third pass, after the design review ------------------------------------------------ */
+
+/* larger small print */
+
+.lx-credits { font-size: 12px; }
+.lx-credits dt { font-size: 10px; }
+
+.lx .dr-kicker { font-size: 10px; }
+/* a soft outer edge, so a tilted record doesn't stair-step */
+.dr-stage[data-medium="vinyl"] .dcc-disc,
+.dr-stage[data-medium="vinyl"] .dcc-edge {
+  -webkit-mask: radial-gradient(circle closest-side, transparent 2.2%, #000 2.7%, #000 98.6%, transparent 100%);
+  mask: radial-gradient(circle closest-side, transparent 2.2%, #000 2.7%, #000 98.6%, transparent 100%);
+}
+
+/* =====================================================================================
+   poster: red on paper (the taste the Lakkan site is moving to)
+   ===================================================================================== */
+.dr-stage[data-theme="poster"] {
+  --dr-bg: #F4F0E8;
+  --dr-ink: #17221F;
+  --dr-accent: #B4382B;
+  --color-background: #F4F0E8;
+  --color-foreground: #17221F;
+  --color-primary: #17221F;
+  color: #17221F;
+  background: #F4F0E8;
+}
+.dr-stage[data-layout="poster"] { --dr-stage-x: 73%; --dr-stage-y: 52%; }
+.dr-stage[data-layout="poster"] .dr-glow { opacity: 0; }
+.dr-stage[data-layout="poster"] .lx-scrim { background: linear-gradient(90deg, #F4F0E8 0, #F4F0E8 45cqw, transparent 54cqw); }
+
+/* the site's faces: Bebas Neue (the home poster's letters) for Latin labels and
+   numbers, Noto Sans JP for Japanese */
+.dr-stage[data-theme="poster"] {
+  --lx-plat: var(--font-poster), "Bebas Neue", var(--font-sans-jp), "Noto Sans JP", sans-serif;
+  --lx-pja: var(--font-sans-jp), "Noto Sans JP", "Hiragino Sans", sans-serif;
+}
+.lx-plabel {
+  font-family: var(--lx-plat);
+  font-size: clamp(13px, 1.15cqw, 17px);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: #B4382B;
+  white-space: nowrap;
+}
+.lx-plink { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+.lx-plink:hover { text-decoration: underline; text-underline-offset: 5px; }
+.lx-plink:focus-visible { outline: 2px solid #B4382B; outline-offset: 4px; }
+
+/* labels at either end of a red rule with dots, as on the poster */
+.lx-prow {
+  position: absolute;
+  left: var(--dr-pad);
+  right: var(--dr-pad);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.lx-prow-top { top: calc(var(--dr-pad) * 0.8); }
+.lx-prow-bottom { bottom: calc(var(--dr-pad) * 0.7); }
+.lx-rule { position: relative; flex: 1; height: 2px; background: #B4382B; }
+.lx-rule i {
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: #B4382B;
+}
+.lx-rule i:nth-child(1) { left: 0; }
+.lx-rule i:nth-child(2) { left: 50%; transform: scale(calc(1 + var(--pulse, 0) * 0.9)); }
+.lx-rule i:nth-child(3) { left: 100%; }
+.lx-prow-bottom .lx-rule i:nth-child(2) { display: none; }
+
+.lx-poster { position: absolute; left: var(--dr-pad); top: calc(var(--dr-pad) * 2.4); width: min(44cqw, 620px); }
+.lx-pno { margin-bottom: 18px !important; font-size: 13px; }
+.lx-ptitle { margin: 0 0 22px; color: #B4382B; }
+/* the record's name in the home poster's face, clipped so each letter can rise into it */
+.lx-ptitle-type {
+  display: block;
+  overflow: hidden;
+  font-family: var(--font-poster), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(96px, 12.5cqw, 196px);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.lx-plogo { display: block; line-height: 0; }
+.lx-plogo:focus-visible { outline: 2px solid #B4382B; outline-offset: 4px; }
+
+.lx-glyph { display: inline-block; animation: lx-rise 0.75s cubic-bezier(0.2, 0.9, 0.2, 1) both; animation-delay: calc(var(--i) * 45ms); }
+@keyframes lx-rise {
+  from { transform: translateY(115%); }
+}
+.lx-pkicker { margin-bottom: 12px !important; font-family: var(--lx-pja); font-size: 13px; font-weight: 600; letter-spacing: 0.12em; color: #B4382B; }
+.lx-plead { margin-bottom: 26px !important; font-family: var(--lx-pja); font-size: clamp(15px, 1.25cqw, 18px); font-weight: 400; line-height: 2; letter-spacing: 0.04em; }
+.lx-pcredits { max-width: 440px; }
+.lx-pcredits div { border-top-color: color-mix(in oklab, #B4382B 55%, transparent); }
+.lx-pcredits dt { font-family: var(--lx-plat); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; }
+.lx-pcredits dd { font-family: var(--lx-pja); font-size: 13px; }
+.dr-stage[data-theme="poster"] .dr-kicker,
+.dr-stage[data-theme="poster"] .dr-num,
+.dr-stage[data-theme="poster"] .lx-pager { font-family: var(--lx-plat); font-weight: 500; }
+.dr-stage[data-theme="poster"] .dr-kicker { font-size: 10px; letter-spacing: 0.16em; }
+.dr-stage[data-theme="poster"] .lx-pager { font-size: 13px; letter-spacing: 0.1em; }
+.dr-stage[data-theme="poster"] .dr-title { font-weight: 500; letter-spacing: 0.06em; }
+.dr-stage[data-layout="poster"] .lx .dr-player.lx-ptp { bottom: calc(var(--dr-pad) * 0.7 + 34px); }
+.dr-stage[data-layout="poster"] .lx-pager { bottom: calc(var(--dr-pad) * 0.7 + 34px); }
+.dr-stage[data-layout="poster"] .dr-ring-bar { stroke: #B4382B; }
+
+@container (max-width: 720px) {
+  .dr-stage[data-layout="poster"] .dcc-stage { --dr-stage-x: 56%; --dr-stage-y: 72%; }
+  .dr-stage[data-layout="poster"] .lx-scrim { background: linear-gradient(180deg, #F4F0E8 0, #F4F0E8 48svh, transparent 56svh), linear-gradient(0deg, #F4F0E8 0, #F4F0E8 90px, transparent 160px); }
+  .lx-poster { width: calc(100cqw - var(--dr-pad) * 2); top: calc(var(--dr-pad) * 3); }
+  
+  .lx-ptitle { margin-bottom: 14px; }
+  .lx-ptitle-type { font-size: 84px; }
+  .lx-plead { font-size: 14px; line-height: 1.9; margin-bottom: 14px !important; }
+  .lx-prow-bottom .lx-plabel:first-child { display: none; }
+  .lx-plabel { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lx-glyph { animation: none; }
+}

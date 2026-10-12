@@ -47,7 +47,7 @@ try {
   }
   assert.ok(ready, "health endpoint is ready");
   assert.equal((await (await fetch(base + '/api/health')).json()).experience, 'poster-crowd', 'health identifies the current homepage');
-  for (const path of ["/", "/workshop", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/racco/contact", "/concept", "/brand-book", "/brand-guide", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => `/racco/columns/${slug}`), ...goods.map(item => `/racco/goods/${item.slug}`)]) {
+  for (const path of ["/", "/workshop", "/records", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/racco/contact", "/concept", "/brand-book", "/brand-guide", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => `/racco/columns/${slug}`), ...goods.map(item => `/racco/goods/${item.slug}`)]) {
     const response = await fetch(base + path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
@@ -73,6 +73,10 @@ try {
     } else if (path === "/workshop") {
       assert.ok(html.includes('data-home="motion"') && html.includes('factory-shell'), 'interactive workshop remains available');
       assert.ok(html.includes('探索する') && html.includes('動きを一時停止'), 'workshop retains its controls');
+    } else if (path === "/records") {
+      assert.ok(html.includes('data-layout="poster"') && html.includes('class="dr-play"'), 'records renders the poster record player');
+      assert.ok(html.includes('data-lakkan-logo="wordmark"') && html.includes('href="/contact?topic=other#inquiry"'), 'records carries the logo and the inquiry link');
+      assert.ok(html.includes('href="/records/samples/CREDITS.txt"'), 'records credits its recorded instruments');
     } else if (["/racco", "/concept", "/brand-book", "/brand-guide"].includes(path)) {
       assert.ok(html.includes(path === "/brand-book" ? 'brand-print-route' : path === "/brand-guide" ? 'brand-studio' : 'brand-library'), path + " renders the appropriate brand edition");
       if (path === "/brand-book") {

@@ -1,0 +1,52 @@
+{
+  "title": "Rakkan",
+  "kind": "score",
+  "key": "Eb",
+  "mode": "major",
+  "bpm": 86,
+  "groove": "city",
+  "keys": "rhodes",
+  "lead": "vibes",
+  "texture": "vinyl",
+  "swing": 0.12,
+  "seed": 7,
+  "a": {
+    "chords": ["IVmaj9", "IIIm7 VI7b9", "IIm9", "V9sus V13", "Imaj9", "bVII9", "VIm9 bVImaj7#11", "IIm9 V13"],
+    "melody": [
+      ". C5 Eb5 G5 - - Eb5 C5",
+      "D5 - Bb4 G4 E5 - Db5 C5",
+      "C5 - - Ab4 G4 - F4 -",
+      "Eb5 - F5 - D5 - C5 Bb4",
+      "G5 - - - F5 Eb5 D5 -",
+      "Eb5 - Db5 - B4 - Ab4 -",
+      "G4 Bb4 C5 Eb5 D#5 - F#5 -",
+      "Ab4 - G4 F4 D5 - . ."
+    ]
+  },
+  "b": {
+    "chords": ["IVmaj7", "IIIm7", "IIm9", "Imaj7/III", "IVmaj7", "IIIm7 VI7b9", "IIm9", "V9sus V13"],
+    "melody": [
+      "Eb4 F4 G4 Ab4 C5 - - Bb4",
+      "Bb4 - D5 - F5 - D5 C5",
+      "C5 - Eb5 - G5 - F5 Eb5",
+      "D5 - - - Bb4 - G4 -",
+      "C5 Eb5 G5 - - - Eb5 -",
+      "F5 - D5 - E5 - G5 -",
+      "Ab5 - G5 - F5 - Eb5 -",
+      "F5 - - - D5 - C5 Bb4"
+    ]
+  },
+  "c": {
+    "chords": ["IVmaj9", "V13", "IIIm7 VI7b9", "VIm9", "IVmaj9", "V13", "IIIm7 bIIImaj7", "IIm9 V13"],
+    "melody": [
+      "Eb5 - - G5 - - Bb5 -",
+      "Ab5 - - - G5 - - -",
+      "F5 - D5 - Db5 - C5 -",
+      "D5 - - - - - . .",
+      "Eb5 - - G5 - - Bb5 -",
+      "Ab5 - - - G5 - - -",
+      "F5 - D5 - Db5 - Bb4 -",
+      "C5 - Eb5 - D5 - - -"
+    ]
+  }
+}

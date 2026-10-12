@@ -27,3 +27,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+# Lakkan Records (/records)
+
+The songs are written for Lakkan and played in the browser by `src/lib/records/music`; no recorded music is used.
+
+Two instruments play from recordings, served from `public/records/samples/` (full credits in `public/records/samples/CREDITS.txt`, linked from the page as SOUND CREDITS):
+
+- **Wurlitzer EP200** electric piano samples by Greg Sullivan (http://www.sullivang.net/), SFZ mapping by SFZ Instruments (https://github.com/sfzinstruments/GregSullivan.E-Pianos), licensed under Creative Commons Attribution 3.0 Unported (https://creativecommons.org/licenses/by/3.0/). Changes: 24 of the 42 samples (the mp and f dynamics) were converted to mono 44.1 kHz 16-bit FLAC, trimmed to the strike and faded out.
+- **Virtuosity Drums** by Versilian Studios and Karoryfer Samples (https://versilian-studios.com/virtuosity-drums/, https://github.com/sfzinstruments/virtuosity_drums), dedicated to the public domain under CC0 1.0. One hit of each drum from the mid microphone, mixed to mono, shortened and faded.

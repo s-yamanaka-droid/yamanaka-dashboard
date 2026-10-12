@@ -1,0 +1,108 @@
+/**
+ * Monoline condensed capitals, drawn as stroked centre-line paths. Taken from
+ * components/ui/waving-portfolio-landing.tsx (which keeps them private), so
+ * the record shelf can letter its titles in the same poster face.
+ */
+
+const WIDE: Record<string, number> = { A: 1.04, M: 1.3, N: 1.04, Q: 1.02, V: 1.04, W: 1.44, X: 1.02 }
+
+export function glyphWidth(ch: string, w: number, s: number): number {
+  if (ch === "I") return s
+  if (ch === " ") return w * 0.5
+  return w * (WIDE[ch] ?? 1)
+}
+
+export function glyphPath(ch: string, w: number, h: number, s: number): string {
+  const i = s / 2
+  const x0 = i
+  const x1 = w - i
+  const y0 = i
+  const y1 = h - i
+  const xm = w / 2
+  const ym = h / 2
+  const bw = x1 - x0
+  const bh = y1 - y0
+  const r = bw / 2
+  const c = Math.min(bw * 0.62, bh / 4)
+  const q = (...parts: (string | number)[]) =>
+    parts.map((p) => (typeof p === "number" ? String(Math.round(p * 10) / 10) : p)).join(" ")
+  const arc = (rad: number, sweep: 0 | 1, x: number, y: number) => q("A", rad, rad, 0, 0, sweep, x, y)
+  const stadium = q("M", x0, y0 + r) + arc(r, 1, x1, y0 + r) + q("L", x1, y1 - r) + arc(r, 1, x0, y1 - r) + "Z"
+  const open = q("M", x1, y0 + r) + arc(r, 0, x0, y0 + r) + q("L", x0, y1 - r) + arc(r, 0, x1, y1 - r)
+  const bowl = (yb: number) => {
+    const k = Math.min(c, (yb - y0) / 2)
+    return q("M", x0, y1, "L", x0, y0, "L", x1 - k, y0) + arc(k, 1, x1, y0 + k) + q("L", x1, yb - k) + arc(k, 1, x1 - k, yb) + q("L", x0, yb)
+  }
+  switch (ch) {
+    case "A": {
+      const ay = y0 + bh * 0.64
+      const t = (y1 - ay) / bh
+      return q("M", x0, y1, "L", xm, y0, "L", x1, y1, "M", x0 + (xm - x0) * t, ay, "L", x1 - (x1 - xm) * t, ay)
+    }
+    case "B": {
+      const yb = y0 + bh * 0.47
+      const xt = x1 - s * 0.4
+      const ct = Math.min(c, (yb - y0) / 2, xt - x0)
+      const cb = Math.min(c, (y1 - yb) / 2, bw)
+      return (
+        q("M", x0, yb, "L", xt - ct, yb) + arc(ct, 0, xt, yb - ct) + q("L", xt, y0 + ct) + arc(ct, 0, xt - ct, y0) +
+        q("L", x0, y0, "L", x0, y1, "L", x1 - cb, y1) + arc(cb, 0, x1, y1 - cb) + q("L", x1, yb + cb) + arc(cb, 0, x1 - cb, yb) +
+        q("L", x0, yb)
+      )
+    }
+    case "C":
+      return open
+    case "D": {
+      const k = Math.min(bw * 0.75, bh / 2)
+      return q("M", x0, y0, "L", x1 - k, y0) + arc(k, 1, x1, y0 + k) + q("L", x1, y1 - k) + arc(k, 1, x1 - k, y1) + q("L", x0, y1) + "Z"
+    }
+    case "E":
+      return q("M", x1, y0, "L", x0, y0, "L", x0, y1, "L", x1, y1, "M", x0, ym, "L", x1 - bw * 0.12, ym)
+    case "F":
+      return q("M", x1, y0, "L", x0, y0, "L", x0, y1, "M", x0, ym - bh * 0.02, "L", x1 - bw * 0.12, ym - bh * 0.02)
+    case "G":
+      return open + q("L", x1, ym + bh * 0.04, "L", xm, ym + bh * 0.04)
+    case "H":
+      return q("M", x0, y0, "L", x0, y1, "M", x1, y0, "L", x1, y1, "M", x0, ym, "L", x1, ym)
+    case "I":
+      return q("M", xm, y0, "L", xm, y1)
+    case "J":
+      return q("M", x1, y0, "L", x1, y1 - r) + arc(r, 1, x0, y1 - r) + q("L", x0, y1 - r - bh * 0.06)
+    case "K":
+      return q("M", x0, y0, "L", x0, y1, "M", x1, y0, "L", x0, y0 + bh * 0.62, "M", x0 + bw * 0.28, y0 + bh * 0.47, "L", x1, y1)
+    case "L":
+      return q("M", x0, y0, "L", x0, y1, "L", x1, y1)
+    case "M":
+      return q("M", x0, y1, "L", x0, y0, "L", xm, y0 + bh * 0.55, "L", x1, y0, "L", x1, y1)
+    case "N":
+      return q("M", x0, y1, "L", x0, y0, "L", x1, y1, "L", x1, y0)
+    case "O":
+      return stadium
+    case "P":
+      return bowl(y0 + bh * 0.52)
+    case "Q":
+      return stadium + q("M", xm + bw * 0.1, y1 - bh * 0.16, "L", x1 + s * 0.2, y1 + s * 0.3)
+    case "R":
+      return bowl(y0 + bh * 0.5) + q("M", x0 + bw * 0.42, y0 + bh * 0.5, "L", x1, y1)
+    case "S":
+      return q("M", x1, y0 + r) + arc(r, 0, x0, y0 + r) + q("C", x0, ym - bh * 0.02, x1, ym + bh * 0.02, x1, y1 - r) + arc(r, 1, x0, y1 - r)
+    case "T":
+      return q("M", x0, y0, "L", x1, y0, "M", xm, y0, "L", xm, y1)
+    case "U":
+      return q("M", x0, y0, "L", x0, y1 - r) + arc(r, 0, x1, y1 - r) + q("L", x1, y0)
+    case "V":
+      return q("M", x0, y0, "L", xm, y1, "L", x1, y0)
+    case "W": {
+      const k = bw * 0.24
+      return q("M", x0, y0, "L", x0 + k, y1, "L", xm, y0 + bh * 0.3, "L", x1 - k, y1, "L", x1, y0)
+    }
+    case "X":
+      return q("M", x0, y0, "L", x1, y1, "M", x1, y0, "L", x0, y1)
+    case "Y":
+      return q("M", x0, y0, "L", xm, ym - bh * 0.04, "L", x1, y0, "M", xm, ym - bh * 0.04, "L", xm, y1)
+    case "Z":
+      return q("M", x0, y0, "L", x1, y0, "L", x0, y1, "L", x1, y1)
+    default:
+      return ""
+  }
+}

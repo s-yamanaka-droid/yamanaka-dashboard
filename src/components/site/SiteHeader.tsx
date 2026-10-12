@@ -12,7 +12,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
-  if ((pathname.startsWith("/racco/columns/") || pathname.startsWith("/racco/goods/") || pathname === "/racco/contact") || ["/", "/workshop", "/racco", "/concept", "/brand-book", "/brand-guide"].includes(pathname)) return null;
+  if ((pathname.startsWith("/racco/columns/") || pathname.startsWith("/racco/goods/") || pathname === "/racco/contact") || ["/", "/workshop", "/records", "/racco", "/concept", "/brand-book", "/brand-guide"].includes(pathname)) return null;
   return <header className="site-header" onKeyDown={e => { if(e.key === "Escape"){setOpen(false);toggle.current?.focus();} }}>
     <Link href="/" className="site-logo" aria-label="Lakkan ホーム" onClick={() => setOpen(false)}><LakkanLogo tone="red" /></Link>
     <nav className="desktop-nav" aria-label="メインナビゲーション">{links.map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : pathname.startsWith(href + "/") ? "location" : undefined}>{label}</Link>)}</nav>
