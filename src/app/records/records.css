@@ -372,7 +372,6 @@ div.dcc-root {
   .lx-ptitle { margin-bottom: 14px; }
   .lx-ptitle-type { font-size: 84px; }
   .lx-plead { font-size: 14px; line-height: 1.9; margin-bottom: 14px !important; }
-  .lx-prow-bottom .lx-plabel:first-child { display: none; }
   .lx-plabel { font-size: 11px; }
 }
 @media (prefers-reduced-motion: reduce) {
