@@ -42,6 +42,17 @@ with sync_playwright() as p:
             assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), page.url + " horizontal overflow"
 
         for width in [375, 768, 1024, 1440]:
+            if width != 375:
+                # Isolate each device journey so canceled lazy-image requests
+                # from a resized previous journey cannot occupy its connections.
+                page.close()
+                pending.clear()
+                page = browser.new_page(reduced_motion="reduce")
+                page.set_default_timeout(20000)
+                page.on("pageerror", lambda error: errors.append(str(error)))
+                page.on("request", lambda request: pending.add(request.url))
+                page.on("requestfinished", lambda request: pending.discard(request.url))
+                page.on("requestfailed", lambda request: pending.discard(request.url))
             page.set_viewport_size({"width": width, "height": 960})
             visit("/racco#gallery-apparel")
             expect(page.locator('.bl-card[data-group="apparel"]')).to_have_count(3)
