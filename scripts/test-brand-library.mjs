@@ -13,12 +13,15 @@ const muchimuchiScene = "/brand-book/racco-muchimuchi-shop-v1.png";
 const compile = path => ts.transpileModule(readFileSync(new URL(path, import.meta.url), "utf8"), {
   compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true },
 }).outputText;
-const dataContext = { exports: {} };
+const worldContext = { exports: {} };
+vm.runInNewContext(compile("../src/data/racco-world.ts"), worldContext);
+const dataContext = { exports: {}, require(name) {
+  if (name === "./racco-world") return worldContext.exports;
+  throw new Error(`Unexpected book dependency: ${name}`);
+} };
 vm.runInNewContext(compile("../src/data/brand-book.ts"), dataContext);
 const kitContext = { exports: {} };
 vm.runInNewContext(compile("../src/data/racco-kit.ts"), kitContext);
-const worldContext = { exports: {} };
-vm.runInNewContext(compile("../src/data/racco-world.ts"), worldContext);
 assert.deepEqual(Object.keys(worldContext.exports.characterBackgrounds).sort(), ["automation", "fuwafuwa", "muchimuchi", "practical", "racco"], "the shared world defines all five approved characters");
 const columnsContext = { exports: {} };
 vm.runInNewContext(compile("../src/data/racco-columns.ts"), columnsContext);
@@ -134,6 +137,14 @@ for (let page = 1; page <= 12; page++) {
 }
 for (const page of [2, 3, 4, 5, 7, 11]) assert.ok(printHtml.includes(`href="#book-page-${page}"`), "contents target exists " + page);
 for (const copy of [...Object.values(worldContext.exports.characterBackgrounds), ...Object.values(worldContext.exports.raccoWorld)]) assert.ok(printHtml.includes(copy), "print book uses shared character/world copy");
+for (const [id, epithet] of Object.entries(worldContext.exports.characterEpithets)) {
+  assert.ok(printHtml.includes(epithet), id + " has an epithet in the book");
+  for (const copy of [epithet, worldContext.exports.characterBackgrounds[id], worldContext.exports.characterQuotes[id], worldContext.exports.characterRelations[id]]) assert.ok(dataContext.exports.bookMarkdown.includes(copy), id + " shared voice and relationship reach the downloadable manuscript");
+}
+assert.match(worldContext.exports.characterBackgrounds.fuwafuwa, /AIのことは.*よく分からない/);
+assert.match(worldContext.exports.characterBackgrounds.muchimuchi, /天才.*分からないふり/);
+assert.ok(worldContext.exports.characterWritingRules.some(rule => rule.includes("正解係にはしない")), "cat is not an omniscient lecturer");
+assert.equal(new Set(worldContext.exports.shopConversation.map(line => line.id)).size, 5, "the example scene gives all five characters distinct voices");
 for (const source of [muchimuchiCharacter, fuwafuwaCharacter, muchimuchiScene, "/brand/lakkan-logo/lakkan-a3-wordmark.png", "/brand/lakkan-logo/lakkan-a3-signature.png"]) assert.ok(printHtml.includes(source), "current print asset " + source);
 assert.ok(!/ひな|racco-hina|本人用|ラクする仕込み/.test(printHtml), "withdrawn characters and copy remain absent");
 assert.ok(printHtml.includes("会社の顔と、いつもの顔。") && printHtml.includes("Raccoの英字はNunito"), "logo and type roles are explicit");
@@ -305,15 +316,17 @@ for (const brand of ["racco", "lakkan"]) {
     assert.equal(castRoles.length, 1);
     assert.equal(castRoles[0].props.children.filter(node => node.type === "article").length, 3, "the original three role cards remain together");
     for (const member of kitContext.exports.raccoCast) {
-      assert.ok(nodeText(castRoles[0]).includes(member.name) && nodeText(castRoles[0]).includes(member.role), member.id + " retains its original name and role");
       const roleCard = castRoles[0].props.children.find(node => node.type === "article" && node.key === member.id);
+      assert.ok(nodeText(roleCard).includes(worldContext.exports.characterEpithets[member.id]), member.id + " is introduced by its epithet without renaming the source identity");
+      assert.ok(nodeText(roleCard).includes(worldContext.exports.characterQuotes[member.id]), member.id + " uses its shared voice");
       assert.ok(nodeText(roleCard).includes(worldContext.exports.characterBackgrounds[member.id]), member.id + " displays its shared character background");
     }
     assert.ok(app.find(n => n.type === "img" && n.props.src === "/brand-book/racco-trio.png").length, "original three-person scene remains available in members");
-    assert.ok(app.find(n => n.type === "h1" && nodeText(n) === "Raccoと、なかまたち。").length, "members heading includes the expanded cast");
+    assert.ok(app.find(n => n.type === "h1" && nodeText(n) === "同じ場所に、違うペース。").length, "members heading includes all five as peers");
     const fuwafuwa = app.find(n => n.props?.id === "bl-fuwafuwa");
     assert.equal(fuwafuwa.length, 1, "new member has its own named section");
     assert.ok(nodeText(fuwafuwa[0]).includes("ふわふわさん"));
+    assert.ok(nodeText(fuwafuwa[0]).includes(worldContext.exports.characterEpithets.fuwafuwa));
     assert.ok(nodeText(fuwafuwa[0]).includes(worldContext.exports.characterBackgrounds.fuwafuwa), "Fuwafuwa displays its shared character background");
     function assertDownloadableMemberImage(src, width, height) {
       const image = app.find(n => n.type === "img" && n.props.src === src)[0];
@@ -329,6 +342,7 @@ for (const brand of ["racco", "lakkan"]) {
     app.find(n => n.type === "dialog" && n.props.id === "bl-preview")[0].props.onClose();
     assert.equal(app.find(n => n.type === "img" && n.props.src === fuwafuwaScene).length, 0, "closing the shared scene preview clears it");
     const muchimuchi = app.find(n => n.props?.id === "bl-muchimuchi");
+    assert.ok(nodeText(muchimuchi[0]).includes(worldContext.exports.characterEpithets.muchimuchi));
     assert.equal(muchimuchi.length, 1, "Muchimuchi has a separate named member section");
     assert.ok(nodeText(muchimuchi[0]).includes(worldContext.exports.characterBackgrounds.muchimuchi), "Muchimuchi displays its shared character background");
     assert.ok(app.find(n => n.type === "h2" && nodeText(n) === "むちむち猫").length, "member heading uses the approved name");

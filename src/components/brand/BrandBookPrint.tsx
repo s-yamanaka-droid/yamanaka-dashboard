@@ -5,7 +5,7 @@ import Link from "next/link";
 import { LakkanLogo } from "./LakkanLogo";
 import { useState, type ReactNode } from "react";
 import { ArrowLeft, Download, Printer } from "lucide-react";
-import { raccoWorld, characterBackgrounds } from "@/data/racco-world";
+import { raccoWorld, characterBackgrounds, characterEpithets } from "@/data/racco-world";
 import {
   brandPrinciples,
   channels,
@@ -143,7 +143,7 @@ export function BrandBookPrint() {
       </div>
 
       <nav className="bp-contents" aria-label="ブランドブックの目次">
-        <a href="#book-page-2">考え方</a><a href="#book-page-3">ロゴ</a><a href="#book-page-4">Racco</a><a href="#book-page-5">なかま</a><a href="#book-page-7">SNS</a><a href="#book-page-11">グッズ</a>
+        <a href="#book-page-2">考え方</a><a href="#book-page-3">ロゴ</a><a href="#book-page-4">3匹のラッコ</a><a href="#book-page-5">なかま</a><a href="#book-page-7">SNS</a><a href="#book-page-11">グッズ</a>
       </nav>
 
       <div className="bp-pages">
@@ -152,7 +152,7 @@ export function BrandBookPrint() {
             <p className="bp-kicker">Racco Brand Book</p>
             <h1 className="bp-logo">Racco</h1>
             <h2>同じ作業は、<br />AIに任せたい。</h2>
-            <p className="bp-cover-lead">Lakkanの中にいる、だるそうなラッコ。<br />できれば寝てたい。<br />でも、ラクするための工夫はする。</p>
+            <p className="bp-cover-lead">だるいラッコ、凝りすぎるラッコ。<br />AIはよく分からないアザラシに、とぼけた猫。<br />今日も、Lakkanのいつものお店で。</p>
             <p className="bp-cover-caption">Lakkanのロゴ / Raccoと仲間たち / 言葉 / SNS / グッズ</p>
             <LakkanLogo size="small" />
           </div>
@@ -184,7 +184,7 @@ export function BrandBookPrint() {
         <Sheet page={3} label="02 / LAKKAN IDENTITY" className="bp-identity-sheet">
           <p className="bp-kicker">Lakkan and Racco</p>
           <h2 className="bp-title">会社の顔と、いつもの顔。</h2>
-          <p className="bp-identity-lead">Lakkanの中に、Raccoがいる。会社のロゴと、仲間たちの顔は、役割を分けて使います。</p>
+          <p className="bp-identity-lead">Lakkanの中に、Raccoの世界がある。会社のロゴと、仲間たちの顔は、役割を分けて使います。</p>
           <div className="bp-identity-grid">
             <div><div className="bp-logo-sample"><LakkanLogo size="feature" /></div><h3>いつもは、英字だけ。</h3><p>ヘッダー、フッター、名刺、資料の署名に。画像の比率と字形はそのまま使います。</p></div>
             <div><div className="bp-logo-sample"><LakkanLogo variant="signature" size="feature" /></div><h3>「楽観」は、会社を語るとき。</h3><p>会社紹介やコンセプトの説明に。すべての場所へ落款を付け足す必要はありません。</p></div>
@@ -195,19 +195,19 @@ export function BrandBookPrint() {
 
         <Sheet page={4} label="03 / RACCO" className="bp-cast-sheet">
           <p className="bp-kicker">Three ways to take it easy</p>
-          <h2 className="bp-title">のんびり。でも、それぞれ。</h2>
+          <h2 className="bp-title">同じラッコでも、こうも違う。</h2>
           <div className="bp-cast-grid">
             <div>
               <figure className="bp-trio-image"><BookImage name="racco-trio" alt="灰色パーカーのRacco、コーラルの小柄な仲間、チャコールと丸メガネの長顔の仲間が過ごす朝" /></figure>
-              <div className="bp-main-avatar"><BookImage name="racco-self-avatar" alt="主役Racco単独の太縁メガネのSNSアイコン" square /><p><strong>Raccoのアイコン</strong><span>太縁メガネに、眠そうな目。いつものRacco。</span></p></div>
+              <div className="bp-main-avatar"><BookImage name="racco-self-avatar" alt="怠惰な隣人の太縁メガネのSNSアイコン" square /><p><strong>怠惰な隣人のアイコン</strong><span>太縁メガネに、眠そうな目。いつもの席。</span></p></div>
             </div>
             <div className="bp-cast-roles">
-              <div><h3>Racco</h3><p>{characterBackgrounds.racco}</p></div>
-              <div><h3>テキパキした仲間</h3><p>{characterBackgrounds.practical}</p></div>
-              <div><h3>自動化好きの仲間</h3><p>{characterBackgrounds.automation}</p></div>
+              <div><h3>{characterEpithets.racco}</h3><p>{characterBackgrounds.racco}</p></div>
+              <div><h3>{characterEpithets.practical}</h3><p>{characterBackgrounds.practical}</p></div>
+              <div><h3>{characterEpithets.automation}</h3><p>{characterBackgrounds.automation}</p></div>
             </div>
           </div>
-          <div className="bp-rule-strip"><h3>3人とも、味方。</h3><p>先生・営業マン・万能役にしない。顔・体格・姿勢で区別し、投稿には必要な人数だけ。世界観は暖かな朝、柔らかな毛、布と木。画像は生成表現で、実績の証拠ではありません。</p></div>
+          <div className="bp-rule-strip"><h3>先生じゃなく、隣の席。</h3><p>隣人がぼやく。オタクが凝る。現実派が「今日はここまで」とお茶にする。誰かが全員を仕切るわけではない。呼び分けは二つ名で。Raccoの看板は、そのままに。</p></div>
           <p className="bp-note"><Link href="/racco#members">なかまの紹介：lakkan-inc.vercel.app/racco#members</Link></p>
         </Sheet>
 
@@ -217,8 +217,8 @@ export function BrandBookPrint() {
           <div className="bp-world-grid">
             <figure className="bp-world-scene"><BookImage name="racco-muchimuchi-shop-v1" alt="服やぬいぐるみが並ぶお店で、Racco、むちむち猫、ふわふわさんがくつろぐ" /><figcaption><strong>いつものお店、いつもの顔。</strong><span>{raccoWorld.intro}</span></figcaption></figure>
             <div className="bp-friend-profiles">
-              <div><BookImage name="muchimuchi-cat-character-v1" alt="青灰色のカーディガンを着た、まるいお腹のむちむち猫" square /><div><h3>むちむち猫</h3><p>{characterBackgrounds.muchimuchi}</p></div></div>
-              <div><BookImage name="fuwafuwa-character-v2" alt="ゴマアザラシのふわふわさん" square /><div><h3>ふわふわさん</h3><p>{characterBackgrounds.fuwafuwa}</p></div></div>
+              <div><BookImage name="muchimuchi-cat-character-v1" alt="青灰色のカーディガンを着た、まるいお腹のむちむち猫" square /><div><h3>{characterEpithets.muchimuchi}</h3><p>むちむち猫</p><p>{characterBackgrounds.muchimuchi}</p></div></div>
+              <div><BookImage name="fuwafuwa-character-v2" alt="ゴマアザラシのふわふわさん" square /><div><h3>{characterEpithets.fuwafuwa}</h3><p>ふわふわさん</p><p>{characterBackgrounds.fuwafuwa}</p></div></div>
             </div>
           </div>
           <div className="bp-rule-strip"><h3>何もしない日もある。</h3><p>{raccoWorld.tone}</p></div>

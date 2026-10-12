@@ -21,6 +21,15 @@ The old eight-page avatar supplement and original generated cover are production
 
 ## Checks
 
+### Character epithets and relationships
+
+- All five companions now have an epithet, distinct voice and peer relationship in `racco-world.ts`. Character pages, print book, full guide and downloadable manuscript use the same text.
+- Fuwafuwa genuinely does not understand AI well. Muchimuchi is a genius who feigns not knowing to join in, not to test or ridicule the others. The cat is not a recurring lecturer or automatic solution.
+- Racco's name, logo, URLs and existing source IDs are retained. The user questioned the individual name without finalizing a rename; otter introduction headings now use epithets instead. This is not a confirmed brand rename or SNS profile change.
+- The full guide and Markdown include a five-person fictional scene, voice rules and relationships. No invented real-world performance is claimed.
+- Existing page layout, type, colors and images are unchanged; this is copy refinement, outside the new-visual approval gate. Source: the user's five-character direction and subsequent naming clarification in this chat. The context lookup returned unrelated motion/research candidates; none were adopted.
+- Regression tests cover all five epithets, seal/cat characterization, original identity retention and manuscript equality. Responsive and production evidence is recorded in the existing shared QA note after verification.
+
 ### Decorative navigation cleanup
 
 - Removed the noninteractive diagonal arrow beside the cover wordmark and its dedicated CSS. At a 768px viewport the arrow wrapped into an unnecessary second line.

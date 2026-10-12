@@ -7,7 +7,7 @@ import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, Check, Chevro
 import { FormEvent, KeyboardEvent, ReactNode, useEffect, useRef, useState } from "react";
 import { channels, lakkanPrinciples, repairPrompt, starterPrompt, voiceRules, workCycle } from "@/data/brand-book";
 import { raccoCast } from "@/data/racco-kit";
-import { characterBackgrounds, raccoWorld } from "@/data/racco-world";
+import { characterBackgrounds, characterEpithets, characterQuotes, characterRelations, characterWritingRules, shopConversation, raccoWorld } from "@/data/racco-world";
 import BrandLibrary from "./BrandLibrary";
 import { LakkanLogo } from "./LakkanLogo";
 import { useBrandReducedMotion } from "./useBrandReducedMotion";
@@ -159,14 +159,13 @@ export function BrandGuide({ brand }: { brand: "racco" | "lakkan" }) {
         <section id="concept" className="bs-section bs-concept"><SectionTitle eyebrow="The idea" title="いつもの面倒を、ひとつ渡す。" body="AIすごいのは分かった。で、今日どこで使う？"/><div className="bs-manifesto"><p>新しい道具を、全部追わなくてもいい。<br/>いつもの面倒を、ひとつ渡す。<br/>欲しかったものと違ったら、直す。</p><p>試したことも、空振りも。<br/>次の誰かが、ちょっとラクになる材料に。</p><strong>使えた型だけ、持ち帰る。</strong></div><div className="bs-promise-row"><div><span>見た目の約束</span><h3>気負わず、だるい。</h3></div><div><span>中身の約束</span><h3>試したことを、隠さない。</h3></div></div></section>
 
         <section id="members" className="bs-section bs-members">
-          <SectionTitle eyebrow="The friends" title="Raccoと、なかまたち。" body={raccoWorld.intro}/>
+          <SectionTitle eyebrow="The friends" title="同じ場所に、違うペース。" body={raccoWorld.intro}/>
           <div className="bs-manifesto"><strong>{raccoWorld.title}</strong><p>{raccoWorld.tone}</p></div>
           <Image className="bs-members-image" src="/brand-book/racco-trio.png" width={1672} height={941} alt={assets[1].alt} sizes="(max-width: 800px) 100vw, 75vw"/>
           <div className="bs-member-roles">
-            {raccoCast.map(member => <div key={member.id}><span>{member.role}</span><h3>{member.name}</h3><p>{characterBackgrounds[member.id]}</p></div>)}
-            <div><span>いつもの席で、話を聞く。</span><h3>ふわふわさん</h3><p>{characterBackgrounds.fuwafuwa}</p></div>
-            <div><span>ソファの座り心地には、うるさい。</span><h3>むちむち猫</h3><p>{characterBackgrounds.muchimuchi}</p></div>
+            {[...raccoCast.map(member => ({ id: member.id, label: "ラッコ" })), { id: "fuwafuwa", label: "ふわふわさん" }, { id: "muchimuchi", label: "むちむち猫" }].map(member => <div key={member.id}><span>{member.label}</span><h3>{characterEpithets[member.id]}</h3><p>{characterBackgrounds[member.id]}</p><p>「{characterQuotes[member.id]}」</p><p>{characterRelations[member.id]}</p></div>)}
           </div>
+          <details className="bs-manifesto"><summary className="bs-text-link">会話を書くときのメモ<ChevronDown size={14} aria-hidden="true"/></summary>{characterWritingRules.map(rule => <p key={rule}>{rule}</p>)}<h3>コーヒーが冷めるまで</h3><p>キャラクター同士の創作会話。実際のAI利用結果ではありません。</p>{shopConversation.map(line => <p key={line.id}><strong>{characterEpithets[line.id]}</strong><br/>「{line.line}」</p>)}</details>
           <Link className="bs-text-link" href="/racco#members">なかまの紹介と見本を見る<ArrowUpRight size={16}/></Link>
         </section>
 
