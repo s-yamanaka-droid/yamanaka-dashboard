@@ -46,6 +46,52 @@ Lo-fi instruments: Versilian Community Sample Library (VCSL)
 
 レコードの絵：シカゴ美術館のパブリックドメイン作品（CC0）。イネス《月の出》、モネ《プールヴィルの断崖の散歩》、北斎《神奈川沖浪裏》、広重《原 朝之富士》、モネ《積みわら（夏の終わり）》、モネ《睡蓮》。
 
+Jazz guitar: Shinyguitar
+  By Karoryfer Samples (an archtop guitar played and mapped by D. Smolken)
+  Source: https://github.com/sfzinstruments/karoryfer.shinyguitar (commit 57243cca85277dbcc120ce17c6178032f93c80f3)
+  License: CC0 1.0 Universal (public domain dedication) — attribution not required, given with thanks.
+  Changes: 15 single notes from the magnetic pickup (the second of four dynamics, first round robin) and
+  2 muted strums, converted to mono 44.1 kHz 16-bit FLAC, trimmed to 1 ms before the pluck with a 1 ms
+  fade-in, shortened to at most 3 s (0.3 s for the strums) and faded out at the end. The notes were all
+  raised by the same amount, so the loudest peaks at -1 dBFS (the strums likewise, on their own). One note
+  (C3) was retuned by 11 cents by changing its playback speed.
+
+Upright bass: Sneakybass
+  By Karoryfer Samples (a 1958 Otto Rubner double bass played pizzicato and mapped by Drogomir Smolken)
+  Source: https://github.com/sfzinstruments/karoryfer.sneakybass (commit cc1a67e5c913678b85eaad1a3b5cb180d3be3e2d)
+  License: CC0 1.0 Universal (public domain dedication) — attribution not required, given with thanks.
+  Changes: 10 plucked notes (first round robin), both channels mixed to mono 44.1 kHz 16-bit FLAC,
+  trimmed to 1 ms before the pluck with a 1 ms fade-in, shortened to at most 2.5 s and faded out at the
+  end. The notes were all raised by the same amount, so the loudest peaks at -1 dBFS. Two notes (E1 by
+  66 cents, G2 by 17 cents) were retuned to equal temperament by changing their playback speed.
+
+Brushes and punchy drums: Big Rusty Drums
+  By Karoryfer Samples
+  Source: https://github.com/sfzinstruments/karoryfer.big-rusty-drums (commit f07ce00df34a46b6b08375be56fe116cf15782bc)
+  License: CC0 1.0 Universal (public domain dedication) — attribution not required, given with thanks.
+  Changes: one hit of each sound (snare, hi-hat and ride with brushes; kick, snare, rimshot and hi-hat
+  with sticks), its close, bottom and overhead microphones mixed to mono at the instrument's default mixer
+  levels, converted to 44.1 kHz 16-bit FLAC, trimmed to the strike, shortened and faded. The brush stir
+  was cut to 0.87 s and shaped with the instrument's default short-stir swell (0.24 s up, 0.63 s down).
+  Within each kit (brushes, sticks) every hit was raised by the same amount, so the loudest peaks at -1 dBFS.
+
+Hand percussion: Versilian Community Sample Library (VCSL)
+  By Versilian Studios — https://github.com/sgossner/VCSL (commit c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e)
+  License: CC0 1.0 Universal (public domain dedication) — attribution not required, given with thanks.
+  Instruments used:
+    Congas: "Conga", two strokes on the conga (HitN and HitFM) and one on the tumba (HitN).
+    Bongos: "Bongos", one hit on each drum, from the left channel.
+    Shaker: "Shaker, Small", one forward and one back stroke, with the rumble below 500 Hz removed.
+  Changes: converted to mono 44.1 kHz 16-bit FLAC, trimmed to the strike, shortened and faded; all raised
+  by the same amount, so the loudest peaks at -1 dBFS.
+
+Cowbell: Swirly Drums
+  By Karoryfer Samples
+  Source: https://github.com/sfzinstruments/karoryfer.swirly-drums (commit c40dafe0011cb2e54c0c220ff0fa308a11fc60f5)
+  License: CC0 1.0 Universal (public domain dedication) — attribution not required, given with thanks.
+  Changes: one hit at the middle dynamic, converted to 44.1 kHz 16-bit FLAC, shortened to 0.5 s, faded
+  out and raised so it peaks at -1 dBFS.
+
 楽器の録音について
 ------------------
 エレピ：Wurlitzer EP200（録音：Greg Sullivan、SFZ化：SFZ Instruments、CC BY 3.0）
@@ -67,3 +113,35 @@ Lo-fi instruments: Versilian Community Sample Library (VCSL)
   終わりをフェードアウトさせています。楽器ごとに全部の音を同じだけ持ち上げ、いちばん大きい音の
   ピークを -1dBFS にしています。カリンバとダン・チャンは、再生速度を変えて平均律の高さに
   合わせ直しています（カリンバは楽器の調律そのものが平均律から最大で約60セント離れているため）。
+ジャズギター：Shinyguitar（Karoryfer Samples、演奏とSFZ化：D. Smolken、CC0）
+  https://github.com/sfzinstruments/karoryfer.shinyguitar （コミット 57243cca85277dbcc120ce17c6178032f93c80f3）
+  アーチトップギターの磁気ピックアップの録音から、4段の強さの下から2つ目・ラウンドロビン1つ目の単音15音と、
+  弦を押さえて弾いた「チャッ」2つを使用。モノラル・44.1kHz・16bit の FLAC に変換し、弦を弾いた位置の 1ms 手前で
+  頭を切って 1ms のフェードインを付け、最大3秒（「チャッ」は0.3秒）に切り詰めて終わりをフェードアウトさせています。
+  単音は全部を同じだけ持ち上げ、いちばん大きい音のピークを -1dBFS にしています（「チャッ」も別に同じく）。
+  C3 の1音は、再生速度を変えて平均律の高さに合わせ直しています（11セント）。
+ウッドベース：Sneakybass（Karoryfer Samples、演奏とSFZ化：Drogomir Smolken、CC0）
+  https://github.com/sfzinstruments/karoryfer.sneakybass （コミット cc1a67e5c913678b85eaad1a3b5cb180d3be3e2d）
+  1958年 Otto Rubner のコントラバスのピチカートから、ラウンドロビン1つ目の10音を使用。左右を混ぜてモノラル・
+  44.1kHz・16bit の FLAC に変換し、弾いた位置の 1ms 手前で頭を切って 1ms のフェードインを付け、最大2.5秒に
+  切り詰めて終わりをフェードアウトさせています。全部の音を同じだけ持ち上げ、いちばん大きい音のピークを -1dBFS に
+  しています。E1（66セント）と G2（17セント）は、再生速度を変えて平均律の高さに合わせ直しています。
+ブラシとパンチのあるドラム：Big Rusty Drums（Karoryfer Samples、CC0）
+  https://github.com/sfzinstruments/karoryfer.big-rusty-drums （コミット f07ce00df34a46b6b08375be56fe116cf15782bc）
+  ブラシのスネア・ハイハット・ライドと、スティックのキック・スネア・リムショット・ハイハットから1打ずつを使用。
+  近いマイク・スネアの下のマイク・オーバーヘッドを、元の楽器の既定のミキサーの音量でモノラルにまとめ、
+  44.1kHz・16bit の FLAC に変換し、打点で頭を切り、短く切ってフェードアウトさせています。ブラシでこする音は
+  0.87秒に切り、元の楽器の既定の短いこする音の形（0.24秒で立ち上がり、0.63秒で消える）を付けています。
+  キットごと（ブラシ、スティック）に全部の音を同じだけ持ち上げ、いちばん大きい音のピークを -1dBFS にしています。
+ハンドパーカッション：Versilian Community Sample Library（VCSL、Versilian Studios、CC0）
+  https://github.com/sgossner/VCSL （コミット c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e）
+  使用した楽器：
+    コンガ（Conga）コンガの2種類の打ち方（HitN と HitFM）とトゥンバの HitN
+    ボンゴ（Bongos）高い方と低い方を1打ずつ、左チャンネルだけ
+    シェイカー（Shaker, Small）前に振る1振りと戻す1振り、500Hz 以下の低い雑音を削除
+  モノラル・44.1kHz・16bit の FLAC に変換し、打点で頭を切り、短く切ってフェードアウトさせています。
+  全部の音を同じだけ持ち上げ、いちばん大きい音のピークを -1dBFS にしています。
+カウベル：Swirly Drums（Karoryfer Samples、CC0）
+  https://github.com/sfzinstruments/karoryfer.swirly-drums （コミット c40dafe0011cb2e54c0c220ff0fa308a11fc60f5）
+  中くらいの強さの1打を使用。44.1kHz・16bit の FLAC に変換し、0.5秒に切ってフェードアウトさせ、
+  ピークを -1dBFS にしています。

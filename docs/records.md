@@ -14,7 +14,17 @@ Lakkan の事業を6枚のレコードにしたページです。曲は1枚ず�
   - 絵を替えるときは、スクリプトの `ART` と `src/lib/records/catalog.ts` の `ART` の両方を直す。
 - 楽器の録音：`public/records/samples/`
   - ローファイ用の楽器（アップライトピアノ、ビブラフォン、カリンバ、ダン・チャン、テナーサックス）は VCSL（CC0）から使っている。作り方とテストは試作 `~/apps/disc-records`（`scripts/prepare-lofi-samples.py`）にある。
-  - 曲はすべて `"style": "lofi"` で、ジャズのノリ（`groove`：`swing` はライドとウォーキングベース、`bossa` はボサノバ、`ballad` はゆっくり）。曲ごとに、ノリ（`groove`）、鍵盤（`keys`）、メロディの楽器（`lead`）、メロディの高さ（`octave`）、背景の音（`texture`）を変えている。
+  - バンドの録音（ジャズギター Shinyguitar、ウッドベース Sneakybass、ブラシとパンチのあるドラム Big Rusty Drums、コンガ・ボンゴ・シェイカー VCSL、カウベル Swirly Drums。すべて CC0）も使っている。作り方は試作の `scripts/prepare-band-samples.py`、音量の合わせ方は `scripts/calibrate-band.test.ts`。
+  - 曲はすべて `"style": "lofi"` で、ジャズのノリ（`groove`）で弾く。
+    - `swing`：ライドとウォーキングベース
+    - `brush`：ブラシのスウィング
+    - `ballad`：ブラシのゆっくりした曲
+    - `bossa`：ボサノバ
+    - `hop`：ジャズ・ヒップホップ。ドラムが前に出て、拍の後ろで叩く
+    - `funk`：ジャズ・ファンク。ギターのカッティングが入る
+    - `latin`：ラテン。コンガ・ボンゴ・カウベル・クラーベが入る
+  - `hop`・`funk`・`latin` は、最初の2小節と最後のサビの前の1小節がドラムだけになる。
+  - 曲ごとに、ノリ（`groove`）、鍵盤（`keys`：`rhodes`・`piano`・`guitar`）、メロディの楽器（`lead`：`guitar` も使える）、メロディの高さ（`octave`）、背景の音（`texture`）を変えている。
   - エレピ：Wurlitzer EP200（CC BY 3.0、表記が必要）
   - ドラム：Virtuosity Drums（CC0）
   - 表記は `CREDITS.txt` に書き、ページ右下の SOUND CREDITS からリンクしている

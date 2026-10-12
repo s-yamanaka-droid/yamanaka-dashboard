@@ -14,8 +14,8 @@
  */
 
 import { midiToHz, rng } from "./theory"
-import type { LeadTone, NoteEvent, RecordedLead, Texture, TrackSpec } from "./compose"
-import { wurliZone, type DrumHit, type SampleBank } from "./samples"
+import { isJazz, type LeadTone, type NoteEvent, type RecordedLead, type Texture, type TrackSpec } from "./compose"
+import { INSTRUMENTS, KIT_PIECES, wurliZone, type DrumHit, type Note, type SampleBank } from "./samples"
 
 /** Where the recorded instruments arrive once decoded; shared by the rig and every deck on it. */
 export type SampleSlot = { current: SampleBank | null }
@@ -62,6 +62,11 @@ export type Deck = {
     ohat: GainNode
     ride: GainNode
     foot: GainNode
+    /** The archtop guitar when it comps the chords, left of centre, across from the ride. */
+    guitar: GainNode
+    conga: GainNode
+    bongo: GainNode
+    bell: GainNode
   }
   fxRoom: GainNode
   /** Long-running sources (texture loops, LFOs) to stop when the deck goes. */
@@ -73,6 +78,20 @@ export type Deck = {
   lofi: boolean
   /** Lo-fi jazz: the same tape, a little more top for the ride, and no pumping. */
   jazz: boolean
+  /** Which recorded kit plays the drums. */
+  kit: Kit
+}
+
+/**
+ * Which kit a record plays: the core kit, brushes (for the ballad and the
+ * brush swing), or a punchier kit for the beats that lead with the drums.
+ */
+export type Kit = "core" | "brush" | "punch"
+export function kitOf(spec: TrackSpec): Kit {
+  if (spec.style !== "lofi") return "core"
+  if (spec.groove === "brush" || spec.groove === "ballad") return "brush"
+  if (spec.groove === "hop" || spec.groove === "funk") return "punch"
+  return "core"
 }
 
 export const MASTER_LEVEL = 0.66
@@ -189,9 +208,13 @@ export function createRig(ctx: BaseAudioContext, out: AudioNode, withAnalyser: b
   return { ctx, master, reverb, room, reverbReturn: ret, predelay, roomVerb, roomIr, roomReturn, analyser, samples: { current: null } }
 }
 
-export function createDeck(rig: Rig, bpm: number, lofi = false, jazz = false): Deck {
+export function createDeck(rig: Rig, bpm: number, lofi = false, jazz = false, kit: Kit = "core", level = 1): Deck {
   const { ctx } = rig
   const bus = ctx.createGain()
+  // a record's own level after its fader, so a quiet one (a ballad on brushes) plays as loud as the rest
+  const trim = ctx.createGain()
+  trim.gain.value = level
+  bus.connect(trim)
   const dry = ctx.createGain()
   const fx = ctx.createGain()
   const fxRoom = ctx.createGain()
@@ -202,7 +225,8 @@ export function createDeck(rig: Rig, bpm: number, lofi = false, jazz = false): D
     // a worn tape: the top rolled off, the lowest rumble cut, and a slow pitch drift with a little flutter
     const top = ctx.createBiquadFilter()
     top.type = "lowpass"
-    top.frequency.value = jazz ? 6800 : 5200
+    // the beats that lead with the drums keep more of their top, so the snare cracks
+    top.frequency.value = kit === "punch" ? 9000 : jazz ? 6800 : 5200
     top.Q.value = 0.45
     const floor = ctx.createBiquadFilter()
     floor.type = "highpass"
@@ -219,9 +243,9 @@ export function createDeck(rig: Rig, bpm: number, lofi = false, jazz = false): D
       tapeSources.push(lfo)
       tapeNodes.push(amt)
     }
-    bus.connect(floor).connect(top).connect(drift).connect(rig.master)
+    trim.connect(floor).connect(top).connect(drift).connect(rig.master)
     tapeNodes.push(top, floor, drift)
-  } else bus.connect(rig.master)
+  } else trim.connect(rig.master)
   fx.connect(rig.predelay)
   fxRoom.connect(rig.roomVerb)
   const nodes: AudioNode[] = [fxRoom]
@@ -262,6 +286,10 @@ export function createDeck(rig: Rig, bpm: number, lofi = false, jazz = false): D
     ohat: panned(0.32),
     ride: panned(0.36),
     foot: panned(0.2),
+    guitar: panned(-0.24),
+    conga: panned(-0.38),
+    bongo: panned(0.3),
+    bell: panned(0.22),
   }
   const send = { pad: ctx.createGain(), lead: ctx.createGain(), drum: ctx.createGain() }
   send.pad.gain.value = 0.55
@@ -322,7 +350,8 @@ export function createDeck(rig: Rig, bpm: number, lofi = false, jazz = false): D
     samples: rig.samples,
     lofi,
     jazz,
-    nodes: [bus, dry, fx, ...Object.values(send), echo, delay, fb, tone, keys, wobble, depth, middle, ...nodes, ...tapeNodes],
+    kit,
+    nodes: [bus, trim, dry, fx, ...Object.values(send), echo, delay, fb, tone, keys, wobble, depth, middle, ...nodes, ...tapeNodes],
   }
 }
 
@@ -615,8 +644,9 @@ function kick(ctx: BaseAudioContext, deck: Deck, t: number, vel: number) {
 function duckOn(deck: Deck, t: number) {
   const d = deck.duck.gain
   d.setValueAtTime(1, t)
-  d.linearRampToValueAtTime(deck.jazz ? 0.92 : deck.lofi ? 0.62 : 0.8, t + 0.012)
-  d.setTargetAtTime(1, t + 0.03, deck.lofi && !deck.jazz ? 0.16 : 0.08)
+  // jazz-hop pumps a little, like a sampled loop under a compressor; the other jazz feels hardly at all
+  d.linearRampToValueAtTime(deck.kit === "punch" ? 0.78 : deck.jazz ? 0.92 : deck.lofi ? 0.62 : 0.8, t + 0.012)
+  d.setTargetAtTime(1, t + 0.03, deck.lofi && (!deck.jazz || deck.kit === "punch") ? 0.16 : 0.08)
 }
 
 function snare(ctx: BaseAudioContext, deck: Deck, t: number, vel: number) {
@@ -810,7 +840,7 @@ function openHat(ctx: BaseAudioContext, deck: Deck, t: number, vel: number) {
  * Levels that sit each recording where its synth stood, measured by
  * scripts/calibrate-samples.test.ts (loudness over the first part of a hit).
  */
-export const SAMPLE_GAIN: Record<DrumHit | "wurli" | "keys-piano" | Instrument, number> = {
+export const SAMPLE_GAIN: Record<DrumHit | "wurli" | "keys-piano" | "keys-guitar" | "gtr-chop" | "guitar-mute" | Instrument, number> = {
   wurli: 0.287,
   kick: 1.803,
   snare: 0.190,
@@ -832,6 +862,11 @@ export const SAMPLE_GAIN: Record<DrumHit | "wurli" | "keys-piano" | Instrument, 
   kalimba: 0.140,
   zither: 0.151,
   "tenor-sax": 0.093,
+  guitar: 0.265,
+  "keys-guitar": 0.298,
+  "gtr-chop": 0.354,
+  "guitar-mute": 0.279,
+  "upright-bass": 1.205,
 }
 
 /** The recorded melody instruments, by the folder their notes live in under public/samples. */
@@ -841,10 +876,64 @@ export const RECORDED: Record<RecordedLead, Instrument> = {
   kalimba: "kalimba",
   zither: "zither",
   sax: "tenor-sax",
+  guitar: "guitar",
 }
-export type Instrument = "upright-piano" | "vibraphone" | "kalimba" | "zither" | "tenor-sax"
+export type Instrument = "upright-piano" | "vibraphone" | "kalimba" | "zither" | "tenor-sax" | "guitar" | "upright-bass"
 /** The synth that plays a recorded instrument's part until its notes arrive. */
-const STANDIN: Record<RecordedLead, LeadTone> = { piano: "bell", vibraphone: "vibes", kalimba: "pluck", zither: "pluck", sax: "reed" }
+const STANDIN: Record<RecordedLead, LeadTone> = { piano: "bell", vibraphone: "vibes", kalimba: "pluck", zither: "pluck", sax: "reed", guitar: "pluck" }
+
+/**
+ * Levels for the band's extra kit pieces, measured the same way (each against
+ * the core kit's stroke it stands in for). A piece missing here plays at 0.3.
+ */
+export const KIT_GAIN: Record<string, number> = {
+  "br-kick": 0.688,
+  "br-kick-2": 0.688,
+  "br-kick-soft": 0.688,
+  "br-snare": 0.205,
+  "br-snare-2": 0.205,
+  "br-rimshot": 0.205,
+  "br-ghost": 0.827,
+  "br-ghost-2": 0.827,
+  "br-hat": 0.314,
+  "br-hat-2": 0.314,
+  "br-hat-hard": 0.168,
+  "br-ohat": 0.237,
+  "br-foot": 0.068,
+  "brush-tap": 0.099,
+  "brush-tap-soft": 0.099,
+  "brush-hat": 0.040,
+  "brush-ride": 0.078,
+  "conga-open": 1.083,
+  "conga-mute": 1.083,
+  "conga-slap": 0.347,
+  "conga-low": 1.806,
+  "bongo-hi": 0.623,
+  "bongo-lo": 0.623,
+  "cowbell": 0.291,
+  "shaker": 0.922,
+  "shaker-2": 0.922,
+  "brush-sweep": 0.249,
+}
+
+/** The recordings a record needs beyond the core, as files: its melody and chord instruments, the double bass, its kit. */
+export function recordingsFor(spec: TrackSpec): string[] {
+  const inst = new Set<string>()
+  if (spec.lead in RECORDED) inst.add(RECORDED[spec.lead as RecordedLead])
+  if (spec.keys === "piano") inst.add("upright-piano")
+  if (spec.keys === "guitar") inst.add("guitar")
+  const jazz = spec.style === "lofi" && isJazz(spec.groove)
+  if (jazz) inst.add("upright-bass")
+  if (jazz && spec.groove === "funk") inst.add("guitar").add("guitar-mute")
+  const kit = kitOf(spec)
+  const prefixes = kit === "brush" ? ["brush-"] : kit === "punch" ? ["br-"] : []
+  if (jazz && spec.groove === "latin") prefixes.push("conga-", "bongo-", "cowbell", "shaker")
+  if (jazz && spec.groove === "bossa") prefixes.push("shaker")
+  return [
+    ...[...inst].flatMap((name) => (INSTRUMENTS[name] ?? []).map((n) => n.file)),
+    ...KIT_PIECES.filter((k) => prefixes.some((p) => k.startsWith(p))).map((k) => `drums/${k}`),
+  ]
+}
 const isRecorded = (tone: LeadTone): tone is RecordedLead => tone in RECORDED
 
 /** One recording, from time t, at a playback rate; cut away softly after `hold` seconds if given. */
@@ -875,14 +964,15 @@ function wurlitzer(ctx: BaseAudioContext, deck: Deck, bank: SampleBank, t: numbe
 }
 
 /** A note on a recorded instrument: the nearest of its recordings, retuned to the key. */
-function multi(ctx: BaseAudioContext, notes: { midi: number; buf: AudioBuffer }[], t: number, midi: number, gain: number, outs: AudioNode[], hold: number, release: number) {
+function multi(ctx: BaseAudioContext, notes: Note[], t: number, midi: number, gain: number, outs: AudioNode[], hold: number, release: number) {
   let near = notes[0]
   for (const n of notes) if (Math.abs(n.midi - midi) < Math.abs(near.midi - midi)) near = n
-  sample(ctx, near.buf, t, gain, outs, 2 ** ((midi - near.midi) / 12), hold, release)
+  sample(ctx, near.buf, t, gain * (near.gain ?? 1), outs, 2 ** ((midi - near.midi) / 12), hold, release)
 }
 
 /** The kit, played from its recordings; the shaker stays synthesised. Returns false for anything it doesn't play. */
 function drum(ctx: BaseAudioContext, deck: Deck, bank: SampleBank, ev: NoteEvent, t: number, dur: number): boolean {
+  if (deck.jazz && band(ctx, deck, bank, ev, t, dur)) return true
   const hit = (name: DrumHit, vel: number, outs: AudioNode[], rate = 1, hold?: number) => sample(ctx, bank.drums[name], t, SAMPLE_GAIN[name] * vel, outs, rate, hold)
   switch (ev.voice) {
     case "kick":
@@ -922,10 +1012,85 @@ function drum(ctx: BaseAudioContext, deck: Deck, bank: SampleBank, ev: NoteEvent
   }
 }
 
+/**
+ * The band's own recordings, where it has them: brushes or the punchier kit in
+ * place of the core kit, hand drums, a muted guitar strum. Two strokes of the
+ * same drum are taken in turn, so a beat never repeats one recording. Returns
+ * false where it has nothing, and the core kit (or a synth) plays instead.
+ */
+function band(ctx: BaseAudioContext, deck: Deck, bank: SampleBank, ev: NoteEvent, t: number, dur: number): boolean {
+  const piece = (name: string, vel: number, outs: AudioNode[], hold?: number) => {
+    const buf = bank.kit[name]
+    if (!buf) return false
+    sample(ctx, buf, t, (KIT_GAIN[name] ?? 0.3) * vel, outs, 1, hold)
+    return true
+  }
+  // on the beat the first stroke, off it the second
+  const turn = (a: string, b: string) => (ev.step % 4 !== 0 && bank.kit[b] ? b : a)
+  const brush = deck.kit === "brush"
+  const punch = deck.kit === "punch"
+  switch (ev.voice) {
+    case "kick":
+      if (!punch) return false
+      if (!piece(ev.vel < 0.4 ? "br-kick-soft" : ev.step === 0 ? "br-kick" : turn("br-kick", "br-kick-2"), ev.vel, [deck.dry])) return false
+      duckOn(deck, t)
+      return true
+    case "snare":
+      if (brush) return piece(ev.vel >= 0.3 ? "brush-tap" : "brush-tap-soft", ev.vel, [deck.ch.snare, deck.send.drum])
+      if (punch) return piece(ev.vel < 0.3 ? turn("br-ghost", "br-ghost-2") : ev.step === 12 ? "br-snare-2" : "br-snare", ev.vel, [deck.ch.snare, deck.send.drum])
+      return false
+    case "sweep":
+      return piece("brush-sweep", ev.vel, [deck.ch.snare], Math.max(dur, 0.3))
+    case "hat":
+      if (brush) return piece("brush-hat", ev.vel, [deck.ch.hat])
+      if (punch) return piece(ev.vel >= 0.45 ? "br-hat-hard" : turn("br-hat", "br-hat-2"), ev.vel, [deck.ch.hat])
+      return false
+    case "ohat":
+      return punch && piece("br-ohat", ev.vel, [deck.ch.ohat], Math.max(dur, 0.12))
+    case "foot":
+      return punch && piece("br-foot", ev.vel, [deck.ch.foot])
+    case "ride":
+      return brush && ev.midi !== 1 && piece("brush-ride", ev.vel, [deck.ch.ride, deck.send.drum])
+    case "shaker":
+      return piece(ev.step % 2 ? "shaker-2" : "shaker", ev.vel, [deck.ch.shaker])
+    case "conga":
+      return piece(["conga-mute", "conga-slap", "conga-open", "conga-low"][ev.midi] ?? "conga-open", ev.vel, [deck.ch.conga, deck.send.drum]) ||
+        (ev.midi === 0 && piece("conga-open", ev.vel * 0.45, [deck.ch.conga], 0.06))
+    case "bongo":
+      return piece(ev.midi === 1 ? "bongo-lo" : "bongo-hi", ev.vel, [deck.ch.bongo, deck.send.drum])
+    case "bell":
+      return piece("cowbell", ev.vel, [deck.ch.bell, deck.send.drum])
+    case "chk": {
+      // a strum on deadened strings has no pitch: the two recordings in turn, as they are
+      const mute = bank.inst["guitar-mute"]
+      if (!mute?.length) return false
+      sample(ctx, mute[ev.step % 4 === 3 ? mute.length - 1 : 0].buf, t, SAMPLE_GAIN["guitar-mute"] * ev.vel, [deck.ch.gtr], 1, Math.max(dur, 0.05), 0.03)
+      return true
+    }
+    default:
+      return false
+  }
+}
+
 export function playNote(ctx: BaseAudioContext, deck: Deck, ev: NoteEvent, t: number, stepSec: number, tone: LeadTone, keysOn: TrackSpec["keys"] = "rhodes") {
   const dur = ev.len * stepSec
   const bank = deck.samples.current
   if (bank) {
+    if (ev.voice === "keys" && keysOn === "guitar") {
+      // the archtop comps: each chord a quick strum (the engine rolls the strings), let go where the chord ends
+      const gtr = bank.inst.guitar
+      if (gtr?.length) return multi(ctx, gtr, t, ev.midi, SAMPLE_GAIN["keys-guitar"] * ev.vel, [deck.ch.guitar, deck.send.pad], Math.max(dur, 0.14), 0.12)
+    }
+    if (ev.voice === "gtr" && deck.jazz) {
+      // jazz-funk chops on the archtop: gone almost as soon as they sound
+      const gtr = bank.inst.guitar
+      if (gtr?.length) return multi(ctx, gtr, t, ev.midi, SAMPLE_GAIN["gtr-chop"] * ev.vel, [deck.ch.gtr, deck.send.drum], Math.max(dur * 0.7, 0.07), 0.04)
+    }
+    if (ev.voice === "bass" && deck.jazz) {
+      // the double bass, plucked; each note stopped just before the next
+      const ub = bank.inst["upright-bass"]
+      if (ub?.length) return multi(ctx, ub, t, ev.midi, SAMPLE_GAIN["upright-bass"] * ev.vel, [deck.dry], Math.max(dur * 0.94, 0.12), 0.09)
+    }
     if (ev.voice === "keys") {
       // an upright piano skips the electric piano's tremolo and chorus
       const piano = keysOn === "piano" ? bank.inst["upright-piano"] : undefined
@@ -973,6 +1138,76 @@ export function playNote(ctx: BaseAudioContext, deck: Deck, ev: NoteEvent, t: nu
       return rideSynth(ctx, deck, t, ev.vel, ev.midi === 1)
     case "foot":
       return hat(ctx, deck, t, ev.vel * 0.7, false)
+    case "sweep":
+      return sweep(ctx, deck, t, ev.vel, dur)
+    case "conga":
+      return handDrum(ctx, deck.ch.conga, t, [300, 330, 330, 196][ev.midi] ?? 330, ev.vel, ev.midi === 0 ? 0.05 : 0.22, ev.midi === 1)
+    case "bongo":
+      return handDrum(ctx, deck.ch.bongo, t, ev.midi === 1 ? 392 : 560, ev.vel, 0.11, false)
+    case "bell":
+      return cowbell(ctx, deck, t, ev.vel)
+    case "chk":
+      return guitar(ctx, deck, t, ev.midi, ev.vel * 0.6)
+  }
+}
+
+/** A brush stirred round the snare head: hiss that swells and fades over the note. */
+function sweep(ctx: BaseAudioContext, deck: Deck, t: number, vel: number, dur: number) {
+  const src = ctx.createBufferSource()
+  src.buffer = noise(ctx)
+  src.loop = true
+  const bp = ctx.createBiquadFilter()
+  bp.type = "bandpass"
+  bp.frequency.value = 3200
+  bp.Q.value = 0.6
+  const g = ctx.createGain()
+  const len = Math.max(0.25, dur)
+  g.gain.setValueAtTime(0, t)
+  g.gain.linearRampToValueAtTime(0.05 * vel, t + len * 0.4)
+  g.gain.linearRampToValueAtTime(0, t + len)
+  src.connect(bp).connect(g).connect(deck.ch.snare)
+  src.start(t)
+  src.stop(t + len + 0.02)
+}
+
+/** A hand drum: a pitched thump that falls a little as it rings, with a crack on top for a slap. */
+function handDrum(ctx: BaseAudioContext, out: AudioNode, t: number, hz: number, vel: number, decay: number, slap: boolean) {
+  const o = ctx.createOscillator()
+  o.frequency.setValueAtTime(hz * 1.08, t)
+  o.frequency.exponentialRampToValueAtTime(hz, t + 0.04)
+  const g = ctx.createGain()
+  g.gain.setValueAtTime(0.32 * vel, t)
+  g.gain.exponentialRampToValueAtTime(0.0001, t + decay * 2.5)
+  o.connect(g).connect(out)
+  o.start(t)
+  o.stop(t + decay * 2.5 + 0.02)
+  if (slap) {
+    const n = noiseHit(ctx, t, "highpass", 1800, 0.7)
+    const ng = ctx.createGain()
+    ng.gain.setValueAtTime(0.25 * vel, t)
+    ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.06)
+    n.out.connect(ng).connect(out)
+    n.start(0.07)
+  }
+}
+
+/** The hand bell: two square tones a sixth apart, through a narrow band. */
+function cowbell(ctx: BaseAudioContext, deck: Deck, t: number, vel: number) {
+  const bp = ctx.createBiquadFilter()
+  bp.type = "bandpass"
+  bp.frequency.value = 2400
+  bp.Q.value = 1.2
+  const g = ctx.createGain()
+  g.gain.setValueAtTime(0.12 * vel, t)
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.3)
+  bp.connect(g).connect(deck.ch.bell)
+  for (const hz of [562, 845]) {
+    const o = ctx.createOscillator()
+    o.type = "square"
+    o.frequency.value = hz
+    o.connect(bp)
+    o.start(t)
+    o.stop(t + 0.32)
   }
 }
 

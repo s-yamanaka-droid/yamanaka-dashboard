@@ -5,12 +5,12 @@
   "mode": "dorian",
   "bpm": 108,
   "style": "lofi",
-  "groove": "swing",
+  "groove": "latin",
   "keys": "piano",
   "lead": "kalimba",
   "octave": 0,
   "texture": "vinyl",
-  "swing": 0.3,
+  "swing": 0,
   "seed": 31,
   "a": {
     "chords": [

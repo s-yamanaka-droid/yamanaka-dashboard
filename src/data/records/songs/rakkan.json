@@ -3,14 +3,14 @@
   "kind": "score",
   "key": "Eb",
   "mode": "major",
-  "bpm": 92,
+  "bpm": 90,
   "style": "lofi",
-  "groove": "swing",
+  "groove": "hop",
   "keys": "rhodes",
-  "lead": "piano",
+  "lead": "guitar",
   "octave": 0,
   "texture": "vinyl",
-  "swing": 0.32,
+  "swing": 0.22,
   "seed": 7,
   "a": {
     "chords": [

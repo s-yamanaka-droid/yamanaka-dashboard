@@ -13,12 +13,19 @@ import { chordTones, degreeToMidi, mod, rng, type ScaleName } from "./theory"
 import { composeSongBar, planSong, type Score } from "./song"
 
 export type Groove = "drift" | "lofi" | "pulse" | "drive" | "bounce" | "city" | "shuffle" | JazzGroove
-/** Jazz feels for lo-fi records: a swung ride and walking bass, a bossa nova, a slow ballad. */
-export type JazzGroove = "swing" | "bossa" | "ballad"
-export const isJazz = (g: Groove): g is JazzGroove => g === "swing" || g === "bossa" || g === "ballad"
+/**
+ * Jazz feels for lo-fi records: a swung ride and walking bass, a bossa nova, a
+ * slow ballad on brushes, a medium swing on brushes, a jazz-hop beat with the
+ * drums up front, a jazz-funk groove, and a Latin jazz tumbao on congas.
+ */
+export type JazzGroove = (typeof JAZZ)[number]
+const JAZZ = ["swing", "bossa", "ballad", "brush", "hop", "funk", "latin"] as const
+export const isJazz = (g: Groove): g is JazzGroove => (JAZZ as readonly string[]).includes(g)
+/** The jazz feels where the drums lead: they open the record alone and take a break before the last chorus. */
+export const drumsLead = (g: Groove) => g === "hop" || g === "funk" || g === "latin"
 export type LeadTone = "pluck" | "bell" | "glass" | "reed" | "vibes" | RecordedLead
 /** Melody instruments played from recordings (public/samples); a synth stands in until they load. */
-export type RecordedLead = "piano" | "vibraphone" | "kalimba" | "zither" | "sax"
+export type RecordedLead = "piano" | "vibraphone" | "kalimba" | "zither" | "sax" | "guitar"
 export type Texture = "vinyl" | "waves" | "rain" | "none"
 
 export type TrackSpec = {
@@ -34,8 +41,8 @@ export type TrackSpec = {
    * semitones above the tonic, so the song can step outside the scale.
    */
   chords?: Chord[][]
-  /** What plays the chords: a soft synth pad, an electric piano, or an upright piano. */
-  keys?: "pad" | "rhodes" | "piano"
+  /** What plays the chords: a soft synth pad, an electric piano, an upright piano, or an archtop guitar. */
+  keys?: "pad" | "rhodes" | "piano" | "guitar"
   /** The band's way of playing: city pop (the default), or lo-fi (laid back, muffled, no key change). */
   style?: "city" | "lofi"
   /** Octaves the written melody is moved, to sit where its instrument sounds best. */
@@ -81,7 +88,13 @@ export type Quality = keyof typeof QUALITIES
 /** A chord: its root as semitones above the key's tonic, its colour, and optionally another bass note. */
 export type Chord = { root: number; q: Quality; bass?: number }
 
-export type Voice = "pad" | "keys" | "bass" | "lead" | "kick" | "snare" | "rim" | "hat" | "shaker" | "strings" | "gtr" | "brass" | "tom" | "crash" | "ohat" | "ride" | "foot"
+export type Voice = "pad" | "keys" | "bass" | "lead" | "kick" | "snare" | "rim" | "hat" | "shaker" | "strings" | "gtr" | "brass" | "tom" | "crash" | "ohat" | "ride" | "foot" | Hand
+/**
+ * Hands and brushes: a brush stirred round the snare head, the congas (midi 0 a
+ * muted heel, 1 a slap, 2 the open high drum, 3 the open low one), the bongos
+ * (0 high, 1 low), the hand bell, and the guitar's muted strum.
+ */
+export type Hand = "sweep" | "conga" | "bongo" | "bell" | "chk"
 export type NoteEvent = { voice: Voice; step: number; len: number; midi: number; vel: number }
 export type Section = "intro" | "body" | "break" | "outro"
 
@@ -148,6 +161,10 @@ const KIT: Record<Groove, Partial<Record<DrumVoice, Hit[]>>> = {
   swing: { kick: [[0, 0.3], [8, 0.3]], snare: [[6, 0.2], [14, 0.25]], hat: [[4, 0.4], [12, 0.4]] },
   bossa: { kick: [[0, 0.8], [6, 0.4], [8, 0.8], [14, 0.4]], rim: [[0, 0.6], [6, 0.6], [12, 0.6]], hat: sixteenths([0.2, 0.1]) },
   ballad: { kick: [[0, 0.3]], rim: [[12, 0.4]], hat: [[4, 0.3], [12, 0.3]] },
+  brush: { kick: [[0, 0.25], [8, 0.25]], snare: [[4, 0.35], [12, 0.35]], hat: [[4, 0.4], [12, 0.4]] },
+  hop: { kick: [[0, 1], [7, 0.5], [10, 0.85]], snare: [[4, 0.9], [12, 0.95]], hat: sixteenths([0.5, 0.14, 0.34, 0.14]) },
+  funk: { kick: [[0, 1], [6, 0.6], [10, 0.85]], snare: [[4, 0.9], [7, 0.15], [12, 0.95], [15, 0.18]], hat: sixteenths([0.45, 0.2, 0.3, 0.2]) },
+  latin: { kick: [[6, 0.5], [12, 0.45]], rim: [[4, 0.4], [8, 0.4]], shaker: sixteenths([0.2, 0.1]) },
 }
 
 /** Bass lines: step, length in steps, scale degrees above the chord root (7 = octave), velocity. */
@@ -162,9 +179,13 @@ const BASS: Record<Groove, [step: number, len: number, above: number, vel: numbe
   swing: [[0, 4, 0, 0.8], [4, 4, 2, 0.6], [8, 4, 4, 0.7], [12, 4, 2, 0.6]],
   bossa: [[0, 6, 0, 0.8], [6, 2, 4, 0.6], [8, 6, 4, 0.7], [14, 2, 0, 0.5]],
   ballad: [[0, 8, 0, 0.7], [8, 8, 4, 0.6]],
+  brush: [[0, 4, 0, 0.8], [4, 4, 2, 0.6], [8, 4, 4, 0.7], [12, 4, 2, 0.6]],
+  hop: [[0, 6, 0, 0.85], [7, 2, 4, 0.55], [10, 4, 0, 0.7]],
+  funk: [[0, 2, 0, 0.9], [3, 1, 7, 0.45], [6, 2, 4, 0.7], [10, 1, 0, 0.75], [14, 2, 7, 0.55]],
+  latin: [[6, 6, 4, 0.75], [12, 4, 0, 0.8]],
 }
 
-const DENSITY: Record<Groove, number> = { drift: 0.16, lofi: 0.26, pulse: 0.3, drive: 0.34, bounce: 0.32, city: 0.28, shuffle: 0.3, swing: 0.28, bossa: 0.26, ballad: 0.18 }
+const DENSITY: Record<Groove, number> = { drift: 0.16, lofi: 0.26, pulse: 0.3, drive: 0.34, bounce: 0.32, city: 0.28, shuffle: 0.3, swing: 0.28, bossa: 0.26, ballad: 0.18, brush: 0.26, hop: 0.24, funk: 0.3, latin: 0.3 }
 
 export type MotifNote = { step: number; tone: number; len: number }
 
