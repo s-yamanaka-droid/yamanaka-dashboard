@@ -5,13 +5,18 @@ import Link from "next/link";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 
-const remarks = ["それ、毎回やる？", "ラクする方法、考えよ。", "まずひとつ、試そ。"];
+const poses = {
+  thinking: { alt: "あごに手を添え、考えごとをするRacco", remarks: ["それ、毎回やる？", "ラクする方法、考えよ。", "まずひとつ、試そ。"] },
+  pointing: { alt: "手を伸ばして案内するRacco", remarks: ["どこから、ほどく？", "その先まで、つなご。", "まずひとつ、試そ。"] },
+  welcoming: { alt: "片手を上げ、やさしく迎えるRacco", remarks: ["まずは、話そ。", "一緒に、考えよ。", "ひとつずつ、いこ。"] },
+};
 
-export function RaccoGuide({ compact = false, eager = false }: { compact?: boolean; eager?: boolean }) {
+export function RaccoGuide({ compact = false, eager = false, pose = "thinking" }: { compact?: boolean; eager?: boolean; pose?: keyof typeof poses }) {
   const [remark, setRemark] = useState(0);
-  return <div className={`racco-guide${compact ? " is-compact" : ""}`}>
+  const { alt, remarks } = poses[pose];
+  return <div className={`racco-guide is-${pose}${compact ? " is-compact" : ""}`}>
     <button className="racco-guide-portrait" type="button" aria-label="Raccoのひとことを聞く" onClick={() => setRemark(i => (i + 1) % remarks.length)}>
-      <Image src="/brand-book/racco-self-avatar.png" alt="太縁メガネにグレーのパーカーのRacco" width={1254} height={1254} unoptimized preload={eager} />
+      <Image src={`/brand-book/racco-scenes/${pose}.png`} alt={alt} fill sizes={compact ? "(max-width: 760px) 220px, 310px" : "(max-width: 760px) 300px, (max-width: 1000px) 340px, 450px"} preload={eager} />
     </button>
     <span className="racco-guide-speech" aria-live="polite" aria-atomic="true">{remarks[remark]}</span>
     <Link href="/racco" className="racco-guide-link">Raccoに会う <ArrowRight size={17} aria-hidden="true" /></Link>
