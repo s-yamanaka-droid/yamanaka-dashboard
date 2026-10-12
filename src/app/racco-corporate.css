@@ -1,11 +1,11 @@
 /* Approved Racco / paper services: real type, source portraits, useful motion. */
 .racco-eyebrow { margin: 0 0 16px; color: var(--red, #b4382b); font: 700 13px/1.5 var(--font-sans-jp), sans-serif; letter-spacing: .07em; }
-.racco-guide { position: relative; align-self: end; width: 100%; max-width: 520px; margin: 0 auto; padding: 12px 16px 0; }
-.racco-guide-portrait { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; color: inherit; }
-.racco-guide-portrait img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; transition: transform .32s ease; transform: rotate(3deg); }
+.racco-guide { position: relative; align-self: end; width: 100%; max-width: 520px; margin: 0 auto; padding: 56px 16px 0; }
+.racco-guide-portrait { position: relative; display: block; width: 100%; aspect-ratio: 1; padding: 0; border: 0; background: none; cursor: pointer; color: inherit; }
+.racco-guide-portrait img { display: block; object-fit: contain; object-position: center bottom; transition: transform .32s ease; transform: rotate(3deg); }
 .racco-guide-portrait:hover img { transform: rotate(-2deg) translateY(-5px); }
 .racco-guide-portrait:active img { transform: rotate(1deg) scale(.98); }
-.racco-guide-speech { position: absolute; z-index: 1; right: 0; top: 8px; width: 142px; padding: 19px 15px; border: 2px solid var(--ink, #17221f); border-radius: 48% 45% 43% 46%; background: var(--paper, #f4f0e8); color: var(--ink, #17221f); font: 900 18px/1.45 var(--font-sans-jp), sans-serif; transform: rotate(6deg); pointer-events: none; }
+.racco-guide-speech { position: absolute; z-index: 1; right: 0; top: 8px; width: 142px; padding: 19px 15px; border: 2px solid var(--ink, #17221f); border-radius: 48% 45% 43% 46%; background: var(--paper, #f4f0e8); color: var(--ink, #17221f); font: 900 18px/1.45 var(--font-sans-jp), sans-serif; text-wrap: balance; transform: rotate(6deg); pointer-events: none; }
 .racco-guide-speech::after { content: ""; position: absolute; bottom: -9px; left: 27px; width: 15px; height: 16px; background: var(--paper, #f4f0e8); border-right: 2px solid var(--ink, #17221f); border-bottom: 2px solid var(--ink, #17221f); transform: skew(-25deg) rotate(28deg); }
 .racco-guide-link { position: absolute; right: 5px; bottom: 30px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 5px 10px; background: var(--paper, #f4f0e8); color: var(--ink, #17221f); border-bottom: 2px solid var(--red, #b4382b); font: 700 14px/1.5 var(--font-sans-jp), sans-serif; transform: rotate(-7deg); }
 .racco-ticket { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 56px; padding: 16px 26px; color: var(--paper, #f4f0e8); background: var(--red, #b4382b); font: 900 20px/1.5 var(--font-sans-jp), sans-serif; clip-path: polygon(2% 0, 100% 2%, 99% 96%, 2% 100%, 0 92%, 0 7%); transform: rotate(-1.5deg); transition: transform .2s, background .2s; text-decoration: none; }
@@ -54,6 +54,12 @@
 .work-story-desk { position: relative; width: 100%; aspect-ratio: 220/150; background: #f9f6ee; }
 .work-story-desk img { position: absolute; width: 68%; height: auto; left: 17%; top: -6%; mix-blend-mode: multiply; }
 .work-story-desk svg { position: relative; display: block; width: 100%; height: 100%; }
+.work-story-outcome { position: relative; width: 100%; aspect-ratio: 220/150; }
+.work-story-outcome img { object-fit: contain; object-position: center bottom; }
+.work-story-outcome.is-crm img { padding-left: 27%; }
+.work-story-outcome.is-digital img { padding: 0 12%; }
+.work-story-outcome.is-people img { padding: 0 14%; }
+.work-story-outcome > svg { position: relative; display: block; width: 100%; height: 100%; }
 .service-practical-steps { grid-column: 1/-1; display: flex; flex-wrap: wrap; gap: 16px 30px; margin: 0; padding: 18px 0 0; border-top: 1px solid #17221f55; list-style: none; }
 .service-practical-steps li { display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 700; }
 .service-practical-steps svg { border: 2px solid var(--red); border-radius: 50%; width: 24px; height: 24px; padding: 2px; color: var(--red); flex-shrink: 0; }
@@ -66,7 +72,7 @@
 .service-detail-note li + li { margin-top: 10px; }
 .corporate-frame .poster-contact-cta { --section-padding: 56px 48px; }
 .corporate-frame .racco-consultation { grid-template-columns: minmax(0,.5fr) minmax(0,1fr); gap: 46px; align-items: center; max-width: 1050px; margin: 0 auto; padding: 34px; background: #ecd7cc; border-radius: 3px 24px 4px 12px; }
-.racco-consultation .racco-guide { max-width: 310px; padding: 0; }
+.racco-consultation .racco-guide { max-width: 310px; padding: 68px 0 0; }
 .racco-consultation .racco-guide-speech { width: 115px; font-size: 14px; padding: 14px; top: 0; }
 .racco-consultation .racco-guide-link { bottom: 5px; font-size: 12px; }
 .corporate-frame .racco-consultation h2 { font: 900 clamp(30px,3.6vw,52px)/1.4 var(--font-sans-jp), sans-serif; letter-spacing: -.055em; }
@@ -103,7 +109,10 @@
   .racco-service-tabs strong, .service-entry-tabs strong { font-size: 20px; }
   .racco-service-tabs strong span, .service-entry-tabs strong span { display: block; }
   .racco-service-panel { padding: 28px 24px 22px; }
-  .racco-service-panel-content { grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 24px; }
+  .racco-service-panel-content { grid-template-columns: minmax(0,1fr); gap: 24px; }
+  .service-poster-title h2 span { display: inline-block; }
+  .service-ticket { grid-column: 1; }
+  .service-detail-note { grid-column: 1; grid-row: auto; }
   .corporate-frame .service-poster-title h2 { font-size: 48px; }
   .work-story-scenes { gap: 4px; grid-template-columns: minmax(0,1fr) 14px minmax(0,1fr) 14px minmax(0,1fr); }
   .work-story-arrow { width: 14px; }
