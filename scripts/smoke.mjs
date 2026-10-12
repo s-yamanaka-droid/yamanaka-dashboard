@@ -3,6 +3,9 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 const projects = JSON.parse(readFileSync(new URL('../src/data/projects.json', import.meta.url),'utf8'));
 const goods = [
+  { slug: "lakkan-wordmark", title: "Lakkan 英字ロゴ" },
+  { slug: "rakkan-seal", title: "楽観 縦書きロゴ" },
+  { slug: "racco-face", title: "Racco フェイス" },
   { slug: "glasses-sticker", title: "いつものRacco ステッカー" },
   { slug: "holo-sticker", title: "だるい天才 ホロシール" },
 ];

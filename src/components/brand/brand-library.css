@@ -426,11 +426,17 @@ body:has(.brand-library[data-brand="racco"]) { background:#fff; }
 .bl-footer .bl-production-links button { width:auto; justify-content:flex-start; }
 .bl-gallery-next { display:flex; align-items:center; flex-wrap:wrap; gap:16px 28px; padding:20px 0; }
 .bl-goods-home { padding:28px 0; border-top:1px solid var(--bl-line); }
+.bl-goods-home .bl-section-head>button { flex-shrink:0; white-space:nowrap; }
 .bl-goods-intro { font-size:14px; line-height:1.9; color:var(--bl-muted); margin:0 0 24px!important; }
 .bl-goods-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.bl-merch-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.brand-library .bl-card[data-group="apparel"] .bl-card-image { aspect-ratio:3/2; }
+.bl-merch-grid .bl-card figcaption { align-items:flex-start; padding-top:12px; flex-wrap:wrap; }
+.bl-merch-grid .bl-card figcaption>div { flex-direction:column; align-items:flex-start; gap:5px; }
 .bl-goods-card { display:flex; flex-direction:column; min-width:0; padding:14px; border:1px solid var(--bl-line); border-radius:22px; transition:border-color .2s,transform .2s; }
 .bl-goods-card:hover { border-color:var(--bl-coral); transform:translateY(-3px); }
 .bl-goods-card>img { aspect-ratio:1; width:100%; height:auto; object-fit:contain; border-radius:14px; }
+.bl-goods-card[data-shape="wide"]>img { aspect-ratio:3/2; }
 .bl-goods-card>div { display:flex; flex-direction:column; flex:1; padding:18px 4px 2px; }
 .bl-goods-label { display:inline-flex; align-self:flex-start; width:fit-content; font-size:10px; font-weight:700; letter-spacing:.04em; padding:5px 9px; border-radius:6px; color:var(--bl-muted); background:#f3f4f1; }
 .brand-library .bl-goods-card h3 { font-size:20px; line-height:1.6; margin:12px 0 8px; text-wrap:pretty; }
@@ -454,7 +460,7 @@ body:has(.brand-library[data-brand="racco"]) { background:#fff; }
 @media(max-width:1000px) { .bl-header-contact { display:none; } .bl-goods-detail { gap:28px; } }
 @media(max-width:760px) { .bl-goods-detail { grid-template-columns:minmax(0,1fr); gap:16px; } .bl-goods-art { max-width:480px; margin:0 auto; } }
 @media(max-width:600px) {
-  .bl-goods-grid { grid-template-columns:minmax(0,1fr); gap:24px; }
+  .bl-goods-grid, .bl-merch-grid { grid-template-columns:minmax(0,1fr); gap:24px; }
   .bl-goods-card { padding:12px; }
   .bl-goods-card>img { max-height:320px; }
   .bl-goods-card>div { padding:16px 8px 4px; }

@@ -40,8 +40,8 @@ const goodsComponent = { exports: {}, require(name) {
   return require(name);
 } };
 vm.runInNewContext(compile("../src/components/brand/RaccoGoods.tsx"), goodsComponent);
-assert.equal(goodsContext.exports.raccoGoods.length, 2);
-assert.equal(new Set(goodsContext.exports.raccoGoods.map(item => item.slug)).size, 2);
+assert.equal(goodsContext.exports.raccoGoods.length, 5);
+assert.equal(new Set(goodsContext.exports.raccoGoods.map(item => item.slug)).size, 5);
 assert.ok(!goodsContext.exports.raccoGoods.some(item => item.slug === "hina-sticker"), "withdrawn Hina design is not a published product");
 for (const item of goodsContext.exports.raccoGoods) {
   assert.equal(item.statusLabel, "商品化準備中");
@@ -66,7 +66,10 @@ for (const id of ["x", "instagram", "note"]) assert.match(dataContext.exports.ch
 assert.equal(kitContext.exports.raccoCast.length, 3, "approved cast has three roles");
 assert.deepEqual(Array.from(kitContext.exports.raccoCast, member => member.id), ["racco", "practical", "automation"], "Fuwafuwa does not replace any of the original three Racco roles");
 assert.deepEqual(Array.from(kitContext.exports.raccoCast, member => [member.name, member.role]), [["Racco", "のんびり担当"], ["まず、ひとつ。", "テキパキ担当"], ["つい、凝っちゃう。", "自動化オタク担当"]], "original names and roles are unchanged");
-assert.equal(kitContext.exports.raccoAssets.length, 29, "only the withdrawn Hina asset is excluded");
+assert.equal(kitContext.exports.raccoAssets.length, 32, "three approved merchandise boards join the existing collection");
+assert.deepEqual(Array.from(kitContext.exports.apparelAssets, asset => asset.src), Array.from(goodsContext.exports.raccoGoods.slice(0, 3), item => item.image), "gallery and goods use the same approved boards");
+assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "apparel").length, 3);
+assert.equal(kitContext.exports.raccoAssets[2].src, "/brand-book/racco-self-avatar.png", "merchandise must not displace the shared avatar");
 assert.equal(kitContext.exports.fuwafuwaAssets.length, 2, "standalone character and shared scene are defined once");
 assert.deepEqual(Array.from(kitContext.exports.fuwafuwaAssets, asset => asset.src), [fuwafuwaCharacter, fuwafuwaScene]);
 assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "fuwafuwa").length, 2);
@@ -74,7 +77,7 @@ assert.equal(kitContext.exports.muchimuchiAssets.length, 2, "Muchimuchi has one 
 assert.deepEqual(Array.from(kitContext.exports.muchimuchiAssets, asset => asset.src), [muchimuchiCharacter, muchimuchiScene]);
 assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "muchimuchi").length, 2);
 assert.equal(kitContext.exports.assetGroups.find(group => group.id === "muchimuchi")?.label, "むちむち猫", "the approved name appears on the collection filter");
-assert.equal(new Set(kitContext.exports.raccoAssets.map(asset => asset.src)).size, 29, "remaining assets are not duplicated in the combined collection");
+assert.equal(new Set(kitContext.exports.raccoAssets.map(asset => asset.src)).size, 32, "assets are not duplicated in the combined collection");
 assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "stickers").length, 11);
 assert.equal(kitContext.exports.raccoAssets.filter(asset => asset.group === "hina" || asset.src.includes("racco-hina-")).length, 0, "withdrawn Hina asset is absent from public data");
 assert.ok(!kitContext.exports.assetGroups.some(group => group.id === "hina"), "withdrawn Hina filter is absent");
@@ -326,7 +329,7 @@ for (const brand of ["racco", "lakkan"]) {
   assert.equal(app.state[0], brand === "racco" ? "goods" : "assets");
   assert.equal(app.focused.at(-1), brand === "racco" ? "bl-tab-goods" : "bl-tab-assets");
   if (brand === "racco") {
-    assert.equal(app.find(n => n.props?.className === "bl-goods-card").length, 2, "goods tab renders the two remaining designs");
+    assert.equal(app.find(n => n.props?.className === "bl-goods-card").length, 5, "goods tab includes three new mark families and two existing designs");
     for (const item of goodsContext.exports.raccoGoods) {
       assert.ok(app.find(n => n.type === "a" && n.props.href === `/racco/goods/${item.slug}`).length, item.slug + " has a real detail route");
       assert.ok(app.find(n => n.type === "h3" && nodeText(n) === item.title).length);
@@ -419,7 +422,7 @@ for (const brand of ["racco", "lakkan"]) {
     assert.equal(app.find(n => n.props?.className === "bl-card").length, 2, "Muchimuchi filter contains the standalone and shared scene only");
     for (const src of [muchimuchiCharacter, muchimuchiScene]) assert.ok(app.find(n => n.type === "a" && n.props.href === src && n.props.download).length, src + " can be saved from the asset filter");
     app.find(n => n.type === "button" && n.props?.children?.[0] === "すべて")[0].props.onClick();
-    assert.equal(app.find(n => n.props?.className === "bl-card").length, 29, "all filter includes all remaining assets");
+    assert.equal(app.find(n => n.props?.className === "bl-card").length, 32, "all filter includes the approved merchandise and existing assets");
     }
     app.setHash("#gallery-muchimuchi");
     assert.equal(app.state[0], "visual", "Muchimuchi collection hash opens the gallery");
@@ -438,7 +441,7 @@ for (const brand of ["racco", "lakkan"]) {
     app.find(n => n.type === "button" && n.props?.["aria-label"] === "だるい天才を拡大")[0].props.onClick();
     assert.ok(app.find(n => n.type === "a" && n.props?.href === "/racco/goods/holo-sticker").length, "gallery preview leads to its matching goods design");
     app.setHash("#goods");
-    assert.equal(app.find(n => n.props?.className === "bl-goods-card").length, 2, "direct goods hash opens the two remaining designs");
+    assert.equal(app.find(n => n.props?.className === "bl-goods-card").length, 5, "direct goods hash opens all five designs");
   }
   console.log(`PASS ${brand}: handler state, native modified click, tab keys, landmark, dialog names, pause`);
 }

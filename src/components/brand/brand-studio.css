@@ -142,7 +142,7 @@ body:has(.brand-studio) { background: #fff; }
 .bs-social-image { margin-top:20px; border-radius:6px; }
 .bs-preview-footer { display:flex; align-items:center; justify-content:space-between; font-size:10px; color:var(--bs-muted); }
 .bs-preview-footer button { display:grid; place-items:center; border:0; background:transparent; width:44px; height:44px; }
-.bs-merch-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.bs-merch-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
 .bs-image-button { position:relative; border:0; padding:0; background:var(--bs-paper); overflow:hidden; border-radius:10px; width:100%; }
 .bs-image-button img { width:100%; height:auto; display:block; transition:transform .6s; }
 .bs-image-button:hover img { transform:scale(1.025); }

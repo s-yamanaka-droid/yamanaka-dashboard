@@ -22,7 +22,30 @@ vm.runInNewContext(compile("../src/lib/racco-inquiry.ts"), helper);
 const { buildRaccoInquiryHref, resolveRaccoInquiryContext } = helper.exports;
 const article = columns.exports.raccoColumns[0];
 const product = goods.exports.raccoGoods[0];
-assert.equal(goods.exports.raccoGoods.length, 2, "only the two remaining product designs can enter inquiries");
+const approvedBoards = [
+  ["lakkan-wordmark", "/brand-book/lakkan-wordmark-only-v1.png"],
+  ["rakkan-seal", "/brand-book/rakkan-seal-only-v1.png"],
+  ["racco-face", "/brand-book/racco-face-only-v1.png"],
+];
+assert.deepEqual(Array.from(goods.exports.raccoGoods, item => item.slug), [
+  ...approvedBoards.map(([slug]) => slug), "glasses-sticker", "holo-sticker",
+], "three approved single-mark designs lead the collection; both existing designs remain");
+assert.equal(new Set(goods.exports.raccoGoods.map(item => item.slug)).size, 5, "every goods route is unique");
+for (const item of goods.exports.raccoGoods) {
+  assert.equal(item.statusLabel, "商品化準備中", item.slug + " is not an available product");
+  const image = readFileSync(new URL("../public" + item.image, import.meta.url));
+  assert.equal(image.subarray(0, 8).toString("hex"), "89504e470d0a1a0a", item.slug + " references a PNG");
+  assert.equal(image.readUInt32BE(16), item.width, item.slug + " width matches the actual asset");
+  assert.equal(image.readUInt32BE(20), item.height, item.slug + " height matches the actual asset");
+  assert.match(item.imageAlt, /生成デザイン/, item.slug + " identifies the image as a design concept");
+}
+for (const [slug, image] of approvedBoards) {
+  const item = goods.exports.raccoGoods.find(item => item.slug === slug);
+  assert.equal(item.image, image, slug + " uses its own approved single-mark board");
+  assert.equal(item.width, 1536);
+  assert.equal(item.height, 1024);
+  assert.equal(item.collectionHref, "/racco#gallery-apparel", slug + " returns to the apparel gallery");
+}
 
 for (const [source, intent, topic, label] of [
   ["racco-home", "ai", "ai-consult", "Raccoのホーム"],
@@ -56,10 +79,22 @@ for (const item of columns.exports.raccoColumns) {
 for (const item of goods.exports.raccoGoods) {
   const input = { source: "racco-goods", product: item.slug, intent: "goods" };
   const context = resolveRaccoInquiryContext(input);
+  assert.equal(context.product.slug, item.slug);
   assert.equal(context.product.title, item.title);
   assert.ok(context.initialMessage.includes(item.title));
   assert.ok(context.bodyLines.includes(`見ていたグッズ：${item.title}`));
-  assert.equal(new URL(buildRaccoInquiryHref(input), "https://example.test").searchParams.get("product"), item.slug);
+  const href = new URL(buildRaccoInquiryHref(input), "https://example.test");
+  assert.equal(href.pathname, "/racco/contact");
+  assert.equal(href.hash, "#main");
+  assert.equal(href.searchParams.get("product"), item.slug);
+  const roundTrip = resolveRaccoInquiryContext(Object.fromEntries(href.searchParams));
+  assert.equal(roundTrip.source, "racco-goods");
+  assert.equal(roundTrip.intent, "goods");
+  assert.equal(roundTrip.topic, "racco-goods");
+  assert.equal(roundTrip.product.slug, item.slug);
+  assert.equal(roundTrip.product.title, item.title);
+  assert.equal(roundTrip.initialMessage, context.initialMessage);
+  assert.ok(roundTrip.bodyLines.includes(`見ていたグッズ：${item.title}`));
 }
 assert.equal(resolveRaccoInquiryContext({ source: "racco-home", intent: "design" }).topic, "racco-design");
 assert.equal(resolveRaccoInquiryContext({ source: "racco-goods", intent: "ai" }).topic, "ai-consult");
@@ -91,7 +126,7 @@ const sanitizedHref = new URL(buildRaccoInquiryHref({
 assert.equal(sanitizedHref.origin, "https://example.test");
 assert.deepEqual([...sanitizedHref.searchParams.keys()].sort(), ["intent", "product", "source"], "only the allowlisted route context is encoded");
 assert.ok(!sanitizedHref.href.includes("example.invalid"));
-console.log("PASS inquiry helper: dedicated route, sources, intent mapping, public references, round trips, invalid arrays, URL schemes and unknown/encoded references");
+console.log("PASS inquiry helper: five goods in approved order, PNG attributes, dedicated route, product round trips, sources, intent mapping, invalid arrays, URL schemes and unknown/encoded references");
 
 function fixture({ raccoContext, projectName, initialTopic, variant, clipboard = "success", valid = true } = {}) {
   const state = [];
@@ -175,6 +210,22 @@ assert.equal(existingProject.find(node => node.props?.id === "topic")[0].props.v
 assert.match(existingProject.find(node => node.props?.id === "message")[0].props.defaultValue, /公開実績のテストの実績/);
 assert.equal(existingProject.find(node => node.type === "input" && node.props.type === "radio").length, 0, "corporate form keeps its select");
 
+for (const item of goods.exports.raccoGoods) {
+  const href = new URL(buildRaccoInquiryHref({ source: "racco-goods", product: item.slug, intent: "goods" }), "https://example.test");
+  const context = resolveRaccoInquiryContext(Object.fromEntries(href.searchParams));
+  const app = fixture({ raccoContext: context, initialTopic: context.topic, variant: "racco" });
+  assert.equal(app.find(node => node.props?.id === "message")[0].props.defaultValue, context.initialMessage);
+  assert.ok(app.find(node => node.type === "strong" && node.props.children === item.title).length, item.slug + " is identified in the form");
+  app.find(node => node.type === "form")[0].props.onSubmit({ preventDefault() {}, currentTarget: {} });
+  const draft = new URL(app.location.href);
+  assert.equal(draft.protocol, "mailto:");
+  assert.equal(draft.pathname, "s-yamanaka@tre-pro.co.jp");
+  assert.equal(draft.searchParams.get("subject"), "[Lakkan] グッズについて");
+  assert.ok(draft.searchParams.get("body").includes(`見ていたグッズ：${item.title}`), item.slug + " remains in the email draft");
+  assert.ok(draft.searchParams.get("body").endsWith(app.values.message), item.slug + " preserves the edited message");
+  assert.match(app.find(node => node.props?.role === "status")[0].props.children, /まだ送信されていません/);
+}
+
 const goodsContext = resolveRaccoInquiryContext({ source: "racco-goods", product: product.slug, intent: "goods" });
 const raccoApp = fixture({ raccoContext: goodsContext, initialTopic: goodsContext.topic, variant: "racco" });
 const radios = () => raccoApp.find(node => node.type === "input" && node.props.type === "radio");
@@ -198,4 +249,4 @@ for (const [topic, label] of [["racco-design", "キャラクター・デザイ�
   assert.ok(draft.searchParams.get("body").endsWith(editedMessage), "topic change preserves the edited multiline message in the generated email");
   assert.match(raccoApp.find(node => node.props?.role === "status")[0].props.children, /まだ送信されていません/);
 }
-console.log("PASS contact handlers: corporate select and Racco radio cards, topic switching preserves text, encoded mailto, unchanged recipient, not-sent status, clipboard fallback and existing projects");
+console.log("PASS contact handlers: all five goods preserve their context through email drafts, corporate select and Racco radio cards, topic switching preserves text, encoded mailto, unchanged recipient, not-sent status, clipboard fallback and existing projects");

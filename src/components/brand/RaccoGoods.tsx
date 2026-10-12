@@ -7,7 +7,7 @@ export default function RaccoGoods() {
   return (
     <div className="bl-goods-grid">
       {raccoGoods.map(item => (
-        <Link className="bl-goods-card" href={`/racco/goods/${item.slug}`} key={item.slug}>
+        <Link className="bl-goods-card" data-shape={item.width > item.height ? "wide" : "square"} href={`/racco/goods/${item.slug}`} key={item.slug}>
           <Image
             src={item.image}
             width={item.width}

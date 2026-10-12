@@ -187,7 +187,7 @@ export function BrandBookPrint() {
           <p className="bp-identity-lead">Lakkanの中に、Raccoの世界がある。会社のロゴと、仲間たちの顔は、役割を分けて使います。</p>
           <div className="bp-identity-grid">
             <div><div className="bp-logo-sample"><LakkanLogo size="feature" /></div><h3>いつもは、英字だけ。</h3><p>ヘッダー、フッター、名刺、資料の署名に。画像の比率と字形はそのまま使います。</p></div>
-            <div><div className="bp-logo-sample"><LakkanLogo variant="signature" size="feature" /></div><h3>「楽観」は、会社を語るとき。</h3><p>会社紹介やコンセプトの説明に。すべての場所へ落款を付け足す必要はありません。</p></div>
+            <div><div className="bp-logo-sample"><LakkanLogo variant="signature" size="feature" /></div><h3>落款付きは、会社を語るとき。</h3><p>署名版は会社紹介やコンセプトの説明に。グッズでは「楽観」だけでも使えます。</p></div>
           </div>
           <div className="bp-rule-strip"><h3>文字とキャラクター</h3><p>日本語はZen Maru Gothic。Raccoの英字はNunito。LakkanはA3のロゴ素材を使い、書体で打ち直しません。Raccoたちは会社ロゴの代わりではなく、日々の話を届ける顔です。</p></div>
           <p className="bp-note"><Link href="/concept#assets">ロゴ素材と使用ルール：lakkan-inc.vercel.app/concept#assets</Link></p>
@@ -265,12 +265,13 @@ export function BrandBookPrint() {
 
         <Sheet page={channels.length + 7} label="07 / WORLD TO OBJECTS" className="bp-merch-sheet">
           <p className="bp-kicker">Take the mood home</p>
-          <h2 className="bp-title">サボる気分を、持ち帰る。</h2>
+          <h2 className="bp-title">好きなマークを、持ち歩く。</h2>
           <div className="bp-merch-grid">
-            <figure><BookImage name="racco-apparel" alt="Raccoの平面イラストを印刷した灰色のパーカーとニット帽の生成モック" /><figcaption><strong>Apparel / 灰パーカーと小さな合図</strong><span>布の質感は立体的に。印刷するRaccoは太い輪郭の2Dとして扱う。</span></figcaption></figure>
-            <figure><BookImage name="racco-desk" alt="Raccoのマグ、ステッカー、透明チャームを机に置いた生成モック" /><figcaption><strong>Desk objects / いつもの机の相棒</strong><span>マグ、ステッカー、透明チャーム。ホログラムは表面の加工とし、キャラクター自体を立体化しない。</span></figcaption></figure>
+            <figure><BookImage name="lakkan-wordmark-only-v1" alt="Lakkanの英字だけを使ったパーカー、白Tシャツ、帽子、シールとPC貼付例の生成モック" /><figcaption><strong>英字だけ</strong><span>丸い英字を、服と帽子とシールに。</span></figcaption></figure>
+            <figure><BookImage name="rakkan-seal-only-v1" alt="縦組みの楽観だけを使ったパーカー、白Tシャツ、帽子、シールとPC貼付例の生成モック" /><figcaption><strong>楽観だけ</strong><span>縦の落款を、小さなワンポイントに。</span></figcaption></figure>
+            <figure><BookImage name="racco-face-only-v1" alt="太メガネのRaccoの顔だけを使ったパーカー、白Tシャツ、帽子、シールとPC貼付例の生成モック" /><figcaption><strong>顔だけ</strong><span>太メガネと半目。刺繍も、シールも。</span></figcaption></figure>
           </div>
-          <div className="bp-rule-strip"><h3>生成モック / 販売・製造は未決定</h3><p>世界観の表現であり、実物・製造仕様・商品化完了ではない。入稿は単一の編集原稿から展開し、ロゴの権利、色、線幅、素材別の再現性を別に確認する。ここに購入導線は設けない。</p></div>
+          <div className="bp-rule-strip"><h3>生成モック / 販売・製造は未決定</h3><p>英字・楽観・顔は、それぞれ単独で使える。服と帽子で違うマークを選んでもよく、同時併記は不要。画像は実物写真・製造原稿ではない。入稿には原本を使い、実寸・線幅・色・刺繍や印刷の再現性を別に確認する。</p></div>
         </Sheet>
 
         <Sheet page={channels.length + 8} label="08 / USE & BOUNDARIES" className="bp-use-sheet">

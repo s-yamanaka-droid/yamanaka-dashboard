@@ -158,8 +158,8 @@
 .brand-print-route .bp-example-bottom a { display: block; margin-top: 2mm; font-size: 10pt; text-decoration: underline; overflow-wrap: anywhere; }
 .brand-print-route .bp-channel-sheet .bp-note { border-top: 1px solid var(--bp-line); padding-top: 3mm; margin-top: 5mm; }
 
-.brand-print-route .bp-merch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
-.brand-print-route .bp-merch-grid img { width: 100%; height: 72mm; object-fit: contain; display: block; background: #f4f4f2; }
+.brand-print-route .bp-merch-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5mm; }
+.brand-print-route .bp-merch-grid img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: contain; display: block; background: #f4f4f2; }
 .brand-print-route .bp-merch-sheet .bp-rule-strip { grid-template-columns: 57mm 1fr; }
 .brand-print-route .bp-prompts { display: grid; grid-template-columns: 1fr 1fr; gap: 9mm; }
 .brand-print-route .bp-prompts h3 { font-size: 10pt; margin-bottom: 2mm; }

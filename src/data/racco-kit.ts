@@ -1,8 +1,9 @@
-export type AssetGroup = "all" | "self" | "stickers" | "cast" | "social" | "fuwafuwa" | "muchimuchi";
+export type AssetGroup = "all" | "apparel" | "self" | "stickers" | "cast" | "social" | "fuwafuwa" | "muchimuchi";
 export type RaccoAsset = { title: string; kind: string; src: string; width: number; height: number; alt: string; group?: AssetGroup };
 
 export const assetGroups: { id: AssetGroup; label: string }[] = [
   { id: "all", label: "すべて" },
+  { id: "apparel", label: "服・帽子・シール" },
   { id: "self", label: "Racco" },
   { id: "stickers", label: "ホロシール" },
   { id: "fuwafuwa", label: "ふわふわさん" },
@@ -13,6 +14,7 @@ export const assetGroups: { id: AssetGroup; label: string }[] = [
 
 export const assetDescriptions: Record<AssetGroup, string> = {
   all: "いつものRaccoと、なかまたち。気になる一枚を大きく見て、保存できます。",
+  apparel: "英字ロゴ、楽観の印、ラッコの顔。ひとつずつ、好きなマークで。商品化準備中のデザインです。",
   self: "太縁メガネのRacco。いつもの顔と、のんびり過ごす風景。",
   stickers: "3つのポーズと、8つの配色。きらっと光る、レトロなホロシールのコレクション。",
   fuwafuwa: "まるくて、ふわふわ。ゴマアザラシのふわふわさんと、お店で過ごす風景。",
@@ -31,12 +33,19 @@ export const muchimuchiAssets: RaccoAsset[] = [
   { title: "今日も、ここにいる。", kind: "Racco・むちむち猫・ふわふわさん", src: "/brand-book/racco-muchimuchi-shop-v1.png", width: 1672, height: 941, alt: "ぬいぐるみや服が並ぶお店で、メガネのRacco、むちむち猫、ふわふわさんがソファでくつろぐ", group: "muchimuchi" },
 ];
 
+export const apparelAssets: RaccoAsset[] = [
+  { title: "Lakkan 英字ロゴ", kind: "服・帽子・PCシール / 制作見本", src: "/brand-book/lakkan-wordmark-only-v1.png", width: 1536, height: 1024, alt: "Lakkanの英字ロゴだけを使った服、帽子、PCステッカーの見本", group: "apparel" },
+  { title: "楽観 縦書きロゴ", kind: "服・帽子・PCシール / 制作見本", src: "/brand-book/rakkan-seal-only-v1.png", width: 1536, height: 1024, alt: "縦書きの楽観の印だけを使った服、帽子、PCステッカーの見本", group: "apparel" },
+  { title: "Racco フェイス", kind: "服・帽子・PCシール / 制作見本", src: "/brand-book/racco-face-only-v1.png", width: 1536, height: 1024, alt: "太縁メガネのRaccoの顔だけを使った服、帽子、PCステッカーの見本", group: "apparel" },
+];
+
 export const raccoAssets: RaccoAsset[] = [
   { title: "朝は、ゆっくり。", kind: "朝の風景", src: "/brand-book/racco-self-morning.png", width: 1672, height: 941, alt: "太縁の黒いメガネと灰色パーカーのRacco。眠そうに頬づえをつき、自分のステッカーを貼ったPCと朝のコーヒー", group: "self" },
   { title: "雨の日は、ここで。", kind: "カフェの風景", src: "/brand-book/racco-self-cafe.png", width: 1672, height: 941, alt: "雨のカフェで太縁メガネのRaccoがノートPCを開いている", group: "self" },
   { title: "いつもの顔。", kind: "プロフィール", src: "/brand-book/racco-self-avatar.png", width: 1254, height: 1254, alt: "太い黒縁メガネに半目、灰色パーカーを着たRaccoの顔", group: "self" },
   { title: "持ちものにも、Racco。", kind: "グッズのイメージ", src: "/brand-book/racco-self-merch.png", width: 1672, height: 941, alt: "太縁メガネのRaccoをあしらったPCやスマホ、カード、ステッカーの生成モック", group: "self" },
   { title: "ぺたっと、Racco。", kind: "ステッカー", src: "/brand-book/racco-self-sticker.png", width: 1254, height: 1254, alt: "自分の顔のステッカーを貼ったPCを抱える、太縁メガネのRaccoの白ふちシール", group: "self" },
+  ...apparelAssets,
   { title: "Raccoと、ふたりの仲間。", kind: "3人の朝の場面", src: "/brand-book/racco-trio.png", width: 1672, height: 941, alt: "朝の部屋で集まる、灰色パーカーののんびりRacco、コーラルのテキパキ担当、丸メガネの自動化オタク担当", group: "cast" },
   { title: "それぞれ、こんな顔。", kind: "3人の造形見本", src: "/brand-book/racco-cast.png", width: 1536, height: 1024, alt: "顔の形、体格、服装の違いが分かるRaccoの3人のキャラクター見本", group: "cast" },
   { title: "横長のヘッダー", kind: "X・noteなど / 初期絵柄", src: "/brand-book/racco-social-header.png", width: 2172, height: 724, alt: "通常版Raccoの横長SNSヘッダー見本", group: "social" },
