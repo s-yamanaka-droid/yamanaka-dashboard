@@ -20,7 +20,7 @@ const topics = [
   ["partnership", "パートナーシップ"],
   ["other", "その他"],
 ];
-const recipient = "s-yamanaka@tre-pro.co.jp";
+const recipient = "info@solve-inc.space";
 const raccoTopics = [
   { id: "ai-consult", title: "仕事でAIを使いたい", detail: "自分の仕事での使い方。", image: "/brand-book/racco-self-morning.png" },
   { id: "racco-goods", title: "グッズについて", detail: "シールやぬいぐるみのこと。", image: "/brand-book/racco-self-sticker.png" },

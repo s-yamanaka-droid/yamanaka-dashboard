@@ -174,7 +174,7 @@ const editedMessage = formApp.values.message;
 formApp.find(node => node.type === "form")[0].props.onSubmit({ preventDefault() {}, currentTarget: {} });
 const mailto = new URL(formApp.location.href);
 assert.equal(mailto.protocol, "mailto:");
-assert.equal(mailto.pathname, "s-yamanaka@tre-pro.co.jp", "existing recipient stays unchanged");
+assert.equal(mailto.pathname, "info@solve-inc.space", "inquiries go to the approved Solve address");
 assert.equal(mailto.searchParams.get("subject"), "[Lakkan] AI・業務のご相談");
 assert.ok(mailto.searchParams.get("body").includes(`見ていた記事：${article.title}`));
 assert.ok(mailto.searchParams.get("body").endsWith(editedMessage), "encoded multi-line message survives intact");
@@ -183,16 +183,21 @@ assert.match(formApp.find(node => node.props?.role === "status")[0].props.childr
 
 for (const variant of [undefined, "racco", "poster"]) for (const clipboard of ["success", "reject", "unavailable"]) {
   const app = fixture({ raccoContext, initialTopic: raccoContext.topic, variant, clipboard });
+  const recipientLink = app.find(node => node.type === "a" && node.props.href === "mailto:info@solve-inc.space");
+  assert.equal(recipientLink.length, 1, "all form variants expose the Solve fallback mail link");
+  assert.equal(recipientLink[0].props.children, "info@solve-inc.space");
   await app.find(node => node.type === "button" && node.props.type === "button")[0].props.onClick();
   assert.equal(app.validations(), 1);
   assert.equal(app.values.message, editedMessage, "copying/failing does not reset inputs");
   assert.equal(app.location.href, "", "copy never opens or sends email");
   const manual = app.find(node => node.props?.id === "manual-draft");
   if (clipboard === "success") {
+    assert.ok(app.getCopied().startsWith("宛先：info@solve-inc.space\n"));
     assert.ok(app.getCopied().includes(editedMessage));
     assert.equal(manual.length, 0);
   } else {
     assert.equal(manual.length, 1);
+    assert.ok(manual[0].props.value.startsWith("宛先：info@solve-inc.space\n"));
     assert.ok(manual[0].props.value.includes(editedMessage));
     let selected = false;
     manual[0].props.onFocus({ currentTarget: { select() { selected = true; } } });
@@ -219,7 +224,7 @@ for (const item of goods.exports.raccoGoods) {
   app.find(node => node.type === "form")[0].props.onSubmit({ preventDefault() {}, currentTarget: {} });
   const draft = new URL(app.location.href);
   assert.equal(draft.protocol, "mailto:");
-  assert.equal(draft.pathname, "s-yamanaka@tre-pro.co.jp");
+  assert.equal(draft.pathname, "info@solve-inc.space");
   assert.equal(draft.searchParams.get("subject"), "[Lakkan] グッズについて");
   assert.ok(draft.searchParams.get("body").includes(`見ていたグッズ：${item.title}`), item.slug + " remains in the email draft");
   assert.ok(draft.searchParams.get("body").endsWith(app.values.message), item.slug + " preserves the edited message");
@@ -242,11 +247,11 @@ for (const [topic, label] of [["racco-design", "キャラクター・デザイ�
   raccoApp.find(node => node.type === "form")[0].props.onSubmit({ preventDefault() {}, currentTarget: {} });
   const draft = new URL(raccoApp.location.href);
   assert.equal(draft.protocol, "mailto:");
-  assert.equal(draft.pathname, "s-yamanaka@tre-pro.co.jp");
+  assert.equal(draft.pathname, "info@solve-inc.space");
   assert.equal(draft.searchParams.get("subject"), `[Lakkan] ${label}`);
   assert.ok(!draft.searchParams.get("body").includes("undefined") && !draft.searchParams.get("body").includes("null"), "omitted optional fields do not leak placeholder values");
   assert.ok(draft.searchParams.get("body").includes(`見ていたグッズ：${product.title}`));
   assert.ok(draft.searchParams.get("body").endsWith(editedMessage), "topic change preserves the edited multiline message in the generated email");
   assert.match(raccoApp.find(node => node.props?.role === "status")[0].props.children, /まだ送信されていません/);
 }
-console.log("PASS contact handlers: all five goods preserve their context through email drafts, corporate select and Racco radio cards, topic switching preserves text, encoded mailto, unchanged recipient, not-sent status, clipboard fallback and existing projects");
+console.log("PASS contact handlers: all five goods preserve their context through email drafts, corporate select and Racco radio cards, topic switching preserves text, Solve recipient in mailto/link/copy/fallback, not-sent status and existing projects");
