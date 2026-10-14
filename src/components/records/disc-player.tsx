@@ -4,14 +4,8 @@ import * as React from "react"
 import DiscCascadeCarousel, { type DiscCascadeCarouselProps, type DiscNavLink } from "@/components/ui/disc-cascade-carousel"
 import NowPlaying, { type DeckState } from "@/components/records/now-playing"
 import type { DiscRecord } from "@/lib/records/types"
-import { MusicEngine, type TrackSource } from "@/lib/records/music/engine"
+import { getRecordEngine, peekRecordEngine, playRecord, pauseRecord, resumeRecord, advanceRecord, useRecordPlayback } from "@/lib/records/playback"
 import type { SampleSource } from "@/lib/records/music/samples"
-
-function sourceOf(r: DiscRecord): TrackSource {
-  if (r.audio) return { kind: "file", src: r.audio }
-  if (!r.track) throw new Error(`"${r.title}" has neither a song nor an audio file`)
-  return { kind: "generated", spec: r.track }
-}
 
 /** "record" takes its colours from each disc's `stage`, so the whole page changes with the record. */
 export type StageTheme = "night" | "ivory" | "copper" | "record" | "poster"
@@ -99,24 +93,22 @@ export default function DiscPlayer({
   medium = "cd",
 }: Props) {
   const n = records.length
-  const [index, setIndex] = React.useState(defaultIndex)
+  const { loaded, playing } = useRecordPlayback()
+  const [index, setIndex] = React.useState(loaded ?? defaultIndex)
   /** The record on the platter, once one has been played. */
-  const [loaded, setLoaded] = React.useState<number | null>(null)
-  const [playing, setPlaying] = React.useState(false)
   /** A pointer is down on the stage: a drag may still be choosing a record. */
   const [held, setHeld] = React.useState(false)
   const heldRef = React.useRef(false)
   /** A record ran out mid-drag; what plays next is settled on release. */
   const endedWhileHeld = React.useRef(false)
-  const engineRef = React.useRef<MusicEngine | null>(null)
   const glowRef = React.useRef<HTMLDivElement>(null)
   const now = React.useRef({ index, loaded, playing })
   React.useEffect(() => {
     now.current = { index, loaded, playing }
   })
 
-  const engine = React.useCallback(() => (engineRef.current ??= new MusicEngine()), [])
-  const peek = React.useCallback(() => engineRef.current, [])
+  const engine = getRecordEngine
+  const peek = peekRecordEngine
 
   // fetch the recorded instruments now, so they're ready by the first tap
   React.useEffect(() => {
@@ -130,25 +122,21 @@ export default function DiscPlayer({
 
   const drop = React.useCallback(
     (i: number) => {
-      engine().play(sourceOf(records[i]))
+      playRecord(i)
       endedWhileHeld.current = false
-      now.current = { ...now.current, loaded: i, playing: true }
-      setLoaded(i)
-      setPlaying(true)
+      now.current = { ...now.current, loaded: i, playing: engine().isPlaying }
     },
-    [engine, records],
+    [engine],
   )
 
   const toggle = React.useCallback(() => {
     const { index, loaded, playing } = now.current
     if (playing) {
-      void engine().pause()
+      pauseRecord()
       now.current.playing = false
-      setPlaying(false)
     } else if (loaded === index && engine().hasTrack) {
-      void engine().resume()
+      resumeRecord()
       now.current.playing = true
-      setPlaying(true)
     } else drop(index)
   }, [drop, engine])
 
@@ -178,13 +166,8 @@ export default function DiscPlayer({
       if (heldRef.current) endedWhileHeld.current = true
       else advance()
     }
-    e.onInterrupt = () => {
-      now.current.playing = false
-      setPlaying(false)
-    }
     return () => {
-      e.onEnded = null
-      e.onInterrupt = null
+      e.onEnded = advanceRecord
     }
   }, [advance, engine])
 
@@ -274,18 +257,6 @@ export default function DiscPlayer({
     })
     ms.playbackState = playing ? "playing" : "paused"
   }, [loaded, playing, records, brand])
-
-  React.useEffect(
-    () => () => {
-      engineRef.current?.dispose()
-      engineRef.current = null
-      // after a hot reload the component lives on with a fresh, empty engine
-      now.current = { ...now.current, loaded: null, playing: false }
-      setLoaded(null)
-      setPlaying(false)
-    },
-    [],
-  )
 
   const shown = playing && loaded != null ? loaded : index
   const state: DeckState = playing ? "playing" : loaded === index ? "paused" : "idle"

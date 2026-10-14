@@ -255,3 +255,13 @@
   .corporate-frame * { scroll-behavior: auto !important; }
   .corporate-frame .poster-service-list svg { transition: none; }
 }
+.corporate-frame .crm-case-card{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center;border:1px solid #b4382b;padding:clamp(24px,4vw,48px);margin:32px 0 56px;background:#eee7da}
+.corporate-frame .crm-case-card h2{font-size:clamp(26px,3vw,42px);font-weight:900;line-height:1.45;margin:12px 0 20px}
+.corporate-frame .crm-case-card p{line-height:1.9;margin-bottom:20px}
+.crm-case-diagram{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:32px 0;color:#17221f}
+.crm-case-node{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px;padding:20px 4px;border:1px solid #17221f;background:#f4f0e8;box-shadow:3px 4px 0 #b4382b}
+.crm-case-node>span{font:14px var(--font-geist-mono),monospace;color:#b4382b;align-self:flex-start;padding-left:8px}
+.crm-case-node strong{font-size:clamp(12px,1.2vw,17px);white-space:nowrap}
+.crm-case-arrow{position:absolute;right:-17px;top:50%;z-index:1;background:#eee7da;color:#b4382b}
+@media(max-width:760px){.corporate-frame .crm-case-card{grid-template-columns:1fr;gap:8px}.crm-case-diagram{gap:9px}.crm-case-node{gap:12px}.crm-case-node>svg:not(.crm-case-arrow){width:28px}.crm-case-arrow{width:16px;right:-14px}}
+.poster-case .case-title h1{word-break:keep-all;overflow-wrap:anywhere}

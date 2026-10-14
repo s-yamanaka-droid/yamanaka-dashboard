@@ -71,6 +71,9 @@ export class MusicEngine {
   onEnded: (() => void) | null = null
   /** Called when the system takes the audio away (a call, the lock screen), so the UI can show it paused. */
   onInterrupt: (() => void) | null = null
+  onPlaybackChange: ((playing: boolean) => void) | null = null
+
+  get isPlaying(): boolean { return this.want === "play" && this.ctx?.state === "running" }
 
   get analyser(): AnalyserNode | null {
     return this.rig?.analyser ?? null
@@ -185,11 +188,13 @@ export class MusicEngine {
     this.startTimer()
     // if the clock was asleep and won't wake (a call holds the audio), find out and say so
     if (ctx.state !== "running") this.onState()
+    this.onPlaybackChange?.(this.isPlaying)
   }
 
   /** Fade out and freeze the audio clock, so resume picks up on the same 16th. */
   async pause() {
     this.want = "pause"
+    this.onPlaybackChange?.(false)
     const turn = ++this.turn
     const ctx = this.ctx
     if (!ctx || ctx.state === "closed") return
@@ -217,6 +222,7 @@ export class MusicEngine {
     g.setTargetAtTime(MASTER_LEVEL, ctx.currentTime, 0.05)
     if (this.spin?.el) void this.spin.el.play().catch(() => undefined)
     this.startTimer()
+    this.onPlaybackChange?.(true)
   }
 
   /** Seconds into the record and its length. */
@@ -280,6 +286,8 @@ export class MusicEngine {
       // the state may have changed while we waited
       const now = ctx.state as AudioContextState
       if (ctx === this.ctx && turn === this.turn && this.want === "play" && now !== "running") this.interrupt()
+    } else if (this.want === "play" && ctx.state === "running") {
+      this.onPlaybackChange?.(true)
     } else if (this.want === "pause" && ctx.state === "running") {
       this.rig?.master.gain.setValueAtTime(0, ctx.currentTime)
       void ctx.suspend().catch(() => undefined)
@@ -294,6 +302,7 @@ export class MusicEngine {
     if (this.ctx) this.rig?.master.gain.setValueAtTime(0, this.ctx.currentTime)
     this.spin?.el?.pause()
     this.onInterrupt?.()
+    this.onPlaybackChange?.(false)
   }
 
   /** Lift the needle off the current record. */

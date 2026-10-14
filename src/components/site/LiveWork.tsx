@@ -19,9 +19,9 @@ const embeds: Record<string, string> = {
   "salon-solna-ai-concept": "https://salon-solna.vercel.app/",
   "atelier-patterns": "/atelier/fluid",
 };
-type Props = {project:{id:string;name:string;url?:string;cover?:string;coverAlt?:string};priority?:boolean};
+type Props = {project:{id:string;name:string;url?:string;cover?:string;coverAlt?:string};priority?:boolean;poster?:boolean};
 
-export function LiveWork({project:p,priority=false}:Props){
+export function LiveWork({project:p,priority=false,poster=false}:Props){
   const host=useRef<HTMLDivElement>(null);
   const toggle=useRef<HTMLButtonElement>(null);
   const [visible,setVisible]=useState(false);
@@ -30,7 +30,7 @@ export function LiveWork({project:p,priority=false}:Props){
   const [failed,setFailed]=useState(false);
   const [slow,setSlow]=useState(false);
   const [reduced,setReduced]=useState(true);
-  const staticPreview=p.id==='now-on-air'||p.id==='luna-ai';
+  const staticPreview=poster||['now-on-air','luna-ai','luna-design','lakkan-brand'].includes(p.id);
   const src=staticPreview?undefined:embeds[p.id];
   const mount=!!src&&!failed&&(active||(visible&&!reduced));
   useEffect(()=>{

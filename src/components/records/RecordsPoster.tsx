@@ -12,7 +12,7 @@ import type { SampleSource } from "@/lib/records/music/samples";
 /**
  * Lakkan Records: the crate on the record player, laid out like the home
  * page's poster — paper, red rules with dots, a tall title — and one disc per
- * line of business, each playing its own song. Nothing plays until asked.
+ * line of business, sharing the site's continuous music player.
  */
 
 const SAMPLES: SampleSource = { base: "/records/samples/", ext: "flac" };

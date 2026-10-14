@@ -12,6 +12,7 @@ import "./company-introduction.css";
 import "./racco-corporate.css";
 import { CookieConsent } from "@/components/CookieConsent";
 import { SiteFrame } from "@/components/site/SiteFrame";
+import { SiteSound } from "@/components/records/SiteSound";
 import { browserIcons, brandShareImage } from "@/lib/browser-brand";
 
 const bebas = Bebas_Neue({ variable: "--font-poster", subsets: ["latin"], weight: "400", display: "swap" });
@@ -166,6 +167,7 @@ export default function RootLayout({
         {children}
         <SiteFooter />
         <CookieConsent /></SiteFrame>
+        <SiteSound />
       </body>
     </html>
   );

@@ -9,7 +9,7 @@ export type Category =
 
 export type Status = "live" | "dev" | "archived";
 
-export type BuiltWith = "claude_code" | "manual" | "v0" | "bolt";
+export type BuiltWith = "claude_code" | "codex" | "manual" | "v0" | "bolt";
 
 export type WorkType = "client" | "own" | "ai-concept";
 
