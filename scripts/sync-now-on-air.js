@@ -42,7 +42,7 @@ function fetchUrl(url) {
       id: date + "-" + (i + 1), title: a.title, category: a.category, source: a.source,
       lede: a.lede, keypoints: a.keypoints || [], pull: a.pull || "",
       bizapp: a.bizapp || null, quickstart: a.quickstart || null,
-      link: new URL("news/" + date + "/#topic-" + (i + 1), NOWONAIR).toString(),
+      link: new URL("articles/" + date + "/story-" + (i + 1) + "/", NOWONAIR).toString(),
       image: ["research", "infrastructure"].includes(a.image) ? new URL("assets/newspaper/" + a.image + ".png", NOWONAIR).toString() : "",
       publishedAt: a.published_at || date,
     }));

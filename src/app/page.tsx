@@ -75,6 +75,10 @@ export default function Home() {
           <Link href="/records"><span>03 / LAKKAN RECORDS</span><strong>Lakkanを聴く</strong><ArrowUpRight aria-hidden="true" /></Link>
           <Link href="/workshop"><span>04 / INTERACTIVE</span><strong>工房を探索する</strong><ArrowUpRight aria-hidden="true" /></Link>
         </div>
+        <div className="people-outro" id="now-on-air">
+          <p>AIの変化を、仕事のヒントに。</p>
+          <a href="https://nowonair.vercel.app/">Now on AIrを読む <ArrowUpRight aria-hidden="true" /></a>
+        </div>
         <div className="people-outro">
           <p>一緒に、次の動きを。</p>
           <Link href="/contact?topic=other#inquiry">相談する <ArrowUpRight aria-hidden="true" /></Link>

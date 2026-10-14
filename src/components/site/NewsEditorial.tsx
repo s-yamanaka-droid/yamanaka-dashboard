@@ -6,7 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 export type NewsArticle = {title:string;category:string;link:string;lede?:string};
 
 function articleDate(link:string) {
- const date = link.match(/\/news\/(\d{4})-(\d{2})-(\d{2})\//);
+ const date = link.match(/\/(?:news|articles)\/(\d{4})-(\d{2})-(\d{2})\//);
  return date ? `${date[1]}.${date[2]}.${date[3]}` : null;
 }
 
