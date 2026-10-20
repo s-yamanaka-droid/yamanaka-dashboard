@@ -1,0 +1,189 @@
+{
+  "codeRevision": "df1251f0e35101a3414dc36bc65d2f1512610913712405d865fc484ed0bd0242",
+  "metrics": {
+    "390": {
+      "viewportWidth": 390,
+      "documentWidth": 386,
+      "overflowPx": 0,
+      "contentId": "lakkan-home-motion-v1",
+      "stateId": "default",
+      "screenshotSha256": "bf8fcfc050167c2998adccd9e486a3e6f0cf16df5c3e060940ae7b5a14822241",
+      "headingLines": {
+        "hero": [
+          "楽観と、",
+          "計画と。"
+        ],
+        "capability": [
+          "AIを、",
+          "現場で動かす。"
+        ],
+        "capabilityCard": [
+          "AI導入・業務再設計"
+        ]
+      },
+      "ctaVisible": true,
+      "rects": {
+        "cta": {
+          "height": 46,
+          "width": 159,
+          "x": 18,
+          "y": 562
+        },
+        "footer": {
+          "height": 947,
+          "width": 386,
+          "x": 0,
+          "y": 15073
+        },
+        "hero": {
+          "height": 844,
+          "width": 390,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "consoleErrorCount": 0,
+      "assetFailureCount": 0,
+      "criticalCount": 0,
+      "highCount": 0
+    },
+    "768": {
+      "viewportWidth": 768,
+      "documentWidth": 764,
+      "overflowPx": 0,
+      "contentId": "lakkan-home-motion-v1",
+      "stateId": "default",
+      "screenshotSha256": "54e231595958ca1f51825b856cc4e8c4a494af9c31ae2285e35a32391fe56a84",
+      "headingLines": {
+        "hero": [
+          "楽観と、",
+          "計画と。"
+        ],
+        "capability": [
+          "AIを、",
+          "現場で動かす。"
+        ],
+        "capabilityCard": [
+          "AI導入・業務再設計"
+        ]
+      },
+      "ctaVisible": true,
+      "rects": {
+        "cta": {
+          "height": 46,
+          "width": 159,
+          "x": 24,
+          "y": 665
+        },
+        "footer": {
+          "height": 971,
+          "width": 764,
+          "x": 0,
+          "y": 14544
+        },
+        "hero": {
+          "height": 1024,
+          "width": 768,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "consoleErrorCount": 0,
+      "assetFailureCount": 0,
+      "criticalCount": 0,
+      "highCount": 0
+    },
+    "1024": {
+      "viewportWidth": 1024,
+      "documentWidth": 1020,
+      "overflowPx": 0,
+      "contentId": "lakkan-home-motion-v1",
+      "stateId": "default",
+      "screenshotSha256": "5eb6e1f3424dec2e14162524c4faf34d02fdc2a49fbd82fdc803386a282f28e9",
+      "headingLines": {
+        "hero": [
+          "楽観と、",
+          "計画と。"
+        ],
+        "capability": [
+          "AIを、",
+          "現場で動かす。"
+        ],
+        "capabilityCard": [
+          "AI導入・業務再設計"
+        ]
+      },
+      "ctaVisible": true,
+      "rects": {
+        "cta": {
+          "height": 46,
+          "width": 159,
+          "x": 56,
+          "y": 583
+        },
+        "footer": {
+          "height": 794,
+          "width": 1020,
+          "x": 0,
+          "y": 12023
+        },
+        "hero": {
+          "height": 768,
+          "width": 1024,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "consoleErrorCount": 0,
+      "assetFailureCount": 0,
+      "criticalCount": 0,
+      "highCount": 0
+    },
+    "1440": {
+      "viewportWidth": 1440,
+      "documentWidth": 1436,
+      "overflowPx": 0,
+      "contentId": "lakkan-home-motion-v1",
+      "stateId": "default",
+      "screenshotSha256": "bc04672092a9c4b7711734ef7795143eadb1075174b846b774d4a694feafd0cb",
+      "headingLines": {
+        "hero": [
+          "楽観と、",
+          "計画と。"
+        ],
+        "capability": [
+          "AIを、",
+          "現場で動かす。"
+        ],
+        "capabilityCard": [
+          "AI導入・業務再設計"
+        ]
+      },
+      "ctaVisible": true,
+      "rects": {
+        "cta": {
+          "height": 46,
+          "width": 159,
+          "x": 56,
+          "y": 703
+        },
+        "footer": {
+          "height": 864,
+          "width": 1436,
+          "x": 0,
+          "y": 12890
+        },
+        "hero": {
+          "height": 900,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "consoleErrorCount": 0,
+      "assetFailureCount": 0,
+      "criticalCount": 0,
+      "highCount": 0
+    }
+  }
+}

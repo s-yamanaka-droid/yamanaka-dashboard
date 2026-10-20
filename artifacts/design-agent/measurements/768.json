@@ -1,0 +1,46 @@
+{
+  "viewportWidth": 768,
+  "documentWidth": 764,
+  "overflowPx": 0,
+  "contentId": "lakkan-home-motion-v1",
+  "stateId": "default",
+  "screenshotSha256": "54e231595958ca1f51825b856cc4e8c4a494af9c31ae2285e35a32391fe56a84",
+  "headingLines": {
+    "hero": [
+      "楽観と、",
+      "計画と。"
+    ],
+    "capability": [
+      "AIを、",
+      "現場で動かす。"
+    ],
+    "capabilityCard": [
+      "AI導入・業務再設計"
+    ]
+  },
+  "ctaVisible": true,
+  "rects": {
+    "cta": {
+      "height": 46,
+      "width": 159,
+      "x": 24,
+      "y": 665
+    },
+    "footer": {
+      "height": 971,
+      "width": 764,
+      "x": 0,
+      "y": 14544
+    },
+    "hero": {
+      "height": 1024,
+      "width": 768,
+      "x": 0,
+      "y": 0
+    }
+  },
+  "consoleErrorCount": 0,
+  "assetFailureCount": 0,
+  "criticalCount": 0,
+  "highCount": 0
+}

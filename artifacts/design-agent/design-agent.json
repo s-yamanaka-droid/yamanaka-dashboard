@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "project": {
+    "id": "lakkan-motion-21st",
+    "company": "Lakkan",
+    "subject": "Lakkan corporate website motion refinement",
+    "audience": "Business leaders evaluating practical AI implementation and prospective collaborators",
+    "singleJob": "Make Lakkan feel visibly alive and premium while keeping its public corporate story immediately understandable"
+  },
+  "approvals": {
+    "primaryReference": {
+      "status": "approved",
+      "id": "21st-home-motion",
+      "url": "https://21st.dev/",
+      "approvedBy": "user",
+      "approvedAt": "2026-09-08T10:23:55+09:00"
+    },
+    "assetMode": {
+      "status": "approved",
+      "id": "existing-public-assets-only",
+      "approvedBy": "user",
+      "approvedAt": "2026-09-08T10:23:55+09:00"
+    },
+    "variant": {
+      "status": "approved",
+      "id": "blueprint-editorial-with-21st-motion-grammar",
+      "approvedBy": "user",
+      "approvedAt": "2026-09-08T10:23:55+09:00"
+    }
+  },
+  "referenceEvidence": {
+    "screenshots": {
+      "1440": "reference/21st-1440x900.jpg",
+      "390": "reference/21st-390x844.jpg"
+    },
+    "dna": {
+      "layout": {
+        "summary": "A fixed-width editorial canvas sits inside full-bleed color fields; large copy occupies the upper left while horizontally clipped cards create depth below.",
+        "evidence": ["At 1440px the primary content is 1104px wide at x=168.", "The first card rail begins at y=493 and deliberately exposes off-canvas cards."],
+        "source": ["reference/21st-1440x900.jpg", "reference/21st-metrics-1440.json"]
+      },
+      "spacing": {
+        "summary": "Generous vertical staging separates the headline, supporting copy, category rail, and visual cards; spacing is rhythmic rather than uniformly dense.",
+        "evidence": ["Desktop H1 starts at y=145 and category navigation at y=426.", "Major sections range from 423px to 1540px high, giving motion room to resolve."],
+        "source": ["reference/21st-metrics-1440.json"]
+      },
+      "typography": {
+        "summary": "Large restrained sans-serif headlines are punctuated by one expressive serif word; line height stays tight and body copy remains compact.",
+        "evidence": ["Desktop H1 is 64/67.84px with -1.408px tracking.", "Mobile H1 is 40/42.4px within 342px at x=24."],
+        "source": ["reference/21st-metrics-1440.json", "reference/21st-metrics-390.json"]
+      },
+      "color": {
+        "summary": "A near-black base is activated by a single electric blue and a broad diffused blue glow; color indicates focus rather than decorating every element.",
+        "evidence": ["One accent word, active category, CTA, and ambient glow share the same blue family.", "Inactive text and borders use low-contrast neutrals."],
+        "source": ["reference/21st-1440x900.jpg"]
+      },
+      "imagery": {
+        "summary": "Product previews act as the imagery; they are large, cropped, and presented as moving editorial specimens instead of decorative photography.",
+        "evidence": ["Desktop preview cards are approximately 400px wide.", "Mobile retains oversized clipped cards instead of shrinking them into thumbnails."],
+        "source": ["reference/21st-1440x900.jpg", "reference/21st-390x844.jpg"]
+      },
+      "motion": {
+        "summary": "Motion is staged: a 1s hero entrance, a slow 10s ambient glow, and a continuously translating card rail of roughly 55px/s. The interface changes focus without moving the entire page at once.",
+        "evidence": ["Computed animation names include lp-hero-in (1s), lp-glow-enter (1.6s), and lp-glow-pulse (10s).", "The card rail transform changed from -1777.63px to -1711.08px over 1.2s."],
+        "source": ["reference/21st-metrics-1440.json", "live browser measurement at 2026-09-08T10:23:55+09:00"]
+      },
+      "components": {
+        "summary": "The page is built from sticky navigation, oversized editorial headings, compact category controls, and clipped preview rails with one active state.",
+        "evidence": ["Header is sticky and 49px high.", "Category controls are 32px high while visual cards dominate the hierarchy."],
+        "source": ["reference/21st-metrics-1440.json"]
+      },
+      "responsive": {
+        "summary": "Mobile preserves the same motion composition using 24px gutters and horizontal clipping, while navigation simplifies and documents remain overflow-safe.",
+        "evidence": ["At 390px the document width equals client width: 390px.", "H1 and section type scale down but the card rail remains visually oversized."],
+        "source": ["reference/21st-390x844.jpg", "reference/21st-metrics-390.json"]
+      }
+    }
+  },
+  "contract": {
+    "hero": "Keep Lakkan's three-panel 300vh horizontal hero, replace always-running per-character magnetism with a masked two-line entrance, and add a precise three-step scroll-progress rail.",
+    "sectionOrder": ["Horizontal Hero", "Brand Marquees", "Manifesto", "Capability Motion Stage", "News", "Story", "Luna AI", "Join", "Portals", "Footer"],
+    "spacingScale": [8, 12, 18, 24, 32, 48, 56, 80, 120],
+    "typeScale": [11, 13, 17, 28, 44, 64, 108],
+    "grid": "Maximum 1280px Lakkan editorial grid; capability stage uses one clipped 300% horizontal track with three full-width scenes.",
+    "breakpoints": [390, 768, 1024, 1440],
+    "imageryMode": "No copied 21st assets. Use Lakkan typography, CSS blueprint diagrams, public work counts, and existing public components only.",
+    "requiredPeople": false,
+    "modalRequired": false,
+    "signatureInteraction": "Scroll through Define, Build, and Run as a pinned three-scene capability rail; active label and progress line remain synchronized.",
+    "forbiddenGenericPatterns": ["generic three-card grid as the main capability interaction", "copied 21st dark theme or assets", "unbounded cursor animation RAF", "motion without prefers-reduced-motion fallback", "nested horizontal scroll trap"],
+    "headingContracts": {
+      "desktop": ["hero-primary-heading: exactly 2 lines", "capability-heading: 2 lines maximum"],
+      "mobile": ["hero-primary-heading: exactly 2 lines", "capability-heading: 2 lines maximum", "capability-card-title: 2 lines maximum"]
+    }
+  },
+  "implementationEvidence": {
+    "viewports": {
+      "1440": {
+        "viewportWidth": 1440,
+        "documentWidth": 1436,
+        "overflowPx": 0,
+        "screenshot": "implementation/1440x900.jpg",
+        "screenshotSha256": "bc04672092a9c4b7711734ef7795143eadb1075174b846b774d4a694feafd0cb",
+        "measurement": "measurements/1440.json",
+        "stateId": "default",
+        "contentId": "lakkan-home-motion-v1",
+        "headingLines": {
+          "hero": ["楽観と、", "計画と。"],
+          "capability": ["AIを、", "現場で動かす。"],
+          "capabilityCard": ["AI導入・業務再設計"]
+        },
+        "ctaVisible": true,
+        "rects": {
+          "hero": {"x": 0, "y": 0, "width": 1440, "height": 900},
+          "cta": {"x": 56, "y": 703, "width": 159, "height": 46},
+          "footer": {"x": 0, "y": 12890, "width": 1436, "height": 864}
+        },
+        "consoleErrors": [],
+        "assetFailures": [],
+        "critical": [],
+        "high": []
+      },
+      "1024": {
+        "viewportWidth": 1024,
+        "documentWidth": 1020,
+        "overflowPx": 0,
+        "screenshot": "implementation/1024x768.jpg",
+        "screenshotSha256": "5eb6e1f3424dec2e14162524c4faf34d02fdc2a49fbd82fdc803386a282f28e9",
+        "measurement": "measurements/1024.json",
+        "stateId": "default",
+        "contentId": "lakkan-home-motion-v1",
+        "headingLines": {
+          "hero": ["楽観と、", "計画と。"],
+          "capability": ["AIを、", "現場で動かす。"],
+          "capabilityCard": ["AI導入・業務再設計"]
+        },
+        "ctaVisible": true,
+        "rects": {
+          "hero": {"x": 0, "y": 0, "width": 1024, "height": 768},
+          "cta": {"x": 56, "y": 583, "width": 159, "height": 46},
+          "footer": {"x": 0, "y": 12023, "width": 1020, "height": 794}
+        },
+        "consoleErrors": [],
+        "assetFailures": [],
+        "critical": [],
+        "high": []
+      },
+      "768": {
+        "viewportWidth": 768,
+        "documentWidth": 764,
+        "overflowPx": 0,
+        "screenshot": "implementation/768x1024.jpg",
+        "screenshotSha256": "54e231595958ca1f51825b856cc4e8c4a494af9c31ae2285e35a32391fe56a84",
+        "measurement": "measurements/768.json",
+        "stateId": "default",
+        "contentId": "lakkan-home-motion-v1",
+        "headingLines": {
+          "hero": ["楽観と、", "計画と。"],
+          "capability": ["AIを、", "現場で動かす。"],
+          "capabilityCard": ["AI導入・業務再設計"]
+        },
+        "ctaVisible": true,
+        "rects": {
+          "hero": {"x": 0, "y": 0, "width": 768, "height": 1024},
+          "cta": {"x": 24, "y": 665, "width": 159, "height": 46},
+          "footer": {"x": 0, "y": 14544, "width": 764, "height": 971}
+        },
+        "consoleErrors": [],
+        "assetFailures": [],
+        "critical": [],
+        "high": []
+      },
+      "390": {
+        "viewportWidth": 390,
+        "documentWidth": 386,
+        "overflowPx": 0,
+        "screenshot": "implementation/390x844.jpg",
+        "screenshotSha256": "bf8fcfc050167c2998adccd9e486a3e6f0cf16df5c3e060940ae7b5a14822241",
+        "measurement": "measurements/390.json",
+        "stateId": "default",
+        "contentId": "lakkan-home-motion-v1",
+        "headingLines": {
+          "hero": ["楽観と、", "計画と。"],
+          "capability": ["AIを、", "現場で動かす。"],
+          "capabilityCard": ["AI導入・業務再設計"]
+        },
+        "ctaVisible": true,
+        "rects": {
+          "hero": {"x": 0, "y": 0, "width": 390, "height": 844},
+          "cta": {"x": 18, "y": 562, "width": 159, "height": 46},
+          "footer": {"x": 0, "y": 15073, "width": 386, "height": 947}
+        },
+        "consoleErrors": [],
+        "assetFailures": [],
+        "critical": [],
+        "high": []
+      }
+    }
+  },
+  "visualReview": {
+    "referenceDeltaSummary": "Transferred the reference's staged entrance, synchronized active controls, clipped horizontal scene rail, and scroll-led pacing. Retained Lakkan's light tracing-paper palette, Japanese editorial type, proof-mark colors, original copy, and original public assets; no 21st theme or component imagery was copied.",
+    "genericPatternCheck": "pass",
+    "peopleRequired": false,
+    "peoplePresent": false,
+    "peopleEvidence": [],
+    "temporaryAssets": false,
+    "stabilityRuns": [
+      {
+        "measuredAt": "2026-09-08T11:02:32+09:00",
+        "codeRevision": "df1251f0e35101a3414dc36bc65d2f1512610913712405d865fc484ed0bd0242",
+        "evidence": "runs/stability-1.json"
+      },
+      {
+        "measuredAt": "2026-09-08T11:02:38+09:00",
+        "codeRevision": "df1251f0e35101a3414dc36bc65d2f1512610913712405d865fc484ed0bd0242",
+        "evidence": "runs/stability-2.json"
+      }
+    ],
+    "verdict": "pass"
+  }
+}
