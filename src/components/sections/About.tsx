@@ -35,6 +35,25 @@ const TIMELINE = [
   { year: "2026.06", text: "LunaTech 法人ローンチ予定（6/16） — COO 就任", note: "AIプロダクト 5本立て。プランナー / ベース / AIラボ / ソラリス / かぐや・みこと。" },
 ];
 
+/* 株式会社Lakkan — 事業内容（AIファーストで「人材 × AI × プロダクト」を束ねる） */
+const BUSINESS = [
+  { no: "01", title: "人材・採用支援", body: "採用コンサル / Direct Sourcing。AIスカウト×人の目利きで、感覚でなく仕組みで採用歩留まりを再設計する。" },
+  { no: "02", title: "AIリスキリング", body: "ゲーミフィケーション型のAI研修。全社員にAIを浸透させたい企業へ、使える状態まで伴走する。" },
+  { no: "03", title: "売上管理", body: "細かな売上管理ツール。数字を感覚でなく仕組みで動かし、意思決定を速くする。" },
+  { no: "04", title: "プロダクト開発・運営", body: "バイブコーディングで「動くもの」を翌日に出す。自社プロダクト群を内製し、AI倍率で少人数のまま動く。" },
+];
+
+/* 株式会社Lakkan — 会社概要（公開情報。未確定の登記情報は非掲載） */
+const PROFILE = [
+  { k: "商号",   v: "株式会社Lakkan（楽観・らっかん）" },
+  { k: "設立",   v: "2026年5月11日" },
+  { k: "代表",   v: "代表 山中 秀斗" },
+  { k: "所在地", v: "東京・渋谷" },
+  { k: "事業",   v: "人材・採用支援 / AIリスキリング / 売上管理 / プロダクト開発・運営" },
+  { k: "由来",   v: "LAKKAN = LUCK（運）× 楽観。「楽観と、計画と。」" },
+  { k: "サイト", v: "lakkan-inc.vercel.app" },
+];
+
 export function About() {
   return (
     <SectionShell id="about" tone="cream" eyebrow="People · Founder" accent="vermillion">
@@ -274,6 +293,109 @@ export function About() {
                 }}>
                   {r.phase}
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* 株式会社Lakkan — 事業内容 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: EASE }}
+          style={{ marginBottom: 96 }}
+        >
+          <div style={{
+            fontFamily: SANS, fontSize: 11, letterSpacing: "0.22em",
+            color: "#6B6860", textTransform: "uppercase", marginBottom: 32,
+          }}>
+            Business · 株式会社Lakkan
+          </div>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: 0,
+            borderTop: "1px solid rgba(13,13,13,0.12)",
+          }}>
+            {BUSINESS.map((b, i) => (
+              <motion.div
+                key={b.no}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ delay: i * 0.06, duration: 0.5, ease: EASE }}
+                style={{
+                  padding: "28px 24px",
+                  borderRight: "1px solid rgba(13,13,13,0.08)",
+                  borderBottom: "1px solid rgba(13,13,13,0.08)",
+                }}
+              >
+                <div style={{
+                  fontFamily: INSTRUMENT, fontStyle: "italic", fontSize: 18,
+                  color: ACCENT.vermillion, marginBottom: 12,
+                }}>
+                  {b.no}
+                </div>
+                <div style={{
+                  fontFamily: FRANK, fontSize: 21, fontWeight: 500,
+                  color: "#0D0D0D", marginBottom: 10, letterSpacing: "-0.01em",
+                }}>
+                  {b.title}
+                </div>
+                <div style={{
+                  fontFamily: SANS, fontSize: 13, lineHeight: 1.7, color: "#5A554D",
+                }}>
+                  {b.body}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* 株式会社Lakkan — 会社概要 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: EASE }}
+          style={{ marginBottom: 96 }}
+        >
+          <div style={{
+            fontFamily: SANS, fontSize: 11, letterSpacing: "0.22em",
+            color: "#6B6860", textTransform: "uppercase", marginBottom: 32,
+          }}>
+            Corporate Profile · 会社概要
+          </div>
+          <div style={{ borderTop: "1px solid rgba(13,13,13,0.12)" }}>
+            {PROFILE.map((p, i) => (
+              <motion.div
+                key={p.k}
+                initial={{ opacity: 0, x: 16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ delay: i * 0.04, duration: 0.5, ease: EASE }}
+                data-mobile-stack="timeline-row"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "140px 1fr",
+                  gap: 32,
+                  padding: "20px 0",
+                  borderBottom: "1px solid rgba(13,13,13,0.08)",
+                }}
+              >
+                <span style={{
+                  fontFamily: SANS, fontSize: 12, letterSpacing: "0.14em",
+                  color: "#8A857A", textTransform: "uppercase", paddingTop: 4,
+                }}>
+                  {p.k}
+                </span>
+                <span style={{
+                  fontFamily: FRANK, fontSize: 17, fontWeight: 400,
+                  color: "#0D0D0D", lineHeight: 1.6,
+                }}>
+                  {p.v}
+                </span>
               </motion.div>
             ))}
           </div>
