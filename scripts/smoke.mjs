@@ -302,7 +302,19 @@ try {
   assert.ok(gallery.includes('/works/crm-development'), 'CRM case is reachable from the gallery');
   const crmCase = await fetch(base + '/works/crm-development');
   assert.equal(crmCase.status,200);
-  assert.ok((await crmCase.text()).includes('アプリの一般公開・利用受付は行っていません'), 'CRM case does not promise access to a paused app');
+  const crmHtml = await crmCase.text();
+  assert.ok(crmHtml.includes('アプリの一般公開・利用受付は行っていません'), 'CRM case does not promise access to a paused app');
+  assert.ok(!gallery.includes('crm-case-diagram') && !crmHtml.includes('crm-case-diagram'), 'CRM uses actual implementation screenshots instead of a diagram');
+  assert.ok(crmHtml.includes('架空のサンプルデータ') && gallery.includes('掲載用サンプルデータ'), 'CRM distinguishes sample records from real customer data');
+  for (const name of ['crm-pipeline-20261020.jpg', 'crm-customers-20261020.jpg']) {
+    assert.ok(crmHtml.includes(name), name + ' is shown in the CRM case');
+    const image = await fetch(base + '/works/' + name);
+    assert.equal(image.status, 200, name);
+    assert.ok(image.headers.get('content-type')?.startsWith('image/jpeg'), name + ' is an image, not a fallback page');
+    const bytes = new Uint8Array(await image.arrayBuffer());
+    assert.ok(bytes[0] === 0xff && bytes[1] === 0xd8 && bytes.length > 20000, name + ' contains a real JPEG');
+  }
+  assert.ok(gallery.includes('crm-pipeline-20261020.jpg'), 'gallery shows the CRM pipeline screenshot');
   assert.ok(gallery.includes('自社メディア / Web制作') && gallery.includes('別ブランドのWeb制作'), 'gallery distinguishes Lakkan media and the separate brand');
   assert.ok(!lunaCase.includes('data-live-work="central-medical"'), 'related work does not promote an excluded example');
   const nowCase = await (await fetch(base + '/works/now-on-air')).text();
