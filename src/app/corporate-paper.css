@@ -86,8 +86,7 @@
 .corporate-frame .poster-work-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 32px; }
 .corporate-frame .poster-work { min-width: 0; }
 .corporate-frame .poster-work [data-live-work] > div:first-child { border: 0; padding: 0; background: transparent; aspect-ratio: 16/10; }
-.corporate-frame .poster-work [data-live-work] > div:first-child img { object-fit: cover; object-position: center; }
-.corporate-frame .poster-work [data-live-work="luna-ai"] > div:first-child img { object-position: left center; }
+.corporate-frame .poster-work [data-live-work] > div:first-child img { object-fit: cover; object-position: left center; }
 .corporate-frame .poster-work [data-live-work] > div:last-child { padding: 0; border: 0; min-height: 44px; font-size: 12px; justify-content: end; }
 .corporate-frame .poster-work [data-live-work] > div:last-child > span { display: none; }
 .corporate-frame .poster-work [data-live-work] a { min-height: 44px; align-items: center; }
