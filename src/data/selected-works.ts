@@ -9,8 +9,8 @@ export const selectedWorks: (Project & { cover: string; coverAlt: string })[] = 
   return project as Project & { cover: string; coverAlt: string };
 });
 
-// Published destinations verified for this gallery; paused deployments are not promoted.
-const archiveIds = ["luna-management", "luna-reception", "central-medical", "lia-recruit", "atelier-patterns"];
+// Curated work only: unused demos and older examples are withdrawn from publication.
+const archiveIds = ["central-medical"];
 export const archiveWorks = archiveIds.map(id => projects.find(project => project.id === id && project.status === "live")!) as Project[];
 
 export function workPresentationLabel(project: { id: string; workType?: string }) {

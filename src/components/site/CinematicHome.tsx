@@ -7,7 +7,7 @@ import { WaterContact } from "./WaterContact";
 import { BrandHeading } from "./BrandHeading";
 import data from "@/data/projects.json";
 
-const featured=['luna-management','luna-ai','aura-ai-concept','atelier-patterns'];
+const featured=['now-on-air','luna-design','lakkan-brand','luna-ai'];
 const offerings=[
  ['AI導入・業務改善','繰り返す作業を見直し、人が判断に集中できる仕事へ。','ai-operations','Rethink.'],
  ['CRM・システム開発','情報と仕事の流れをつなぐ、現場に合った仕組みを。','crm','Connect.'],

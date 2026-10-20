@@ -25,24 +25,6 @@ const PORTALS = [
     accent: ACCENT.vermillion,
     meta: "Public",
   },
-  {
-    label: "AI Lab",
-    jaLabel: "LunaTech AI Lab",
-    sub: "Interactive Learning · Public",
-    desc: "生成AIを説明ではなく操作で理解する体験型ラボ。業務別の活用イメージをブラウザで試せます。",
-    url: "https://lunatech-ai-lab.vercel.app",
-    accent: ACCENT.blue,
-    meta: "Try online",
-  },
-  {
-    label: "Atelier",
-    jaLabel: "Lakkan Web Experiments",
-    sub: "Design Patterns · Public",
-    desc: "WebGL、レイアウト、導線設計を実際に触って比較できる、Lakkanの公開制作実験場。",
-    url: "/atelier",
-    accent: "#5B5871",
-    meta: "Explore",
-  },
 ];
 
 function PortalCard({ portal, index }: { portal: (typeof PORTALS)[number]; index: number }) {

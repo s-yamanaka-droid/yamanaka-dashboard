@@ -8,16 +8,8 @@ import styles from "./live-work.module.css";
 
 // Only public sites whose frame policy has been checked. Do not proxy blocked sites.
 const embeds: Record<string, string> = {
-  "luna-management": "https://luna-management-jp.vercel.app/showcase",
   "central-medical": "https://lakkan-central-medical.vercel.app/",
-  "lia-recruit": "https://lia-recruit.vercel.app/",
   "now-on-air": "https://nowonair.vercel.app/",
-  "reskilllab-lunatech": "https://lunatech-ai-lab.vercel.app/",
-  "luna-reception": "https://luna-receptionist.vercel.app/",
-  "plime-recruit": "https://plime-recruit.vercel.app/",
-  "aura-ai-concept": "https://aura-beta-snowy.vercel.app/",
-  "salon-solna-ai-concept": "https://salon-solna.vercel.app/",
-  "atelier-patterns": "/atelier/fluid",
 };
 type Props = {project:{id:string;name:string;url?:string;cover?:string;coverAlt?:string};priority?:boolean;poster?:boolean};
 

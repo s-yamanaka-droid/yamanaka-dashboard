@@ -33,12 +33,18 @@ const forbiddenSourcePatterns = [
 
 const failures = [];
 const projects = JSON.parse(fs.readFileSync(projectsPath, "utf8"));
+const retiredWorks = JSON.parse(fs.readFileSync(path.join(ROOT, "src/data/retired-works.json"), "utf8"));
 const changelog = JSON.parse(fs.readFileSync(changelogPath, "utf8"));
 
 if (!Array.isArray(projects) || projects.length === 0) failures.push("projects.json must contain public work");
 
 const ids = new Set();
+for (const id of retiredWorks) {
+  if (fs.existsSync(path.join(ROOT, "public/works", `${id}.jpg`))) failures.push(`${id}: withdrawn thumbnail must not be published`);
+}
+if (fs.existsSync(path.join(ROOT, "public/atelier"))) failures.push("withdrawn Atelier demo files must not be published");
 for (const project of projects) {
+  if (retiredWorks.includes(project.id) || project.workType === "ai-concept") failures.push(`${project.id}: withdrawn demos and concept work must not re-enter the public portfolio`);
   if (ids.has(project.id)) failures.push(`duplicate project id: ${project.id}`);
   ids.add(project.id);
   if (project.status !== "live") failures.push(`${project.id}: status must be live`);

@@ -5,8 +5,17 @@
       "date": "2026-09-10",
       "tag": "BRAND",
       "title": "LakkanのWebサイトをリニューアル",
-      "body": "サイト全体のデザインと構成を刷新しました。制作実績、サービス、会社紹介、デザイン実験室を整理し、相談までの導線を統一しています。",
-      "links": [{ "label": "Works", "url": "/works" }, { "label": "Services", "url": "/services" }]
+      "body": "サイト全体のデザインと構成を刷新しました。制作実績、サービス、会社紹介を整理し、相談までの導線を統一しています。",
+      "links": [
+        {
+          "label": "Works",
+          "url": "/works"
+        },
+        {
+          "label": "Services",
+          "url": "/services"
+        }
+      ]
     },
     {
       "date": "2026-08-05",
@@ -14,8 +23,14 @@
       "title": "VigilからLunaへ — 現行ブランドと公開作品を統一",
       "body": "対外製品名をLuna AIへ統一し、Lakkanの公開ポートフォリオを再編集。公開済みの作品と検証可能な価値だけを掲載し、内部運用・開発中プロダクト・利用者データへの導線を公開面から除去しました。",
       "links": [
-        { "label": "Luna AI", "url": "https://luna-tech-public-site.vercel.app/" },
-        { "label": "Works", "url": "/works" }
+        {
+          "label": "Luna AI",
+          "url": "https://luna-tech-public-site.vercel.app/"
+        },
+        {
+          "label": "Works",
+          "url": "/works"
+        }
       ]
     },
     {
@@ -24,7 +39,10 @@
       "title": "中央メディカル コーポレートサイトを公開",
       "body": "病院患者給食や院内レストラン、フードコンサルティングを手がける中央メディカル株式会社のサイトを公開。食への姿勢とサービスを、写真と情報設計で伝えています。",
       "links": [
-        { "label": "Website", "url": "https://lakkan-central-medical.vercel.app" }
+        {
+          "label": "Website",
+          "url": "https://lakkan-central-medical.vercel.app"
+        }
       ]
     },
     {
@@ -33,34 +51,10 @@
       "title": "Luna AI — 成長の根拠表示と更新品質を強化",
       "body": "Lunaが何を覚え、どこまで再現可能になったかを、自己申告ではなく実測証拠で示す構造へ更新。利用者の記憶と自作資産を守ったまま、安全に更新できる配布基盤を整えました。",
       "links": [
-        { "label": "Luna AI", "url": "https://luna-tech-public-site.vercel.app/" }
-      ]
-    },
-    {
-      "date": "2026-06-04",
-      "tag": "UI",
-      "title": "Lakkan Atelierを公開",
-      "body": "WebGL、レイアウト、コンバージョン導線を比較できる公開実験場を追加。案件ごとのブランドと目的に合わせて、表現を選び直せる制作基盤です。",
-      "links": [
-        { "label": "Atelier", "url": "/atelier" }
-      ]
-    },
-    {
-      "date": "2026-05-29",
-      "tag": "PRODUCT",
-      "title": "LiA 採用LPを公開",
-      "body": "飲食業界に特化した求人広告代理店の採用LPを制作。ブランド表現、応募導線、モーションを一体で設計しました。",
-      "links": [
-        { "label": "Website", "url": "https://lia-recruit.vercel.app" }
-      ]
-    },
-    {
-      "date": "2026-05-26",
-      "tag": "PRODUCT",
-      "title": "LunaTech AI Labを公開",
-      "body": "生成AIを説明ではなく操作で理解する体験型ラボを公開。業務別のAI活用と段階的な導入イメージをブラウザで試せます。",
-      "links": [
-        { "label": "AI Lab", "url": "https://lunatech-ai-lab.vercel.app" }
+        {
+          "label": "Luna AI",
+          "url": "https://luna-tech-public-site.vercel.app/"
+        }
       ]
     },
     {

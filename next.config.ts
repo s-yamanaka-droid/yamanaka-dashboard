@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import retiredWorks from "./src/data/retired-works.json";
 
 const securityHeaders = [
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
@@ -48,14 +49,12 @@ const nextConfig: NextConfig = {
     ];
   },
   async rewrites() {
-    return [
-      // /atelier/<id>/ や /atelier/<id> を public/atelier/<id>/index.html に解決（trailingSlashの罠回避）
-      { source: "/atelier/:slug/", destination: "/atelier/:slug/index.html" },
-      { source: "/atelier/:slug",  destination: "/atelier/:slug/index.html" },
-    ];
+    return [];
   },
   async redirects() {
     return [
+      ...retiredWorks.map(slug => ({ source: `/works/${slug}`, destination: "/works", permanent: true })),
+      { source: "/atelier/:path*", destination: "/works", permanent: true },
       {
         source: "/vigil/:path*",
         destination: "https://lunatech-migration-guide.vercel.app",

@@ -2,6 +2,7 @@ import { spawn } from "node:child_process";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 const projects = JSON.parse(readFileSync(new URL('../src/data/projects.json', import.meta.url),'utf8'));
+const retiredWorks = JSON.parse(readFileSync(new URL('../src/data/retired-works.json', import.meta.url),'utf8'));
 const goods = [
   { slug: "lakkan-wordmark", title: "Lakkan 英字ロゴ" },
   { slug: "rakkan-seal", title: "楽観 縦書きロゴ" },
@@ -281,7 +282,15 @@ try {
   const gallery = await (await fetch(base + '/works')).text();
   const galleryIds = [...gallery.matchAll(/data-live-work="([^"]+)"/g)].map(match => match[1]);
   assert.deepEqual(galleryIds.slice(0,4), ['now-on-air', 'luna-design', 'lakkan-brand', 'luna-ai'], 'first four works retain the requested curated order');
-  assert.deepEqual(galleryIds.slice(4), ['luna-management','luna-reception','central-medical','lia-recruit','atelier-patterns'], 'gallery promotes verified live destinations');
+  assert.deepEqual(galleryIds.slice(4), ['central-medical'], 'gallery retains only the selected client case after the four approved visuals');
+  for (const id of retiredWorks) {
+    assert.ok(!gallery.includes(id), id + ' is absent from the public gallery');
+    const removed = await fetch(base + '/works/' + id, {redirect:'manual'});
+    assert.equal(removed.status,308,id + ' old case redirects permanently');
+    assert.equal(new URL(removed.headers.get('location'),base).pathname,'/works');
+    assert.equal((await fetch(base + '/works/' + id + '.jpg')).status,404,id + ' withdrawn thumbnail is not served');
+  }
+  assert.ok(!gallery.includes('href="/atelier"'), 'withdrawn experiment navigation is removed');
   assert.equal(new Set(galleryIds).size, galleryIds.length, 'works appear once');
   for (const id of galleryIds.slice(0, 4)) {
     const project = projects.find(project => project.id === id);
@@ -311,6 +320,10 @@ try {
   assert.ok(!unknownContact.includes('unknown-projectの実績'), 'unknown projects do not enter inquiry text');
   assert.equal((await fetch(base+'/works/unknown-project')).status,404,'unknown case is not published');
   const sitemap=await (await fetch(base+'/sitemap.xml')).text();
+  for (const id of retiredWorks) assert.ok(!sitemap.includes('/works/'+id), id + ' is absent from sitemap');
+  assert.ok(!sitemap.includes('/atelier'), 'withdrawn experiments are absent from sitemap');
+  const updates = await (await fetch(base + '/changelog')).text();
+  assert.ok(!updates.includes('/atelier') && !updates.includes('lia-recruit.vercel.app') && !updates.includes('lunatech-ai-lab.vercel.app'), 'updates do not promote withdrawn work');
   for(const p of projects) assert.ok(sitemap.includes('/works/'+p.id),'case present in sitemap');
   const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]).pathname);
   for (const path of ["/racco", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => "/racco/columns/" + slug)]) assert.ok(sitemapUrls.includes(path), path + " is discoverable in sitemap");
@@ -323,13 +336,15 @@ try {
   assert.ok(!/Disallow:\s*\/(?:racco|$)/m.test(robots), "robots must allow fetching the public articles and reading studio noindex");
   console.log("PASS search boundary: public articles, sitemap, manuscript header and robots");
   for (const name of ["particles","fluid","terrain","saas","portfolio","restaurant","leadform"]) {
-    assert.equal((await fetch(base + "/atelier/" + name)).status, 200, name);
+    const demo = await fetch(base + "/atelier/" + name, {redirect:'manual'});
+    assert.equal(demo.status,308,name + ' withdrawn demo redirects');
+    assert.equal(new URL(demo.headers.get('location'),base).pathname,'/works');
   }
   assert.equal((await fetch(base + "/missing-smoke-page")).status, 404);
   assert.equal((await fetch(base + "/racco/columns/not-an-article")).status, 404);
   assert.equal((await fetch(base + "/racco/goods/not-a-product")).status, 404);
   assert.equal((await fetch(base + "/racco/goods/hina-sticker")).status, 404, "withdrawn Hina product is not published");
-  console.log("PASS topic selection, seven demos, 404");
+  console.log("PASS topic selection, withdrawn demo redirects, 404");
 } finally {
   if (server && server.exitCode === null && server.signalCode === null) {
     // Range/stream probes can leave connections open. Bound cleanup to this

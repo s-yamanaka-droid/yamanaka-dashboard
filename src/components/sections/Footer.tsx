@@ -13,7 +13,6 @@ const NAV_PRIMARY: [string, string][] = [
 ];
 const NAV_SECONDARY: [string, string][] = [
   ["Luna AI", "#luna"],
-  ["Atelier", "/atelier"],
   ["About", "/about"],
   ["Join", "#join"],
   ["Portals", "#portals"],

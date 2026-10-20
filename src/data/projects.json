@@ -10,7 +10,11 @@
     "updatedAt": "2026-10-14",
     "url": "https://harness-dashboard-eight.vercel.app/",
     "client": "LunaTech",
-    "tags": ["デザインライブラリ", "制作支援", "モーション"],
+    "tags": [
+      "デザインライブラリ",
+      "制作支援",
+      "モーション"
+    ],
     "cover": "/works/luna-design-20261014.jpg",
     "coverAlt": "Luna Designの公開ライブラリ。金属調のロゴと、墨の波紋を使ったモーションの作例。",
     "workType": "own"
@@ -26,26 +30,13 @@
     "updatedAt": "2026-10-20",
     "url": "https://lakkan-inc.vercel.app/brand",
     "client": "Lakkan",
-    "tags": ["ブランドデザイン", "ビジュアルアイデンティティ", "ロゴ・キャラクター"],
+    "tags": [
+      "ブランドデザイン",
+      "ビジュアルアイデンティティ",
+      "ロゴ・キャラクター"
+    ],
     "cover": "/works/lakkan-brand-keyvisual-20261020.jpg",
     "coverAlt": "Lakkan Brandのキービジュアル。「余白から、おもしろく。」の文字と、朱赤の布に並べた名刺・レコード。",
-    "workType": "own"
-  },
-  {
-    "id": "luna-management",
-    "name": "Luna Management",
-    "description": "一人ひとりの行動特性を、採用・配属・育成の対話につなげるプロダクト。ばらばらのカードが集まり、組織の構成へと変わるアニメーションで、その考え方を伝える。",
-    "category": "analytics",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-09-25",
-    "updatedAt": "2026-09-25",
-    "url": "https://luna-management-jp.vercel.app/showcase",
-    "client": "LunaTech",
-    "tags": ["組織・人材", "プロダクトデザイン", "モーション"],
-    "cover": "/works/luna-management.jpg",
-    "coverAlt": "Luna Managementの公開紹介。行動特性を表すサンプルカードが、組織のまとまりに変わる。",
-    "featured": true,
     "workType": "own"
   },
   {
@@ -68,27 +59,6 @@
     "cover": "/works/lunatech-curated.jpg",
     "coverAlt": "LunaTechの現在の公式サイト。黒い背景に、銀と緑の金属調のLunaTechロゴを大きく配置している。",
     "featured": true,
-    "workType": "own"
-  },
-  {
-    "id": "luna-reception",
-    "name": "Luna Reception",
-    "description": "生成AIとの音声対話を、サービスの最初の接点として設計したAI受付。人物映像、音声、チャット、プライバシー案内を一画面にまとめ、Luna AIの体験デモとして公開・運用している。",
-    "category": "ai_agent",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-08-10",
-    "updatedAt": "2026-08-11",
-    "url": "https://luna-receptionist.vercel.app",
-    "client": "LunaTech",
-    "tags": [
-      "AI受付",
-      "音声対話",
-      "会話UI",
-      "プライバシー設計"
-    ],
-    "cover": "/works/luna-reception.jpg",
-    "coverAlt": "Luna AIの受付デモ。人物映像、音声対話ボタン、チャット欄を濃紺の一画面に配置している。",
     "workType": "own"
   },
   {
@@ -134,138 +104,5 @@
     "coverAlt": "Now on AIrのキービジュアル。大きな黒いロゴと記事の見出し、Raccoたちが小さなロボットを見つめるイラスト。",
     "featured": true,
     "workType": "own"
-  },
-  {
-    "id": "reskilllab-lunatech",
-    "name": "LunaTech AI Lab",
-    "description": "生成AIを説明ではなく操作で理解する体験型ラボ。業務別のプロンプト体験、生成物プレビュー、段階的なAI導入シナリオをブラウザで試せる。",
-    "category": "external",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-05-26",
-    "updatedAt": "2026-05-27",
-    "url": "https://lunatech-ai-lab.vercel.app",
-    "client": "LunaTech",
-    "tags": [
-      "AIリスキリング",
-      "体験デモ",
-      "React",
-      "生成AI"
-    ],
-    "cover": "/works/reskilllab-lunatech.jpg",
-    "coverAlt": "LunaTech AI Labの公開デモ画面。AI活用のレベルを切り替えて成果物を比較できる。",
-    "featured": true,
-    "workType": "own"
-  },
-  {
-    "id": "lia-recruit",
-    "name": "LiA 採用LP",
-    "description": "飲食業界に特化した求人広告代理店向けの採用ランディングページ。ブランド表現と応募導線を一体で設計し、滑らかなモーションと高速な表示を両立。",
-    "category": "external",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-04-06",
-    "updatedAt": "2026-05-29",
-    "url": "https://lia-recruit.vercel.app",
-    "client": "株式会社LiA",
-    "tags": [
-      "採用LP",
-      "Next.js",
-      "モーション",
-      "コンバージョン設計"
-    ],
-    "cover": "/works/lia-recruit.jpg",
-    "coverAlt": "LiA採用LPの公開画面。濃紺のグリッド背景に採用メッセージと応募導線を配置している。",
-    "featured": true,
-    "workType": "client"
-  },
-  {
-    "id": "plime-recruit",
-    "name": "PLIME 美容師採用LP",
-    "description": "福岡・山口で5店舗を展開する美容室の採用LP。実写を主役に、給与・休日・スタッフの声・募集要項・FAQ・応募導線までを一つの採用ストーリーとして設計した。",
-    "category": "external",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-06-03",
-    "updatedAt": "2026-08-11",
-    "url": "https://plime-recruit.vercel.app",
-    "client": "hair & make PLIME",
-    "tags": [
-      "採用LP",
-      "美容師採用",
-      "実写設計",
-      "応募導線"
-    ],
-    "cover": "/works/plime-recruit.jpg",
-    "coverAlt": "PLIME美容師採用LP。実店舗の写真に、時間を大切にする人が長く輝ける美容室という採用メッセージを重ねている。",
-    "workType": "client"
-  },
-  {
-    "id": "atelier-patterns",
-    "name": "Lakkan Atelier",
-    "description": "WebGL、レイアウト、コンバージョン導線を実際に触って比較できるWeb制作パターン集。案件ごとに最適な表現を選ぶための公開実験場。",
-    "category": "website",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-06-04",
-    "updatedAt": "2026-06-04",
-    "url": "https://lakkan-inc.vercel.app/atelier",
-    "client": "Lakkan",
-    "tags": [
-      "Atelier",
-      "WebGL",
-      "UI/UX",
-      "デザインシステム"
-    ],
-    "cover": "/works/atelier-patterns.jpg",
-    "coverAlt": "Lakkan Atelierの公開画面。WebGLとレイアウトパターンを編集的な大見出しで紹介している。",
-    "featured": true,
-    "workType": "own"
-  },
-  {
-    "id": "aura-ai-concept",
-    "name": "AURA Fragrance",
-    "description": "架空のフレグランスブランドを、AIだけで企画・コピー・デザイン・実装したコンセプトサイト。WebGL 3Dとスクロール演出を、明るい背景の上で成立させた実験。",
-    "category": "website",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-06-03",
-    "updatedAt": "2026-06-04",
-    "url": "https://aura-beta-snowy.vercel.app",
-    "client": "AI Concept",
-    "tags": [
-      "AI CONCEPT",
-      "WebGL",
-      "three.js",
-      "GSAP",
-      "Fragrance"
-    ],
-    "cover": "/works/aura-ai-concept.jpg",
-    "coverAlt": "AI CONCEPTのAURA Fragrance。淡い光の背景に香りのブランドメッセージを配置している。",
-    "featured": true,
-    "workType": "ai-concept"
-  },
-  {
-    "id": "salon-solna-ai-concept",
-    "name": "hair salon SOLNA",
-    "description": "架空のヘアサロンを題材に、AIだけで情報設計・コピー・デザイン・実装したローカルビジネス向けコンセプトサイト。予約導線とモバイル体験を重視。",
-    "category": "website",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-06-03",
-    "updatedAt": "2026-06-04",
-    "url": "https://salon-solna.vercel.app",
-    "client": "AI Concept",
-    "tags": [
-      "AI CONCEPT",
-      "美容室",
-      "予約導線",
-      "Local Business",
-      "Responsive"
-    ],
-    "cover": "/works/salon-solna-ai-concept.jpg",
-    "coverAlt": "AI CONCEPTのhair salon SOLNA。美容室の実景写真と予約導線を第一画面に配置している。",
-    "featured": true,
-    "workType": "ai-concept"
   }
 ]

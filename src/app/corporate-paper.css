@@ -85,6 +85,7 @@
 .corporate-frame .poster-small-label { font: 700 12px/1.5 var(--font-sans-jp), sans-serif; letter-spacing: .08em; color: var(--red); }
 .corporate-frame .poster-work-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 32px; }
 .corporate-frame .poster-work { min-width: 0; }
+.corporate-frame .poster-work-grid > .poster-work:only-child { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); gap: 32px; align-items: center; }
 .corporate-frame .poster-work [data-live-work] > div:first-child { border: 0; padding: 0; background: transparent; aspect-ratio: 16/10; }
 .corporate-frame .poster-work [data-live-work] > div:first-child img { object-fit: cover; object-position: left center; }
 .corporate-frame .poster-work [data-live-work] > div:last-child { padding: 0; border: 0; min-height: 44px; font-size: 12px; justify-content: end; }
@@ -218,6 +219,7 @@
   .corporate-frame .poster-heading-copy h1, .corporate-frame .poster-contact-aside h1 { font-size: clamp(27px,7.5vw,32px); line-height: 1.55; }
   .corporate-frame .poster-heading-copy > p { font-size: 14px; margin-top: 16px; }
   .corporate-frame .poster-work-grid { grid-template-columns: 1fr; gap: 38px; }
+  .corporate-frame .poster-work-grid > .poster-work:only-child { grid-template-columns: 1fr; gap: 18px; }
   .corporate-frame .poster-work-caption h2 { font-size: 25px; }
   .corporate-frame .poster-service-list > a { grid-template-columns: 38px minmax(0,1fr) 24px; gap: 14px; padding: 24px 0; }
   .corporate-frame .poster-service-number { font-size: 34px; align-self: start; padding-top: 3px; }
