@@ -85,15 +85,16 @@
 .corporate-frame .poster-small-label { font: 700 12px/1.5 var(--font-sans-jp), sans-serif; letter-spacing: .08em; color: var(--red); }
 .corporate-frame .poster-work-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 32px; }
 .corporate-frame .poster-work { min-width: 0; }
-.corporate-frame .poster-work [data-live-work] > div:first-child { border: 1px solid var(--red); padding: 8px; background: var(--paper); }
-.corporate-frame .poster-work [data-live-work] > div:first-child img { inset: 8px !important; width: calc(100% - 16px) !important; height: calc(100% - 16px) !important; }
+.corporate-frame .poster-work [data-live-work] > div:first-child { border: 0; padding: 0; background: transparent; aspect-ratio: 16/10; }
+.corporate-frame .poster-work [data-live-work] > div:first-child img { object-fit: cover; object-position: center; }
+.corporate-frame .poster-work [data-live-work="luna-ai"] > div:first-child img { object-position: left center; }
 .corporate-frame .poster-work [data-live-work] > div:last-child { padding: 0; border: 0; min-height: 44px; font-size: 12px; justify-content: end; }
 .corporate-frame .poster-work [data-live-work] > div:last-child > span { display: none; }
 .corporate-frame .poster-work [data-live-work] a { min-height: 44px; align-items: center; }
 .corporate-frame .poster-work-caption h2 { font: 600 28px/1.25 var(--font-display), sans-serif; letter-spacing: -.025em; }
 .corporate-frame .poster-work-caption h2 a { display: flex; align-items: center; justify-content: space-between; min-height: 44px; gap: 16px; }
 .corporate-frame .poster-work-caption h2 svg { color: var(--red); flex-shrink: 0; }
-.corporate-frame .poster-work-scope { padding: 0 0 12px; border-bottom: 1px solid var(--red); font-size: 14px; }
+.corporate-frame .poster-work-scope { padding: 0 0 12px; border-bottom: 1px solid rgb(23 34 31 / 16%); font-size: 14px; }
 .corporate-frame .poster-work-category { margin-top: 18px; font-size: 12px; color: var(--red); }
 .corporate-frame .poster-work-description { margin-top: 10px; font-size: 14px; line-height: 1.9; color: var(--muted); }
 .corporate-frame .poster-work-filters { display: flex; gap: 16px; margin-bottom: 28px; }
