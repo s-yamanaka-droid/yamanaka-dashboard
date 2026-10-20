@@ -1,0 +1,74 @@
+[
+  {
+    "id": "luna-ai",
+    "url": "https://lunatech-migration-guide.vercel.app",
+    "status": "captured",
+    "width": 1440,
+    "height": 960,
+    "bytes": 117787,
+    "elapsedMs": 3208
+  },
+  {
+    "id": "central-medical",
+    "url": "https://lakkan-central-medical.vercel.app",
+    "status": "captured",
+    "width": 1440,
+    "height": 960,
+    "bytes": 198825,
+    "elapsedMs": 2943
+  },
+  {
+    "id": "now-on-air",
+    "url": "https://nowonair.vercel.app",
+    "status": "captured",
+    "width": 1440,
+    "height": 960,
+    "bytes": 148210,
+    "elapsedMs": 2660
+  },
+  {
+    "id": "reskilllab-lunatech",
+    "url": "https://lunatech-ai-lab.vercel.app",
+    "status": "captured",
+    "width": 1440,
+    "height": 960,
+    "bytes": 268456,
+    "elapsedMs": 3003
+  },
+  {
+    "id": "lia-recruit",
+    "url": "https://lia-recruit.vercel.app",
+    "status": "captured",
+    "width": 1440,
+    "height": 960,
+    "bytes": 147550,
+    "elapsedMs": 3277
+  },
+  {
+    "id": "atelier-patterns",
+    "url": "https://lakkan-inc.vercel.app/atelier",
+    "status": "captured",
+    "width": 1440,
+    "height": 960,
+    "bytes": 105099,
+    "elapsedMs": 2683
+  },
+  {
+    "id": "aura-ai-concept",
+    "url": "https://aura-beta-snowy.vercel.app",
+    "status": "captured",
+    "width": 1440,
+    "height": 960,
+    "bytes": 86205,
+    "elapsedMs": 3010
+  },
+  {
+    "id": "salon-solna-ai-concept",
+    "url": "https://salon-solna.vercel.app",
+    "status": "captured",
+    "width": 1440,
+    "height": 960,
+    "bytes": 273088,
+    "elapsedMs": 3854
+  }
+]
