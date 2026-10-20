@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { LiveWork } from "@/components/site/LiveWork";
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { WaterContact } from "@/components/site/WaterContact";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -20,7 +19,7 @@ function ProjectView({project:p, featured=false}: {project:Project; featured?:bo
   return <article className="poster-work">
     <LiveWork project={p} priority={featured} poster/>
     <div className="poster-work-caption">
-      <h2><Link href={`/works/${p.id}`}>{p.name}<ArrowUpRight size={24} aria-hidden="true"/></Link></h2>
+      <h2><a href={p.url || `/works/${p.id}`} target="_blank" rel="noopener noreferrer" aria-label={`${p.name}の公開サイトを開く（別タブ）`}>{p.name}<ArrowUpRight size={24} aria-hidden="true"/></a></h2>
       <p className="poster-work-scope">{p.tags.slice(0,2).join(" / ")}</p>
       <p className="poster-work-category">{workPresentationLabel(p)}</p>
       <p className="poster-work-description">{p.description}</p>

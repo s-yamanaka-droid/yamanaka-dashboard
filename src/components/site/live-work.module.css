@@ -4,6 +4,8 @@
 .frame{position:absolute;inset:0;border:0;width:100%;height:100%;opacity:0;background:white;transition:opacity .35s ease}
 .frame.ready{opacity:1}
 .shield{position:absolute;inset:0;z-index:2}
+.coverLink{position:absolute;inset:0;z-index:3;display:block}
+.work .coverLink:focus-visible{outline-offset:-5px}
 .detail{position:absolute;right:20px;bottom:20px;z-index:3;display:flex;gap:10px;align-items:center;padding:12px 18px;background:#eef0ec;color:#132126;font-size:13px}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #13212626;font:12px/1.7 var(--font-sans-jp),sans-serif}
 .status{color:#52635b}
@@ -16,4 +18,3 @@
 @media(prefers-reduced-motion:reduce){.frame{transition:none}}
 .staticViewport{aspect-ratio:16/9;min-height:0;max-height:none}
 .staticViewport .cover{object-fit:contain}
-.staticViewport .artworkCover{object-fit:cover;object-position:center}

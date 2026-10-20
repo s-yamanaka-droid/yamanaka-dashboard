@@ -283,6 +283,13 @@ try {
   assert.deepEqual(galleryIds.slice(0,4), ['now-on-air', 'luna-design', 'lakkan-brand', 'luna-ai'], 'first four works retain the requested curated order');
   assert.deepEqual(galleryIds.slice(4), ['luna-management','luna-reception','central-medical','lia-recruit','atelier-patterns'], 'gallery promotes verified live destinations');
   assert.equal(new Set(galleryIds).size, galleryIds.length, 'works appear once');
+  for (const id of galleryIds.slice(0, 4)) {
+    const project = projects.find(project => project.id === id);
+    const card = [...gallery.matchAll(/<article class="poster-work">([\s\S]*?)<\/article>/g)].find(match => match[1].includes(`data-live-work="${id}"`))?.[1];
+    assert.ok(card, id + ' has a gallery card');
+    const publicLinks = [...card.matchAll(/<a\b[^>]*>/g)].filter(match => match[0].includes(`href="${project.url}"`) && match[0].includes('target="_blank"'));
+    assert.equal(publicLinks.length, 3, id + ' image, title and open link all reach its public site');
+  }
   assert.ok(gallery.includes('/works/crm-development'), 'CRM case is reachable from the gallery');
   const crmCase = await fetch(base + '/works/crm-development');
   assert.equal(crmCase.status,200);
@@ -291,7 +298,7 @@ try {
   assert.ok(!lunaCase.includes('data-live-work="central-medical"'), 'related work does not promote an excluded example');
   const nowCase = await (await fetch(base + '/works/now-on-air')).text();
   assert.ok(!lunaCase.includes('<iframe') && !nowCase.includes('<iframe'), 'selected works use stable screenshots without blocked or transient embeds');
-  for (const asset of ['/works/now-on-air-racco-20261020.webp', '/works/luna-design-20261014.jpg', '/brand/editorial/lakkan-still-life-20261020.webp', '/works/lunatech-curated.jpg']) assert.equal((await fetch(base + asset)).status, 200, asset);
+  for (const asset of ['/works/now-on-air-keyvisual-20261020.jpg', '/works/luna-design-20261014.jpg', '/works/lakkan-brand-keyvisual-20261020.jpg', '/works/lunatech-curated.jpg']) assert.equal((await fetch(base + asset)).status, 200, asset);
   const brand = await (await fetch(base + '/brand')).text();
   assert.ok(brand.includes('余白から、') && brand.includes('/brand/editorial/lakkan-still-life-20261020.webp'), 'brand hero renders real text and the approved visual');
   for (const route of ['/racco', '/records', '/works', '/services']) assert.ok(brand.includes(`href="${route}"`), 'brand has a usable route to ' + route);

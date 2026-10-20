@@ -56,9 +56,9 @@ export function LiveWork({project:p,priority=false,poster=false}:Props){
   }
   return <div ref={host} className={styles.work} data-live-work={p.id}>
     <div className={`${styles.viewport} ${staticPreview?styles.staticViewport:''}`}>
-      <Image className={`${styles.cover} ${['lakkan-brand','now-on-air'].includes(p.id)?styles.artworkCover:''}`} src={p.cover||'/og.png'} alt={p.coverAlt||`${p.name}の公開画面`} fill sizes="(max-width:760px) 100vw, 75vw" priority={priority}/>
+      <Image className={styles.cover} src={p.cover||'/og.png'} alt={p.coverAlt||`${p.name}の公開画面`} fill sizes="(max-width:760px) 100vw, 50vw" priority={priority}/>
       {mount&&<iframe className={`${styles.frame} ${ready?styles.ready:''}`} src={src} title={`${p.name}の操作できる作例`} tabIndex={active?0:-1} inert={!active} referrerPolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" onLoad={()=>setReady(true)} onError={()=>setFailed(true)}/>}
-      {!active&&<div className={styles.shield} aria-hidden="true"/>}
+      {staticPreview ? <a className={styles.coverLink} href={p.url || `/works/${p.id}`} target="_blank" rel="noopener noreferrer" aria-label={`${p.name}のキービジュアルから公開サイトを開く（別タブ）`}/> : !active&&<div className={styles.shield} aria-hidden="true"/>}
       {!src&&!staticPreview&&<Link className={styles.detail} href={`/works/${p.id}`} aria-label={`${p.name}の制作内容を見る`}>制作内容を見る <ArrowUpRight size={18}/></Link>}
     </div>
     <div className={styles.bar}>

@@ -27,8 +27,8 @@
     "url": "https://lakkan-inc.vercel.app/brand",
     "client": "Lakkan",
     "tags": ["ブランドデザイン", "ビジュアルアイデンティティ", "ロゴ・キャラクター"],
-    "cover": "/brand/editorial/lakkan-still-life-20261020.webp",
-    "coverAlt": "朱赤の布に、Lakkanのロゴを配したコットン紙の名刺とレコード。ブランドの展開を表す生成イメージ。",
+    "cover": "/works/lakkan-brand-keyvisual-20261020.jpg",
+    "coverAlt": "Lakkan Brandのキービジュアル。「余白から、おもしろく。」の文字と、朱赤の布に並べた名刺・レコード。",
     "workType": "own"
   },
   {
@@ -130,8 +130,8 @@
       "Web制作",
       "編集設計"
     ],
-    "cover": "/works/now-on-air-racco-20261020.webp",
-    "coverAlt": "Now on AIrの掲載記事の絵。Racco、猫、アザラシが、ガラスの箱に入った小さなロボットを見つめる。",
+    "cover": "/works/now-on-air-keyvisual-20261020.jpg",
+    "coverAlt": "Now on AIrのキービジュアル。大きな黒いロゴと記事の見出し、Raccoたちが小さなロボットを見つめるイラスト。",
     "featured": true,
     "workType": "own"
   },
