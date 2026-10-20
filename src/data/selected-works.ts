@@ -9,10 +9,6 @@ export const selectedWorks: (Project & { cover: string; coverAlt: string })[] = 
   return project as Project & { cover: string; coverAlt: string };
 });
 
-// Curated work only: unused demos and older examples are withdrawn from publication.
-const archiveIds = ["central-medical"];
-export const archiveWorks = archiveIds.map(id => projects.find(project => project.id === id && project.status === "live")!) as Project[];
-
 export function workPresentationLabel(project: { id: string; workType?: string }) {
   if (project.id === "now-on-air") return "自社メディア / Web制作";
   if (project.id === "luna-ai") return "別ブランドのWeb制作";

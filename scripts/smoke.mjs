@@ -273,16 +273,15 @@ try {
   const galleryContact = await (await fetch(base + '/racco/contact?source=racco-gallery&intent=design')).text();
   assertRaccoContact(galleryContact, "racco-design");
   console.log('PASS dedicated inquiry contexts, legacy redirects, corporate isolation, draft-only controls and invalid references');
-  const casePage = await (await fetch(base + '/works/central-medical')).text();
-  assert.ok(casePage.includes('/services#digital') && casePage.includes('project=central-medical'), 'case study links to relevant support and contextual inquiry');
+  const casePage = await (await fetch(base + '/works/lakkan-brand')).text();
+  assert.ok(casePage.includes('/services#digital') && casePage.includes('project=lakkan-brand'), 'case study links to relevant support and contextual inquiry');
   const lunaCase = await (await fetch(base + '/works/luna-ai')).text();
   assert.ok(lunaCase.includes('LunaTechを別タブで開く'), 'case links to the separate brand website');
-  assert.ok(casePage.includes('Central Medicalの作例を操作する'), 'approved origin has an inline preview');
   assert.ok(lunaCase.includes('https://luna-tech-public-site.vercel.app/'), 'case study retains stable public URL');
   const gallery = await (await fetch(base + '/works')).text();
   const galleryIds = [...gallery.matchAll(/data-live-work="([^"]+)"/g)].map(match => match[1]);
   assert.deepEqual(galleryIds.slice(0,4), ['now-on-air', 'luna-design', 'lakkan-brand', 'luna-ai'], 'first four works retain the requested curated order');
-  assert.deepEqual(galleryIds.slice(4), ['central-medical'], 'gallery retains only the selected client case after the four approved visuals');
+  assert.equal(galleryIds.length, 4, 'gallery contains only the four approved public websites');
   for (const id of retiredWorks) {
     assert.ok(!gallery.includes(id), id + ' is absent from the public gallery');
     const removed = await fetch(base + '/works/' + id, {redirect:'manual'});
@@ -298,6 +297,12 @@ try {
     assert.ok(card, id + ' has a gallery card');
     const publicLinks = [...card.matchAll(/<a\b[^>]*>/g)].filter(match => match[0].includes(`href="${project.url}"`) && match[0].includes('target="_blank"'));
     assert.equal(publicLinks.length, 3, id + ' image, title and open link all reach its public site');
+    assert.ok(card.includes(`href="/works/${id}"`) && card.includes(`${project.name}の制作事例を読む`), id + ' also has a clear case-study route');
+    const detail = await (await fetch(base + '/works/' + id)).text();
+    assert.ok(detail.includes(`data-work-screen="${id}"`), id + ' has a captured implementation screen');
+    assert.ok(detail.includes('公開画面 / 2026.10.20 撮影') && detail.includes('制作の焦点'), id + ' has screenshot provenance and specific design decisions');
+    assert.ok(detail.includes('この画面をサイトで見る') && detail.includes('画面を拡大'), id + ' supports both source navigation and enlargement');
+    assert.ok(!detail.includes('<iframe'), id + ' uses a stable screenshot without loading an external site');
   }
   assert.ok(gallery.includes('/works/crm-development'), 'CRM case is reachable from the gallery');
   const crmCase = await fetch(base + '/works/crm-development');
@@ -319,14 +324,22 @@ try {
   assert.ok(!lunaCase.includes('data-live-work="central-medical"'), 'related work does not promote an excluded example');
   const nowCase = await (await fetch(base + '/works/now-on-air')).text();
   assert.ok(!lunaCase.includes('<iframe') && !nowCase.includes('<iframe'), 'selected works use stable screenshots without blocked or transient embeds');
+  for (const name of ['now-on-air-categories-20261020.jpg', 'luna-design-library-20261020.jpg', 'lakkan-brand-collection-20261020.jpg', 'lunatech-universe-20261020.jpg']) {
+    const response = await fetch(base + '/works/' + name);
+    assert.equal(response.status, 200, name);
+    assert.ok(response.headers.get('content-type')?.startsWith('image/jpeg'), name + ' is served as an image');
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    assert.ok(bytes[0] === 0xff && bytes[1] === 0xd8 && bytes.length > 20000, name + ' is a real screenshot');
+  }
+  assert.equal((await fetch(base + '/works/capture-report.json')).status, 404, 'stale capture inventory is no longer public');
   for (const asset of ['/works/now-on-air-keyvisual-20261020.jpg', '/works/luna-design-20261014.jpg', '/works/lakkan-brand-keyvisual-20261020.jpg', '/works/lunatech-curated.jpg']) assert.equal((await fetch(base + asset)).status, 200, asset);
   const brand = await (await fetch(base + '/brand')).text();
   assert.ok(brand.includes('余白から、') && brand.includes('/brand/editorial/lakkan-still-life-20261020.webp'), 'brand hero renders real text and the approved visual');
   for (const route of ['/racco', '/records', '/works', '/services']) assert.ok(brand.includes(`href="${route}"`), 'brand has a usable route to ' + route);
   assert.ok(gallery.includes('https://lakkan-inc.vercel.app/brand&quot;') || gallery.includes('https://lakkan-inc.vercel.app/brand"'), 'brand gallery opens the new brand landing');
   console.log('PASS selected work, brand labels and current covers');
-  const caseContact = await (await fetch(base + '/contact?topic=corp-site&project=central-medical')).text();
-  assert.ok(caseContact.includes('Central Medicalの実績を見て相談したいです。'), 'project context reaches editable message');
+  const caseContact = await (await fetch(base + '/contact?topic=corp-site&project=lakkan-brand')).text();
+  assert.ok(caseContact.includes('Lakkan Brandの実績を見て相談したいです。'), 'project context reaches editable message');
   assert.ok(/value="corp-site" selected=""|selected="" value="corp-site"/.test(caseContact), 'case topic survives server rendering');
   const unknownContact=await (await fetch(base+'/contact?project=unknown-project')).text();
   assert.ok(!unknownContact.includes('unknown-projectの実績'), 'unknown projects do not enter inquiry text');
@@ -335,7 +348,7 @@ try {
   for (const id of retiredWorks) assert.ok(!sitemap.includes('/works/'+id), id + ' is absent from sitemap');
   assert.ok(!sitemap.includes('/atelier'), 'withdrawn experiments are absent from sitemap');
   const updates = await (await fetch(base + '/changelog')).text();
-  assert.ok(!updates.includes('/atelier') && !updates.includes('lia-recruit.vercel.app') && !updates.includes('lunatech-ai-lab.vercel.app'), 'updates do not promote withdrawn work');
+  assert.ok(!updates.includes('/atelier') && !updates.includes('lia-recruit.vercel.app') && !updates.includes('lunatech-ai-lab.vercel.app') && !updates.includes('lakkan-central-medical.vercel.app'), 'updates do not promote withdrawn work');
   for(const p of projects) assert.ok(sitemap.includes('/works/'+p.id),'case present in sitemap');
   const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]).pathname);
   for (const path of ["/racco", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => "/racco/columns/" + slug)]) assert.ok(sitemapUrls.includes(path), path + " is discoverable in sitemap");

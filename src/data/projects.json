@@ -7,7 +7,7 @@
     "status": "live",
     "builtWith": "codex",
     "createdAt": "2026-10-14",
-    "updatedAt": "2026-10-14",
+    "updatedAt": "2026-10-20",
     "url": "https://harness-dashboard-eight.vercel.app/",
     "client": "LunaTech",
     "tags": [
@@ -47,7 +47,7 @@
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-07-25",
-    "updatedAt": "2026-10-05",
+    "updatedAt": "2026-10-20",
     "url": "https://luna-tech-public-site.vercel.app/",
     "client": "LunaTech",
     "tags": [
@@ -60,28 +60,6 @@
     "coverAlt": "LunaTechの現在の公式サイト。黒い背景に、銀と緑の金属調のLunaTechロゴを大きく配置している。",
     "featured": true,
     "workType": "own"
-  },
-  {
-    "id": "central-medical",
-    "name": "Central Medical",
-    "description": "病院患者給食、院内レストラン・社員食堂、フードコンサルティングを手がける企業のコーポレートサイト。食への姿勢とサービスを、写真と読みやすい情報設計で伝える。",
-    "category": "website",
-    "status": "live",
-    "builtWith": "claude_code",
-    "createdAt": "2026-08-02",
-    "updatedAt": "2026-08-04",
-    "url": "https://lakkan-central-medical.vercel.app",
-    "client": "中央メディカル株式会社",
-    "tags": [
-      "コーポレートサイト",
-      "医療",
-      "Next.js",
-      "レスポンシブ"
-    ],
-    "cover": "/works/central-medical.jpg",
-    "coverAlt": "中央メディカルの公開サイト。料理人の手元写真と、食べる力を生きる力へというメッセージを表示している。",
-    "featured": true,
-    "workType": "client"
   },
   {
     "id": "now-on-air",

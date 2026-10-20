@@ -8,7 +8,6 @@ import styles from "./live-work.module.css";
 
 // Only public sites whose frame policy has been checked. Do not proxy blocked sites.
 const embeds: Record<string, string> = {
-  "central-medical": "https://lakkan-central-medical.vercel.app/",
   "now-on-air": "https://nowonair.vercel.app/",
 };
 type Props = {project:{id:string;name:string;url?:string;cover?:string;coverAlt?:string};priority?:boolean;poster?:boolean};

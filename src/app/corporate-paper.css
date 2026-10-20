@@ -274,3 +274,21 @@
 .crm-screen-figure figcaption>span{flex:1;min-width:200px;color:#5e6a65}
 @media(max-width:760px){.crm-case-caption{grid-template-columns:1fr;gap:18px}.corporate-frame .crm-case-card{margin-bottom:48px}.crm-preview-link{font-size:12px}.crm-screen-figure figcaption{gap:8px}.crm-screen-figure figcaption>span{flex-basis:100%}}
 .poster-case .case-title h1{word-break:keep-all;overflow-wrap:anywhere}
+.poster-work-story-link{display:inline-flex;align-items:center;gap:24px;min-height:44px;padding:10px 0;margin-top:12px;border-bottom:1px solid var(--red);color:var(--red);font-size:13px}
+.case-entry-links{display:flex;gap:16px 36px;flex-wrap:wrap;margin:24px 0}
+.case-entry-links a{min-height:44px}
+.corporate-frame .poster-case [data-live-work]>div:first-child{background:transparent}
+.case-screen-heading{margin-bottom:32px;max-width:54em}
+.case-screen-heading h2{font-size:clamp(24px,3.6vw,42px);font-weight:700;line-height:1.5;margin:12px 0 18px;text-wrap:balance}
+.case-screen-heading>p:last-child{font-size:14px;line-height:1.9;color:var(--muted)}
+.case-screen{margin:0}
+.case-screen>a{display:block}
+.case-screen img{display:block;width:100%;height:auto}
+.case-screen figcaption{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:32px;padding:22px 0;border-bottom:1px solid var(--rule)}
+.case-screen figcaption p{max-width:52em;margin:0 0 12px;font-size:14px;line-height:1.9}
+.case-screen figcaption span{font-size:11px;color:var(--muted)}
+.case-screen-actions{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.case-screen-actions a{display:flex;align-items:center;gap:10px;min-height:44px;font-size:13px}
+.case-screen-actions svg{color:var(--red);flex-shrink:0}
+.case-focus{display:flex;flex-wrap:wrap;gap:8px 22px;list-style:none;padding:18px 0;margin:24px 0;border-block:1px solid var(--rule);font-size:12px;color:var(--red)}
+@media(max-width:760px){.case-entry-links{gap:8px 24px}.case-screen figcaption{grid-template-columns:1fr;gap:12px}.case-screen-actions{flex-direction:row;flex-wrap:wrap;gap:8px 22px}.case-screen-actions a{font-size:12px}.case-screen figcaption p{font-size:13px}.case-screen-heading{margin-bottom:24px}.case-focus{gap:10px 18px}}
