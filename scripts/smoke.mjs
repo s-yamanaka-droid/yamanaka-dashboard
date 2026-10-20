@@ -50,7 +50,7 @@ try {
   }
   assert.ok(ready, "health endpoint is ready");
   assert.equal((await (await fetch(base + '/api/health')).json()).experience, 'poster-crowd', 'health identifies the current homepage');
-  for (const path of ["/", "/workshop", "/records", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/racco/contact", "/racco/studio", "/concept", "/brand-book", "/brand-guide", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => `/racco/columns/${slug}`), ...goods.map(item => `/racco/goods/${item.slug}`)]) {
+  for (const path of ["/", "/workshop", "/records", "/brand", "/works", ...projects.map(p=>`/works/${p.id}`), "/services", "/about", "/contact?topic=luna", "/atelier", "/changelog", "/privacy", "/racco", "/racco/contact", "/racco/studio", "/concept", "/brand-book", "/brand-guide", ...["from-bookmark-to-work", "make-it-sound-like-you", "draft-before-automation"].map(slug => `/racco/columns/${slug}`), ...goods.map(item => `/racco/goods/${item.slug}`)]) {
     const response = await fetch(base + path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
@@ -175,6 +175,9 @@ try {
       assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), 'goods avoids duplicate corporate shell');
       assert.ok(html.includes('name="robots" content="noindex'), 'goods remains a non-indexed candidate');
       assert.ok(!/"@type"\s*:\s*"(?:Product|Offer)"/.test(html), 'goods does not publish unsupported sale schema');
+    } else if (path === '/brand') {
+      assert.ok(html.includes('bc-header') && html.includes('bc-footer'), 'brand has its own complete navigation shell');
+      assert.ok(!html.includes('class="site-header') && !html.includes('class="site-footer'), 'brand avoids duplicate corporate navigation');
     } else {
       assert.ok(html.includes('site-header') && html.includes('site-footer'), path + " shared navigation");
     }
@@ -288,7 +291,11 @@ try {
   assert.ok(!lunaCase.includes('data-live-work="central-medical"'), 'related work does not promote an excluded example');
   const nowCase = await (await fetch(base + '/works/now-on-air')).text();
   assert.ok(!lunaCase.includes('<iframe') && !nowCase.includes('<iframe'), 'selected works use stable screenshots without blocked or transient embeds');
-  for (const asset of ['/works/now-on-air-editorial.webp', '/works/luna-design-20261014.jpg', '/works/lakkan-brand-20261014.jpg', '/works/lunatech-curated.jpg']) assert.equal((await fetch(base + asset)).status, 200, asset);
+  for (const asset of ['/works/now-on-air-racco-20261020.webp', '/works/luna-design-20261014.jpg', '/brand/editorial/lakkan-still-life-20261020.webp', '/works/lunatech-curated.jpg']) assert.equal((await fetch(base + asset)).status, 200, asset);
+  const brand = await (await fetch(base + '/brand')).text();
+  assert.ok(brand.includes('余白から、') && brand.includes('/brand/editorial/lakkan-still-life-20261020.webp'), 'brand hero renders real text and the approved visual');
+  for (const route of ['/racco', '/records', '/works', '/services']) assert.ok(brand.includes(`href="${route}"`), 'brand has a usable route to ' + route);
+  assert.ok(gallery.includes('https://lakkan-inc.vercel.app/brand&quot;') || gallery.includes('https://lakkan-inc.vercel.app/brand"'), 'brand gallery opens the new brand landing');
   console.log('PASS selected work, brand labels and current covers');
   const caseContact = await (await fetch(base + '/contact?topic=corp-site&project=central-medical')).text();
   assert.ok(caseContact.includes('Central Medicalの実績を見て相談したいです。'), 'project context reaches editable message');

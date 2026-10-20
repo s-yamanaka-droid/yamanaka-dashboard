@@ -16,3 +16,4 @@
 @media(prefers-reduced-motion:reduce){.frame{transition:none}}
 .staticViewport{aspect-ratio:16/9;min-height:0;max-height:none}
 .staticViewport .cover{object-fit:contain}
+.staticViewport .artworkCover{object-fit:cover;object-position:center}

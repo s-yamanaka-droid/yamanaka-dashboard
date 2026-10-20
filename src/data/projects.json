@@ -18,17 +18,17 @@
   {
     "id": "lakkan-brand",
     "name": "Lakkan Brand",
-    "description": "Lakkanのロゴと、Raccoを中心としたキャラクターの世界。言葉、色、ブランド素材からグッズへの展開まで、らしさを揃えるためのブランドブック。",
+    "description": "朱赤、紙の手触り、大きなロゴ。Lakkanの名刺とレコード、Raccoをひとつの世界として見せるブランドサイト。仕事と、そのまわりにある余白を、ビジュアルと音楽から伝えます。",
     "category": "website",
     "status": "live",
     "builtWith": "codex",
     "createdAt": "2026-10-14",
-    "updatedAt": "2026-10-14",
-    "url": "https://lakkan-inc.vercel.app/brand-book",
+    "updatedAt": "2026-10-20",
+    "url": "https://lakkan-inc.vercel.app/brand",
     "client": "Lakkan",
-    "tags": ["ブランドデザイン", "ロゴ・キャラクター", "ブランドブック"],
-    "cover": "/works/lakkan-brand-20261014.jpg",
-    "coverAlt": "LakkanとRaccoのブランドブック。赤いロゴと、ソファでパソコンを使うRacco。",
+    "tags": ["ブランドデザイン", "ビジュアルアイデンティティ", "ロゴ・キャラクター"],
+    "cover": "/brand/editorial/lakkan-still-life-20261020.webp",
+    "coverAlt": "朱赤の布に、Lakkanのロゴを配したコットン紙の名刺とレコード。ブランドの展開を表す生成イメージ。",
     "workType": "own"
   },
   {
@@ -116,12 +116,12 @@
   {
     "id": "now-on-air",
     "name": "Now on AIr",
-    "description": "AIニュースを、事業判断の材料へ編集するLakkanの自社メディア。紙の質感、インクの線、赤い差し色。記事の論点を描いたキービジュアルと、新聞のような組版で届けます。",
+    "description": "AIニュースを、仕事の判断へつなげるLakkanの自社メディア。Raccoたちが記事の論点を描くキービジュアルと、大きな見出し。原典と図解を行き来しながら、変化を読み解く編集設計です。",
     "category": "ai_agent",
     "status": "live",
     "builtWith": "claude_code",
     "createdAt": "2026-05-12",
-    "updatedAt": "2026-10-05",
+    "updatedAt": "2026-10-20",
     "url": "https://nowonair.vercel.app",
     "client": "Lakkan",
     "tags": [
@@ -130,8 +130,8 @@
       "Web制作",
       "編集設計"
     ],
-    "cover": "/works/now-on-air-editorial.webp",
-    "coverAlt": "Now on AIrの記事キービジュアル。資料を読み解く手、コーヒー、サーバーとスマートフォンをインク線と赤で描いたイラスト。",
+    "cover": "/works/now-on-air-racco-20261020.webp",
+    "coverAlt": "Now on AIrの掲載記事の絵。Racco、猫、アザラシが、ガラスの箱に入った小さなロボットを見つめる。",
     "featured": true,
     "workType": "own"
   },
