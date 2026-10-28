@@ -10,7 +10,7 @@ const topics = [
   ["ai-consult", "AI・業務のご相談"],
   ["racco-goods", "グッズについて"],
   ["racco-design", "キャラクター・デザインの相談"],
-  ["luna", "Luna AIについて"],
+  ["luna", "Luna AIの導入・活用について"],
   ["placement", "採用・人財のご相談"],
   ["crm", "CRM・業務アプリのご相談"],
   ["fde", "FDEについて"],

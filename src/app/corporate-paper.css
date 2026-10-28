@@ -124,6 +124,7 @@
 .corporate-frame .poster-company dl > div { display: grid; grid-template-columns: 100px minmax(0,1fr); gap: 24px; padding: 18px 0; border-top: 1px solid var(--rule); }
 .corporate-frame .poster-company dt { color: var(--red); font-size: 13px; font-weight: 500; }
 .corporate-frame .poster-company dd { margin: 0; font-size: 14px; line-height: 1.95; }
+.corporate-frame .poster-company dd small { display: block; margin-top: 5px; font-size: 12px; line-height: 1.7; }
 .corporate-frame .poster-company dd a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; }
 .corporate-frame .poster-about .water-editorial-label h2 { font: 400 72px/1 var(--font-poster), sans-serif !important; color: var(--red); letter-spacing: 0; }
 .corporate-frame .poster-about .about-principles { counter-reset: principle; gap: 40px; }
