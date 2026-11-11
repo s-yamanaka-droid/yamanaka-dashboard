@@ -3,6 +3,7 @@
 .poster-nav { position: absolute; z-index: 8; top: 28px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: clamp(13px, 2.2vw, 30px); padding: 8px 10px 8px 24px; border: 1px solid #b4382b44; border-radius: 99px; background: #f4f0e8e8; backdrop-filter: blur(10px); white-space: nowrap; font: 600 12px/1 var(--font-sans-jp), sans-serif; }
 .poster-nav a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; color: #17221f; text-decoration: none; }
 .poster-nav a:hover { color: #b4382b; }
+@media (max-width: 768px) { .poster-home .poster-nav { display: none; } }
 .poster-nav-contact { display: inline-flex; align-items: center; gap: 5px; padding: 11px 16px; border-radius: 99px; background: #b4382b; color: #fff !important; }
 .poster-nav-contact:hover { background: #882a20; }
 .poster-scroll { position: absolute; z-index: 6; bottom: 29px; left: clamp(20px, 4vw, 64px); display: inline-flex; gap: 12px; align-items: center; min-height: 44px; color: #b4382b; font: 700 11px/1.3 var(--font-geist-mono), monospace; letter-spacing: .1em; text-decoration: none; }

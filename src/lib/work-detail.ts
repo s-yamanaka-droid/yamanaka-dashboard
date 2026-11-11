@@ -78,7 +78,7 @@ export const workScreens: Record<string, WorkScreen> = {
   alt:"LunaTechの公開サイト。光る中心と周回するサービス名を宇宙に配置し、各サービスへの入口にしている。",
   title:"サービスのつながりを、宇宙で見せる。",
   description:"LunaTechを中心にサービスが周回するインタラクティブなシーン。宇宙を見渡す操作と、各サービスを知るための入口を重ねています。",
-  url:"https://luna-tech-public-site.vercel.app/#signal",
+  url:"https://lunatech-inc.com/#universe",
   note:"公式ブランドサイトのWeb制作事例です。各サービスの提供状況は、リンク先の案内に準じます。",
  },
 };

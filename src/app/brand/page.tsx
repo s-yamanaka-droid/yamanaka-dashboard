@@ -5,19 +5,11 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { LakkanLogo } from "@/components/brand/LakkanLogo";
 import { SectionShell } from "@/components/primitives/SectionShell";
 import "./brand-culture.css";
+import { pageMetadata } from "@/lib/seo";
 
 const stillLife = "/brand/editorial/lakkan-still-life-20261020.webp";
 
-export const metadata: Metadata = {
-  title: "Lakkan Brand — 余白から、おもしろく。",
-  description: "考えて、つくって、軽くする。Lakkanのロゴ、紙の手触り、Racco、音楽。仕事と、そのまわりにあるブランドのかたち。",
-  alternates: { canonical: "/brand" },
-  openGraph: {
-    title: "Lakkan Brand — 余白から、おもしろく。",
-    url: "/brand",
-    images: [{ url: stillLife, width: 1448, height: 1086, alt: "Lakkanのロゴを配した名刺とレコードのブランドイメージ" }],
-  },
-};
+export const metadata: Metadata = pageMetadata("/brand", "Lakkan Brand — 余白から、おもしろく。", "考えて、つくって、軽くする。Lakkanのロゴ、紙の手触り、Racco、音楽。仕事と、そのまわりにあるブランドのかたち。", stillLife);
 
 export default function BrandPage() {
   return <div className="brand-culture">

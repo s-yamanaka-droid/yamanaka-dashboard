@@ -4,6 +4,7 @@ import "./globals.css";
 import "./site.css";
 import "./subpages.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteBreadcrumbs } from "@/components/site/SiteBreadcrumbs";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import "./brand.css";
 import "./brand-latin.css";
@@ -14,6 +15,7 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { SiteFrame } from "@/components/site/SiteFrame";
 import { SiteSound } from "@/components/records/SiteSound";
 import { browserIcons, brandShareImage } from "@/lib/browser-brand";
+import { companyDescription, jsonLd, siteUrl } from "@/lib/seo";
 
 const bebas = Bebas_Neue({ variable: "--font-poster", subsets: ["latin"], weight: "400", display: "swap" });
 
@@ -64,8 +66,7 @@ export const metadata: Metadata = {
     default: "株式会社Lakkan",
     template: "%s | 株式会社Lakkan",
   },
-  description:
-    "株式会社Lakkanの公式サイト。事業内容、公開実績、会社情報をご紹介します。",
+  description: companyDescription,
   keywords: [
     "株式会社Lakkan", "Lakkan", "ラッカン",
   ],
@@ -78,18 +79,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ja_JP",
     url: "https://lakkan-inc.vercel.app",
-    siteName: "株式会社Lakkan",
+    siteName: "Lakkan",
     title: "株式会社Lakkan",
     images: [brandShareImage],
-    description:
-      "株式会社Lakkanの公式サイト。事業内容、公開実績、会社情報をご紹介します。",
+    description: companyDescription,
   },
   twitter: {
     card: "summary_large_image",
     title: "株式会社Lakkan",
     images: [brandShareImage.url],
-    description:
-      "株式会社Lakkanの公式サイト。事業内容、公開実績、会社情報をご紹介します。",
+    description: companyDescription,
   },
   robots: {
     index: true,
@@ -119,19 +118,19 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: jsonLd({
               "@context": "https://schema.org",
               "@graph": [
                 {
                   "@type": "Organization",
                   "@id": "https://lakkan-inc.vercel.app/#org",
                   name: "株式会社Lakkan",
+                  legalName: "株式会社Lakkan",
                   alternateName: ["Lakkan Inc.", "Lakkan", "ラッカン"],
                   url: "https://lakkan-inc.vercel.app",
                   logo: "https://lakkan-inc.vercel.app/brand/lakkan-logo/lakkan-a3-wordmark.png",
-                  description:
-                    "株式会社Lakkanの公式サイト。事業内容、公開実績、会社情報をご紹介します。",
-                  foundingDate: "2026-03",
+                  description: companyDescription,
+                  employee: { "@id": `${siteUrl}/about#representative` },
                   address: {
                     "@type": "PostalAddress",
                     streetAddress: "神宮前六丁目23番4号",
@@ -144,7 +143,8 @@ export default function RootLayout({
                   "@type": "WebSite",
                   "@id": "https://lakkan-inc.vercel.app/#website",
                   url: "https://lakkan-inc.vercel.app",
-                  name: "株式会社Lakkan 公式サイト",
+                  name: "Lakkan",
+                  alternateName: ["株式会社Lakkan", "ラッカン", "Lakkan Inc."],
                   inLanguage: "ja-JP",
                   publisher: {
                     "@id": "https://lakkan-inc.vercel.app/#org",
@@ -152,18 +152,19 @@ export default function RootLayout({
                   about: { "@id": "https://lakkan-inc.vercel.app/#org" },
                 },
                 {
-                  "@type": "ContactPage",
-                  "@id": "https://lakkan-inc.vercel.app/contact#page",
-                  url: "https://lakkan-inc.vercel.app/contact",
-                  name: "Contact — Lakkan Inc.",
-                  isPartOf: { "@id": "https://lakkan-inc.vercel.app/#website" },
+                  "@type": "Person",
+                  "@id": `${siteUrl}/about#representative`,
+                  name: "山中秀斗",
+                  jobTitle: "代表取締役",
+                  url: `${siteUrl}/about`,
+                  worksFor: { "@id": `${siteUrl}/#org` },
                 },
               ],
             }),
           }}
         />
         <a href="#main" className="skip-link">メインコンテンツへスキップ</a>
-        <SiteFrame><SiteHeader />
+        <SiteFrame><SiteHeader /><SiteBreadcrumbs />
         {children}
         <SiteFooter />
         <CookieConsent /></SiteFrame>

@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 const projects = JSON.parse(readFileSync(new URL('../src/data/projects.json', import.meta.url),'utf8'));
@@ -277,7 +277,7 @@ try {
   assert.ok(casePage.includes('/services#digital') && casePage.includes('project=lakkan-brand'), 'case study links to relevant support and contextual inquiry');
   const lunaCase = await (await fetch(base + '/works/luna-ai')).text();
   assert.ok(lunaCase.includes('LunaTechを別タブで開く'), 'case links to the separate brand website');
-  assert.ok(lunaCase.includes('https://luna-tech-public-site.vercel.app/'), 'case study retains stable public URL');
+  assert.ok(lunaCase.includes('https://lunatech-inc.com/'), 'case study links to the verified official production domain');
   const gallery = await (await fetch(base + '/works')).text();
   const galleryIds = [...gallery.matchAll(/data-live-work="([^"]+)"/g)].map(match => match[1]);
   assert.deepEqual(galleryIds.slice(0,4), ['now-on-air', 'luna-design', 'lakkan-brand', 'luna-ai'], 'first four works retain the requested curated order');
@@ -370,6 +370,8 @@ try {
   assert.equal((await fetch(base + "/racco/goods/not-a-product")).status, 404);
   assert.equal((await fetch(base + "/racco/goods/hina-sticker")).status, 404, "withdrawn Hina product is not published");
   console.log("PASS topic selection, withdrawn demo redirects, 404");
+  const seo = spawnSync(process.execPath, ["scripts/test-seo.mjs"], { env: { ...process.env, SEO_BASE_URL: base }, stdio: "inherit" });
+  assert.equal(seo.status, 0, "search and share metadata, crawlable services and index boundaries");
 } finally {
   if (server && server.exitCode === null && server.signalCode === null) {
     // Range/stream probes can leave connections open. Bound cleanup to this

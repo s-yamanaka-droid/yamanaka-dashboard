@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "プライバシーポリシー — Lakkan Inc.",
-  description:
-    "株式会社Lakkan のプライバシーポリシー。個人情報の取扱い・利用目的・第三者提供・開示請求について明記。",
-};
+export const metadata: Metadata = pageMetadata("/privacy", "プライバシーポリシー", "株式会社Lakkanの個人情報の取扱い・利用目的・第三者提供・開示請求についてご案内します。");
 
 const FRANK = "var(--font-frank), 'Frank Ruhl Libre', Georgia, serif";
 const SANS = "var(--font-display), 'Space Grotesk', system-ui, sans-serif";

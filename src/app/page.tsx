@@ -9,11 +9,9 @@ import { CompanyIntroduction } from "@/components/site/CompanyIntroduction";
 import { LakkanLogo } from "@/components/brand/LakkanLogo";
 import { ServiceEntry } from "@/components/site/ServiceEntry";
 import "./poster-home.css";
+import { pageMetadata, companyDescription } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: { absolute: "株式会社Lakkan — 人と仕事の課題を、整理から実装まで。" },
-  description: "業務改善・AI活用、Luna AIの導入支援、CRM・業務アプリ開発、Webサイト・LP制作、採用・人財支援。Lakkanは、課題の整理から実装・運用まで伴走します。Luna AIの提供元はLunaTechです。",
-};
+export const metadata: Metadata = pageMetadata("/", "株式会社Lakkan（ラッカン）— 人と仕事の課題を、整理から実装まで。", companyDescription);
 
 export default function Home() {
   return (
@@ -90,7 +88,7 @@ export default function Home() {
         <div className="home-company-mark"><LakkanLogo tone="red" size="feature" /></div>
         <CompanyIntroduction compact />
         <div className="home-company-details">
-          <p><strong>株式会社Lakkan</strong><span>東京都渋谷区神宮前六丁目23番4号</span></p>
+          <p><strong>株式会社Lakkan</strong><span>代表取締役 山中秀斗</span><span>東京都渋谷区神宮前六丁目23番4号</span></p>
           <Link href="/contact">一緒に、次の動きを。<ArrowUpRight size={18} aria-hidden="true"/></Link>
         </div>
       </SectionShell>

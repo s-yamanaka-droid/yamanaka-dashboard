@@ -6,22 +6,21 @@ import { WaterContact } from "@/components/site/WaterContact";
 import { PosterHeading, StudioPeople } from "@/components/site/PosterHeading";
 import { LakkanLogo } from "@/components/brand/LakkanLogo";
 import { CompanyIntroduction } from "@/components/site/CompanyIntroduction";
+import { pageMetadata, jsonLd, siteUrl } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "会社情報",
-  description: "株式会社Lakkanの会社情報。人財支援、CRM構築、FDE、AI活用を通じて、人手不足と業務の課題に向き合います。",
-  alternates: { canonical: "https://lakkan-inc.vercel.app/about" },
-};
+export const metadata: Metadata = pageMetadata("/about", "会社情報・代表取締役 山中秀斗", "株式会社Lakkan（ラッカン）の会社情報。代表取締役は山中秀斗。人材紹介・採用支援、業務改善、CRM開発、Web制作、SNSマーケティング、AI導入・活用を支援します。所在地は東京都渋谷区神宮前六丁目23番4号です。");
 
 export default function About() {
   return (
     <main id="main" className="poster-page poster-about">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "AboutPage", "@id": `${siteUrl}/about#page`, url: `${siteUrl}/about`, name: "株式会社Lakkanの会社情報", mainEntity: { "@id": `${siteUrl}/#org` }, about: [{ "@id": `${siteUrl}/#org` }, { "@id": `${siteUrl}/about#representative` }], isPartOf: { "@id": `${siteUrl}/#website` } }) }}/>
       <SectionShell id="about-intro"><PosterHeading index="03" label="ABOUT" title={"人と、仕事と、\nその先の可能性。"} description="業務を見直す。技術を活かす。人と組織をつなぐ。ひとつの方法にとらわれず、事業の課題に向き合います。" people={false}/>
         <div className="poster-company"><div className="poster-company-people"><StudioPeople/><p>仕事から考え、つくって確かめる。<br/>人と技術で、事業の次の一歩へ。</p></div><div><p className="poster-small-label">会社情報 / COMPANY</p><LakkanLogo variant="signature" size="feature" /><dl>
           <div><dt>会社名</dt><dd>株式会社Lakkan / Lakkan Inc.</dd></div>
           <div><dt>代表者</dt><dd>代表取締役 山中秀斗</dd></div>
           <div><dt>所在地</dt><dd>東京都渋谷区神宮前六丁目23番4号</dd></div>
-          <div><dt>事業内容</dt><dd>人財支援・採用支援<br/>CRM構築・業務改善<br/>Webサイト・LP制作<br/>FDE（現場に伴走する開発支援）<br/>AI導入・活用支援（Luna AIを含む）<br/><small>Luna AIの提供元は株式会社LunaTechです。</small></dd></div>
+          <div><dt>事業内容</dt><dd>人材紹介・採用支援<br/>CRM構築・業務改善<br/>Webサイト・LP制作<br/>SNSマーケティング<br/>FDE（現場に伴走する開発支援）<br/>AI導入・活用支援（Luna AIを含む）<br/><small>Luna AIの提供元は株式会社LunaTechです。</small></dd></div>
+          <div><dt>LunaTechとの連携</dt><dd>LunaTech 認定パートナー<br/><a href="https://ai.lunatech-inc.com/luna-ai/">Luna AI</a> / <a href="https://call.lunatech-inc.com/">Luna Call</a><br/><small>提供元：株式会社LunaTech</small></dd></div>
           <div><dt>支援の考え方</dt><dd>人手不足に対して、業務の見直し、技術の活用、人財支援を組み合わせて取り組みます。採用する役割や求める人材像を見直すことも、私たちの仕事です。</dd></div>
           <div><dt>サービス</dt><dd><Link href="/services">支援内容と進め方を見る <ArrowUpRight size={16} aria-hidden="true"/></Link></dd></div>
           <div><dt>お問い合わせ</dt><dd><Link href="/contact">お問い合わせはこちら <ArrowUpRight size={16} aria-hidden="true"/></Link></dd></div>

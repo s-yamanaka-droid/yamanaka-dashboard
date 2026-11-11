@@ -12,13 +12,14 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
-  if ((pathname.startsWith("/racco/columns/") || pathname.startsWith("/racco/goods/") || pathname === "/racco/contact" || pathname === "/racco/studio") || ["/", "/workshop", "/records", "/racco", "/brand", "/concept", "/brand-book", "/brand-guide"].includes(pathname)) return null;
-  return <header className="site-header" onKeyDown={e => { if(e.key === "Escape"){setOpen(false);toggle.current?.focus();} }}>
+  if ((pathname.startsWith("/racco/columns/") || pathname.startsWith("/racco/goods/") || pathname === "/racco/contact" || pathname === "/racco/studio") || ["/workshop", "/records", "/racco", "/brand", "/concept", "/brand-book", "/brand-guide"].includes(pathname)) return null;
+  const header = <header className="site-header" onKeyDown={e => { if(e.key === "Escape"){setOpen(false);toggle.current?.focus();} }}>
     <Link href="/" className="site-logo" aria-label="Lakkan ホーム" onClick={() => setOpen(false)}><LakkanLogo tone="red" /></Link>
     <nav className="desktop-nav" aria-label="メインナビゲーション">{links.map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : pathname.startsWith(href + "/") ? "location" : undefined}>{label}</Link>)}</nav>
-    <Link className="header-contact" href="/contact">相談をはじめる <span className="button-orb"><ArrowUpRight size={16}/></span></Link>
+    <Link className="header-contact" href="/contact" aria-current={pathname === "/contact" ? "page" : undefined}>相談をはじめる <span className="button-orb"><ArrowUpRight size={16}/></span></Link>
     <button ref={toggle} className="menu-toggle" aria-label={open ? "メニューを閉じる" : "メニューを開く"} aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(!open)}>{open ? <X size={22} aria-hidden="true"/> : <Menu size={22} aria-hidden="true"/>}<span className="menu-toggle-label">{open ? "閉じる" : "メニュー"}</span></button>
     <button type="button" className="ui-scrim mobile-nav-scrim" hidden={!open} tabIndex={-1} aria-label="メニューの外を押して閉じる" onClick={() => { setOpen(false); toggle.current?.focus(); }}/>
-    <nav id="mobile-nav" className="mobile-nav" hidden={!open} aria-label="モバイルナビゲーション">{links.map(([href,label,jp]) => <Link key={href} href={href} onClick={() => setOpen(false)} aria-current={pathname === href ? "page" : pathname.startsWith(href + "/") ? "location" : undefined}><span>{label}</span><small>{jp}</small><ArrowUpRight size={20}/></Link>)}<Link href="/contact" onClick={() => setOpen(false)}><span>Contact</span><small>相談する</small><ArrowUpRight size={20}/></Link></nav>
+    <nav id="mobile-nav" className="mobile-nav" hidden={!open} aria-label="モバイルナビゲーション">{links.map(([href,label,jp]) => <Link key={href} href={href} onClick={() => setOpen(false)} aria-current={pathname === href ? "page" : pathname.startsWith(href + "/") ? "location" : undefined}><span>{label}</span><small>{jp}</small><ArrowUpRight size={20}/></Link>)}{pathname === "/" && <Link href="/racco" onClick={() => setOpen(false)}><span>Racco</span><small>ラッコに会う</small><ArrowUpRight size={20}/></Link>}<Link href="/contact" aria-current={pathname === "/contact" ? "page" : undefined} onClick={() => setOpen(false)}><span>Contact</span><small>相談する</small><ArrowUpRight size={20}/></Link></nav>
   </header>;
+  return pathname === "/" ? <div className="home-site-header corporate-frame">{header}</div> : header;
 }

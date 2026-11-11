@@ -38,6 +38,7 @@
 .service-selected-mark { position: absolute; right: 10px; top: 10px; padding: 2px; width: 23px; height: 23px; border-radius: 50%; background: var(--paper); color: var(--red); }
 .service-hash-anchor { position: absolute; top: -110px; }
 .racco-service-panel { position: relative; margin-top: 5px; padding: 40px 34px 24px; border: 1px solid #17221f22; background: #f9f6ee; box-shadow: 3px 6px 0 #17221f06; }
+.racco-service-panel[hidden] { display: none !important; }
 .racco-service-panel::after { content: ""; position: absolute; top: 0; right: 0; border: 13px solid transparent; border-left-color: #e3dbcb; border-bottom-color: #e3dbcb; }
 .racco-service-panel-content { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.4fr); gap: 26px 32px; animation: racco-paper-enter .28s ease both; }
 .corporate-frame .service-poster-title h2 { font: 900 clamp(42px,5.6vw,80px)/1.15 var(--font-sans-jp), sans-serif; letter-spacing: -.075em; color: var(--red); text-shadow: .5px .5px currentColor; }

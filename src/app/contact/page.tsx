@@ -6,7 +6,8 @@ import { buildRaccoInquiryHref, resolveRaccoInquiryContext } from "@/lib/racco-i
 import { redirect } from "next/navigation";
 import { PosterRule, StudioPeople } from "@/components/site/PosterHeading";
 import { BrandHeading } from "@/components/site/BrandHeading";
-export const metadata: Metadata = { title: "お問い合わせ — Lakkan", description: "人財支援・CRM構築・FDE・AI活用のご相談。株式会社Lakkan。" };
+import { pageMetadata } from "@/lib/seo";
+export const metadata: Metadata = pageMetadata("/contact", "お問い合わせ", "人材紹介・採用支援、CRM構築・業務改善、Web制作、SNSマーケティング、AI活用のご相談。株式会社Lakkanが、いまの課題から一緒に考えます。");
 export default async function ContactPage({searchParams}:{searchParams:Promise<Record<string,string|string[]|undefined>>}) {
   const query=await searchParams;
   const raccoContext=resolveRaccoInquiryContext(query);

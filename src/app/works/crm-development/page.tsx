@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { SectionShell } from "@/components/primitives/SectionShell";
 import { WaterContact } from "@/components/site/WaterContact";
 import { CrmScreen, crmScreens } from "@/components/site/CrmCaseCard";
 
-export const metadata: Metadata = {
-  title: "CRM・営業支援ツール — 開発事例",
-  description: "実際に開発したCRMの商談パイプラインと顧客マスタを、実装画面で紹介。顧客情報・案件の進捗・次のアクションを見渡せる業務ツール。",
-  alternates: { canonical: "/works/crm-development" },
-  openGraph: { images: [{ url: crmScreens.pipeline.src, width: 1280, height: 720, alt: "CRM・営業支援ツールの実装画面" }] },
-};
+export const metadata: Metadata = pageMetadata("/works/crm-development", "CRM・営業支援ツール — 開発事例", "実際に開発したCRMの商談パイプラインと顧客マスタを、実装画面で紹介。顧客情報・案件の進捗・次のアクションを見渡せる業務ツール。", crmScreens.pipeline.src);
 
 function ScreenFigure({ screen, title, children, preload = false }: { screen: keyof typeof crmScreens; title: string; children: React.ReactNode; preload?: boolean }) {
   return <figure className="crm-screen-figure">

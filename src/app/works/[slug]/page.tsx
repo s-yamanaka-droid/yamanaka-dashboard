@@ -8,13 +8,14 @@ import { SectionShell } from "@/components/primitives/SectionShell";
 import { WaterContact } from "@/components/site/WaterContact";
 import { publicWorks, workNotes, workSupport, workScreens } from "@/lib/work-detail";
 import { selectedWorks, workPresentationLabel } from "@/data/selected-works";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
 export function generateStaticParams(){return publicWorks.map(p=>({slug:p.id}));}
 type Props = {params:Promise<{slug:string}>};
 export async function generateMetadata({params}:Props):Promise<Metadata>{
  const {slug}=await params;const p=publicWorks.find(p=>p.id===slug);if(!p)return {};
- return {title:`${p.name} — 実績`,description:p.description,alternates:{canonical:`https://lakkan-inc.vercel.app/works/${p.id}`},openGraph:{title:`${p.name} — Lakkan`,description:p.description,images:[p.cover]}};
+ return pageMetadata(`/works/${p.id}`, `${p.name} — 実績`, p.description, p.cover);
 }
 export default async function WorkDetail({params}:Props){
  const {slug}=await params;const p=publicWorks.find(p=>p.id===slug);if(!p)notFound();

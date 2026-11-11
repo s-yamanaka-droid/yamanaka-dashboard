@@ -7,15 +7,20 @@ import { ServiceLab } from "./service-lab";
 import { WaterContact } from "@/components/site/WaterContact";
 import "./services.css";
 import "./lab.css";
+import { pageMetadata, jsonLd, siteUrl } from "@/lib/seo";
+import { serviceStories } from "@/data/service-stories";
 
-export const metadata: Metadata = {
-  title: "できること — 仕事・仕組み・事業・人",
-  description: "仕事を軽くする。仕組みをつなぐ。事業を伝えて育てる。人が活きる形にする。Lakkanは業務再設計、AI、開発、Web体験、採用を、実装と日々の運用まで支援します。",
-  alternates: { canonical: "https://lakkan-inc.vercel.app/services" },
-};
+export const metadata: Metadata = pageMetadata("/services", "できること — 人材紹介・業務改善・開発・Web", "人材紹介・採用支援、業務再設計・AI活用、CRM・業務アプリ開発、Webサイト・LP制作、SNSマーケティング。株式会社Lakkanは、課題の整理から実装・運用まで支援します。Luna AIの提供元はLunaTechです。");
 
 export default function Services() {
   return <main id="main" className="services-lp new-site poster-page poster-services">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({
+      "@context": "https://schema.org", "@type": "ItemList", "@id": `${siteUrl}/services#catalog`, name: "Lakkanの支援領域",
+      itemListElement: serviceStories.map((service, index) => ({ "@type": "ListItem", position: index + 1, item: {
+        "@type": "Service", "@id": `${siteUrl}/services#${service.id}`, url: `${siteUrl}/services#${service.id}`,
+        name: service.category, description: service.text, serviceType: service.category, provider: { "@id": `${siteUrl}/#org` },
+      } })),
+    }) }}/>
     <SectionShell id="services-intro">
       <ServiceLab/>
     </SectionShell>
