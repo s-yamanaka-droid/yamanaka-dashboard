@@ -20,7 +20,7 @@ export default function About() {
           <div><dt>代表者</dt><dd>代表取締役 山中秀斗</dd></div>
           <div><dt>所在地</dt><dd>東京都渋谷区神宮前六丁目23番4号</dd></div>
           <div><dt>事業内容</dt><dd>人材紹介・採用支援<br/>CRM構築・業務改善<br/>Webサイト・LP制作<br/>SNSマーケティング<br/>FDE（現場に伴走する開発支援）<br/>AI導入・活用支援（Luna AIを含む）<br/><small>Luna AIの提供元は株式会社LunaTechです。</small></dd></div>
-          <div><dt>LunaTechとの連携</dt><dd>LunaTech 認定パートナー<br/><a href="https://ai.lunatech-inc.com/luna-ai/">Luna AI</a> / <a href="https://call.lunatech-inc.com/">Luna Call</a><br/><small>提供元：株式会社LunaTech</small></dd></div>
+          <div><dt>パートナー</dt><dd>LunaTech 認定パートナー<br/><a href="https://ai.lunatech-inc.com/luna-ai/">Luna AI</a> / <a href="https://call.lunatech-inc.com/">Luna Call</a><br/><small>提供元：株式会社LunaTech</small></dd></div>
           <div><dt>支援の考え方</dt><dd>人手不足に対して、業務の見直し、技術の活用、人財支援を組み合わせて取り組みます。採用する役割や求める人材像を見直すことも、私たちの仕事です。</dd></div>
           <div><dt>サービス</dt><dd><Link href="/services">支援内容と進め方を見る <ArrowUpRight size={16} aria-hidden="true"/></Link></dd></div>
           <div><dt>お問い合わせ</dt><dd><Link href="/contact">お問い合わせはこちら <ArrowUpRight size={16} aria-hidden="true"/></Link></dd></div>
