@@ -6,7 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Pause, Play, ArrowUpRight } from "lucide-react";
 import { recordDiscs } from "@/lib/records/catalog";
-import { getRecordEngine, startSiteAudio, unlockSiteAudio, toggleRecord, advanceRecord, useRecordPlayback } from "@/lib/records/playback";
+import { peekRecordEngine, toggleRecord, advanceRecord, useRecordPlayback } from "@/lib/records/playback";
 import "./site-sound.css";
 
 export function SiteSound() {
@@ -14,14 +14,9 @@ export function SiteSound() {
   const { loaded, playing } = useRecordPlayback();
   const record = recordDiscs[loaded ?? 0];
   useEffect(() => {
-    startSiteAudio();
-    document.addEventListener("click", unlockSiteAudio);
-    document.addEventListener("keydown", unlockSiteAudio);
-    return () => { document.removeEventListener("click", unlockSiteAudio); document.removeEventListener("keydown", unlockSiteAudio); };
-  }, []);
-  useEffect(() => {
     if (pathname === "/records") return;
-    const e = getRecordEngine();
+    const e = peekRecordEngine();
+    if (!e) return;
     e.onEnded = advanceRecord;
     const ms = navigator.mediaSession;
     if (!ms) return;

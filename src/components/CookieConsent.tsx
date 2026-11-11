@@ -33,7 +33,7 @@ export function CookieConsent() {
 
   return (
     <div
-      role="dialog"
+      role="region"
       aria-label="Cookieの設定"
       style={{
         position: "fixed",

@@ -19,6 +19,7 @@ export default function About() {
       <SectionShell id="about-intro"><PosterHeading index="03" label="ABOUT" title={"人と、仕事と、\nその先の可能性。"} description="業務を見直す。技術を活かす。人と組織をつなぐ。ひとつの方法にとらわれず、事業の課題に向き合います。" people={false}/>
         <div className="poster-company"><div className="poster-company-people"><StudioPeople/><p>仕事から考え、つくって確かめる。<br/>人と技術で、事業の次の一歩へ。</p></div><div><p className="poster-small-label">会社情報 / COMPANY</p><LakkanLogo variant="signature" size="feature" /><dl>
           <div><dt>会社名</dt><dd>株式会社Lakkan / Lakkan Inc.</dd></div>
+          <div><dt>代表者</dt><dd>代表取締役 山中秀斗</dd></div>
           <div><dt>所在地</dt><dd>東京都渋谷区神宮前六丁目23番4号</dd></div>
           <div><dt>事業内容</dt><dd>人財支援・採用支援<br/>CRM構築・業務改善<br/>Webサイト・LP制作<br/>FDE（現場に伴走する開発支援）<br/>AI導入・活用支援（Luna AIを含む）<br/><small>Luna AIの提供元は株式会社LunaTechです。</small></dd></div>
           <div><dt>支援の考え方</dt><dd>人手不足に対して、業務の見直し、技術の活用、人財支援を組み合わせて取り組みます。採用する役割や求める人材像を見直すことも、私たちの仕事です。</dd></div>

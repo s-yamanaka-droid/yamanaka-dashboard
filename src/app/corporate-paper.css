@@ -193,7 +193,9 @@
   .corporate-frame .poster-company dl > div { grid-template-columns: 80px minmax(0,1fr); gap: 18px; }
   .corporate-frame .poster-service-list > a { grid-template-columns: 50px minmax(0,1fr) minmax(0,1fr) 24px; gap: 20px; }
 }
-@media (max-width: 760px) {
+.mobile-nav[hidden], .mobile-nav-scrim[hidden] { display: none !important; }
+.mobile-nav-scrim { position: fixed; inset: 0; z-index: -1; border: 0; padding: 0; background: rgba(0,0,0,.3); }
+@media (max-width: 768px) {
   .corporate-frame .about-business-heading, .corporate-frame .about-business-list { grid-template-columns: 1fr; }
   .corporate-frame .about-business-heading { gap: 22px; margin-bottom: 30px; }
   .corporate-frame .about-business-heading h2 { font-size: 30px; }
@@ -204,8 +206,11 @@
   .corporate-frame .site-header .site-logo .brand-wordmark { font-size: 24px; }
   .corporate-frame .site-header .header-contact { display: inline-flex; min-height: 44px; padding: 10px 15px; gap: 10px; margin-left: auto; font-size: 12px; }
   .corporate-frame .site-header .header-contact .button-orb { display: none; }
-  .corporate-frame .site-header .menu-toggle { margin-left: 0; width: 44px; height: 44px; background: none; border: 1px solid var(--rule); border-radius: 50%; color: var(--red); }
-  .corporate-frame .site-header .mobile-nav { top: 78px; left: -20px; right: -20px; background: var(--paper); color: var(--ink); border: 1px solid var(--rule); border-radius: 0; box-shadow: 0 12px 22px #17221f12; padding: 16px 24px; }
+  .corporate-frame .site-header .desktop-nav { display: none; }
+  .corporate-frame .site-header .menu-toggle { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; margin-left: 0; width: 44px; min-width: 44px; height: 44px; background: none; border: 1px solid var(--rule); border-radius: 50%; color: var(--red); cursor: pointer; }
+  .corporate-frame .site-header .menu-toggle svg { width: 18px; height: 18px; }
+  .corporate-frame .site-header .menu-toggle-label { font-size: 9px; line-height: 1; white-space: nowrap; }
+  .corporate-frame .site-header .mobile-nav { position: absolute; display: grid; top: 78px; left: -20px; right: -20px; background: var(--paper); color: var(--ink); border: 1px solid var(--rule); border-radius: 0; box-shadow: 0 12px 22px #17221f12; padding: 16px 24px; }
   .corporate-frame .mobile-nav > a { min-height: 64px; border-color: var(--rule); }
   .corporate-frame .mobile-nav > a span { font-size: 22px; }
   .corporate-frame .mobile-nav > a small { font-size: 12px; color: var(--muted); }
